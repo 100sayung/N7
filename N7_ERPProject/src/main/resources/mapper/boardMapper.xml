@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 1.parameterType에 1개의 Type만 올 수 있다. Type 여러개인 경우 생략할 것
+    2.parameterType이 bean(DTO)인 경우 #(필드명)
+    3.parameterType이 변수인 경우 #(변수명)
+    4.parameterType이 Map<key, value>인 경우 #(key)
+
+
+-->
+<mapper namespace="com.n7.erp.dao.IConsultingBoardDao">
+   <insert id="writeBoard" parameterType="board">
+      INSERT INTO CONSULTING_BOARD
+      VALUES(BR_NUM_SEQ.NEXTVAL,#{CB_TYPE},#{CB_WRITER},#{CB_PASSWORD},#{CB_TITLE},#{CB_CONTENTS})
+   </insert>
+   <select id="boardmodifyajax" parameterType="Integer" resultType="board">
+      SELECT * FROM CONSULTING_BOARD WHERE CB_NUM=#{CB_NUM}
+   </select>
+   <update id="boardmodify" parameterType="board">
+      UPDATE CONSULTING_BOARD SET CB_TYPE=#{CB_TYPE},CB_TITLE=#{CB_TITLE},CB_CONTENTS=#{CB_CONTENTS} WHERE CB_NUM=#{CB_NUM}
+   </update>
+   <delete id="writelistdelete" parameterType="Integer">
+      DELETE FROM CONSULTING_BOARD WHERE CB_NUM=#{CB_NUM}
+   </delete>
+
+   <select id="getBoardList" resultType="Integer">
+      <![CDATA[
+         SELECT RN FROM(
+               SELECT CONBOARDLIST.*,ROWNUM RN FROM CONBOARDLIST
+                WHERE ROWNUM<=RW*10)
+         WHERE RN>=RW*10-9
+      ]]>
+   </select>
+
+</mapper>

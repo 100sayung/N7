@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+
+.infobtn{
+	background-color: #0033ff;
+	opacity: 70%;
+	border-radius: 5px;
+	width: 70px;
+	height: 30px;
+	color:white;
+	font-weight: bold;
+	font-size:13px;
+}
+
+.infomenu{
+	background-color: #0033ff;
+	opacity: 70%;
+	color:white;
+	font-weight: bold;
+	font-size:13px;
+}
+.goodbtn{
+	background-color: #0033ff;
+	opacity: 70%;
+	border-radius: 5px;
+	width: 100px;
+	height: 40px;
+	color:white;
+	font-weight: bold;
+	font-size:14px;
+}
+.divcss{
+	background-color:lightgreen;
+	text-align:center;
+	font-size: 30px;
+	font-weight:bold;
+}
+.border_delete_btn{
+	border: 0px solid;
+}
