@@ -14,7 +14,6 @@
 	width: 100%;
 	height: 200px;
 }
-<!-- 테스트 중 -->
 #side_menu {
 	height: 100%;
 	width: 250px;
