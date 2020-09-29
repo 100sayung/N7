@@ -14,7 +14,6 @@
 	width: 100%;
 	height: 200px;
 }
-<!--git test-->
 #side_menu {
 	height: 100%;
 	width: 250px;
