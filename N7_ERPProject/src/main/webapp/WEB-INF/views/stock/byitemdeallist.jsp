@@ -14,7 +14,6 @@
 	width: 100%;
 	height: 200px;
 }
-
 #side_menu {
 	height: 100%;
 	width: 250px;
