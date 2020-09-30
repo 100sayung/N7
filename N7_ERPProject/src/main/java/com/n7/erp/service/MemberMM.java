@@ -169,5 +169,39 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		int ccodecnt = mDao.getDupleCCode(cCode);
 		return Integer.toString(ccodecnt);
 	}
+	public String deleteCompany(String m_ccode) {
+		
+		mDao.deleteO_return(m_ccode);
+		mDao.deleteS_ieport(m_ccode);
+		mDao.deleteO_purchaseprogram(m_ccode);
+		mDao.deleteO_purchaseprogramcommom(m_ccode);
+		mDao.deleteO_purchaselist(m_ccode);
+		mDao.deleteO_order(m_ccode);
+		mDao.deleteB_shipment(m_ccode);
+		mDao.deleteAc_salestatementlist(m_ccode);
+		mDao.deleteAc_realsalestatementlist(m_ccode);
+		mDao.deleteB_uncollectedmoney(m_ccode);
+		mDao.deleteB_shipregist(m_ccode);
+		mDao.deleteS_itemcode(m_ccode);
+		mDao.deleteHr_applyholiday(m_ccode);
+		mDao.deleteB_activites(m_ccode);
+		mDao.deleteHr_attendance(m_ccode);
+		mDao.deleteHr_academic(m_ccode);
+		mDao.deleteHr_payroll(m_ccode);
+		mDao.deleteHr_certification(m_ccode);
+		mDao.deleteHr_career(m_ccode);
+		mDao.deleteHr_card(m_ccode);
+		mDao.deleteO_purchasecommom(m_ccode);
+		mDao.deleteB_order(m_ccode);
+		mDao.deleteAc_salestatement(m_ccode);
+		mDao.deleteHr_dept(m_ccode);
+		mDao.deleteHr_deduction(m_ccode);
+		mDao.deleteS_category(m_ccode);
+		mDao.deleteApprovaldocu(m_ccode);
+		mDao.deleteAc_companylist(m_ccode);
+		
+		return new Gson().toJson("성공");
+	}
+
 
 }

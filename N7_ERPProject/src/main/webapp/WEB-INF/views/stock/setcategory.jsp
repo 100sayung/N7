@@ -98,7 +98,8 @@ color: red;
 			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
 			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
 			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-		</ul>
+			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
+			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>		</ul>
 	</div>
 
 	<div id="description">
@@ -132,9 +133,7 @@ color: red;
 	//카테고리 출력	
 	category('/erp/stock/getcategory');
 	//카테고리 추가	
-	$('#btn')
-				.click(
-						function() {
+	$('#btn').click(function() {
 							if ($('#ct_name').val() == ''
 									|| $('#ct_code').val() == '') {
 								$('#msg').html('값을 입력해주세요!');
@@ -157,15 +156,14 @@ color: red;
 							});
 						})
 		function category(url, data) {
-			$
-					.ajax({
+			$.ajax({
 						url : url,
 						data : data,
 						dataType : 'json',
 						type : 'post',
 						success : function(result) {
 							console.log(result);
-							var str = '<tr><td>분류명</td><td>품목 코드</td><td></td><td></td></tr>';
+							var str = '<tr><td>분류명</td><td>품목 번호</td><td></td><td></td></tr>';
 							for (var i = 0; i < result.length; i++) {
 								str += '<tr><td class="ct_name"><input type="text" value="'
 										+ result[i].ct_name
@@ -180,10 +178,12 @@ color: red;
 							$('#ct_code').val("");
 						},
 						error : function(err) {
-							console.log(err);
+							$('#msg')
+							.html(
+									'분류명 삭제에 실패하였습니다. 현재 분류명을 사용하는 재고가 있습니다.');
 						}
 					})
-		};
+		}; 
 		//카테고리 수정
 		function modifyCategory(id) {
 			var ct_name = $(id).parent().siblings('.ct_name').children()[0].value;

@@ -45,7 +45,7 @@ public class StockRestController {
 		return stmm.deleteCategory(ct,session);
 	}
 
-	@RequestMapping(value = "/getitemcode", method = RequestMethod.POST)
+	@RequestMapping(value = "/getitemcode", method = RequestMethod.GET)
 	public ResponseEntity<List<ItemCode>> getItemCode(ItemCode it,HttpSession session) {
 		return stmm.getItemCode(it,session);
 	}
@@ -105,5 +105,22 @@ public class StockRestController {
 	@RequestMapping(value = "/getmonthpayment", method = RequestMethod.POST)
 	public ResponseEntity<String> getMonthPayment(String date1, String date2,HttpSession session) {
 		return stmm.getMonthPayment(date1,date2,session);
+	}
+	@RequestMapping(value = "/confirmexportcheck", method = RequestMethod.POST)
+	public ResponseEntity<String> confirmExportCheck(@RequestBody String ipList, HttpSession session) {
+		try {
+			ipList = URLDecoder.decode(ipList, "UTF-8");
+			ipList = ipList.substring(1, ipList.length() - 1);
+
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return stmm.cofirmExportCheck(ipList, session);
+	}
+	@RequestMapping(value = "/getclcode", method = RequestMethod.GET)
+	public ResponseEntity<String> getClcode(HttpSession session) {
+		return stmm.getClcode(session);
 	}
 }

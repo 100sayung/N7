@@ -105,12 +105,14 @@ span {
 			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
 			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
 			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
+			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
+			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
 
 	<div id='contain'>
-		입고 내역<input class='checkNum' type="radio" name='ie_status' value="0">출고
-		내역<input class="checkNum" type="radio" name="ie_status" value="1"><br>
+		입고 내역<input class='checkNum' type="radio" name='ie_status' value="1">출고
+		내역<input class="checkNum" type="radio" name="ie_status" value="2"><br>
 		시작일 : <input class='checkDate' id='date0' type="date" name='ie_date'><br>
 		종료일 : <input class='checkDate' id='date1' type="date" name='ie_date2' readonly><br><br>
 		<div id="description"></div>
@@ -134,32 +136,28 @@ span {
 					$('#description').html('입/출고 내역이 없습니다.')
 					return;
 				}
-				var str = '<h3>입/출고 내역</h3><table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>발주 번호</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
+				var str = '<h3>입/출고 내역</h3><table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
 				for (var i = 0; i < result.length; i++) {
 					str += '<tr><td>' + result[i].ie_itcode + '</td>';
-					str += '<td>' + result[i].ie_account + '</td>';
+					str += '<td>' + result[i].ie_clcode + '</td>';
 					str += '<td>' + result[i].ie_date.substr(0, 10)+ '</td>';
-					if (result[i].ie_status == 0) {
+					if (result[i].ie_status == 1) {
 						str += '<td>입고</td>'
-					} else {
+					} else if(result[i].ie_status == 2){
 						str += '<td>출고</td>'
+					}else{
+						str += '<td>반품</td>'
 					}
-					if (result[i].ie_pnum != undefined) {
-						str += '<td>' + result[i].ie_pnum + '</td>'
-					} else {
-						str += '<td></td>'
-					}
-					str += '<td>' + result[i].ie_price + '</td>'
+					str += '<td>' + (result[i].ie_price/result[i].ie_qty) + '</td>'
 					str += '<td>' + result[i].ie_qty + '</td>'
 					str += '<td>' + result[i].ie_hrcode + '</td>'
-					str += '<td>'+ (result[i].ie_price * result[i].ie_qty)+ '</td></tr>'
+					str += '<td>'+ result[i].ie_price+ '</td></tr>'
 				}
 				str += '</table>';
 				$('#description').html(str);
 			},
 			error : function(err) {
 				console.log(err);
-				console.log("실패이")
 			}
 		});
 	}

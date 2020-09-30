@@ -60,5 +60,9 @@ public class HomeRestController {
 		String result = mm.getDupleCCode(m_ccode);
 		return result;
 	}
+	@PostMapping(value="/home/deletecompany")
+	public String deleteCompany(String m_ccode) {
+		return mm.deleteCompany(m_ccode);
+	}
 
 }
