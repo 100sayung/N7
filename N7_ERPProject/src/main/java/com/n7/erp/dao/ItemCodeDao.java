@@ -28,4 +28,6 @@ public interface ItemCodeDao {
 	@Select("SELECT * FROM IT WHERE IT_CPCODE = #{cCode} AND IT_CODE = #{bs_itcode}")
 	public ItemCode getPname(@Param("cCode")String cCode,@Param("bs_itcode") String bs_itcode);
 
+	@Select("Select IT_STOCK FROM IT WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{it_cpcode}")
+	public int getStock(ItemCode it);
 }

@@ -31,7 +31,7 @@ border: 1px solid;
         <button type="button" id="approvalplan">결재 요청하기</button>
         <br>
         <br>
-        <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">출하의뢰입력</div>
+        <div style="width:auto; background-color:#3D6B9B;  color:white; padding:1%;">출하의뢰입력</div>
           <select id="choice" style="width:180px;">
                       <option value="bs_docunum">출하번호</option>                    
                       <option value="bs_bonum">수주번호</option>
@@ -49,7 +49,7 @@ border: 1px solid;
                <th>회사코드</th>
                <th><input type="text" name="bs_ccode"></th>
                <th>수주번호</th>
-               <th><input type="text" name="bs_bonum"></th>
+               <th><input type="text" name="bs_bonum">           
 <!--           <th>품목코드</th>
                <th><input type="text" name="bs_itcode"></th>  -->  
             </tr>
@@ -92,10 +92,10 @@ border: 1px solid;
                         <td><input type="radio" name="each_check" class="each"></td>          
                         <td><input type="date" name="bs_basedate" required></td>
                         <td><input type="text" name="bs_clcode" required></td>
-                        <td><input type="text" name="bs_itcode" required></td>
+                        <td class = "cl"></td>
                         <td><input type="text" name="bs_proname" required></td>
                         <td><input type="number" name="bs_unit"  required></td>
-                        <td><input type="number" name="bs_quantity" required></td>
+                        <td><input onclick="changeItcode(this)" type="number" name="bs_quantity" required></td>
                         <td><input type="number" name="bs_price" required></td>           
                     </tr>
                 </tbody>
@@ -125,13 +125,28 @@ border: 1px solid;
           type:"post",
           success:function(data){
              select = makeSelectBox(data);
-             console.log(str)
+             $(".cl").html(select);
           },
           error:function(err){
              console.log(err);
           }
        });
         
+    
+        var select2;
+       $.ajax({
+             url:"/erp/rest/sales/getbonum",
+             dataType:"json",
+             type:"post",
+             success:function(data){
+                select2 = makeSelectBox2(data);
+                $(".cl2").html(select2);
+             },
+             error:function(err){
+                console.log(err);
+             }
+          }); 
+       
     $('#shippingitemfrm').click(function(){
       var str="";
    
@@ -147,10 +162,10 @@ border: 1px solid;
             str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_docunum+"></td>";
             str+="<td><input type='date' value="+data.sList[i].bs_basedate+"></td>";
             str+="<td><input type='text' value="+data.sList[i].bs_clcode+"></td>";
-            str+="<td>"+select+"</td>";
+            str+="<td><input type='text' value="+data.sList[i].bs_itcode+"></td>";
             str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";   
             str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-            str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
+            str+="<td><input onclick='changeItcode(this)' type='number' value="+data.sList[i].bs_quantity+"></td>";
             str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";    
          }
             $('#tBody').html(str);
@@ -281,7 +296,7 @@ border: 1px solid;
                });
             });
          function makeSelectBox(arr){
-            var arrStr = "<select name = 'bs_itcode'>"
+            var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
             if(arr.length==0){
                arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
             }else{
@@ -292,7 +307,37 @@ border: 1px solid;
             arrStr+="</select>";
             return arrStr;
          }
-        
+         
+          function makeSelectBox2(arr){
+            var arrStr = "<select name = 'bs_bonum'>"
+            if(arr.length==0){
+               arrStr+="<option>수주번호를 작성해주세요 </option>";
+            }else{
+               for(var i = 0;i<arr.length;i++){
+                  arrStr+="<option value='"+arr[i].bo_num+"'>"+arr[i].bo_num+"</option>"; 
+               }
+            }
+            arrStr+="</select>";
+            return arrStr;
+         }  
+         
+        function changeItcode(id){
+           var it_stock = $(id).val();
+           var it_code = $(id).parent().siblings(".cl").children().val();
+           $.ajax({
+              url:"/erp/stock/getstock",
+              data : {it_code : it_code, it_stock : it_stock} ,
+              dataType : "json",
+              type : "get",
+              success : function(result){
+                 alert("재고가 부족합니다.");
+                 id.value = result;
+                 
+              },error: function(err){
+                 console.log(err)
+              }
+           })
+        }
 
 </script>
 </body>

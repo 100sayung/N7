@@ -106,4 +106,10 @@ public class StockRestController {
 	public ResponseEntity<String> getMonthPayment(String date1, String date2,HttpSession session) {
 		return stmm.getMonthPayment(date1,date2,session);
 	}
+	
+	@RequestMapping(value = "/getstock", method = RequestMethod.GET)
+	public ResponseEntity<String> getstock(ItemCode it,HttpSession session) {
+		return stmm.getStock(it,session);
+	}
+	
 }
