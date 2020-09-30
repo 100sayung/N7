@@ -21,6 +21,7 @@ Released   : 20130526
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -52,14 +53,7 @@ margin-left: 200px;
 
 #description{
 	position:relative;
-}
-.center{
-	position : absolute;
-	top : 50%;
-	left : 50%;
-	transform:translate(-50%, -50%);
-}
-</style>
+}</style>
 </head>
 
 <body>
@@ -77,7 +71,7 @@ margin-left: 200px;
 			</ul>
 		</div>
 	</div>
-	<div id="description" style="height: 700px;">
+	<div id="description" class="out" style="height: 700px;">
 	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>회원관리</h1></div>
 	<div class="center">
 	<input type="text" id="m_ccode" placeholder='회사코드검색'><button id="searchbtn" onclick="searchStart();">검색</button>
@@ -147,7 +141,13 @@ margin-left: 200px;
 					str += "<td><input type='checkbox' id='chkbx' name='chkbx' value='"+data[i].m_id+"'></td>";
 					str += "<td>" + data[i].m_name + "(" + data[i].m_id +")</td>";
 					str += "<td>" + data[i].c_name + "("+ data[i].m_ccode + ")</td>";
-					str += "<td>" + data[i].m_grade + "</td>";
+					if(data[i].m_grade==0){
+						str += "<td>일반회원</td>";
+					}else if(data[i].m_grade==1){
+						str += "<td>ERP매니저</td>";
+					}else{
+						str += "<td>홈페이지관리자</td>";
+					}
 					str += "</tr>"
 				}
 				str += "</table>";
@@ -279,7 +279,13 @@ margin-left: 200px;
 					str += "<td><input type='checkbox' id='chkbx' name='chkbx' value='"+data[i].m_id+"'></td>";
 					str += "<td>" + data[i].m_name + "(" + data[i].m_id +")</td>";
 					str += "<td>" + data[i].c_name + "("+ data[i].m_ccode + ")</td>";
-					str += "<td>" + data[i].m_grade + "</td>";
+					if(data[i].m_grade==0){
+						str += "<td>일반회원 </td>";
+					}else if(data[i].m_grade==1){
+						str += "<td>ERP매니저</td>";
+					}else{
+						str += "<td>홈페이지관리자</td>";
+					}
 					str += "</tr>"
 				}
 				str += "</table>";

@@ -53,7 +53,13 @@ public class AccountionCotroller {
 		Map<String, List<SaleInfo>> sMap = am.getList(code);
 		return sMap;
 	}
-
+	@GetMapping(value = "/Account/shipmentDetaile")
+	public ModelAndView shipmentdetaile(String CNT, String ARR, HttpSession session) {
+		int cnt = Integer.parseInt(CNT);
+		String[] strArray = ARR.split(",");
+		mav = am.shipmentDetaile(cnt,strArray,session);
+		return mav;
+	}
 	/*
 	 * @PostMapping(value = "/selectsale",produces="application/json;charset=utf-8"
 	 * ) public Map<String, List<SaleInfo>> selectsale( String search) {

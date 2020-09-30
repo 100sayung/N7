@@ -108,18 +108,26 @@ public class AccountMM {
 	}
 
 	public ModelAndView saleinsert(HttpServletRequest request, SaleInfo si, HttpSession session) {
+		mav = new ModelAndView();
 		String view = null;
 		boolean a = false;
 		boolean b = false;
-		mav = new ModelAndView();
+		
+		String cCode=session.getAttribute("cCode").toString();
 		A_company ac = new A_company();
-		ac = aDao.getcomcode(si.getS_comnum());
+		if(si.getIe_seqnum()==null) {
+			ac = aDao.getcomcode(si.getS_comnum(),cCode);
+		}else{
+			ac = aDao.getcomcode2(si.getS_clcode(),cCode);
+		};
 		if (ac == null) {
 			mav.addObject("msg", "등록된 거래처가 없습니다.");
 		} else {
-
+			si.setS_comnum(ac.getCl_comnum());
+            System.out.println("여기 안들어와?1");
 			si.setS_clcode(ac.getCl_code());
-			si.setS_ccode(session.getAttribute("cCode").toString());
+			si.setS_ccode(cCode);
+			a = aDao.saleinsert(si);
 			String[] strpkind = request.getParameterValues("s_pkind");
 			String[] strcnt = request.getParameterValues("s_cnt");
 			String[] strprice = request.getParameterValues("s_price");
@@ -127,7 +135,6 @@ public class AccountMM {
 			String[] strtax = request.getParameterValues("s_tax");
 			String[] strtotal = request.getParameterValues("s_total");
 			String[] strmemo = request.getParameterValues("s_memo");
-			a = aDao.saleinsert(si);
 			for (int i = 0; i < strpkind.length; i++) {
 				si.setS_pkind(strpkind[i]);
 				si.setS_cnt(strcnt[i]);
@@ -138,19 +145,54 @@ public class AccountMM {
 				si.setS_memo(strmemo[i]);
 				b = aDao.saleinsert2(si);
 			}
-
-			if (a && b) {
-				mav.addObject("msg", "전표등록성공");
-				view = "Account/openTable";
-			} else {
-				mav.addObject("msg", "전표등록실패");
-				view = "Account/openTable";
-			}
+           if(si.getIe_seqnum()==null) {
+        	   if (a && b) {
+        		   System.out.println("여기도들어와?2");
+        		   mav.addObject("msg", "전표등록성공");
+        		   view = "Account/openTable";
+        	   } else {
+        		   mav.addObject("msg", "전표등록실패");
+        		   view = "Account/openTable";
+        	   }        	   
+           }else {
+        	   
+        	   if (a && b) {
+        		   System.out.println("여기도들어와?3");
+        		   String [] seqnum = request.getParameterValues("ie_seqnum");
+        		   for(int i=0; i<seqnum.length; i++) {
+        			   aDao.statusupdate(seqnum[i],cCode);
+        			   
+        		   }
+        		   mav.addObject("msg", "전표등록성공");
+        		   view = "Account/openTable";
+        	   } else {
+        		   mav.addObject("msg", "전표등록실패");
+        		   view = "Account/openTable";
+        	   }
+           }
 		}
 		mav.setViewName(view);
 		return mav;
 	}
-
+	public ModelAndView shipmentDetaile(int cnt, String[] strArray, HttpSession session) {
+		mav = new ModelAndView();
+		String cCode= session.getAttribute("cCode").toString();
+		String view = "";
+		List<shipment> sList=new ArrayList<>();
+		shipment sp = new shipment();
+		String code="";
+		for(int i=0; i<cnt; i++) {
+			code=strArray[i];
+			sp=aDao.Ieport(code,cCode);
+			sList.add(sp);
+		}
+		if(sList!=null) {
+			mav.addObject("sList",new Gson().toJson(sList));
+			view="Account/shipmentDetaile";
+		}
+		mav.setViewName(view);
+		return mav;
+	}
 	public Map<String, List<SaleInfo>> getsaleList(HttpSession session) {
 		Map<String, List<SaleInfo>> aMap = null;
 		String cCode = session.getAttribute("cCode").toString();
@@ -374,14 +416,15 @@ public class AccountMM {
 
 	public ModelAndView approdocument(HttpServletRequest request, ApprovalDocument ad, HttpSession session) {
 		String view = null;
+		String cCode =session.getAttribute("cCode").toString();
 		mav = new ModelAndView();
 		boolean a = false;
 		boolean b = false;
 		boolean c = false;
 		A_company ac = new A_company();
-		ac = aDao.getcomcode(ad.getRs_comnum());
+		ac = aDao.getcomcode(ad.getRs_comnum(),cCode);
 		ad.setRs_clcode(ac.getCl_code());
-		ad.setRs_ccode(session.getAttribute("cCode").toString());
+		ad.setRs_ccode(cCode);
 		String[] strpkind = request.getParameterValues("rs_pkind");
 		String[] strcnt = request.getParameterValues("rs_cnt");
 		String[] strprice = request.getParameterValues("rs_price");

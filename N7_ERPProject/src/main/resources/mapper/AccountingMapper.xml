@@ -43,6 +43,10 @@
 	SELECT * FROM AC_COMPANYLIST WHERE CL_COMNUM = #{s_comnum}
 	</select>
 	
+	<select parameterType="String" id="getcomcode2" resultType="A_com">
+	SELECT * FROM AC_COMPANYLIST WHERE CL_CODE = #{s_code} AND CL_CCODE=#{cCode}
+	</select>
+
 	<select id="getComList" parameterType="String" resultType="A_com">
 	SELECT * FROM AC_COMPANYLIST WHERE CL_CCODE=#{cl_ccode} AND CL_STATUS='1'
 	</select>
@@ -122,6 +126,10 @@
 	SELECT * FROM REQUEST WHERE IE_CPCODE=#{cCode} AND IE_ACCODE='0'
 	</select>
 
+	<select parameterType="String" id="Ieport" resultType="ship">
+	SELECT * FROM REQUEST WHERE IE_CPCODE=#{cCode} AND IE_SEQNUM=#{code} 
+	</select>
+	
 	<select id="comparecode" parameterType="String" resultType="approvaldocu">
 	SELECT * FROM APPROVALDOCU WHERE AP_DOCUNUM=#{code} AND AP_CCODE=#{cCode}
 	</select>
@@ -157,6 +165,9 @@
 	</if>
 	</where>
 	</select>
+	<update id="statusupdate" parameterType="String">
+	UPDATE S_IEPORT SET IE_ACCODE ='1' WHERE IE_SEQNUM=#{s_code} AND IE_CPCODE=#{cCode} 
+	</update>
 	
 	<update id="trensCom" parameterType="String">
 	UPDATE AC_COMPANYLIST SET CL_STATUS =#{use} WHERE CL_CODE=#{code} AND CL_CCODE=#{cCode} 

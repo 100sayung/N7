@@ -2,7 +2,7 @@
 
 
 .infobtn{
-	background-color: #0033ff;
+	background-color: #3D6B9B;
 	opacity: 70%;
 	border-radius: 5px;
 	width: 70px;
@@ -13,14 +13,18 @@
 }
 
 .infomenu{
-	background-color: #0033ff;
+	background-color: #3D6B9B;
 	opacity: 70%;
 	color:white;
 	font-weight: bold;
 	font-size:13px;
 }
+
+.admin{
+	height: 50px;
+}
 .goodbtn{
-	background-color: #0033ff;
+	background-color: #3D6B9B;
 	opacity: 70%;
 	border-radius: 5px;
 	width: 100px;

@@ -1,18 +1,25 @@
 package com.n7.erp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.n7.erp.bean.Member;
 import com.n7.erp.service.AdminMM;
+import com.n7.erp.service.MemberMM;
 import com.n7.erp.userClass.PagingVO;
 
 @RestController
 @RequestMapping(value="/rest")
 public class AdminRestController {
 	@Autowired AdminMM am;
+	@Autowired MemberMM mm;
 
 	@GetMapping(value = "/admin/memberlist")
 	public String memberList(PagingVO vo, String nowPage, String cntPerPage) {
@@ -32,6 +39,25 @@ public class AdminRestController {
 		return result;
 	}
 	
+
+	@PostMapping(value = "/admin/changegrade")
+	public String updateChangeGrade(String jsonStr) {
+		List<Member> mlist = new Gson().fromJson(jsonStr, new TypeToken<List<Member>>() {
+		}.getType());
+		System.out.println(mlist);
+		String result = mm.updateChangeGrade(mlist);
+		return result;
+	}
+
+	@PostMapping(value = "/admin/forcewithdrawal")
+	public String forceWithDrawal(String jsonStr) { //
+		System.out.println(jsonStr);
+		List<String> slist = new Gson().fromJson(jsonStr, new TypeToken<List<String>>() {
+		}.getType());
+		System.out.println(slist);
+		mm.forceWithDrawal(slist);
+		return null;
+	}
 	
 	
 	@GetMapping(value="/admin/memberpagenumber")
@@ -66,9 +92,18 @@ public class AdminRestController {
 		return result;
 	}
 	
-	
+	@PostMapping(value="admin/insertcompanytemp")
+	public String insertCompanyTemp(String ct_code) {
+		String result = am.insertCompanyTemp(ct_code);
+		return result;
+	}
+	@PostMapping(value="admin/deletecompanytemp")
+	public String deleteCompanyTemp(String ct_code) {
+		String result = am.deleteCompanyTemp(ct_code);
+		return result;
+	}
 
-	//회원관리 검색페이징
+	//�쉶�썝愿�由� 寃��깋�럹�씠吏�
 	@GetMapping(value="/admin/ccodepagenumber")
 	public String ccodePageNumber(String m_ccode) {
 		int result = am.countCCodeMember(m_ccode);

@@ -88,7 +88,7 @@ public class MemberMM {
 public String getSearchFromId(String m_id) {
 	ArrayList<Member> mlist = new ArrayList<Member>();
 	if (m_id.equals("")) {
-		System.out.println("��");
+		System.out.println("占쏙옙");
 		mlist = mDao.getAllMember();
 	} else {
 		m_id = "%" + m_id + "%";
@@ -117,7 +117,7 @@ public void forceWithDrawal(List<String> slist) {
 
 public ModelAndView moveMyInfo(HttpSession session) {
 	if(!hDao.haveHrCode(session.getAttribute("id").toString())) {
-		mav.addObject("msg", "�켱 �λ�ī�� ����� ��û���ּ���.");
+		mav.addObject("msg", "占쎌선 占싸삼옙카占쏙옙 占쏙옙占쏙옙占� 占쏙옙청占쏙옙占쌍쇽옙占쏙옙.");
 	}
 	mav.setViewName("myInfo/myInfo");
 	return mav;
@@ -134,13 +134,13 @@ public ModelAndView moveMyInfo(HttpSession session) {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 			messageHelper.setFrom("mykyj2000@gmail.com");
 			messageHelper.setTo(userEmail);
-			messageHelper.setSubject("N7 ERP ������ȣ�Դϴ�.");
-			messageHelper.setText("������ȣ�� " + authentictionNum + " �Դϴ�");
+			messageHelper.setSubject("N7 ERP 占쏙옙占쏙옙占쏙옙호占쌉니댐옙.");
+			messageHelper.setText("占쏙옙占쏙옙占쏙옙호占쏙옙 " + authentictionNum + " 占쌉니댐옙");
 			mailSender.send(mimeMessage);
-			return ResponseEntity.ok(new Gson().toJson("������ȣ���� ����"));
+			return ResponseEntity.ok(new Gson().toJson("占쏙옙占쏙옙占쏙옙호占쏙옙占쏙옙 占쏙옙占쏙옙"));
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(new Gson().toJson("������ȣ���� ����"));
+			return ResponseEntity.ok(new Gson().toJson("占쏙옙占쏙옙占쏙옙호占쏙옙占쏙옙 占쏙옙占쏙옙"));
 		}
 	}
 
@@ -157,7 +157,7 @@ public ModelAndView moveMyInfo(HttpSession session) {
 
 	public ResponseEntity<String> modifyPassword(String userPassword, String userId) {
 		mDao.modifyPassword(userPassword,userId);
-		return ResponseEntity.ok(new Gson().toJson("��й�ȣ ���濡 �����Ͽ����ϴ�."));
+		return ResponseEntity.ok(new Gson().toJson("占쏙옙橘占싫� 占쏙옙占썸에 占쏙옙占쏙옙占싹울옙占쏙옙占싹댐옙."));
 	}
 
 	public String getDupleID(String m_id) {
@@ -203,5 +203,11 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		return new Gson().toJson("성공");
 	}
 
+
+	public String checkGrade(HttpSession session) {
+		String id = session.getAttribute("id").toString();
+		String grade = mDao.checkGrade(id);
+		return grade;
+	}
 
 }

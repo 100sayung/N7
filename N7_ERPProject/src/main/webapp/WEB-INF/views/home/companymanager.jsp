@@ -17,10 +17,11 @@ Released   : 20130526
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -44,34 +45,18 @@ Released   : 20130526
 	color: #ffffff;
 }
 
-#description div {
-	border-radius: 25px;
-	background-color: rgb(85, 82, 82);
-	width: 200px;
-	margin: 5px;
-	height: 150px;
-	float: left;
-	line-height: 150px;
-}
-
-#description div:hover {
-	background-color: #eeeeee;
-	border: 1px solid black;
-}
-
-#description {
-	margin-left: 340px;
-	margin-top: 200px;
-}
-
 #desc {
 margin-left: 200px;
 	font-size: 20px;
 	font-weight: bolder;
 }
 
-</style>
+#description{
+	position:relative;
+}</style>
 </head>
+
+
 <body>
 	<div id="header" class="container">
 		<div id="logo">
@@ -87,16 +72,15 @@ margin-left: 200px;
 			</ul>
 		</div>
 	</div>
-	
-	<br />
-	
-	회사관리페이지 
-	<h1>회사데이터 삭제 / 회사ERP권한 설정(이건 연결하는게 좋을듯)</h1>
-	
-	
+	<div id="description" class="out" style="height: 700px;">
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>회사관리</h1></div>
+	<div class="center">
 	
 	<div id="container"></div>
 	<div id="paging"></div>
+	
+	</div>
+	</div>
 	
 	
 	<script> 
@@ -142,10 +126,10 @@ margin-left: 200px;
 				console.log(data);
 				let str = "";
 			 	str = "<table>"
-				str += "<tr class='infomenu' style='height:75px'><td style='width:50px;'></td><td style='width:100px;'>회사이름</td>";
-				str += "<td style='width:150px;'>회사코드</td><td style='width:200px;'>주소</td><td style='width:100px;'>대표자</td>";
-				str += "<td style='width:100px;'>업태</td><td style='width:100px;'>분류</td>";
-				str += "<td style='width:150px;'>전화번호</td><td style='width:160px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
+				str += "<tr class='infomenu admin'><td style='width:170px;'>회사이름</td>";
+				str += "<td style='width:220px;'>회사코드</td><td style='width:300px;'>주소</td><td style='width:150px;'>대표자</td>";
+				str += "<td style='width:150px;'>업태</td><td style='width:150px;'>분류</td>";
+				str += "<td style='width:220px;'>전화번호</td><td style='width:200px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr class = '' id='"+data[i].c_code+"'>";					
 					str += "<td>" + data[i].c_name +"</td>";
