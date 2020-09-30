@@ -44,7 +44,7 @@ public interface AccountDao {
 
 	boolean deleteSale(@Param("code") String code,@Param("cCode") String cCode);
 
-	boolean deleteSale2(String code, String cCode);
+	boolean deleteSale2(@Param("code")String code,@Param("cCode") String cCode);
 	
 	List<approvalLine> approvalLine(String cCode);
 
@@ -76,7 +76,7 @@ public interface AccountDao {
 
 	boolean approdocument2(ApprovalDocument ad);
 
-	A_company getcomcode(String s_comnum);
+	A_company getcomcode(@Param("s_comnum")String s_comnum,@Param("cCode") String cCode);
 
 	List<ApprovalDocu> comparecode(@Param("code") String code,@Param("cCode") String cCode);
 
@@ -127,6 +127,12 @@ public interface AccountDao {
 	com.n7.erp.bean.ac.approvalLine getApprinfo(String code); //결재안에서 결재자 표시
 
 	public int countDocument();
+
+	A_company getcomcode2(@Param("s_clcode")String s_clcode,@Param("cCode") String cCode);
+
+	void statusupdate(@Param("s_code")String s_code,@Param("cCode") String cCode);
+
+	shipment Ieport(@Param("code")String code,@Param("cCode") String cCode);
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 

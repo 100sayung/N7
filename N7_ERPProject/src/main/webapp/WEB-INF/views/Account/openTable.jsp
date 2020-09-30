@@ -15,9 +15,7 @@
 	float: left;
 }
 
-body, div {
-	text-align: center;
-}
+
 
 #comInfo {
 	text-align: center;
@@ -57,6 +55,9 @@ float: left;
 width:100%;
 }
 #detaile{
+float: left;
+}
+#shipment{
 float: left;
 }
 </style>
@@ -109,20 +110,20 @@ float: left;
 								<option value="비과세">비과세</option>
 						</select></td>
 					</tr>
-					<tr>
-						<td>거래처명</td>
-						<td><input class="data" type="text" name="s_company" /></td>
+					<tr id="company">
+						<td><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>거래처명</td>
+						<td><input id="comname" class="data" type="text" name="s_company" readonly/></td>
 						<td>사업자번호</td>
-						<td><input class="data" type="text" name="s_comnum" /></td>
+						<td><input id="comnum" class="data" type="text" name="s_comnum" readonly/></td>
 						<td>입력자</td>
-						<td><input class="data" type="text" name="s_employee" /></td>
+						<td><input class="data" type="text" name="s_employee" value="${hrCode}" readonly/></td>
 						<td></td>
 					</tr>
 				</thead>
 			</table>
 		</div>
 		<!-- </form> -->
-			<button id="detaile" type="button">상세정보</button>
+			<span id="detailebutton"></span>
 			 <span id='plusorminus'>
 			<input type="number" id="qty" min="1" style="width: 64px;">
 			<button type="button" id="addList"> 행추가</button>
@@ -163,7 +164,7 @@ float: left;
 			</table>
 		</div>
 		</form>
- 		<button type="button" onclick="saleInsertInfo()">등록</button>
+ 		<button id="insert" type="button" onclick="saleInsertInfo()">등록</button>
 
 
 
@@ -172,13 +173,50 @@ float: left;
 
 </body>
 <script type="text/javascript">
+
+function setChildValue(data) {
+	console.log(data)
+	for(var i in data.aList){ 
+	var comname=data.aList[i].cl_name;
+	var comnum=data.aList[i].cl_comnum;
+		
+	}
+	
+	$("#comname").val(comname);
+	$("#comnum").val(comnum);
+};
+
 $("#getshipment").click(function(){
+	$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>매출등록하기</button>")
+	$("#plusorminus").html("");
 	$.ajax({
 		url:'/erp/rest/Account/getshipment',
 		type:'get',
 		datatype:'json',
 		success:function(data){
 			console.log(data);
+			
+			$("#testTable").html("");
+			var str='';
+				str += "<thead><tr><td>체크</td><td>품목</td><td>거래처명</td><td>거래처코드</td><td>합계(원)</td></tr></thead>";
+				str += "<tbody id='tBody'>";
+				for(var i in data.sList){
+			var price=0;
+			var qty=0;
+			price= Number(data.sList[i].ie_price);
+			qty = Math.abs(Number(data.sList[i].ie_qty));
+			var price2= (price/qty);
+			console.log(price2);
+			console.log(price);
+			console.log(qty);
+				str += "<tr id="+data.sList[i].cl_code+"><td><input type='checkbox' class='check' name='checknum' value="+data.sList[i].ie_seqnum+"></td>";
+				str += "<td><input class='data' type='text' name='s_pkind' value="+data.sList[i].it_pname+"></td>";
+				str += "<td><input class='data' type='text' name='cl_name' value="+data.sList[i].cl_name+"></td>";
+				str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].cl_code+"></td>";
+				str += "<td><input class='data' type='text' name='s_total'value="+data.sList[i].ie_price+"></td>";
+			$("#testTable").html(str);
+			}
+			str+="</tr></tbody>";
 		},
 		error:function(error){
 			console.log(error);
@@ -223,7 +261,7 @@ $("#search2").click(function(){
 
 
 
-$("#detaile").click(function() {
+function saledetaile() {
 	var check = '';
 $("input[name='checknum']:checked").each(function() {
 				check = $(this).attr('value');
@@ -240,7 +278,28 @@ $("input[name='checknum']:checked").each(function() {
                 	alert("체크한 항목이 없습니다");
                 }
 			});
+};
+
+function shipmentDetaile(){
+	var arr =new Array();
+	var id = new Array();
+	var cnt = $("input[name='checknum']:checked").length;
+	$("input[name='checknum']:checked").each(function() {
+		arr.push($(this).attr('value'));
+	 id.push($(this).parent().parent().attr("id"));
+		
 });
+	for(var i=0; i<id.length; i++){
+	id.splice(id.indexOf(id[i]),1);
+	}
+	
+	if(id!=""){
+		alert("한가지 거래처 데이터만 등록 할 수 있습니다");
+	}else{
+		
+	window.open('/erp/rest/Account/shipmentDetaile?ARR='+arr+'&CNT='+cnt,'shipmentDetaile', 'width=1400,height=700');
+	}
+};
 
 function saleInsertInfo(){
        var obj = $("#saleInfo").serialize();
@@ -251,7 +310,18 @@ function saleInsertInfo(){
     	  success:function(data){
     		  console.log(data);
     		  alert("데이터입력성공");
-    		  $("input").val("");
+    		  $("#testTable").html("");
+    			var str='';
+    			str += "<thead><tr><td>체크</td><td>품목</td><td>수량</td><td>단가(원)</td><td>공급가액(원)</td><td>부가세액(원)</td><td>합계(원)</td><td>적요</td></tr></thead>"
+    			str += "<tbody id='tBody'><tr><td><input type='checkbox' class='check'></td>"
+    				str += "<td><input class='data' type='text' name='s_pkind'/></td>"
+    				str += "<td><input class='data' type='text' name='s_cnt'/></td>"
+    				str += "<td><input class='data' type='text' name='s_price'/></td>"
+    				str += "<td><input class='data' type='text' name='s_price2'/></td>"
+    				str += "<td><input class='data' type='text' name='s_tax'/></td>"
+    				str += "<td><input class='data' type='text' name='s_total' /></td>"
+    				str += "<td><input class='data' name='s_memo' /></td></tr></tbody>"
+    			$("#testTable").html(str);
     	  },
     	  error:function(error){
     		  console.log(error);
@@ -293,7 +363,7 @@ $("#approval").click(function(){
 $("#addList").click(function() {
 					var str = '';
 					for (var i = 0; i < $("#qty").val(); i++) {
-						str += "<tr><td><input type='radio' class='check'></td>"
+						str += "<tr><td><input type='checkbox' class='check'></td>"
 						str += "<td><input class='data' type='text' name='s_pkind'/></td>"
 						str += "<td><input class='data' type='text' name='s_cnt'/></td>"
 						str += "<td><input class='data' type='text' name='s_price'/></td>"
@@ -393,8 +463,9 @@ $("#addList").click(function() {
 				});
 	}
 	$("#getList").click(function() {
+		$("#detailebutton").html("<button id='detaile' onclick='saledetaile()' type='button'>상세정보</button>");
 						$("#comInfo").attr("display","none");
-						$("#plusorminus").attr("display","none");
+						$("#plusorminus").html("");
 						$.ajax({
 									url : '/erp/rest/Account/getsaleList',
 									type : 'get',

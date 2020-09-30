@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 @Alias("saleInfo")
 @Accessors(chain=true)
 public class SaleInfo {
+   private String ie_seqnum;
    private String s_num;
    private String s_ccode;
    private String s_clcode;

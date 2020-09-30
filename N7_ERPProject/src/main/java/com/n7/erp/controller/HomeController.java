@@ -73,6 +73,10 @@ public class HomeController {
 		mav = cbm.moveBoardList();
 		return mav;
 	}
+	@RequestMapping(value = "/home/comInfo", method = RequestMethod.GET)
+	public String comInfo() {
+		return "/home/comInfo";
+	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {

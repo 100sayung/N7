@@ -74,8 +74,8 @@ font-size: 20px;
 					<button type="button" id="codesearch">코드검색</button>
 	                    <!-- </form> -->
 	                    <button type="button" id="Alllist">리스트출력</button>
-				        사용<input type="radio" name="use" value="1"> 
-				        미사용<input type="radio" name="use" value="0"> 
+				        활성<input type="radio" name="use" value="1"> 
+				        비활성<input type="radio" name="use" value="0"> 
 	                    <!-- <button type="button" id="trens">사용안함</button> -->
 		
 			<table id="Info" class="table">
@@ -209,7 +209,7 @@ $("input[name='use']:checked").each(function() {
     				    List+="<td class='allinfo'>" + data.aList[i].cl_ceo + "</td>";
     					List+="<td class='allinfo'>" + data.aList[i].cl_kind + "</td>";
     					List+="<td class='allinfo'>" + data.aList[i].cl_kind3 + "</td>";
-    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>사용안함</button></td>"; 
+    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>비활성화</button></td>"; 
     					List+="</tr>";
     				}
 					
@@ -225,7 +225,7 @@ $("input[name='use']:checked").each(function() {
     				    List+="<td class='allinfo'>" + data.aList[i].cl_ceo + "</td>";
     					List+="<td class='allinfo'>" + data.aList[i].cl_kind + "</td>";
     					List+="<td class='allinfo'>" + data.aList[i].cl_kind3 + "</td>";
-    					List+="<td class='allinfo'><button onclick='trensCom("+1+","+data.aList[i].cl_code+")'>사용</button></td>";
+    					List+="<td class='allinfo'><button onclick='trensCom("+1+","+data.aList[i].cl_code+")'>활성화</button></td>";
     					List+="</tr>";
     				}
 				}
@@ -274,7 +274,7 @@ $("input[name='use']:checked").each(function() {
 						    				    List+="<td class='allinfo'>" + data.aList[i].cl_ceo + "</td>";
 						    					List+="<td class='allinfo'>" + data.aList[i].cl_kind + "</td>";
 						    					List+="<td class='allinfo'>" + data.aList[i].cl_kind3 + "</td>";
-						    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>사용안함</button></td>";
+						    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>비활성화</button></td>";
 						    					List+="</tr>";
 						    				}
 											
@@ -290,7 +290,7 @@ $("input[name='use']:checked").each(function() {
 						    				    List+="<td class='allinfo'>" + data.aList[i].cl_ceo + "</td>";
 						    					List+="<td class='allinfo'>" + data.aList[i].cl_kind + "</td>";
 						    					List+="<td class='allinfo'>" + data.aList[i].cl_kind3 + "</td>";
-						    					List+="<td class='allinfo'><button onclick='trensCom("+1+","+data.aList[i].cl_code+")'>사용</button></td>";
+						    					List+="<td class='allinfo'><button onclick='trensCom("+1+","+data.aList[i].cl_code+")'>활성화</button></td>";
 						    					List+="</tr>";
 						    				}
 										}
@@ -323,12 +323,11 @@ $("input[name='use']:checked").each(function() {
 					    				    List+="<td class='allinfo'>" + data.aList[i].cl_ceo + "</td>";
 					    					List+="<td class='allinfo'>" + data.aList[i].cl_kind + "</td>";
 					    					List+="<td class='allinfo'>" + data.aList[i].cl_kind3 + "</td>";
-					    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>사용안함</button></td>";
+					    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>비활성화</button></td>";
 					    					List+="</tr>";
 					    				}
 						                 $("#Tbody").html(List);
-						                 $("input").val("");
-						                 $("textarea").val("");
+						                 $(".form-control").val("");
 									},
 									error : function(error) {
 										console.log(error);
@@ -363,7 +362,7 @@ $("input[name='use']:checked").each(function() {
 	    				    List+="<td class='allinfo'>" + data.aList[i].cl_ceo + "</td>";
 	    					List+="<td class='allinfo'>" + data.aList[i].cl_kind + "</td>";
 	    					List+="<td class='allinfo'>" + data.aList[i].cl_kind3 + "</td>";
-	    					List+="<td class='allinfo'><button onclick='trensCom("+1+","+data.aList[i].cl_code+")'>사용</button></td>";
+	    					List+="<td class='allinfo'><button onclick='trensCom("+1+","+data.aList[i].cl_code+")'>활성화</button></td>";
 	    					List+="</tr>";
 	    				}
 	     				}else{
@@ -378,7 +377,7 @@ $("input[name='use']:checked").each(function() {
 	    				    List+="<td class='allinfo'>" + data.aList[i].cl_ceo + "</td>";
 	    					List+="<td class='allinfo'>" + data.aList[i].cl_kind + "</td>";
 	    					List+="<td class='allinfo'>" + data.aList[i].cl_kind3 + "</td>";
-	    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>사용안함</button></td>";
+	    					List+="<td class='allinfo'><button onclick='trensCom("+0+","+data.aList[i].cl_code+")'>비활성화</button></td>";
 	    					List+="</tr>";
 	    				}
 	     				}
