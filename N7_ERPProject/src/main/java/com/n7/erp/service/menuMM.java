@@ -159,4 +159,10 @@ public class menuMM {
 		return 0;
 	}
 
+	public String namecheck(String au_name) {
+		int ccodecnt = mDao.namecheck(au_name);
+		return Integer.toString(ccodecnt);
+	}
+		
+
 }

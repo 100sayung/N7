@@ -53,13 +53,15 @@ public class AccountionCotroller {
 		Map<String, List<SaleInfo>> sMap = am.getList(code);
 		return sMap;
 	}
+
 	@GetMapping(value = "/Account/shipmentDetaile")
 	public ModelAndView shipmentdetaile(String CNT, String ARR, HttpSession session) {
 		int cnt = Integer.parseInt(CNT);
 		String[] strArray = ARR.split(",");
-		mav = am.shipmentDetaile(cnt,strArray,session);
+		mav = am.shipmentDetaile(cnt, strArray, session);
 		return mav;
 	}
+
 	/*
 	 * @PostMapping(value = "/selectsale",produces="application/json;charset=utf-8"
 	 * ) public Map<String, List<SaleInfo>> selectsale( String search) {
@@ -164,10 +166,24 @@ public class AccountionCotroller {
 		return a; // DAO
 	}
 
-// 페이징
+	// 내가올린 페이징
 	@GetMapping(value = "/Account/documentPagenumber")
-	public String documentPagenumber() {
-		int result = am.countDocument();
+	public String documentPagenumber(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument(ap, session);
+		return Integer.toString(result);
+	}
+
+	// 내가받은 페이징
+	@GetMapping(value = "/Account/documentPagenumber1")
+	public String documentPagenumber1(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument1(ap, session);
+		return Integer.toString(result);
+	}
+
+	// 임시저장 페이징
+	@GetMapping(value = "/Account/documentPagenumber2")
+	public String documentPagenumber2(HttpSession session, Account ac) {
+		int result = am.countDocument2(ac, session);
 		return Integer.toString(result);
 	}
 
@@ -178,10 +194,10 @@ public class AccountionCotroller {
 //return pMap;
 //}
 
-// 내가올린 결재안 목록(페이징o)
+	// 내가올린 결재안 목록(페이징o)
 	@GetMapping(value = "Account/apupPaymentList", produces = "application/json;charset=utf-8")
-	public String apupPaymentList(HttpSession session, String nowPage, String cntPerPage) {
-		int total = am.countDocument();
+	public String apupPaymentList(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument(ap, session);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -211,10 +227,10 @@ public class AccountionCotroller {
 //return pMap;
 //}
 
-// 내가받은 결재안 목록(페이징o)
+	// 내가받은 결재안 목록(페이징o)
 	@GetMapping(value = "Account/apdownPaymentList", produces = "application/json;charset=utf-8")
-	public String apdownPaymentList(HttpSession session, String nowPage, String cntPerPage) {
-		int total = am.countDocument();
+	public String apdownPaymentList(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument1(ap, session);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -242,10 +258,10 @@ public class AccountionCotroller {
 //Map<String, List<Account>> aMap = am.acTemporaryList(session);
 //return aMap;
 //}
-// 임시저장 결재안 목록(페이징o)
+	// 임시저장 결재안 목록(페이징o)
 	@GetMapping(value = "Account/acTemporaryList", produces = "application/json;charset=utf-8")
-	public String acTemporaryList(HttpSession session, String nowPage, String cntPerPage) {
-		int total = am.countDocument();
+	public String acTemporaryList(HttpSession session, String nowPage, String cntPerPage, Account ac) {
+		int total = am.countDocument2(ac, session);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";

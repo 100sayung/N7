@@ -50,4 +50,14 @@ public class HomeRestController {
 		return result;
 	}
 
+	@PostMapping(value = "/home/forcewithdrawal")
+	public String forceWithDrawal(String jsonStr) { 
+		System.out.println(jsonStr);
+		List<String> slist = new Gson().fromJson(jsonStr, new TypeToken<List<String>>() {
+		}.getType());
+		System.out.println(slist);
+		mm.forceWithDrawal(slist);
+		return null;
+	}
+	
 }
