@@ -61,8 +61,8 @@ public class HomeRestController {
 		return result;
 	}
 	@PostMapping(value="/home/deletecompany")
-	public String deleteCompany(String m_ccode) {
-		return mm.deleteCompany(m_ccode);
+	public String deleteCompany(String cCode) {
+		return mm.deleteCompany(cCode);
 	}
 
 }

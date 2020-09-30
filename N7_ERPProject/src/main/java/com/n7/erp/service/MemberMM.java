@@ -169,36 +169,36 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		int ccodecnt = mDao.getDupleCCode(cCode);
 		return Integer.toString(ccodecnt);
 	}
-	public String deleteCompany(String m_ccode) {
+	public String deleteCompany(String cCode) {
 		
-		mDao.deleteO_return(m_ccode);
-		mDao.deleteS_ieport(m_ccode);
-		mDao.deleteO_purchaseprogram(m_ccode);
-		mDao.deleteO_purchaseprogramcommom(m_ccode);
-		mDao.deleteO_purchaselist(m_ccode);
-		mDao.deleteO_order(m_ccode);
-		mDao.deleteB_shipment(m_ccode);
-		mDao.deleteAc_salestatementlist(m_ccode);
-		mDao.deleteAc_realsalestatementlist(m_ccode);
-		mDao.deleteB_uncollectedmoney(m_ccode);
-		mDao.deleteB_shipregist(m_ccode);
-		mDao.deleteS_itemcode(m_ccode);
-		mDao.deleteHr_applyholiday(m_ccode);
-		mDao.deleteB_activites(m_ccode);
-		mDao.deleteHr_attendance(m_ccode);
-		mDao.deleteHr_academic(m_ccode);
-		mDao.deleteHr_payroll(m_ccode);
-		mDao.deleteHr_certification(m_ccode);
-		mDao.deleteHr_career(m_ccode);
-		mDao.deleteHr_card(m_ccode);
-		mDao.deleteO_purchasecommom(m_ccode);
-		mDao.deleteB_order(m_ccode);
-		mDao.deleteAc_salestatement(m_ccode);
-		mDao.deleteHr_dept(m_ccode);
-		mDao.deleteHr_deduction(m_ccode);
-		mDao.deleteS_category(m_ccode);
-		mDao.deleteApprovaldocu(m_ccode);
-		mDao.deleteAc_companylist(m_ccode);
+		mDao.deleteO_return(cCode);
+		mDao.deleteS_ieport(cCode);
+		mDao.deleteO_purchaseprogram(cCode);
+		mDao.deleteO_purchaseprogramcommom(cCode);
+		mDao.deleteO_purchaselist(cCode);
+		mDao.deleteO_order(cCode);
+		mDao.deleteB_shipment(cCode);
+		mDao.deleteAc_salestatementlist(cCode);
+		mDao.deleteAc_realsalestatementlist(cCode);
+		mDao.deleteB_uncollectedmoney(cCode);
+		mDao.deleteB_shipregist(cCode);
+		mDao.deleteS_itemcode(cCode);
+		mDao.deleteHr_applyholiday(cCode);
+		mDao.deleteB_activites(cCode);
+		mDao.deleteHr_attendance(cCode);
+		mDao.deleteHr_academic(cCode);
+		mDao.deleteHr_payroll(cCode);
+		mDao.deleteHr_certification(cCode);
+		mDao.deleteHr_career(cCode);
+		mDao.deleteHr_card(cCode);
+		mDao.deleteO_purchasecommom(cCode);
+		mDao.deleteB_order(cCode);
+		mDao.deleteAc_salestatement(cCode);
+		mDao.deleteHr_dept(cCode);
+		mDao.deleteHr_deduction(cCode);
+		mDao.deleteS_category(cCode);
+		mDao.deleteApprovaldocu(cCode);
+		mDao.deleteAc_companylist(cCode);
 		
 		return new Gson().toJson("성공");
 	}

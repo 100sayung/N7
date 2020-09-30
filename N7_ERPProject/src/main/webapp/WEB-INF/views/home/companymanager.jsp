@@ -174,6 +174,18 @@ margin-left: 200px;
 		function deleteCompany(cCode){
 			console.log(cCode);
 			alert("전부삭제 해야함");
+			$.ajax({
+				url:"/erp/rest/home/deletecompany",
+				data:{cCode:cCode},
+				dataType:"json",
+				type:"post",
+				success:function(result){
+					console.log(result)
+				},
+				error:function(err){
+					console.log(err);
+				}
+			})
 		}
 		function updateFunction(cCode){
 			alert("managermode 연동 시켜야해" + cCode);
