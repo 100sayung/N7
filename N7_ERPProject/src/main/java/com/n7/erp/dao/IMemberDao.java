@@ -99,8 +99,6 @@ public interface IMemberDao {
 	@Delete("DELETE FROM AC_COMPANYLIST WHERE CL_CCODE = #{cCode}")
 	void deleteAc_companylist(String cCode);
 	
-	int getDupleCCode(String m_ccode);
-	
 	@Select("SELECT M_GRADE FROM MEMBER WHERE M_ID = #{id}")
 	String checkGrade(String id);
 }

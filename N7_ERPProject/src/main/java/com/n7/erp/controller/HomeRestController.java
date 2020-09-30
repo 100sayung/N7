@@ -46,6 +46,7 @@ public class HomeRestController {
 	@PostMapping(value="/home/deletecompany")
 	public String deleteCompany(String cCode) {
 		return mm.deleteCompany(cCode);
+	}
 	
 	@PostMapping(value="/home/checkgrade")
 	public String checkGrade(HttpSession session) {
