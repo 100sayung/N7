@@ -41,4 +41,7 @@ public interface IMemberDao {
 	int getDupleID(String m_id);
 	@Select("SELECT COUNT(*) FROM COMPANY WHERE C_CODE = #{cCode}")
 	int getDupleCCode(String m_ccode);
+	
+	@Select("SELECT M_GRADE FROM MEMBER WHERE M_ID = #{id}")
+	String checkGrade(String id);
 }

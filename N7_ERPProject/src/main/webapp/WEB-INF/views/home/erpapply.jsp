@@ -1,93 +1,78 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : UpRight
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20130526
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css"></link>
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!--[if IE 6]>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+		<link href="img/favicon.png" rel="icon" />
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="lib/icomoon/icomoon.css" rel="stylesheet" />
+  <script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1a9e4h5a1u&callback=initMap"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous" />
+	<!--[if IE 6]>
 <link href="default_ie6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
-
-
-<style>
-#joinContainer {
-	margin-top: 50px;
-	width: 300px;
-	margin-left: 700px;
-	margin-bottom: 100px;
+	<style>
+.button {
+	color: #ffffff;
 }
 
-select {
-	width: 300px;
-	height: 35px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-select::-ms-expand {
-	display: none;
-}
-
-button {
-	margin-top: 10px;
-	margin-left: 90px;
-	width: 100px;
-	height: 50px;
-	border: 0px;
-	background-color: #FFB2D9;
-	color: white;
+#desc {
+margin-left: 200px;
+	font-size: 20px;
 	font-weight: bolder;
-	border-radius: 8%;
 }
-</style>
+
+#description{
+	position:relative;
+}</style>
 </head>
 
 <body>
-	<div id="header" class="container">
+	<div id="header" class="container" style="text-align: center;">
 		<div id="logo">
 			<h1>
-				<a href="/erp/" style="color: black;">N7 ERP SYSTEM</a>
+				<a href="/erp/" style="color: black;">N7 COMPANY</a>
 			</h1>
 		</div>
 		<div id="menu">
-			<ul>
-				<li><a href="/erp/" accesskey="1" title="">MAIN</a></li>
-				<li><a href="/erp/introducecompany" accesskey="2" title="">회사
-						소개</a></li>
-				<li><a href="/erp/erpboard" accesskey="3" title="">상담 게시판</a></li>
-				<li><a href="/erp/erpapply" accesskey="4" title="">ERP 신청</a></li>
-				<c:if test="${id==null}">
-				<li><a href="/erp/login" accesskey="5" title="">LOGIN</a></li>
-				</c:if>
-				<c:if test="${id!=null}">
-             	<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
-				<li class="current_page_item"><a href="#" accesskey="6">ERP시작</a></li>
-				</c:if>
-			</ul>
 		</div>
 	</div>
-    <center>
+	<div id="description" class="out" style="height: 700px;">
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP신청</h1></div>
+	<div class="center">
         <div id="container">
         <br>
 <br>
-LOGOUT 떠있는거 해결해야함. CSS조절.
 
-        <br><br>
-
-            <h1>erp 신청</h1>
 			<form action="newerp" method="post" onsubmit="return sum();">
                 <table class="table table-condensed">
                     <tr>
@@ -153,7 +138,6 @@ LOGOUT 떠있는거 해결해야함. CSS조절.
                 </table>
             </form>
         </div>
-    </center>
 
     <script>
     var checkccode;
@@ -190,7 +174,7 @@ LOGOUT 떠있는거 해결해야함. CSS조절.
 		if(checkccode){
 			$("#addr").val($('#addr1').val()+$('#addr2').val()+$('#addr3').val());
 			console.log($("#addr").val());
-			return false;
+			return true;
 		}else{
 			alert("회사코드 중복을 확인해주세요.");
 			return false;

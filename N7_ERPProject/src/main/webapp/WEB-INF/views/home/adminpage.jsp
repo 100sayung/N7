@@ -20,6 +20,8 @@ Released   : 20130526
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -43,33 +45,15 @@ Released   : 20130526
 	color: #ffffff;
 }
 
-#description div {
-	border-radius: 25px;
-	background-color: rgb(85, 82, 82);
-	width: 200px;
-	margin: 5px;
-	height: 150px;
-	float: left;
-	line-height: 150px;
-}
-
-#description div:hover {
-	background-color: #eeeeee;
-	border: 1px solid black;
-}
-
-#description {
-	margin-left: 340px;
-	margin-top: 200px;
-}
-
 #desc {
 margin-left: 200px;
 	font-size: 20px;
 	font-weight: bolder;
 }
 
-</style>
+#description{
+	position:relative;
+}</style>
 </head>
 
 <body>
@@ -87,8 +71,19 @@ margin-left: 200px;
 			</ul>
 		</div>
 	</div>
-	잠깐 테스트중!
+	
+	<div id="description" class="out" style="height: 700px;">
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP등록</h1></div>
+	<div class="center">
+	
 	<div id="container"></div>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+	
+	</div>
 	
 	<script>
 	$(document).ready(function(){
@@ -100,10 +95,10 @@ margin-left: 200px;
 				console.log(data);
 				let str = "";
 			 	str = "<table>"
-				str += "<tr class='infomenu' style='height:75px'><td style='width:100px;'>회사이름</td>";
-				str += "<td style='width:150px;'>회사코드</td><td style='width:200px;'>주소</td><td style='width:100px;'>대표자</td>";
-				str += "<td style='width:100px;'>업태</td><td style='width:100px;'>분류</td>";
-				str += "<td style='width:150px;'>전화번호</td><td style='width:160px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
+				str += "<tr class='infomenu admin'><td style='width:170px;'>회사이름</td>";
+				str += "<td style='width:220px;'>회사코드</td><td style='width:300px;'>주소</td><td style='width:150px;'>대표자</td>";
+				str += "<td style='width:150px;'>업태</td><td style='width:150px;'>분류</td>";
+				str += "<td style='width:220px;'>전화번호</td><td style='width:200px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr class = '' id='"+data[i].ct_code+"'>";					
 					str += "<td>" + data[i].ct_name +"</td>";
@@ -114,8 +109,8 @@ margin-left: 200px;
 					str += "<td>" + data[i].ct_kind2 + "</td>";
 					str += "<td>" + data[i].ct_phonenum + "</td>";
 					str += "<td>" + data[i].ct_comnum + "</td>";
-					str += "<td><button class='infobtn' onclick='deleteCompany(\""+data[i].ct_code+"\")'>등록</button><br/>";					
-					str += "<button class='infobtn' onclick='updateFunction(\""+data[i].ct_code+"\")'>거부</button></td>";	
+					str += "<td><button class='infobtn' onclick='insertCompany(\""+data[i].ct_code+"\")'>등록</button><br/>";					
+					str += "<button class='infobtn' onclick='deleteCompany(\""+data[i].ct_code+"\")'>거부</button></td>";	
 				}
 				str += "</tr>";
 				$("#container").html(str);
@@ -124,6 +119,49 @@ margin-left: 200px;
 			}
 		});
 	});
+
+	function insertCompany(ct_code){
+		if(confirm("정말 등록 하시겠습니까?")){
+			$.ajax({
+				url:"/erp/rest/admin/insertcompanytemp",
+				method:"post",
+				data:{ct_code: ct_code},
+				dataType:"json",
+				success : function(data){
+					if(data==1){
+						alert("등록 되었습니다.");			
+					}else{
+						alert("알수없는 이유로 취소되었습니다.");
+					}
+				}, error : function(err){
+					alert("알수없는 이유로 취소되었습니다.");
+				}
+			});
+		}else{
+			alert("취소되었습니다.");
+		}
+	}
+	function deleteCompany(ct_code){
+		if(confirm("정말 거부 하시겠습니까?")){
+			$.ajax({
+				url:"/erp/rest/admin/deletecompanytemp",
+				method:"post",
+				data:{ct_code: ct_code},
+				dataType:"json",
+				success : function(data){
+					if(data==1){
+						alert("거부 되었습니다.");			
+					}else{
+						alert("알수없는 이유로 취소되었습니다.");
+					}
+				}, error : function(err){
+					alert("알수없는 이유로 취소되었습니다.");
+				}
+			});
+		}else{
+			alert("취소되었습니다.");
+		}
+	}
 	</script>
 </body>
 </html>

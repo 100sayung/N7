@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.n7.erp.bean.Company;
+import com.n7.erp.bean.CompanyTemp;
 import com.n7.erp.bean.Member;
 import com.n7.erp.dao.AdminDao;
 import com.n7.erp.userClass.PagingVO;
@@ -18,7 +19,7 @@ public class AdminMM {
 	@Autowired AdminDao aDao;
 	
 
-	//����¡ ó�� ���
+	//占쏙옙占쏙옙징 처占쏙옙 占쏙옙占�
 	public int countMember() {
 		return aDao.countMember();
 	}
@@ -36,8 +37,9 @@ public class AdminMM {
 	}
 
 	public String companyTemp() {
-		List<Company> cList = aDao.companyTemp();
+		List<CompanyTemp> cList = aDao.companyTemp();
 		String result = new Gson().toJson(cList);
+		System.out.println(result);
 		return result;
 	}
 
@@ -48,6 +50,23 @@ public class AdminMM {
 		return aDao.countCCodeMember(m_ccode);
 	}
 
+	public String insertCompanyTemp(String ct_code) {
+		CompanyTemp ct = aDao.getCompany(ct_code);
+		if(aDao.insertCompanyTemp(ct)) {
+			aDao.deleteCompanyTemp(ct);
+			return "1";
+		}else {
+			return "0";
+		}
+	}
+	public String deleteCompanyTemp(String ct_code) {
+		CompanyTemp ct = aDao.getCompany(ct_code);
+		if(aDao.deleteCompanyTemp(ct)) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
 
 
 }

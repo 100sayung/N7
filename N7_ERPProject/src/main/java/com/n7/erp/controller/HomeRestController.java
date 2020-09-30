@@ -17,6 +17,8 @@ import com.n7.erp.userClass.PagingVO;
 import java.lang.reflect.Type;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController // @ResponseBody ��������
 @RequestMapping(value = "/rest")
 public class HomeRestController {
@@ -30,25 +32,6 @@ public class HomeRestController {
 		return result;
 	}
 
-	@PostMapping(value = "/home/changegrade")
-	public String updateChangeGrade(String jsonStr) {
-		List<Member> mlist = new Gson().fromJson(jsonStr, new TypeToken<List<Member>>() {
-		}.getType());
-		System.out.println(mlist);
-		String result = mm.updateChangeGrade(mlist);
-		return result;
-	}
-
-	@PostMapping(value = "/home/forcewithdrawal")
-	public String forceWithDrawal(String jsonStr) { // ������
-		System.out.println(jsonStr);
-		List<String> slist = new Gson().fromJson(jsonStr, new TypeToken<List<String>>() {
-		}.getType());
-		System.out.println(slist);
-		mm.forceWithDrawal(slist);
-		return null;
-	}
-	
 	@GetMapping(value="/home/dupleid")
 	public String getDupleID(String m_id) {
 		String result = mm.getDupleID(m_id);
@@ -58,6 +41,12 @@ public class HomeRestController {
 	@GetMapping(value="/home/dupleccode")
 	public String getDupleCCode(String m_ccode) {
 		String result = mm.getDupleCCode(m_ccode);
+		return result;
+	}
+	
+	@PostMapping(value="/home/checkgrade")
+	public String checkGrade(HttpSession session) {
+		String result= mm.checkGrade(session);
 		return result;
 	}
 
