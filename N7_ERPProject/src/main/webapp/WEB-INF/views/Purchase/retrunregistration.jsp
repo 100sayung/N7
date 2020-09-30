@@ -21,6 +21,8 @@ border: 1px solid silver;
 </head>
 <body>
        <div style="width: auto; background-color: white; padding: 1%;">
+        	<span style="padding-left: 5px";><a href="#"
+         	onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
             <button id="Wearing">입고현황</button>
             <button id="rInfo">반품조회</button>
          </div>
@@ -41,13 +43,13 @@ border: 1px solid silver;
                        <th>반품번호</th>
                        <th><input type="text" name="r_documentcode" value="R" readonly></th>
                        <th>입고번호</th>
-                        <th><input type="text" name="r_ieseqnum"></th>
-                        <th>담당자</th>
+                       <th><input type="text" name="r_ieseqnum"></th>
+                       <th>담당자</th>
                        <th><input type="text" name="r_writer"></th>
                        <th>거래처</th>
-                        <th><input type="text" name="r_clcode"></th>
-                        <th>반품일</th>
-                        <th><input type="date" name="r_date" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
+                       <th><input id="clcode" type="text" name="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+                       <th>반품일</th>
+                       <th><input type="date" name="r_date" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
                      </tr>
                </table>
             </div>
@@ -96,6 +98,14 @@ border: 1px solid silver;
          </form>
 
      <script type="text/javascript">
+     function setChildValue(data) {
+		   console.log(data)
+		   for(var i in data.aList){ 
+		   var clcode=data.aList[i].cl_code;
+		   }
+		   
+		   $("#clcode").val(clcode);
+		};
      
     $(function() {
 		$("#allCheck").click(function() {
@@ -115,12 +125,13 @@ border: 1px solid silver;
 	            data: obj,
 	            success: function(data){
 	               //consloe.log(data);
+	            $('input').val("");
+	            alert("등록이 완료되었습니다.");
 	            },
 	            error: function(error){
 	            	console.log(error);
 	            }
 	         });
-	            $('input').val("");
 	      });
 	  
 	  $('#rInfo').click(function(){
@@ -231,19 +242,28 @@ border: 1px solid silver;
 			})	  
 			
 	
-	$('#Wearing').click(function(){
-		$.ajax({
-			url: "/erp/stock/getimportlist",
-			type: "post",
-			dataType: "json",
-			success: function(data){
-				console.log(data);
-			},
-			error: function(err){
-				console.log(err);
-			}
-		});
-	});
+	$("#Wearing").click(function(){
+		  $.ajax({
+			  url:"/erp/rest/purchase/stocklist",
+			  type: "get",
+			  dataType: "json",
+			  success: function(data){
+				  console.log(data);
+				  var str="";
+				  str+="<tr style='text-align: center;'><th>품목코드</th><th>날짜</th><th>수량</th><th>가격</th></tr>";
+				  for(var i in data.sList){
+				  	str+="<tr style='text-align: center;'><td>"+data.sList[i].ie_itcode+"</td>";
+				  	str+="<td>"+data.sList[i].ie_date+"</td>";
+				  	str+="<td>"+data.sList[i].ie_qty+"</td>";
+				  	str+="<td>"+data.sList[i].ie_price+"</td><tr>";
+				  }
+				  $('#list').html(str);
+			  },
+			  error: function(err){
+				  console.log(err);
+			  }
+		  })
+  	})
    </script>
 </body>
 </html>

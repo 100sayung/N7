@@ -67,12 +67,12 @@ public class HomeController {
 		return "/home/introducecompany";
 	}
 
-	@RequestMapping(value = "/home/erpboard", method = RequestMethod.GET)
-	public ModelAndView erpBoard() {
-		logger.info("");
-		mav = cbm.moveBoardList();
-		return mav;
+	@RequestMapping(value = "/erpboard", method = RequestMethod.GET)
+	public ModelAndView erpBoard(Integer pageNum) {
+	mav=cbm.moveBoardList(pageNum);
+	return mav;
 	}
+	
 	@RequestMapping(value = "/home/comInfo", method = RequestMethod.GET)
 	public String comInfo() {
 		return "/home/comInfo";
@@ -162,39 +162,25 @@ public class HomeController {
 		mav = mm.moveMyInfo(session);
 		return mav;
 	}
-	// �Խñ� �������� �̵�
-	@RequestMapping(value = "/writeFrm", method = RequestMethod.GET)
+	//게시글 페이지로 이동
+	@RequestMapping(value = "/home/writeFrm", method = RequestMethod.GET)
 	public String write() {
-		return "writeFrm";
+	   return "/home/writeFrm";
 	}
 
-	// �Խñ� �ۼ�
-	@RequestMapping(value = "/writeBoard", method = RequestMethod.POST)
+	//게시글 작성
+	@RequestMapping(value = "/home/writeBoard", method = RequestMethod.POST)
 	public ModelAndView writeBoard(ConsultingBoard board) {
-		mav = cbm.writeBoard(board);
+	    mav=cbm.writeBoard(board);
+	    return mav;
+	}
+	
+	@RequestMapping(value = "/home/boardContents", method = RequestMethod.GET)
+	 public ModelAndView boardContents(int CB_NUM) {
+		System.out.println("CB_NUM="+CB_NUM);
+		mav=cbm.boardContents(CB_NUM);
 		return mav;
-	}
-
-	// �Խñ� ����
-	@RequestMapping(value = "/boardmodify", method = RequestMethod.POST)
-	public ModelAndView boardmodify(ConsultingBoard board) {
-		mav = cbm.boardmodify(board);
-		return mav;
-	}
-
-	// �Խñ� ������������ �̵�
-	@RequestMapping(value = "/boardmodifyajax", method = RequestMethod.POST)
-	public @ResponseBody String boardmodifyajax(Integer num) {
-		String result = cbm.boardmodifyajax(num);
-		return result;
-	}
-
-	// �Խñ� ����
-	@RequestMapping(value = "/writelistdelete", method = RequestMethod.POST)
-	public ModelAndView writelistdelete(Integer num) {
-		mav = cbm.writelistdelete(num);
-		return mav;
-	}
+   }
 
 	@RequestMapping(value = "/home/findid", method = RequestMethod.POST)
 	public ResponseEntity<String> findID(String userEmail) {
