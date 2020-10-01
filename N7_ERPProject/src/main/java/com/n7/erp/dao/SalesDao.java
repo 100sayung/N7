@@ -96,7 +96,7 @@ public interface SalesDao {
 
    List<Salesbean> getbonumm(String cCode); //수주번호
 
-   approvaldetail apRequest(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode); // 내가올린 결재안상세
+   approvaldetail sRequest(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode); // 내가올린 결재안상세
 
    com.n7.erp.bean.sales.approvalLine getApprinfo(String code); //결재안에서 결재자 표시
 
@@ -104,7 +104,8 @@ public interface SalesDao {
 
    approvaldetail approvaldetailinput(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode); //결재 상세 el문
 
-   approvaldetail downapprovaldetailinput(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode); 
+   approvaldetail downapprovaldetailinput(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode);
+
 
 //   List<Shippingbean> shippingquantity(String check, String cCode); //출하수량비교
 

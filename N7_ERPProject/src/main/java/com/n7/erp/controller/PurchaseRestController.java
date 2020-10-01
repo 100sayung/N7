@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -114,11 +114,11 @@ public class PurchaseRestController {
     
 	 @PostMapping(value = "/Purchase/getApprovalInfo", produces = "application/json;charset=utf-8")
 	 public Map<String, List<approvalLine>> getApprinfo(String CNT, String ARR, HttpSession session) {
-			int cnt = Integer.parseInt(CNT);
-			String[] strArray = ARR.split(",");
-			Map<String, List<approvalLine>> mMap = pm.getApprovalInfo(cnt, strArray, session);
-			return mMap;
-		}
+		int cnt = Integer.parseInt(CNT);
+		String[] strArray = ARR.split(",");
+		Map<String, List<approvalLine>> mMap = pm.getApprovalInfo(cnt, strArray, session);
+		return mMap;
+	}
 	 
 	//반품 
 	@PostMapping(value = "/Purchase/rRegistration", produces= "application/json;charest=utf-8" )
@@ -148,16 +148,25 @@ public class PurchaseRestController {
 		Map<String, List<Return>> rMap= pm.rSearch(search, choice);
 		return rMap;
 	}
+	
 	@GetMapping(value = "/purchase/stocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<IePort>> stocklist(HttpSession session) {
 		Map<String, List<IePort>> sMap= pm.stocklist(session);
 		return sMap;
 	}
+	
 	@GetMapping(value = "/purchase/getstocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<ItemCode>> getstocklist(HttpSession session) {
 		Map<String, List<ItemCode>> sMap= pm.getstocklist(session);
 		return sMap;
 	}
+	
+	@GetMapping(value = "/purchase/paSign2", produces= "application/json;charest=utf-8" )
+	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
+		mav=pm.paSign2(pa,ap,req,rep,session);
+		return mav;
+	}
+	
 	
 
 }

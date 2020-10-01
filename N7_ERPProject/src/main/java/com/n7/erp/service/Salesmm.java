@@ -607,23 +607,23 @@ public class Salesmm {
          return sMap;
    }
 
-	public ModelAndView apRequest(String bs_docunum, HttpSession session) {
-		mav = new ModelAndView();
-		String view = null;
-		String cCode = (String) session.getAttribute("cCode");
+   public ModelAndView sRequest(String bs_docunum, HttpSession session) {
+	      mav = new ModelAndView();
+	      String view = null;
+	      String cCode = (String) session.getAttribute("cCode");
 
-		approvaldetail app = sDao.apRequest(bs_docunum, cCode);
+	      approvaldetail app = sDao.sRequest(bs_docunum, cCode);
 
-		if (app!= null) {
-			mav.addObject("app", app);
-			System.out.println("가져옴???????");
-			view = "sales/salesapprovaldetail";
-		} else {
-			view = "sales/salesapprovaldetail";
-		}
-		mav.setViewName(view);
-		return mav;
-	}
+	      if (app!= null) {
+	         mav.addObject("app", app);
+	         System.out.println("가져옴???????");
+	         view = "sales/salesapprovaldetail";
+	      } else {
+	         view = "sales/salesapprovaldetail";
+	      }
+	      mav.setViewName(view);
+	      return mav;
+	   }
 
 	public Map<String, List<com.n7.erp.bean.sales.approvalLine>> getApprinfo(int cnt, String[] strArray, HttpSession session) {
 		Map<String, List<approvalLine>> sMap = null;

@@ -221,11 +221,11 @@
    </insert> 
    
    <!-- 내가 올린 결재 상세 -->
-   	<select id="apRequest" resultType="appdetail"> 
-		SELECT * FROM B_SHIPMENT
-		WHERE
-		BS_DOCUNUM=#{bs_docunum} AND BS_CCODE = #{cCode}
-	</select>
+      <select id="sRequest" resultType="appdetail"> 
+      SELECT * FROM B_SHIPMENT
+      WHERE
+      BS_DOCUNUM=#{bs_docunum} AND BS_CCODE = #{cCode}
+   </select>
 	
     <select id="getApprinfo" parameterType="String" resultType="Linee">
 		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}

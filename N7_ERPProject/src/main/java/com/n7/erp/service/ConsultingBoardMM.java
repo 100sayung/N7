@@ -1,7 +1,8 @@
 package com.n7.erp.service;
 
-
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,11 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.n7.erp.bean.ConsultingBoard;
-import com.n7.erp.dao.HRIDeptDao;
+import com.n7.erp.bean.Member;
 import com.n7.erp.dao.IConsultingBoardDao;
 import com.n7.erp.userClass.Paging;
 
-import lombok.extern.log4j.Log4j;
 
 @Service
 public class ConsultingBoardMM {
@@ -54,18 +54,28 @@ public class ConsultingBoardMM {
 		return paging.makeHtmlPaging();
 	}
 
-	public ModelAndView writeBoard(ConsultingBoard board) {
+
+	public ModelAndView writeBoard(ConsultingBoard board, HttpSession session, Member mb) {
 		mav= new ModelAndView();
 		String view= null;
+		String id=(String)session.getAttribute("id");
+		System.out.println("id="+id);
+		String pw=null;
 		
-		if(CBdao.boardWrite(board)) {
-			System.out.println("들어감?");
-			view="/erp/erpboard";
-			mav.addObject("msg", "등록이 완료되었습니다.");
+		if(id==null) {
+			if(board.getCB_PASSWORD()==null) {
+				mav.addObject("msg", "비밀번호를 입력해주세요.");
+				mav.addObject("id", id);
+			}else {
+				pw=board.getCB_PASSWORD();
+			}
 		}else {
-			view="/erp/home/writeFrm";
-			mav.addObject("msg", "등록이 실패되었습니다.");
+			pw=mb.getM_pw();
+			
 		}
+		CBdao.boardWrite(board);
+		view="/home/erpboard";
+		
 		mav.setViewName(view);
 		return mav;
 	}

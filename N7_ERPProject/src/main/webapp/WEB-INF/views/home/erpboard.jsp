@@ -119,6 +119,7 @@ padding-bottom: 20px;
 	<div align="cneter" id="paging">${paging}</div>
 	<div id="ccc">
 		<select id="choice" style="height: 24px;">
+			<option value=CB_NUM">번호</option>
 			<option value="CB_WRITER">작성자</option>
 			<option value="CB_TITLE">제목</option>
 		</select>

@@ -84,6 +84,12 @@ public interface PurchaseDao {
 
 	List<ItemCode> getstocklist(String cCode);
 
+	boolean paSign2(PurchaseApproval pa);
+
+	boolean apSign2(ApprovalDocu ap);
+
+
+
 
 	
 }

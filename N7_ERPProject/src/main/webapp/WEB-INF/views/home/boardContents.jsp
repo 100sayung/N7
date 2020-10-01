@@ -67,8 +67,8 @@ border-right: 1px solid #ccc;
 border-bottom: 1px solid #ccc;
 }
 #aaa{
-float: right;
-margin-right: 500px;
+float: left;
+margin-left: 400px;
 }
 
 
@@ -117,6 +117,9 @@ margin-right: 500px;
 	</form>
 		<div>
 			<button id="aaa"><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
+			<c:if test="${id!=null}">
+				<button type="button" id="delete">삭제</button>
+			</c:if>
 		</div>
 </body>
 </html>
