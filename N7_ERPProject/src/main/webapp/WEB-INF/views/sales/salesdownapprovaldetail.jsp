@@ -84,7 +84,7 @@ table, tr, th, td {
                         <table>
                            <tr>
                               <th colspan="2">출하번호</th>
-                              <th colspan="2"><input type="text" name="bs_docunum" class="txt" value="${app.bs_docunum}" readonly></th>
+                              <th colspan="2"><input id="num" type="text" name="bs_docunum" class="txt" value="${app.bs_docunum}" readonly></th>
                               <th colspan="2">거래처 회사코드</th>
                               <th colspan="2"><input type="text" name="bs_clcode" class="txt" value="${app.bs_clcode}" readonly>
 <%--                          <input type="hidden" name="j_grade" class="draft3" value="${ac.j_grade}" readonly></th>
@@ -167,5 +167,22 @@ table, tr, th, td {
 									}
 								});
 					});
+	$('#turnback').click(function(){
+		var num= $("#num").val();
+		
+		$.ajax({
+			url:'/erp/rest/home/turnback',
+			type:'post',
+			data:{num:num},
+			success:function(data){
+				console.log(data);
+			},
+			error:function(error){
+				console.log(error);
+				
+			}
+		});
+	});
+	
 </script>
 </html>

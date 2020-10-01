@@ -231,17 +231,17 @@ public class SalesController {
    }
    
     //내가 올린거 상세
-	@GetMapping(value = "/sales/apRequest", produces = "application/json;charset=utf-8")
-	public ModelAndView apRequest(String bs_docunum, HttpSession session) {
-		mav = sm.apRequest(bs_docunum, session);
+	@GetMapping(value = "/sales/sRequest", produces = "application/json;charset=utf-8")
+	public ModelAndView sRequest(String bs_docunum, HttpSession session) {
+		mav = sm.sRequest(bs_docunum, session);
 		System.out.println(bs_docunum);
 		return mav;
 	}
 	
 	// 내가받은 결재안 상세보기
-		@GetMapping(value = "/sales/apRequest2", produces = "application/json;charset=utf-8")
-		public ModelAndView apRequest2(String bs_docunum, HttpSession session) {
-			mav = sm.apRequest2(bs_docunum, session);
+		@GetMapping(value = "/sales/sRequest2", produces = "application/json;charset=utf-8")
+		public ModelAndView sRequest2(String bs_docunum, HttpSession session) {
+			mav = sm.sRequest2(bs_docunum, session);
 			System.out.println(bs_docunum);
 			return mav;
 		}

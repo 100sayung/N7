@@ -71,7 +71,7 @@
    </insert> 
    
    <insert id="approvalinput2" parameterType="appdetail">
-      INSERT INTO B_SHIPMENT VALUES(#{bs_docunum},#{bs_ccode},#{bs_bonum},#{bs_itcode},#{bs_clcode},#{bs_docuname},#{bs_approver1},#{bs_approver2},#{bs_approver3},#{bs_basedate},#{bs_unit},#{bs_quantity},#{bs_price},DEFAULT,#{bs_proname},#{bs_credit},#{bs_apcode1},#{bs_apcode2},#{bs_apcode3})<!--#{full_payment} -->
+      INSERT INTO B_SHIPMENT VALUES(#{bs_docunum},#{bs_ccode},#{bs_bonum},#{bs_itcode},#{bs_clcode},#{bs_docuname},#{bs_approver1},#{bs_approver2},#{bs_approver3},#{bs_basedate},#{bs_unit},#{bs_quantity},#{bs_price},DEFAULT,#{bs_proname},#{bs_credit},#{bs_apcode1},#{bs_apcode2},#{bs_apcode3},#{bs_ect})<!--#{full_payment} -->
    </insert> 
    
 <!--    <insert id="insertcomlist" parameterType="A_comp">
@@ -221,7 +221,7 @@
    </insert> 
    
    <!-- 내가 올린 결재 상세 -->
-   	<select id="apRequest" resultType="appdetail"> 
+   	<select id="sRequest" resultType="appdetail"> 
 		SELECT * FROM B_SHIPMENT
 		WHERE
 		BS_DOCUNUM=#{bs_docunum} AND BS_CCODE = #{cCode}
@@ -236,7 +236,7 @@
     </insert> 
 	
    <!-- 내가 받은 결재 상세 -->
-	<select id="apRequest2" resultType="appdetail">
+	<select id="sRequest2" resultType="appdetail">
 		SELECT * FROM B_SHIPMENT
 		WHERE
 		BS_DOCUNUM=#{bs_docunum} AND BS_CCODE = #{cCode}

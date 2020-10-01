@@ -201,7 +201,7 @@ $("#approval").click(
 		                  
 		                  }else if(check.indexOf("G") != -1){ //수진
 			                     window.open(
-			                        '/erp/rest/sales/apRequest?bs_docunum='+ check, 'apRequest',
+			                        '/erp/rest/sales/sRequest?bs_docunum='+ check, 'sRequest',
 			                        'width=1500, height=600');
 		                  
 		                  }else{

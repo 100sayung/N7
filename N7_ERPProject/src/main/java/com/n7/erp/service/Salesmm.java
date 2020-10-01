@@ -607,12 +607,12 @@ public class Salesmm {
          return sMap;
    }
 
-	public ModelAndView apRequest(String bs_docunum, HttpSession session) {
+	public ModelAndView sRequest(String bs_docunum, HttpSession session) {
 		mav = new ModelAndView();
 		String view = null;
 		String cCode = (String) session.getAttribute("cCode");
 
-		approvaldetail app = sDao.apRequest(bs_docunum, cCode);
+		approvaldetail app = sDao.sRequest(bs_docunum, cCode);
 
 		if (app!= null) {
 			mav.addObject("app", app);
@@ -648,12 +648,12 @@ public class Salesmm {
 		return sMap;
 	}
 
-	public ModelAndView apRequest2(String bs_docunum, HttpSession session) {
+	public ModelAndView sRequest2(String bs_docunum, HttpSession session) {
 		mav = new ModelAndView();
 		String view = null;
 		String cCode = (String) session.getAttribute("cCode");
 
-		approvaldetail app = sDao.apRequest2(bs_docunum, cCode);
+		approvaldetail app = sDao.sRequest2(bs_docunum, cCode);
 
 		if (app!= null) {
 			mav.addObject("app", app);

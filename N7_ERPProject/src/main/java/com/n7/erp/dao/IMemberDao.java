@@ -101,4 +101,5 @@ public interface IMemberDao {
 	
 	@Select("SELECT M_GRADE FROM MEMBER WHERE M_ID = #{id}")
 	String checkGrade(String id);
+	boolean turnback(@Param("num")String num,@Param("cCode") String cCode);
 }
