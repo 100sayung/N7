@@ -44,7 +44,7 @@ border:1px solid #e1e1e1;
 					</select>
 					년
 					</td>
-					<td><select onchange="salestatement(value)">
+					<td><select onchange="salestatement2(value)">
 					<option value="--">--</option>
 					<option value="01">01</option>
 					<option value="02">02</option>
@@ -106,33 +106,108 @@ border:1px solid #e1e1e1;
 	</div>
 </body>
 <script type="text/javascript">
+
+//매출 분석표
+	var month ="";
+	var year="";
+	
+    
     function salestatement(value){
+    	var snum= new Array();
+    	var total=0;
+        var price=0;
+        var tax=0;
+        var pkind = new Array();
+	 year = value;
     	console.log(value);
     	$.ajax({
     		url:'/erp/rest/Account/analysis',
     		dataType:'json',
     		type:'post',
     		success:function(data){
-    			var total=0;
-    			var price=0;
-    			var tax=0;
+    			
     			console.log(data);
-    			for(var i in data.sList2){
-    			if(data.sList[i].s_date.substring(0,4)==value){
-    				total+=Number(data.sList2[i].s_total);
-    				price+=Number(data.sList2[i].s_price2);
-    				tax+=Number(data.sList2[i].s_tax);
+    			for(var i in data.sList){
+    			if(data.sList[i].s_num.substring(0,2)=="AS" && data.sList[i].s_date.substring(0,4)==year){
+    				snum.push(data.sList[i].s_num);
     			}
-    				
     			}
+    				console.log(snum);
+    		
+    			for(var i=0; i<snum.length; i++){
+    				for(var j=0; j<data.sList2.length; j++){
+    					if(snum[i]==data.sList2[j].s_num){
+    						pkind.push(data.sList2[j].s_pkind);
+    						total+=Number(data.sList2[j].s_total);
+    						price+=Number(data.sList2[j].s_price);
+    						tax+=Number(data.sList2[j].s_tax);
+    					}
+    				}
+    			}
+    			var count=0;
+    			pkind.sort();
+    			var pkind2=Array.from(new Set(pkind));
+    			pkind2.sort();
+    			console.log(pkind);
+    			console.log(pkind2);
+    			for(var i=0; i<pkind2.length; i++){
+    				for(var j=0; j<pkind.length;i++);
+    				if(pkind[i]==pkind[j]){
+    					count++;
+    				}
+    				}
     			$("#total").html(total+"(원)");
     			$("#price").html(price+"(원)");
     			$("#tax").html(tax+"(원)");
+    			grafe(pkind2);
     		},
     		error:function(error){
     			console.log(error);
     		}
     	});
+    };	
+    
+    function salestatement2(value2){
+    	var snum= new Array();
+    	var total=0;
+        var price=0;
+        var tax=0;
+		 month="-"+value2+"월";
+		 $.ajax({
+	    		url:'/erp/rest/Account/analysis',
+	    		dataType:'json',
+	    		type:'post',
+	    		success:function(data){
+	    			
+	    			console.log(data);
+	    			for(var i in data.sList){
+	    			if(data.sList[i].s_num.substring(0,2)=="AS" && data.sList[i].s_date.substring(0,4)==year && data.sList[i].s_date.substring(5,7)==value2){
+	    				snum.push(data.sList[i].s_num);
+	    			}
+	    			}
+	    				console.log(snum);
+	    		
+	    			for(var i=0; i<snum.length; i++){
+	    				for(var j=0; j<data.sList2.length; j++){
+	    					if(snum[i]==data.sList2[j].s_num){
+	    						total+=Number(data.sList2[j].s_total);
+	    						price+=Number(data.sList2[j].s_price);
+	    						tax+=Number(data.sList2[j].s_tax);
+	    					}
+	    				}
+	    			}
+	    			$("#total").html(total+"(원)");
+	    			$("#price").html(price+"(원)");
+	    			$("#tax").html(tax+"(원)");
+	    			grafe();
+	    		},
+	    		error:function(error){
+	    			console.log(error);
+	    		}
+	    	});
+		 
+	 };
+    function grafe(pkind2){
     	
 	google.charts.load('current', {
 		'packages' : [ 'corechart' ]
@@ -141,16 +216,14 @@ border:1px solid #e1e1e1;
 	
 	function drawChart1() {
 
-		var data = google.visualization.arrayToDataTable([
-				[ 'Task', 'Hours per Day' ], 
-				[ 'Work', 11 ], 
-				[ 'Eat', 2 ],
-				[ 'Commute', 2 ], 
-				[ 'Watch TV', 2 ], 
-				[ 'Sleep', 7 ] ]);
+		  var data = google.visualization.arrayToDataTable(['품목', '품목갯수'],[pkind2[0],10]);
+				 
+				
 
 		var options = {
-			title : '매출분석표'
+			title : year+month+'매출분석표',
+			is3D : true ,
+			
 		};
 
 		var chart = new google.visualization.PieChart(document
@@ -159,8 +232,9 @@ border:1px solid #e1e1e1;
 		chart.draw(data, options);
 	}
     };
+    
 	
-	
+	//매입 분석표
 	google.charts.load('current', {
 		'packages' : [ 'corechart' ]
 	});
