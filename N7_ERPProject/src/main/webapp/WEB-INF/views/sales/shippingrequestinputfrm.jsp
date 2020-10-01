@@ -133,7 +133,7 @@ border: 1px solid;
        });
         
     
-        var select2;
+/*         var select2;
        $.ajax({
              url:"/erp/rest/sales/getbonum",
              dataType:"json",
@@ -145,7 +145,7 @@ border: 1px solid;
              error:function(err){
                 console.log(err);
              }
-          }); 
+          }); */ 
        
     $('#shippingitemfrm').click(function(){
       var str="";
@@ -308,7 +308,7 @@ border: 1px solid;
             return arrStr;
          }
          
-          function makeSelectBox2(arr){
+/*           function makeSelectBox2(arr){
             var arrStr = "<select name = 'bs_bonum'>"
             if(arr.length==0){
                arrStr+="<option>수주번호를 작성해주세요 </option>";
@@ -319,7 +319,7 @@ border: 1px solid;
             }
             arrStr+="</select>";
             return arrStr;
-         }  
+         }   */
          
         function changeItcode(id){
            var it_stock = $(id).val();
