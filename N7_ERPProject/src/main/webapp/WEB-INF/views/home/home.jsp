@@ -63,7 +63,7 @@ font-size: 30px;
           <a href="/erp/introducecompany" class="dropdown-toggle">회사소개</a>
  
         </li>
-            <li><a href="#">상담게시판</a></li>
+            <li><a href="/erp/erpboard">상담게시판</a></li>
         <li><a href="/erp/erpapply">ERP신청</a></li>
         <li class="erpManager"></li>
 

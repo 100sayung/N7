@@ -181,19 +181,30 @@ td {
 	// 			});
 </script>
 <script>
-	$("#approval").click(
-			function() {
-				var check = '';
-				$("input[name='checknum']:checked").each(
-						function() {
-							check = $(this).attr('value');
+$("#approval").click(
+		function() {
+			var check = '';
+			$("input[name='checknum']:checked").each(
+		               function() {
+		                  check = $(this).attr('value');
 
-							window.open(
-									'/erp/rest/Account/apRequest?j_docunum='
-											+ check, 'apRequest',
-									'width=1500, height=600');
-						});
-			});
+
+		                  if(check.indexOf("AC") != -1){
+		                     window.open(
+		                        '/erp/rest/Account/apRequest?j_docunum='
+		                              + check, 'apRequest',
+		                        'width=1500, height=600');
+		                  }else if(check.indexOf("P") != -1){ //예은
+		                     window.open(
+		                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
+		                        'width=1500, height=600');
+		                  }else{
+		                     window.open(
+		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
+		                  }
+
+		               });
+		      });
 </script>
 </html>
 

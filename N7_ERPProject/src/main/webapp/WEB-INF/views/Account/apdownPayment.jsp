@@ -181,13 +181,22 @@ text-align: center;
 						function() {
 							check = $(this).attr('value');
 
-							window.open(
-									'/erp/rest/Account/apRequest2?j_docunum='
-											+ check,
-									'/erp/rest/Account/apRequest2',
-									'width=1500, height=600');
-						});
-			});
+			                  if(check.indexOf("AC") != -1){
+			                      window.open(
+			                              '/erp/rest/Account/apRequest2?j_docunum='+ check,
+			                              '/erp/rest/Account/apRequest2',
+			                              'width=1500, height=600');
+				                  }else if(check.indexOf("P") != -1){ //예은
+				                     window.open(
+				                        '/erp/rest/Purchase/pRequest2?p_documentcode='+ check, '/erp/rest/Purchase/pRequest2',
+				                        'width=1500, height=600');
+				                  }else{
+				                     window.open(
+				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
+				                  }
+
+				               });
+				      });
 </script>
 </html>
 
