@@ -80,7 +80,8 @@ border: 1px solid silver;
                   <tr>
                      <td><input type="checkbox" name="each_check" class="each"></td>
                            <td><input type="text" name="r_name" ></td>
-                           <td><input type="text" name="r_itcode" ></td>
+                          <!--  <td><input type="text" name="r_itcode" ></td> -->
+                           <td class="it"></td>
                            <td><input type="number" min="1" name="r_amount"></td>
                            <td><input type="text" name="r_unlit"></td>
                            <td><input type="text" name="r_budget"></td>

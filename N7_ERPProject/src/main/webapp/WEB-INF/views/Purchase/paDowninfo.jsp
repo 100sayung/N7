@@ -107,11 +107,11 @@ html, body {
                               <td colspan="6"><input type="text" name="p_etc"
                                  class="draft" value="${pa.p_etc}" readonly></td>
                            </tr>
-                           <tr>
-                              <th>반려사유</th>
-                              <th colspan="8"><input type="text" name="p_reason"
-                                 value="${pa.p_reason}" id="reason"></th>
-                           </tr>
+							<tr>
+								<th>반려사유</th>
+								<th colspan="8"><input type="text" name="p_etc"
+									value="${pa.p_etc}" id="ect"></th>
+							</tr>
                         </table>
                      </div>
                   </div>
@@ -167,13 +167,47 @@ html, body {
 	});
 	
 	$('#paSign2').click(function(){
+		var obj=$("#fo").serialize();
+		console.log(obj);
+		
+		$.ajax({
+			url: '/erp/rest/Purchase/paSign2',
+			type: 'post',
+			data: obj,
+			success: function(data){
+				alert("결재요청이 완료되었습니다.");
+				window.close();
+				window.opener.location.reload();
+				console.log(data);
+			},
+			error: function(err){
+				alert("결재요청이 실패했습니다.");
+				console.log(err);
+				
+			}
+		})
+	});
+	
+	$('#paBack2').click(function(){
 		var obj= $('#fo').serialize();
 		console.log(obj);
 		
 		$.ajax({
-			url: '/erp/rest/Purchase'
+			url: '/erp/rest/Purchase/paBack',
+			type: 'post',
+			data: obj,
+			success: function(data){
+				alert("반려가 완료되었습니다.");
+				window.close();
+				window.opener.location.reload();
+				console.log(data);
+			},
+			error: function(err){
+				console.log(err);
+				alert("반려가 실패되었습니다.");
+			}
 		})
-	})
+	});
 	
 	
 </script>

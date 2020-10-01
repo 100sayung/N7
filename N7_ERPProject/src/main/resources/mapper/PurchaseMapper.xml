@@ -79,7 +79,7 @@
 	</insert>
 	
 	<insert id="pApproval1" parameterType="pApproval">
-		INSERT INTO O_PURCHASEPROGRAMCOMMOM VALUES(#{p_documentcode}, #{p_ccode}, #{p_title}, #{p_day}, #{p_clcode}, DEFAULT, #{p_productnum}, #{p_etc,jdbcType=VARCHAR}, #{p_approver1}, #{p_approver2}, #{p_approver3}, #{p_apcode1}, #{p_apcode2}, #{p_apcode3}, #{p_reason])
+		INSERT INTO O_PURCHASEPROGRAMCOMMOM VALUES(#{p_documentcode}, #{p_ccode}, #{p_title}, #{p_day}, #{p_clcode}, DEFAULT, #{p_productnum}, #{p_etc,jdbcType=VARCHAR}, #{p_approver1}, #{p_approver2}, #{p_approver3}, #{p_apcode1}, #{p_apcode2}, #{p_apcode3})
 	</insert>
 	
 	<insert id="pApproval2" parameterType="pApproval">
@@ -143,5 +143,6 @@
 	<select id="getstocklist" parameterType="String" resultType="ieport">
 		SELECT * FROM S_IEPORT WHERE IE_CPCODE=#{cCode}
 	</select>
+	
 	
 </mapper>

@@ -33,26 +33,23 @@ table, tr, td {
 td {
 	padding: 5px;
 	font-size: large;
-/* 	width: 58px; */
+	width: 58px;
 	height: 10px;
 }
 
 #table {
-	width: 1200px;
+	width: 1400px;
 	height: auto;
 }
 
 #m {
 	background-color: gray;
 }
-<<<<<<< HEAD
-=======
 
 #center{
 
 text-align: center;
 }
->>>>>>> origin/dduddu
 </style>
 </head>
 <body>
@@ -73,13 +70,9 @@ text-align: center;
 	<br>
 	<div id="paging" style="text-align: center;"></div>
 	<br>
-<<<<<<< HEAD
-	<button id="approval">결재안 상세보기</button>
-=======
 	<div id="center">
 	<button id="approval">결재안 상세보기</button>
 	</div>
->>>>>>> origin/dduddu
 	<!-- 	<button id="acBack2">반려요청</button> -->
 	<!-- 	<button id="acDelete">삭제</button> -->
 </body>
