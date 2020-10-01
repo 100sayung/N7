@@ -192,10 +192,25 @@
 	<!-- 여기부터 분개전표 -->
 
 
-	<!-- 페이징 위한 결재안 카운트 -->
+	<!-- 페이징 위한 내가 올린 결재안 카운트 -->
 	<select id="countDocument" resultType="int">
 		SELECT COUNT(*)
 		FROM APPROVALDOCU
+		WHERE AP_CCODE = #{ap_ccode} AND AP_FROMAPPROVER = #{ap_fromapprover}
+	</select>
+	
+	<!-- 페이징 위한 내가 받은 결재안 카운트 -->
+	<select id="countDocument1" resultType="int">
+		SELECT COUNT(*)
+		FROM APPROVALDOCU
+		WHERE AP_CCODE = #{ap_ccode} AND AP_STATUS != '4' AND AP_TOAPPROVER = #{ap_toapprover}
+	</select>
+	
+	<!-- 페이징 위한 임시저장 결재안 카운트 -->
+	<select id="countDocument2" resultType="int">
+		SELECT COUNT(*)
+		FROM AC_JNOB
+		WHERE J_NONE = #{j_none} AND J_CCODE = #{j_ccode}
 	</select>
 
 	<!-- 임시저장 (결재등급0으로 INSERT) -->
@@ -355,3 +370,5 @@
 		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}
 	</select>
 </mapper>
+
+

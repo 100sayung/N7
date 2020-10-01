@@ -45,14 +45,11 @@ td {
 #m {
 	background-color: gray;
 }
-<<<<<<< HEAD
-=======
 
 #center{
 
 text-align: center;
 }
->>>>>>> origin/dduddu
 </style>
 </head>
 <body>
@@ -76,14 +73,10 @@ text-align: center;
 	<br>
 	<div id="paging" style="text-align: center;"></div>
 	<br>
-<<<<<<< HEAD
-	<button id="approval">결재안 상세보기</button>
-=======
 	<div id="center">
 	<button id="approval">결재안 상세보기</button>
 	<button id="acDelete2">삭제요청</button>
 	</div>
->>>>>>> origin/dduddu
 </body>
 <script>
 	//페이지 변경 스크립트
@@ -91,7 +84,7 @@ text-align: center;
 	function pageNumber(j) {
 		currPage = j;
 		$.ajax({
-			url : "/erp/rest/Account/documentPagenumber",
+			url : "/erp/rest/Account/documentPagenumber2",
 			dataType : "json",
 			method : "get",
 			success : function(page) {
