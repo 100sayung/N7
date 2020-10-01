@@ -36,7 +36,7 @@ text-align:center;
            <!-- <span style="padding-left: 5px"><a href="#"
          onclick="window.open('clientfrm','clientfrm','width=1200,height=700')"><button>거래처등록</button></a></span> -->
         </div> 
-        <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">수주관리 양식</div>
+        <div style="width:auto; background-color:#3D6B9B;  color:white; padding:1%;">수주관리 양식</div>
               <select id="choice" style="width:180px;">                    
                       <option value="bo_num">수주번호</option>
                       <option value="bo_clcode">거래처회사코드</option>
@@ -52,11 +52,11 @@ text-align:center;
                <th>수주번호</th>
                <th><input type="number" name="bo_num" placeholder="자동생성" readonly></th> <!-- placeholder="자동생성" readonly -->
                <th>거래처회사코드</th>
-               <th><input type="text" name="bo_clcode"></th>
+               <th><input id="clcode" type="text" name="bo_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>회사코드</th>
                <th><input type="text" name="bo_ccode"></th>
             </tr>
-            <tr>   
+            <tr>    
                <th>사업단위</th>
                <th><select name="bo_unit" style="width:180px;">
                    <option value="본사">본사</option>
@@ -82,7 +82,8 @@ text-align:center;
                 </colgroup>
                 <thead valign="top">
                 <tr>
-                  <th><input type="radio" id="allCheck"></th>
+                  <th><input type="radio" id="allCheck"></th>    
+                  <th>수주번호</th>              
                   <th>프로젝트명</th>
                   <th>프로젝트기간 시작</th>
                   <th>프로젝트기간 끝</th>
@@ -94,6 +95,7 @@ text-align:center;
                 <tbody id="tBody">
                     <tr>
                         <td><input type="radio" name="each_check" class="each"></td> 
+                        <td><input type="text" name="bo_num" placeholder="자동생성" readonly></td>
                         <td><input type="text" name="bo_pronum" id="add"  required></td>
                         <td><input type="date" name="bo_orderdate" min="2000-01-01" max="2030-12-31" style="width:180px;"></td>
                         <td><input type="date" name="bo_duedate" min="2000-01-01" max="2030-12-31" style="width:180px;"></td>
@@ -115,6 +117,15 @@ text-align:center;
          </div>
 
     <script type="text/javascript">
+    function setChildValue(data) {
+    	   console.log(data)
+    	   for(var i in data.aList){ 
+    	   var clcode=data.aList[i].cl_code;
+    	      
+    	   }
+    	   
+    	   $("#clcode").val(clcode);
+    	};
         $('#orderitemfrm').click(function(){
            var str="";
            
@@ -127,6 +138,7 @@ text-align:center;
                  
                  for(var i in data.sList){
                     str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
+                    str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
                     str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
                     str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
                     str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
@@ -192,6 +204,7 @@ text-align:center;
                      if(data.sList!=""){
                     for(var i in data.sList){
                         str+="<tr class='tr'><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
+                        str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
@@ -232,6 +245,7 @@ text-align:center;
                        
                     for(var i in data.sList){
                         str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
+                        str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";

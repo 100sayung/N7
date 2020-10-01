@@ -10,10 +10,9 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain=true)
 public class approvalLine {
-  private String m_code;
-  private String m_name;
-  private String m_grade;
-  private String m_email;
-  private String m_phone;
-  private String m_colume;
+   private String m_name;
+   private String m_email;
+   private String hc_hrcode;
+   private String hc_dept;
+   private String hc_position;
 }
