@@ -31,7 +31,7 @@ button {
 	width: 100px;
 	height: 50px;
 	border: 0px;
-	background-color: #FFB2D9;
+	background-color: #3D6B9B;
 	color: white;
 	font-weight: bolder;
 	border-radius: 8%;
