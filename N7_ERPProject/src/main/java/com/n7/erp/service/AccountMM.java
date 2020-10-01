@@ -910,4 +910,21 @@ public class AccountMM {
 	public int countDocument() {
 		return aDao.countDocument();
 	}
+
+	public Map<String, List<SaleInfo>> analysis(HttpSession session) {
+		Map<String, List<SaleInfo>> sMap = null;
+		List<SaleInfo> sList = null;
+		List<SaleInfo> sList2 = null;
+		String cCode = session.getAttribute("cCode").toString();
+		sList = aDao.getsaleList(cCode);
+		sList2 = aDao.getsaleList2(cCode);
+		if (sList != null) {
+			sMap = new HashMap<>();
+			sMap.put("sList", sList);
+			sMap.put("sList2", sList2);
+		} else {
+			sMap = null;
+		}
+		return sMap;
+	}
 }

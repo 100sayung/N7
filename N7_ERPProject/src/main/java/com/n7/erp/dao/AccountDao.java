@@ -61,7 +61,7 @@ public interface AccountDao {
 
 	List<SaleInfo> getpkind(String pkind);
 
-	List<SaleInfo> getsaleList2();
+	/* List<SaleInfo> getsaleList2(); */
 
 	List<SaleInfo> saleDetaile(@Param("check")String check,@Param("cCode") String cCode);
 
@@ -133,6 +133,8 @@ public interface AccountDao {
 	void statusupdate(@Param("s_code")String s_code,@Param("cCode") String cCode);
 
 	shipment Ieport(@Param("code")String code,@Param("cCode") String cCode);
+
+	List<SaleInfo> getsaleList2(String cCode);
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 

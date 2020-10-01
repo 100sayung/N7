@@ -60,6 +60,11 @@ public class AccountionCotroller {
 		mav = am.shipmentDetaile(cnt,strArray,session);
 		return mav;
 	}
+	@PostMapping(value = "/Account/analysis")
+	public Map<String, List<SaleInfo>> analysis(HttpSession session) {
+		Map<String, List<SaleInfo>> sMap = am.analysis(session);
+		return sMap;
+	}
 	/*
 	 * @PostMapping(value = "/selectsale",produces="application/json;charset=utf-8"
 	 * ) public Map<String, List<SaleInfo>> selectsale( String search) {

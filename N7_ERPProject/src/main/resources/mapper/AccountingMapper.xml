@@ -63,16 +63,16 @@
 	SELECT * FROM AC_SALESTATEMENT WHERE S_CCODE=#{cCode}
 	</select>
 	
+	<select id="getsaleList2" parameterType="String" resultType="saleInfo">
+	SELECT * FROM AC_SALESTATEMENTLIST WHERE S_CCODE=#{cCode}
+	</select>
+	
 	<select id="saleDetaile" parameterType="String" resultType="saleInfo">
 	SELECT * FROM AC_SALESTATEMENT WHERE S_NUM= #{check} AND S_CCODE=#{cCode}
 	</select>
 	
 	<select id="saleDetaile2" parameterType="String" resultType="saleInfo">
 	SELECT * FROM AC_SALESTATEMENTLIST WHERE S_NUM = #{check} AND S_CCODE=#{cCode}
-	</select>
-	
-	<select id="getsaleList2" parameterType="String" resultType="saleInfo">
-	SELECT * FROM AC_SALESTATEMENTLIST
 	</select>
 	
 	<select id="getList" parameterType="String" resultType="saleInfo">
