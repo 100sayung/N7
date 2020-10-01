@@ -169,6 +169,40 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		int ccodecnt = mDao.getDupleCCode(cCode);
 		return Integer.toString(ccodecnt);
 	}
+	public String deleteCompany(String cCode) {
+		
+		mDao.deleteO_return(cCode);
+		mDao.deleteS_ieport(cCode);
+		mDao.deleteO_purchaseprogram(cCode);
+		mDao.deleteO_purchaseprogramcommom(cCode);
+		mDao.deleteO_purchaselist(cCode);
+		mDao.deleteO_order(cCode);
+		mDao.deleteB_shipment(cCode);
+		mDao.deleteAc_salestatementlist(cCode);
+		mDao.deleteAc_realsalestatementlist(cCode);
+		mDao.deleteB_uncollectedmoney(cCode);
+		mDao.deleteB_shipregist(cCode);
+		mDao.deleteS_itemcode(cCode);
+		mDao.deleteHr_applyholiday(cCode);
+		mDao.deleteB_activites(cCode);
+		mDao.deleteHr_attendance(cCode);
+		mDao.deleteHr_academic(cCode);
+		mDao.deleteHr_payroll(cCode);
+		mDao.deleteHr_certification(cCode);
+		mDao.deleteHr_career(cCode);
+		mDao.deleteHr_card(cCode);
+		mDao.deleteO_purchasecommom(cCode);
+		mDao.deleteB_order(cCode);
+		mDao.deleteAc_salestatement(cCode);
+		mDao.deleteHr_dept(cCode);
+		mDao.deleteHr_deduction(cCode);
+		mDao.deleteS_category(cCode);
+		mDao.deleteApprovaldocu(cCode);
+		mDao.deleteAc_companylist(cCode);
+		
+		return new Gson().toJson("성공");
+	}
+
 
 	public String checkGrade(HttpSession session) {
 		String id = session.getAttribute("id").toString();

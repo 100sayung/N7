@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Alias("itemcode")
-@Data
 @Accessors(chain=true)
+@Data
 public class ItemCode {
 	private String it_code;
 	private String it_ccode;

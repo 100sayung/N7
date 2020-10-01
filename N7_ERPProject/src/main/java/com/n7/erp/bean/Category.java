@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Alias("category")
-@Data
 @Accessors(chain=true)
+@Data
 public class Category {
 
 	private String ct_name;
