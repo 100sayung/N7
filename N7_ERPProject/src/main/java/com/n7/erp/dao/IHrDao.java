@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.google.gson.JsonElement;
+import com.n7.erp.bean.Authority;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.entity.NameHoliday;
 import com.n7.erp.bean.hr.Academic;
@@ -43,7 +44,7 @@ public interface IHrDao {
 	@Select("SELECT M_NAME FROM MHR WHERE HC_HRCODE=#{hap_toapprover}")
 	String getToApprover(String hap_toapprover);
 
-	// HC_CODE ���떊�뿉 �빐蹂대뒗以�
+	// HC_CODE 占쏙옙占쎈뻿占쎈퓠 占쎈퉸癰귣��뮉餓ο옙
 
 	@Select("SELECT C_NAME FROM COMPANY WHERE C_CODE = #{cCode}")
 	String getCName(String cCode);
@@ -159,4 +160,9 @@ public interface IHrDao {
 	List<Member> selectHrCard(PagingVO vo);
 	List<Member> selectNoHrCard(PagingVO vo);
 	int countNoHrCard(String cCode);
+
+
+
+	@Select("SELECT * FROM AUTHORITY WHERE AU_COMNAME = #{cCode}")
+	List<Authority> getOurDept(String cCode);
 }

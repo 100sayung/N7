@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
+import com.n7.erp.bean.Authority;
 import com.n7.erp.bean.Company;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.entity.NameHoliday;
@@ -651,6 +652,12 @@ public class HrMM {
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		hMap.put("name", name);
 		String result = new Gson().toJson(hDao.getSearchFromName(hMap));
+		return result;
+	}
+
+	public String getOurDept(HttpSession session) {
+		List<Authority> auth = hDao.getOurDept(session.getAttribute("cCode").toString());
+		String result = new Gson().toJson(auth);
 		return result;
 	}
 	

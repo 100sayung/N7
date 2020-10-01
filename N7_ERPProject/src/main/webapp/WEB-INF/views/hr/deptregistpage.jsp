@@ -102,7 +102,7 @@ ul {
 		<table id="depttable">
 			<tr>
 				<td>부서 :</td>
-				<td><input type="text" name="HDP_position" id="position"></td>
+				<td><span id="positionS"></span></td>
 				<td>직책 :</td>
 				<td><input type="text" name="HDP_dept" id="dept"></td>
 			</tr>
@@ -114,6 +114,28 @@ ul {
 </body>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
+
+$(document).ready(function(){
+	$.ajax({
+		url:"/erp/rest/hr/ourdept",
+		dataType:"json",
+		method:"get",
+		success : function(data){
+			console.log(data);
+			let str = "";
+			str += "<select name='HDP_position' id='position'>";
+			for(let i = 0 ; i < data.length ; i++){
+				str += "<option value='"+data[i].au_name+"'>"+data[i].au_name+"</option>";
+			}
+			str += "</select>";
+			$("#positionS").html(str);
+		}, error : function(err){
+			console.log(err);
+		}
+		
+	});
+});
+
 $("#showMenu1").hover(function() {
 	$("#smallMenu1").attr("style", "display:inline-block");
 }, function() {
