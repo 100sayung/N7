@@ -216,13 +216,45 @@ public class SalesController {
       return sMap;
    }
    
-   
+   //올린 결재함 el
    @PostMapping(value = "/sales/approvaldetailinput",produces="application/json;charset=utf-8") //결재 상세보기 등록
-   public ModelAndView approvaldetailinput(approvaldetail app, HttpSession session) {
-      mav=sm.approvaldetailinput(app, session);
+   public ModelAndView approvaldetailinput(String bs_docunum, HttpSession session) {
+      mav=sm.approvaldetailinput(bs_docunum, session);
       return mav;
    }
    
+   //받은 결재함 el
+   @PostMapping(value = "/sales/downapprovaldetailinput",produces="application/json;charset=utf-8") //결재 상세보기 등록
+   public ModelAndView downapprovaldetailinput(String bs_docunum, HttpSession session) {
+      mav=sm.downapprovaldetailinput(bs_docunum, session);
+      return mav;
+   }
+   
+    //내가 올린거 상세
+	@GetMapping(value = "/sales/apRequest", produces = "application/json;charset=utf-8")
+	public ModelAndView apRequest(String bs_docunum, HttpSession session) {
+		mav = sm.apRequest(bs_docunum, session);
+		System.out.println(bs_docunum);
+		return mav;
+	}
+	
+	// 내가받은 결재안 상세보기
+		@GetMapping(value = "/sales/apRequest2", produces = "application/json;charset=utf-8")
+		public ModelAndView apRequest2(String bs_docunum, HttpSession session) {
+			mav = sm.apRequest2(bs_docunum, session);
+			System.out.println(bs_docunum);
+			return mav;
+		}
+   
+	// 내가올린결재안에서 이름찾아오기
+		@PostMapping(value = "/sales/getApprinfo", produces = "application/json;charset=utf-8")
+		public Map<String, List<approvalLine>> getApprinfo(String CNT, String ARR, HttpSession session) {
+			int cnt = Integer.parseInt(CNT);
+			String[] strArray = ARR.split(",");
+			Map<String, List<approvalLine>> sMap = sm.getApprinfo(cnt, strArray, session);
+			return sMap;
+		}
+		
 //   @PostMapping(value = "/sales/approvaldelete") //결재완료 삭제 망함
 //   public Map<String, List<approvaldetail>> approvaldelete(String check) {
 //      Map<String, List<approvaldetail>> sMap=sm.approvaldelete(check);

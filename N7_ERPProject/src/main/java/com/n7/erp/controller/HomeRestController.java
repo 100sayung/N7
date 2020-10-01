@@ -43,6 +43,10 @@ public class HomeRestController {
 		String result = mm.getDupleCCode(m_ccode);
 		return result;
 	}
+	@PostMapping(value="/home/deletecompany")
+	public String deleteCompany(String cCode) {
+		return mm.deleteCompany(cCode);
+	}
 	
 	@PostMapping(value="/home/checkgrade")
 	public String checkGrade(HttpSession session) {
@@ -50,4 +54,14 @@ public class HomeRestController {
 		return result;
 	}
 
+	@PostMapping(value = "/home/forcewithdrawal")
+	public String forceWithDrawal(String jsonStr) { 
+		System.out.println(jsonStr);
+		List<String> slist = new Gson().fromJson(jsonStr, new TypeToken<List<String>>() {
+		}.getType());
+		System.out.println(slist);
+		mm.forceWithDrawal(slist);
+		return null;
+	}
+	
 }

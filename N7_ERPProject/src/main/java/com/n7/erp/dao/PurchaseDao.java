@@ -20,7 +20,7 @@ import com.n7.erp.bean.ps.Return;
 @Component
 public interface PurchaseDao {
 
-	@Update("UPDATE P SET P_SITUATION=1 WHERE P_NUM=#{ie_pnum} AND ")//수정해야함
+	@Update("UPDATE O_ORDER SET O_STATUS = '1' WHERE O_CCODE = #{ie_cpcode} AND O_CODE = #{ie_ocode} ")
 	boolean updatePurchase(IePort iePort);
 	
 	boolean pregistration(Purchase ps);

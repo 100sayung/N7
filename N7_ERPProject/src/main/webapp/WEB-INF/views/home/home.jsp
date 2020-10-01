@@ -198,20 +198,22 @@ font-size: 30px;
 	<script>
 
 	$(document).ready(function(){
-		$.ajax({
-			url:"/erp/rest/home/checkgrade",
-			dataType:"json",
-			method:"post",
-			success : function(grade){
-				if(grade==2){
-					$(".homepageAdmin").html('<a href="/erp/adminpage">admin관리</a>');
-				}else if(grade==1){
-					$(".erpManager").html('<a href="#" onClick=\'window.open("/erp/managermode/managermode", "ERP START", "width=1200, height=900, toolbar=no, menubar=no, resizable=yes"); return false;\'>ERP관리하기</a></li>');
+		if('${id}'!=""){
+			$.ajax({
+				url:"/erp/rest/home/checkgrade",
+				dataType:"json",
+				method:"post",
+				success : function(grade){
+					if(grade==2){
+						$(".homepageAdmin").html('<a href="/erp/adminpage">admin관리</a>');
+					}else if(grade==1){
+						$(".erpManager").html('<a href="#" onClick=\'window.open("/erp/managermode/managermode", "ERP START", "width=1200, height=900, toolbar=no, menubar=no, resizable=yes"); return false;\'>ERP관리하기</a></li>');
+					}
+				}, error : function(err){
+					console.log(err);
 				}
-			}, error : function(err){
-				console.log(err);
-			}
-		});
+			});
+		}
 	})
 		var msg=location.search.substring(5, 6);
 		console.log(msg)
