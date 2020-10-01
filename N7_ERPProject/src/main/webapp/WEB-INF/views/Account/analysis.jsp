@@ -36,12 +36,7 @@ border:1px solid #e1e1e1;
 			<div id="salestatement" style="width: 100%; height: 500px;"></div>
 			<table class="table">
 				<tr>
-					<td><select onchange="salestatement(value)" >
-					<option value="--">--</option>
-					<option value="2020">2020</option>
-					<option value="2019">2019</option>
-					<option value="2018">2018</option>
-					</select>
+					<td class="year">
 					년
 					</td>
 					<td><select onchange="salestatement2(value)">
@@ -72,7 +67,7 @@ border:1px solid #e1e1e1;
 			<div id="purchase" style="width: 100%; height: 500px;"></div>
 			<table class="table">
 				<tr>
-					<td><select>
+					<td class="year"><select>
 					<option value="--">--</option>
 					<option value="2020">2020</option>
 					<option value="2020">2019</option>
@@ -106,13 +101,42 @@ border:1px solid #e1e1e1;
 	</div>
 </body>
 <script type="text/javascript">
-
+$(document).ready(function(){
+	$.ajax({
+		url:'/erp/rest/Account/analysis',
+		dataType:'json',
+		type:'post',
+		success:function(data){
+			var str="";
+			var asdate = new Array();
+			for(var i in data.sList){
+				if(data.sList[i].s_num.substring(0,2)=="AS"){
+				asdate.push(data.sList[i].s_date.substring(0,4));
+				}
+			}
+			var asdate2=Array.from(new Set(asdate));
+			console.log(asdate2);
+			str+="<select id='change'>";
+			str+="<option>--</option>";
+			for(var i=0; i<asdate2.length; i++){
+				str+="<option  value="+asdate2[i]+">"+asdate2[i]+"</option>";
+			}
+			str+="</select>";
+			$(".year").html(str+"년");
+		},
+		error:function(error){
+		console.log(error);	
+		
+		}
+   });
+});
 //매출 분석표
 	var month ="";
 	var year="";
 	
     
-    function salestatement(value){
+   $(document).on("change","#change",function(){
+	   var value = $("#change").val();
     	var snum= new Array();
     	var total=0;
         var price=0;
@@ -125,8 +149,7 @@ border:1px solid #e1e1e1;
     		dataType:'json',
     		type:'post',
     		success:function(data){
-    			
-    			console.log(data);
+    	
     			for(var i in data.sList){
     			if(data.sList[i].s_num.substring(0,2)=="AS" && data.sList[i].s_date.substring(0,4)==year){
     				snum.push(data.sList[i].s_num);
@@ -144,18 +167,8 @@ border:1px solid #e1e1e1;
     					}
     				}
     			}
-    			var count=0;
-    			pkind.sort();
     			var pkind2=Array.from(new Set(pkind));
-    			pkind2.sort();
-    			console.log(pkind);
-    			console.log(pkind2);
-    			for(var i=0; i<pkind2.length; i++){
-    				for(var j=0; j<pkind.length;i++);
-    				if(pkind[i]==pkind[j]){
-    					count++;
-    				}
-    				}
+    		
     			$("#total").html(total+"(원)");
     			$("#price").html(price+"(원)");
     			$("#tax").html(tax+"(원)");
@@ -165,7 +178,7 @@ border:1px solid #e1e1e1;
     			console.log(error);
     		}
     	});
-    };	
+    });	
     
     function salestatement2(value2){
     	var snum= new Array();
@@ -216,7 +229,14 @@ border:1px solid #e1e1e1;
 	
 	function drawChart1() {
 
-		  var data = google.visualization.arrayToDataTable(['품목', '품목갯수'],[pkind2[0],10]);
+		  var data = google.visualization.arrayToDataTable([
+			  ['품목', '품목갯수'],
+			  
+		      [pkind2[0],10],
+		      [pkind2[1],10],
+		      [pkind2[2],10],
+		      [pkind2[3],10]
+			  ]);
 				 
 				
 
