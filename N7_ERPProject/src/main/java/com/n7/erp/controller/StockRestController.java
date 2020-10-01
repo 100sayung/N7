@@ -123,4 +123,9 @@ public class StockRestController {
 	public ResponseEntity<String> getClcode(HttpSession session) {
 		return stmm.getClcode(session);
 	}
+	
+	@RequestMapping(value = "/getstock", method = RequestMethod.GET)
+	public ResponseEntity<String> getstock(ItemCode it,HttpSession session) {
+		return stmm.getStock(it,session);
+	}
 }

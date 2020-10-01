@@ -657,6 +657,7 @@ public class Salesmm {
 
 		if (app!= null) {
 			mav.addObject("app", app);
+			System.out.println("들어오냐 사ㅣ다널");
 			view = "sales/salesdownapprovaldetail";
 		} else {
 			view = "sales/salesdownapprovaldetail";

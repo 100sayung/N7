@@ -137,6 +137,51 @@ tr{
 </div>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
+		$("#showMenu1").hover(function() {
+			$("#menu2").attr("style", "display:inline-block");
+		});
+
+		$("#apupPayment").click(function() {
+			$.ajax({
+				url : '/erp/Account/apupPayment',
+				type : 'get',
+				success : function(data) {
+					$("#description").html(data);
+				},
+				error : function() {
+				}
+			});
+
+		});
+
+		$("#apdownPayment").click(function() {
+			$.ajax({
+				url : '/erp/Account/apdownPayment',
+				type : 'get',
+				success : function(data) {
+					$("#description").html(data);
+				},
+				error : function() {
+				}
+			});
+
+		});
+		
+		$("#acTemporary").click(function() {
+			$.ajax({
+				url:'/erp/Account/acTemporary',
+				success:function(data) {
+					console.log(data);
+					$("#description").html(data);
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			});
+
+		});
+	</script>
+	<script>
 		var num;
 		$(document).ready(function(){
 			$.ajax({

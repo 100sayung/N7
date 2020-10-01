@@ -190,6 +190,11 @@ text-align: center;
 				                     window.open(
 				                        '/erp/rest/Purchase/pRequest2?p_documentcode='+ check, '/erp/rest/Purchase/pRequest2',
 				                        'width=1500, height=600');
+				                  
+				                  }else if(check.indexOf("G") != -1){ //수진
+					                     window.open(
+					                        '/erp/rest/sales/apRequest?bs_docunum='+ check, '/erp/rest/sales/apRequest2',
+					                        'width=1500, height=600');				                  
 				                  }else{
 				                     window.open(
 				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');

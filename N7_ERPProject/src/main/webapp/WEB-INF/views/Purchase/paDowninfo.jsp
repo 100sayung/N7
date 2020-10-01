@@ -102,15 +102,10 @@ html, body {
 							  <th colspan="2">합계</th>
                            </tr>
                            <tbody id="list"></tbody>
-                           <tr>
-                              <th colspan="2">적요</th>
-                              <td colspan="6"><input type="text" name="p_etc"
-                                 class="draft" value="${pa.p_etc}" readonly></td>
-                           </tr>
-                           <tr>
+               			  <tr>
                               <th>반려사유</th>
-                              <th colspan="8"><input type="text" name="p_reason"
-                                 value="${pa.p_reason}" id="reason"></th>
+                              <th colspan="8"><input type="text" name="p_etc"
+                                 value="${pa.p_etc}" id="ect"></th>
                            </tr>
                         </table>
                      </div>

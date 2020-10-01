@@ -132,31 +132,7 @@ table, tr, th, td {
        </form>
          <br>
    <script>
-/* 	$('#for').click(function() {
-	  
-		var obj = $("#for").serialize();
-	   console.log(obj);
 
-	$.ajax({
-		url : '/erp/rest/sales/approvaldetailinput',
-		type : 'post',
-		data : obj,
-		dateType : "json",
-		success : function(data) {
-			if (data == 1) {
-				console.log(data);
-				$("#for")[0].reset();
-				alert("결재안 저장을 완료하였습니다.");
-			} else {
-				alert("결재안 저장이 실패하였습니다.");
-				console.log(data);
-			}
-		},
-		error : function(error) {
-			console.log(error);
-		}
-	});
-  }); */
 	
   /*  $(document).ready(function(){
 	      $.ajax({
