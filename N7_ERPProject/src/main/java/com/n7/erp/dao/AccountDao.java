@@ -61,7 +61,7 @@ public interface AccountDao {
 
 	List<SaleInfo> getpkind(String pkind);
 
-	List<SaleInfo> getsaleList2();
+	/* List<SaleInfo> getsaleList2(); */
 
 	List<SaleInfo> saleDetaile(@Param("check") String check, @Param("cCode") String cCode);
 
