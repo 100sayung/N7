@@ -34,6 +34,11 @@ public class AcHomeController {
 
 		return "Account/openTable";
 	}
+	@RequestMapping(value = "Account/analysis", method = RequestMethod.GET)
+	public String analysis() {
+		
+		return "Account/analysis";
+	}
 
 	@RequestMapping(value = "Account/comPany", method = RequestMethod.GET)
 	public String comPany() {

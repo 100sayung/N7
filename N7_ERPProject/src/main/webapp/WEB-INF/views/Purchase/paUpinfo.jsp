@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
 html, body {
    text-align: center;
@@ -70,9 +71,9 @@ html, body {
             <tr>
                <th>결재자</th>
                <th id="line">
-               <input type="hidden" value="${pa.p_approver1}" name="appval">결재자1: ${pa.p_approver1} || 
-                  <input type="hidden" value="${pa.p_approver2}" name="appval">결재자2: ${pa.p_approver2} || 
-                  <input type="hidden" value="${pa.p_approver3}" name="appval">결재자3:${pa.p_approver3}
+               <input type="hidden" value="${pa.p_apcode1}" name="code">
+                  <input type="hidden" value="${pa.p_apcode2}" name="code">
+                  <input type="hidden" value="${pa.p_apcode3}" name="code">
                </th>
 
             </tr>
@@ -85,29 +86,7 @@ html, body {
                            <tr>
                               <th colspan="2">문서번호</th>
                               <th colspan="6"><input type="text" name="p_documentcode"
-                                 class="txt" value="${pa.p_documentcode}" readonly><input
-                                 type="hidden" name="j_grade" class="draft3"
-                                 value="${ac.j_grade}" readonly></th>
-                              <!--                               <td>결재상태</td> -->
-
-                           </tr>
-                           <tr>
-                              <th colspan="2">활동센터</th>
-                              <th colspan="2"><input type="text" name="j_centre"
-                                 class="txt" value="${ac.j_centre}" readonly><input
-                                 type="hidden" name="j_ccode" class="txt"
-                                 value="${ac.j_ccode}" readonly></th>
-                              <th colspan="2">귀속부서</th>
-                              <th colspan="2"><input type="text" name="j_section"
-                                 class="txt" value="${ac.j_section}" readonly></th>
-                           </tr>
-                           <tr>
-                              <th colspan="2">관계회사</th>
-                              <td colspan="6"><input type="text" name="p_clcode"
-                                 class="draft3" value="${pa.p_clcode}" readonly></td>
-<%--                               <th colspan="2">비용구분</th>
-                              <td colspan="2"><input type="text" name="p_budget"
-                                 class="draft3" value="${pa.p_budget}" readonly></td> --%>
+                                 class="txt" value="${pa.p_documentcode}" readonly>
 
                            </tr>
                            <tr>
@@ -116,13 +95,13 @@ html, body {
                                  class="draft" value="${pa.p_productnum}" readonly></td>
                            </tr>
                            <tr>
-                           	  <th>상품명</th>
-							  <th>품목코드</th>
+                           	  <th colspan="2">상품명</th>
+							  <th >품목코드</th>
 							  <th>수량</th>
 							  <th>단가</th>
-							  <th>합계</th>
+							  <th colspan="2">합계</th>
                            </tr>
-
+                           <tbody id="list"></tbody>
                            <tr>
                               <th colspan="2">적요</th>
                               <td colspan="6"><input type="text" name="p_etc"
@@ -141,5 +120,49 @@ html, body {
          </table>
        </div>
      </form>
+<script type="text/javascript">
+	 var str="";
+	 var pList=${pList};
+	 console.log(pList);
+	 for(var i in pList){
+		 str+="<tr><td colspan='2'>"+pList[i].p_name+"</td>";
+		 str+="<td>"+pList[i].p_itcode+"</td>";
+		 str+="<td>"+pList[i].p_amount+"</td>";
+		 str+="<td>"+pList[i].p_unlit+"</td>";
+		 str+="<td colspan='2'>"+pList[i].p_budget+"</td><tr>";
+	 }
+	$("#list").html(str);
+	
+	$(document).ready(function(){
+		arr= new Array();
+		var cnt= $("input[name='code']").length;
+		
+		$("input[name='code']").each(function(){
+			arr.push($(this).attr('value'));
+		});
+	
+		$.ajax({
+			url : '/erp/rest/Purchase/getApprovalInfo',
+			type : 'post',
+			traditional : true,
+			data : 'ARR=' + arr + '&CNT=' + cnt,
+			success : function(data) {
+				console.log(data);
+				 var str = "";
+		            for ( var i in data.pList) {
+		               str +="<input type='text' name='p_apcode"+(Number(i)+Number(1))+"' value='"+data.pList[i].hc_hrcode+"' hidden='true'>";
+		               str +=data.pList[i].hc_position+"/";
+		               str +="<input style='width:50px;' type='text' name='p_approver"+(Number(i)+Number(1))+"' value='"+ data.pList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+		            }
+		            console.log(str)
+		            $("#line").html(str);
+		         
+		         },
+			error : function(error) {
+				console.log(error);
+			}
+		});
+});
+</script>
 </body>
 </html>

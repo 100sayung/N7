@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>Document</title>
     <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
@@ -51,8 +50,9 @@
     </div>
     <div id="side_menu">
         <ul id="menuList">
-            <li><a href="#" id="acountting">매츌/매입전표 작성</a></li>
+            <li><a href="#" id="acountting">매출/매입전표 작성</a></li>
             <li><a href="#" id="acWriting">분개전표입력</a></li>
+            <li><a href="#" id="analysis">매출/매입분석</a></li>
         </ul>
     </div>
     <center>
@@ -80,6 +80,19 @@ $("#acountting").click(function(){
 $("#acWriting").click(function(){
 	$.ajax({
 		url:'/erp/Account/acWritefrm',
+		type:'get',
+		success:function(data){
+			$("#description").html(data);
+		},
+		error:function(){
+			
+		}
+	});
+	
+});
+$("#analysis").click(function(){
+	$.ajax({
+		url:'/erp/Account/analysis',
 		type:'get',
 		success:function(data){
 			$("#description").html(data);

@@ -328,11 +328,12 @@ function CareerInfo(){
 		method:"get",
 		data:{m_id : id},
 		success : function(data){
+			console.log(data);
 			let str ="";
 			str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
 			str += "<td style='width:140px;'>회사/프로젝트명</td><td style='width:140px;'>기간</td><td style='width:140px;'>직책</td><td style='width:170px;' colspan='2'>내용</td></tr>";
 			for(let i=0; i<data.length ; i++){
-			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_cname' class='detailInfo' value='"+data[i].hcr_cname+"' readonly ></td>"
+			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_cname' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
 			str += "<td><input type='date' name='hcr_startperiod' id='chk"+(i*2)+"'class='detailInfo checkDate' value='"+data[i].hcr_startperiod+"' readonly >부터"
 			str += "<input type='date' name='hcr_endperiod' id='chk"+((i*2)+1)+"' class='detailInfo checkDate' value='"+data[i].hcr_endperiod+"' readonly onchange='checkDateValue(chk"+(i*2)+", chk"+((i*2)+1)+")'>까지</td>"
 			str += "<td><input type='text' name='hcr_position' class='detailInfo' value='"+data[i].hcr_position+"' readonly ></td>";
@@ -391,7 +392,10 @@ function CareerInfo(){
 						str += "<option value='"+deptList.deptList[i]+"'>"+deptList.deptList[i]+"</option>";
 						}
 					}
-					str += "</select></td><td><span id='position'></td></tr>";
+					str += "</select></td><td><span id='position'>";
+					str += "<select name='hc_position' class='detailInfo'>";
+					str += "<option value='"+data.hc_position+"' selected='selected'>"+data.hc_position+"</select>"
+					str += "</span></td></tr>";
 					str += "<tr><td colspan='3'>입사일</td></tr>";
 					str += "<td colspan='3'><input type='date' name='hc_joindate' value='"+data.hc_joindate+"' class='detailInfo' readonly></td>"
 					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>사용한 월차</td></tr>";

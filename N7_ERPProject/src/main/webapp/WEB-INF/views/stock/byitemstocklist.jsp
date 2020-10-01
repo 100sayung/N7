@@ -103,6 +103,8 @@ input[type='text'], input[type='number'] {
 			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
 			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
 			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
+			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
+			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
 
@@ -130,7 +132,7 @@ input[type='text'], input[type='number'] {
 				return;
 			}
 			console.log(result)
-			var str='<h3>품목별 거래현황</h3><table><tr><td>분류 : </td><td><select id="selectit_ccode" onchange="getItemCodeFromItemCCode()"><option></option>';
+			var str='<table><tr><td>분류 : </td><td><select id="selectit_ccode" onchange="getItemCodeFromItemCCode()"><option></option>';
 			for(var i = 0;i<result.length;i++){
 				str+='<option data-value="'+result[i].ct_code+'">'+result[i].ct_name+'</option>'
 			}str+='</select></td></tr></table>'
@@ -184,7 +186,7 @@ input[type='text'], input[type='number'] {
 			success:function(result){
 				console.log(result)
 				var str = '<table><tr><td>품목코드</td><td>현재고</td></tr>';
-				str+='<tr><td>'+result.it_code+'</td><td>'+result.p_sum+'</td></tr></table>'
+				str+='<tr><td>'+result.ie_itcode+'</td><td>'+result.ie_qty+'</td></tr></table>'
 				$('#contain').html(str)
 			},
 			error:function(err){

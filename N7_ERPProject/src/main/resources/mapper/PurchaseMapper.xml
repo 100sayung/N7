@@ -15,17 +15,6 @@
 		SELECT * FROM O_PURCHASECOMMOM
 	</select> 
 	
-<!-- 	<select id="pFrerence" parameterType="object" resultType="Purchase">
-	<![CDATA[
-		SELECT * FROM(
-		 SELECT /*+INDEX_DESC(O_PURCHASECOMMOM O_PURCHASECOMMOM_PK)*/ROWNUM RN, O_PURCHASECOMMOM.*
-		 FROM O_PURCHASECOMMOM
-		 WHERER ROWNUM<=#{pageNum}*10
-		)
-		WHERE RN>=#{pageNum}*10-9
-	]]>
-	</select> -->
-	
 	<select id="pfSearch" parameterType="String" resultType="Purchase">
 		SELECT * FROM O_PURCHASECOMMOM 
 		<where>
@@ -90,7 +79,7 @@
 	</insert>
 	
 	<insert id="pApproval1" parameterType="pApproval">
-		INSERT INTO O_PURCHASEPROGRAMCOMMOM VALUES(#{p_documentcode}, #{p_ccode}, #{p_title}, #{p_day}, #{p_clcode}, DEFAULT, #{p_productnum}, #{p_etc,jdbcType=VARCHAR}, #{p_approver1}, #{p_approver2}, #{p_approver3}, #{p_apcode1}, #{p_apcode2}, #{p_apcode3})
+		INSERT INTO O_PURCHASEPROGRAMCOMMOM VALUES(#{p_documentcode}, #{p_ccode}, #{p_title}, #{p_day}, #{p_clcode}, DEFAULT, #{p_productnum}, #{p_etc,jdbcType=VARCHAR}, #{p_approver1}, #{p_approver2}, #{p_approver3}, #{p_apcode1}, #{p_apcode2}, #{p_apcode3}, #{p_reason])
 	</insert>
 	
 	<insert id="pApproval2" parameterType="pApproval">
@@ -126,5 +115,33 @@
 			</if>
 		</where>
 	</select>
-
+	
+	<select id="pRequest" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
+	
+	<select id="pListRequest" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
+	
+	<select id="getApprovalInfo" parameterType="String" resultType="pALine">
+		SELECT * FROM MLIST WHERE HC_HRCODE= #{code}
+	</select>
+	
+	<select id="pRequest2" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
+	
+	<select id="pListRequest2" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
+	
+	<select id="stocklist" parameterType="String" resultType="ieport">
+		SELECT * FROM S_IEPORT WHERE IE_CPCODE=#{cCode}
+	</select>
+	
+	<select id="getstocklist" parameterType="String" resultType="ieport">
+		SELECT * FROM S_IEPORT WHERE IE_CPCODE=#{cCode}
+	</select>
+	
 </mapper>
