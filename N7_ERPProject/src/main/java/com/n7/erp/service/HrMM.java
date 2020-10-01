@@ -191,7 +191,7 @@ public class HrMM {
 		String m_ccode = session.getAttribute("cCode").toString();
 		mav.setViewName("/hr/hrCard");
 		if (!checkMemberHrCardCnt(m_ccode)) {
-			mav.addObject("msg", "입력하세요");
+			mav.addObject("msg", "인사카드를 등록해주세요.");
 
 		}
 
@@ -214,7 +214,7 @@ public class HrMM {
 			type = "0";
 		}
 		logAtMap.put("type", type);
-		System.out.println("type��? " + logAtMap.get("type"));
+		System.out.println("type占쏙옙? " + logAtMap.get("type"));
 		hDao.logAttendance(logAtMap);
 		hDao.logStatusToHrCard(logAtMap);
 		return type;
@@ -225,7 +225,7 @@ public class HrMM {
 		String cCode = session.getAttribute("cCode").toString();
 		String hrCode = hDao.getHrCodeFromID(id);
 
-		// 寃곗옱臾몄꽌�뼇�떇遺��꽣 �벑濡�
+		// 野껉퀣�삺�눧紐꾧퐣占쎈펶占쎈뻼�겫占쏙옙苑� 占쎈쾻嚥∽옙
 		ApprovalDocu docu = new ApprovalDocu();
 		docu.setAp_ccode(cCode).setAp_docuname(apholi.getHap_docuname()).setAp_docunum("H");
 		docu.setAp_fromapprover(hrCode).setAp_toapprover(apholi.getHap_toapprover());
@@ -268,29 +268,29 @@ public class HrMM {
 		}
 
 		String month = "";
-		if (yearmonth.substring(6).equals("1�썡")) {
+		if (yearmonth.substring(6).equals("1占쎌뜞")) {
 			month = "Jan";
-		} else if (yearmonth.substring(6).equals("2�썡")) {
+		} else if (yearmonth.substring(6).equals("2占쎌뜞")) {
 			month = "Feb";
-		} else if (yearmonth.substring(6).equals("3�썡")) {
+		} else if (yearmonth.substring(6).equals("3占쎌뜞")) {
 			month = "Mar";
-		} else if (yearmonth.substring(6).equals("4�썡")) {
+		} else if (yearmonth.substring(6).equals("4占쎌뜞")) {
 			month = "Apr";
-		} else if (yearmonth.substring(6).equals("5�썡")) {
+		} else if (yearmonth.substring(6).equals("5占쎌뜞")) {
 			month = "May";
-		} else if (yearmonth.substring(6).equals("6�썡")) {
+		} else if (yearmonth.substring(6).equals("6占쎌뜞")) {
 			month = "Jun";
-		} else if (yearmonth.substring(6).equals("7�썡")) {
+		} else if (yearmonth.substring(6).equals("7占쎌뜞")) {
 			month = "Jul";
-		} else if (yearmonth.substring(6).equals("8�썡")) {
+		} else if (yearmonth.substring(6).equals("8占쎌뜞")) {
 			month = "Aug";
-		} else if (yearmonth.substring(6).equals("9�썡")) {
+		} else if (yearmonth.substring(6).equals("9占쎌뜞")) {
 			month = "Sep";
-		} else if (yearmonth.substring(6).equals("10�썡")) {
+		} else if (yearmonth.substring(6).equals("10占쎌뜞")) {
 			month = "Oct";
-		} else if (yearmonth.substring(6).equals("11�썡")) {
+		} else if (yearmonth.substring(6).equals("11占쎌뜞")) {
 			month = "Nov";
-		} else if (yearmonth.substring(6).equals("12�썡")) {
+		} else if (yearmonth.substring(6).equals("12占쎌뜞")) {
 			month = "Dec";
 		}
 		String dateStandard = "%" + month + " " + day + " " + yearmonth.substring(0, 4) + "%";
@@ -347,7 +347,7 @@ public class HrMM {
 		String id = session.getAttribute("id").toString();
 		String cCode = session.getAttribute("cCode").toString();
 
-		// 寃��깋�쓣 �쐞�빐�꽌 �뼇�떇 留뚮뱾湲�
+		// 野껓옙占쎄퉳占쎌뱽 占쎌맄占쎈퉸占쎄퐣 占쎈펶占쎈뻼 筌띾슢諭얏묾占�
 		int dayInt = Integer.parseInt(day);
 		if (dayInt < 10) {
 			day = "0" + day;
@@ -372,7 +372,7 @@ public class HrMM {
 		ArrayList<HR_Card> hList = hDao.getCheckRetired(hMap);
 		System.out.println(hList);
 		String result = new Gson().toJson(hList);
-		System.out.println("�뀒�뒪�듃以�" + result);
+		System.out.println("占쎈�믭옙�뮞占쎈뱜餓ο옙" + result);
 		return result;
 	}
 
@@ -437,29 +437,29 @@ public class HrMM {
 
 	private String monthConvert(String number) {
 		String month = "";
-		if (number.equals("1�썡")) {
+		if (number.equals("1占쎌뜞")) {
 			month = "Jan";
-		} else if (number.equals("2�썡")) {
+		} else if (number.equals("2占쎌뜞")) {
 			month = "Feb";
-		} else if (number.equals("3�썡")) {
+		} else if (number.equals("3占쎌뜞")) {
 			month = "Mar";
-		} else if (number.equals("4�썡")) {
+		} else if (number.equals("4占쎌뜞")) {
 			month = "Apr";
-		} else if (number.equals("5�썡")) {
+		} else if (number.equals("5占쎌뜞")) {
 			month = "May";
-		} else if (number.equals("6�썡")) {
+		} else if (number.equals("6占쎌뜞")) {
 			month = "Jun";
-		} else if (number.equals("7�썡")) {
+		} else if (number.equals("7占쎌뜞")) {
 			month = "Jul";
-		} else if (number.equals("8�썡")) {
+		} else if (number.equals("8占쎌뜞")) {
 			month = "Aug";
-		} else if (number.equals("9�썡")) {
+		} else if (number.equals("9占쎌뜞")) {
 			month = "Sep";
-		} else if (number.equals("10�썡")) {
+		} else if (number.equals("10占쎌뜞")) {
 			month = "Oct";
-		} else if (number.equals("11�썡")) {
+		} else if (number.equals("11占쎌뜞")) {
 			month = "Nov";
-		} else if (number.equals("12�썡")) {
+		} else if (number.equals("12占쎌뜞")) {
 			month = "Dec";
 		}
 		return month;
@@ -499,17 +499,17 @@ public class HrMM {
 		if (hDao.haveHrCode(session.getAttribute("id").toString())) {
 			mav.setViewName(address);
 		} else {
-			System.out.println("내정보로 보내기");
+			System.out.println("�궡�젙蹂대줈 蹂대궡湲�");
 			mav.setViewName("redirect:/myInfo/myInfo");
 		}
 		return mav;
 	}
 
-	// �궡 湲됱뿬 紐낆꽭�꽌 �씠�룞
+	// 占쎄땀 疫뀀맩肉� 筌뤿굞苑�占쎄퐣 占쎌뵠占쎈짗
 	public ModelAndView moveMyPayCheck(HttpSession session) {
 		String hrCode = session.getAttribute("hrCode").toString();
 		HR_Card check = hDao.selectcheckpay(hrCode);
-		System.out.println("媛믪씠 �굹�샂=" + check);
+		System.out.println("揶쏅�れ뵠 占쎄돌占쎌긾=" + check);
 		if (check != null) {
 			mav.addObject("paycheck", check);
 			view = "/myInfo/myPaycheck";
@@ -525,7 +525,7 @@ public class HrMM {
 		hMap.put("hrCode", hrCode);
 		hMap.put("month", month);
 		Payroll pay = hDao.getMyPaySelect(hMap);
-		System.out.println("湲곸뼱�삩 pay=" + pay);
+		System.out.println("疫꿸낯堉깍옙�궔 pay=" + pay);
 		if (pay != null) {
 			Gson gson = new Gson();
 			String json = gson.toJson(pay);
@@ -552,7 +552,7 @@ public class HrMM {
 		return mav;
 	}
 
-	public void registHolidayStatus(HttpSession session, String docunum, String yesno) { // 쁽 옱 1 씠硫 듅 씤 2 硫 諛섎젮
+	public void registHolidayStatus(HttpSession session, String docunum, String yesno) { // �겱 �삺 1 �뵠簾� �뱟 �뵥 2 簾� 獄쏆꼶�젻
 		System.out.println(docunum);
 		System.out.println(yesno);
 		HashMap<String, String> hMap = new HashMap<String, String>();
