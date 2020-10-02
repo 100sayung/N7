@@ -53,7 +53,13 @@ margin-left: 200px;
 
 #description{
 	position:relative;
-}</style>
+}
+
+body{
+	font-size: medium;
+}
+
+</style>
 </head>
 
 <body>
@@ -77,17 +83,17 @@ margin-left: 200px;
                 <table class="table table-condensed">
                     <tr>
                         <td>회사명</td>
-                        <td><input type="text" name="c_name" required="required"></td>
+                        <td><input type="text" name="c_name" required="required"/></td>
                     </tr>
                     <tr>
                         <td>회사코드</td>
-                        <td><input type="text" name="c_code" required="required">
+                        <td><input type="text" name="c_code" required="required"/>
                         <button onclick="dupleCCode()" type="button">중복확인</button><br>
                         <span id="dupleCCode"></span></td>
                     </tr>
                     <tr>
                         <td>대표자명</td>
-                        <td><input type="text" name="c_ceo" required="required"></td>
+                        <td><input type="text" name="c_ceo" required/></td>
                     </tr>
                     <tr>
                         <td>전화번호</td>

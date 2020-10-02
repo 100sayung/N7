@@ -132,91 +132,67 @@ table, tr, th, td {
        </form>
          <br>
    <script>
-/* 	$('#for').click(function() {
-	  
-		var obj = $("#for").serialize();
-	   console.log(obj);
 
-	$.ajax({
-		url : '/erp/rest/sales/approvaldetailinput',
-		type : 'post',
-		data : obj,
-		dateType : "json",
-		success : function(data) {
-			if (data == 1) {
-				console.log(data);
-				$("#for")[0].reset();
-				alert("결재안 저장을 완료하였습니다.");
-			} else {
-				alert("결재안 저장이 실패하였습니다.");
-				console.log(data);
-			}
-		},
-		error : function(error) {
-			console.log(error);
-		}
-	});
-  }); */
-	
+   
   /*  $(document).ready(function(){
-	      $.ajax({
-	         url:'/erp/rest/sales/getMyInfo',
-	         type:'get',
-	         datatype:'json',
-	         success:function(data){
-	            console.log(data);
-	            var str = "";
-	            for ( var i in data.sList) {
-	                 str +="<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
-	               str +=data.sList[i].hc_position+"/";
-	               str +="<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
-	            }
-	            console.log(str)
-	            $("#line").html(str);
-	         
-	         },
-	         error:function(error){
-	            console.log(error);
-	         }
-	      });
-	       
-	    }); */
+         $.ajax({
+            url:'/erp/rest/sales/getMyInfo',
+            type:'get',
+            datatype:'json',
+            success:function(data){
+               console.log(data);
+               var str = "";
+               for ( var i in data.sList) {
+                    str +="<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
+                  str +=data.sList[i].hc_position+"/";
+                  str +="<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+               }
+               console.log(str)
+               $("#line").html(str);
+            
+            },
+            error:function(error){
+               console.log(error);
+            }
+         });
+          
+       }); */
    
    
-  	$(document).ready(function() {
-				var arr = new Array();
-				var cnt = $("input[name='code']").length;
+     $(document).ready(function() {
+            var arr = new Array();
+            var cnt = $("input[name='code']").length;
 
-				$("input[name='code']").each(function() {
-					arr.push($(this).attr('value'));
-				}); 
-				
+            $("input[name='code']").each(function() {
+               arr.push($(this).attr('value'));
+            }); 
+            
 
-				$.ajax({
-							url : '/erp/rest/sales/getApprinfo',
-							type : 'post',
-							traditional : true,
-							data : 'ARR=' + arr + '&CNT=' + cnt,
-							success : function(data) {
-								console.log(data);
-								var str = "";
-								for ( var i in data.sList) {
-									str += "<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
-									str += data.sList[i].hc_position
-											+ "/";
-									str += "<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
-								}
-								console.log(str)
-								$("#line").append(str);
+            $.ajax({
+                     url : '/erp/rest/sales/getApprinfo',
+                     type : 'post',
+                     traditional : true,
+                     data : 'ARR=' + arr + '&CNT=' + cnt,
+                     success : function(data) {
+                        console.log(data);
+                        var str = "";
+                        for ( var i in data.sList) {
+                           str += "<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
+                           str += data.sList[i].hc_position
+                                 + "/";
+                           str += "<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+                        }
+                        console.log(str)
+                        $("#line").append(str);
 
-							},
-							error : function(error) {
-								console.log(error);
-							}
-						});
-			});  
-			
-			
+                     },
+                     error : function(error) {
+                        console.log(error);
+                     }
+                  });
+         });  
+         
+         
             
 </script>
 </body>

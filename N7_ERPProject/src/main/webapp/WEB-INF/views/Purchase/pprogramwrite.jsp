@@ -70,10 +70,6 @@ text-align: center;
                <th>제목</th>
                <th><input type="text" name="p_title" class="draft2"></th>
             </tr>
-           <tr>
-           		<th>상신자</th> 
-           		<th><input type="text" name="p_approvel2" class="draft2" value="${ps.p_writer}" readonly></th>
-           </tr>
             <tr>
                <th>결재자</th>
                <th id="line"></th>

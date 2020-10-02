@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.n7.erp.bean.ApprovalDocu;
+import com.n7.erp.bean.IePort;
+import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.Purchase;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.ps.approvalLine;
 import com.n7.erp.bean.ps.Return;
 import com.n7.erp.dao.PurchaseDao;
-import com.n7.erp.userClass.Paging;
 
 @Component
 public class PurchaseMM {
@@ -349,5 +352,158 @@ public class PurchaseMM {
 		}
 		return rMap;
 	}
+
+	public ModelAndView pRequest(String p_documentcode, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
+		
+		PurchaseApproval pa= pDao.pRequest(p_documentcode, cCode);
+
+		List<PurchaseApproval>pList= pDao.pListRequest(p_documentcode, cCode);
+		
+		
+		if(pa!=null) {
+			if(pList!=null) {
+				mav.addObject("pa", pa);
+				mav.addObject("pList", new Gson().toJson(pList));
+				System.out.println(pa.getP_approver1());
+				System.out.println("성공");
+				view="/Purchase/paUpinfo";
+			}
+		}else {
+			view="/Purchase/paUpinfo";
+			System.out.println("실패");
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public Map<String, List<com.n7.erp.bean.ps.approvalLine>> getApprovalInfo(int cnt, String[] strArray, HttpSession session) {
+		Map<String, List<approvalLine>> pMap=null;
+		List<approvalLine> pList= new ArrayList<>();
+		
+		System.out.println("cnt="+cnt);
+		System.out.println("이름값="+strArray.length);
+		String code="";
+		
+		approvalLine al= new com.n7.erp.bean.ps.approvalLine();
+		for(int i=0; i<cnt; i++) {
+			code=strArray[i];
+			al=pDao.getApprovalInfo(code);
+			pList.add(al);
+		}
+		
+		if(pList!=null) {
+			pMap= new HashMap<>();
+			pMap.put("pList", pList);
+		}else {
+			pMap= null;
+		}
+		return pMap;
+	}
+
+	public ModelAndView pRequest2(String p_documentcode, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
+		
+		PurchaseApproval pa= pDao.pRequest2(p_documentcode, cCode);
+		
+		List<PurchaseApproval>pList= pDao.pListRequest2(p_documentcode, cCode);
+
+		if(pa!=null) {
+			if(pList!=null) {
+				mav.addObject("pa", pa);
+				mav.addObject("pList", new Gson().toJson(pList));
+				System.out.println(pa.getP_approver1());
+				System.out.println("성공");
+				view="/Purchase/paDowninfo";
+			}
+		}else {
+			view="/Purchase/paDowninfo";
+			System.out.println("실패");
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+	public Map<String, List<IePort>> stocklist(HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
+		Map<String, List<IePort>> sMap= null;
+		List<IePort> sList= pDao.stocklist(cCode);
+		if(sList!=null) {
+			sMap= new HashMap<>();
+			sMap.put("sList", sList);
+			System.out.println("sList="+sList);
+		}else {
+			sMap=null;
+		}
+		return sMap;
+	}
+
+	public Map<String, List<ItemCode>> getstocklist(HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
+		Map<String, List<ItemCode>> sMap= null;
+		List<ItemCode> sList= pDao.getstocklist(cCode);
+		if(sList!=null) {
+			sMap= new HashMap<>();
+			sMap.put("sList", sList);
+			System.out.println("sList="+sList);
+		}else {
+			sMap=null;
+		}
+		return sMap;
+	}
+
+	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep,
+			HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String hrCode= (String)session.getAttribute("hrCode");
+		String cCode=(String)session.getAttribute("cCode");
+		
+		pa.setP_ccode(cCode);
+		pa.setP_approver1(req.getParameter("p_apcode1"));
+		pa.setP_approver2(req.getParameter("p_apcode2"));
+		pa.setP_approver3(req.getParameter("p_apcode3"));
+		
+		if(pa.getP_status().equals("0") && hrCode.equals(pa.getP_approver2())) {
+			pa.setP_status("1");
+			ap.setAp_toapprover(pa.getP_approver3());
+		}else if(pa.getP_status().equals("1") && hrCode.equals(pa.getP_approver3())) {
+			pa.setP_status("2");
+			ap.setAp_toapprover(pa.getP_approver3());
+		}
+		ap.setAp_toapprover(pa.getP_approver3());
+		
+		if(pa.getP_status().equals("0")) {
+			ap.setAp_status("0");
+		}else if(pa.getP_status().equals("1")) {
+			ap.setAp_status("1");
+		}else if(pa.getP_status().equals("2")) {
+			ap.setAp_status("2");
+		}else {
+			ap.setAp_status("2");
+		}
+		
+		ap.setAp_ccode(cCode);
+		ap.setAp_docuname(pa.getP_documentcode());
+		
+		boolean as=pDao.paSign2(pa);
+		boolean sa=pDao.apSign2(ap);
+		
+		if(as&&sa) {
+			view = "Account/apdownPayment";
+			System.out.println("결재요청했음");
+		} else {
+			view = "Account/apdownPayment";
+			System.out.println("야 결재요청못했다 미안하다..");
+		}
+		mav.setViewName(view);
+		return mav;
+	}
 	
 }
+
+
+	
