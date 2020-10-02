@@ -239,9 +239,9 @@ public class SalesController {
    }
 
 	// 내가받은 결재안 상세보기
-		@GetMapping(value = "/sales/apRequest2", produces = "application/json;charset=utf-8")
-		public ModelAndView apRequest2(String bs_docunum, HttpSession session) {
-			mav = sm.apRequest2(bs_docunum, session);
+		@GetMapping(value = "/sales/sRequest2", produces = "application/json;charset=utf-8")
+		public ModelAndView sRequest2(String bs_docunum, HttpSession session) {
+			mav = sm.sRequest2(bs_docunum, session);
 			System.out.println(bs_docunum);
 			return mav;
 		}
