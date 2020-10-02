@@ -117,23 +117,10 @@ border: 1px solid;
     </div>
     
     <script type="text/javascript">
-    
-    var select;
-    $.ajax({
-          url:"/erp/stock/getitemcode",
-          dataType:"json",
-          type:"post",
-          success:function(data){
-             select = makeSelectBox(data);
-             $(".cl").html(select);
-          },
-          error:function(err){
-             console.log(err);
-          }
-       });
+
         
     
-        var select2;
+/*         var select2;
        $.ajax({
              url:"/erp/rest/sales/getbonum",
              dataType:"json",
@@ -145,7 +132,7 @@ border: 1px solid;
              error:function(err){
                 console.log(err);
              }
-          }); 
+          }); */ 
        
     $('#shippingitemfrm').click(function(){
       var str="";
@@ -178,11 +165,53 @@ border: 1px solid;
       
         //select형식의 추가삭제로 바꿔야함!
         //추가삭제
+            
+    
          $(document).ready(function(){
+    var select;
+    $.ajax({
+          url:"/erp/stock/getitemcode",
+          dataType:'json',
+          success:function(data){
+             select = makeSelectBox(data);
+             $(".cl").html(select);
+          },
+          error:function(err){
+             console.log(err);
+          }
+       });
+        	 
               $('.addList').click(function(){
-                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="date" name="bs_basedate" class="input-text"></td><td><input type="text" name="bs_clcode" class="input-text" ></td><td><input type="text" name="bs_itcode" class="input-text"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="date" name="bs_basedate" class="input-text"></td><td><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+    var select;
+    $.ajax({
+          url:"/erp/stock/getitemcode",
+          dataType: 'json',
+          success:function(data){
+        	 console.log(data);
+             select = makeSelectBox(data);
+             $(".cl").html(select);
+          },
+          error:function(err){
+             console.log(err);
+          }
+       });
+              
               });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
           }); 
+         
+         function makeSelectBox(arr){
+             var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
+             if(arr.length==0){
+                arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+             }else{
+                for(var i = 0; i<arr.length;i++){
+                   arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
+                }
+             }
+             arrStr+="</select>";
+             return arrStr;
+          }
            function thisRowDel(row){
                 console.log(row);
                 let tr = row.parentNode.parentNode;
@@ -295,20 +324,9 @@ border: 1px solid;
                   }
                });
             });
-         function makeSelectBox(arr){
-            var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
-            if(arr.length==0){
-               arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
-            }else{
-               for(var i = 0; i<arr.length;i++){
-                  arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
-               }
-            }
-            arrStr+="</select>";
-            return arrStr;
-         }
+       
          
-          function makeSelectBox2(arr){
+/*           function makeSelectBox2(arr){
             var arrStr = "<select name = 'bs_bonum'>"
             if(arr.length==0){
                arrStr+="<option>수주번호를 작성해주세요 </option>";
@@ -319,7 +337,7 @@ border: 1px solid;
             }
             arrStr+="</select>";
             return arrStr;
-         }  
+         }   */
          
         function changeItcode(id){
            var it_stock = $(id).val();

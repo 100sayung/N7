@@ -85,7 +85,7 @@ html, body {
                         <table>
                            <tr>
                               <th colspan="2">문서번호</th>
-                              <th colspan="6"><input type="text" name="p_documentcode"
+                              <th colspan="6"><input id="num" type="text" name="p_documentcode"
                                  class="txt" value="${pa.p_documentcode}" readonly>
 
                            </tr>
@@ -102,15 +102,10 @@ html, body {
 							  <th colspan="2">합계</th>
                            </tr>
                            <tbody id="list"></tbody>
-                           <tr>
-                              <th colspan="2">적요</th>
-                              <td colspan="6"><input type="text" name="p_etc"
-                                 class="draft" value="${pa.p_etc}" readonly></td>
-                           </tr>
-                           <tr>
+               			  <tr>
                               <th>반려사유</th>
-                              <th colspan="8"><input type="text" name="p_reason"
-                                 value="${pa.p_reason}" id="reason"></th>
+                              <th colspan="8"><input type="text" name="p_etc"
+                                 value="${pa.p_etc}" id="ect"></th>
                            </tr>
                         </table>
                      </div>
@@ -119,7 +114,7 @@ html, body {
             </tr>
          </table>
        		<button type="button" id="paSign2">결재</button>
-			<button type="button" id="paBack2">반려</button>
+			<button type="button" id="turnback">반려</button>
 		</div>
      </form>
 <script type="text/javascript">
@@ -173,8 +168,32 @@ html, body {
 		$.ajax({
 			url: '/erp/rest/Purchase'
 		})
-	})
+	});
 	
+	$('#turnback').click(function(){
+		var ect = $("#ect").val();
+		var num= $("#num").val();
+		
+		$.ajax({
+			url:'/erp/rest/home/turnback',
+			type:'post',
+			data:{num:num,ect:ect},
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("반려완료");
+					window.close();
+				}else{
+					alert("반려실패");
+				}
+				
+			},
+			error:function(error){
+				console.log(error);
+				
+			}
+		});
+	});
 	
 </script>
 </body>

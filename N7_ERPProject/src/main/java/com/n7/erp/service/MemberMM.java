@@ -210,4 +210,17 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		return grade;
 	}
 
+	public String turnback(String num, String ect, HttpSession session) {
+		String value="";
+		String cCode = session.getAttribute("cCode").toString();
+		boolean result  = mDao.turnback(num,cCode);
+		
+		if(result) {
+			value ="1";
+		}else {
+			value ="2";
+		}
+		return value;
+	}
+
 }
