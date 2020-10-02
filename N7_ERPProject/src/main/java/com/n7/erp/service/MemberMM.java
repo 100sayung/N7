@@ -36,7 +36,7 @@ public class MemberMM {
 	public ModelAndView access(Member mb, HttpSession session) {
 		System.out.println(mb.getM_id());
 		if (mDao.access(mb)) {
-			view = "/home/home";
+			view = "redirect:/";
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
 			if (hDao.haveHrCode(mb.getM_id())) {
@@ -77,11 +77,11 @@ public class MemberMM {
 		mb.setM_photo(file);
 
 		if (mDao.join(mb)) {
-			mav.addObject("msg", 1);
+			mav.setViewName("redirect:/home/welcome");
 		} else {
-			mav.addObject("msg", 0);
+			mav.setViewName("/home/join");
+			mav.addObject("msg", "0");
 		}
-		mav.setViewName("/home/home");
 		return mav;
 	}
 

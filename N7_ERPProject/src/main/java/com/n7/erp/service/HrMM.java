@@ -191,9 +191,8 @@ public class HrMM {
 	public ModelAndView hrCard(HttpSession session) {
 		String m_ccode = session.getAttribute("cCode").toString();
 		mav.setViewName("/hr/hrCard");
-		if (!checkMemberHrCardCnt(m_ccode)) {
+		if (checkMemberHrCardCnt(m_ccode)) {
 			mav.addObject("msg", "인사카드를 등록해주세요.");
-
 		}
 
 		return mav;
@@ -269,29 +268,29 @@ public class HrMM {
 		}
 
 		String month = "";
-		if (yearmonth.substring(6).equals("1占쎌뜞")) {
+		if (yearmonth.substring(6).equals("1월")) {
 			month = "Jan";
-		} else if (yearmonth.substring(6).equals("2占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("2월")) {
 			month = "Feb";
-		} else if (yearmonth.substring(6).equals("3占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("3월")) {
 			month = "Mar";
-		} else if (yearmonth.substring(6).equals("4占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("4월")) {
 			month = "Apr";
-		} else if (yearmonth.substring(6).equals("5占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("5월")) {
 			month = "May";
-		} else if (yearmonth.substring(6).equals("6占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("6월")) {
 			month = "Jun";
-		} else if (yearmonth.substring(6).equals("7占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("7월")) {
 			month = "Jul";
-		} else if (yearmonth.substring(6).equals("8占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("8월")) {
 			month = "Aug";
-		} else if (yearmonth.substring(6).equals("9占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("9월")) {
 			month = "Sep";
-		} else if (yearmonth.substring(6).equals("10占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("10월")) {
 			month = "Oct";
-		} else if (yearmonth.substring(6).equals("11占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("11월")) {
 			month = "Nov";
-		} else if (yearmonth.substring(6).equals("12占쎌뜞")) {
+		} else if (yearmonth.substring(6).equals("12월")) {
 			month = "Dec";
 		}
 		String dateStandard = "%" + month + " " + day + " " + yearmonth.substring(0, 4) + "%";
@@ -312,6 +311,7 @@ public class HrMM {
 		String hrCode = session.getAttribute("hrCode").toString();
 		String month = monthConvert(yearmonth.substring(6));
 		String date = "%" + month + "%" + yearmonth.substring(0, 4) + "%";
+		System.out.println(date);
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("hrCode", hrCode);
 		hMap.put("cCode", cCode);
@@ -438,29 +438,29 @@ public class HrMM {
 
 	private String monthConvert(String number) {
 		String month = "";
-		if (number.equals("1占쎌뜞")) {
+		if (number.equals("1월")) {
 			month = "Jan";
-		} else if (number.equals("2占쎌뜞")) {
+		} else if (number.equals("2월")) {
 			month = "Feb";
-		} else if (number.equals("3占쎌뜞")) {
+		} else if (number.equals("3월")) {
 			month = "Mar";
-		} else if (number.equals("4占쎌뜞")) {
+		} else if (number.equals("4월")) {
 			month = "Apr";
-		} else if (number.equals("5占쎌뜞")) {
+		} else if (number.equals("5월")) {
 			month = "May";
-		} else if (number.equals("6占쎌뜞")) {
+		} else if (number.equals("6월")) {
 			month = "Jun";
-		} else if (number.equals("7占쎌뜞")) {
+		} else if (number.equals("7월")) {
 			month = "Jul";
-		} else if (number.equals("8占쎌뜞")) {
+		} else if (number.equals("8월")) {
 			month = "Aug";
-		} else if (number.equals("9占쎌뜞")) {
+		} else if (number.equals("9월")) {
 			month = "Sep";
-		} else if (number.equals("10占쎌뜞")) {
+		} else if (number.equals("10월")) {
 			month = "Oct";
-		} else if (number.equals("11占쎌뜞")) {
+		} else if (number.equals("11월")) {
 			month = "Nov";
-		} else if (number.equals("12占쎌뜞")) {
+		} else if (number.equals("12월")) {
 			month = "Dec";
 		}
 		return month;
