@@ -45,7 +45,7 @@ float: right;
            
           
     <div id="wrapper">
-         <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #FFB2D9">
+         <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #3D6B9B">
             <div class="adjust-nav">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">

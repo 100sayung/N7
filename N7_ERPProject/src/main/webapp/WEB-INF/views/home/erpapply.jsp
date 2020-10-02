@@ -152,26 +152,32 @@ body{
 	
 	function dupleCCode(){
 		var $cCode = $("#cCode").val();
-		console.log($cCode);
-		$.ajax({
-			url:"/erp/rest/home/dupleccode",
-			data : {m_ccode: $cCode},
-			dataType:"text",
-			method:"get",
-			async:false,
-			success : function(data){
-				console.log(data)
-				if(data==1){
-					checkccode=false;
-					$("#dupleCCode").html("<font style='color:red;'>해당 회사코드가 이미 존재합니다.</font>");
-				}else{
-					checkccode=true;
-					$("#dupleCCode").html("<font style='color:green;'>확인</font>");
-				}
-			}, error : function(err){
+		
+		if($cCode == "" || $cCode == null){
+			$("#dupleCCode").html("<font style='color:red;'>회사코드를 입력해주세요.</font>");
+		}else{
+		
+			console.log($cCode);
+			$.ajax({
+				url:"/erp/rest/home/dupleccode",
+				data : {m_ccode: $cCode},
+				dataType:"text",
+				method:"get",
+				async:false,
+				success : function(data){
+					console.log(data)
+					if(data==1){
+						checkccode=false;
+						$("#dupleCCode").html("<font style='color:red;'>해당 회사코드가 이미 존재합니다.</font>");
+					}else{
+						checkccode=true;
+						$("#dupleCCode").html("<font style='color:green;'>확인</font>");
+					}
+				}, error : function(err){
 				console.log(err);
-			}
-		})
+				}
+			});
+		}
 	}
 	
 	$(function() { $("#postcodify_search_button").postcodifyPopUp(); }); 

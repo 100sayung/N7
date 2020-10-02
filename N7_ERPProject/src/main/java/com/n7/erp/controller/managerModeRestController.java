@@ -82,8 +82,8 @@ public class managerModeRestController {
 	
 	//부서이름 중복체크
 	@GetMapping(value="/managermode/namecheck")
-	public String namecheck(String au_name) {
-		String result = mm.namecheck(au_name);
+	public String namecheck(String au_name, HttpSession session, Authority au) {
+		String result = mm.namecheck(au_name, session, au);
 		return result;
 	}
 	
