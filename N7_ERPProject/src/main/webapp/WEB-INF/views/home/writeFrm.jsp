@@ -85,7 +85,7 @@ display: block;
 #write{
 resize: none;
 }
-#password{
+#pw{
 display : block;
 float: left;
 margin-left: -195px;
@@ -116,8 +116,14 @@ padding: 8px;
       <h1>글쓰기</h1>
 	<table>
 		 <tr>
-		 	<input type="checkbox" class="writeclass" id="writecheck" checked="checked" name="CB_TYPE" value="a">공개글
-            <input type="checkbox" class="writeclass" name="CB_TYPE" value="b">비밀글</td>
+		 	<input type="radio" class="writeclass" id="check1" checked="checked" name="CB_TYPE" value="a">공개글
+            <input type="radio" class="writeclass" id="check2" name="CB_TYPE" value="b">비밀글</td>
+         </tr>
+         <tr>
+           <c:if test="${id==null}">
+            	<td><input type="text" name="CB_WRITER" class="writeText" placeholder="작성자를 입력해주세요." required="required"></td>
+           	</c:if>
+           	<td><input type="hidden" name="CB_WRITER" value="${id}"></td>
          </tr>
          <tr>
             <td>
@@ -133,11 +139,17 @@ padding: 8px;
                <button type="reset">다시쓰기</button>
                <button><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
             </td>
-         	 <td><input type="password" name="CB_PASSWORD" id="password" placeholder="비밀번호 입력" ></td>
+            <c:if test="${id==null}">
+				<td><input type="password" name="CB_PASSWORD" id="pw" placeholder="비밀번호 입력" ></td>
+			</c:if>
+			<td><input type="hidden" name="CB_PASSWORD" value="${id}"></td>
          </tr>
          <tr>
          </tr>
       </table> 
    </form>
+   
+<script>
+</script>
 </body>
 </html>

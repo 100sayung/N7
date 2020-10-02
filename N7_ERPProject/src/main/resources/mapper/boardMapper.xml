@@ -12,7 +12,7 @@
 		]]>
 	</select>
 	
-	 <insert id="writeBoard" parameterType="board">
+	 <insert id="boardWrite" parameterType="board">
       	INSERT INTO CONSULTING_BOARD
      	VALUES(BR_NUM_SEQ.NEXTVAL,#{CB_TYPE},#{CB_WRITER},#{CB_PASSWORD},#{CB_TITLE},#{CB_CONTENTS})
    </insert>
@@ -25,6 +25,7 @@
       INSERT INTO CONSULTING_BOARD
       VALUES(BR_NUM_SEQ.NEXTVAL,#{CB_TYPE},#{CB_WRITER},#{CB_PASSWORD},#{CB_TITLE},#{CB_CONTENTS})
    </insert>
+   
    <select id="boardmodifyajax" parameterType="Integer" resultType="board">
       SELECT * FROM CONSULTING_BOARD WHERE CB_NUM=#{CB_NUM}
    </select>
@@ -33,5 +34,5 @@
    </update>
    <delete id="writelistdelete" parameterType="Integer">
       DELETE FROM CONSULTING_BOARD WHERE CB_NUM=#{CB_NUM}
-   </delete>-->
+   </delete>  -->
 </mapper>

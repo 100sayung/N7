@@ -104,7 +104,8 @@ public interface SalesDao {
 
    approvaldetail approvaldetailinput(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode); //결재 상세 el문
 
-   approvaldetail downapprovaldetailinput(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode); 
+   approvaldetail downapprovaldetailinput(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode);
+
 
 //   List<Shippingbean> shippingquantity(String check, String cCode); //출하수량비교
 

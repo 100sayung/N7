@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
+import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.approvalLine;
@@ -82,6 +83,13 @@ public interface PurchaseDao {
 	List<IePort> stocklist(String cCode);
 
 	List<ItemCode> getstocklist(String cCode);
+
+	boolean paSign2(PurchaseApproval pa);
+
+	boolean apSign2(ApprovalDocu ap);
+
+
+
 
 	
 }

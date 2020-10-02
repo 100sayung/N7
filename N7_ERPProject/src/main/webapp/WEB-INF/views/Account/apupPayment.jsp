@@ -198,12 +198,10 @@ $("#approval").click(
 		                     window.open(
 		                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
 		                        'width=1500, height=600');
-		                  
-		                  }else if(check.indexOf("G") != -1){ //수진
-			                     window.open(
-			                        '/erp/rest/sales/sRequest?bs_docunum='+ check, 'sRequest',
-			                        'width=1500, height=600');
-		                  
+	                      }else if(check.indexOf("G") != -1){ //수진
+	                         window.open(
+	                           '/erp/rest/sales/apRequest?bs_docunum='+ check, 'apRequest',
+	                           'width=1500, height=600');
 		                  }else{
 		                     window.open(
 		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
@@ -213,24 +211,3 @@ $("#approval").click(
 		      });
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
