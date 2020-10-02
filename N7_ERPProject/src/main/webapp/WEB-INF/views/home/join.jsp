@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -68,11 +68,13 @@ button {
 				<li><a href="/erp/erpboard" accesskey="3" title="">상담 게시판</a></li>
 				<li><a href="/erp/erpapply" accesskey="4" title="">ERP 신청</a></li>
 				<c:if test="${id==null}">
-				<li><a href="/erp/login" accesskey="5" title="">LOGIN</a></li>
+					<li><a href="/erp/login" accesskey="5" title="">LOGIN</a></li>
 				</c:if>
 				<c:if test="${id!=null}">
-             	<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
-				<li class="current_page_item"><a href="#" accesskey="6">ERP시작</a></li>
+					<li><form action="logout" method="post">
+							<button>LOGOUT</button>
+						</form></li>
+					<li class="current_page_item"><a href="#" accesskey="6">ERP시작</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -82,9 +84,9 @@ button {
 			<div class="table-responsive">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="ID를 입력해주세요"
-						id="id" name="m_id" required />
-					<input type="button" value="중복체크" onclick="dupleID()">
-					<br/><span id="dupleID"></span>
+						id="id" name="m_id" required /> <input type="button" value="중복체크"
+						onclick="dupleID()"> <br />
+					<span id="dupleID"></span>
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control"
@@ -96,7 +98,7 @@ button {
 				</div>
 				<div class="form-group">
 					<font style="color:gray;">회사코드가 없으신분은</font>
-					<font style="font-weight : bold;">N7</font> 
+					<font style="font-weight : bold;">N7</font>
 					<font style="color:gray;">을 입력해주세요.</font><br/>
 					<input type="text" class="form-control" placeholder="회사 코드를 입력해주세요 "
 						id="cCode" name="m_ccode" />
@@ -109,109 +111,118 @@ button {
 						name="m_birth" />
 				</div>
 				<div class="form-group">
-					<button id="postcodify_search_button" style="width: 100px;height: 30px;">주소검색</button>
-					<input type="text" id="addr1" name="addr1" class="postcodify_address form-control"
-						value="" /><input id="addr2" type="text" name="addr2"
-						class="postcodify_details form-control" value="" /><input type="text"
-						name="addr3" id="addr3" class="postcodify_extra_info form-control" value="" />
+					<button id="postcodify_search_button"
+						style="width: 100px; height: 30px;">주소검색</button>
+					<input type="text" id="addr1" name="addr1"
+						class="postcodify_address form-control" value="" /><input
+						id="addr2" type="text" name="addr2"
+						class="postcodify_details form-control" value="" /><input
+						type="text" name="addr3" id="addr3"
+						class="postcodify_extra_info form-control" value="" />
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control"
-						placeholder="핸드폰 번호를 입력해주세요" required name="m_phonenum"/>
+						placeholder="핸드폰 번호를 입력해주세요" required name="m_phonenum" />
 				</div>
 				<div class="form-group">
-					<input type="email" class="form-control"
-						placeholder = "이메일을 입력해주세요" required name="m_email"/>
+					<input type="email" class="form-control" placeholder="이메일을 입력해주세요"
+						required name="m_email" />
 				</div>
 				<div class="form-group">
-					<input type="file" class="form-control-file border"
-						required name="m_photo"/>
+					<input type="file" class="form-control-file border" required
+						name="m_photo" />
 				</div>
 				<input type="hidden" name="m_address" id="addr"></input>
 				<button>회원가입</button>
 			</div>
-		</div> 
+		</div>
 	</form>
-	<script> 
-	var checkid;
-	var checkccode
-	
-	function dupleID(){
-		var $id = $("#id").val()
-		console.log($id)
-		$.ajax({
-			url:"/erp/rest/home/dupleid",
-			data : {m_id: $id},
-			dataType:"text",
-			method:"get",
-			async:false,
-			success : function(data){
-				console.log(data)
-				if(data==1){
-					checkid=false;
-					$("#dupleID").html("<font style='color:red;'>아이디가 중복됩니다.</font>");
-				}else{
-					checkid=true;
-					$("#dupleID").html("<font style='color:green;'>사용하셔도 좋습니다.</font>");
-				}
-			}, error : function(err){
-				console.log(err);
-			}
-		});
-	}
-	
-	function dupleCCode(){
-		var $cCode = $("#cCode").val();
-		console.log($cCode);
-		$.ajax({
-			url:"/erp/rest/home/dupleccode",
-			data : {m_ccode: $cCode},
-			dataType:"text",
-			method:"get",
-			async:false,
-			success : function(data){
-				console.log(data)
-				if(data==1){
-					checkccode=true;
-					$("#dupleCCode").html("<font style='color:green;'>사용하셔도 좋습니다.</font>");
-				}else{
-					checkccode=false;
-					$("#dupleCCode").html("<font style='color:red;'>해당 회사코드가 존재하지 않습니다.</font>");
-				}
-			}, error : function(err){
-				console.log(err);
-			}
-		})
-	}
-	
-	$(function() { $("#postcodify_search_button").postcodifyPopUp(); }); 
-	
-	function sum(){
-		console.log(checkid, checkccode);
-		if(checkid&&checkccode){
-			$("#addr").val($('#addr1').val()+$('#addr2').val()+$('#addr3').val());
-			return true;
-		}else{
-			alert("회사코드 혹은 아이디 중복을 확인해주세요.");
-			return false;
-		}
-	}
-	
-	$(document).ready(function(){
+	<script>
+		var checkid;
+		var checkccode
 
-		var msg=location.search.substring(5, 6);
-		console.log(msg)
-		if(!msg){
-			console.log("테스트1 msg el 값 없음")
-		}else{
-			history.replaceState({}, null, location.pathname);
-			if(msg==1){
-				alert("회원가입 성공");
-			}else{
-				alert("회원가입이 실패하였습니다. 다시시도해주세요.");
+		function dupleID() {
+			var $id = $("#id").val()
+			if ($id == null || $id == '') {
+				$("#dupleID").html(
+						"<font style='color:red;'>ID를 입력해주세요.</font>");
+			} else {
+
+				console.log($id)
+				$
+						.ajax({
+							url : "/erp/rest/home/dupleid",
+							data : {
+								m_id : $id
+							},
+							dataType : "text",
+							method : "get",
+							async : false,
+							success : function(data) {
+								console.log(data)
+								if (data == 1) {
+									checkid = false;
+									$("#dupleID")
+											.html(
+													"<font style='color:red;'>아이디가 중복됩니다.</font>");
+								} else {
+									checkid = true;
+									$("#dupleID").html("");
+								}
+							},
+							error : function(err) {
+								console.log(err);
+							}
+						});
 			}
 		}
-	})
-	</script> 
+
+		function dupleCCode() {
+			var $cCode = $("#cCode").val();
+			console.log($cCode);
+			$
+					.ajax({
+						url : "/erp/rest/home/dupleccode",
+						data : {
+							m_ccode : $cCode
+						},
+						dataType : "text",
+						method : "get",
+						async : false,
+						success : function(data) {
+							console.log(data)
+							if (data == 1) {
+								checkccode = true;
+								$("#dupleCCode").html("");
+							} else {
+								checkccode = false;
+								$("#dupleCCode")
+										.html(
+												"<font style='color:red;'>해당 회사코드가 존재하지 않습니다.</font>");
+							}
+						},
+						error : function(err) {
+							console.log(err);
+						}
+					})
+		}
+
+		$(function() {
+			$("#postcodify_search_button").postcodifyPopUp();
+		});
+
+		function sum() {
+			console.log(checkid, checkccode);
+			if (checkid && checkccode) {
+				$("#addr").val(
+						$('#addr1').val() + $('#addr2').val()
+								+ $('#addr3').val());
+				return true;
+			} else {
+				alert("회사코드 혹은 아이디 중복을 확인해주세요.");
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

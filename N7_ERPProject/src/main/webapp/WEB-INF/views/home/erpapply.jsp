@@ -53,7 +53,13 @@ margin-left: 200px;
 
 #description{
 	position:relative;
-}</style>
+}
+
+body{
+	font-size: medium;
+}
+
+</style>
 </head>
 
 <body>
@@ -77,17 +83,17 @@ margin-left: 200px;
                 <table class="table table-condensed">
                     <tr>
                         <td>회사명</td>
-                        <td><input type="text" name="c_name" required="required"></td>
+                        <td><input type="text" name="c_name" required="required"/></td>
                     </tr>
                     <tr>
                         <td>회사코드</td>
-                        <td><input type="text" name="c_code" required="required">
+                        <td><input type="text" name="c_code" required="required"/>
                         <button onclick="dupleCCode()" type="button">중복확인</button><br>
                         <span id="dupleCCode"></span></td>
                     </tr>
                     <tr>
                         <td>대표자명</td>
-                        <td><input type="text" name="c_ceo" required="required"></td>
+                        <td><input type="text" name="c_ceo" required/></td>
                     </tr>
                     <tr>
                         <td>전화번호</td>
@@ -146,26 +152,32 @@ margin-left: 200px;
 	
 	function dupleCCode(){
 		var $cCode = $("#cCode").val();
-		console.log($cCode);
-		$.ajax({
-			url:"/erp/rest/home/dupleccode",
-			data : {m_ccode: $cCode},
-			dataType:"text",
-			method:"get",
-			async:false,
-			success : function(data){
-				console.log(data)
-				if(data==1){
-					checkccode=false;
-					$("#dupleCCode").html("<font style='color:red;'>해당 회사코드가 이미 존재합니다.</font>");
-				}else{
-					checkccode=true;
-					$("#dupleCCode").html("<font style='color:green;'>확인</font>");
-				}
-			}, error : function(err){
+		
+		if($cCode == "" || $cCode == null){
+			$("#dupleCCode").html("<font style='color:red;'>회사코드를 입력해주세요.</font>");
+		}else{
+		
+			console.log($cCode);
+			$.ajax({
+				url:"/erp/rest/home/dupleccode",
+				data : {m_ccode: $cCode},
+				dataType:"text",
+				method:"get",
+				async:false,
+				success : function(data){
+					console.log(data)
+					if(data==1){
+						checkccode=false;
+						$("#dupleCCode").html("<font style='color:red;'>해당 회사코드가 이미 존재합니다.</font>");
+					}else{
+						checkccode=true;
+						$("#dupleCCode").html("<font style='color:green;'>확인</font>");
+					}
+				}, error : function(err){
 				console.log(err);
-			}
-		})
+				}
+			});
+		}
 	}
 	
 	$(function() { $("#postcodify_search_button").postcodifyPopUp(); }); 

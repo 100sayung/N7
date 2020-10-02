@@ -35,8 +35,7 @@ public interface menuDao {
 	int depratmentDelete(Authority au);
 
 	int depratmentDelete(@Param("au_name")String au_name, @Param("cCode") String cCode);
-
-	@Select("SELECT COUNT(*) FROM AUTHORITY WHERE AU_NAME = #{au_name}")
-	int namecheck(String au_name);
+	
+	int namecheck(Authority au);
 
 }

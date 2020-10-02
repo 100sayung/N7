@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -20,18 +20,20 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 #loginContainer {
-	width: 300px;
+	width: 300px; 
+/* 	width: auto; */
 	margin-left: 600px;
 	margin-top: 170px;
+	text-align: center;
 }
+
 
 button {
 	margin-top: 10px;
-	margin-left: 90px;
 	width: 100px;
 	height: 50px;
 	border: 0px;
-	background-color: #FFB2D9;
+	background-color: #3D6B9B;
 	color: white;
 	font-weight: bolder;
 	border-radius: 8%;
@@ -40,15 +42,14 @@ button {
 .warnMsg {
 	color: red;
 }
-#idserach{
-margin-left: 30px;
 
+#idserach {
+	margin-left: 30px;
 }
 </style>
 </head>
 
 <body>
-
 	<div id="header" class="container" style="text-align: center;">
 		<div id="logo">
 			<h1>
@@ -73,8 +74,8 @@ margin-left: 30px;
 		</div> --%>
 	</div>
 	<br>
-	<div id="loginContainer" >
-	<form action="access" method="post">
+	<div id="loginContainer">
+		<form action="access" method="post">
 			<div class="table-responsive">
 				<div class="form-group">
 					<input type="text" class="form-control" name="m_id"
@@ -84,15 +85,23 @@ margin-left: 30px;
 					<input type="password" class="form-control" name="m_pw"
 						placeholder="password를 입력해주세요" required id="pwd">
 				</div>
+				<span class="warnMsg">${warn}</span><br>
+			<button>로그인</button>
 			</div>
-			<span class="warnMsg">${warn }</span><br>
-			<button>로그인</button><br>
-			<a href = "/erp/findidfrm" id="idserach">아이디 찾기</a>____<a href = "/erp/findpasswordfrm">비밀번호 찾기</a>			
-	</form>
-		</div>
-<p style="text-align : center;">회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></p><br>
+			<br><br>
+			<div>
+				<a href="/erp/findidfrm" id="idserach">아이디 찾기</a> | <a
+					href="/erp/findpasswordfrm">비밀번호 찾기</a> 
+					
+			</div>
+			<div>회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></div>
+		</form>
+		
+<!-- 		<p style="text-align: center;"> -->
+<!-- 		회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></p> -->
+	</div>
 	<script>
-		if (location.search!= '') {
+		if (location.search != '') {
 			$('.warnMsg').text('아이디 혹은 비밀번호가 잘못되었습니다.');
 			history.replaceState({}, null, location.pathname);
 		}

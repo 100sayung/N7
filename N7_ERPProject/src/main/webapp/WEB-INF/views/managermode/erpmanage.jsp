@@ -7,6 +7,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- BOOTSTRAP STYLES-->
+<link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>부서관리</title>
 <style>
@@ -102,12 +104,25 @@ ul {
 	list-style: none;
 }
 
+#tr {
+	background-color: gray;
+	border-color: gray;
+}
 
+#table{
+	margin: 10px 20px 10px 30px;
+	width: 800px;
 
-/* #departmentinfo{ */
-/* width: 80%; */
-/* height: 80px; */
-/* } */
+}
+
+#deleteBt{
+	float: right;
+}
+
+button{
+	margin: 2px 2px 2px 2px;
+	
+}
 </style>
 </head>
 <body>
@@ -119,21 +134,21 @@ ul {
 			</div>
 		</div>
 		<hr>
-		<div style="background-color: gray;"><label><input type="radio" class="active" id="insert" value="option"
-			name="option">부서권한등록</label></div>
-		<!-- 			<li><a href="deDelete">부서권한 조회-삭제</a></li> -->
+		<div>
+			<label><input type="radio" class="active" id="insert"
+				value="option" name="option">부서권한등록</label>
+		</div>
 		<div>
 			<div id="insertBox">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info">
-							<strong>ERP 부서 등록 페이지입니다.</strong>
-							<button class="btn btn-success" id="save">저장</button>
+							<strong>ERP 부서 등록 페이지입니다.</strong><button class="btn btn-success" id="save">저장</button>
 						</div>
 					</div>
 				</div>
 				<div class="row text-center pad-top">
-					<form id="departmentinfo" >
+					<form id="departmentinfo">
 						<div class="department-div">
 							<table style='border-radius: 8px;'>
 								<tbody style='border-radius: 8px;'>
@@ -147,43 +162,54 @@ ul {
 									</tr>
 									<tr style='border-radius: 8px;'>
 										<th colspan='4'><div class='input-group'>
-												<span class='input-group-addon'>&nbsp;부서명&nbsp;&nbsp;</span> <input
-													type='text' id="au_name" name="au_name"
-													class='form-control' style='width: 120%;'>
-											</div></th>
+												<span class='input-group-addon'>&nbsp;부서명&nbsp;&nbsp;</span>
+												<input type='text' id="au_name" name="au_name"
+													class='form-control' style='width: 120%;'
+													oninput="checkau_name()">
+											</div> <span id="ncheck" style="text-align: center;"></span></th>
+										<th style="border-color: white;">
+											<!-- 											<button onclick="namecheck()" type="button">중복확인</button> -->
+										</th>
+
 									</tr>
 									<tr style='border-radius: 8px;'>
 										<th colspan='4'><div class='input-group'>
-												<span class='input-group-addon'>&nbsp;&nbsp;&nbsp;권한&nbsp;&nbsp;&nbsp;</span><div
-													type='text' class='form-control' style='width: 120%; text-align: center;'>
-												 &nbsp;<label><input type="radio" id="au_authority" name="au_authority" value="1">승인</label> &nbsp; 
-												<label><input type="radio" id="au_authority" name="au_authority" value="0">거부</label> &nbsp;
+												<span class='input-group-addon'>&nbsp;&nbsp;&nbsp;권한&nbsp;&nbsp;&nbsp;</span>
+												<div type='text' class='form-control'
+													style='width: 120%; text-align: center;'>
+													&nbsp;<label><input type="radio" id="au_authority"
+														name="au_authority" value="1">승인</label> &nbsp; <label><input
+														type="radio" id="au_authority" name="au_authority"
+														value="0">거부</label> &nbsp;
 												</div>
 											</div></th>
 									</tr>
 								</tbody>
 							</table>
+							<div>
+							</div>
 						</div>
 					</form>
+						
 				</div>
 			</div>
 		</div>
-		<br><br>
+		<br> <br>
 		<div>
-			<label><input type="radio" class="active" id="delete" value="option"
-				name="option">부서권한삭제</label>
+			<label><input type="radio" class="active" id="delete"
+				value="option" name="option">부서권한삭제</label>
 			<div id="deleteBox">
 				<div class="row">
 					<div class="col-lg-12 ">
 						<div class="alert alert-info">
 							<strong>ERP 부서 권한 삭제 페이지입니다.</strong>
-							<button class="btn btn-success" id="deleteBt">삭제</button>
+							<button class="btn btn-danger" id="deleteBt">삭제</button>
 						</div>
 					</div>
 				</div>
-				<table>
+				<table id="table">
 					<tbody>
-						<tr>
+						<tr id="tr">
 							<td>check</td>
 							<td>부서명</td>
 							<td>권한</td>
@@ -272,7 +298,8 @@ ul {
 										function() {
 											check = $(this).attr('value');
 
-											$.ajax({
+											$
+													.ajax({
 														url : '/erp/rest/managermode/depratmentDelete?au_name='
 																+ check,
 														type : 'post',
@@ -284,7 +311,7 @@ ul {
 																console
 																		.log(data);
 															} else {
-																alert("삭제를 실패하였습니다. 현재 사용하고 있는 부서인지 확인해주세요.");
+																alert("삭제를 실패하였습니다.");
 																console
 																		.log(data);
 															}
@@ -308,7 +335,7 @@ ul {
 									success : function(data) {
 										let str = "";
 										for ( let i in data.pList) {
-											str += "<table>"
+											str += "<table id='table'>"
 											str += "<tr>"
 											str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].au_name+"'></td>";
 											str += "<td>"
@@ -328,6 +355,74 @@ ul {
 								});
 
 					});
+
+	function checkau_name() {
+		var au_name = $("#au_name").val();
+		if (au_name == null || au_name == '') {
+			$("#ncheck").html("<font style='color:red;'>부서이름을 입력해 주세요.</font>");
+		} else {
+			$
+					.ajax({
+						url : "/erp/rest/managermode/namecheck",
+						data : {
+							au_name : au_name
+						},
+						dataType : "text",
+						method : "get",
+						// 										async : false,
+						success : function(data) {
+							console.log(data)
+							if (data == 1) {
+								checkccode = false;
+								$("#ncheck")
+										.html(
+												"<font style='color:red;'>해당 부서가 이미 존재합니다.</font>");
+							} else {
+								checkccode = true;
+								$("#ncheck").html(
+										"<font style='color:green;'>확인</font>");
+							}
+						},
+						error : function(err) {
+							console.log(err);
+						}
+					});
+		}
+	}
+
+	// 	function namecheck() {
+	// 		var au_name = $("#au_name").val();
+	// 		console.log(au_name);
+
+	// 		if(au_name == null || au_name == ''){
+	// 			$("#ncheck").html("<font style='color:red;'>부서이름을 입력해 주세요.</font>");
+	// 		}else{
+
+	// 		$.ajax({
+	// 					url : "/erp/rest/managermode/namecheck",
+	// 					data : {
+	// 						au_name : au_name
+	// 					},
+	// 					dataType : "text",
+	// 					method : "get",
+	// 					async : false,
+	// 					success : function(data) {
+	// 						console.log(data)
+	// 						if (data == 1) {
+	// 							checkccode = false;
+	// 							$("#ncheck").html("<font style='color:red;'>해당 부서가 이미 존재합니다.</font>");
+	// 						} else {
+	// 							checkccode = true;
+	// 							$("#ncheck").html(
+	// 									"<font style='color:green;'>확인</font>");
+	// 						}
+	// 					},
+	// 					error : function(err) {
+	// 						console.log(err);
+	// 					}
+	// 				});
+	// 		}
+	// 	}
 
 	// 	$(document).ready(
 	// 					function() {

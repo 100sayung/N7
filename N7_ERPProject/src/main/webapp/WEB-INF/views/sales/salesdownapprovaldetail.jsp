@@ -96,7 +96,7 @@ table, tr, th, td {
                               <th colspan="2"><input type="text" name="bs_ccode" class="txt" value="${app.bs_ccode}" readonly>
                               <%-- <input type="hidden" name="j_ccode" class="txt" value="${ac.j_ccode}" readonly></th> --%>
                               <th colspan="2">품목코드</th>
-                              <th colspan="2"><input type="text" name="bs_itcode" class="txt" value="${app.bs_itcode}" readonly></th> 
+                              <th colspan="2"><input type="text" name="bs_itcode" class="txt" value="${app.bs_itcode}" readonly></th>
                            </tr>
                            <tr>
                               <th colspan="2">제품명</th>
@@ -128,7 +128,7 @@ table, tr, th, td {
                </td>
             </tr>
          </table>
-      </form>  
+      </form>
          <br>
          <button type="button" id="submit">제출하기</button>
          <button type="button" id="turnback">반려하기</button>
@@ -169,7 +169,7 @@ table, tr, th, td {
 					});
 	$('#turnback').click(function(){
 		var num= $("#num").val();
-		
+
 		$.ajax({
 			url:'/erp/rest/home/turnback',
 			type:'post',
@@ -179,10 +179,10 @@ table, tr, th, td {
 			},
 			error:function(error){
 				console.log(error);
-				
+
 			}
 		});
 	});
-	
+
 </script>
 </html>
