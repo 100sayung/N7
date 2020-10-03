@@ -147,10 +147,8 @@ public class AccountionCotroller {
 	}
 
 	@PostMapping(value = "/Account/selectSearch", produces = "application/json;charset=utf-8")
-	public Map<String, List<SaleInfo>> selectSearch(String select, String choice) {
-		System.out.println(select);
-		System.out.println(choice);
-		Map<String, List<SaleInfo>> sMap = am.selectSearch(select, choice);
+	public Map<String, List<SaleInfo>> selectSearch(String select, String choice, HttpSession session) {
+		Map<String, List<SaleInfo>> sMap = am.selectSearch(select, choice,session);
 		return sMap;
 	}
 

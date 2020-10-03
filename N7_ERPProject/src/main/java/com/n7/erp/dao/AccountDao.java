@@ -67,7 +67,7 @@ public interface AccountDao {
 
 	List<SaleInfo> saleDetaile2(@Param("check") String check, @Param("cCode") String cCode);
 
-	List<SaleInfo> selectSreach(@Param("select") String select, @Param("choice") String choice);
+	List<SaleInfo> selectSreach(@Param("select") String select, @Param("choice") String choice,@Param("cCode") String cCode);
 
 	boolean approvaldocu(ApprovalDocument ad);
 
