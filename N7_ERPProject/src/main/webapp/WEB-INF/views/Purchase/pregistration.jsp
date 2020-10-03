@@ -86,7 +86,7 @@ ${msg}
                      		<!-- <td><input type="text" name="p_itcode"></td> -->
                      		<td class="it"></td>
                      		<td><input type="number" min="1" name="p_amount"></td>
-                     		<td><input type="text" name="p_unlit"></td>
+                     		<td><input class="unlit" type="text" name="p_unlit"></td>
                      		<td><input type="text" name="p_budget"></td>
                     	</tr>
 					</tbody>
@@ -106,6 +106,14 @@ ${msg}
 	</div>
 	
 	  <script type="text/javascript">
+	  $(document).on("keyup",".unlit",function(){
+		 var cnt =$(this).parent().prev().children().val();
+		 console.log(cnt);
+		 var unlit = $(this).val();
+		 var budget=cnt*unlit;
+		 $(this).parent().next().children().val(budget);
+	  });
+	  
 	  function setChildValue(data) {
 		   console.log(data)
 		   for(var i in data.aList){ 
@@ -114,6 +122,36 @@ ${msg}
 		   
 		   $("#clcode").val(clcode);
 		};
+		
+	 $(document).ready(function(){
+		 var select;
+			$.ajax({
+				url: '/erp/stock/getitemcode',
+				type: 'post',
+				dataType: 'json',
+				success: function(data){
+					select=makeSelectBox(data);
+					$(".it").html(select);
+				},
+				error: function(err){
+					console.log(err);
+				}
+			})
+			function makeSelectBox(arr){
+				var arrStr="<select class='select' name='p_itcode'><option></option>";
+				if(arr.length==0){
+					arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
+				}else{
+					for(var i=0; i<arr.length; i++){
+						arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+					}
+				}
+				arrStr+="</select>";
+				return arrStr;
+			}
+			
+		 $('.addList').click(function(){
+			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name"></td><td class="it"></td><td><input type="number" min="1" name="p_amount"></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
 		
 	var select;
 	$.ajax({
@@ -140,11 +178,7 @@ ${msg}
 		arrStr+="</select>";
 		return arrStr;
 	}
-		
-	 $(document).ready(function(){
-		 $('.addList').click(function(){
-			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name"></td><td><input type="text" name="p_itcode"></td><td><input type="number" min="1" name="p_amount"></td><td><input type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-		 });
+		 });	
 	 });
 	 function thisRowDel(row){
 		   console.log(row);

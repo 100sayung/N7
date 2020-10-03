@@ -17,9 +17,7 @@ public interface IConsultingBoardDao {
 
 	ConsultingBoard getContents(int CB_NUM);
 
-
-
-	//	boolean writeBoard(ConsultingBoard board);
+	//boolean writeBoard(ConsultingBoard board);
 //	
 //	ConsultingBoard boardmodifyajax(Integer num);
 //

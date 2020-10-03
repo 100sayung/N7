@@ -159,8 +159,11 @@ public class menuMM {
 		return 0;
 	}
 
-	public String namecheck(String au_name) {
-		int ccodecnt = mDao.namecheck(au_name);
+	public String namecheck(String au_name, HttpSession session, Authority au) {
+		
+		au.setAu_comname((String) session.getAttribute("cCode"));
+		au.setAu_name(au_name);
+		int ccodecnt = mDao.namecheck(au);
 		return Integer.toString(ccodecnt);
 	}
 		

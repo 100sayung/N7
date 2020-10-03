@@ -54,7 +54,7 @@ ul {
 }
 #dataTable{
 	border: 1px solid black;
-	width: 300px;
+	width: 600px;
 }
 tr{
 	border: 1px solid black;
@@ -73,7 +73,9 @@ tr{
 #member{
 	height:300px;
 }
-
+.myinfo_table_css{
+	width: 900px;
+}
 
 </style>
 </head>
@@ -98,20 +100,15 @@ tr{
 			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
 			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
 			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
-			<li id="showMenu1">나의 결재함</a></li>
-			<ul id="menu2" style="display: none;">
-				<li id="apupPayment">내가 올린 결재함</li>
-				<li id="apdownPayment">내가 받은 결재함</li>
-				<li id="acTemporary">임시저장 결재함</li>
-			</ul>
+			<li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
 		</ul>
 	</div>
-<div id="description">
+<div id="description" align="center">
+<h1 align="center" style="color: #3D6B9B">내 정보 보기</h1>
 <div id="member"></div>
 
 <br><br><br>
 
-부서/직책 등록시 부서부터 고르게 설정. 그 후 부서가 등록되면 그부서에맞는 직책만 뜨게 설정해야함.
 
 
 
@@ -137,51 +134,6 @@ tr{
 </div>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
-		$("#showMenu1").hover(function() {
-			$("#menu2").attr("style", "display:inline-block");
-		});
-
-		$("#apupPayment").click(function() {
-			$.ajax({
-				url : '/erp/Account/apupPayment',
-				type : 'get',
-				success : function(data) {
-					$("#description").html(data);
-				},
-				error : function() {
-				}
-			});
-
-		});
-
-		$("#apdownPayment").click(function() {
-			$.ajax({
-				url : '/erp/Account/apdownPayment',
-				type : 'get',
-				success : function(data) {
-					$("#description").html(data);
-				},
-				error : function() {
-				}
-			});
-
-		});
-		
-		$("#acTemporary").click(function() {
-			$.ajax({
-				url:'/erp/Account/acTemporary',
-				success:function(data) {
-					console.log(data);
-					$("#description").html(data);
-				},
-				error : function(err) {
-					console.log(err);
-				}
-			});
-
-		});
-	</script>
-	<script>
 		var num;
 		$(document).ready(function(){
 			$.ajax({
@@ -191,7 +143,7 @@ tr{
 				success : function(data){
 					console.log(data);
 					let info = "";
-					info += '<div class="dataSpan"><img style="width:200px; height: 250px;" src="/erp/upload/'+data.photo+'"></div>';
+					info += '<div style="margin-left:300px;"><div class="dataSpan"><img style="width:250px; height: 300px;" src="/erp/upload/'+data.photo+'"></div>';
 					info += '<div class="dataSpan"><table id="dataTable"><tr  class="infomenu"><td>이름</td></tr>'
 					info += '<tr><td id="m_name">'+data.name+'</td></tr>';
 					info += '<tr  class="infomenu"><td>생년월일</td></tr>';
@@ -199,7 +151,7 @@ tr{
 					info += '<tr  class="infomenu"><td>전화번호</td></tr>';
 					info += '<tr><td id="m_phonenum">'+data.phonenum+'</td></tr>';
 					info += '<tr  class="infomenu"><td conlspan="2">주소</td></tr>'
-					info += '<tr style="height:80px;"><td id="m_address" colspan="2">'+data.address+'</td></tr></table></div>';
+					info += '<tr style="height:40px;"><td id="m_address" colspan="2">'+data.address+'</td></tr></table></div></div>';
 					$("#member").html(info);
 				}, error : function(err){
 					console.log(err);
@@ -269,7 +221,7 @@ tr{
 			$("#infoTable > tbody:last").append(str);
 		}
 
-		function thisRowDel(row){
+		function thisRowDel(row){	
 			let tr = row.parentNode.parentNode;
 			console.log(tr);
 			tr.parentNode.removeChild(tr);
@@ -298,9 +250,9 @@ tr{
 				}else{
 					alert("취소되었습니다.")
 				}
-
+				
 			}
-		}
+		}	
 
 		function changeMode(){
 			console.log($("#changeBtn").attr('class'));
@@ -320,7 +272,7 @@ tr{
 				}
 			}
 			$("#changeBtn").toggleClass("mf");
-
+			
 		}
 
 		var formURL = "/erp/myinfo";
@@ -454,7 +406,7 @@ tr{
 								work="퇴사";
 							}
 							let str ="";
-							str += "<table border='1px solid black' ><tr class='infomenu'>";
+							str += "<table border='1px solid black' class='myInfo_table_css'><tr class='infomenu'>";
 							str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
 							str += "<tr><td><input type='text' name='hc_code' value='"+data.hc_hrcode+"' readonly></td>";
 							str += "<td><input type='text' name='hc_dept' value='"+data.hc_dept+"' readonly></td>";
@@ -464,13 +416,12 @@ tr{
 							str += "<tr class='infomenu'><td>현재 상태</td><td>재/휴직 상태</td><td>사용한 월차</td></tr>";
 							str += "<td><input type='text' value='"+status+"' readonly></td>"
 							str += "<td><input type='text' value='"+work+"'readonly></td>"
-							str += "<td><input type='text' value='"+data.hc_numholi+"' readonly></td></tr></table>";
+							str += "<td><input type='text' value='"+data.hc_holynum+"' readonly></td></tr></table>";
 							$("#hrDetailInfo").html(str);
 						},error : function(err){
-							console.log(deptList);
 							console.log(err);
 							let str ="";
-							str += "<table border='1px solid black'><tr class='infomenu'>";
+							str += "<table border='1px solid black' class='myinfo_table_css'><tr class='infomenu'>";
 							str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
 							str += "<tr><td><input type='text' name='hc_code' placeholder='---' readonly></td>"
 							str += "<td><input type='text' name='hc_dept' value='"+data.hc_dept+"' readonly></td>";

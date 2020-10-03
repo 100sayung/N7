@@ -10,6 +10,8 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
    media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+   media="all" />
 <style>
 #header {
    width: 100%;
@@ -41,6 +43,7 @@ a {
 #description {
    float: left;
    height: 100%;
+   
 }
 
 ul {
@@ -63,37 +66,32 @@ table, th, td{
 </style>
 </head>
 <body onload="build();">
-   <div id="header">
-      <div id="logo">
-         <h1>
-            <a href="#">N7 ERP SYSTEM</a>
-         </h1>
-      </div>
-      <div id="menu">
-         <ul>
-            <li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-            <li><a href="/erp/hr/hr" accesskey="2"
-               title="">인사 관리</a></li>
-            <li><a href="#" accesskey="3" title="">영업 관리</a></li>
-            <li><a href="#" accesskey="5" title="">구매 관리</a></li>
-            <li><a href="#" accesskey="6" title="">자재 관리</a></li>
-            <li><a href="#">회계 관리</a></li>
-         </ul>
-      </div>
-   </div>
-   <div id="side_menu">
-      <ul id="menuList">
-         <li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
-         <li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
-         <li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-         <li><a href="/erp/myinfo/myattendance">내 출결 보기</a></li>
-         <li><a href="/erp/myinfo/myholiday">내 휴가 보기</a></li>
-         <li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
-         <li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
-      </ul>
-   </div>
+	<div id="header">
+		<div id="logo">
+			<h1>
+				<a href="#">N7 ERP SYSTEM</a>
+			</h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu">
+		</div>
+	</div>
+	<div id="side_menu">
+		<ul id="menuList">
+			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
+			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
+			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
+			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
+			<li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
+		</ul>
+	</div>
    <div id="description">
-   <div class="divcss">내 휴가신청 목록</div>
+   <div class="divcss">내 휴가 보기</div>
+   <div style="float: right;">
    <table style="border: 1px solid black; ">
    		<tr>
    			<td>대기중</td>
@@ -108,7 +106,8 @@ table, th, td{
    			<td>삭제됨</td>
    		</tr>
    </table>
-      <table align="center">
+   </div>
+      <table align="center" style="margin-top: 50px;">
          <tr>
             <td style="width : 100px;"><font color="#B3B6B3"><label
                   onclick="beforem()" id="before"></label></font></td>
@@ -123,6 +122,7 @@ table, th, td{
       <br>
       <div id="container"></div>
    </div>
+   <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
    <script>
       var str = "";
       $(document).ready(function() {
@@ -244,12 +244,13 @@ table, th, td{
                      }
                      //09-24 change
                      if(data[k].hap_status=="3"){
-                    	 cell.style.color="#03D62A";
+                    	 cell.style.backgroundColor="#03D62A";
+                    	 cell.style.color="black";
                     	 cell.style.fontWeight="bolder";
-                    	 cell.style.textShadow="#03D62A 0px 1px";
-                     }
-                     if(data[k].hap_status=="1"){
-                    	 cell.style.color="#C4C5C4";
+                    	 cell.style.textShadow="black 0px 1px";
+                     }else if(data[k].hap_status=="1"){
+                    	 cell.style.color="black";
+                    	 cell.style.backgroundColor="#C4C5C4";
                      }
                      ///////
                      let date = "" + year + month + day;

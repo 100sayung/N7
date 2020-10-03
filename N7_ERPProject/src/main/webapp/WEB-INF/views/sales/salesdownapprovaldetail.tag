@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>영업결재 상세페이지</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
 html, body {
@@ -58,6 +58,7 @@ table, tr, th, td {
 </style>
 </head>
 <body>
+ ${msg}
    <form id="for">
      <br>
      <br>
@@ -71,7 +72,7 @@ table, tr, th, td {
             <tr>
                <th>결재자</th>
                <th id="line">
-                  <input type="hidden" value="${app.bs_apcode1}" name="code"> //<!-- code -->
+                  <input type="hidden" value="${app.bs_apcode1}" name="code"> <!-- code -->
                   <input type="hidden" value="${app.bs_apcode2}" name="code"> <!-- code -->
                   <input type="hidden" value="${app.bs_apcode3}" name="code"> <!-- code -->
                </th>
@@ -84,7 +85,7 @@ table, tr, th, td {
                         <table>
                            <tr>
                               <th colspan="2">출하번호</th>
-                              <th colspan="2"><input id="num" type="text" name="bs_docunum" class="txt" value="${app.bs_docunum}" readonly></th>
+                              <th colspan="2"><input type="text" name="bs_docunum" class="txt" value="${app.bs_docunum}" readonly></th>
                               <th colspan="2">거래처 회사코드</th>
                               <th colspan="2"><input type="text" name="bs_clcode" class="txt" value="${app.bs_clcode}" readonly>
 <%--                          <input type="hidden" name="j_grade" class="draft3" value="${ac.j_grade}" readonly></th>
@@ -96,7 +97,7 @@ table, tr, th, td {
                               <th colspan="2"><input type="text" name="bs_ccode" class="txt" value="${app.bs_ccode}" readonly>
                               <%-- <input type="hidden" name="j_ccode" class="txt" value="${ac.j_ccode}" readonly></th> --%>
                               <th colspan="2">품목코드</th>
-                              <th colspan="2"><input type="text" name="bs_itcode" class="txt" value="${app.bs_itcode}" readonly></th>
+                              <th colspan="2"><input type="text" name="bs_itcode" class="txt" value="${app.bs_itcode}" readonly></th> 
                            </tr>
                            <tr>
                               <th colspan="2">제품명</th>
@@ -120,69 +121,79 @@ table, tr, th, td {
                            </tr>
                             <tr>
                               <th>반려사유</th>
-                              <th colspan="8"><input type="text" name="bs_ect" value="${app.bs_ect}"></th>
+                              <th colspan="8"><input type="text" name="bs_ect" id="ect"></th>
                            </tr>
                         </table>
                      </div>
                   </div>
                </td>
             </tr>
-         </table>
-      </form>
+         </table>  
+       </form>
          <br>
-         <button type="button" id="submit">제출하기</button>
-         <button type="button" id="turnback">반려하기</button>
+   <script>
 
-</body>
-<script>
+   
+  /*  $(document).ready(function(){
+         $.ajax({
+            url:'/erp/rest/sales/getMyInfo',
+            type:'get',
+            datatype:'json',
+            success:function(data){
+               console.log(data);
+               var str = "";
+               for ( var i in data.sList) {
+                    str +="<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
+                  str +=data.sList[i].hc_position+"/";
+                  str +="<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+               }
+               console.log(str)
+               $("#line").html(str);
+            
+            },
+            error:function(error){
+               console.log(error);
+            }
+         });
+          
+       }); */
+   
+   
+     $(document).ready(function() {
+            var arr = new Array();
+            var cnt = $("input[name='code']").length;
 
-	$(document).ready(function() {
-						arr = new Array();
-						var cnt = $("input[name='code']").length;
+            $("input[name='code']").each(function() {
+               arr.push($(this).attr('value'));
+            }); 
+            
 
-						$("input[name='code']").each(function() {
-							arr.push($(this).attr('value'));
-						});
+            $.ajax({
+                     url : '/erp/rest/sales/getApprinfo',
+                     type : 'post',
+                     traditional : true,
+                     data : 'ARR=' + arr + '&CNT=' + cnt,
+                     success : function(data) {
+                        console.log(data);
+                        var str = "";
+                        for ( var i in data.sList) {
+                           str += "<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
+                           str += data.sList[i].hc_position
+                                 + "/";
+                           str += "<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+                        }
+                        console.log(str)
+                        $("#line").append(str);
 
-						$.ajax({
-									url : '/erp/rest/sales/getApprinfo',
-									type : 'post',
-									traditional : true,
-									data : 'ARR=' + arr + '&CNT=' + cnt,
-									success : function(data) {
-										console.log(data);
-										var str = "";
-										for ( var i in data.sList) {
-											str += "<input type='text' name='bs_apcode"+i+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
-											str += data.sList[i].hc_position
-													+ "/";
-											str += "<input style='width:50px;' type='text' name='bs_approver"+i+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
-										}
-										console.log(str)
-										$("#line").html(str);
-
-									},
-									error : function(error) {
-										console.log(error);
-									}
-								});
-					});
-	$('#turnback').click(function(){
-		var num= $("#num").val();
-
-		$.ajax({
-			url:'/erp/rest/home/turnback',
-			type:'post',
-			data:{num:num},
-			success:function(data){
-				console.log(data);
-			},
-			error:function(error){
-				console.log(error);
-
-			}
-		});
-	});
-
+                     },
+                     error : function(error) {
+                        console.log(error);
+                     }
+                  });
+         });  
+         
+         
+            
 </script>
+</body>
 </html>

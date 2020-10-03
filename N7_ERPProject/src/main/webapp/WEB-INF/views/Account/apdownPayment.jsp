@@ -33,12 +33,12 @@ table, tr, td {
 td {
 	padding: 5px;
 	font-size: large;
-/* 	width: 58px; */
+	width: 58px;
 	height: 10px;
 }
 
 #table {
-	width: 1200px;
+	width: 1400px;
 	height: auto;
 }
 
@@ -195,6 +195,9 @@ text-align: center;
 					                     window.open(
 					                        '/erp/rest/sales/sRequest?bs_docunum='+ check, '/erp/rest/sales/sRequest2',
 					                        'width=1500, height=600');				                  
+				                  }else if(check.indexOf("H") != -1){ //인사
+				                	  console.log(check);
+				                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
 				                  }else{
 				                     window.open(
 				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');

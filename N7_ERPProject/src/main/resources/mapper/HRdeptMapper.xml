@@ -39,17 +39,17 @@
 	</select>
 	<select id="findincentive" parameterType="String"
 		resultType="payroll">
-		SELECT HP_INCEN,HP_PAYDATE FROM HR_PAYROLL WHERE ROWNUM = 1 AND HP_HRCODE=#{HP_HRCODE}
+		SELECT HP_INCEN,HP_PAYDATE FROM HR_PAYROLL WHERE ROWNUM = 1 AND HP_HRCODE=#{hrcode}
 	</select>
-	<select id="findpay" parameterType="Payroll" resultType="String">
+	<select id="findpay" parameterType="Viewpay" resultType="String">
 		SELECT *
-		FROM HR_PAYROLL WHERE HP_HRCODE=#{HP_HRCODE} AND
+		FROM HR_PAYROLL WHERE HP_HRCODE=#{HC_HRCODE} AND
 		HP_PAYDATE=#{HP_PAYDATE}
 	</select>
-	<update id="updatepay" parameterType="Payroll">
+	<update id="updatepay" parameterType="Viewpay">
 		UPDATE HR_PAYROLL SET
 		HP_TAX=#{HP_TAX},HP_INCEN=#{HP_INCEN},HP_INSURANCE=#{HP_INSURANCE},HP_REALMONEY=#{HP_REALMONEY}
-		WHERE HP_PAYDATE=#{HP_PAYDATE} AND HP_HRCODE=#{HP_HRCODE}
+		WHERE HP_PAYDATE=#{HP_PAYDATE} AND HP_HRCODE=#{HC_HRCODE}
 	</update>
 	<select id="checkingidname" parameterType="String" resultType="Viewpay">
 		SELECT * FROM HR_CD_D 

@@ -97,7 +97,7 @@ table, tr, th, td {
                               <th colspan="2"><input type="text" name="bs_ccode" class="txt" value="${app.bs_ccode}" readonly>
                               <%-- <input type="hidden" name="j_ccode" class="txt" value="${ac.j_ccode}" readonly></th> --%>
                               <th colspan="2">품목코드</th>
-                              <th colspan="2"><input type="text" name="bs_itcode" class="txt" value="${app.bs_itcode}" readonly></th> 
+                              <th colspan="2"><input type="text" name="bs_itcode" class="txt" value="${app.bs_itcode}" readonly></th>
                            </tr>
                            <tr>
                               <th colspan="2">제품명</th>
@@ -128,12 +128,12 @@ table, tr, th, td {
                   </div>
                </td>
             </tr>
-         </table>  
+         </table>
        </form>
          <br>
    <script>
 
-	
+
   /*  $(document).ready(function(){
 	      $.ajax({
 	         url:'/erp/rest/sales/getMyInfo',
@@ -149,24 +149,24 @@ table, tr, th, td {
 	            }
 	            console.log(str)
 	            $("#line").html(str);
-	         
+
 	         },
 	         error:function(error){
 	            console.log(error);
 	         }
 	      });
-	       
+
 	    }); */
-   
-   
+
+
   	$(document).ready(function() {
 				var arr = new Array();
 				var cnt = $("input[name='code']").length;
 
 				$("input[name='code']").each(function() {
 					arr.push($(this).attr('value'));
-				}); 
-				
+				});
+
 
 				$.ajax({
 							url : '/erp/rest/sales/getApprinfo',
@@ -190,10 +190,10 @@ table, tr, th, td {
 								console.log(error);
 							}
 						});
-			});  
-			
-			
-            
+			});
+
+
+
 </script>
 </body>
 </html>
