@@ -158,10 +158,10 @@ input {
 <script>
 	$('#su').click(
 			function() {
-				var num = /[0-9]/; //숫자
-				var eng = /[a-zA-Z]/; //문자
-				var spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-				var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+				var num = /^[0-9]+$/; //숫자
+// 				var eng = /[a-zA-Z]/; //문자
+// 				var spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+// 				var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
 
 				var title = document.getElementById('j_title');
 				var account = document.getElementById('j_account');
@@ -204,11 +204,13 @@ input {
 				} else if (debit.value != credit.value) {
 					alert("차변금액과 대변금액이 같지 않습니다.");
 				} else {
-					if ((num.test(debit)) && !(eng.test(debit))
-							&& !(spc.test(debit)) && !(kor.test(debit))
-							||(num.test(credit)) && !(eng.test(credit))
-							&& !(spc.test(credit)) && !(kor.test(credit))) { //차변대변금액
-						return true
+// 					if (num.test(debit)) 
+// 							&& !(eng.test(debit))
+// 							&& !(spc.test(debit)) && !(kor.test(debit))
+// 							||(num.test(credit)) && !(eng.test(credit))
+// 							&& !(spc.test(credit)) && !(kor.test(credit))
+							 { //차변대변금액
+// 						return true
 
 						var obj = $("#form1").serialize();
 						console.log(obj);
@@ -234,9 +236,9 @@ input {
 							}
 
 						})
-					} else {
-						alert("차변금액과 대변금액은 숫자만 입력 가능합니다.");
-						return false
+// 					} else {
+// 						alert("차변금액과 대변금액은 숫자만 입력 가능합니다.");
+// 						return false
 					}
 				}
 
