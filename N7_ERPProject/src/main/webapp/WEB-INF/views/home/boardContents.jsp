@@ -36,52 +36,43 @@ text-transform: uppercase;
 display: block;    
 text-align: center;
 }
-table#List {
+table#table {
 border-collapse: separate;
-border-spacing: 1px;
+border-spacing: 0;
 text-align: left;
 line-height: 1.5;
-order-top: 1px solid #ccc;
-margin : auto;
+border-top: 1px solid #ccc;
+border-left: 1px solid #ccc;
+margin : 20px 10px;
 text-align: center;
+margin-left: 400px;
 margin-top: 20px;
 }
-table#List th {
-width: 140px;
-padding: 7px;
-padding-top: 10px;
+table#table th {
+width: 100px;
+padding: 10px;
 font-weight: bold;
 vertical-align: top;
+border-right: 1px solid #ccc;
 border-bottom: 1px solid #ccc;
-text-align: center;
+border-top: 1px solid #fff;
+border-left: 1px solid #fff;
+background: #eee;
 }
-table#List td {
+table#table td {
 width: 250px;
-padding: 8px;
+padding: 10px;
 vertical-align: top;
+border-right: 1px solid #ccc;
 border-bottom: 1px solid #ccc;
-text-align: center;
 }
-#paging{
-display: block;
-text-align: center;
-margin-top: 15px;
-margin-left: 520px;
-padding-bottom: 12px;
+#aaa{
+float: left;
+margin-left: 400px;
 }
-#bbb{
-/* position: absolute;  */
-float: right;
-margin-right: 450px;
-margin-top: 10px;
-}
-#ccc{
-position:relative;
-float: right;
-margin-right: 450px;
-margin-top: 10px;
-padding-bottom: 20px;
-}
+
+
+
 </style>
 </head>
 <body>
@@ -103,42 +94,32 @@ padding-bottom: 20px;
 			</ul>
 		</div>
 	</div>
-	<form action="erpboard">
-	<div id="a">
-		<h2>상담 게시판</h2>
-		<table id="List">
-			<tr style="background-color: #F0CDDE; width: 350px;">
-				<th scope="row">번호</th>
-				<th scope="row">제목</th>
+	<form action="boardContnes">
+		<h2>상세보기</h2>
+		<table id="table">
+			<tr>
+				<th scope="row"">글 번호</th>
+				<td>${board.CB_NUM}</td>
+			</tr>
+			<tr>
 				<th scope="row">작성자</th>
+				<td>${board.CB_TITLE}</td>
+			</tr>
+			<tr>
+				<th scope="row">글 제목</th>
+				<td>${board.CB_TITLE}</td>
+			</tr>
+			<tr>
+				<th scope="row">글 내용</th>
+				<td><textarea rows="15" cols="90" style="resize: none;">${board.CB_CONTENTS}</textarea></td>
 			</tr>
 		</table>
-	</div>
-	<div id="bbb"><button><a href="/erp/home/writeFrm" style="text-decoration: none;">글쓰기</a></button></div>
 	</form>
-	<div align="cneter" id="paging">${paging}</div>
-	<div id="ccc">
-		<select id="choice" style="height: 24px;">
-			<option value=CB_NUM">번호</option>
-			<option value="CB_WRITER">작성자</option>
-			<option value="CB_TITLE">제목</option>
-		</select>
-		<input type="text" id="search" name="search" style="height: 18px;">
-		<button id="searchbtn">검색</button>
-	</div>
-	
-<script type="text/javascript">
-	$(function(){
-		var bList=${bList};
-		var str="";
-		for(var i=0; i<bList.length; i++){
-			str+="<tr><td>"+bList[i].CB_NUM+"</td>";
-			str+="<td><a style='text-decoration: none;' href='/erp/home/boardContents?CB_NUM="+bList[i].CB_NUM+"'>"+bList[i].CB_TITLE+"</a></td>";
-			str+="<td>"+bList[i].CB_WRITER+"</td></tr>";
-		}
-		$("#List").append(str);
-		console.log(bList);
-	});
-</script>
+		<div>
+			<button id="aaa"><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
+			<c:if test="${id!=null}">
+				<button type="button" id="delete">삭제</button>
+			</c:if>
+		</div>
 </body>
 </html>

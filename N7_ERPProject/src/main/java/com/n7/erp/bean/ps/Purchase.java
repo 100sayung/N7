@@ -29,5 +29,6 @@ public class Purchase {
 	private int p_situation;
 	private String p_num;
 	private int p_unlit;
-	
+	private String o_status;
+	private String o_code;
 }

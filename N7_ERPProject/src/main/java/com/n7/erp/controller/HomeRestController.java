@@ -25,6 +25,7 @@ public class HomeRestController {
 
 	@Autowired
 	private MemberMM mm;
+	
 
 	@GetMapping(value = "/home/searchfromid")
 	public String getSearchFromId(String m_id) {
@@ -43,11 +44,21 @@ public class HomeRestController {
 		String result = mm.getDupleCCode(m_ccode);
 		return result;
 	}
+	@PostMapping(value="/home/deletecompany")
+	public String deleteCompany(String cCode) {
+		return mm.deleteCompany(cCode);
+	}
 	
 	@PostMapping(value="/home/checkgrade")
 	public String checkGrade(HttpSession session) {
 		String result= mm.checkGrade(session);
 		return result;
+	}
+	@PostMapping(value="/home/turnback")
+	public String turnback(String num,String ect,HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String value= mm.turnback(num,ect,session);
+		return value;
 	}
 
 	@PostMapping(value = "/home/forcewithdrawal")

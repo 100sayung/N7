@@ -33,12 +33,12 @@ table, tr, td {
 td {
 	padding: 5px;
 	font-size: large;
-/* 	width: 58px; */
+	width: 58px;
 	height: 10px;
 }
 
 #table {
-	width: 1200px;
+	width: 1400px;
 	height: auto;
 }
 
@@ -181,13 +181,30 @@ text-align: center;
 						function() {
 							check = $(this).attr('value');
 
-							window.open(
-									'/erp/rest/Account/apRequest2?j_docunum='
-											+ check,
-									'/erp/rest/Account/apRequest2',
-									'width=1500, height=600');
-						});
-			});
+			                  if(check.indexOf("AC") != -1){
+			                      window.open(
+			                              '/erp/rest/Account/apRequest2?j_docunum='+ check,
+			                              '/erp/rest/Account/apRequest2',
+			                              'width=1500, height=600');
+				                  }else if(check.indexOf("P") != -1){ //예은
+				                     window.open(
+				                        '/erp/rest/Purchase/pRequest2?p_documentcode='+ check, '/erp/rest/Purchase/pRequest2',
+				                        'width=1500, height=600');
+				                  
+				                  }else if(check.indexOf("G") != -1){ //수진
+					                     window.open(
+					                        '/erp/rest/sales/sRequest?bs_docunum='+ check, '/erp/rest/sales/sRequest2',
+					                        'width=1500, height=600');				                  
+				                  }else if(check.indexOf("H") != -1){ //인사
+				                	  console.log(check);
+				                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
+				                  }else{
+				                     window.open(
+				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
+				                  }
+
+				               });
+				      });
 </script>
 </html>
 

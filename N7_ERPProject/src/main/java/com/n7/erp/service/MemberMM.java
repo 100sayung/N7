@@ -36,7 +36,7 @@ public class MemberMM {
 	public ModelAndView access(Member mb, HttpSession session) {
 		System.out.println(mb.getM_id());
 		if (mDao.access(mb)) {
-			view = "/home/home";
+			view = "redirect:/";
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
 			if (hDao.haveHrCode(mb.getM_id())) {
@@ -77,11 +77,11 @@ public class MemberMM {
 		mb.setM_photo(file);
 
 		if (mDao.join(mb)) {
-			mav.addObject("msg", 1);
+			mav.setViewName("redirect:/home/welcome");
 		} else {
-			mav.addObject("msg", 0);
+			mav.setViewName("/home/join");
+			mav.addObject("msg", "0");
 		}
-		mav.setViewName("/home/home");
 		return mav;
 	}
 
@@ -169,11 +169,58 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		int ccodecnt = mDao.getDupleCCode(cCode);
 		return Integer.toString(ccodecnt);
 	}
+	public String deleteCompany(String cCode) {
+		
+		mDao.deleteO_return(cCode);
+		mDao.deleteS_ieport(cCode);
+		mDao.deleteO_purchaseprogram(cCode);
+		mDao.deleteO_purchaseprogramcommom(cCode);
+		mDao.deleteO_purchaselist(cCode);
+		mDao.deleteO_order(cCode);
+		mDao.deleteB_shipment(cCode);
+		mDao.deleteAc_salestatementlist(cCode);
+		mDao.deleteAc_realsalestatementlist(cCode);
+		mDao.deleteB_uncollectedmoney(cCode);
+		mDao.deleteB_shipregist(cCode);
+		mDao.deleteS_itemcode(cCode);
+		mDao.deleteHr_applyholiday(cCode);
+		mDao.deleteB_activites(cCode);
+		mDao.deleteHr_attendance(cCode);
+		mDao.deleteHr_academic(cCode);
+		mDao.deleteHr_payroll(cCode);
+		mDao.deleteHr_certification(cCode);
+		mDao.deleteHr_career(cCode);
+		mDao.deleteHr_card(cCode);
+		mDao.deleteO_purchasecommom(cCode);
+		mDao.deleteB_order(cCode);
+		mDao.deleteAc_salestatement(cCode);
+		mDao.deleteHr_dept(cCode);
+		mDao.deleteHr_deduction(cCode);
+		mDao.deleteS_category(cCode);
+		mDao.deleteApprovaldocu(cCode);
+		mDao.deleteAc_companylist(cCode);
+		
+		return new Gson().toJson("성공");
+	}
+
 
 	public String checkGrade(HttpSession session) {
 		String id = session.getAttribute("id").toString();
 		String grade = mDao.checkGrade(id);
 		return grade;
+	}
+
+	public String turnback(String num, String ect, HttpSession session) {
+		String value="";
+		String cCode = session.getAttribute("cCode").toString();
+		boolean result  = mDao.turnback(num,cCode);
+		
+		if(result) {
+			value ="1";
+		}else {
+			value ="2";
+		}
+		return value;
 	}
 
 }

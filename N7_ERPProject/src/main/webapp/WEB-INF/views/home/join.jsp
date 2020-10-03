@@ -22,7 +22,7 @@
 <style>
 #joinContainer {
 	margin-top: 50px;
-	width: 300px;
+	width: 340px;
 	margin-left: 700px;
 	margin-bottom: 100px;
 }
@@ -79,13 +79,7 @@ button {
 			</ul>
 		</div>
 	</div>
-	이미 회사가 있다 -> 회사코드에 자기 회사 쓰면됨 우리는 현재 빈칸으로 두거나 N7입력.
-	<br></br> 회사가 없는데 새로 만들 예정이다 -> 빈칸으로 두고 가입한 뒤에 erp신청 후 회사테이블에 값입력 ->
-	회사코드가 생기므로 그 회사코드 후에 입력
-	<br></br> (ERP 신청 -> ADMIN이 승인(우리가 승인) -> 회사ERP 생성(생성할때 회사코드는 우리가?))
-	<br>
-	<form action="join" method="post" enctype="multipart/form-data"
-		onsubmit="return sum();">
+	<form action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
 		<div id="joinContainer">
 			<div class="table-responsive">
 				<div class="form-group">
@@ -103,10 +97,13 @@ button {
 						required name="m_name" id="name" />
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control"
-						placeholder="회사 코드를 입력해주세요 / 없으면 공백 " id="cCode" name="m_ccode" />
-					<input type="button" value="코드확인" onclick="dupleCCode()"> <br />
-					<span id="dupleCCode"></span>
+					<font style="color:gray;">회사코드가 없으신분은</font>
+					<font style="font-weight : bold;">N7</font>
+					<font style="color:gray;">을 입력해주세요.</font><br/>
+					<input type="text" class="form-control" placeholder="회사 코드를 입력해주세요 "
+						id="cCode" name="m_ccode" />
+					<input type="button" value="코드확인" onclick="dupleCCode()">
+					<br/><span id="dupleCCode"></span>
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control"

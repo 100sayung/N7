@@ -18,5 +18,7 @@
 		WHERE M_CCODE = #{cCode} AND HR_CARD.HC_WORK !='2'
 	</select>
 	
-	
+	<update id="turnback" parameterType="String">
+	UPDATE APPROVALDOCU SET AP_STATUS = '4' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
+	</update>
 </mapper>

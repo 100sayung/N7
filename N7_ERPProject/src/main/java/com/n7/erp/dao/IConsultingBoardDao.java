@@ -7,17 +7,22 @@ import org.apache.ibatis.annotations.Select;
 import com.n7.erp.bean.ConsultingBoard;
 
 public interface IConsultingBoardDao {
-	//상담 게시판 	
-	@Select("SELECT * FROM CONSULTING_BOARD")
-	ArrayList<ConsultingBoard> moveBoardList();
 
-	boolean writeBoard(ConsultingBoard board);
+	ArrayList<ConsultingBoard> getBoardList(Integer pageNum);
 	
-	ConsultingBoard boardmodifyajax(Integer num);
+	@Select("SELECT COUNT(*) FROM CONSULTING_BOARD")
+	int getBoarCount();
 
-	boolean boardmodify(ConsultingBoard board);
+	boolean boardWrite(ConsultingBoard board);
 
-	boolean writelistdelete(Integer num);
+	ConsultingBoard getContents(int CB_NUM);
 
-	Integer getBoardList();
+	//boolean writeBoard(ConsultingBoard board);
+//	
+//	ConsultingBoard boardmodifyajax(Integer num);
+//
+//	boolean boardmodify(ConsultingBoard board);
+//
+//	boolean writelistdelete(Integer num);
+//
 }

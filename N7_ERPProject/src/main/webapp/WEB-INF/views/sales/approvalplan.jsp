@@ -125,7 +125,7 @@ resize: none;
                            </tr>
                            <tr>
                               <th>기타</th>
-                              <th colspan="8"><textarea rows="13" cols="125" name="bs_ect" id="ect"></textarea></th>
+                              <th colspan="8"><textarea rows="13" cols="125" name="bs_ect"></textarea></th>
                            </tr>
                         </table>
                      </td>

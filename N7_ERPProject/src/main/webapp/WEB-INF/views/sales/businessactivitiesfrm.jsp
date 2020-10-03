@@ -33,11 +33,11 @@ text-align:center;
                <th>영업코드</th>
                <th><input type="text" name="ba_ocode" placeholder="자동생성" readonly></th>
                <th>회사코드</th>
-               <th><input type="text" name="ba_ccode"></th>
+               <th><input type="text" name="ba_ccode" value="${cCode}" readonly></th>
                <th>거래처회사코드</th>
                <th><input type="text" name="ba_clcode"></th>
                <th>사원코드</th>
-               <th><input type="text" name="ba_hrcode"></th>
+               <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th>
             </tr>
             <tr>
                <th>사업단위</th>

@@ -61,7 +61,7 @@ public interface AccountDao {
 
 	List<SaleInfo> getpkind(String pkind);
 
-	List<SaleInfo> getsaleList2();
+	/* List<SaleInfo> getsaleList2(); */
 
 	List<SaleInfo> saleDetaile(@Param("check") String check, @Param("cCode") String cCode);
 
@@ -138,6 +138,10 @@ public interface AccountDao {
 	public int countDocument1(ApprovalDocu ap);
 
 	public int countDocument2(Account ac);
+	
+	List<SaleInfo> getsaleList2(String cCode);
+
+//	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);

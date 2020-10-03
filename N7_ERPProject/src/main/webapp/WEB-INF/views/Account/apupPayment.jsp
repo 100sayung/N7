@@ -155,64 +155,36 @@ td {
 
 </script>
 <script>
-	$("#approval").click(
-			function() {
-				var check = '';
-				$("input[name='checknum']:checked").each(
-						function() {
-							check = $(this).attr('value');
+$("#approval").click(
+		function() {
+			var check = '';
+			$("input[name='checknum']:checked").each(
+		               function() {
+		                  check = $(this).attr('value');
 
-							  if(check.indexOf("AC") != -1){
-				                     window.open(
-				                     '/erp/rest/Account/apRequest?j_docunum=' + check, 'apRequest', 'width=1500, height=600');
-				                     
-				              }else if(check.indexOf("P") != -1){ //예은
-				                     window.open(
-				                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
-				                        'width=1500, height=600');
-				                  
-			                  }else if(check.indexOf("G") != -1){ //수진
-			                         window.open(
-			                           '/erp/rest/sales/apRequest?bs_docunum='+ check, 'apRequest',
-			                           'width=1500, height=600');
-			                      
-			                  }else if(check.indexOf("AS") != -1){ //영민
-			                          window.open(
-			                             '/erp/rest/Account/asRequest?as_document='+ check, 'asRequest',
-			                             'width=1500, height=600');
-			        
-			                  }else if(check.indexOf("AP") != -1){ //영민
-			                          window.open(
-			                             '/erp/rest/Account/apapRequest?ap_document='+ check, 'apapRequest',
-			                             'width=1500, height=600');        
-			                      
-			                  }else{
-				                     window.open(
-				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
-				                  }
 
-				               });
-				      });
+		                  if(check.indexOf("AC") != -1){
+		                     window.open(
+		                        '/erp/rest/Account/apRequest?j_docunum='
+		                              + check, 'apRequest',
+		                        'width=1500, height=600');
+		                  }else if(check.indexOf("P") != -1){ //예은
+		                     window.open(
+		                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
+		                        'width=1500, height=600');
+	                      }else if(check.indexOf("G") != -1){ //수진
+	                         window.open(
+	                           '/erp/rest/sales/apRequest?bs_docunum='+ check, 'apRequest',
+	                           'width=1500, height=600');
+		                  }else if(check.indexOf("H") != -1){ //인사
+		                	  console.log(check);
+		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
+		                  }else{
+		                	  window.open(
+		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
+		                  }
+
+		               });
+		      });
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

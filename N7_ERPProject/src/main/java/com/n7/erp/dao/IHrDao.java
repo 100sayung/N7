@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.google.gson.JsonElement;
+import com.n7.erp.bean.Authority;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.entity.NameHoliday;
 import com.n7.erp.bean.hr.Academic;
@@ -43,7 +44,6 @@ public interface IHrDao {
 	@Select("SELECT M_NAME FROM MHR WHERE HC_HRCODE=#{hap_toapprover}")
 	String getToApprover(String hap_toapprover);
 
-	// HC_CODE ���떊�뿉 �빐蹂대뒗以�
 
 	@Select("SELECT C_NAME FROM COMPANY WHERE C_CODE = #{cCode}")
 	String getCName(String cCode);
@@ -159,4 +159,26 @@ public interface IHrDao {
 	List<Member> selectHrCard(PagingVO vo);
 	List<Member> selectNoHrCard(PagingVO vo);
 	int countNoHrCard(String cCode);
+
+
+
+	@Select("SELECT * FROM AUTHORITY WHERE AU_COMNAME = #{cCode}")
+	List<Authority> getOurDept(String cCode);
+
+
+
+	@Delete("DELETE FROM HR_ATTENDANCE WHERE HA_CCODE=#{cCode} AND HA_HRCODE=#{hrcode} AND HA_TIME=#{time}")
+	boolean DeleteAttendance(HashMap<String, String> hMap);
+
+	@Select("SELECT * FROM HR_ATTENDANCE WHERE HA_TIME LIKE '%'||#{day}||'%'")
+	ArrayList<Attendance> getEmployeeAttendanceTwo(String day);
+
+	@Select("SELECT * FROM HR_ATTNEDANCE WHERE HA_CCODE=#{cCode} AND HA_TIME=#{time}")
+	boolean selectAttendance(HashMap<String, Object> hMap);
+
+	@Update("UPDATE HR_ATTENDANCE SET HA_TIME=#{time}")
+	void updateAttendance(HashMap<String, Object> hMap);
+
+		@Update("UPDATE APPROVALDOCU SET AP_STATUS = #{status} WHERE AP_CCODE = #{cCode} AND AP_DOCUNUM = #{docunum}")
+		void registDocuStatsu(HashMap<String, String> hMap);
 }

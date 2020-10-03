@@ -24,7 +24,7 @@ import com.n7.erp.service.ConsultingBoardMM;
 import com.n7.erp.service.MemberMM;
 import com.n7.erp.userClass.PagingVO;
 
-//���� �̵�����
+//占쏙옙占쏙옙 占싱듸옙占쏙옙占쏙옙
 @Controller
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -43,7 +43,7 @@ public class HomeController {
 		return "/home/home";
 	}
 	
-	//부서관리 페이지
+	//遺��꽌愿�由� �럹�씠吏�
 	@RequestMapping(value = "/managermode/erpmanage", method = RequestMethod.GET)
 	public String erpmanage() {
 		
@@ -67,12 +67,12 @@ public class HomeController {
 		return "/home/introducecompany";
 	}
 
-	@RequestMapping(value = "/home/erpboard", method = RequestMethod.GET)
-	public ModelAndView erpBoard() {
-		logger.info("");
-		mav = cbm.moveBoardList();
-		return mav;
+	@RequestMapping(value = "/erpboard", method = RequestMethod.GET)
+	public ModelAndView erpBoard(Integer pageNum) {
+	mav=cbm.moveBoardList(pageNum);
+	return mav;
 	}
+	
 	@RequestMapping(value = "/home/comInfo", method = RequestMethod.GET)
 	public String comInfo() {
 		return "/home/comInfo";
@@ -97,25 +97,35 @@ public class HomeController {
 	public String join() {
 		return "/home/join";
 	}
-
+	@GetMapping(value="/welcome")
+	public String welcome() {
+		return "/home/welcomepage";
+	}
 	@RequestMapping(value = "/erpapply", method = RequestMethod.GET)
 	public String erpApply() {
 		return "/home/erpapply";
 	}
 
 	@GetMapping(value = "/adminpage")
-	public String moveAdminPage() {
-		return "/home/adminpage";
+	public String moveAdminPage(HttpSession session) {
+		if(mm.checkGrade(session).equals("2")) {
+			return "/home/adminpage";
+		}
+		return "redirect:/";
 	}
-
 	@GetMapping(value = "/companymanager")
-	public String moveCompanyManager() {
-		return "/home/companymanager";
+	public String moveCompanyManager(HttpSession session) {
+		if(mm.checkGrade(session).equals("2")) {
+			return "/home/companymanager";
+		}
+		return "redirect:/";
 	}
-
 	@GetMapping(value = "/membermanager")
-	public String moveMemberManager() {
-		return "/home/membermanager";
+	public String moveMemberManager(HttpSession session) {
+		if(mm.checkGrade(session).equals("2")) {
+			return "/home/membermanager";
+		}
+		return "redirect:/";
 	}
 
 	@GetMapping(value = "/findid")
@@ -142,7 +152,7 @@ public class HomeController {
 
 	@PostMapping(value = "/newerp")
 	public String registNewERP(Company com) {
-		cm.registNewERP(com); //����� temp���� �Ұ���.
+		cm.registNewERP(com); //占쏙옙占쏙옙占� temp占쏙옙占쏙옙 占쌀곤옙占쏙옙.
 		return "/home/home";
 	}
 
@@ -162,39 +172,25 @@ public class HomeController {
 		mav = mm.moveMyInfo(session);
 		return mav;
 	}
-	// �Խñ� �������� �̵�
-	@RequestMapping(value = "/writeFrm", method = RequestMethod.GET)
+	//寃뚯떆湲� �럹�씠吏�濡� �씠�룞
+	@RequestMapping(value = "/home/writeFrm", method = RequestMethod.GET)
 	public String write() {
-		return "writeFrm";
+	   return "/home/writeFrm";
 	}
 
-	// �Խñ� �ۼ�
-	@RequestMapping(value = "/writeBoard", method = RequestMethod.POST)
-	public ModelAndView writeBoard(ConsultingBoard board) {
-		mav = cbm.writeBoard(board);
+	//寃뚯떆湲� �옉�꽦
+	@RequestMapping(value = "/home/writeBoard", method = RequestMethod.POST)
+	public ModelAndView writeBoard(ConsultingBoard board, HttpSession session, Member mb) {
+	    mav=cbm.writeBoard(board, session, mb);
+	    return mav;
+	}
+	
+	@RequestMapping(value = "/home/boardContents", method = RequestMethod.GET)
+	 public ModelAndView boardContents(int CB_NUM) {
+		System.out.println("CB_NUM="+CB_NUM);
+		mav=cbm.boardContents(CB_NUM);
 		return mav;
-	}
-
-	// �Խñ� ����
-	@RequestMapping(value = "/boardmodify", method = RequestMethod.POST)
-	public ModelAndView boardmodify(ConsultingBoard board) {
-		mav = cbm.boardmodify(board);
-		return mav;
-	}
-
-	// �Խñ� ������������ �̵�
-	@RequestMapping(value = "/boardmodifyajax", method = RequestMethod.POST)
-	public @ResponseBody String boardmodifyajax(Integer num) {
-		String result = cbm.boardmodifyajax(num);
-		return result;
-	}
-
-	// �Խñ� ����
-	@RequestMapping(value = "/writelistdelete", method = RequestMethod.POST)
-	public ModelAndView writelistdelete(Integer num) {
-		mav = cbm.writelistdelete(num);
-		return mav;
-	}
+   }
 
 	@RequestMapping(value = "/home/findid", method = RequestMethod.POST)
 	public ResponseEntity<String> findID(String userEmail) {

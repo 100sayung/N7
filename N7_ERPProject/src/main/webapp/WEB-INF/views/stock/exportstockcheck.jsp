@@ -103,19 +103,19 @@ input[type='text'], input[type='number'] {
 			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
 			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
 			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
+			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
+			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
 
 	<div id="description">
-		<h3>입고 내역 및 수정</h3>
-		${importCheckList} <input type="hidden" value="${id}">
-		<button type="button" id="btn">입고 확정</button>
+		<h3>출고 확정</h3>
+		${exportStockCheck} <input type="hidden" value="${id}">
+		<button type="button" id="btn">출고 확정</button>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
-		$('#btn')
-				.click(
-						function() {
+		$('#btn').click(function() {
 							var ipList = [];
 							var num = 1;
 							var num3 = 0;
@@ -165,7 +165,7 @@ input[type='text'], input[type='number'] {
 							console.log("arr", ipList);
 							$
 									.ajax({
-										url : "/erp/stock/confirmimportcheck",
+										url : "/erp/stock/confirmexportcheck",
 										data : stringifiedIpList,
 										type : "post",
 										traditional : true,
