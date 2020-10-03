@@ -42,26 +42,26 @@ public class HRRestController {
 		List<Academic> acList = hm.getAcademicInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
 		return acList;
 	}
-	//�씠�젰 由ъ뒪�듃 異쒕젰
+	//占쎌뵠占쎌젾 �뵳�딅뮞占쎈뱜 �빊�뮆�젾
 	@GetMapping(value="/hr/career")
 	public List<Career> getCRInfo(String m_id, HttpServletRequest request) {
 		List<Career> crList = hm.getCareerInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
 		return crList;
 	}
-	//�뿴 �궘�젣�븯硫댁꽌 �뜲�씠�꽣吏��슦湲�
+	//占쎈였 占쎄텣占쎌젫占쎈릭筌롫똻苑� 占쎈쑓占쎌뵠占쎄숲筌욑옙占쎌뒭疫뀐옙
 	@PostMapping(value="/hr/removeinfo")
 	public String removeInfo(HttpSession session, String num, String type) {
 		String result = hm.removeInfo(session, num, type);
 		return result;
 	}
 
-	//id濡쒕��꽣 hrCard媛� 議댁옱�븯�뒗吏� �븞�븯�뒗吏� 泥댄겕�븿!!!
+	//id嚥≪뮆占쏙옙苑� hrCard揶쏉옙 鈺곕똻�삺占쎈릭占쎈뮉筌욑옙 占쎈툧占쎈릭占쎈뮉筌욑옙 筌ｋ똾寃뺧옙釉�!!!
 	@GetMapping(value="/hr/hrcodefromid")
 	public boolean haveHRCodeFromID(String m_id) {
 		boolean flag = hm.haveHRCodeFromId(m_id);
 		return flag;
 	}
-	//id濡쒕��꽣 member�젙蹂� 媛��졇�샂!
+	//id嚥≪뮆占쏙옙苑� member占쎌젟癰귨옙 揶쏉옙占쎌죬占쎌긾!
 	@GetMapping(value="/hr/memberfromid")
 	public Member getMemberInfo(String m_id) {
 		System.out.println(m_id);
@@ -109,14 +109,14 @@ public class HRRestController {
 
 	//HRCARD !!!~\
 
-	//遺��꽌濡� 吏곸콉媛��졇�삤湲�
+	//�겫占쏙옙苑뚧에占� 筌욊낯肄됧첎占쏙옙議뉛옙�궎疫뀐옙
 	@GetMapping(value="/hr/positionfromdept")
 	public String getPositionFromDept(HttpSession session, String dept) {
 		String result = hm.getPositionFromDept(session, dept);
 		return result;
 	}
 
-	//�씤�궗移대뱶 �씠由� 寃��깋 異쒕젰
+	//占쎌뵥占쎄텢燁삳�諭� 占쎌뵠�뵳占� 野껓옙占쎄퉳 �빊�뮆�젾
 	@GetMapping(value="/hr/searchfromname",  produces = "application/text; charset=utf8")
 	public String getSearchFromName(HttpSession session, String name) {
 		String result = hm.getSearchFromName(session, name);
@@ -140,13 +140,13 @@ public class HRRestController {
 		String result = deptmm.getDeptList(session.getAttribute("cCode").toString());
 		return result;
 	}
-	//遺��꽌 �벑湲� 寃��깋
+	//�겫占쏙옙苑� 占쎈쾻疫뀐옙 野껓옙占쎄퉳
 	@GetMapping(value = "/hr/deptauthlist")
 	public String getDeptAuthList(HttpSession session) {
 		String result = deptmm.getDeptAuthList(session.getAttribute("cCode").toString());
 		return result;
 	}
-	//�쑕媛��떊泥�
+	//占쎌몧揶쏉옙占쎈뻿筌ｏ옙
 	@GetMapping(value = "/hr/myleaderlist")
 	public String getMyLeaderUsingGrade(HttpSession session){
 		String leaderList = hm.getMyLeaderUsingGrade(session, "1");
@@ -159,35 +159,35 @@ public class HRRestController {
 		return result;
 	}
 
-	//洹쇳깭愿�由�
+	//域뱀눛源��꽴占썹뵳占�
 
-	//異쒓껐�벑濡�
+	//�빊�뮄猿먲옙踰묉에占�
 	@PostMapping(value = "/hr/attendance")
 	public String logAttendance(HttpSession session, String status, String time) {
 		String result = hm.logAttendance(session.getAttribute("cCode").toString(), session.getAttribute("id").toString(), status,time);
 		return result;
 	}
-	//�쁽�옱�긽�깭�솗�씤
+	//占쎌겱占쎌삺占쎄맒占쎄묶占쎌넇占쎌뵥
 	@GetMapping(value="/hr/currentattendance")
 	public String getCurAttendance(HttpSession session) {
 		String result = hm.getCurAttendance(session.getAttribute("id").toString());
 		return result;
 	}
 
-	//�궗�썝異쒓껐議고쉶
+	//占쎄텢占쎌뜚�빊�뮄猿먫�곌퀬�돳
 	@GetMapping(value="/hr/employeeattendance")
 	public String getMyAttendance(HttpSession session, String day, String yearmonth) {
 		String result = hm.getEmployeeAttendance(session, day, yearmonth);
 		return result;
 	}
 
-	//洹쇰Т議고쉶
+	//域뱀눖龜鈺곌퀬�돳
 	@GetMapping(value="/hr/employeestatus")
 	public String getEmployeeStatus(HttpSession session) {
 		String result = hm.getEmployeeStatus(session);
 		return result;
 	}
-	//�궗�썝 �쑕媛� 議고쉶
+	//占쎄텢占쎌뜚 占쎌몧揶쏉옙 鈺곌퀬�돳
 	@GetMapping(value="/hr/employeeholiday")
 	public String getEmployeeHoliday(HttpSession session, String yearmonth) {
 		String result = hm.getEmployeeHoliday(session, yearmonth);
@@ -209,7 +209,7 @@ public class HRRestController {
 
 
 
-	//�궗�썝 �쑕/�눜吏� �긽�깭 議고쉶
+	//占쎄텢占쎌뜚 占쎌몧/占쎈닚筌욑옙 占쎄맒占쎄묶 鈺곌퀬�돳
 	@GetMapping(value="/hr/checkretired")
 	public String getCheckRetired(HttpSession session, String status) {
 		String result = hm.getCheckRetired(session.getAttribute("cCode").toString(), status);
@@ -223,6 +223,18 @@ public class HRRestController {
 	@GetMapping(value="/hr/detailholiday")
 	public String getDetailHoliday(HttpSession session, String docunum) {
 		String result = hm.getDetailHoliday(session.getAttribute("cCode").toString(), docunum);
+		return result;
+	}
+
+	@GetMapping(value="/hr/attendanceDelete")
+	public String getAttendanceDelete(HttpSession session, String hrcode, String time) {
+		String result=hm.DeleteAttendance(session.getAttribute("cCode").toString(), hrcode, time);
+		return result;
+	}
+
+	@GetMapping(value="/hr/attendanceUpdate")
+	public String getAttendanceUpdate(HttpSession session, String hrcode, String time, String textTime) {
+		String result=hm.Updateattendance(session.getAttribute("cCode"),hrcode,time,textTime);
 		return result;
 	}
 }

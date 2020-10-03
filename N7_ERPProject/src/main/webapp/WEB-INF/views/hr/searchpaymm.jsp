@@ -71,7 +71,7 @@ span {
 
 </style>
 </head>
-<body>
+<body onload="build();">
 	<div id="header">
 		<div id="logo">
 			<h1>
@@ -95,10 +95,10 @@ span {
 
 			<li id="showMenu2">근태 관리
 				<ul id="smallMenu2" style="display: none;">
-					<li><a href="">휴가 접수</a></li>
-					<li><a href="">사원 출결 관리</a></li>
-					<li><a href="">근무 조회</a></li>
-					<li><a href="">휴/퇴직 관리</a></li>
+					<li><a href="/erp/hr/receiptholiday">휴가 조회</a></li>
+					<li><a href="/erp/hr/attendance">사원 출결 조회</a></li>
+					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
+					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
 				</ul>
 			</li>
 			<li id="showMenu3">급여 관리
@@ -111,13 +111,12 @@ span {
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">사원 검색</div>
+	<div class="divcss">사원 급여 관리</div>
 	<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색">
 	<input type="button" id="checkpayid" class="cssbutton" onclick="checkpayid()" value="검색">
 	<br><br>
-	<div class="divcss">사원 급여 관리</div>
-	<table id="wages" style="text-align: center; width: 900px;">
-		<tr class="tr_chart_color"  style="">
+	<table id="wages" style="text-align: center; width: 800px; border: 1px solid black;">
+		<tr class="tr_chart_color"  style="background-color: lightblue;">
 			<td>아이디</td>
 			<td>이름</td>
 			<td>부서</td>

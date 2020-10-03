@@ -8,14 +8,14 @@ import lombok.experimental.Accessors;
 @Alias("approvaldocu")
 @Accessors(chain = true)
 @Data
-public class ApprovalDocu { //결재문서양식
+public class ApprovalDocu { //결제 문서 양식
 	String ap_docunum;
 	String ap_ccode;
 	String ap_docuname;
 	String ap_fromapprover;
 	String ap_toapprover;
 	///--------
-	String ap_date; //DATE가 아니라 STRING 형식임!!!!!!!!!! 수정해야할이유있으면 말해주세요!!!!
+	String ap_date; //DATE 가 아니라 STRING 형식임!!!!!!!!!!!수정해야할 이유있으면 말해주세요!!!!
 	///---------
 	String ap_status;
 }
