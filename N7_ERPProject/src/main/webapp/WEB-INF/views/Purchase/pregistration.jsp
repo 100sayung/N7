@@ -126,8 +126,8 @@ ${msg}
 	 $(document).ready(function(){
 		 var select;
 			$.ajax({
-				url: '/erp/stock/getitemcode',
-				type: 'post',
+				url: "/erp/stock/getitemcode",
+				type: "get",
 				dataType: 'json',
 				success: function(data){
 					select=makeSelectBox(data);
@@ -155,9 +155,9 @@ ${msg}
 		
 	var select;
 	$.ajax({
-		url: '/erp/stock/getitemcode',
-		type: 'post',
-		dataType: 'json',
+		url: "/erp/stock/getitemcode",
+		type: "get",
+		dataType: "json",
 		success: function(data){
 			select=makeSelectBox(data);
 			$(".it").html(select);
@@ -332,18 +332,19 @@ ${msg}
       
       $("#stock").click(function(){
 		  $.ajax({
-			  url:"/erp/rest/purchase/getstocklist",
+			  url:"/erp/rest/Purchase/getstocklist",
 			  type: "get",
 			  dataType: "json",
 			  success: function(data){
 				  console.log(data);
 				  var str="";
-				  str+="<tr><th>품목코드</th><th>날짜</th><th>수량</th><th>가격</th></tr>";
+				  str+="<tr style='text-align: center;'><th>품목코드</th><th>상품명</th><th>재고량</th><th>단위</th><th>크기</th></tr>";
 				  for(var i in data.sList){
-				  	str+="<tr><td>"+data.sList[i].ie_itcode+"</td>";
-				  	str+="<td>"+data.sList[i].ie_date+"</td>";
-				  	str+="<td>"+data.sList[i].ie_qty+"</td>";
-				  	str+="<td>"+data.sList[i].ie_price+"</td><tr>";
+				  	str+="<tr style='text-align: center;'><td>"+data.sList[i].it_code+"</td>";
+					str+="<td>"+data.sList[i].it_pname+"</td>";
+				  	str+="<td>"+data.sList[i].it_stock+"</td>";
+				  	str+="<td>"+data.sList[i].it_unit+"</td>";
+				  	str+="<td>"+data.sList[i].it_size+"</td><tr>";
 				  }
 				  $('#list').html(str);
 			  },

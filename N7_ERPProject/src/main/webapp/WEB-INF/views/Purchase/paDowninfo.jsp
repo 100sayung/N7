@@ -188,27 +188,6 @@ html, body {
 		})
 	});
 
-	$('#paBack2').click(function(){
-		var obj= $('#fo').serialize();
-		console.log(obj);
-
-		$.ajax({
-			url: '/erp/rest/Purchase/paBack',
-			type: 'post',
-			data: obj,
-			success: function(data){
-				alert("반려가 완료되었습니다.");
-				window.close();
-				window.opener.location.reload();
-				console.log(data);
-			},
-			error: function(err){
-				console.log(err);
-				alert("반려가 실패되었습니다.");
-			}
-		})
-	});
-
 	$('#turnback').click(function(){
 		var ect = $("#ect").val();
 		var num= $("#num").val();

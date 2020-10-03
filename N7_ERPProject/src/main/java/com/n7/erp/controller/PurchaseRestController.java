@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -120,10 +121,23 @@ public class PurchaseRestController {
 		return mMap;
 	}
 	 
+	@PostMapping(value = "/Purchase/paSign2", produces= "application/json;charest=utf-8" )
+	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
+		 mav=pm.paSign2(pa,ap,req,rep,session);
+	     return mav;
+	}
+	 
+	@RequestMapping(value = "/Purchase/paBack", produces= "application/json;charest=utf-8" )
+	@ResponseBody
+	public ModelAndView paBack(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
+	     mav=pm.paBack(pa,ap,req,rep,session);
+		 return mav;
+	 }
+	 
 	//반품 
 	@PostMapping(value = "/Purchase/rRegistration", produces= "application/json;charest=utf-8" )
-	public ModelAndView rRegistration(Return rt, HttpSession session) {
-		mav= pm.rRegistration(rt, session);
+	public ModelAndView rRegistration(Return rt, HttpSession session, ItemCode it) {
+		mav= pm.rRegistration(rt, session, it);
 		return mav;
 	}
 	
@@ -149,23 +163,19 @@ public class PurchaseRestController {
 		return rMap;
 	}
 	
-	@GetMapping(value = "/purchase/stocklist", produces= "application/json;charest=utf-8" )
+	//입고현황
+	@GetMapping(value = "/Purchase/stocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<IePort>> stocklist(HttpSession session) {
 		Map<String, List<IePort>> sMap= pm.stocklist(session);
 		return sMap;
 	}
 	
-	@GetMapping(value = "/purchase/getstocklist", produces= "application/json;charest=utf-8" )
+	@GetMapping(value = "/Purchase/getstocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<ItemCode>> getstocklist(HttpSession session) {
 		Map<String, List<ItemCode>> sMap= pm.getstocklist(session);
 		return sMap;
 	}
 	
-	@GetMapping(value = "/purchase/paSign2", produces= "application/json;charest=utf-8" )
-	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
-		mav=pm.paSign2(pa,ap,req,rep,session);
-		return mav;
-	}
 	
 	
 

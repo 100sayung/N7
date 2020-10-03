@@ -212,10 +212,22 @@ public ModelAndView moveMyInfo(HttpSession session) {
 
 	public String turnback(String num, String ect, HttpSession session) {
 		String value="";
+		boolean result2=false;
+		boolean result3=false;
+		boolean result4=false;
+		String numCode = num.substring(0,1);
+		System.out.println(numCode);
 		String cCode = session.getAttribute("cCode").toString();
 		boolean result  = mDao.turnback(num,cCode);
+		if(numCode.equals("A")) {
+		 result2 = mDao.ectupdate1(num,ect,cCode);
+		}else if(numCode.equals("G")){
+		 result3 = mDao.ectupdate2(num,ect,cCode);
+		}else {
+		 result4 = mDao.ectupdate3(num,ect,cCode);
+		}
 		
-		if(result) {
+		if(result&&result2 ||result&&result3||result&&result4) {
 			value ="1";
 		}else {
 			value ="2";

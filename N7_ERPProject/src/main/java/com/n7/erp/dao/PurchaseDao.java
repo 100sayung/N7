@@ -58,18 +58,7 @@ public interface PurchaseDao {
 	boolean pApproval1(PurchaseApproval pa);
 
 	boolean pApproval2(PurchaseApproval pa);
-
-	boolean rRegistration(Return rt);
-
-	List<Return> rInfo();
-
-	boolean rDelete(String check_list);
-
-	List<Return> rSearch(@Param("search") String search, @Param("choice") String choice);
-
-	@Select("SELECT COUNT(*) FROM O_PURCHASECOMMOM")
-	int getListCount();
-
+	
 	PurchaseApproval pRequest(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
 
 	List<PurchaseApproval> pListRequest(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
@@ -79,17 +68,24 @@ public interface PurchaseDao {
 	PurchaseApproval pRequest2(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
 
 	List<PurchaseApproval> pListRequest2(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
+	
+	boolean paSign2(PurchaseApproval pa);
+
+	boolean apSign2(ApprovalDocu ap);
+
+	boolean rRegistration(Return rt);
+	
+	List<Return> rInfo();
+
+	boolean rDelete(String check_list);
+
+	List<Return> rSearch(@Param("search") String search, @Param("choice") String choice);
 
 	List<IePort> stocklist(String cCode);
 
 	List<ItemCode> getstocklist(String cCode);
 
-	boolean paSign2(PurchaseApproval pa);
-
-	boolean apSign2(ApprovalDocu ap);
-
-
-
+	boolean itupdate(ItemCode it);
 
 	
 }
