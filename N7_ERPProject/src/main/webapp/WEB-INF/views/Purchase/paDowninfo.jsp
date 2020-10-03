@@ -166,7 +166,7 @@ html, body {
 		});
 	});
 	
-	$("#paSign2").click(function(){
+	$('#paSign2').click(function(){
 		var obj=$("#fo").serialize();
 		console.log(obj);
 		
@@ -183,6 +183,7 @@ html, body {
 			error: function(err){
 				alert("결재요청이 실패했습니다.");
 				console.log(err);
+				
 			}
 		})
 	});

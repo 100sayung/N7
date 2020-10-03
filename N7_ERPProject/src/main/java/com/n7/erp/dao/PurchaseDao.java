@@ -88,10 +88,6 @@ public interface PurchaseDao {
 
 	boolean apSign2(ApprovalDocu ap);
 
-	boolean paBack(PurchaseApproval pa);
-
-	boolean apBack2(ApprovalDocu ap);
-
 
 
 

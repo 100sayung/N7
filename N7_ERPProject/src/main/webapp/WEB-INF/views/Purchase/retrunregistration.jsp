@@ -98,33 +98,7 @@ border: 1px solid silver;
             </div>
          </form>
 
-<script type="text/javascript">
-	var select;
-	$.ajax({
-     	url:"/erp/stock/getitemcode",
-     	dataType:"json",
-        type:"post",
-      	success:function(data){
-        	 select = makeSelectBox(data);
-         	$(".it").html(select);
-     	},
-     	error:function(err){
-        	console.log(err);
-      	}
-   	});
-    function makeSelectBox(arr){
-       var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
-       if(arr.length==0){
-          arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
-       }else{
-          for(var i = 0; i<arr.length;i++){
-             arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
-          }
-       }
-        arrStr+="</select>";
-        return arrStr;
-    }
-	
+     <script type="text/javascript">
      function setChildValue(data) {
 		   console.log(data)
 		   for(var i in data.aList){ 
@@ -133,7 +107,7 @@ border: 1px solid silver;
 		   
 		   $("#clcode").val(clcode);
 		};
-		
+     
     $(function() {
 		$("#allCheck").click(function() {
 			if ($("#allCheck").prop("checked")) {
@@ -267,10 +241,11 @@ border: 1px solid silver;
   	  				  }
   	  			  })
 			})	  
+			
 	
 	$("#Wearing").click(function(){
 		  $.ajax({
-			  url:"/erp/rest/Purchase/stocklist",
+			  url:"/erp/rest/purchase/stocklist",
 			  type: "get",
 			  dataType: "json",
 			  success: function(data){
@@ -290,9 +265,6 @@ border: 1px solid silver;
 			  }
 		  })
   	})
-  	
-  	
-  	
-</script>
+   </script>
 </body>
 </html>

@@ -68,8 +68,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/erpboard", method = RequestMethod.GET)
-	public ModelAndView erpBoard(Integer pageNum, HttpSession session, ConsultingBoard board) {
-	mav=cbm.moveBoardList(pageNum, session, board);
+	public ModelAndView erpBoard(Integer pageNum) {
+	mav=cbm.moveBoardList(pageNum);
 	return mav;
 	}
 	

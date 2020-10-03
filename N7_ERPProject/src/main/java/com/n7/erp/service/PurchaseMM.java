@@ -488,7 +488,7 @@ public class PurchaseMM {
 		
 		ap.setAp_ccode(cCode);
 		ap.setAp_docuname(pa.getP_documentcode());
-	
+		
 		boolean as=pDao.paSign2(pa);
 		boolean sa=pDao.apSign2(ap);
 		
@@ -498,37 +498,6 @@ public class PurchaseMM {
 		} else {
 			view = "Account/apdownPayment";
 			System.out.println("야 결재요청못했다 미안하다..");
-		}
-		mav.setViewName(view);
-		return mav;
-	}
-
-	public ModelAndView paBack(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep,
-			HttpSession session) {
-		ModelAndView mav= new ModelAndView();
-		String view = null;
-		String cCode= (String)session.getAttribute("cCode");
-		
-		System.out.println("documentcode:"+pa.getP_documentcode());
-		System.out.println("ect:"+pa.getP_etc());
-		
-		if(pa.getP_etc()==null || pa.getP_etc() == "" || pa.getP_etc().equals("사유")) {
-			pa.setP_etc("사유없음");
-		}
-		pa.setP_ccode(cCode);
-		
-		ap.setAp_ccode(cCode);
-		ap.setAp_docunum(pa.getP_documentcode());
-		
-		boolean ba= pDao.paBack(pa);
-		boolean bp= pDao.apBack2(ap);
-		
-		if (ba && bp) {
-			view = "Account/apdownPayment";
-			System.out.println("반려요청했음");
-		} else {
-			view = "Account/apdownPayment";
-			System.out.println("야 반려요청못했다 미안하다..");
 		}
 		mav.setViewName(view);
 		return mav;

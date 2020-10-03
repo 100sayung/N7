@@ -1,17 +1,11 @@
 package com.n7.erp.dao;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Component;
 
 import com.n7.erp.bean.ConsultingBoard;
 
-@Mapper
-@Component
 public interface IConsultingBoardDao {
 
 	ArrayList<ConsultingBoard> getBoardList(Integer pageNum);
@@ -22,8 +16,6 @@ public interface IConsultingBoardDao {
 	boolean boardWrite(ConsultingBoard board);
 
 	ConsultingBoard getContents(int CB_NUM);
-
-	List<ConsultingBoard> boardSearch(@Param("choice") String choice, @Param("search") String search);
 
 	//boolean writeBoard(ConsultingBoard board);
 //	
