@@ -20,26 +20,23 @@ import com.n7.erp.service.HRDepartmentMM;
 import com.n7.erp.service.HrMM;
 import com.n7.erp.userClass.PagingVO;
 
-@RestController // @ResponseBody �깮�왂媛��뒫
+@RestController
 @RequestMapping(value = "/rest")
 public class HRRestController {
 
 	@Autowired
 	private HrMM hm;
 	@Autowired private HRDepartmentMM deptmm;
-	//�옄寃⑹쬆 由ъ뒪�듃 異쒕젰
 	@GetMapping(value="/hr/certification")
 	public List<Certification> getCTFInfo(String m_id, HttpServletRequest request) {
 		List<Certification> ctfList = hm.getCertificationInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
 		return ctfList;
 	}
-	//�씤�궗移대뱶 �젙蹂� 異쒕젰
 	@GetMapping(value="/hr/hrcard")
 	public HR_Card getHRCInfo(String m_id, HttpServletRequest request) {
 		HR_Card hrCard = hm.getHrCardInfo(m_id);
 		return hrCard;
 	}
-	//�븰�젰 由ъ뒪�듃 異쒕젰
 	@GetMapping(value="/hr/academic")
 	public List<Academic> getACInfo(String m_id, HttpServletRequest request) {
 		List<Academic> acList = hm.getAcademicInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
@@ -204,7 +201,6 @@ public class HRRestController {
 		String result = hm.getEmployeeHoliday(cCode, yearmonth, hrCode);
 		return result;
 	}
-	//�쑕媛� �듅�씤/諛섎젮
 	@PostMapping(value="/hr/holidaystatus")
 	public String registHoliday(HttpSession session, String yesno, String docunum) {
 		hm.registHolidayStatus(session, docunum, yesno);

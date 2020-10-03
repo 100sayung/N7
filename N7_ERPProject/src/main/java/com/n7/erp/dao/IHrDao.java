@@ -165,4 +165,7 @@ public interface IHrDao {
 
 	@Select("SELECT * FROM AUTHORITY WHERE AU_COMNAME = #{cCode}")
 	List<Authority> getOurDept(String cCode);
+
+	@Update("UPDATE APPROVALDOCU SET AP_STATUS = #{status} WHERE AP_CCODE = #{cCode} AND AP_DOCUNUM = #{docunum}")
+	void registDocuStatsu(HashMap<String, String> hMap);
 }

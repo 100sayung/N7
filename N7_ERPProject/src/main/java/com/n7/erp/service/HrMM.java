@@ -553,7 +553,7 @@ public class HrMM {
 		return mav;
 	}
 
-	public void registHolidayStatus(HttpSession session, String docunum, String yesno) { // �겱 �삺 1 �뵠簾� �뱟 �뵥 2 簾� 獄쏆꼶�젻
+	public void registHolidayStatus(HttpSession session, String docunum, String yesno) {
 		System.out.println(docunum);
 		System.out.println(yesno);
 		HashMap<String, String> hMap = new HashMap<String, String>();
@@ -563,10 +563,12 @@ public class HrMM {
 			hMap.put("status", "3");
 			System.out.println(hMap);
 			hDao.registHolidayStatus(hMap);
+			hDao.registDocuStatsu(hMap);
 		} else if (yesno.equals("no")) {
 			hMap.put("status", "4");
 			System.out.println(hMap);
 			hDao.registHolidayStatus(hMap);
+			hDao.registDocuStatsu(hMap);
 		}
 
 	}
