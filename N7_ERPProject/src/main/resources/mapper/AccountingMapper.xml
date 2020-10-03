@@ -130,8 +130,12 @@
 	SELECT * FROM REQUEST WHERE IE_CPCODE=#{cCode} AND IE_SEQNUM=#{code} 
 	</select>
 	
-	<select id="comparecode" parameterType="String" resultType="approvaldocu">
+	<select id="comparecode" parameterType="String" resultType="ap">
 	SELECT * FROM APPROVALDOCU WHERE AP_DOCUNUM=#{code} AND AP_CCODE=#{cCode}
+	</select>
+	
+	<select id="comparecode2" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM APPROVALDOCU WHERE AP_DOCUNUM=#{code} AND AP_CCODE=#{cCode}
 	</select>
 
 
