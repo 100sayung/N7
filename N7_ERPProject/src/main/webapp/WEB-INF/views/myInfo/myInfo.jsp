@@ -100,7 +100,12 @@ tr{
 			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
 			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
 			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
-			<li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
+			<li id="showMenu1">나의 결재함</a></li>
+			<ul id="menu2" style="display: none;">
+				<li id="apupPayment">내가 올린 결재함</li>
+				<li id="apdownPayment">내가 받은 결재함</li>
+				<li id="acTemporary">임시저장 결재함</li>
+			</ul>
 		</ul>
 	</div>
 <div id="description" align="center">
@@ -134,6 +139,50 @@ tr{
 </div>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
+	$("#showMenu1").hover(function() {
+		$("#menu2").attr("style", "display:inline-block");
+	});
+
+	$("#apupPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#apdownPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apdownPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#acTemporary").click(function() {
+		$.ajax({
+			url:'/erp/Account/acTemporary',
+			success:function(data) {
+				console.log(data);
+				$("#description").html(data);
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+
+	});
+	
 		var num;
 		$(document).ready(function(){
 			$.ajax({

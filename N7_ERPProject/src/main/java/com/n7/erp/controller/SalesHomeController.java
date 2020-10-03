@@ -81,9 +81,9 @@ public class SalesHomeController {
       return "/sales/salesapprovaldetail"; 
    }
    
-   @RequestMapping(value = "/sales/bonumInfo", method = RequestMethod.GET)
-   public String bonumInfo() {
-      return "/sales/bonumInfo";
+   @RequestMapping(value = "/sales/bs_bonumInfo", method = RequestMethod.GET)
+   public String bs_bonumInfo() {
+      return "/sales/bs_bonumInfo";
    }
    
    

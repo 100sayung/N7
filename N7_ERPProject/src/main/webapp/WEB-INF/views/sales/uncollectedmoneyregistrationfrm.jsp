@@ -36,7 +36,7 @@ text-align:center;
                <th>회사코드</th>
                <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="bs_clcode"></th>
+               <th><input type="text" name="bs_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>제품코드</th>
                <th><input type="text" name="bs_itcode"></th>
 <!--           <th>수주번호</th>
@@ -90,7 +90,16 @@ text-align:center;
     <br>
     <br>
 
-    <script type="text/javascript">    
+    <script type="text/javascript"> 
+    function setChildValue(data) {
+  	   console.log(data)
+  	   for(var i in data.aList){ 
+  	   var clcode=data.aList[i].cl_code;
+  	      
+  	   }
+  	   
+  	   $("#clcode").val(clcode);
+  	};
      $('#uncollectedmoneyitemfrm').click(function(){
        var str="";
        

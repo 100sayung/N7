@@ -106,11 +106,11 @@ public interface SalesDao {
 
    approvaldetail downapprovaldetailinput(@Param("bs_docunum") String bs_docunum, @Param("cCode") String cCode);
 
-   List<Shippingbean> getsearchCode(@Param("use") String use, @Param("code") String code,  @Param("cCode") String cCode);
+   List<Salesbean> getsearchCode(@Param("code") String code,@Param("cCode") String cCode);
 
-   boolean trensCom(@Param("use") String use, @Param("code") String code, @Param("cCode") String cCode);
 
-   List<Shippingbean> getCompanyList(@Param("use")String use, @Param("cCode") String cCode);
+int compareCode(@Param("check")String check,@Param("cCode") String cCode);
+
 
 //   List<Shippingbean> shippingquantity(String check, String cCode); //출하수량비교
 
