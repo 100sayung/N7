@@ -504,10 +504,11 @@ public class AccountMM {
 		return mav;
 	}
 
-	public Map<String, List<SaleInfo>> selectSearch(String select, String choice) {
+	public Map<String, List<SaleInfo>> selectSearch(String select, String choice, HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
 		Map<String, List<SaleInfo>> sMap = null;
 		List<SaleInfo> sList = null;
-		sList = aDao.selectSreach(select, choice);
+		sList = aDao.selectSreach(select, choice,cCode);
 		System.out.println(sList);
 		if (sList != null) {
 			sMap = new HashMap<>();
