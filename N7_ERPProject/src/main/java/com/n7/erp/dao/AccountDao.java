@@ -141,6 +141,8 @@ public interface AccountDao {
 	
 	List<SaleInfo> getsaleList2(String cCode);
 
+	public SaleInfo apupSaleinfo1(String s_num, String cCode);
+
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 
 

@@ -369,6 +369,12 @@
 		resultType="Line">
 		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}
 	</select>
+	
+	<select id="apupSaleinfo1" resultType="saleInfo">
+	SELECT *
+	FROM AC_SALESTATEMENT
+	</select>
+	
 </mapper>
 
 

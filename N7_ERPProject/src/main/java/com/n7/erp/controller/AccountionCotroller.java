@@ -337,12 +337,12 @@ public class AccountionCotroller {
 	
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	// 내가올린 결재안 상세보기(영미니미니민)
-		@GetMapping(value = "Account/apapRequest", produces = "application/json;charset=utf-8")
-		public ModelAndView apapRequest(String j_docunum, HttpSession session) {
-			mav = am.apRequest(j_docunum, session);
-			System.out.println(j_docunum);
-			return mav;
-		}
+	// 내가올린 결재안 상세보기(영미니미니민-AP)
+	@GetMapping(value = "Account/apSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+		mav = am.apSalesnum(s_num, session);
+		System.out.println(s_num);
+		return mav;
+	}
 
 }
