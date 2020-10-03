@@ -265,43 +265,6 @@ border: 1px solid silver;
 			  }
 		  })
   	})
-  	
-  	var select;
-	  $.ajax({
-		  url: '/erp/stock/getitemcode',
-		  type: 'post',
-		  dataType: 'json',
-		  success: function(data){
-			  select=makeSelectBox(data);
-			  $(".it").html(select);
-		  },
-		  error: function(err){
-			  console.log(err);
-		  }
-	  })
-  	
-  	var select;
-	$.ajax({
-		url: '/erp/stock/getitemcode',
-		type: 'post',
-		dataType: 'json',
-		success: function(data){
-			select=makeSelectBox(data);
-			$(".it").html(select);
-		},
-		error: function(err){
-			console.log(err);
-		}
-	})
-	function makeSelectBox(arr){
-		var arrStr="<select class='select' name='p_itcode'><option></option>";
-		if(arr.length==0){
-			arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
-		}else{
-			for(var i=0; i<arr.length; i++){
-				arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
-			}
-		}
    </script>
 </body>
 </html>
