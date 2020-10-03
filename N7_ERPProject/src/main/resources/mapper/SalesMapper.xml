@@ -159,7 +159,7 @@
    </update>
    
    <insert id="uncollectedmoneyinput" parameterType="appdetail">
-      INSERT INTO B_UNCOLLECTEDMONEY VALUES(#{bs_ccode},#{bs_clcode},#{bs_itcode},#{bu_person},DEFAULT,#{bs_proname},#{bs_unit},#{bs_quantity},#{bs_price})
+      INSERT INTO B_UNCOLLECTEDMONEY VALUES(#{bs_ccode},#{bs_clcode},#{bs_itcode},#{bu_person},DEFAULT,#{bs_proname},#{bs_unit},#{bs_quantity},#{bs_price},DEFAULT)
    </insert>
    
    <select id="uncollectedmoneyitem" parameterType="String" resultType="appdetail">
@@ -241,6 +241,23 @@
 		WHERE
 		BS_DOCUNUM=#{bs_docunum} AND BS_CCODE = #{cCode}
 	</select>
+	
+   <select id="getCompanyList" parameterType="String" resultType="shipping">
+      SELECT * FROM B_SHIPREGIST WHERE BS_CCODE=#{cCode} AND BS_STATUS=#{use}
+   </select>
+   
+   <select id="getsearchCode" parameterType="String" resultType="shipping">
+      SELECT * FROM B_SHIPREGIST WHERE BS_CODE=#{code} AND BS_CCODE=#{cCode} AND BS_STATUS=#{use}
+   </select>
+   
+   <update id="trensCom" parameterType="String">
+      UPDATE B_SHIPREGIST SET BS_STATUS =#{use} WHERE BS_CODE=#{code} AND BS_CCODE=#{cCode} 
+   </update>
+	
+	
+	
+	
+	
    
 <!--   <select id="approvaldetailinput" parameterType="String" resultType="appdetail"> 
       SELECT * FROM B_SHIPMENT 

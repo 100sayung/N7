@@ -34,7 +34,7 @@ text-align:center;
          <thead>
             <tr>
                <th>회사코드</th>
-               <th><input type="text" name="bs_ccode"></th>
+               <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>거래처회사코드</th>
                <th><input type="text" name="bs_clcode"></th>
                <th>제품코드</th>

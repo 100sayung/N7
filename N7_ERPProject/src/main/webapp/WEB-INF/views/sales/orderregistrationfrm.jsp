@@ -54,7 +54,7 @@ text-align:center;
                <th>거래처회사코드</th>
                <th><input id="clcode" type="text" name="bo_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>회사코드</th>
-               <th><input type="text" name="bo_ccode"></th>
+               <th><input type="text" name="bo_ccode" value="${cCode}"></th>
             </tr>
             <tr>    
                <th>사업단위</th>

@@ -47,9 +47,9 @@ border: 1px solid;
                <th>출하번호</th>
                <th><input type="text" name="bs_docunum" placeholder="자동생성" readonly></th>
                <th>회사코드</th>
-               <th><input type="text" name="bs_ccode"></th>
+               <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>수주번호</th>
-               <th><input type="text" name="bs_bonum">           
+               <th><input id="bonum" type="text" name="bs_bonum"><button type="button" onclick="window.open('/erp/sales/bonumInfo','bonumInfo','width=550,height=700')">검색</button></th>           
 <!--           <th>품목코드</th>
                <th><input type="text" name="bs_itcode"></th>  -->  
             </tr>
@@ -117,7 +117,16 @@ border: 1px solid;
     </div>
     
     <script type="text/javascript">
-
+ 
+    function setChildValue(data) {
+ 	   console.log(data)
+ 	   for(var i in data.sList){ 
+ 	   var bonum=data.sList[i].bs_bonum;
+ 	      
+ 	   }
+ 	   
+ 	   $("#bonum").val(bonum);
+ 	};
         
     
 /*         var select2;
@@ -356,6 +365,7 @@ border: 1px solid;
               }
            })
         }
+        
 
 </script>
 </body>

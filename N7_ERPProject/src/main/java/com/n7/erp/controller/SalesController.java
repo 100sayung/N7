@@ -255,6 +255,31 @@ public class SalesController {
 			return sMap;
 		}
 		
+//	@GetMapping(value = "/sales/bonumInfo",produces = "application/json;charset=utf-8")
+//		   public String bonumInfo() {
+//		      return "/sales/bonumInfo";
+//	}
+	
+	@PostMapping(value = "/sales/searchcode", produces = "application/json;charset=utf-8")
+	   public Map<String, List<Shippingbean>> searchcode(String use, String code, HttpSession session) {
+	      Map<String, List<Shippingbean>> sMap = sm.searchcode(use, code, session);
+	      return sMap;
+	 }
+	
+	@PostMapping(value = "/sales/trensCom", produces = "application/json;charset=utf-8")
+	   public Map<String, List<Shippingbean>> trensCom(String USE, String CODE, HttpSession session) {
+	      Map<String, List<Shippingbean>> sMap = sm.trensCom(USE, CODE, session);
+	      return sMap;
+	}
+	
+	@PostMapping(value = "/sales/serchcomlist", produces = "application/json;charset=utf-8")
+	   public Map<String, List<Shippingbean>> serchcomlist(String use, HttpSession session) {
+	      Map<String, List<Shippingbean>> sMap = sm.serchcomlist(use, session);
+	      return sMap;
+	}
+	
+	
+		
 //   @PostMapping(value = "/sales/approvaldelete") //결재완료 삭제 망함
 //   public Map<String, List<approvaldetail>> approvaldelete(String check) {
 //      Map<String, List<approvaldetail>> sMap=sm.approvaldelete(check);

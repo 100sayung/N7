@@ -685,6 +685,61 @@ public class Salesmm {
         mav.setViewName(view);
         return mav;
 	}
+
+	public Map<String, List<Shippingbean>> searchcode(String use, String code, HttpSession session) {
+	      Map<String, List<Shippingbean>> sMap = null;
+	      String cCode = session.getAttribute("cCode").toString();
+	      System.out.println(use);
+	      System.out.println(code);
+	      List<Shippingbean> sList = sDao.getsearchCode(use, code, cCode);
+	      if (sList != null) {
+	         sMap = new HashMap<>();
+	         sMap.put("sList", sList);
+	      }
+	      return sMap;
+	}
+
+	public Map<String, List<Shippingbean>> trensCom(String use, String code, HttpSession session) {
+		  Map<String, List<Shippingbean>> sMap = null;
+	      List<Shippingbean> sList=null;
+	      boolean result = false;
+	      String cCode = session.getAttribute("cCode").toString();
+	      
+	         result = sDao.trensCom(use, code, cCode);
+	         
+	      System.out.println(result);
+	      if (result) {
+	         if(Integer.parseInt(use)==0) {
+	            System.out.println("여기로와?1");
+	            use="1";
+	            sList = sDao.getCompanyList(use, cCode);
+	         }else if(Integer.parseInt(use)==1) {
+	            System.out.println("여기로와?2");
+	            use="0";
+	            sList = sDao.getCompanyList(use, cCode);
+	         }
+	         sMap = new HashMap<>();
+	         sMap.put("sList", sList);
+	      } else {
+	         System.out.println("여기로와?3");
+	         sMap = null;
+
+	      }
+//	      }else {
+//	         aMap=null;
+//	      }
+	      return sMap;
+
+	}
+
+	public Map<String, List<Shippingbean>> serchcomlist(String use, HttpSession session) {
+	      Map<String, List<Shippingbean>> sMap = null;
+	      String cCode = session.getAttribute("cCode").toString();
+	      List<Shippingbean> sList = sDao.getCompanyList(use,cCode);
+	      sMap = new HashMap<>();
+	      sMap.put("sList", sList);
+	      return sMap;
+	}
     
 //   public Map<String, List<Shippingbean>> shippingquantity(String check, HttpSession session) {
 //      String cCode=session.getAttribute("cCode").toString();
