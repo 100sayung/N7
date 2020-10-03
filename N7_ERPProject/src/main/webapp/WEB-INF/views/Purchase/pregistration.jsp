@@ -332,7 +332,7 @@ ${msg}
       
       $("#stock").click(function(){
 		  $.ajax({
-			  url:"/erp/rest/purchase/getstocklist",
+			  url:"/erp/rest/Purchase/getstocklist",
 			  type: "get",
 			  dataType: "json",
 			  success: function(data){

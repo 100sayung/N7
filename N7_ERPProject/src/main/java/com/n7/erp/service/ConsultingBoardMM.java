@@ -1,11 +1,14 @@
 package com.n7.erp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -15,7 +18,7 @@ import com.n7.erp.dao.IConsultingBoardDao;
 import com.n7.erp.userClass.Paging;
 
 
-@Service
+@Component
 public class ConsultingBoardMM {
 
 	@Autowired
@@ -24,10 +27,11 @@ public class ConsultingBoardMM {
 	ModelAndView mav = new ModelAndView();
 
 	//게시판 이동시 목록 출력
-	public ModelAndView moveBoardList(Integer pageNum) {
+	public ModelAndView moveBoardList(Integer pageNum, HttpSession session, ConsultingBoard board) {
 		System.out.println("pageNum="+pageNum);
 		mav=new ModelAndView();
 		String view= null;
+		String id=(String)session.getAttribute("id");
 		ArrayList<ConsultingBoard> bList=null;
 		pageNum=(pageNum==null)?1:pageNum;
 		if(pageNum<=0) {
@@ -35,11 +39,14 @@ public class ConsultingBoardMM {
 		}
 		bList= CBdao.getBoardList(pageNum);
 		if(bList!=null && bList.size()!=0) {
-			Gson gson=new Gson();
-			String json=gson.toJson(bList);
-			mav.addObject("bList", json);
-			mav.addObject("paging", getPaging(pageNum));
-			view="/home/erpboard";
+			if(id==null) {
+				Gson gson=new Gson();
+				String json=gson.toJson(bList);
+				mav.addObject("bList", json);
+				mav.addObject("paging", getPaging(pageNum));
+				mav.addObject("id", id);
+				view="/home/erpboard";
+			}
 		}
 		mav.setViewName(view);
 		return mav;
@@ -94,20 +101,21 @@ public class ConsultingBoardMM {
 		
 		return mav;
 	}
-//	//게시글 수정 목록 출력
-//	public String boardmodifyajax(Integer num) {
-//		System.out.println("수정페이지 서비스 번호 값="+num);
-//		ConsultingBoard cbList=CBdao.boardmodifyajax(num);
-//		System.out.println("회원 정보="+cbList);
-//		if(cbList!=null) {
-//			Gson gson=new Gson();
-//			String json=gson.toJson(cbList);
-//			System.out.println("json타입으로 변경"+json);
-//			return json;
-//		}
-//
-//		return null;
-//	}
+	
+	public Map<String, List<ConsultingBoard>> boardSearch(String choice, String search) {
+		Map<String,List<ConsultingBoard>> bMap=null;
+		List<ConsultingBoard> bList= CBdao.boardSearch(choice, search);
+		if(bList != null) {
+			bMap= new HashMap<>();
+			bMap.put("bList", bList);
+			//System.out.println("bList="+bList);
+			System.out.println("성공?");
+		}else {
+			bMap=null;
+		}
+		return bMap;
+	}
+
 //	//게시글 수정
 //	public ModelAndView boardmodify(ConsultingBoard board) {
 //		String view=null;

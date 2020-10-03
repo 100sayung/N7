@@ -112,6 +112,7 @@ public class PurchaseRestController {
 		return mav;
 	}
     
+	 // 결재안 이름찾기
 	 @PostMapping(value = "/Purchase/getApprovalInfo", produces = "application/json;charset=utf-8")
 	 public Map<String, List<approvalLine>> getApprinfo(String CNT, String ARR, HttpSession session) {
 		int cnt = Integer.parseInt(CNT);
@@ -149,21 +150,27 @@ public class PurchaseRestController {
 		return rMap;
 	}
 	
-	@GetMapping(value = "/purchase/stocklist", produces= "application/json;charest=utf-8" )
+	@GetMapping(value = "/Purchase/stocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<IePort>> stocklist(HttpSession session) {
 		Map<String, List<IePort>> sMap= pm.stocklist(session);
 		return sMap;
 	}
 	
-	@GetMapping(value = "/purchase/getstocklist", produces= "application/json;charest=utf-8" )
+	@GetMapping(value = "/Purchase/getstocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<ItemCode>> getstocklist(HttpSession session) {
 		Map<String, List<ItemCode>> sMap= pm.getstocklist(session);
 		return sMap;
 	}
 	
-	@GetMapping(value = "/purchase/paSign2", produces= "application/json;charest=utf-8" )
+	@PostMapping(value = "/Purchase/paSign2", produces= "application/json;charest=utf-8" )
 	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
 		mav=pm.paSign2(pa,ap,req,rep,session);
+		return mav;
+	}
+	
+	@PostMapping(value = "/Purchase/paBack", produces= "application/json;charest=utf-8" )
+	public ModelAndView paBack(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
+		mav=pm.paBack(pa,ap,req,rep,session);
 		return mav;
 	}
 	

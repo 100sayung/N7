@@ -145,7 +145,7 @@
 	</select>
 	
 	<update id="paSign2">
-		UPDATE O_PURCHASEPROGRAM SET P_STATUS=#{p_status} 
+		UPDATE O_PURCHASEPROGRAM SET P_STATUS = #{p_status} 
 		WHERE P_DOCUMENTCODE=#{p_documentcode} AND P_CCODE=#{p_ccode}
 	</update>
 	
@@ -154,5 +154,14 @@
 		WHERE AP_DOCUNUM = #{ap_docunum} AND AP_CCODE = #{ap_ccode}
 	</update>
 	
+	<update id="paBack">
+		UPDATE O_PURCHASEPROGRAM SET P_STATUS = '3', P_ETC = #{p_etc}
+		WHERE P_DOCUMENTCODE = #{p_documentcode} AND P_CCODE = #{p_ccode}
+	</update>
 	
+	<update id="apBack2">
+	 	UPDATE APPROVALDOCU
+		SET AP_STATUS = '3'
+		WHERE AP_DOCUNUM = #{ap_docunum} AND AP_CCODE = #{ap_ccode}
+	</update>
 </mapper>
