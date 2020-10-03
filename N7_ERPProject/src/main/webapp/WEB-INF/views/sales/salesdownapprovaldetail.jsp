@@ -191,6 +191,28 @@ table, tr, th, td {
 			}
 		});
 	});
+	
+	$("#submit").click(function(){
+		var num= $("#num").val();
+		$.ajax({
+			url:'/erp/rest/home/approvalagree',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("결재완료");
+					window.close();
+				}else{
+					alert("결재실패");
+				}
+			},
+			error:function(error){
+			}
+		});
+		
+	});
 
 </script>
 </html>

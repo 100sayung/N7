@@ -108,4 +108,5 @@ public interface IMemberDao {
 	boolean ectupdate2(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
 	
 	boolean ectupdate3(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
+	boolean approvalagree(@Param("num")String num,@Param("cCode") String cCode);
 }

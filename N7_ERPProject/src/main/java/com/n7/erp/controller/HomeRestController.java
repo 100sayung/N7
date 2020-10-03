@@ -59,6 +59,11 @@ public class HomeRestController {
 		String value= mm.turnback(num,ect,session);
 		return value;
 	}
+	@PostMapping(value="/home/approvalagree")
+	public String approvalagree(String num,HttpSession session) {
+		String value= mm.approvalagree(num,session);
+		return value;
+	}
 
 	@PostMapping(value = "/home/forcewithdrawal")
 	public String forceWithDrawal(String jsonStr) { 
