@@ -103,5 +103,9 @@ public interface IMemberDao {
 	String checkGrade(String id);
 	boolean turnback(@Param("num")String num,@Param("cCode") String cCode);
 	
-	boolean ectupdate(@Param("numCode")String numCode,@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
+	boolean ectupdate1(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
+	
+	boolean ectupdate2(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
+	
+	boolean ectupdate3(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
 }

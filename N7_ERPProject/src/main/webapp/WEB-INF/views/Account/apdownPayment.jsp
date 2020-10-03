@@ -193,7 +193,7 @@ text-align: center;
 				                  
 				                  }else if(check.indexOf("G") != -1){ //수진
 					                     window.open(
-					                        '/erp/rest/sales/sRequest?bs_docunum='+ check, '/erp/rest/sales/sRequest2',
+					                        '/erp/rest/sales/sRequest2?bs_docunum='+ check, '/erp/rest/sales/sRequest2',
 					                        'width=1500, height=600');				                  
 				                  }else{
 				                     window.open(
