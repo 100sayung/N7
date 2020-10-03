@@ -63,7 +63,7 @@ table, tr, th, td {
 <body>
 	<form id="for">
 		<div
-			style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">기안문
+			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">기안문
 			상세보기</div>
 		<div
 			style="height: auto; padding-top: 5px; background-color: #F8F7F7;">

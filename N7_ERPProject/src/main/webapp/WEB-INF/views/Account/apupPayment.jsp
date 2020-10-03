@@ -164,18 +164,29 @@ td {
 
 							  if(check.indexOf("AC") != -1){
 				                     window.open(
-				                        '/erp/rest/Account/apRequest?j_docunum='
-				                              + check, 'apRequest',
-				                        'width=1500, height=600');
-				                  }else if(check.indexOf("P") != -1){ //예은
+				                     '/erp/rest/Account/apRequest?j_docunum=' + check, 'apRequest', 'width=1500, height=600');
+				                     
+				              }else if(check.indexOf("P") != -1){ //예은
 				                     window.open(
 				                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
 				                        'width=1500, height=600');
-			                      }else if(check.indexOf("G") != -1){ //수진
+				                  
+			                  }else if(check.indexOf("G") != -1){ //수진
 			                         window.open(
 			                           '/erp/rest/sales/apRequest?bs_docunum='+ check, 'apRequest',
 			                           'width=1500, height=600');
-				                  }else{
+			                      
+			                  }else if(check.indexOf("AS") != -1){ //영민
+			                          window.open(
+			                             '/erp/rest/Account/asRequest?as_document='+ check, 'asRequest',
+			                             'width=1500, height=600');
+			        
+			                  }else if(check.indexOf("AP") != -1){ //영민
+			                          window.open(
+			                             '/erp/rest/Account/apapRequest?ap_document='+ check, 'apapRequest',
+			                             'width=1500, height=600');        
+			                      
+			                  }else{
 				                     window.open(
 				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
 				                  }

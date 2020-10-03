@@ -25,14 +25,12 @@ table, tr, th, td {
 /* 	border: 1px white; */
 /* 	text-align: left; */
 /* } */
-
- .txt { 
- 	width: 200px;
+.txt {
+	width: 200px;
 	height: 20px;
 	border-style: none;
 	text-align: center;
- 	
-} 
+}
 
 .select {
 	width: 150px;
@@ -68,29 +66,30 @@ td {
 }
 
 input {
-/* 	width: 80px; */
-/* 	height: 40px; */
+	/* 	width: 80px; */
+	/* 	height: 40px; */
 	font-size: large;
-	
 }
 
 #su {
 	text-align: center;
 }
-
 </style>
 
 </head>
 <body>
 	<form id="form1">
-	<div
-			style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">분개전표 작성
-			</div>
-	<div class="mainform" style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
-		<table>
+		<div
+			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">분개전표
+			작성</div>
+		<div class="mainform"
+			style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
+			<table>
 				<tr>
 					<th>제목</th>
-					<th><input type="text" id="j_title" name="j_title" style="background-color:#F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;" placeholder="분개전표 제목을 입력해주세요." ></th>
+					<th><input type="text" id="j_title" name="j_title"
+						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"
+						placeholder="분개전표 제목을 입력해주세요."></th>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -100,52 +99,50 @@ input {
 								<table>
 									<tr>
 										<th colspan="2">계정과목</th>
-										<th colspan="2">
-										<input type="text" id="j_account" name="j_account" class="txt" style="width: 400px;">
-										</th>
+										<th colspan="2"><input type="text" id="j_account"
+											name="j_account" class="txt" style="width: 400px;"></th>
 										<th colspan="2">문서번호</th>
-										<td colspan="2"  style="width: 400px;">문서번호는 자동으로 입력됩니다.</td>
+										<td colspan="2" style="width: 400px;">문서번호는 자동으로 입력됩니다.</td>
 										<!-- 										<td>결재상태</td> -->
 
 									</tr>
 									<tr>
-										<th colspan="2">수주이름</th> <!-- 활동센터 -->
-										<th colspan="2">
-										<input type="text" id="j_centre" name="j_centre" class="txt" style="width: 400px;">
-										</th>
-										<th colspan="2">부서명</th><!-- 귀속부서 -->
-										<th colspan="2">
-										<input type="text" id="j_section" name="j_section" class="txt" style="width: 400px;">
-										</th>
+										<th colspan="2">수주이름</th>
+										<!-- 활동센터 -->
+										<th colspan="2"><input type="text" id="j_centre"
+											name="j_centre" class="txt" style="width: 400px;"></th>
+										<th colspan="2">부서명</th>
+										<!-- 귀속부서 -->
+										<th colspan="2"><input type="text" id="j_section"
+											name="j_section" class="txt" style="width: 400px;"></th>
 									</tr>
 									<tr>
 										<th colspan="2">비용구분</th>
-										<td colspan="2">
-										<input type="text" id="j_group" name="j_group" class="draft3"style="width: 400px;">
+										<td colspan="2"><input type="text" id="j_group"
+											name="j_group" class="draft3" style="width: 400px;">
 										</td>
-										<th colspan="2">거래처명</th> <!-- 관계회사 -->
-										<td colspan="2">
-										<input type="text" id="j_company" name="j_company" class="draft3" style="width: 400px;">
+										<th colspan="2">거래처명</th>
+										<!-- 관계회사 -->
+										<td colspan="2"><input type="text" id="j_company"
+											name="j_company" class="draft3" style="width: 400px;">
 										</td>
 
 									</tr>
 									<tr>
 										<th colspan="2">차변금액</th>
-										<td colspan="5">
-										<input type="text" id="j_debit" name="j_debit" class="draft"style="width: 900px;">
-										</td>
+										<td colspan="5"><input type="text" id="j_debit"
+											name="j_debit" class="draft" style="width: 900px;"></td>
 									</tr>
 									<tr>
 										<th colspan="2">대변금액</th>
-										<td colspan="5">
-										<input type="text" id="j_credit" name="j_credit" class="draft" style="width: 900px;">
+										<td colspan="5"><input type="text" id="j_credit"
+											name="j_credit" class="draft" style="width: 900px;">
 										</td>
 									</tr>
 									<tr>
 										<th>적요</th>
-										<th colspan="8">
-										<input type="text" id="j_sumup" name="j_sumup">
-										</th>
+										<th colspan="8"><input type="text" id="j_sumup"
+											name="j_sumup"></th>
 									</tr>
 								</table>
 							</div>
@@ -161,6 +158,11 @@ input {
 <script>
 	$('#su').click(
 			function() {
+				var num = /[0-9]/; //숫자
+				var eng = /[a-zA-Z]/; //문자
+				var spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+				var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+
 				var title = document.getElementById('j_title');
 				var account = document.getElementById('j_account');
 				var group = document.getElementById('j_group');
@@ -170,7 +172,7 @@ input {
 				var section = document.getElementById('j_section');
 				var centre = document.getElementById('j_centre');
 				var company = document.getElementById('j_company');
-				
+
 				if (title.value == '' || title.value == null
 						&& account.value == '' || account.value == null
 						&& group.value == '' || group.value == null
@@ -179,7 +181,7 @@ input {
 						&& sumup.value == '' || sumup.value == null
 						&& section.value == '' || section.value == null
 						&& centre.value == '' || centre.value == null
-						&& company.value == '' || company.value == null){
+						&& company.value == '' || company.value == null) {
 					alert("전부 입력해주세요");
 				} else if (title.value == '' || title.value == null) {
 					alert("문서제목을 입력해주세요");
@@ -192,40 +194,52 @@ input {
 				} else if (group.value == '' || group.value == null) {
 					alert("비용구분을 입력해주세요");
 				} else if (company.value == '' || company.value == null) {
-					alert("관계회사를 입력해주세요");
+					alert("거래처명을 입력해주세요");
 				} else if (debit.value == '' || debit.value == null) {
 					alert("차변금액을 입력해주세요");
 				} else if (credit.value == '' || credit.value == null) {
 					alert("대변금액을 입력해주세요");
 				} else if (sumup.value == '' || sumup.value == null) {
 					alert("적요를 입력해주세요");
+				} else if (debit.value != credit.value) {
+					alert("차변금액과 대변금액이 같지 않습니다.");
 				} else {
+					if ((num.test(debit)) && !(eng.test(debit))
+							&& !(spc.test(debit)) && !(kor.test(debit))
+							||(num.test(credit)) && !(eng.test(credit))
+							&& !(spc.test(credit)) && !(kor.test(credit))) { //차변대변금액
+						return true
 
-					var obj = $("#form1").serialize();
-					console.log(obj);
+						var obj = $("#form1").serialize();
+						console.log(obj);
 
-					$.ajax({
-						url : '/erp/rest/Account/actempoInsert',
-						type : 'post',
-						data : obj,
-						dateType : "json",
-						success : function(data) {
-							if (data == 1) {
-								console.log(data);
-								$("#form1")[0].reset();
-								alert("결재안 임시저장을 완료하였습니다.");
-							} else {
-								alert("결재안 임시저장이 실패하였습니다.");
-								console.log(data);
+						$.ajax({
+							url : '/erp/rest/Account/actempoInsert',
+							type : 'post',
+							data : obj,
+							dateType : "json",
+							success : function(data) {
+								if (data == 1) {
+									console.log(data);
+									$("#form1")[0].reset();
+									alert("결재안 임시저장을 완료하였습니다.");
+								} else {
+									alert("결재안 임시저장이 실패하였습니다.");
+									console.log(data);
+								}
+							},
+							error : function(error) {
+								console.log(error);
+								alert("야 오류얌");
 							}
-						},
-						error : function(error) {
-							console.log(error);
-							alert("야 오류얌");
-						}
 
-					})
+						})
+					} else {
+						alert("차변금액과 대변금액은 숫자만 입력 가능합니다.");
+						return false
+					}
 				}
+
 			});
 </script>
 </html>
