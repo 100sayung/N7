@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +11,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link
@@ -20,20 +21,18 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 #loginContainer {
-	width: 300px; 
-/* 	width: auto; */
+	width: 300px;
 	margin-left: 600px;
 	margin-top: 170px;
-	text-align: center;
 }
-
 
 button {
 	margin-top: 10px;
+	margin-left: 90px;
 	width: 100px;
 	height: 50px;
 	border: 0px;
-	background-color: #3D6B9B;
+	background-color: #FFB2D9;
 	color: white;
 	font-weight: bolder;
 	border-radius: 8%;
@@ -42,14 +41,15 @@ button {
 .warnMsg {
 	color: red;
 }
+#idserach{
+margin-left: 30px;
 
-#idserach {
-	margin-left: 30px;
 }
 </style>
 </head>
 
 <body>
+
 	<div id="header" class="container" style="text-align: center;">
 		<div id="logo">
 			<h1>
@@ -74,39 +74,10 @@ button {
 		</div> --%>
 	</div>
 	<br>
-	<div id="loginContainer">
-		<form action="access" method="post">
-			<div class="table-responsive">
-				<div class="form-group">
-					<input type="text" class="form-control" name="m_id"
-						placeholder="id를 입력해주세요" required id="usr">
-				</div>
-				<div class="form-group">
-					<input type="password" class="form-control" name="m_pw"
-						placeholder="password를 입력해주세요" required id="pwd">
-				</div>
-				<span class="warnMsg">${warn}</span><br>
-			<button>로그인</button>
-			</div>
-			<br><br>
-			<div>
-				<a href="/erp/findidfrm" id="idserach">아이디 찾기</a> | <a
-					href="/erp/findpasswordfrm">비밀번호 찾기</a> 
-					
-			</div>
-			<div>회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></div>
-		</form>
-		
-<!-- 		<p style="text-align: center;"> -->
-<!-- 		회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></p> -->
+	<div class="out">
+	<div class="center">
+	<img src="http://www.probono.kr/template/BUILDER_core/resource/page_join_img.jpg">
 	</div>
-	<script>
-		if (location.search != '') {
-			$('.warnMsg').text('아이디 혹은 비밀번호가 잘못되었습니다.');
-			history.replaceState({}, null, location.pathname);
-		}
-	</script>
-
 </body>
 
 

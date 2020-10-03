@@ -49,7 +49,7 @@ font-size: 30px;
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">N7 COMPANY</a>
+      <a class="navbar-brand" href="/erp/">N7 COMPANY</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -214,19 +214,7 @@ font-size: 30px;
 				}
 			});
 		}
-	})
-		var msg=location.search.substring(5, 6);
-		console.log(msg)
-		if(!msg){
-			console.log("테스트1 msg el 값 없음")
-		}else{
-			history.replaceState({}, null, location.pathname);
-			if(msg==1){
-				alert("회원가입 성공");
-			}else{
-				alert("회원가입 실패");
-			}
-		}
+	});
 		$(".icons")
 				.hover(
 						function() {

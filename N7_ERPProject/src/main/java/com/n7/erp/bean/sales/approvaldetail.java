@@ -35,5 +35,6 @@ public class approvaldetail {
     private String bs_apcode1; //사원코드?
     private String bs_apcode2;
     private String bs_apcode3;
+    private String bs_turnback; //반려
 
 }

@@ -127,15 +127,15 @@ html, body {
 		 str+="<td colspan='2'>"+pList[i].p_budget+"</td><tr>";
 	 }
 	$("#list").html(str);
-	
+
 	$(document).ready(function(){
 		arr= new Array();
 		var cnt= $("input[name='code']").length;
-		
+
 		$("input[name='code']").each(function(){
 			arr.push($(this).attr('value'));
 		});
-	
+
 		$.ajax({
 			url : '/erp/rest/Purchase/getApprovalInfo',
 			type : 'post',
@@ -151,7 +151,7 @@ html, body {
 		            }
 		            console.log(str)
 		            $("#line").html(str);
-		         
+
 		         },
 			error : function(error) {
 				console.log(error);

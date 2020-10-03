@@ -36,7 +36,7 @@ public class MemberMM {
 	public ModelAndView access(Member mb, HttpSession session) {
 		System.out.println(mb.getM_id());
 		if (mDao.access(mb)) {
-			view = "/home/home";
+			view = "redirect:/";
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
 			if (hDao.haveHrCode(mb.getM_id())) {
@@ -77,11 +77,11 @@ public class MemberMM {
 		mb.setM_photo(file);
 
 		if (mDao.join(mb)) {
-			mav.addObject("msg", 1);
+			mav.setViewName("redirect:/home/welcome");
 		} else {
-			mav.addObject("msg", 0);
+			mav.setViewName("/home/join");
+			mav.addObject("msg", "0");
 		}
-		mav.setViewName("/home/home");
 		return mav;
 	}
 
@@ -208,6 +208,19 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		String id = session.getAttribute("id").toString();
 		String grade = mDao.checkGrade(id);
 		return grade;
+	}
+
+	public String turnback(String num, String ect, HttpSession session) {
+		String value="";
+		String cCode = session.getAttribute("cCode").toString();
+		boolean result  = mDao.turnback(num,cCode);
+		
+		if(result) {
+			value ="1";
+		}else {
+			value ="2";
+		}
+		return value;
 	}
 
 }

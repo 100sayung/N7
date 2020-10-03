@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -61,14 +62,15 @@ input[type="text"] {
 				<li><a href="/erp/erpboard">상담 게시판</a></li>
 				<li><a href="/erp/erpapply">ERP 신청</a></li>
 				<li><a href="/erp/join">JOIN</a></li>
-				<li><form action="logout" method="post">
-						<input type="submit" value="LOGOUT">
-					</form></li>
+				<c:if test="${id!=null}">
+					<li><form action="logout" method="post">
+							<input type="submit" value="LOGOUT">
+						</form></li>
+				</c:if>
 				<li class="current_page_item"><a href="#">ERP시작</a></li>
 			</ul>
 		</div>
 	</div>
-	LOGOUT계속 떠있는데 이거처리해야함
 	<div id="loginContainer">
 		<div class="table-responsive">
 			<table>
@@ -155,7 +157,7 @@ input[type="text"] {
 				return;
 			}
 			if (authenticationNum == $("#authenticationNum").val()) {
-				location.href = "/erp/home/modifypasswordfrm?userId="+userId;
+				location.href = "/erp/home/modifypasswordfrm?userId=" + userId;
 			}
 			if (authenticationNum != $("#authenticationNum").val()) {
 				$(".warnMsg").html("인증번호가 틀립니다.");

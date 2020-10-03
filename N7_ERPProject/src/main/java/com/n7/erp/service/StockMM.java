@@ -682,4 +682,17 @@ public class StockMM {
 		mav.setViewName("stock/addexportlist");
 		return mav;
 	}
+
+	public ResponseEntity<String> getStock(ItemCode it, HttpSession session) {
+		it.setIt_cpcode(session.getAttribute("cCode").toString());
+		int num = itDao.getStock(it);
+		System.out.println(num<it.getIt_stock());
+		if(num<it.getIt_stock()) {
+			return ResponseEntity.ok(new Gson().toJson(num));
+		}else {
+			return null;
+		}
+	}
+	
+	
 }

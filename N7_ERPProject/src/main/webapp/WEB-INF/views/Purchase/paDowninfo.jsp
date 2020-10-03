@@ -85,7 +85,7 @@ html, body {
                         <table>
                            <tr>
                               <th colspan="2">문서번호</th>
-                              <th colspan="6"><input type="text" name="p_documentcode"
+                              <th colspan="6"><input id="num" type="text" name="p_documentcode"
                                  class="txt" value="${pa.p_documentcode}" readonly>
 
                            </tr>
@@ -119,7 +119,7 @@ html, body {
             </tr>
          </table>
        		<button type="button" id="paSign2">결재</button>
-			<button type="button" id="paBack2">반려</button>
+			<button type="button" id="turnback">반려</button>
 		</div>
      </form>
 <script type="text/javascript">
@@ -134,15 +134,15 @@ html, body {
 		 str+="<td colspan='2'>"+pList[i].p_budget+"</td><tr>";
 	 }
 	$("#list").html(str);
-	
+
 	$(document).ready(function(){
 		arr= new Array();
 		var cnt= $("input[name='code']").length;
-		
+
 		$("input[name='code']").each(function(){
 			arr.push($(this).attr('value'));
 		});
-	
+
 		$.ajax({
 			url : '/erp/rest/Purchase/getApprovalInfo',
 			type : 'post',
@@ -158,18 +158,18 @@ html, body {
 		            }
 		            console.log(str)
 		            $("#line").html(str);
-		         
+
 		         },
 			error : function(error) {
 				console.log(error);
 			}
 		});
 	});
-	
+
 	$('#paSign2').click(function(){
 		var obj=$("#fo").serialize();
 		console.log(obj);
-		
+
 		$.ajax({
 			url: '/erp/rest/Purchase/paSign2',
 			type: 'post',
@@ -183,15 +183,15 @@ html, body {
 			error: function(err){
 				alert("결재요청이 실패했습니다.");
 				console.log(err);
-				
+
 			}
 		})
 	});
-	
+
 	$('#paBack2').click(function(){
 		var obj= $('#fo').serialize();
 		console.log(obj);
-		
+
 		$.ajax({
 			url: '/erp/rest/Purchase/paBack',
 			type: 'post',
@@ -208,8 +208,32 @@ html, body {
 			}
 		})
 	});
-	
-	
+
+	$('#turnback').click(function(){
+		var ect = $("#ect").val();
+		var num= $("#num").val();
+
+		$.ajax({
+			url:'/erp/rest/home/turnback',
+			type:'post',
+			data:{num:num,ect:ect},
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("반려완료");
+					window.close();
+				}else{
+					alert("반려실패");
+				}
+
+			},
+			error:function(error){
+				console.log(error);
+
+			}
+		});
+	});
+
 </script>
 </body>
 </html>

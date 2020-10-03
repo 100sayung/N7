@@ -153,32 +153,6 @@ td {
 	apupPaymentList(1);
 	pageNumber(1);
 
-	// 	$.ajax({
-	// 				type : 'get',
-	// 				url : '/erp/rest/Account/apupPaymentList',
-	// 				dataType : 'json',
-	// 	 			contentType : 'application/json; charset=UTF-8',
-	// 				success : function(data) {
-	// 					console.log(data);
-	// 					var str = "";
-	// 					for ( var i in data.pList) {
-	// 						str += "<tr>"
-	// 						str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>"
-	// 						str += '<td>' + data.pList[i].ap_docunum + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_ccode + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_docuname + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_fromapprover + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_toapprover + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_date + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_status + '</td>'
-	// 						str += '</tr>'
-	// 					}
-	// 					$("#Info").html(str);
-	// 				},
-	// 				error : function(err) {
-	// 					console.log(err);
-	// 				}
-	// 			});
 </script>
 <script>
 $("#approval").click(
@@ -211,24 +185,3 @@ $("#approval").click(
 		      });
 </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
