@@ -22,17 +22,16 @@
 	UPDATE APPROVALDOCU SET AP_STATUS = '4' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
 	</update>
 	
-	<update id="ectupdate" parameterType="String">
-	<choose>
-	<when test="numCode.equals(A)">
+	<update id="ectupdate1" parameterType="String">
 	UPDATE AC_REALSALESTATEMENT SET RS_REASON = #{ect}  WHERE RS_NUM =#{num} AND RS_CCODE=#{cCode}
-	</when>
-	<when test="numCode.equals(G)">
-	UPDATE B_SHIPMENT SET BS_ECT = #{ect}  WHERE BS_DOCUNUM =#{num} AND BS_CCODE=#{cCode}
-	</when>
-	<when test="numCode.equals(P)">
-	UPDATE O_PURCHASEPROGRAMCOMMOM SET P_ETC = #{ect}  WHERE P_DOCUMENTCODE =#{num} AND P_CCODE=#{cCode}
-	</when>
-	</choose>
 	</update>
+	
+	<update id="ectupdate2" parameterType="String">
+	UPDATE B_SHIPMENT SET BS_ECT = #{ect}  WHERE BS_DOCUNUM =#{num} AND BS_CCODE=#{cCode}
+	</update>
+	
+	<update id="ectupdate3" parameterType="String">
+	UPDATE O_PURCHASEPROGRAMCOMMOM SET P_ETC = #{ect}  WHERE P_DOCUMENTCODE =#{num} AND P_CCODE=#{cCode}
+	</update>
+	
 </mapper>
