@@ -90,7 +90,7 @@ public interface HRIDeptDao {
 
 	String findpay(ViewPay pay);
 
-	@Insert("INSERT INTO HR_PAYROLL VALUES(#{HP_PAYDATE},#{HP_CCODE},#{HC_HRCODE},#{HP_TAX},#{HP_INCEN},#{HP_INSURANCE},#{HP_REALMONEY})")
+	@Insert("INSERT INTO HR_PAYROLL VALUES(#{HP_PAYDATE},#{HC_CCODE},#{HC_HRCODE},#{HP_TAX},#{HP_INCEN},#{HP_INSURANCE},#{HP_REALMONEY})")
 	boolean insertpay(ViewPay pay);
 
 	boolean updatepay(ViewPay pay);
