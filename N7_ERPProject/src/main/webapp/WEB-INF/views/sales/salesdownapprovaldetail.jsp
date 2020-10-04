@@ -131,13 +131,14 @@ table, tr, th, td {
       </form>
          <br>
          <button type="button" id="submit">제출하기</button>
+         <button type="button" id="arbitrarily">전결하기</button>
          <button type="button" id="turnback">반려하기</button>
 
 </body>
 <script>
 
 	$(document).ready(function() {
-						arr = new Array();
+						var arr = new Array();
 						var cnt = $("input[name='code']").length;
 
 						$("input[name='code']").each(function() {
@@ -206,6 +207,28 @@ table, tr, th, td {
 					window.close();
 				}else{
 					alert("결재실패");
+				}
+			},
+			error:function(error){
+			}
+		});
+		
+	});
+	
+	$("#arbitrarily").click(function(){
+		var num= $("#num").val();
+		$.ajax({
+			url:'/erp/rest/home/arbitrarily',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("전결완료");
+					window.close();
+				}else{
+					alert("전결실패");
 				}
 			},
 			error:function(error){
