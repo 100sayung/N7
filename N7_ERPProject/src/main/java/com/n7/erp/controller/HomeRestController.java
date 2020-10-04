@@ -56,8 +56,12 @@ public class HomeRestController {
 	}
 	@PostMapping(value="/home/turnback")
 	public String turnback(String num,String ect,HttpSession session) {
-		ModelAndView mav = new ModelAndView();
 		String value= mm.turnback(num,ect,session);
+		return value;
+	}
+	@PostMapping(value="/home/approvalagree")
+	public String approvalagree(String num,HttpSession session) {
+		String value= mm.approvalagree(num,session);
 		return value;
 	}
 

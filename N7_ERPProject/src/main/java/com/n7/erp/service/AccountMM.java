@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.n7.erp.bean.ac.A_company;
 import com.n7.erp.bean.ac.Account;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.ac.Approvaldocu;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.ac.SaleInfo;
 import com.n7.erp.bean.ac.myCompany;
@@ -271,20 +272,33 @@ public class AccountMM {
 		boolean result = false;
 		boolean result2 = false;
 		String code = "";
+		int count =0;
 		for (int i = 0; i < cnt; i++) {
 			code = strArray[i];
-			result2 = aDao.deleteSale2(code, cCode);
-			result = aDao.deleteSale(code, cCode);
+		    count=aDao.comparecode2(code,cCode);
+		    
 		}
-		if (result && result2) {
-			List<SaleInfo> sList = aDao.getsaleList(cCode);
-			aMap = new HashMap<>();
-			aMap.put("sList", sList);
-		} else {
+		if(count==0) {
+			for (int i = 0; i < cnt; i++) {
+				code = strArray[i];
+				result2 = aDao.deleteSale2(code, cCode);
+				result = aDao.deleteSale(code, cCode);
+			}
+			if (result && result2) {
+				List<SaleInfo> sList = aDao.getsaleList(cCode);
+				aMap = new HashMap<>();
+				aMap.put("sList", sList);
+			} else {
+				aMap = null;
+			}
+			
+		}else {
+			
 			aMap = null;
 		}
 		return aMap;
 	}
+
 
 	public ModelAndView saledetails(String check, HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
@@ -504,10 +518,11 @@ public class AccountMM {
 		return mav;
 	}
 
-	public Map<String, List<SaleInfo>> selectSearch(String select, String choice) {
+	public Map<String, List<SaleInfo>> selectSearch(String select, String choice, HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
 		Map<String, List<SaleInfo>> sMap = null;
 		List<SaleInfo> sList = null;
-		sList = aDao.selectSreach(select, choice);
+		sList = aDao.selectSreach(select, choice,cCode);
 		System.out.println(sList);
 		if (sList != null) {
 			sMap = new HashMap<>();

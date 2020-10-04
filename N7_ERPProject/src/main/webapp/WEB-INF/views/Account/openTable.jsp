@@ -540,6 +540,10 @@ $("#addList").click(function() {
 										data : 'ARR=' + arr + '&CNT=' + cnt,
 										datatype : 'json',
 										success : function(data) {
+											if(data.sList==null){
+												alert("이미결제요청된 데이터라 삭제할 수 없습니다.")
+											}else{
+												
 											var str = '';
 											str += "<tr id='colume'><td>체크</td><td>전표번호</td><td>유형</td><td>거래처명</td><td>사업자번호</td><td>입력날짜</td><td>입력자</td></tr>"
 											for ( var i in data.sList) {
@@ -552,6 +556,7 @@ $("#addList").click(function() {
 												str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+"></td></tr>";
 											}
 											$("#testTable").html(str);
+											}
 										},
 										error : function(error) {
 											console.log(error)

@@ -1,32 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
 Design by TEMPLATED
 http://templated.co
 Released for free under the Creative Commons Attribution License
-Name       : UpRight 
+
+Name       : UpRight
 Description: A two-column, fixed-width design with dark color scheme.
 Version    : 1.0
 Released   : 20130526
+
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-<!--[if IE 6]>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+		<link href="img/favicon.png" rel="icon" />
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="lib/icomoon/icomoon.css" rel="stylesheet" />
+  <script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1a9e4h5a1u&callback=initMap"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous" />
+	<!--[if IE 6]>
 <link href="default_ie6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 <style type="text/css">
 h2{
 font-size: 36px;
-margin-top: 23px;
+margin-top: -70px;
 margin-bottom: 10px;
 margin-left: auto;
 font-family: inherit;
@@ -45,7 +62,7 @@ border-top: 1px solid #ccc;
 border-left: 1px solid #ccc;
 margin : 20px 10px;
 text-align: center;
-margin-left: 400px;
+/* margin-left: 400px; */
 margin-top: 20px;
 }
 table#table th {
@@ -70,30 +87,24 @@ border-bottom: 1px solid #ccc;
 float: left;
 margin-left: 400px;
 }
-
-
-
 </style>
 </head>
 <body>
-	<div id="header" class="container">
+	<div id="header" class="container" style="text-align: center;">
 		<div id="logo">
 			<h1>
-				<a href="/erp/" style="color: black;">N7 ERP SYSTEM</a>
+				<a href="/erp/" style="color: black;">N7 COMPANY</a>
 			</h1>
 		</div>
 		<div id="menu">
-			<ul>
-				<li><a href="/erp/">MAIN</a></li>
-				<li><a href="/erp/introducecompany">회사 소개</a></li>
-				<li><a href="/erp/erpboard" accesskey="5" title="">상담 게시판</a></li>
-				<li><a href="/erp/erpapply">ERP 신청</a></li>
-				<li><a href="/erp/login">LOGIN</a></li>
-				<li><a href="/erp/join">JOIN</a></li>
-				<li class="current_page_item"><a href="#">ERP시작</a></li>
-			</ul>
 		</div>
 	</div>
+	<div id="description" class="out" style="height: 700px;">
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP상담게시판</h1></div>
+	<div class="center">
+        <div id="container">
+        <br>
+<br>
 	<form action="boardContnes">
 		<h2>상세보기</h2>
 		<table id="table">
@@ -103,7 +114,7 @@ margin-left: 400px;
 			</tr>
 			<tr>
 				<th scope="row">작성자</th>
-				<td>${board.CB_TITLE}</td>
+				<td>${board.CB_WRITER}</td>
 			</tr>
 			<tr>
 				<th scope="row">글 제목</th>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.n7.erp.bean.ac.A_company;
 import com.n7.erp.bean.ac.Account;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.ac.Approvaldocu;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.ac.SaleInfo;
 import com.n7.erp.bean.ac.approvalLine;
@@ -67,7 +68,7 @@ public interface AccountDao {
 
 	List<SaleInfo> saleDetaile2(@Param("check") String check, @Param("cCode") String cCode);
 
-	List<SaleInfo> selectSreach(@Param("select") String select, @Param("choice") String choice);
+	List<SaleInfo> selectSreach(@Param("select") String select, @Param("choice") String choice,@Param("cCode") String cCode);
 
 	boolean approvaldocu(ApprovalDocument ad);
 
@@ -92,8 +93,8 @@ public interface AccountDao {
 	void statusupdate(@Param("s_code") String s_code, @Param("cCode") String cCode);
 
 	shipment Ieport(@Param("code") String code, @Param("cCode") String cCode);
-	
-	
+
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 //	public List<ApprovalDocu> apupPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode); //내가 올린 결재안(페이징x)
 	public List<ApprovalDocu> apupPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
@@ -138,10 +139,12 @@ public interface AccountDao {
 	public int countDocument1(ApprovalDocu ap);
 
 	public int countDocument2(Account ac);
-	
+
 	List<SaleInfo> getsaleList2(String cCode);
 
 	public SaleInfo apupSaleinfo1(String s_num, String cCode);
+
+	int comparecode2(@Param("code")String code,@Param("cCode") String cCode);
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 

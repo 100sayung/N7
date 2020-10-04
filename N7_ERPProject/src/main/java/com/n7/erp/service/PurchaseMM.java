@@ -63,10 +63,7 @@ public class PurchaseMM {
 	}
 
 	public Map<String, List<Purchase>> pFrerence() {
-		//System.out.println("pageNum="+pageNum);
-		//ModelAndView mav=new ModelAndView();
 		Map<String, List<Purchase>> pMap = null;
-		//pageNum=(pageNum==null)?1:pageNum;
 		
 		List<Purchase> pList = pDao.pFrerence();
 		System.out.println("제발...");
@@ -80,14 +77,6 @@ public class PurchaseMM {
 		return pMap;
 	}
 
-//	private Object getPaging(Integer pageNum) {
-//		int maxNum = pDao.getListCount();
-//		int listCount= 10;
-//		int pageCount= 2;
-//		String boardName= "/erp/rest/Purchase/pference";
-//		Paging paging= new Paging(maxNum, pageNum, listCount, pageCount, boardName);
-//		return paging.makeHtmlPaging();
-//	}
 
 	public Map<String, List<Purchase>> pfsearch(String search, String choice) {
 		Map<String, List<Purchase>> pMap = null;
@@ -294,12 +283,16 @@ public class PurchaseMM {
         return sMap;   
 	}
 
-	public ModelAndView rRegistration(Return rt, HttpSession session) {
+	public ModelAndView rRegistration(Return rt, HttpSession session, ItemCode it) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
 		rt.setR_ccode(session.getAttribute("cCode").toString());
+		it.setIt_ccode(session.getAttribute("cCode").toString());
+		
 		if(rt.getR_ccode()!="") {
-			if(pDao.rRegistration(rt)) {
+			boolean result = pDao.rRegistration(rt);
+			if(result) {
+				boolean rs= pDao.itupdate(it);
 				view= "/Purchase/returnregistration";
 				mav.addObject("msg", "데이터입력 완료");
 			}else {
@@ -310,6 +303,7 @@ public class PurchaseMM {
 		mav.setViewName(view);
 		return mav;
 	}
+
 
 	public Map<String, List<Return>> rInfo() {
 		Map<String, List<Return>> rMap = null;
@@ -455,6 +449,7 @@ public class PurchaseMM {
 		return sMap;
 	}
 
+	//2,3결재
 	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep,
 			HttpSession session) {
 		ModelAndView mav= new ModelAndView();
@@ -488,7 +483,7 @@ public class PurchaseMM {
 		
 		ap.setAp_ccode(cCode);
 		ap.setAp_docuname(pa.getP_documentcode());
-		
+	
 		boolean as=pDao.paSign2(pa);
 		boolean sa=pDao.apSign2(ap);
 		
@@ -502,8 +497,5 @@ public class PurchaseMM {
 		mav.setViewName(view);
 		return mav;
 	}
-	
+
 }
-
-
-	
