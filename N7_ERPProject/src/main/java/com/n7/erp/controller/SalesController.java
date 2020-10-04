@@ -114,6 +114,12 @@ public class SalesController {
       Map<String, List<Shippingbean>> sMap=sm.shippingrequestdelete(check, session);
       return sMap;
    }
+   @PostMapping(value = "/sales/approvalcheck") //출하삭제
+   public Map<String, List<Shippingbean>> approvalcheck(String check, HttpSession session) {
+	   Map<String, List<Shippingbean>> sMap=sm.approvalcheck(check, session);
+	   return sMap;
+   }
+   
    //결재라인
    @PostMapping(value = "/sales/addApproval",produces="application/json;charset=utf-8" )
    public  Map<String, List<approvalLine>> addApproval(String CNT, String ARR) {
@@ -261,20 +267,14 @@ public class SalesController {
 //	}
 
 	@PostMapping(value = "/sales/searchcode", produces = "application/json;charset=utf-8")
-	   public Map<String, List<Shippingbean>> searchcode(String use, String code, HttpSession session) {
-	      Map<String, List<Shippingbean>> sMap = sm.searchcode(use, code, session);
-	      return sMap;
+	   public Map<String, List<Salesbean>> searchcode(String code, HttpSession session) {
+	      Map<String, List<Salesbean>> sMap = sm.searchcode(code, session);
+	      return sMap; 
 	 }
 
-	@PostMapping(value = "/sales/trensCom", produces = "application/json;charset=utf-8")
-	   public Map<String, List<Shippingbean>> trensCom(String USE, String CODE, HttpSession session) {
-	      Map<String, List<Shippingbean>> sMap = sm.trensCom(USE, CODE, session);
-	      return sMap;
-	}
-
-	@PostMapping(value = "/sales/serchcomlist", produces = "application/json;charset=utf-8")
-	   public Map<String, List<Shippingbean>> serchcomlist(String use, HttpSession session) {
-	      Map<String, List<Shippingbean>> sMap = sm.serchcomlist(use, session);
+	@PostMapping(value = "/sales/serchbonumlist", produces = "application/json;charset=utf-8")
+	   public Map<String, List<Salesbean>> serchcomlist(HttpSession session) {
+	      Map<String, List<Salesbean>> sMap = sm.serchbonumlist(session);
 	      return sMap;
 	}
 

@@ -65,6 +65,9 @@
    <select id="approvalplanchoice" parameterType="string" resultType="shipping">
       SELECT * FROM B_SHIPREGIST WHERE BS_DOCUNUM = #{check} AND BS_CCODE = #{cCode}
    </select>
+   <select id="compareCode" parameterType="string" resultType="int">
+   SELECT COUNT(*) FROM APPROVALDOCU WHERE AP_DOCUNUM=#{check} AND AP_CCODE=#{cCode}
+   </select>
 
    <insert id="approvalinput" parameterType="appdetail">
       INSERT INTO APPROVALDOCU VALUES(#{bs_docunum},#{bs_ccode},#{bs_docuname},#{bs_apcode1},#{bs_apcode2}, DEFAULT, 1) <!-- #{bs_date} -->
@@ -246,8 +249,8 @@
       SELECT * FROM B_SHIPREGIST WHERE BS_CCODE=#{cCode} AND BS_STATUS=#{use}
    </select>
 
-   <select id="getsearchCode" parameterType="String" resultType="shipping">
-      SELECT * FROM B_SHIPREGIST WHERE BS_CODE=#{code} AND BS_CCODE=#{cCode} AND BS_STATUS=#{use}
+   <select id="getsearchCode" parameterType="String" resultType="sales">
+      SELECT * FROM B_ORDER WHERE BO_NUM=#{code} AND BO_CCODE=#{cCode}
    </select>
 
    <update id="trensCom" parameterType="String">
