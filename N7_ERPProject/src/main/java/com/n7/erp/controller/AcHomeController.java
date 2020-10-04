@@ -90,6 +90,12 @@ public class AcHomeController {
 		mav = am.approdocument(request, ad, session);
 		return mav;
 	}
+	@RequestMapping(value = "Account/apSalesnum", method = RequestMethod.POST)
+	public ModelAndView apSalesnum(String s_num,HttpSession session) {
+		mav = am.apSalesnum(s_num, session);
+		return mav;
+	}
+	
 ////////////////////////////////////////////////////////////////////////////////
 //분개전표
 ////////////////////////////////////////////////////////////////////////////////

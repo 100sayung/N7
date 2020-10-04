@@ -251,4 +251,16 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		return value;
 	}
 
+	public String arbitrarily(String num, HttpSession session) {
+		String value="";
+		String cCode = session.getAttribute("cCode").toString();
+		boolean result = mDao.arbitrarily(num,cCode);
+		if(result) {
+			value="1";
+		}else {
+			value="2";
+		}
+		return value;
+	}
+
 }
