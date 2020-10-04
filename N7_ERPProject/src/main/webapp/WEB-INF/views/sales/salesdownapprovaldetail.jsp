@@ -120,7 +120,7 @@ table, tr, th, td {
                            </tr>
                             <tr>
                               <th>반려사유</th>
-                              <th colspan="8"><input type="text" name="bs_ect" value="${app.bs_ect}"></th>
+                              <th colspan="8"><input id="ect" type="text" name="bs_ect" value="${app.bs_ect}"></th>
                            </tr>
                         </table>
                      </div>
@@ -168,20 +168,50 @@ table, tr, th, td {
 								});
 					});
 	$('#turnback').click(function(){
+		var ect = $("#ect").val();
 		var num= $("#num").val();
 
 		$.ajax({
 			url:'/erp/rest/home/turnback',
 			type:'post',
-			data:{num:num},
+			data:{num:num,ect:ect},
 			success:function(data){
 				console.log(data);
+				if(data==1){
+					alert("반려완료");
+					window.close();
+				}else{
+					alert("반려실패");
+				}
+
 			},
 			error:function(error){
 				console.log(error);
 
 			}
 		});
+	});
+	
+	$("#submit").click(function(){
+		var num= $("#num").val();
+		$.ajax({
+			url:'/erp/rest/home/approvalagree',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("결재완료");
+					window.close();
+				}else{
+					alert("결재실패");
+				}
+			},
+			error:function(error){
+			}
+		});
+		
 	});
 
 </script>

@@ -131,7 +131,7 @@ padding: 8px;
 			</td>
          </tr>
          <tr>
-            <th><textarea rows="25" cols="100" id="write" class="writeText" name="CB_CONTENTS" required="required" placeholder="내용을 입력해주세요."></textarea></th>
+            <th><textarea rows="20" cols="100" id="write" class="writeText" name="CB_CONTENTS" required="required" placeholder="내용을 입력해주세요."></textarea></th>
          </tr>
          <tr>
             <td id="aaa">
@@ -148,8 +148,5 @@ padding: 8px;
          </tr>
       </table> 
    </form>
-   
-<script>
-</script>
 </body>
 </html>
