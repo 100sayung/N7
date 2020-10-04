@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 import com.n7.erp.dao.IHrDao;
 import com.n7.erp.dao.IMemberDao;
@@ -237,8 +238,11 @@ public ModelAndView moveMyInfo(HttpSession session) {
 
 	public String approvalagree(String num, HttpSession session) {
 		String value="";
+		ApprovalDocu ad =new ApprovalDocu();
 		String cCode = session.getAttribute("cCode").toString();
-		boolean result = mDao.approvalagree(num,cCode);
+		ad = mDao.getStatus(num,cCode);
+		String status = ad.getAp_status();
+		boolean result = mDao.approvalagree(num,status,cCode);
 		if(result) {
 			value="1";
 		}else {
