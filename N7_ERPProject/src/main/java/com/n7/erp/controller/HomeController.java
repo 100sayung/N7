@@ -24,7 +24,7 @@ import com.n7.erp.service.ConsultingBoardMM;
 import com.n7.erp.service.MemberMM;
 import com.n7.erp.userClass.PagingVO;
 
-//占쏙옙占쏙옙 占싱듸옙占쏙옙占쏙옙
+
 @Controller
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -43,7 +43,7 @@ public class HomeController {
 		return "/home/home";
 	}
 	
-	//遺��꽌愿�由� �럹�씠吏�
+	//부서 관리 페이지
 	@RequestMapping(value = "/managermode/erpmanage", method = RequestMethod.GET)
 	public String erpmanage() {
 		

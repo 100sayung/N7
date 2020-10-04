@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -20,6 +21,7 @@ import com.n7.erp.bean.hr.Career;
 import com.n7.erp.bean.hr.Certification;
 import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.hr.Payroll;
+import com.n7.erp.bean.hr.ViewPay;
 import com.n7.erp.userClass.PagingVO;
 
 public interface IHrDao {
@@ -179,6 +181,11 @@ public interface IHrDao {
 	@Update("UPDATE HR_ATTENDANCE SET HA_TIME=#{time}")
 	void updateAttendance(HashMap<String, Object> hMap);
 
-		@Update("UPDATE APPROVALDOCU SET AP_STATUS = #{status} WHERE AP_CCODE = #{cCode} AND AP_DOCUNUM = #{docunum}")
-		void registDocuStatsu(HashMap<String, String> hMap);
+	@Update("UPDATE APPROVALDOCU SET AP_STATUS = #{status} WHERE AP_CCODE = #{cCode} AND AP_DOCUNUM = #{docunum}")
+	void registDocuStatsu(HashMap<String, String> hMap);
+	int countEmployeeStatus(@Param("cCode")String cCode, @Param("status")String status);
+	List<HR_Card> selectEmployeeStatus(PagingVO vo);
+
+	int countWages(String cCode);
+	List<ViewPay> selectWages(PagingVO vo);
 }

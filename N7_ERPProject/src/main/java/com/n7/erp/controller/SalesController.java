@@ -114,6 +114,12 @@ public class SalesController {
       Map<String, List<Shippingbean>> sMap=sm.shippingrequestdelete(check, session);
       return sMap;
    }
+   @PostMapping(value = "/sales/approvalcheck") //출하삭제
+   public Map<String, List<Shippingbean>> approvalcheck(String check, HttpSession session) {
+	   Map<String, List<Shippingbean>> sMap=sm.approvalcheck(check, session);
+	   return sMap;
+   }
+   
    //결재라인
    @PostMapping(value = "/sales/addApproval",produces="application/json;charset=utf-8" )
    public  Map<String, List<approvalLine>> addApproval(String CNT, String ARR) {
@@ -254,6 +260,25 @@ public class SalesController {
 			Map<String, List<approvalLine>> sMap = sm.getApprinfo(cnt, strArray, session);
 			return sMap;
 		}
+
+//	@GetMapping(value = "/sales/bonumInfo",produces = "application/json;charset=utf-8")
+//		   public String bonumInfo() {
+//		      return "/sales/bonumInfo";
+//	}
+
+	@PostMapping(value = "/sales/searchcode", produces = "application/json;charset=utf-8")
+	   public Map<String, List<Salesbean>> searchcode(String code, HttpSession session) {
+	      Map<String, List<Salesbean>> sMap = sm.searchcode(code, session);
+	      return sMap; 
+	 }
+
+	@PostMapping(value = "/sales/serchbonumlist", produces = "application/json;charset=utf-8")
+	   public Map<String, List<Salesbean>> serchcomlist(HttpSession session) {
+	      Map<String, List<Salesbean>> sMap = sm.serchbonumlist(session);
+	      return sMap;
+	}
+
+
 
 //   @PostMapping(value = "/sales/approvaldelete") //결재완료 삭제 망함
 //   public Map<String, List<approvaldetail>> approvaldelete(String check) {

@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.n7.erp.bean.ac.A_company;
 import com.n7.erp.bean.ac.Account;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.ac.Approvaldocu;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.ac.SaleInfo;
 import com.n7.erp.bean.ac.myCompany;
@@ -271,20 +272,33 @@ public class AccountMM {
 		boolean result = false;
 		boolean result2 = false;
 		String code = "";
+		int count =0;
 		for (int i = 0; i < cnt; i++) {
 			code = strArray[i];
-			result2 = aDao.deleteSale2(code, cCode);
-			result = aDao.deleteSale(code, cCode);
+		    count=aDao.comparecode2(code,cCode);
+		    
 		}
-		if (result && result2) {
-			List<SaleInfo> sList = aDao.getsaleList(cCode);
-			aMap = new HashMap<>();
-			aMap.put("sList", sList);
-		} else {
+		if(count==0) {
+			for (int i = 0; i < cnt; i++) {
+				code = strArray[i];
+				result2 = aDao.deleteSale2(code, cCode);
+				result = aDao.deleteSale(code, cCode);
+			}
+			if (result && result2) {
+				List<SaleInfo> sList = aDao.getsaleList(cCode);
+				aMap = new HashMap<>();
+				aMap.put("sList", sList);
+			} else {
+				aMap = null;
+			}
+			
+		}else {
+			
 			aMap = null;
 		}
 		return aMap;
 	}
+
 
 	public ModelAndView saledetails(String check, HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
@@ -504,10 +518,11 @@ public class AccountMM {
 		return mav;
 	}
 
-	public Map<String, List<SaleInfo>> selectSearch(String select, String choice) {
+	public Map<String, List<SaleInfo>> selectSearch(String select, String choice, HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
 		Map<String, List<SaleInfo>> sMap = null;
 		List<SaleInfo> sList = null;
-		sList = aDao.selectSreach(select, choice);
+		sList = aDao.selectSreach(select, choice,cCode);
 		System.out.println(sList);
 		if (sList != null) {
 			sMap = new HashMap<>();
@@ -957,5 +972,62 @@ public class AccountMM {
 			sMap = null;
 		}
 		return sMap;
+	}
+
+	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
+		
+		SaleInfo si = aDao.apupSaleinfo1(s_num, cCode);
+		
+		if(si != null) {
+			mav.addObject("si", si);
+			System.out.println("sales상세인포성공");
+			view = "Account/apupSaleinfo";
+		}else {
+			System.out.println("실패했다 이새기야");
+			view = "Account/apupPayment";
+		}
+		
+			
+//			for (int i = 0; i < strpkind.length; i++) {
+//				si.setS_pkind(strpkind[i]);
+//				si.setS_cnt(strcnt[i]);
+//				si.setS_price(strprice[i]);
+//				si.setS_price2(strprice2[i]);
+//				si.setS_tax(strtax[i]);
+//				si.setS_total(strtotal[i]);
+//				si.setS_memo(strmemo[i]);
+//				b = aDao.saleinsert2(si);
+//			}
+//			if (si.getIe_seqnum() == null) {
+//				if (a && b) {
+//					System.out.println("여기도들어와?2");
+//					mav.addObject("msg", "전표등록성공");
+//					view = "Account/openTable";
+//				} else {
+//					mav.addObject("msg", "전표등록실패");
+//					view = "Account/openTable";
+//				}
+//			} else {
+//
+//				if (a && b) {
+//					System.out.println("여기도들어와?3");
+//					String[] seqnum = request.getParameterValues("ie_seqnum");
+//					for (int i = 0; i < seqnum.length; i++) {
+//						aDao.statusupdate(seqnum[i], cCode);
+//
+//					}
+//					mav.addObject("msg", "전표등록성공");
+//					view = "Account/openTable";
+//				} else {
+//					mav.addObject("msg", "전표등록실패");
+//					view = "Account/openTable";
+//				}
+//			}
+//		}
+		mav.setViewName(view);
+		return mav;
 	}
 }

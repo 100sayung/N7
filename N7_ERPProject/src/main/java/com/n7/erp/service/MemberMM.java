@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 import com.n7.erp.dao.IHrDao;
 import com.n7.erp.dao.IMemberDao;
@@ -212,13 +213,40 @@ public ModelAndView moveMyInfo(HttpSession session) {
 
 	public String turnback(String num, String ect, HttpSession session) {
 		String value="";
+		boolean result2=false;
+		boolean result3=false;
+		boolean result4=false;
+		String numCode = num.substring(0,1);
+		System.out.println(numCode);
 		String cCode = session.getAttribute("cCode").toString();
 		boolean result  = mDao.turnback(num,cCode);
+		if(numCode.equals("A")) {
+		 result2 = mDao.ectupdate1(num,ect,cCode);
+		}else if(numCode.equals("G")){
+		 result3 = mDao.ectupdate2(num,ect,cCode);
+		}else {
+		 result4 = mDao.ectupdate3(num,ect,cCode);
+		}
 		
-		if(result) {
+		if(result&&result2 ||result&&result3||result&&result4) {
 			value ="1";
 		}else {
 			value ="2";
+		}
+		return value;
+	}
+
+	public String approvalagree(String num, HttpSession session) {
+		String value="";
+		ApprovalDocu ad =new ApprovalDocu();
+		String cCode = session.getAttribute("cCode").toString();
+		ad = mDao.getStatus(num,cCode);
+		String status = ad.getAp_status();
+		boolean result = mDao.approvalagree(num,status,cCode);
+		if(result) {
+			value="1";
+		}else {
+			value="2";
 		}
 		return value;
 	}

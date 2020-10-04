@@ -120,7 +120,7 @@ table, tr, th, td {
                            </tr>
                             <tr>
                               <th>반려사유</th>
-                              <th colspan="8"><input type="text" name="bs_ect" value="${app.bs_ect}"></th>
+                              <th colspan="8"><input id="ect" type="text" name="bs_ect" value="${app.bs_ect}"></th>
                            </tr>
                         </table>
                      </div>
@@ -131,13 +131,14 @@ table, tr, th, td {
       </form>
          <br>
          <button type="button" id="submit">제출하기</button>
+         <button type="button" id="arbitrarily">전결하기</button>
          <button type="button" id="turnback">반려하기</button>
 
 </body>
 <script>
 
 	$(document).ready(function() {
-						arr = new Array();
+						var arr = new Array();
 						var cnt = $("input[name='code']").length;
 
 						$("input[name='code']").each(function() {
@@ -168,10 +169,79 @@ table, tr, th, td {
 								});
 					});
 	$('#turnback').click(function(){
+		var ect = $("#ect").val();
 		var num= $("#num").val();
 
 		$.ajax({
 			url:'/erp/rest/home/turnback',
+			type:'post',
+			data:{num:num,ect:ect},
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("반려완료");
+					window.close();
+				}else{
+					alert("반려실패");
+				}
+
+			},
+			error:function(error){
+				console.log(error);
+
+			}
+		});
+	});
+	
+	$("#submit").click(function(){
+		var num= $("#num").val();
+		$.ajax({
+			url:'/erp/rest/home/approvalagree',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("결재완료");
+					window.close();
+				}else{
+					alert("결재실패");
+				}
+			},
+			error:function(error){
+			}
+		});
+		
+	});
+	
+	$("#arbitrarily").click(function(){
+		var num= $("#num").val();
+		$.ajax({
+			url:'/erp/rest/home/arbitrarily',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("전결완료");
+					window.close();
+				}else{
+					alert("전결실패");
+				}
+			},
+			error:function(error){
+			}
+		});
+		
+	});
+
+/* 	$('#submit').click(function(){
+
+
+		$.ajax({
+			url:'/erp/rest/sales/submit',
 			type:'post',
 			data:{num:num},
 			success:function(data){
@@ -182,7 +252,7 @@ table, tr, th, td {
 
 			}
 		});
-	});
-
+	}); */
+	
 </script>
 </html>

@@ -20,4 +20,5 @@ public class Shippingbean { //출하등록
     private int bs_unit;
     private int bs_quantity;
     private int bs_price;
+    private String bs_status;
 }

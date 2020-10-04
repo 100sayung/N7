@@ -147,10 +147,8 @@ public class AccountionCotroller {
 	}
 
 	@PostMapping(value = "/Account/selectSearch", produces = "application/json;charset=utf-8")
-	public Map<String, List<SaleInfo>> selectSearch(String select, String choice) {
-		System.out.println(select);
-		System.out.println(choice);
-		Map<String, List<SaleInfo>> sMap = am.selectSearch(select, choice);
+	public Map<String, List<SaleInfo>> selectSearch(String select, String choice, HttpSession session) {
+		Map<String, List<SaleInfo>> sMap = am.selectSearch(select, choice,session);
 		return sMap;
 	}
 
@@ -333,6 +331,16 @@ public class AccountionCotroller {
 		String[] strArray = ARR.split(",");
 		Map<String, List<approvalLine>> mMap = am.getApprinfo(cnt, strArray, session);
 		return mMap;
+	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// 내가올린 결재안 상세보기(영미니미니민-AP)
+	@GetMapping(value = "Account/apSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+		mav = am.apSalesnum(s_num, session);
+		System.out.println(s_num);
+		return mav;
 	}
 
 }

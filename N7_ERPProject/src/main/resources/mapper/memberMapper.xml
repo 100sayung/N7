@@ -18,7 +18,39 @@
 		WHERE M_CCODE = #{cCode} AND HR_CARD.HC_WORK !='2'
 	</select>
 	
+	<update id="approvalagree" parameterType="String">
+	UPDATE APPROVALDOCU
+	<choose>
+	<when test="status.equals('1')">
+	SET AP_STATUS = '2' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
+	</when>
+	<when test="status.equals('2')">
+	SET AP_STATUS = '3' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
+	</when>
+	</choose> 
+	</update>
+	
 	<update id="turnback" parameterType="String">
 	UPDATE APPROVALDOCU SET AP_STATUS = '4' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
 	</update>
+	
+	<update id="arbitrarily" parameterType="String">
+	UPDATE APPROVALDOCU SET AP_STATUS = '3' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
+	</update>
+	
+	<update id="ectupdate1" parameterType="String">
+	UPDATE AC_REALSALESTATEMENT SET RS_REASON = #{ect}  WHERE RS_NUM =#{num} AND RS_CCODE=#{cCode}
+	</update>
+	
+	<update id="ectupdate2" parameterType="String">
+	UPDATE B_SHIPMENT SET BS_ECT = #{ect}  WHERE BS_DOCUNUM =#{num} AND BS_CCODE=#{cCode}
+	</update>
+	
+	<update id="ectupdate3" parameterType="String">
+	UPDATE O_PURCHASEPROGRAMCOMMOM SET P_ETC = #{ect}  WHERE P_DOCUMENTCODE =#{num} AND P_CCODE=#{cCode}
+	</update>
+	
+	<select id="getStatus" parameterType="string" resultType="string">
+	SELECT AP_STATUS FROM APPROVALDOCU WHERE AP_DOCUNUM = #{num} AND AP_CCODE =#{cCode}
+	</select>
 </mapper>
