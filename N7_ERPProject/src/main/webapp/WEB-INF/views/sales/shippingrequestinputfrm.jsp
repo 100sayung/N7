@@ -64,9 +64,9 @@ border: 1px solid;
          </thead>
       </table>
       </div>
-            <div style="width:1200px; background-color:#ECEBEA;">
+            <div style="width:1300px; background-color:#ECEBEA;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="width:1300px; margin-left:70px;">
+              style="width:1200px; margin-left:70px;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
@@ -91,7 +91,7 @@ border: 1px solid;
                     <tr>
                         <td><input type="radio" name="each_check" class="each"></td>
                         <td><input type="date" name="bs_basedate" required></td>
-                        <td style="width:250px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
+                        <td style="width:400px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                         <td class = "cl"></td>
                         <td><input type="text" name="bs_proname" required></td>
                         <td><input type="number" name="bs_unit"  required></td>

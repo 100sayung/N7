@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Document</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
 #center{
@@ -100,6 +100,7 @@ text-align:center;
   	   
   	   $("#clcode").val(clcode);
   	};
+  	
      $('#uncollectedmoneyitemfrm').click(function(){
        var str="";
        
@@ -111,7 +112,7 @@ text-align:center;
              console.log(data);
              
              for(var i in data.sList){//개별 미수금 등록한 거
-                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bu_person+"></td>";
+                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_ccode+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
@@ -119,12 +120,12 @@ text-align:center;
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
              }
               for(var i in data.sList2){ //결재창에서 끌고 온거
-                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_proname+"></td>";
-                 str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
-                 str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-                 str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-                 str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-                 str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList2[i].bs_docunum+"></td>";
+                 str+="<td><input type='text' value="+data.sList2[i].bs_date+"></td>";
+                 str+="<td><input type='text' value="+data.sList2[i].bs_proname+"></td>";
+                 str+="<td><input type='number' value="+data.sList2[i].bs_unit+"></td>";
+                 str+="<td><input type='number' value="+data.sList2[i].bs_quantity+"></td>";
+                 str+="<td><input type='number' value="+data.sList2[i].bs_price+"></td>";
               }
                $('#tBody').html(str);
            
