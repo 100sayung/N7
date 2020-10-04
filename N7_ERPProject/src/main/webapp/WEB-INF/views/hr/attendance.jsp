@@ -179,6 +179,21 @@ input{
 			console.log(input.id);
 			if(num==$("#"+number).val()){
 				$("#"+number).attr("readonly", false);
+				var H="";
+				var M="";
+				var S="";
+				for(var i=0;i<24;i++){
+					H=i;
+				}
+				for(var j=0;i<60;j++){
+					M=j;
+				}
+				for(var k=0;k<60;k++){
+					S=k;
+				}
+				var str="<select></select>";
+				
+				$("#"+number).html(str);
 				$("#"+number).css("border", "1px solid black");
 			}
 			
@@ -221,7 +236,7 @@ input{
 				}
 			});
 		}else{
-			alert("에러 404");
+			alert("취소되었습니다.");
 		}
 	}
 	
