@@ -92,10 +92,10 @@ ul {
 	<div id="description">
 	<div class="divcss">사원 휴 - 퇴직 관리</div>
 		<input type="text" id="nameSearch"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
-		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중0</button></a> 
-		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중1</button></a> 
-		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사2</button></a> <br>
-		<div id="container">
+		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a> 
+		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a> 
+		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
+		<div id="container" style="overflow:auto; width:750px; height:600px;">
 			<input type="hidden" value="" id="status">
 		</div>
 	</div>
@@ -106,7 +106,9 @@ ul {
 
 
 	//검색 조건 끝
-
+	CheckRetired(0);
+	
+	
 	function CheckRetired(status){
 		$.ajax({
 			url:"/erp/rest/hr/checkretired",
@@ -149,7 +151,6 @@ ul {
 
 
 		function thisRowDel(row){
-
 			if(confirm("정말 하시겠습니까?") == true){
 			console.log(row);
 			let tr = row.parentNode.parentNode;

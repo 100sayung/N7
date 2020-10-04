@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>apUpinfo - 내가 올린 결재안 상세보기</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
@@ -63,14 +62,14 @@ table, tr, th, td {
 <body>
 	<form id="for">
 		<div
-			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">기안문
+			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">전표 
 			상세보기</div>
 		<div
 			style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
 			<table>
 				<tr>
 					<th>제목</th>
-					<th><input type="hidden" name="j_title" value="${ac.j_title}">${ac.j_title}</th>
+					<th><input type="hidden" name="j_title" value="${si.j_title}">${ac.j_title}</th>
 				</tr>
 				<tr>
 					<th>결재자</th>
@@ -87,52 +86,49 @@ table, tr, th, td {
 							<div>
 								<table>
 									<tr>
-										<th colspan="2">계정과목</th>
-										<th colspan="2"><input type="text" name="j_account"
-											class="txt" value="${ac.j_account}" readonly></th>
+										<th colspan="2">담당자</th>
+										<th colspan="2"><input type="text" name="s_employee"
+											class="txt" value="${si.s_employee}" readonly></th>
 										<th colspan="2">문서번호</th>
-										<th colspan="2"><input type="text" name="j_docunum"
-											class="txt" value="${ac.j_docunum}" readonly><input
-											type="hidden" name="j_grade" id="j_grade" class="draft3"
-											value="${ac.j_grade}" readonly></th>
-										<!-- 										<td>결재상태</td> -->
+										<th colspan="2"><input type="text" name="s_num"
+											class="txt" value="${si.s_num}" readonly></th>
 
 									</tr>
 									<tr>
-										<th colspan="2">수주이름</th>
-										<th colspan="2"><input type="text" name="j_centre"
-											class="txt" value="${ac.j_centre}" readonly><input
-											type="hidden" name="j_ccode" class="txt"
-											value="${ac.j_ccode}" readonly></th>
-										<th colspan="2">부서명</th>
-										<th colspan="2"><input type="text" name="j_section"
-											class="txt" value="${ac.j_section}" readonly></th>
+										<th colspan="2">사업자번호</th>
+										<th colspan="2"><input type="text" name="s_comnum"
+											class="txt" value="${si.s_comnum}" readonly><input
+											type="hidden" name="s_ccode" class="txt"
+											value="${si.s_ccode}" readonly></th>
+										<th colspan="2">거래처코드</th>
+										<th colspan="2"><input type="text" name="s_clcode"
+											class="txt" value="${si.s_clcode}" readonly></th>
 									</tr>
 									<tr>
-										<th colspan="2">비용구분</th>
+										<th colspan="2">종류</th>
 										<td colspan="2"><input type="text" name="j_group"
-											class="draft3" value="${ac.j_group}" readonly></td>
+											class="draft3" value="${si.s_kind}" readonly></td>
 										<th colspan="2">거래처명</th>
-										<td colspan="2"><input type="text" name="j_company"
-											class="draft3" value="${ac.j_company}" readonly></td>
+										<td colspan="2"><input type="text" name="s_company"
+											class="draft3" value="${si.s_company}" readonly></td>
 
 									</tr>
-									<tr>
-										<th colspan="2">차변금액</th>
-										<td colspan="5"><input type="text" name="j_debit"
-											class="draft" value="${ac.j_debit}" readonly></td>
-									</tr>
-									<tr>
-										<th colspan="2">대변금액</th>
-										<td colspan="5"><input type="text" name="j_credit"
-											class="draft" value="${ac.j_credit}" readonly></td>
-									</tr>
+<!-- 									<tr> -->
+<!-- 										<th colspan="2">차변금액</th> -->
+<!-- 										<td colspan="5"><input type="text" name="j_debit" -->
+<%-- 											class="draft" value="${ac.j_debit}" readonly></td> --%>
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<th colspan="2">대변금액</th> -->
+<!-- 										<td colspan="5"><input type="text" name="j_credit" -->
+<%-- 											class="draft" value="${ac.j_credit}" readonly></td> --%>
+<!-- 									</tr> -->
 
-									<tr>
-										<th>적요</th>
-										<td colspan="7"><input type="text" name="j_sumup"
-											class="draft" value="${ac.j_sumup}" readonly></td>
-									</tr>
+<!-- 									<tr> -->
+<!-- 										<th>적요</th> -->
+<!-- 										<td colspan="7"><input type="text" name="j_sumup" -->
+<%-- 											class="draft" value="${ac.j_sumup}" readonly></td> --%>
+<!-- 									</tr> -->
 									<tr>
 										<th>반려사유</th>
 										<th colspan="8"><input type="text" name="j_reasion"

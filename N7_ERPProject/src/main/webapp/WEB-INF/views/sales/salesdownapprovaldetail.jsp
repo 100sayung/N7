@@ -237,5 +237,22 @@ table, tr, th, td {
 		
 	});
 
+/* 	$('#submit').click(function(){
+
+
+		$.ajax({
+			url:'/erp/rest/sales/submit',
+			type:'post',
+			data:{num:num},
+			success:function(data){
+				console.log(data);
+			},
+			error:function(error){
+				console.log(error);
+
+			}
+		});
+	}); */
+	
 </script>
 </html>

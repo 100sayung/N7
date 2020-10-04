@@ -93,8 +93,8 @@ public interface AccountDao {
 	void statusupdate(@Param("s_code") String s_code, @Param("cCode") String cCode);
 
 	shipment Ieport(@Param("code") String code, @Param("cCode") String cCode);
-	
-	
+
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 //	public List<ApprovalDocu> apupPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode); //내가 올린 결재안(페이징x)
 	public List<ApprovalDocu> apupPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
@@ -139,8 +139,10 @@ public interface AccountDao {
 	public int countDocument1(ApprovalDocu ap);
 
 	public int countDocument2(Account ac);
-	
+
 	List<SaleInfo> getsaleList2(String cCode);
+
+	public SaleInfo apupSaleinfo1(String s_num, String cCode);
 
 	int comparecode2(@Param("code")String code,@Param("cCode") String cCode);
 

@@ -47,9 +47,9 @@ border: 1px solid;
                <th>출하번호</th>
                <th><input type="text" name="bs_docunum" placeholder="자동생성" readonly></th>
                <th>회사코드</th>
-               <th><input type="text" name="bs_ccode"></th>
+               <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>수주번호</th>
-               <th><input type="text" name="bs_bonum">
+               <th><input id="bonum" type="text" name="bs_bonum"><button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
 <!--           <th>품목코드</th>
                <th><input type="text" name="bs_itcode"></th>  -->
             </tr>
@@ -75,7 +75,9 @@ border: 1px solid;
                 </colgroup>
                 <colgroup span="3" align="center">
                 </colgroup>
-                <thead valign="top">
+                <!-- <thead valign="top">
+                </thead> -->
+                <tbody id="tBody">
                     <tr>
                         <th><input type="radio" id="allCheck"></th>
                         <th>출하의뢰일</th>
@@ -86,12 +88,10 @@ border: 1px solid;
                         <th>수량</th>
                         <th>판매금액</th>
                    </tr>
-                </thead>
-                <tbody id="tBody">
                     <tr>
                         <td><input type="radio" name="each_check" class="each"></td>
                         <td><input type="date" name="bs_basedate" required></td>
-                        <td><input type="text" name="bs_clcode" required></td>
+                        <td><input type="text" name="bs_clcode" required id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                         <td class = "cl"></td>
                         <td><input type="text" name="bs_proname" required></td>
                         <td><input type="number" name="bs_unit"  required></td>
@@ -117,7 +117,26 @@ border: 1px solid;
     </div>
 
     <script type="text/javascript">
+    function setChildValue(data) {
+ 	   console.log(data)
+ 	   for(var i in data.aList){ 
+ 	   var clcode=data.aList[i].cl_code;
+ 	      
+ 	   }
+ 	   
+ 	   $("#clcode").val(clcode);
+ 	};
 
+    function setChildValue2(data) {
+ 	   console.log(data)
+ 	   var bonum="";
+ 	   for(var i in data.sList){
+ 	   bonum=data.sList[i].bo_num;
+
+ 	   }
+
+ 	   $("#bonum").val(bonum);
+ 	};
 
 
 /*         var select2;
@@ -143,17 +162,17 @@ border: 1px solid;
       dataType: "json",
       success:function(data){
          console.log(data);
-
+          str+="<tr><th><input type='radio' id='allCheck'></th><th>수주번호</th><th>거래처회사코드</th><th>품목코드</th><th>제품명</th><th>판매단가</th><th>수량</th><th>판매금액</th></tr>";
          //거래처랑 제품명도!
          for(var i in data.sList){
             str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_docunum+"></td>";
-            str+="<td><input type='date' value="+data.sList[i].bs_basedate+"></td>";
+            str+="<td><input type='text' value="+data.sList[i].bs_bonum+"></td>";
             str+="<td><input type='text' value="+data.sList[i].bs_clcode+"></td>";
             str+="<td><input type='text' value="+data.sList[i].bs_itcode+"></td>";
             str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
             str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
             str+="<td><input onclick='changeItcode(this)' type='number' value="+data.sList[i].bs_quantity+"></td>";
-            str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+            str+="<td><input type='number' value="+data.sList[i].bs_price+"></td></tr>";
          }
             $('#tBody').html(str);
       },
@@ -182,7 +201,7 @@ border: 1px solid;
        });
 
               $('.addList').click(function(){
-                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="date" name="bs_basedate" class="input-text"></td><td><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
     var select;
     $.ajax({
           url:"/erp/stock/getitemcode",
@@ -247,9 +266,25 @@ border: 1px solid;
               check= $(this).attr("value");
 
               console.log(check);
-              if(check!=""){
-                 window.open("/erp/sales/approvalplan?check="+check,'approvalplan','width=1200,height=700')
-              }
+                $.ajax({
+                	url:'/erp/rest/sales/approvalcheck',
+                	type:'post',
+                	data:{check:check},
+                	dataType:'json',
+                	success:function(data){
+                		console.log(data);
+                		if(data.sList==null){
+                			alert("이미 결재요청되었습니다.");
+                		}else{
+                 window.open("/erp/sales/approvalplan?check="+check,'approvalplan','width=1200,height=700');
+                		}
+                	},
+                	error:function(error){
+                		console.log(error);
+                	}
+                	
+                })
+              
             });
          });
 
@@ -271,7 +306,7 @@ border: 1px solid;
                       if(data.sList!=""){
                      for(var i in data.sList){
                         str+="<tr class='tr'><td><input type='radio' name='each_check' value="+data.sList[i].bs_docunum+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_basedate+"></td>";
+                        str+="<td><input type='text' value="+data.sList[i].bs_docunum+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bs_clcode+"></td>";
                         str+="<td>"+select+"</td>";
                         str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
@@ -302,14 +337,18 @@ border: 1px solid;
                   type : 'post',
                   url : '/erp/rest/sales/shippingrequestdelete',
                   data: {check:check},
-                  dataType: "json",
+                  dataType: 'json',
                   success : function(data) {
                      console.log(data);
                      var str="";
+                      if(data.sList==null){
+                    	  alert("이미결제 요청된 데이터입니다.");
+                      }else{
+                        str+="<tr><th><input type='radio' id='allCheck'></th><th>수주번호</th><th>거래처회사코드</th><th>품목코드</th><th>제품명</th><th>판매단가</th><th>수량</th><th>판매금액</th></tr>";
 
                      for(var i in data.sList){
                         str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_docunum+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_basedate+"></td>";
+                        str+="<td><input type='text' value="+data.sList[i].bs_bonum+"></td>";
                         str+="<td><input type='text' value="+data.sList[i].bs_clcode+"></td>";
                         str+="<td>"+select+"</td>";
                         str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
@@ -318,6 +357,7 @@ border: 1px solid;
                         str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
                       }
                          $('#tBody').html(str);
+                      }
                   },
                   error : function(error) {
                      console.log(error);
@@ -356,6 +396,7 @@ border: 1px solid;
               }
            })
         }
+
 
 </script>
 </body>
