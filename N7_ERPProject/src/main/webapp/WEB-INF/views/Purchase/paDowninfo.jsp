@@ -166,26 +166,26 @@ html, body {
 		});
 	});
 
-	$('#paSign2').click(function(){
-		var obj=$("#fo").serialize();
-		console.log(obj);
-
+	$("#submit").click(function(){
+		var num= $("#num").val();
 		$.ajax({
-			url: '/erp/rest/Purchase/paSign2',
-			type: 'post',
-			data: obj,
-			success: function(data){
-				alert("결재요청이 완료되었습니다.");
-				window.close();
-				window.opener.location.reload();
+			url:'/erp/rest/home/approvalagree',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
 				console.log(data);
+				if(data==1){
+					alert("결재완료");
+					window.close();
+				}else{
+					alert("결재실패");
+				}
 			},
-			error: function(err){
-				alert("결재요청이 실패했습니다.");
-				console.log(err);
-
+			error:function(error){
 			}
-		})
+		});
+		
 	});
 
 	$('#turnback').click(function(){
