@@ -200,7 +200,45 @@ text-align:center;
                }
             });
          }); 
-     
+      
+/*       $('#deleteCheck').click(function(){
+          var check="";
+          $("input[name=each_check]:checked").each(function(){
+             check = $(this).attr("value");
+             console.log(check);
+          });
+          
+          $.ajax({
+                type : 'post',
+                url : '/erp/rest/sales/orderregistrationdelete',
+                data: {check:check},
+                dataType: "json",
+                success : function(data) {                   
+                   console.log(data);
+                   var str="";
+                   if(data.sList[0].bo_num==check){
+                      alert("출하 등록된 자료입니다.");
+                   }else{
+                      
+                   for(var i in data.sList){
+                       str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
+                       str+="<td><input type='number' value="+data.sList[i].bo_proquantity+"></td>";
+                       str+="<td><input type='number' value="+data.sList[i].bo_prosalesamount+"></td>";
+                       str+="<td><input type='number' value="+data.sList[i].bo_orderbudget+"></td>";
+                    }
+                       $('#tBody').html(str);
+                   }
+                },
+                error : function(error) {
+                   console.log(error);
+                }
+             });
+          }); 
+      */
     
       //완납 처리 버튼
       $('#fullpaymentcheck').click(function(){

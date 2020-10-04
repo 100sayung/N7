@@ -175,15 +175,15 @@ ul {
        });
     });
    
-   $('#showMenu5').on('click', function(e) {
+/*    $('#showMenu5').on('click', function(e) {
        e.preventDefault();
 
-/*        var check='';
+        var check='';
        $("input[name=each_check]:checked").each(function(){
           check= $(this).attr("value");
           
           console.log(check);
-          if(check!=""){ */
+          if(check!=""){
       
        $.ajax({
           type : 'get',
@@ -197,8 +197,9 @@ ul {
              console.log(error);
           }
         });
-    });
-  
+    }); */
+    
+    
     var select;
       $.ajax({
             url:"/erp/stock/getitemcode",
@@ -225,7 +226,7 @@ ul {
           return arrStr;
        } 
      
-      var select2;
+/*       var select2;
       $.ajax({
             url:"/erp/rest/sales/getbonum",
             dataType:"json",
@@ -249,7 +250,7 @@ ul {
           }
           arrStr+="</select>";
           return arrStr;
-       } 
+       }  */
    </script>
 </body>
 </html>

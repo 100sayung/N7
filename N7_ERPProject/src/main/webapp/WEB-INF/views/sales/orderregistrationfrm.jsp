@@ -10,6 +10,7 @@
 <style>
 #center{
 text-align:center;
+width:1300px;
 }
 html, body {
 text-align:center;
@@ -24,6 +25,7 @@ border: 1px solid ;
 }
 #item{
 text-align:center;
+width:1400px;
 }
 
 </style>
@@ -36,7 +38,7 @@ text-align:center;
            <!-- <span style="padding-left: 5px"><a href="#"
          onclick="window.open('clientfrm','clientfrm','width=1200,height=700')"><button>거래처등록</button></a></span> -->
         </div> 
-        <div style="width:auto; background-color:#3D6B9B;  color:white; padding:1%;">수주관리 양식</div>
+        <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">수주관리 양식</div>
               <select id="choice" style="width:180px;">                    
                       <option value="bo_num">수주번호</option>
                       <option value="bo_clcode">거래처회사코드</option>
@@ -45,14 +47,14 @@ text-align:center;
         <input type="text" name="search" id="search">    
         <button id="searchh">검색</button>   
         <form id="orderregistrationinput">
-        <div border="1" style="height:80px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:300px;">
+        <div border="1" style="width:1300px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+        <table style="margin-left:250px;">
          <thead>
             <tr>
                <th>수주번호</th>
                <th><input type="number" name="bo_num" placeholder="자동생성" readonly></th> <!-- placeholder="자동생성" readonly -->
                <th>거래처회사코드</th>
-               <th><input id="clcode" type="text" name="bo_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+               <th><input id="clcode" type="text" name="bo_clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>회사코드</th>
                <th><input type="text" name="bo_ccode" value="${cCode}"></th>
             </tr>
@@ -71,7 +73,7 @@ text-align:center;
       </div> 
             <div style="background-color:#ECEBEA;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="margin-left:80px; , border-color:gray;">
+              style="width:1200px;  margin-left:50px; border-color:gray;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
@@ -159,7 +161,7 @@ text-align:center;
         
       $(document).ready(function(){
             $('.addList').click(function(){
-               $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bo_pronum" class="input-text"></td><td><input type="text" name="bo_orderdate" class="input-text" ></td><td><input type="text" name="bo_duedate" class="input-text" ></td><td><input type="number" name="bo_proquantity" class="input-text"></td><td><input type="number" name="bo_prosalesamount" class="input-text" ></td><td><input type="number" name="bo_orderbudget" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
+               $('#tBody').append('<tr><td frame=void><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bo_num" class="input-text"></td><td><input type="text" name="bo_pronum" class="input-text"></td><td><input type="text" name="bo_orderdate" class="input-text" ></td><td><input type="text" name="bo_duedate" class="input-text" ></td><td><input type="number" name="bo_proquantity" class="input-text"></td><td><input type="number" name="bo_prosalesamount" class="input-text"></td><td><input type="number" name="bo_orderbudget" class="input-text" ></td><td frame=void><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
             });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         }); 
          function thisRowDel(row){
