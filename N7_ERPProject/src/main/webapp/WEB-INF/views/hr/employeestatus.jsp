@@ -97,17 +97,78 @@ ul {
 <div class="divcss">사원 출퇴근 상태 조회</div>
 	<input type="text" id="nameSearch" placeholder="이름으로 검색"> 
 	<button onclick="searchFromName()" class="infobtn" id="nameSearching" style="margin-right: 200px;">검색</button>
-	<button onclick="searchFromStatus(1)" class="infobtn">출근중</button><button onclick="searchFromStatus(0)" class="infobtn">퇴근중</button>
+	<button onclick="paging(1, 1)" class="infobtn">출근중</button><button onclick="paging(1, 0)" class="infobtn">퇴근중</button>
 	<div id ="container">
-
 	</div>
+	<div id="paging"></div>
 
 	 </div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
 
-	$(document).ready(function() {
+	var currPage = 1;
+	function pageNumber(j, status){
+		currPage = j;
 		$.ajax({
+			url:"/erp/rest/hr/employeestatuspagenumber",
+			dataType:"json",
+			data:{status : status},
+			method:"get",
+			success : function(page){
+				console.log(page);
+				var pagecnt = (page/10) + 1;
+				let str = "";
+				for(let i = 1 ; i < pagecnt ; i++){
+					if(i == currPage){
+						str += " &nbsp; ["+ i +"] &nbsp; ";
+					}else{
+						str += " &nbsp; <a href='javascript:paging("+i+", "+ status +")'>["+ i +"]</a> &nbsp; ";
+					}
+				}
+				console.log(str);
+				$("#paging").html(str);
+			}, error : function(err){
+				console.log(err);
+			}
+		});
+	}
+
+	function employeeStatusList(nowPage, status){
+		console.log("?????????");
+		$.ajax({
+			url:"/erp/rest/hr/employeestatuslist",
+			dataType:"json",
+			data:{nowPage : nowPage, cntPerPage : "10", status:status},
+			method:"get",
+			success : function(data){
+				console.log(data);
+				let str = "<table>";
+				str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td style='width:150px;'>상태</td></tr>";
+				for(let i = 0 ; i<data.length ; i++){
+					str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
+					if(data[i].hc_status == 1){
+						str += "<font style='color:blue;'>출근</font>";
+					}else{
+						str += "<font style='color:red;'>퇴근</font>";
+					}
+					str += "</td></tr>";
+				}
+				str +="</table>"
+				$("#container").html(str);
+			}, error : function(err){
+				console.log(err);
+			}	
+		});
+	}
+	function paging(num, status){
+		pageNumber(num, status);
+		employeeStatusList(num, status);
+	}
+	
+	
+	$(document).ready(function() {
+		paging(1, "1");
+/* 		$.ajax({
 			url:"/erp/rest/hr/employeestatus",
 			dataType:"json",
 			method:"get",
@@ -128,10 +189,10 @@ ul {
 			}, error : function(err){
 				console.log(err);
 			}
-		});
+		}); */
 	});
 
-
+/* 
 	function searchFromStatus(status){
 		$.ajax({
 			url:"/erp/rest/hr/searchfromstatus",
@@ -145,7 +206,7 @@ ul {
 				console.log(err);
 			}
 		});
-	}
+	} */
 	
 	
 	function searchFromName(){

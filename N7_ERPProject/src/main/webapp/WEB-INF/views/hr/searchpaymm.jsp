@@ -115,17 +115,9 @@ span {
 	<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색">
 	<input type="button" id="checkpayid" class="cssbutton" onclick="checkpayid()" value="검색">
 	<br><br>
-	<table id="wages" style="text-align: center; width: 800px; border: 1px solid black;">
-		<tr class="tr_chart_color"  style="background-color: lightblue;">
-			<td>아이디</td>
-			<td>이름</td>
-			<td>부서</td>
-			<td>직급</td>
-			<td>급여</td>
-			<td>기본공제액</td>
-			<td>기본수령액</td>
-		</tr>
-	</table>
+	<div id="container">
+	</div>
+	<div id="paging"></div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -138,34 +130,102 @@ span {
 	
 	//사원들 급여 조회
 	$(function(){
-	$.ajax({
-		url:"/erp/hr/searchwages",
-		method:'POST',
-		dataType:'JSON',
-		success:function(data){
-			console.log(data);
-			console.log(data[0].HC_ID);
-			console.log(data.length);
-			var str='';
-			var da=data.toString();
-			for(var i=0;i<data.length;i++){
-				var result=data[i].HDP_PAY-data[i].HDD_AMOUNT;
-				str+="<tr id='\""+data[i].HC_ID+"\"'><td>"+data[i].HC_ID+"</td>"
-					+"<td>"+data[i].M_NAME+"</td>"
-					+"<td>"+data[i].HC_DEPT+"</td>"
-					+"<td>"+data[i].HC_POSITION+"</td>"
-					+"<td>"+data[i].HDP_PAY+"</td>"
-					+"<td>"+data[i].HDD_AMOUNT+"</td>"
-					+"<td>"+result+"</td>"
-					+"<td><button type='button' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력 수정하기</button></td>"
-					+"<td><button type='button' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
+	/* 	$.ajax({
+			url:"/erp/hr/searchwages",
+			method:'POST',
+			dataType:'JSON',
+			success:function(data){
+				console.log(data);
+				console.log(data[0].HC_ID);
+				console.log(data.length);
+				var str='';
+				var da=data.toString();
+				for(var i=0;i<data.length;i++){
+					var result=data[i].HDP_PAY-data[i].HDD_AMOUNT;
+					str+="<tr id='\""+data[i].HC_ID+"\"'><td>"+data[i].HC_ID+"</td>"
+						+"<td>"+data[i].M_NAME+"</td>"
+						+"<td>"+data[i].HC_DEPT+"</td>"
+						+"<td>"+data[i].HC_POSITION+"</td>"
+						+"<td>"+data[i].HDP_PAY+"</td>"
+						+"<td>"+data[i].HDD_AMOUNT+"</td>"
+						+"<td>"+result+"</td>"
+						+"<td><button type='button' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력 수정하기</button></td>"
+						+"<td><button type='button' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
+				}
+				$("#wages").append(str);
+			},error:function(err){
+				console.log(err);
 			}
-			$("#wages").append(str);
-		},error:function(err){
-			console.log(err);
-		}
+		}); */
+		paging(1);
 	});
-	});
+
+	var currPage = 1;
+	function pageNumber(j){
+		currPage = j;
+		$.ajax({
+			url:"/erp/rest/hr/wagespagenumber",
+			dataType:"json",
+			method:"get",
+			success : function(page){
+				console.log(page);
+				var pagecnt = (page/10) + 1;
+				let str = "";
+				for(let i = 1 ; i < pagecnt ; i++){
+					if(i == currPage){
+						str += " &nbsp; ["+ i +"] &nbsp; ";
+					}else{
+						str += " &nbsp; <a href='javascript:paging("+i+")'>["+ i +"]</a> &nbsp; ";
+					}
+				}
+				console.log(str);
+				$("#paging").html(str);
+			}, error : function(err){
+				console.log(err);
+			}
+		});
+	}
+
+	function wagesList(nowPage){
+		$.ajax({
+			url:"/erp/rest/hr/wageslist",
+			dataType:"json",
+			data:{nowPage : nowPage, cntPerPage : "10"},
+			method:"get",
+			success : function(data){
+				console.log(data);
+				console.log(data[0].HC_ID);
+				console.log(data.length);
+				var str='';
+				var da=data.toString();
+				str +='<table id="wages" style="text-align: center; width: 800px; border: 1px solid black;">';
+				str += '<tr class="tr_chart_color"  style="background-color: lightblue;">';
+				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td></tr>';
+				for(var i=0;i<data.length;i++){
+					var result=data[i].HDP_PAY-data[i].HDD_AMOUNT;
+					str+="<tr id='\""+data[i].HC_ID+"\"'><td>"+data[i].HC_ID+"</td>"
+						+"<td>"+data[i].M_NAME+"</td>"
+						+"<td>"+data[i].HC_DEPT+"</td>"
+						+"<td>"+data[i].HC_POSITION+"</td>"
+						+"<td>"+data[i].HDP_PAY+"</td>"
+						+"<td>"+data[i].HDD_AMOUNT+"</td>"
+						+"<td>"+result+"</td>"
+						+"<td><button type='button' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력 수정하기</button></td>"
+						+"<td><button type='button' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
+				}
+				str += '</table>'
+				$("#container").html(str);
+			}, error : function(err){
+				console.log(err);
+			}	
+		});
+	}
+	function paging(num){
+		pageNumber(num);
+		wagesList(num);
+	}
+	
+	
 	//사원 급여관리 수정 및 입력페이지 이동
 	function clickwages(hc){
 		$.ajax({

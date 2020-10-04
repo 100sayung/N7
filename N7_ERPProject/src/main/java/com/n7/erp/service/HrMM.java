@@ -27,6 +27,7 @@ import com.n7.erp.bean.hr.Career;
 import com.n7.erp.bean.hr.Certification;
 import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.hr.Payroll;
+import com.n7.erp.bean.hr.ViewPay;
 import com.n7.erp.dao.HRIDeptDao;
 import com.n7.erp.dao.IBaiscDao;
 import com.n7.erp.dao.IHrDao;
@@ -393,12 +394,12 @@ public class HrMM {
 		hDao.updateRetired(hrCard);
 	}
 
-	public String getEmployeeStatus(HttpSession session) {
-		String cCode = session.getAttribute("cCode").toString();
-		ArrayList<HR_Card> hlist = hDao.getEmployeeStatus(cCode);
-		String result = new Gson().toJson(hlist);
-		return result;
-	}
+//	public String getEmployeeStatus(HttpSession session) {
+//		String cCode = session.getAttribute("cCode").toString();
+//		ArrayList<HR_Card> hlist = hDao.getEmployeeStatus(cCode);
+//		String result = new Gson().toJson(hlist);
+//		return result;
+//	}
 
 	public String getEmployeeHoliday(HttpSession session, String yearmonth) {
 		String cCode = session.getAttribute("cCode").toString();
@@ -688,6 +689,24 @@ public class HrMM {
 			hDao.updateAttendance(hMap);
 		}
 		return null;
+	}
+
+	
+	public int countEmployeeStatus(HttpSession session, String status) {
+		String cCode = session.getAttribute("cCode").toString();
+		return hDao.countEmployeeStatus(cCode, status);
+	}
+	public List<HR_Card> selectEmployeeStatus(PagingVO vo){
+		System.out.println(hDao.selectEmployeeStatus(vo));
+		return hDao.selectEmployeeStatus(vo);
+	}
+
+	public int countwages(HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
+		return hDao.countWages(cCode);
+	}
+	public List<ViewPay> selectwages(PagingVO vo){
+		return hDao.selectWages(vo);
 	}
 
 }

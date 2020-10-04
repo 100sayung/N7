@@ -195,11 +195,31 @@ public class HRRestController {
 	}
 
 	//근무조회
-	@GetMapping(value="/hr/employeestatus")
-	public String getEmployeeStatus(HttpSession session) {
-		String result = hm.getEmployeeStatus(session);
+//	@GetMapping(value="/hr/employeestatus")
+//	public String getEmployeeStatus(HttpSession session) {
+//		String result = hm.getEmployeeStatus(session);
+//		return result;
+//	}
+
+	@GetMapping(value="/hr/employeestatuspagenumber")
+	public String employeeStatusPageNumber(HttpSession session, String status) {
+		int result = hm.countEmployeeStatus(session, status);
+		return Integer.toString(result);
+	}
+
+	@GetMapping(value="/hr/employeestatuslist")
+	public String employeeStatusList(String nowPage, String cntPerPage, HttpSession session, String status) {
+		int total = hm.countEmployeeStatus(session, status);
+		if(nowPage == null) {
+			nowPage = "1";
+		}
+
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), session.getAttribute("cCode").toString(), status);
+		String result = new Gson().toJson(hm.selectEmployeeStatus(vo));
 		return result;
 	}
+	
+	
 	
 	//사원 휴가 조회
 	@GetMapping(value="/hr/employeeholiday")
@@ -251,6 +271,26 @@ public class HRRestController {
 	@GetMapping(value="/hr/attendanceUpdate")
 	public String getAttendanceUpdate(HttpSession session, String hrcode, String time, String textTime) {
 		String result=hm.Updateattendance(session.getAttribute("cCode"),hrcode,time,textTime);
+		return result;
+	}
+	
+	
+
+	@GetMapping(value="/hr/wagespagenumber")
+	public String wagesPageNumber(HttpSession session) {
+		int result = hm.countwages(session);
+		return Integer.toString(result);
+	}
+
+	@GetMapping(value="/hr/wageslist")
+	public String wagesList(String nowPage, String cntPerPage, HttpSession session) {
+		int total = hm.countwages(session);
+		if(nowPage == null) {
+			nowPage = "1";
+		}
+
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), session.getAttribute("cCode").toString());
+		String result = new Gson().toJson(hm.selectwages(vo));
 		return result;
 	}
 }

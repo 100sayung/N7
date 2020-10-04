@@ -6,7 +6,19 @@ public class PagingVO {
    private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
    private int cntPage = 10;
    private String cCode;
+   private String argument;
    public PagingVO() {
+   }
+   public PagingVO(int total, int nowPage, int cntPerPage, String cCode, String argument) {
+	   setNowPage(nowPage);
+	   setCntPerPage(cntPerPage);
+	   setTotal(total);
+	   setCCode(cCode);
+	   setArgument(argument);
+	   calcLastPage(getTotal(), getCntPerPage());
+	   calcStartEndPage(getNowPage(), cntPage);
+	   calcStartEnd(getNowPage(), getCntPerPage());
+	   
    }
    public PagingVO(int total, int nowPage, int cntPerPage, String cCode) {
 	   setNowPage(nowPage);
@@ -105,6 +117,12 @@ public class PagingVO {
    }
    public String getCCode() {
 	   return cCode;
+   }
+   public void setArgument(String argument) {
+	   this.argument = argument;
+   }
+   public String getArgument() {
+	   return argument;
    }
    @Override
    public String toString() {
