@@ -137,7 +137,7 @@ table, tr, th, td {
 <script>
 
 	$(document).ready(function() {
-						arr = new Array();
+						var arr = new Array();
 						var cnt = $("input[name='code']").length;
 
 						$("input[name='code']").each(function() {

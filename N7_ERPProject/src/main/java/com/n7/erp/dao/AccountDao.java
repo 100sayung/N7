@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.n7.erp.bean.ac.A_company;
 import com.n7.erp.bean.ac.Account;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.ac.Approvaldocu;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.ac.SaleInfo;
 import com.n7.erp.bean.ac.approvalLine;
@@ -140,6 +141,8 @@ public interface AccountDao {
 	public int countDocument2(Account ac);
 	
 	List<SaleInfo> getsaleList2(String cCode);
+
+	int comparecode2(@Param("code")String code,@Param("cCode") String cCode);
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 
