@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 @Alias("approvaldocu")
 @Accessors(chain = true)
 @Data
-public class ApprovalDocu { //결제 문서 양식
+public class ApprovalDocu { //결재 문서 양식
 	String ap_docunum;
 	String ap_ccode;
 	String ap_docuname;

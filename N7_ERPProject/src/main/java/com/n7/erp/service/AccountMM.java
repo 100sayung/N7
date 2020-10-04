@@ -973,4 +973,61 @@ public class AccountMM {
 		}
 		return sMap;
 	}
+
+	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
+		
+		SaleInfo si = aDao.apupSaleinfo1(s_num, cCode);
+		
+		if(si != null) {
+			mav.addObject("si", si);
+			System.out.println("sales상세인포성공");
+			view = "Account/apupSaleinfo";
+		}else {
+			System.out.println("실패했다 이새기야");
+			view = "Account/apupPayment";
+		}
+		
+			
+//			for (int i = 0; i < strpkind.length; i++) {
+//				si.setS_pkind(strpkind[i]);
+//				si.setS_cnt(strcnt[i]);
+//				si.setS_price(strprice[i]);
+//				si.setS_price2(strprice2[i]);
+//				si.setS_tax(strtax[i]);
+//				si.setS_total(strtotal[i]);
+//				si.setS_memo(strmemo[i]);
+//				b = aDao.saleinsert2(si);
+//			}
+//			if (si.getIe_seqnum() == null) {
+//				if (a && b) {
+//					System.out.println("여기도들어와?2");
+//					mav.addObject("msg", "전표등록성공");
+//					view = "Account/openTable";
+//				} else {
+//					mav.addObject("msg", "전표등록실패");
+//					view = "Account/openTable";
+//				}
+//			} else {
+//
+//				if (a && b) {
+//					System.out.println("여기도들어와?3");
+//					String[] seqnum = request.getParameterValues("ie_seqnum");
+//					for (int i = 0; i < seqnum.length; i++) {
+//						aDao.statusupdate(seqnum[i], cCode);
+//
+//					}
+//					mav.addObject("msg", "전표등록성공");
+//					view = "Account/openTable";
+//				} else {
+//					mav.addObject("msg", "전표등록실패");
+//					view = "Account/openTable";
+//				}
+//			}
+//		}
+		mav.setViewName(view);
+		return mav;
+	}
 }

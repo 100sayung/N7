@@ -38,7 +38,7 @@ td {
 }
 
 #table {
-	width: 1400px;
+	width: 1200px;
 	height: auto;
 }
 
