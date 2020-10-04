@@ -370,9 +370,10 @@
 		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}
 	</select>
 	
-	<select id="apupSaleinfo1" resultType="saleInfo">
+	<select id="apupSaleinfo" resultType="saleInfo">
 	SELECT *
 	FROM AC_SALESTATEMENT
+	WHERE S_NUM = #{s_num}
 	</select>
 	
 </mapper>

@@ -75,7 +75,7 @@ text-align: center;
 	<br>
 	<div id="center">
 	<button id="approval">결재안 상세보기</button>
-	<button id="acDelete2">삭제요청</button>
+	<button id="acDelete2">삭제</button>
 	</div>
 </body>
 <script>
