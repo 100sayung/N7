@@ -68,7 +68,7 @@ float: left;
 		<span style="padding-left: 5px"><a href="#" onclick="saleinsert()"><button>매출/매입등록</button></a></span>
 		<span style="padding-left: 5px"><a href="#"
 			onclick="window.open('comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-		<span style="padding-left: 5px"><button id="getshipment">출하조회</button></span>
+		<span style="padding-left: 5px"><button id="getshipment">입고/출하조회</button></span>
 		<span style="padding-left: 5px"><button id="getList">매출/매입데이터조회</button></span>
 		<span style="padding-left: 5px"><button id="taxbill">세금계산서인쇄</button></span>
 		<span style="padding-left: 5px"><button id="saledetails">거래명세표인쇄</button></span>
@@ -200,11 +200,19 @@ function setChildValue(data) {
 };
 
 $("#getshipment").click(function(){
-	$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>매출등록하기</button>")
+	$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>등록하기</button> 출하<input class='changeship' type='radio' name='changeshipment' value='2'>입고<input class='changeship' type='radio' name='changeshipment' value='1'>");
 	$("#plusorminus").html("");
+});	
+	
+ $(document).on("click",".changeship",function(){
+	 var num ="";
+	 $("input[name='changeshipment']:checked").each(function() {
+	  num = $(this).attr("value");
+	 });
 	$.ajax({
 		url:'/erp/rest/Account/getshipment',
-		type:'get',
+		type:'post',
+		data:{num:num},
 		datatype:'json',
 		success:function(data){
 			console.log(data);
@@ -225,7 +233,7 @@ $("#getshipment").click(function(){
 				str += "<tr id="+data.sList[i].cl_code+"><td><input type='checkbox' class='check' name='checknum' value="+data.sList[i].ie_seqnum+"></td>";
 				str += "<td><input class='data' type='text' name='s_pkind' value="+data.sList[i].it_pname+"></td>";
 				str += "<td><input class='data' type='text' name='cl_name' value="+data.sList[i].cl_name+"></td>";
-				str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].cl_code+"></td>";
+				str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].ie_clcode+"></td>";
 				str += "<td><input class='data' type='text' name='s_total'value="+data.sList[i].ie_price+"></td>";
 			$("#testTable").html(str);
 			}
@@ -235,8 +243,8 @@ $("#getshipment").click(function(){
 			console.log(error);
 		}
 	});
-	
-});
+ });
+
 
 $("#search2").click(function(){
 	var select = $("#select").val();

@@ -106,15 +106,22 @@ tr {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
-			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
-			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
-			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
+			<div id="myInfoMenu">
+		<!-- 		<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
+				<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
+				<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
+				<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
+				<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li> -->
+			</div>
 			<li id="showMenu1">나의 결재함</a></li>
 			<ul id="menu2" style="display: none;">
-				<li id="apupPayment">내가 올린 결재함</li>
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+				</ul>
 				<li id="apdownPayment">내가 받은 결재함</li>
 				<li id="acTemporary">임시저장 결재함</li>
 			</ul>
@@ -156,7 +163,37 @@ tr {
 	$("#showMenu1").hover(function() {
 		$("#menu2").attr("style", "display:inline-block");
 	});
+	
+	$("#menu2").hover(function() {
+		$("#smenu3").attr("style", "display:inline-block");
+	});
 
+	$("#apupFinalpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupFinalpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupBackpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupBackpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
 	$("#apupPayment").click(function() {
 		$.ajax({
 			url : '/erp/Account/apupPayment',

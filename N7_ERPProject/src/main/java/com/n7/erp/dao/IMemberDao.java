@@ -57,10 +57,12 @@ public interface IMemberDao {
 	void deleteO_order(String cCode);
 	@Delete("DELETE FROM B_SHIPMENT WHERE BS_CCODE = #{cCode}")
 	void deleteB_shipment(String cCode);
-	@Delete("DELETE FROM AC_SALESTATEMENTLIST WHERE RS_CCODE = #{cCode}")
+	@Delete("DELETE FROM AC_SALESTATEMENTLIST WHERE S_CCODE = #{cCode}")
 	void deleteAc_salestatementlist(String cCode);
 	@Delete("DELETE FROM AC_REALSALESTATEMENTLIST WHERE RS_CCODE = #{cCode}")
 	void deleteAc_realsalestatementlist(String cCode);
+	@Delete("DELETE FROM AC_REALSALESTATEMENT WHERE RS_CCODE = #{cCode}")
+	void deleteAc_Realsalestatement(String cCode);
 	@Delete("DELETE FROM B_UNCOLLECTEDMONEY WHERE BS_CCODE = #{cCode}")
 	void deleteB_uncollectedmoney(String cCode);
 	@Delete("DELETE FROM B_SHIPREGIST WHERE BS_CCODE = #{cCode}")
@@ -69,7 +71,7 @@ public interface IMemberDao {
 	void deleteS_itemcode(String cCode);
 	@Delete("DELETE FROM HR_APPLYHOLIDAY WHERE HAP_CCODE = #{cCode}")
 	void deleteHr_applyholiday(String cCode);
-	@Delete("DELETE FROM B_ACTIVITIES WHERE BA_CCODE = #{cCode}")
+	@Delete("DELETE FROM B_ACTIVITES WHERE BA_CCODE = #{cCode}")
 	void deleteB_activites(String cCode);
 	@Delete("DELETE FROM HR_ATTENDANCE WHERE HA_CCODE = #{cCode}")
 	void deleteHr_attendance(String cCode);
@@ -91,7 +93,7 @@ public interface IMemberDao {
 	void deleteAc_salestatement(String cCode);
 	@Select("DELETE FROM HR_DEPT WHERE HDP_CCODE = #{cCode}")
 	void deleteHr_dept(String cCode);
-	@Select("DELETE FROM HR_DEDUCATION WHERE HDD_CCODE = #{cCode}")
+	@Select("DELETE FROM HR_DEDUCTION WHERE HDD_CCODE = #{cCode}")
 	void deleteHr_deduction(String cCode);
 	@Delete("DELETE FROM S_CATEGORY WHERE CT_CPCODE = #{cCode}")
 	void deleteS_category(String cCode);
@@ -99,6 +101,12 @@ public interface IMemberDao {
 	void deleteApprovaldocu(String cCode);
 	@Delete("DELETE FROM AC_COMPANYLIST WHERE CL_CCODE = #{cCode}")
 	void deleteAc_companylist(String cCode);
+	@Delete("DELETE FROM MEMBER WHERE M_CCODE = #{cCode}")
+	void deleteMember(String cCode);
+	@Delete("DELETE FROM ERP_FUNCTION WHERE F_CCODE = #{cCode}")
+	void deleteERPFunction(String cCode);
+	@Delete("DELETE FROM COMPANY WHERE C_CODE = #{cCode}")
+	void deleteCompany(String cCode);
 	
 	@Select("SELECT M_GRADE FROM MEMBER WHERE M_ID = #{id}")
 	String checkGrade(String id);

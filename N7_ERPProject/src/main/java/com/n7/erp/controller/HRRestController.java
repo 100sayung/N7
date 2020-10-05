@@ -270,7 +270,7 @@ public class HRRestController {
 
 	@GetMapping(value="/hr/attendanceUpdate")
 	public String getAttendanceUpdate(HttpSession session, String hrcode, String time, String textTime) {
-		String result=hm.Updateattendance(session.getAttribute("cCode"),hrcode,time,textTime);
+		String result=hm.Updateattendance(session.getAttribute("cCode").toString(),hrcode,time,textTime);
 		return result;
 	}
 	

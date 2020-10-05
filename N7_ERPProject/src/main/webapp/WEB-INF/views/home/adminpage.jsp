@@ -94,25 +94,30 @@ margin-left: 200px;
 			success : function(data){
 				console.log(data);
 				let str = "";
-			 	str = "<table>"
-				str += "<tr class='infomenu admin'><td style='width:170px;'>회사이름</td>";
-				str += "<td style='width:220px;'>회사코드</td><td style='width:300px;'>주소</td><td style='width:150px;'>대표자</td>";
-				str += "<td style='width:150px;'>업태</td><td style='width:150px;'>분류</td>";
-				str += "<td style='width:220px;'>전화번호</td><td style='width:200px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
-				for(let i = 0 ; i<data.length ; i++){
+				if(data.length == 0){
+					str += "<img src='https://www.gptour.go.kr/images/common/no-data.png'><br>";
+					str += "<font style='color : red;'>현재 등록된 신청이 존재하지 않습니다.</font>"
+				}else{
+			 		str = "<table>"
+					str += "<tr class='infomenu admin'><td style='width:170px;'>회사이름</td>";
+					str += "<td style='width:220px;'>회사코드</td><td style='width:300px;'>주소</td><td style='width:150px;'>대표자</td>";
+					str += "<td style='width:150px;'>업태</td><td style='width:150px;'>분류</td>";
+					str += "<td style='width:220px;'>전화번호</td><td style='width:200px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
+					for(let i = 0 ; i<data.length ; i++){
 					str += "<tr class = '' id='"+data[i].ct_code+"'>";					
-					str += "<td>" + data[i].ct_name +"</td>";
-					str += "<td>" + data[i].ct_code +"</td>";
-					str += "<td>" + data[i].ct_addr + "</td>";
-					str += "<td>" + data[i].ct_ceo + "</td>";
-					str += "<td>" + data[i].ct_kind + "</td>";
-					str += "<td>" + data[i].ct_kind2 + "</td>";
-					str += "<td>" + data[i].ct_phonenum + "</td>";
-					str += "<td>" + data[i].ct_comnum + "</td>";
-					str += "<td><button class='infobtn' onclick='insertCompany(\""+data[i].ct_code+"\")'>등록</button><br/>";					
-					str += "<button class='infobtn' onclick='deleteCompany(\""+data[i].ct_code+"\")'>거부</button></td>";	
+						str += "<td>" + data[i].ct_name +"</td>";
+						str += "<td>" + data[i].ct_code +"</td>";
+						str += "<td>" + data[i].ct_addr + "</td>";
+						str += "<td>" + data[i].ct_ceo + "</td>";
+						str += "<td>" + data[i].ct_kind + "</td>";
+						str += "<td>" + data[i].ct_kind2 + "</td>";
+						str += "<td>" + data[i].ct_phonenum + "</td>";
+						str += "<td>" + data[i].ct_comnum + "</td>";
+						str += "<td><button class='infobtn' onclick='insertCompany(\""+data[i].ct_code+"\")'>등록</button><br/>";					
+						str += "<button class='infobtn' onclick='deleteCompany(\""+data[i].ct_code+"\")'>거부</button></td>";	
+					}
+					str += "</tr>";
 				}
-				str += "</tr>";
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
@@ -133,6 +138,7 @@ margin-left: 200px;
 					}else{
 						alert("알수없는 이유로 취소되었습니다.");
 					}
+					location.reload();
 				}, error : function(err){
 					alert("알수없는 이유로 취소되었습니다.");
 				}
@@ -154,6 +160,7 @@ margin-left: 200px;
 					}else{
 						alert("알수없는 이유로 취소되었습니다.");
 					}
+					location.reload();
 				}, error : function(err){
 					alert("알수없는 이유로 취소되었습니다.");
 				}
