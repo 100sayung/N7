@@ -1,6 +1,8 @@
 package com.n7.erp.service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -94,6 +96,7 @@ public class ConsultingBoardMM {
 		
 		return mav;
 	}
+
 //	//게시글 수정 목록 출력
 //	public String boardmodifyajax(Integer num) {
 //		System.out.println("수정페이지 서비스 번호 값="+num);
@@ -130,6 +133,7 @@ public class ConsultingBoardMM {
 //		mav.setViewName(view);
 //		return mav;
 //	}
+
 
 
 }

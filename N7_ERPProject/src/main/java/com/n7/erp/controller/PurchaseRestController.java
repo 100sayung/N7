@@ -73,12 +73,14 @@ public class PurchaseRestController {
 		Map<String, List<approvalLine>> aMap=pm.addApproval(cnt,strArray);
 		return aMap;
 	}
+	
 	@PostMapping(value = "/Purchase/approLinecom",produces="application/json;charset=utf-8")
 	public  Map<String, List<approvalLine>> approLinecom(String code1) {
 		String [] code01 = code1.split(",");
 		Map<String, List<approvalLine>> aMap=pm.approLinecom(code01);
 		return aMap;
 	}
+	
 	@PostMapping(value = "/Purchase/searchName",produces="application/json;charset=utf-8" )
 	public  Map<String, List<approvalLine>> searchName(String name) {
 		Map<String, List<approvalLine>> aMap=pm.searchName(name);

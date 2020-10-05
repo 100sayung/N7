@@ -53,6 +53,7 @@ text-align: center;
 .List th, .List td {
 padding: 10px;
 border: 1px solid #ddd;
+text-align: center;
 }
 .List th:first-child, .List td:first-child {
 border-left: 0;
@@ -67,7 +68,7 @@ text-align: center;
 display: block;
 text-align: center;
 margin-top: 15px;
-margin-left: 50px; 
+margin-left: 10px; 
 padding-bottom: 12px; 
 }
  #bbb{
@@ -103,9 +104,9 @@ padding-bottom: 20px;
 <!-- 		<h2>상담 게시판</h2> -->
 		<table class="List">
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
+				<th style="width: 100px;">번호</th>
+				<th style="width: 800px;">제목</th>
+				<th style="width: 200px;">작성자</th>
 			</tr>
 		</table>
 	</div>
@@ -118,7 +119,7 @@ padding-bottom: 20px;
 			<option value="CB_WRITER">작성자</option>
 			<option value="CB_NUM">번호</option>
 		</select>
-		<input type="text" id="search" name="search" style="height: 18px;">
+		<input type="text" id="keyword" name="search" style="height: 18px;">
 		<button id="searchbtn">검색</button>
 	</div> 
 	
@@ -137,13 +138,13 @@ padding-bottom: 20px;
 	
 	$("#searchbtn").click(function(){
 		var choice= $("#choice").val();
-		var search= $("#search").val();
+		var keyword= $("#keyword").val();
 		console.log(choice);
-		console.log(search);
+		console.log(keyword);
 		$.ajax({
 			url: '/erp/rest/home/boardSearch',
 			type: 'post',
-			data: "choice="+choice+"&search="+search,
+			data: "choice="+choice+"&keyword="+keyword,
 			dataType: 'json',
 			success: function(data){
 				 var bList=${bList};
