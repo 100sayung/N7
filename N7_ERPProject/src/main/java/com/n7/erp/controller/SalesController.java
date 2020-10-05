@@ -61,41 +61,19 @@ public class SalesController {
       return sMap;
    }
 
-//   @PostMapping(value = "/sales/insertcomlist",produces="application/json;charset=utf-8" ) //거래처 등록
-//   public  Map<String, List<A_company>> insertcomlist(A_company ac, HttpSession session) {
-//      Map<String, List<A_company>> aMap=sm.insertcomlist(ac, session);
-//      return aMap;
-//   }
-//
-//   @PostMapping(value = "/sales/searchcode",produces="application/json;charset=utf-8" ) //거래처 코드검색
-//   public  Map<String, List<A_company>> searchcode(A_company ac, String code) {
-//      Map<String, List<A_company>> aMap=sm.searchcode(ac,code);
-//      return aMap;
-//   }
-//
-//   @PostMapping(value = "/sales/deleteCom",produces="application/json;charset=utf-8" ) //거래처 삭제
-//   public  Map<String, List<A_company>> deleteCom(String CNT, String ARR) {
-//      int cnt = Integer.parseInt(CNT);
-//      System.out.println(cnt);
-//      String [] strArray = ARR.split(",");
-//      System.out.println(strArray);
-//      Map<String, List<A_company>> aMap=sm.deleteCom(cnt,strArray);
-//      return aMap;
-//   }
-//
-//   @GetMapping(value = "/sales/searchcomlist",produces="application/json;charset=utf-8" ) //거래처 조회
-//   public  Map<String, List<A_company>> serchcomlist() {
-//      Map<String, List<A_company>> aMap=sm.searchcomlist();
-//      return aMap;
-//   }
-
-   @PostMapping(value = "/sales/shippingrequestinput",produces="application/json;charset=utf-8") //출하의뢰등록
-   public ModelAndView shippingrequestinput(Shippingbean ss, HttpSession session) { //HttpServletrequest request
-     //String bs_quantity = request.getParameter("bs_quantity");
-     //Map<String, List<Shippingbean>> sMap=sm.shippingrequestinput(ss, session);
-     mav=sm.shippingrequestinput(ss, session);
-      return mav;
-   }
+	@PostMapping(value = "/sales/shippingrequestinput", produces = "application/json;charset=utf-8") // 출하의뢰등록
+	public ModelAndView shippingrequestinput(Shippingbean ss, HttpSession session) { // HttpServletrequest request
+		// String bs_quantity = request.getParameter("bs_quantity");
+		// Map<String, List<Shippingbean>> sMap=sm.shippingrequestinput(ss, session);
+		mav = sm.shippingrequestinput(ss, session);
+		return mav;
+	}
+   
+//	@PostMapping(value = "/sales/shippingrequestinput")// 출하의뢰등록
+//	public ModelAndView shippingrequestinput(HttpServletRequest request, Shippingbean ss, HttpSession session) { // HttpServletrequest request
+//		mav = sm.shippingrequestinput(request, ss, session);
+//		return mav;
+//	}
 
    @GetMapping(value = "/sales/shippingitem") //출하 DB데이터 긁어온 거
    public @ResponseBody Map<String, List<Shippingbean>> shippingitem(Shippingbean ss, HttpSession session) {

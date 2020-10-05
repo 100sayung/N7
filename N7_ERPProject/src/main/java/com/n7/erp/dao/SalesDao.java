@@ -88,7 +88,7 @@ public interface SalesDao {
 
    List<Businessbean> businessactivitiessearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode); //영업활동 검색
 
-   boolean businessactivitiesdelete(@Param("check") String check, @Param("cCode") String cCode);
+   boolean businessactivitiesdelete(@Param("check") String check, @Param("cCode") String cCode); //영업삭제
 
    Shippingbean getbonum(@Param("check") String check, @Param("cCode") String cCode); //삭제
 
