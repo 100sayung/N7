@@ -85,7 +85,7 @@ html, body {
                         <table>
                            <tr>
                               <th colspan="2">문서번호</th>
-                              <th colspan="6"><input id="num" type="text" name="p_documentcode"
+                              <th colspan="6"><input type="text" name="p_documentcode"
                                  class="txt" value="${pa.p_documentcode}" readonly>
 
                            </tr>
@@ -102,11 +102,6 @@ html, body {
 							  <th colspan="2">합계</th>
                            </tr>
                            <tbody id="list"></tbody>
-                           <tr>
-                              <th colspan="2">적요</th>
-                              <td colspan="6"><input type="text" name="p_etc"
-                                 class="draft" value="${pa.p_etc}" readonly></td>
-                           </tr>
 							<tr>
 								<th>반려사유</th>
 								<th colspan="8"><input type="text" name="p_etc"
@@ -118,6 +113,8 @@ html, body {
                </td>
             </tr>
          </table>
+       </div>
+     </form>
          <button type="button" id="submit">제출하기</button>
          <button type="button" id="arbitrarily">전결하기</button>
          <button type="button" id="turnback">반려하기</button>

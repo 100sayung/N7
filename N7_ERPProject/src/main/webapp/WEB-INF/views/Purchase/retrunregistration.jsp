@@ -36,7 +36,7 @@ border: 1px solid silver;
                </select>
                <input type="text" id="search" name="search" style="height: 18px";>
                <button id="searchbtn">검색</button>
-      <form id="rRegistration">
+      <form id="o_return">
          <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7;">
             <div style="margin-left: 55px">
             <table>
@@ -122,7 +122,8 @@ border: 1px solid silver;
 	}); 
     
 	  $('#save').click(function(){
-	         var obj = $('#rRegistration').serialize();
+	         var obj = $("#o_return").serialize();
+	         console.log(obj);
 	         $.ajax({
 	            url: "/erp/rest/Purchase/rRegistration",
 	            type: "post",
