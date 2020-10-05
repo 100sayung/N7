@@ -146,6 +146,10 @@ public interface AccountDao {
 
 	int comparecode2(@Param("code")String code,@Param("cCode") String cCode);
 
+	ApprovalDocument selectapcode(@Param("s_num")String s_num,@Param("cCode") String cCode);
+
+	List<ApprovalDocument> selectSales(@Param("s_num")String s_num,@Param("cCode") String cCode);
+
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 
 

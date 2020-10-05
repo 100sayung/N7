@@ -336,10 +336,25 @@ public class AccountionCotroller {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// 내가올린 결재안 상세보기(영미니미니민-AP)
-	@GetMapping(value = "Account/apSalesnum", produces = "application/json;charset=utf-8")
-	public ModelAndView apSalesnum(String s_num, HttpSession session) {
-		mav = am.apSalesnum(s_num, session);
-		System.out.println(s_num);
+	@GetMapping(value = "Account/apDownSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apDownSalesnum(String s_num, HttpSession session) {
+		mav = am.apDownSalesnum(s_num, session);
+		return mav;
+	}
+	@GetMapping(value = "Account/asDownSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView asDownSalesnum(String s_num, HttpSession session) {
+		mav = am.asDownSalesnum(s_num, session);
+		return mav;
+	}
+	
+	@GetMapping(value = "Account/apUpSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apUpSalesnum(String s_num, HttpSession session) {
+		mav = am.apUpSalesnum(s_num, session);
+		return mav;
+	}
+	@GetMapping(value = "Account/asUpSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView asUpSalesnum(String s_num, HttpSession session) {
+		mav = am.asUpSalesnum(s_num, session);
 		return mav;
 	}
 
