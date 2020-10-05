@@ -11,8 +11,8 @@
 
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+
 <style>
 #header {
 	width: 100%;
@@ -44,7 +44,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
@@ -68,14 +68,20 @@ span {
 	text-align: center;
 	color: red;
 }
-
+#wages,td{
+	border-collapse: collapse;
+	border:1px solid #D9EDF7;
+}
+#id_back{
+	background-color: #F8F7F7;
+}
 </style>
 </head>
 <body onload="build();">
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -103,7 +109,7 @@ span {
 			</li>
 			<li id="showMenu3">급여 관리
 				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
+					<li><a href="/erp/hr/deptpay">부서 직책 관리</a></li>
 					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
 					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
 				</ul>
@@ -111,13 +117,17 @@ span {
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">사원 급여 관리</div>
-	<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색">
-	<input type="button" id="checkpayid" class="cssbutton" onclick="checkpayid()" value="검색">
-	<br><br>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 급여 관리</Strong>
+	</div>
+	<div align="right" >
+		<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색">
+		<input type="button" id="checkpayid" class="cssbutton" onclick="checkpayid()" value="검색">
+	</div>
 	<div id="container">
 	</div>
-	<div id="paging"></div>
+	<div id="paging">
+	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -198,9 +208,9 @@ span {
 				console.log(data.length);
 				var str='';
 				var da=data.toString();
-				str +='<table id="wages" style="text-align: center; width: 800px; border: 1px solid black;">';
-				str += '<tr class="tr_chart_color"  style="background-color: lightblue;">';
-				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td></tr>';
+				str +='<table id="wages" style="text-align: center; width: 100%;>';
+				str += '<tr id="id_back">';
+				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan="2"></td></tr>';
 				for(var i=0;i<data.length;i++){
 					var result=data[i].HDP_PAY-data[i].HDD_AMOUNT;
 					str+="<tr id='\""+data[i].HC_ID+"\"'><td>"+data[i].HC_ID+"</td>"
@@ -210,7 +220,7 @@ span {
 						+"<td>"+data[i].HDP_PAY+"</td>"
 						+"<td>"+data[i].HDD_AMOUNT+"</td>"
 						+"<td>"+result+"</td>"
-						+"<td><button type='button' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력 수정하기</button></td>"
+						+"<td><button type='button' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력및수정</button></td>"
 						+"<td><button type='button' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
 				}
 				str += '</table>'
