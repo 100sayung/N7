@@ -52,7 +52,7 @@ text-align: center;
 margin-top: -60px;
 }
 table.List th {
-width: 140px;
+width: 130px;
 padding: 7px;
 padding-top: 10px;
 font-weight: bold;
@@ -100,8 +100,8 @@ padding-bottom: */ 20px;
 	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP상담게시판</h1></div>
 	<div class="center">
         <div id="container">
-        <br>
-<br>
+        <br/>
+<br/>
 	<form action="erpboard">
 	<div id="a">
 <!-- 		<h2>상담 게시판</h2> -->
@@ -124,7 +124,10 @@ padding-bottom: */ 20px;
 		</select>
 		<input type="text" id="search" name="search" style="height: 18px;">
 		<button id="searchbtn">검색</button>
-	</div> 
+			</div> 
+		</div>
+	</div>
+</div>
 	
 <script type="text/javascript">
 	$(function(){

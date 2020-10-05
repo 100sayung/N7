@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.n7.erp.bean.Company;
 import com.n7.erp.bean.ConsultingBoard;
@@ -68,8 +69,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/erpboard", method = RequestMethod.GET)
-	public ModelAndView erpBoard(Integer pageNum) {
-	mav=cbm.moveBoardList(pageNum);
+	public ModelAndView erpBoard(Integer pageNum, ConsultingBoard cb) {
+	mav=cbm.moveBoardList(pageNum, cb);
 	return mav;
 	}
 	
@@ -172,13 +173,12 @@ public class HomeController {
 		mav = mm.moveMyInfo(session);
 		return mav;
 	}
-	//寃뚯떆湲� �럹�씠吏�濡� �씠�룞
+	//게시판
 	@RequestMapping(value = "/home/writeFrm", method = RequestMethod.GET)
 	public String write() {
 	   return "/home/writeFrm";
 	}
 
-	//寃뚯떆湲� �옉�꽦
 	@RequestMapping(value = "/home/writeBoard", method = RequestMethod.POST)
 	public ModelAndView writeBoard(ConsultingBoard board, HttpSession session, Member mb) {
 	    mav=cbm.writeBoard(board, session, mb);
@@ -191,6 +191,13 @@ public class HomeController {
 		mav=cbm.boardContents(CB_NUM);
 		return mav;
    }
+	
+	@RequestMapping(value = "/home/boarddelete", method = RequestMethod.POST)
+	public ModelAndView boarddelete(int CB_NUM, RedirectAttributes attr, HttpSession session) {
+		System.out.println("CB_NUM="+CB_NUM);
+		mav=cbm.boarddelete(CB_NUM, attr, session);
+		return mav;
+	}
 
 	@RequestMapping(value = "/home/findid", method = RequestMethod.POST)
 	public ResponseEntity<String> findID(String userEmail) {

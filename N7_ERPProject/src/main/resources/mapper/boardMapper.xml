@@ -20,6 +20,24 @@
    <select id="getContents" parameterType="int" resultType="board">
    		SELECT * FROM CONSULTING_BOARD WHERE CB_NUM = #{CB_NUM}
    </select>
+   
+   <select id="boardSearch" parameterType="String" resultType="board">
+   		SELECT * FROM CONSULTING_BOARD
+   		<where>
+   			<if test="choice.equals('CB_NUM')">
+   				CB_NUM = #{search}
+   			</if>
+   			<if test="choice.equals('CB_WRITER')">
+   				CB_WRITER = #{search}
+   			</if>
+   			<if test="choice.equals('CB_TITLE')">
+   				CB_TITLE = #{search}
+   			</if>
+   		</where>
+   </select>
+   
+   
+   
 	
 <!--    <insert id="writeBoard" parameterType="board">
       INSERT INTO CONSULTING_BOARD
