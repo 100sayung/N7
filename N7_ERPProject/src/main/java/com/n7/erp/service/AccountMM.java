@@ -354,11 +354,10 @@ public class AccountMM {
 		aList = aDao.approvalLine(cCode);
 		if (aList.size() != 0) {
 			mav.addObject("aList", new Gson().toJson(aList));
-			view = "Account/approvalLine";
+			view = "hr/hrApprovalLine";
 		} else {
-
 			mav.addObject("msg", "주소록에 정보가 없습니다");
-			view = "Account/acApproval";
+			view = "hr/hrApprovalLine";
 		}
 
 		mav.setViewName(view);

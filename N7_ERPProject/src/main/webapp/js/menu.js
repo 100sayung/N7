@@ -12,14 +12,27 @@
 					str+="<li><a id="+data.mList[i].f_functions+" onclick=menu('"+data.mList[i].f_functions+"')>"+data.mList[i].f_functions+"</a></li>";
 					
 					if(data.mList[i].f_functions == "인사관리"){
-						let menu = "";
-						menu += "<li><a href='/erp/myinfo/checkattendance'>출/퇴근 등록</a></li>";
-						menu += "<li><a href='/erp/myinfo/myPaycheck'>급여명세서 보기</li>";
-						menu += "<li><a href=/erp/myinfo/myattendance'>내 출결 보기</li>";
-						menu += "<li><a href='/erp/myinfo/myholiday'>내 휴가 보기</li>";
-						menu += "<li><a href='/erp/myinfo/applyholiday'>휴가신청</a></li>";
-						$("#myInfoMenu").html(menu);
-						console.log(menu);
+						if($("#myInfoMenu").length>0){
+							let menu = "";
+							menu += "<li><a href='/erp/myinfo/checkattendance'>출/퇴근 등록</a></li>";
+							menu += "<li><a href='/erp/myinfo/myPaycheck'>급여명세서 보기</li>";
+							menu += "<li><a href='/erp/myinfo/myattendance'>내 출결 보기</li>";
+							menu += "<li><a href='/erp/myinfo/myholiday'>내 휴가 보기</li>";
+							menu += "<li><a href='/erp/myinfo/applyholiday'>휴가신청</a></li>";
+							$("#myInfoMenu").html(menu);
+							console.log(menu);
+						}else if($("#hrMenu").length>0){
+							let menu="";
+							menu += "<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>";
+							menu += "<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>";
+							menu += "<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>";
+							menu += "<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>";
+							menu += "<li><a href='/erp/hr/deptpay'>부서/직급별 급여</a></li>";
+							menu += "<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>";
+							menu += "<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>";
+							menu += "</li>";
+							$("#hrMenu").html(menu);
+						}
 					}
 				}
 				

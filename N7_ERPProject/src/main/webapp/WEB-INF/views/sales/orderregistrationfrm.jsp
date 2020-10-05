@@ -66,7 +66,7 @@ width:1400px;
                <th>담당자</th>
                <th><input type="text" name="bo_manager"></th>             
                <th>부서</th>
-               <th><input type="text" name="bo_dept"></th>
+               <th><input type="text" name="bo_dept" value="${bo_dept}"></th>
             </tr>
          </thead>
       </table>

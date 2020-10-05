@@ -70,7 +70,7 @@ tr {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -81,28 +81,9 @@ tr {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
 					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
 					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="">휴가 접수</a></li>
-					<li><a href="">사원 출결 관리</a></li>
-					<li><a href="">근무 조회</a></li>
-					<li><a href="">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
+			<div id="hrMenu"></div>
 		</ul>
 	</div>
 	<h1>직원 급여명세서 입력 및 수정</h1>
@@ -110,19 +91,19 @@ tr {
 	<input type="hidden" value="${card.hc_ccode}" name="HC_CCODE">
 	<table id="payinputmodify" style="align-self: center; width: 800px; height: 100px;" >
 		<tr>
-			<td>직원코드 : </td>
+			<td>직원코드  </td>
 			<td><input style="border: none;" type="text" name="HC_HRCODE" readonly="readonly" value="${card.hc_hrcode}"></td>
-			<td>이름 : </td>
+			<td>이름  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${name}"></td>
-			<td>입사일 : </td>
+			<td>입사일  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
 		</tr>
 		<tr>
-			<td>부서 : </td>
+			<td>부서  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
-			<td>직급 : </td>
+			<td>직급  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
-			<td>급여일 : </td>
+			<td>급여일  </td>
 			<td><input id="HP_PAYDATE" type="month" name="HP_PAYDATE"></td>
 		</tr>				
 	</table>

@@ -226,7 +226,6 @@ public class HrMM {
 		String cCode = session.getAttribute("cCode").toString();
 		String hrCode = hDao.getHrCodeFromID(id);
 
-		// �뇦猿됲�ｏ옙�궨占쎈닱筌뤾쑨�맋�뜝�럥�렧�뜝�럥六쇽옙寃ュ뜝�룞�삕�땻占� �뜝�럥苡삣슖�댙�삕
 		ApprovalDocu docu = new ApprovalDocu();
 		docu.setAp_ccode(cCode).setAp_docuname(apholi.getHap_docuname()).setAp_docunum("H");
 		docu.setAp_fromapprover(hrCode).setAp_toapprover(apholi.getHap_toapprover());

@@ -69,7 +69,7 @@ table, th, td{
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -80,8 +80,8 @@ table, th, td{
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
 			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
 			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
@@ -93,17 +93,13 @@ table, th, td{
    <div class="divcss">내 휴가 보기</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
-   		<tr>
+   		<tr style="background-color: #C4C5C4">
    			<td>대기중</td>
    			<td>회색</td>
    		</tr>
-   		<tr>
+   		<tr style="background-color: #03D62A">
    			<td>승인</td>
    			<td>초록색</td>
-   		</tr>
-   		<tr>
-   			<td>거절</td>
-   			<td>삭제됨</td>
    		</tr>
    </table>
    </div>

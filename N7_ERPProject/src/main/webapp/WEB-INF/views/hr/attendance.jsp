@@ -68,7 +68,7 @@ input{
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -79,33 +79,14 @@ input{
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
 					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
 					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 조회</a></li>
-					<li><a href="/erp/hr/attendance">사원 출결 조회</a></li>
-					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
-					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
+			<div id="hrMenu"></div>
 		</ul>
 	</div>
 	<div id="description">
 
-	<div class="div_css">사원 출결 조회</div>
+	<div class="divcss">사원 출결 조회</div>
 								<!-- 09-24 style change -->
     <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin: 0px 20px;">
         <tr>
@@ -155,8 +136,8 @@ input{
     				console.log(date);
     				console.log(timenumber);
 					str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
-					str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
-					str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+					str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
+					str +="<button type='button' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
 					
 				}
 				str += "</table></div>";
@@ -206,8 +187,8 @@ input{
 		    				console.log(date);
 		    				console.log(timenumber);
 							str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
-							str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
-							str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+							str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
+							str +="<button type='button' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
 						}
 						str += "</table></div>";
 						$("#at").html(str);

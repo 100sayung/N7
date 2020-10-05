@@ -205,10 +205,10 @@ public class HRDepartmentMM {
 		ArrayList<String> deptList = new ArrayList<String>();
 		ArrayList<String> positionList = new ArrayList<String>();
 		for (int i = 0; i < distinctdept.size(); i++) {
-			deptList.add(distinctdept.get(i).getHDP_position());
+			positionList.add(distinctdept.get(i).getHDP_position());
 		}
 		for (int i = 0; i < distinctposition.size(); i++) {
-			positionList.add(distinctposition.get(i).getHDP_dept());
+			deptList.add(distinctposition.get(i).getHDP_dept());
 		}
 		HashMap<String, ArrayList<String>> deptAll = new HashMap<String, ArrayList<String>>();
 		deptAll.put("deptList", deptList);
@@ -256,7 +256,7 @@ public class HRDepartmentMM {
 		String code = card.getHc_ccode();
 		String hrcode = card.getHc_hrcode();
 		String name = Ddao.findname(hc);
-		System.out.println(name);
+		System.out.println(name); 
 		ArrayList<Deduct> deduct = Ddao.deduct(code);
 		Payroll incentive = Ddao.findincentive(hrcode);
 		mav.addObject("incentive", incentive);
@@ -313,7 +313,7 @@ public class HRDepartmentMM {
 		if(checkpayid!=null) {
 			ArrayList<ViewPay> ViewList=Ddao.checkingidname(checkpayid);
 			System.out.println("�꽦怨�?"+ViewList);
-				sb.append("<tr><td>�븘�씠�뵒</td><td>�씠由�</td><td>遺��꽌</td><td>吏곸콉</td><td>湲됱뿬</td><td>湲곕낯怨듭젣�븸</td><td>湲곕낯�닔�졊�븸</td></tr>");
+				sb.append("<tr><td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan='2'></td></tr>");
 			for(int i=0;i<ViewList.size();i++) {
 				int result=ViewList.get(i).getHDP_PAY()-ViewList.get(i).getHDD_AMOUNT();
 				sb.append("<tr id='\""+ViewList.get(i).getHC_ID()+"\"'>");
@@ -324,8 +324,8 @@ public class HRDepartmentMM {
 				sb.append("<td>"+ViewList.get(i).getHDP_PAY()+"</td>");
 				sb.append("<td>"+ViewList.get(i).getHDD_AMOUNT()+"</td>");
 				sb.append("<td>"+result+"</td>");
-				sb.append("<td><button type='button' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>�엯�젰 �닔�젙�븯湲�</button></td>");
-				sb.append("<td><button type='button' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>�긽�꽭蹂닿린</button></td></tr>");
+				sb.append("<td><button type='button' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>입력및수정</button></td>");
+				sb.append("<td><button type='button' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>삭제</button></td></tr>");
 			}
 			System.out.println("諛곗뿴濡�="+sb.toString());
 			Gson gson=new Gson();
