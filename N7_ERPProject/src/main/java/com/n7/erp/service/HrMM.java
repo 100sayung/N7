@@ -709,4 +709,21 @@ public class HrMM {
 		return hDao.selectWages(vo);
 	}
 
+	public ModelAndView getReceipHoliDay(String docunum, HttpSession session) {
+		HashMap<String, String> hMap = new HashMap<String, String>();
+		String hrCode = session.getAttribute("hrCode").toString();
+		hMap.put("cCode", session.getAttribute("cCode").toString());
+		hMap.put("docunum", docunum);
+		ApplyHoliday apholi = hDao.getDetailHoliday(hMap);
+		String fromapprover=hDao.getFromApprover(apholi.getHap_fromapprover());
+		String toapprover=hDao.getToApprover(apholi.getHap_toapprover());
+		mav.addObject("fromapprover", fromapprover);
+		mav.addObject("toapprover", toapprover);
+		mav.addObject("apholi", apholi);
+		mav.addObject("hrCode", hrCode);
+		mav.setViewName("/hr/receipholidayDetail");
+		return mav;
+	}
+
+
 }

@@ -179,21 +179,20 @@ input{
 			console.log(input.id);
 			if(num==$("#"+number).val()){
 				$("#"+number).attr("readonly", false);
-				var H="";
-				var M="";
-				var S="";
-				for(var i=0;i<24;i++){
-					H=i;
-				}
-				for(var j=0;i<60;j++){
-					M=j;
-				}
-				for(var k=0;k<60;k++){
-					S=k;
-				}
-				var str="<select></select>";
-				
-				$("#"+number).html(str);
+				var str="";
+				str=+"<select><option selected='selected'>00</option>";
+					for(var H=1;H<24;H++){
+						str=+"<option>"+H+"</option>";
+					}
+					str=+" : </select>";
+					str=+"<select><option selected='selected'>00</option>";
+					for(var M=1;M<60;M++){
+						str+="<option>"+M+"</option>";
+					}
+					str=+"</select> : <select><option selected='selected'>00</option>";
+					for(var S=1;S<60;S++){
+						str+="<option>"+S+"</option></select>";
+					}
 				$("#"+number).css("border", "1px solid black");
 			}
 			

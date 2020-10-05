@@ -62,23 +62,7 @@ table, th, td {
 	width: 30px;
 }
 
-width
-
-
-
-
-:
-
-
- 
-
-
-800px
-
-
-
-
-;
+width:1000px;
 }
 table, td, th {
 	border: 1px solid black;
@@ -118,7 +102,7 @@ ul {
 
 			<li id="showMenu2">근태 관리
 				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 접수</a></li>
+					<li><a href="/erp/hr/receiptholiday">휴가 조회</a></li>
 					<li><a href="/erp/hr/attendance">사원 출결 관리</a></li>
 					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
 					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
@@ -265,29 +249,55 @@ ul {
 							endday += endarr[sa];
 						}
 						console.log(startday, endday);
-						for (let j = 0; j < cnt + 1; j++) {
-							cell = row.insertCell();
-							let day = j + 1;
-							if (day < 10) {
-								day = "0" + day;
-							}
-							let date = "" + year + month + day;
-							if (startday == date) {
-								cell.innerHTML = "<-";
-							} else if (endday == date) {
-								cell.innerHTML = "->";
-							} else if (startday < date && date < endday) {
-								if (j != cnt) {
-									cell.innerHTML = "--";
-								} else {
-									cell.innerHTML = data[k].m_name;
-								}
-							} else if (j == cnt) {
-								cell.innerHTML = data[k].m_name;
-							} else {
-								cell.innerHTML = "";
-							}
-						}
+						 for (let j = 0; j < cnt + 1; j++) {
+		                     cell = row.insertCell();
+		                     let day = j + 1;
+		                     if (day < 10) {
+		                        day = "0" + day;
+		                     }
+		                     //09-24 change
+		                     if(data[k].hap_status=="3"){
+		                    	 cell.style.backgroundColor="#03D62A";
+		                    	 cell.style.color="black";
+		                    	 cell.style.fontWeight="bolder";
+		                    	 cell.style.textShadow="black 0px 1px";
+		                     }
+		                     if(data[k].hap_status=="1"){
+		                    	 cell.style.color="black";
+		                    	 cell.style.backgroundColor="#C4C5C4";
+		                     }
+		                     if(data[k].hap_status=="4"){
+		                    	 cell.innerHTML = row.remove();
+		                     }
+		                     ///////
+		                     let date = "" + year + month + day;
+		                     if (startday == date) {
+		                        cell.innerHTML = "<--";
+		                     } else if (endday == date) {
+		                        cell.innerHTML = "-->";
+		                     } else if (startday < date && date < endday) {
+		                        if(j!=cnt){
+		                           cell.innerHTML = "---";
+		                        }else{					/*09-28 append p태그 style 추가 */
+		                           cell.innerHTML ="<p style='width:100px;'>"+data[k].m_name+"</p>";
+		                           cell.style.width="90px;";
+		                           cell.className="last"
+		                              cell = row.insertCell();
+		                           cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+		                           cell.clssName="last"
+		                           
+		                        }
+		                     } else if (j == cnt) {
+		                    	 cell.innerHTML ="<p style='width:100px;'>"+data[k].m_name+"</p>";
+		                        cell.style.width="90px;";
+		                        cell.clssName="last"
+		                        cell = row.insertCell();
+		                        cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+		                        cell.clssName="last"
+		                     } else {
+		                        cell.innerHTML = "";
+		                     }
+		                  }
 						designThis(cell);
 						row = calendar.insertRow();
 					}
@@ -298,7 +308,13 @@ ul {
 				}
 			});
 		}
+	      function showDetail(docunum){
+	          console.log(docunum);
+	          window.open('/erp/hr/receipholidaydetail?docunum=' + docunum, '휴가상세정보', 'width=1400, heigth=700');
 
+	       }
+
+		
 		function designThis(cell) {
 			console.log(cell);
 			cell.style.width = "100px";
