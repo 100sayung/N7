@@ -203,8 +203,8 @@ input[type=text]:placeholder {
 @keyframes fadeInDown {
   0% {
     opacity: 0;
-    -webkit-transform: translate3d(0, -50%, 0);
-    transform: translate3d(0, -50%, 0);
+    -webkit-transform: translate3d(0, -20%, 0);
+    transform: translate3d(0, -20%, 0);
   }
   100% {
     opacity: 1;

@@ -222,30 +222,5 @@ ul {
           return arrStr;
        } 
      
-/*       var select2;
-      $.ajax({
-            url:"/erp/rest/sales/getbonum",
-            dataType:"json",
-            type:"post",
-            success:function(data){
-               select2 = makeSelectBox(data);
-            },
-            error:function(err){
-               console.log(err);
-            }
-         });
-      
-     function makeSelectBox(arr){
-          var arrStr = "<select name = 'bs_bonum'>"
-          if(arr.length==0){
-             arrStr+="<option>수주번호를 작성해주세요 </option>";
-          }else{
-             for(var i = 0;i<arr.length;i++){
-                arrStr+="<option value='"+arr[i].bo_num+"'>"+arr[i].bo_num+"</option>"; 
-             }
-          }
-          arrStr+="</select>";
-          return arrStr;
-       }  */
    </script>
 </html>
