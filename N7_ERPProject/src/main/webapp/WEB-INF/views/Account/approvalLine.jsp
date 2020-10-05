@@ -219,7 +219,7 @@ $("#deleteCheck1").click(function() {
 		var arr;
 	$("#addapproval1").click(function(){
 		arr = new Array();
-		var hrcode=${hrCode};
+		var hrcode="${hrCode}";
 		var cnt = $("input[name='checknum']:checked").length;
 		
 		$("input[name='checknum']:checked").each(function() {
