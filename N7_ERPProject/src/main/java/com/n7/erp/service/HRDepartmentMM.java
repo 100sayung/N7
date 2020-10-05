@@ -332,7 +332,7 @@ public class HRDepartmentMM {
 			String total=gson.toJson(sb.toString());
 			return total;
 		}else if(checkpayid==null) {
-			
+			 
 		}
 		return null;
 	}

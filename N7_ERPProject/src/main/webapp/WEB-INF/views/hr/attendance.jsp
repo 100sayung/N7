@@ -104,7 +104,8 @@ input{
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">사원 출결 조회</div>
+
+	<div class="div_css">사원 출결 조회</div>
 								<!-- 09-24 style change -->
     <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin: 0px 20px;">
         <tr>
@@ -153,7 +154,7 @@ input{
 					}
     				console.log(date);
     				console.log(timenumber);
-					str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
+					str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
 					str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
 					str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
 					
@@ -167,7 +168,7 @@ input{
 	}
 	
 	function attendanceUpdate(row, hrcode, time){
-// 		if(confirm("정말 수정하겠습니까?")){
+
 			let tr=row.parentNode.parentNode;
 			var input=tr.children[1].children[0];
 			var num=time.substr(16,8);
@@ -179,40 +180,50 @@ input{
 			console.log(input.id);
 			if(num==$("#"+number).val()){
 				$("#"+number).attr("readonly", false);
-				var str="";
-				str=+"<select><option selected='selected'>00</option>";
-					for(var H=1;H<24;H++){
-						str=+"<option>"+H+"</option>";
-					}
-					str=+" : </select>";
-					str=+"<select><option selected='selected'>00</option>";
-					for(var M=1;M<60;M++){
-						str+="<option>"+M+"</option>";
-					}
-					str=+"</select> : <select><option selected='selected'>00</option>";
-					for(var S=1;S<60;S++){
-						str+="<option>"+S+"</option></select>";
-					}
+				$("#"+number).prop("type", "time");
 				$("#"+number).css("border", "1px solid black");
+			}else{
+	 			if(confirm("정말 수정하겠습니까?")){			
+					$.ajax({
+					url:'/erp/rest/hr/attendanceUpdate',
+					type:'get',
+					data:{hrcode : hrcode, time : time, textTime : $("#"+number).val()},
+					dataType:'json',
+					success:function(data){
+						let str = "<div style='height:400px;overflow-x:hidden;float:right;position:static;'><table style='width:500px;overflow-y:scroll;'>";
+		    			for(let i = 0 ; i<data.length ; i++){
+							let type = "";
+		       				let time = data[i].ha_time.substr(16, 8);
+		       				var timeArry=time.split(':');
+		       				var timenumber=timeArry[0]+timeArry[1]+timeArry[2];
+		    				if(data[i].ha_type=="1"){
+		    					type += "<font style='color:blue'>"
+								type+= " 출근</font>"
+							}else{
+								type += "<font style='color:red'>"
+								type+= " 퇴근</font>"
+							}
+		    				console.log(date);
+		    				console.log(timenumber);
+							str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
+							str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
+							str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+						}
+						str += "</table></div>";
+						$("#at").html(str);
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}else{
+				alert("취소가 완료되었습니다.");
+				$("#"+number).attr("type","text");
+				$("#"+number).attr("readonly", true);
+				$("#"+number).val(num);
+				$("#"+number).css("border", "0px");
 			}
-			
-// 			$.ajax({
-// 				url:'/erp/rest/hr/attendanceUpdate',
-// 				type:'get',
-// 				data:{hrcode : hrcode, time : time, textTime : input.value},
-// 				dataType:'json',
-// 				success:function(data){
-// 					console.log(data);
-// 				},
-// 				error:function(err){
-// 					console.log(err);
-// 				}
-// 			});
-			
-			
-// 		}else{
-// 			alert("취소가 완료되었습니다.");
-// 		}
+		}
 
 	}
 	
