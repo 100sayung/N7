@@ -116,7 +116,12 @@ tr {
 			</div>
 			<li id="showMenu1">나의 결재함</a></li>
 			<ul id="menu2" style="display: none;">
-				<li id="apupPayment">내가 올린 결재함</li>
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+				</ul>
 				<li id="apdownPayment">내가 받은 결재함</li>
 				<li id="acTemporary">임시저장 결재함</li>
 			</ul>
@@ -158,7 +163,37 @@ tr {
 	$("#showMenu1").hover(function() {
 		$("#menu2").attr("style", "display:inline-block");
 	});
+	
+	$("#menu2").hover(function() {
+		$("#smenu3").attr("style", "display:inline-block");
+	});
 
+	$("#apupFinalpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupFinalpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupBackpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupBackpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
 	$("#apupPayment").click(function() {
 		$.ajax({
 			url : '/erp/Account/apupPayment',

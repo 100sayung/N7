@@ -169,10 +169,24 @@ public class AccountionCotroller {
 		return a; // DAO
 	}
 
-	// 내가올린 페이징
+	// 내가올린 결재중 페이징
 	@GetMapping(value = "/Account/documentPagenumber")
 	public String documentPagenumber(HttpSession session, ApprovalDocu ap) {
 		int result = am.countDocument(ap, session);
+		return Integer.toString(result);
+	}
+	
+	// 내가올린 결재완료 페이징
+	@GetMapping(value = "/Account/documentPagenumber3")
+	public String documentPagenumber3(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument3(ap, session);
+		return Integer.toString(result);
+	}
+	
+	// 내가올린 반려 페이징
+	@GetMapping(value = "/Account/documentPagenumber4")
+	public String documentPagenumber4(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument4(ap, session);
 		return Integer.toString(result);
 	}
 
@@ -197,7 +211,43 @@ public class AccountionCotroller {
 //return pMap;
 //}
 
-	// 내가올린 결재안 목록(페이징o)
+	// 내가올린 결재완료 목록(페이징o)
+	@GetMapping(value = "Account/apupPaymentList3", produces = "application/json;charset=utf-8")
+	public String apupPaymentList3(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument3(ap, session);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		}
+		
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		int start = vo.getStart();
+		int end = vo.getEnd();
+		System.out.println(vo);
+		String result = new Gson().toJson(am.apupPaymentList3(session, vo, start, end));
+		
+		return result;
+	}
+	
+	// 내가올린 빈려 목록(페이징o)
+	@GetMapping(value = "Account/apupPaymentList4", produces = "application/json;charset=utf-8")
+	public String apupPaymentList4(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument4(ap, session);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		}
+		
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		int start = vo.getStart();
+		int end = vo.getEnd();
+		System.out.println(vo);
+		String result = new Gson().toJson(am.apupPaymentList4(session, vo, start, end));
+		
+		return result;
+	}
+	
+	// 내가올린 결재중 목록(페이징o)
 	@GetMapping(value = "Account/apupPaymentList", produces = "application/json;charset=utf-8")
 	public String apupPaymentList(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
 		int total = am.countDocument(ap, session);
