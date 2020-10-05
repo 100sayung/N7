@@ -173,7 +173,8 @@ input[type='text'], input[type='number'] {
 										dataType : "json",
 										success : function(result) {
 											console.log(result)
-											$('#description').html("<h3>입고 내역 및 수정</h3>"+err.responseText+"<button type='button' id='btn'>입고 확정</button>")
+											if(result.responseText!=undefined)
+											$('#description').html("<h3>입고 내역 및 수정</h3>"+result.responseText+"<button type='button' id='btn'>입고 확정</button>")
 										},
 										error : function(err) {
 											console.log(err)

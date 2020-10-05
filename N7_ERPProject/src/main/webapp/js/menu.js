@@ -19,6 +19,7 @@
 						menu += "<li><a href='/erp/myinfo/myholiday'>내 휴가 보기</li>";
 						menu += "<li><a href='/erp/myinfo/applyholiday'>휴가신청</a></li>";
 						$("#myInfoMenu").html(menu);
+						console.log(menu);
 					}
 				}
 				

@@ -230,7 +230,7 @@ $("#getshipment").click(function(){
 			console.log(price2);
 			console.log(price);
 			console.log(qty);
-				str += "<tr id="+data.sList[i].cl_code+"><td><input type='checkbox' class='check' name='checknum' value="+data.sList[i].ie_seqnum+"></td>";
+				str += "<tr id="+data.sList[i].ie_clcode+"><td><input type='checkbox' class='check' name='checknum' value="+data.sList[i].ie_seqnum+"></td>";
 				str += "<td><input class='data' type='text' name='s_pkind' value="+data.sList[i].it_pname+"></td>";
 				str += "<td><input class='data' type='text' name='cl_name' value="+data.sList[i].cl_name+"></td>";
 				str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].ie_clcode+"></td>";
@@ -307,14 +307,16 @@ function shipmentDetaile(){
 	var cnt = $("input[name='checknum']:checked").length;
 	$("input[name='checknum']:checked").each(function() {
 		arr.push($(this).attr('value'));
-	 id.push($(this).parent().parent().attr("id"));
+	 	id.push($(this).parent().parent().attr("id"));
 		
 });
 	for(var i=0; i<id.length; i++){
 	id.splice(id.indexOf(id[i]),1);
+	i--;
+	console.log(i,id)
 	}
 	
-	if(id!=""){
+	if(id.length!=0){
 		alert("한가지 거래처 데이터만 등록 할 수 있습니다");
 	}else{
 		
