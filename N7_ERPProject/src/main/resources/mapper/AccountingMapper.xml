@@ -21,7 +21,7 @@
 	VALUES(#{cl_code},#{cl_ccode},#{cl_name},#{cl_comnum},#{cl_comnum2},#{cl_ceo},#{cl_employee},#{cl_phone},
 	#{cl_phone2},#{cl_fax},#{cl_email},#{cl_addr},#{cl_kind},#{cl_kind2},#{cl_kind3},#{cl_bank},
 	#{cl_bankholder},#{cl_memo},#{cl_banknum},'1')
-	</insert>
+	</insert> 
 	
 	<insert id="approvaldocu" parameterType="rs">
 	INSERT INTO APPROVALDOCU
@@ -357,6 +357,12 @@
 		resultType="Line">
 		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}
 	</select>
+	
+	<select id="apupSaleinfo1" resultType="saleInfo">
+	SELECT *
+	FROM AC_SALESTATEMENT
+	</select>
+	
 </mapper>
 
 

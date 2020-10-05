@@ -332,5 +332,15 @@ public class AccountionCotroller {
 		Map<String, List<approvalLine>> mMap = am.getApprinfo(cnt, strArray, session);
 		return mMap;
 	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// 내가올린 결재안 상세보기(영미니미니민-AP)
+	@GetMapping(value = "Account/apSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+		mav = am.apSalesnum(s_num, session);
+		System.out.println(s_num);
+		return mav;
+	}
 
 }

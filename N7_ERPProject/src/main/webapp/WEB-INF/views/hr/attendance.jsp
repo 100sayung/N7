@@ -59,6 +59,9 @@ ul {
 	
 	border: 1px solid black;
 }
+input{
+	outline-style: none;
+}
 </style>
 </head>
 <body onload="build();">
@@ -85,7 +88,7 @@ ul {
 
 			<li id="showMenu2">근태 관리
 				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 접수</a></li>
+					<li><a href="/erp/hr/receiptholiday">휴가 조회</a></li>
 					<li><a href="/erp/hr/attendance">사원 출결 조회</a></li>
 					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
 					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
@@ -125,6 +128,8 @@ ul {
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
 	function checkMyAt(i){
+		console.log("일수="+i);
+		console.log($("#yearmonth").html());
 		$.ajax({
 			url : "/erp/rest/hr/employeeattendance",
 			method:"get",
@@ -137,6 +142,8 @@ ul {
     			for(let i = 0 ; i<data.length ; i++){
 					let type = "";
        				let time = data[i].ha_time.substr(16, 8);
+       				var timeArry=time.split(':');
+       				var timenumber=timeArry[0]+timeArry[1]+timeArry[2];
     				if(data[i].ha_type=="1"){
     					type += "<font style='color:blue'>"
 						type+= " 출근</font>"
@@ -145,7 +152,11 @@ ul {
 						type+= " 퇴근</font>"
 					}
     				console.log(date);
-					str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td>" + time + "</td><td>" + type + "</td></tr>";
+    				console.log(timenumber);
+					str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
+					str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
+					str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+					
 				}
 				str += "</table></div>";
 				$("#at").html(str);
@@ -154,7 +165,66 @@ ul {
 			}
 		});
 	}
+	
+	function attendanceUpdate(row, hrcode, time){
+// 		if(confirm("정말 수정하겠습니까?")){
+			let tr=row.parentNode.parentNode;
+			var input=tr.children[1].children[0];
+			var num=time.substr(16,8);
+			var numArry=num.split(':');
+			var number=numArry[0]+numArry[1]+numArry[2];
+			console.log(number);
+			console.log(input.value);
+			console.log($("#"+number).val());
+			console.log(input.id);
+			if(num==$("#"+number).val()){
+				$("#"+number).attr("readonly", false);
+				$("#"+number).css("border", "1px solid black");
+			}
+			
+// 			$.ajax({
+// 				url:'/erp/rest/hr/attendanceUpdate',
+// 				type:'get',
+// 				data:{hrcode : hrcode, time : time, textTime : input.value},
+// 				dataType:'json',
+// 				success:function(data){
+// 					console.log(data);
+// 				},
+// 				error:function(err){
+// 					console.log(err);
+// 				}
+// 			});
+			
+			
+// 		}else{
+// 			alert("취소가 완료되었습니다.");
+// 		}
 
+	}
+	
+	
+	//사원  출퇴근 삭제
+	function attendanceDelete(row,hrcode,time){
+		if(confirm("정말 삭제하겠습니까?")){
+			let tr = row.parentNode.parentNode;
+			tr.parentNode.removeChild(tr);		
+	 		$.ajax({
+				url:"/erp/rest/hr/attendanceDelete",
+				type:'get',
+				data:{hrcode : hrcode, time : time},
+				dataType:'json',
+				success:function(data){
+					console.log(data);
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		}else{
+			alert("에러 404");
+		}
+	}
+	
 	$("#showMenu1").hover(function() {
 		$("#smallMenu1").attr("style", "display:inline-block");
 	}, function() {

@@ -103,6 +103,7 @@ ul {
 			<!-- 검색 버튼 클릭시  -->
 		</tr>
 	</table>
+	<div id="container" style="overflow:auto; height: 500px;">
 	<table id="id">
 		<tr align="center">
 			<td>부서</td>
@@ -112,6 +113,7 @@ ul {
 			<td></td>
 		</tr>
 	</table>
+	</div>
  </div>
 </body>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
