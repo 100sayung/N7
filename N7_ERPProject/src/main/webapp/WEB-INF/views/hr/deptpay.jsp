@@ -203,7 +203,7 @@ $("#showMenu3").hover(function() {
 					+"<td width='100px'>"+data[i].HDP_dept+"</td>"
 					+"<td id='"+data[i].HDP_num+"' width='100px'>"+data[i].HDP_pay+"</td>"
 					+"<td><input id='modifypay_"+data[i].HDP_num+"'></td>"
-					+"<td><button type='button id='"+dept[i].HDP_num+dept[i].HDP_pay+"'' onclick='dify("+data[i].HDP_num+")'>수정</button></td>"
+					+"<td><button type='button id='"+data[i].HDP_num+dept[i].HDP_pay+"'' onclick='dify("+data[i].HDP_num+")'>수정</button></td>"
 					+"<td><button type='button' onclick='erase("+data[i].HDP_num+")'>삭제</button></td></tr>";
 				}
 				console.log(str);
@@ -268,7 +268,7 @@ $("#showMenu3").hover(function() {
 					+"<td width='100px'>"+data[i].HDP_position+"</td>"
 					+"<td id='"+data[i].HDP_num+"' width='100px'>"+data[i].HDP_pay+"</td>"
 					+"<td><input id	='modifypay_"+data[i].HDP_num+"'></td>"
-					+"<td><button type='button' id='"+dept[i].HDP_num+dept[i].HDP_pay+"' onclick='dify("+data[i].HDP_num+")' class='mopay'>수정</button></td>"
+					+"<td><button type='button' id='"+data[i].HDP_num+data[i].HDP_pay+"' onclick='dify("+data[i].HDP_num+")' class='mopay'>수정</button></td>"
 					+"<td><button type='button' onclick='erase("+data[i].HDP_num+")' class='mopay'>삭제</button></td></tr>";
 					console.log(data[i].HDP_num);
 				}

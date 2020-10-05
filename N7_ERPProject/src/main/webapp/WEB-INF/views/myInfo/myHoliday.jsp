@@ -93,11 +93,11 @@ table, th, td{
    <div class="divcss">내 휴가 보기</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
-   		<tr>
+   		<tr style="background-color: #C4C5C4">
    			<td>대기중</td>
    			<td>회색</td>
    		</tr>
-   		<tr>
+   		<tr style="background-color: #03D62A">
    			<td>승인</td>
    			<td>초록색</td>
    		</tr>
