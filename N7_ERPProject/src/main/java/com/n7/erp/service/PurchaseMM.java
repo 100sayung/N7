@@ -290,11 +290,9 @@ public class PurchaseMM {
 		
 		if(rt.getR_ccode()!="") {
 			if(pDao.rRegistration(rt)) {
-				view= "/Purchase/rRegistration";
-				mav.addObject("msg", "데이터입력 완료");
+				view= "/Purchase/retrunregistration";
 			}else {
-				view="/Purchase/rRegistration";
-				mav.addObject("msg", "데이터입력 실패");
+				view="/Purchase/retrunregistration";
 			}
 		}
 		mav.setViewName(view);

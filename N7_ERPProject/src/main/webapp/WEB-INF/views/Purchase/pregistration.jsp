@@ -206,6 +206,7 @@ ${msg}
             success: function(data){
                //consloe.log(data);
             $('input').val("");
+            $("select").val("");
             alert("등록이 완료되었습니다.");
             },
             error: function(error){

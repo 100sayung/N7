@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.n7.erp.bean.ConsultingBoard;
 import com.n7.erp.bean.Member;
+import com.n7.erp.service.ConsultingBoardMM;
 import com.n7.erp.service.MemberMM;
 import com.n7.erp.userClass.PagingVO;
 
@@ -25,6 +27,9 @@ public class HomeRestController {
 
 	@Autowired
 	private MemberMM mm;
+	
+	@Autowired
+	private ConsultingBoardMM cbm;
 	
 
 	@GetMapping(value = "/home/searchfromid")
@@ -79,5 +84,6 @@ public class HomeRestController {
 		mm.forceWithDrawal(slist);
 		return null;
 	}
+	
 	
 }
