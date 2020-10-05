@@ -167,7 +167,7 @@ button {
 													"<font style='color:red;'>아이디가 중복됩니다.</font>");
 								} else {
 									checkid = true;
-									$("#dupleID").html("");
+									$("#dupleID").html("<font style='color:blue;'>가능한 아이디입니다.</font>");
 								}
 							},
 							error : function(err) {
@@ -193,7 +193,7 @@ button {
 							console.log(data)
 							if (data == 1) {
 								checkccode = true;
-								$("#dupleCCode").html("");
+								$("#dupleCCode").html("<font style='color:blue;'>해당 회사코드가 존재합니다.</font>");
 							} else {
 								checkccode = false;
 								$("#dupleCCode")

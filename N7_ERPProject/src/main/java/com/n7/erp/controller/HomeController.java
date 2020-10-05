@@ -43,7 +43,7 @@ public class HomeController {
 		return "/home/home";
 	}
 	
-	//부서 관리 페이지
+	//遺��꽌 愿�由� �럹�씠吏�
 	@RequestMapping(value = "/managermode/erpmanage", method = RequestMethod.GET)
 	public String erpmanage() {
 		
@@ -99,6 +99,7 @@ public class HomeController {
 	}
 	@GetMapping(value="/welcome")
 	public String welcome() {
+		System.out.println("ㅇㅇ");
 		return "/home/welcomepage";
 	}
 	@RequestMapping(value = "/erpapply", method = RequestMethod.GET)
@@ -152,14 +153,14 @@ public class HomeController {
 
 	@PostMapping(value = "/newerp")
 	public String registNewERP(Company com) {
-		cm.registNewERP(com); //占쏙옙占쏙옙占� temp占쏙옙占쏙옙 占쌀곤옙占쏙옙.
+		cm.registNewERP(com); //�뜝�룞�삕�뜝�룞�삕�뜝占� temp�뜝�룞�삕�뜝�룞�삕 �뜝��怨ㅼ삕�뜝�룞�삕.
 		return "/home/home";
 	}
 
 	@PostMapping(value = "/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "/home/home";
+		return "redirect:/";
 	}
 
 	@GetMapping(value = "/main")
@@ -172,13 +173,13 @@ public class HomeController {
 		mav = mm.moveMyInfo(session);
 		return mav;
 	}
-	//寃뚯떆湲� �럹�씠吏�濡� �씠�룞
+	//野껊슣�뻻疫뀐옙 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
 	@RequestMapping(value = "/home/writeFrm", method = RequestMethod.GET)
 	public String write() {
 	   return "/home/writeFrm";
 	}
 
-	//寃뚯떆湲� �옉�꽦
+	//野껊슣�뻻疫뀐옙 占쎌삂占쎄쉐
 	@RequestMapping(value = "/home/writeBoard", method = RequestMethod.POST)
 	public ModelAndView writeBoard(ConsultingBoard board, HttpSession session, Member mb) {
 	    mav=cbm.writeBoard(board, session, mb);

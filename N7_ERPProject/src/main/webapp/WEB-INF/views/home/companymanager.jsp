@@ -74,7 +74,7 @@ margin-left: 200px;
 	</div>
 	<div id="description" class="out" style="height: 700px;">
 	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>회사관리</h1></div>
-	<div class="center">
+	<div class="center" style="height:500px; width:700px; text-align:center;">
 	
 	<div id="container"></div>
 	<div id="paging"></div>
@@ -126,10 +126,10 @@ margin-left: 200px;
 				console.log(data);
 				let str = "";
 			 	str = "<table>"
-				str += "<tr class='infomenu admin'><td style='width:170px;'>회사이름</td>";
-				str += "<td style='width:220px;'>회사코드</td><td style='width:300px;'>주소</td><td style='width:150px;'>대표자</td>";
-				str += "<td style='width:150px;'>업태</td><td style='width:150px;'>분류</td>";
-				str += "<td style='width:220px;'>전화번호</td><td style='width:200px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
+				str += "<tr class='infomenu admin' style='heigth:90px; font-size:15px; text-align : center;'><td style='width:250px;'>회사이름</td>";
+				str += "<td style='width:250px;'>회사코드</td><td style='width:500px;'>주소</td><td style='width:250px;'>대표자</td>";
+				str += "<td style='width:200px;'>업태</td><td style='width:200px;'>분류</td>";
+				str += "<td style='width:300px;'>전화번호</td><td style='width:300px;'>사업자번호</td><td style='width:75px;'>수정</td><tr>"
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr class = '' id='"+data[i].c_code+"'>";					
 					str += "<td>" + data[i].c_name +"</td>";

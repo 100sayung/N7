@@ -61,7 +61,6 @@ public interface HRIDeptDao {
 	@Select("SELECT * FROM HR_DEPT WHERE HDP_POSITION=#{disposition} AND HDP_CCODE = #{cCode}")
 	ArrayList<Department> findDisposition(HashMap<String, String> fdpMap);
 
-
 	ArrayList<NameHrCode> getMyLeaderUsingGradeDept(HashMap<String, String> hMap);
 
 	@Select("SELECT * FROM HR_DEPT WHERE HDP_CCODE = #{cCode}")

@@ -87,7 +87,7 @@ body{
                     </tr>
                     <tr>
                         <td>회사코드</td>
-                        <td><input type="text" name="c_code" required="required"/>
+                        <td><input type="text" name="c_code" required="required" id="cCode"/>
                         <button onclick="dupleCCode()" type="button">중복확인</button><br>
                         <span id="dupleCCode"></span></td>
                     </tr>
