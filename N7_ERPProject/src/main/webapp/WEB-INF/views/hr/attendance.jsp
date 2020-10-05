@@ -105,7 +105,7 @@ input{
 	</div>
 	<div id="description">
 
-	<div class="divcss">사원 출결 조회</div>
+	<div class="div_css">사원 출결 조회</div>
 								<!-- 09-24 style change -->
     <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin: 0px 20px;">
         <tr>
@@ -190,14 +190,32 @@ input{
 					data:{hrcode : hrcode, time : time, textTime : $("#"+number).val()},
 					dataType:'json',
 					success:function(data){
-						console.log(data);
+						let str = "<div style='height:400px;overflow-x:hidden;float:right;position:static;'><table style='width:500px;overflow-y:scroll;'>";
+		    			for(let i = 0 ; i<data.length ; i++){
+							let type = "";
+		       				let time = data[i].ha_time.substr(16, 8);
+		       				var timeArry=time.split(':');
+		       				var timenumber=timeArry[0]+timeArry[1]+timeArry[2];
+		    				if(data[i].ha_type=="1"){
+		    					type += "<font style='color:blue'>"
+								type+= " 출근</font>"
+							}else{
+								type += "<font style='color:red'>"
+								type+= " 퇴근</font>"
+							}
+		    				console.log(date);
+		    				console.log(timenumber);
+							str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
+							str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
+							str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+						}
+						str += "</table></div>";
+						$("#at").html(str);
 					},
 					error:function(err){
 						console.log(err);
 					}
 				});
-				
-				
 			}else{
 				alert("취소가 완료되었습니다.");
 				$("#"+number).attr("type","text");

@@ -691,7 +691,8 @@ public class HrMM {
 			hDao.updateAttendance(hMap);
 		}
 		String day=time.substring(0,15);
-		ArrayList<Attendance> aList=hDao.getEmployeeAttendanceTwo(day);
+		hMap.put("dateStandard", day);
+		ArrayList<Attendance> aList=hDao.getEmployeeAttendance(hMap);
 		String result=new Gson().toJson(aList);
 		return result;
 	}
