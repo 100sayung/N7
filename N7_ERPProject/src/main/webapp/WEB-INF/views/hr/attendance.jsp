@@ -105,7 +105,7 @@ input{
 	</div>
 	<div id="description">
 
-	<div class="div_css">사원 출결 조회</div>
+	<div class="divcss">사원 출결 조회</div>
 								<!-- 09-24 style change -->
     <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin: 0px 20px;">
         <tr>
