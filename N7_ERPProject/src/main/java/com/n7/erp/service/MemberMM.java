@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -169,6 +170,7 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		int ccodecnt = mDao.getDupleCCode(cCode);
 		return Integer.toString(ccodecnt);
 	}
+	@Transactional
 	public String deleteCompany(String cCode) {
 		
 		mDao.deleteO_return(cCode);
