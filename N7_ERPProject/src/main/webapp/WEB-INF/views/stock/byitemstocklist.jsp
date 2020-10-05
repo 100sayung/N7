@@ -150,7 +150,7 @@ input[type='text'], input[type='number'] {
 				$.ajax({
 					url:"/erp/stock/getitemcode",
 					data:{it_ccode:$('#selectit_ccode').children()[i].dataset.value},
-					type:"post",
+					type:"get",
 					dataType:"json",
 					success:function(result){
 					console.log(result);

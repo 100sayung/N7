@@ -103,4 +103,9 @@ public interface HRIDeptDao {
 	
 	@Select("SELECT COUNT(*) FROM HR_DEPT WHERE HDP_DEPT=#{au_name} AND HDP_CCODE = #{cCode}")
 	int checkDept(@Param("au_name")String au_name, @Param("cCode") String cCode);
+
+	@Insert("INSERT INTO HR_DEDUCTION VALUES('세금', '0', #{ct_code})")
+	void insertTax(String ct_code);
+	@Insert("INSERT INTO HR_DEDUCTION VALUES('보험', '0', #{ct_code})")
+	void insertInsurance(String ct_code);
 }

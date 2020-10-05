@@ -23,7 +23,7 @@ public interface IeportDao {
 	@Select("SELECT * FROM IE WHERE IE_CPCODE = #{cCode}")
 	ArrayList<IePort> getImportList(String cCode);
 
-	@Select("SELECT * FROM IE WHERE IE_STATUS = #{ie_status} AND #{cCode}")
+	@Select("SELECT * FROM IE WHERE IE_STATUS = #{ie_status} AND ie_cpcode =  #{cCode}")
 	ArrayList<IePort> getImportIeList(@Param("ie_status") String ie_status, @Param("cCode") String cCode);
 
 	@Select("SELECT * FROM IE WHERE TO_DATE(TO_CHAR(IE_DATE,'YYYYMMDD'),'YYYY-MM-DD') BETWEEN TO_DATE(#{date1},'YYYY-MM-DD') AND TO_DATE(#{date2},'YYYY-MM-DD') AND IE_CPCODE = #{cCode}")
