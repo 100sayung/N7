@@ -103,7 +103,7 @@ border: 1px solid;
             </div>
             <br>
             <div>
-              <button type="button" class="addList" value="추가">추가</button>
+              <!-- <button type="button" class="addList" value="추가">추가</button> -->
               <button type="button" id="deleteCheck" value="삭제">삭제</button>
               <button type="button" id="sub">저장</button>
             </div>
@@ -138,20 +138,6 @@ border: 1px solid;
  	   $("#bonum").val(bonum);
  	};
 
-
-/*         var select2;
-       $.ajax({
-             url:"/erp/rest/sales/getbonum",
-             dataType:"json",
-             type:"post",
-             success:function(data){
-                select2 = makeSelectBox2(data);
-                $(".cl2").html(select2);
-             },
-             error:function(err){
-                console.log(err);
-             }
-          }); */
 
     $('#shippingitemfrm').click(function(){
       var str="";
@@ -199,8 +185,9 @@ border: 1px solid;
              console.log(err);
           }
        });
+   });
 
-              $('.addList').click(function(){
+/*               $('.addList').click(function(){
                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
    
     var select;
@@ -218,7 +205,7 @@ border: 1px solid;
           }
        });
 
-             });
+             }); */
         
 
          $(document).ready(function(){
@@ -235,7 +222,7 @@ border: 1px solid;
         	          }
         	       });
 
-        	              $('.addList').click(function(){
+/*         	              $('.addList').click(function(){
         	                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
         	   
         	    var select2;
@@ -254,7 +241,7 @@ border: 1px solid;
         	       });
 
         	              });
-        	          });
+        	          }); */
           });
          
 
@@ -399,7 +386,7 @@ border: 1px solid;
                      console.log(data);
                      var str="";
                       if(data.sList==null){
-                    	  alert("이미결제 요청된 데이터입니다.");
+                    	  alert("이미 결재 요청된 데이터입니다.");
                       }else{
                         str+="<tr><th><input type='radio' id='allCheck'></th><th>수주번호</th><th>거래처회사코드</th><th>품목코드</th><th>제품명</th><th>판매단가</th><th>수량</th><th>판매금액</th></tr>";
 

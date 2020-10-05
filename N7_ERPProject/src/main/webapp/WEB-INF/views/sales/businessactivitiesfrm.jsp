@@ -41,7 +41,9 @@ text-align:center;
             </tr>
             <tr>
                <th>사업단위</th>
-               <th><input type="text" name="ba_unit"></th>
+               <th><select name="ba_unit" style="width:180px;">
+                   <option value="본사">본사</option>
+                   <option value="지사">지사</option></select></th>
                <th>영업기간 시작</th>
                <th><input type="date" name="ba_startperiod" min="2000-01-01" max="2030-12-31" style="width:140px;"></th>
                <th>영업기간 끝</th>
@@ -88,7 +90,7 @@ text-align:center;
         </form>
         <br>
         <br>
-            <button type="button" id="addList" value="추가">추가</button>
+            <!-- <button type="button" id="addList" value="추가">추가</button> -->
             <button type="button" id="deleteCheck" value="삭제">삭제</button>
             <button type="button" id="sub" value="저장">저장</button>
       </div>
@@ -108,7 +110,7 @@ text-align:center;
   	   
   	   $("#clcode").val(clcode);
   	};
-        //추가삭제
+/*         //추가삭제
         $(document).ready(function(){
               $('.addList').click(function(){
                  $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="ba_date" class="input-text"></td><td><input type="text" name="ba_content" class="input-text" ></td><td><input type="number" name="ba_estimatedsalesamount" class="input-text" ></td><td><input type="number" name="ba_actualsalesamount" class="input-text" ></td><td><input type="text" name="ba_enddate" class="input-text" ></td><td><input type="text" name="ba_memo" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
@@ -118,10 +120,10 @@ text-align:center;
                 console.log(row);
                 let tr = row.parentNode.parentNode;
                 tr.parentNode.removeChild(tr);
-         }   
+         } */   
         
         
-      $('#businessitemfrm').click(function(){
+/*       $('#businessitemfrm').click(function(){
            var str="";
            
            $.ajax({
@@ -147,7 +149,13 @@ text-align:center;
                  console.log(error);
               }
            })
-        });
+        }); */
+        
+        
+        $("#businessitemfrm").click(function() {
+            window.open('/erp/sales/businessperformance', 'businessperformance', 'width=1400,height=700');
+         }); 
+        
         
        $('#sub').click(function(){
            var obj= $('#businessactivitiesinput').serialize();

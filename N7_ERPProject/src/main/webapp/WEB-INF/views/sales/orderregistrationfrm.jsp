@@ -66,7 +66,7 @@ width:1400px;
                <th>담당자</th>
                <th><input type="text" name="bo_manager"></th>             
                <th>부서</th>
-               <th><input type="text" name="bo_dept" value="${bo_dept}"></th>
+               <th id="dept"></th>
             </tr>
          </thead>
       </table>
@@ -128,6 +128,28 @@ width:1400px;
     	   
     	   $("#clcode").val(clcode);
     	};
+    	
+    	
+    	$(document).ready(function() {
+    	      $.ajax({
+    	         url : '/erp/rest/sales/getbodept',
+    	         type : 'get',
+    	         data : 'json',
+    	         success : function(data) {
+    	            console.log(data);
+    	            var str = "";
+    	            for ( var i in data.sList) {
+    	               str += "<input type='text' class='txt' id='dept' style='width: 150px; color:gray;' readonly name='bo_dept' value='"+data.sList[i].hc_dept+"'>";
+    	            }
+    	            $("#dept").html(str);
+    	         },
+    	         error : function(error) {
+    	            console.log(error);
+    	         }
+    	      });
+    	   }); 
+    	
+
         $('#orderitemfrm').click(function(){
            var str="";
            
@@ -159,7 +181,7 @@ width:1400px;
         
         //추가삭제
         
-      $(document).ready(function(){
+/*       $(document).ready(function(){
             $('.addList').click(function(){
                $('#tBody').append('<tr><td frame=void><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bo_num" class="input-text"></td><td><input type="text" name="bo_pronum" class="input-text"></td><td><input type="text" name="bo_orderdate" class="input-text" ></td><td><input type="text" name="bo_duedate" class="input-text" ></td><td><input type="number" name="bo_proquantity" class="input-text"></td><td><input type="number" name="bo_prosalesamount" class="input-text"></td><td><input type="number" name="bo_orderbudget" class="input-text" ></td><td frame=void><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
             });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
@@ -168,7 +190,7 @@ width:1400px;
               console.log(row);
               let tr = row.parentNode.parentNode;
               tr.parentNode.removeChild(tr);
-       } 
+       }  */
          
         $('#subb').click(function(){
            var obj= $('#orderregistrationinput').serialize();

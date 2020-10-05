@@ -82,7 +82,7 @@ text-align:center;
             </div>  
             <br>  
             <div>
-            <button type="button" class="addList" value="추가">추가</button>
+            <!-- <button type="button" class="addList" value="추가">추가</button> -->
             <button type="button" id="sub" value="저장">저장</button>
             </div>
         </form>
@@ -148,7 +148,7 @@ text-align:center;
    	          }
    	       });
 
-   	              $('.addList').click(function(){
+/*    	              $('.addList').click(function(){
    	                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_date" class="input-text"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
    	   
    	    var select2;
@@ -164,9 +164,8 @@ text-align:center;
    	          error:function(err){
    	             console.log(err);
    	          }
-   	       });
+   	       }); */
 
-   	              });
    	          });
   	   
   	
@@ -182,7 +181,7 @@ text-align:center;
              
              for(var i in data.sList){//개별 미수금 등록한 거
                  str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_ccode+"></td>";
-                 str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
+                 str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>"; //내가 입력한 출하의뢰일
                  str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
@@ -190,7 +189,7 @@ text-align:center;
              }
               for(var i in data.sList2){ //결재창에서 끌고 온거
                  str+="<tr><td><input type='radio' name='each_check' value="+data.sList2[i].bs_docunum+"></td>";
-                 str+="<td><input type='text' value="+data.sList2[i].bs_date+"></td>";
+                 str+="<td><input type='text' value="+data.sList2[i].bs_basedate+"></td>"; //예상 납기일
                  str+="<td><input type='text' value="+data.sList2[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList2[i].bs_unit+"></td>";
                  str+="<td><input type='number' value="+data.sList2[i].bs_quantity+"></td>";
@@ -224,7 +223,7 @@ text-align:center;
             $('input').val("");
         }); 
       
-     //추가삭제
+/*      //추가삭제
      $(document).ready(function(){
            $('.addList').click(function(){
               $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_date" class="input-text"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
@@ -234,7 +233,7 @@ text-align:center;
              console.log(row);
              let tr = row.parentNode.parentNode;
              tr.parentNode.removeChild(tr);
-      } 
+      }  */
      
      
       $('#searchh').click(function(){

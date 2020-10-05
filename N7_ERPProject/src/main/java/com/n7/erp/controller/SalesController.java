@@ -61,33 +61,6 @@ public class SalesController {
       return sMap;
    }
 
-//   @PostMapping(value = "/sales/insertcomlist",produces="application/json;charset=utf-8" ) //거래처 등록
-//   public  Map<String, List<A_company>> insertcomlist(A_company ac, HttpSession session) {
-//      Map<String, List<A_company>> aMap=sm.insertcomlist(ac, session);
-//      return aMap;
-//   }
-//
-//   @PostMapping(value = "/sales/searchcode",produces="application/json;charset=utf-8" ) //거래처 코드검색
-//   public  Map<String, List<A_company>> searchcode(A_company ac, String code) {
-//      Map<String, List<A_company>> aMap=sm.searchcode(ac,code);
-//      return aMap;
-//   }
-//
-//   @PostMapping(value = "/sales/deleteCom",produces="application/json;charset=utf-8" ) //거래처 삭제
-//   public  Map<String, List<A_company>> deleteCom(String CNT, String ARR) {
-//      int cnt = Integer.parseInt(CNT);
-//      System.out.println(cnt);
-//      String [] strArray = ARR.split(",");
-//      System.out.println(strArray);
-//      Map<String, List<A_company>> aMap=sm.deleteCom(cnt,strArray);
-//      return aMap;
-//   }
-//
-//   @GetMapping(value = "/sales/searchcomlist",produces="application/json;charset=utf-8" ) //거래처 조회
-//   public  Map<String, List<A_company>> serchcomlist() {
-//      Map<String, List<A_company>> aMap=sm.searchcomlist();
-//      return aMap;
-//   }
 
    @PostMapping(value = "/sales/shippingrequestinput",produces="application/json;charset=utf-8") //출하의뢰등록
    public ModelAndView shippingrequestinput(Shippingbean ss, HttpSession session) { //HttpServletrequest request
@@ -261,10 +234,6 @@ public class SalesController {
 			return sMap;
 		}
 
-//	@GetMapping(value = "/sales/bonumInfo",produces = "application/json;charset=utf-8")
-//		   public String bonumInfo() {
-//		      return "/sales/bonumInfo";
-//	}
 
 	@PostMapping(value = "/sales/searchcode", produces = "application/json;charset=utf-8")
 	   public Map<String, List<Salesbean>> searchcode(String code, HttpSession session) {
@@ -277,18 +246,14 @@ public class SalesController {
 	      Map<String, List<Salesbean>> sMap = sm.serchbonumlist(session);
 	      return sMap;
 	}
+	
+	//부서명 찾아오기
+	@GetMapping(value = "/sales/getbodept", produces = "application/json;charset=utf-8")
+	//@ResponseBody
+	public Map<String, List<approvalLine>> getbodept(HttpSession session) {
+	   Map<String, List<approvalLine>> sMap = sm.getbodept(session);
+	   System.out.println("부서명 찾아오기 ");
+	   return sMap;
+	}
 
-
-
-//   @PostMapping(value = "/sales/approvaldelete") //결재완료 삭제 망함
-//   public Map<String, List<approvaldetail>> approvaldelete(String check) {
-//      Map<String, List<approvaldetail>> sMap=sm.approvaldelete(check);
-//      return sMap;
-//   }
-
-//   @PostMapping(value = "/sales/shippingquantity") //출하 수량비교
-//   public Map<String, List<approvaldetail>> shippingquantity(String check, HttpSession session) {
-//     Map<String, List<approvaldetail>> sMap=sm.shippingquantity(check, session);
-//      return sMap;
-//   }
 }
