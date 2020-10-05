@@ -83,9 +83,9 @@ border: 1px solid silver;
                            <td><input type="text" name="r_name" ></td>
                           <!--  <td><input type="text" name="r_itcode" ></td> -->
                            <td id="it"></td>
-                           <td><input type="number" min="1" name="r_amount" id="amout"></td>
-                           <td><input type="text" name="r_unlit" id="money"></td>
-                           <td><input type="text" name="r_budget" id="seipSum"></td>
+                           <td><input type="number" min="1" name="r_amount"></td>
+                           <td><input type="text" name="r_unlit"></td>
+                           <td><input type="text" name="r_budget"></td>
                            <td><input type="text" name="r_reason"></td>
                        </tr>
                </tbody>
@@ -144,16 +144,6 @@ border: 1px solid silver;
 			}
 		});
 	}); 
-    
-    var seip=0;
-    var amount= $("#amount").val();
-    var unlit= $("").val();
-    var tot= amount * unlit;
-    
-    $("#amount").each(function(){
-       seip=+ Number(tot);
-    });
-    $("#seipSum").val(seip);
     
 	  $('#save').click(function(){
 	         var obj = $('#rRegistration').serialize();
@@ -331,6 +321,8 @@ border: 1px solid silver;
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
+  	
+  	
 
 </script>
 </body>

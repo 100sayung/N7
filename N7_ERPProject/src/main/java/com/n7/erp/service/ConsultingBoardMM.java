@@ -1,16 +1,12 @@
 package com.n7.erp.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.n7.erp.bean.ConsultingBoard;
@@ -28,7 +24,7 @@ public class ConsultingBoardMM {
 	ModelAndView mav = new ModelAndView();
 
 	//게시판 이동시 목록 출력
-	public ModelAndView moveBoardList(Integer pageNum, ConsultingBoard cb) {
+	public ModelAndView moveBoardList(Integer pageNum) {
 		System.out.println("pageNum="+pageNum);
 		mav=new ModelAndView();
 		String view= null;
@@ -39,19 +35,11 @@ public class ConsultingBoardMM {
 		}
 		bList= CBdao.getBoardList(pageNum);
 		if(bList!=null && bList.size()!=0) {
-			if(cb.getCB_PASSWORD()=="b") {
-				Gson gson=new Gson();
-				String json=gson.toJson(bList);
-				mav.addObject("bList", json);
-				mav.addObject("paging", getPaging(pageNum));
-				view="/home/erpboard";
-			}else {
-				Gson gson=new Gson();
-				String json=gson.toJson(bList);
-				mav.addObject("bList", json);
-				mav.addObject("paging", getPaging(pageNum));
-				view="/home/erpboard";
-			}
+			Gson gson=new Gson();
+			String json=gson.toJson(bList);
+			mav.addObject("bList", json);
+			mav.addObject("paging", getPaging(pageNum));
+			view="/home/erpboard";
 		}
 		mav.setViewName(view);
 		return mav;
@@ -106,38 +94,6 @@ public class ConsultingBoardMM {
 		
 		return mav;
 	}
-	
-	public Map<String, List<ConsultingBoard>> boardSearch(String choice, String search) {
-		Map<String,List<ConsultingBoard>> bMap=null;
-		List<ConsultingBoard> bList= CBdao.boardSearch(choice, search);
-		if(bList != null) {
-			bMap= new HashMap<>();
-			bMap.put("bList", bList);
-			//System.out.println("bList="+bList);
-			System.out.println("성공?");
-		}else {
-			bMap=null;
-		}
-		return bMap;
-	}
-
-	public ModelAndView boarddelete(int CB_NUM, RedirectAttributes attr, HttpSession session) {
-		mav= new ModelAndView();
-		String view= null;
-		String id=(String)session.getAttribute("id");
-		String pw=(String)session.getAttribute("pw");
-		
-		boolean b=true;
-		int cnt= CBdao.getBoardExist(CB_NUM);
-		
-		if(cnt!=0) {
-			b=CBdao.boardDelete(CB_NUM);
-		}
-		System.out.println("b="+b);
-		
-		return null;
-	}
-
 //	//게시글 수정 목록 출력
 //	public String boardmodifyajax(Integer num) {
 //		System.out.println("수정페이지 서비스 번호 값="+num);

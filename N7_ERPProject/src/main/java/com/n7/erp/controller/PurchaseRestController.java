@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -118,6 +120,13 @@ public class PurchaseRestController {
 		Map<String, List<approvalLine>> mMap = pm.getApprovalInfo(cnt, strArray, session);
 		return mMap;
 	}
+	 
+	@PostMapping(value = "/Purchase/paSign2", produces= "application/json;charest=utf-8" )
+	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
+		 mav=pm.paSign2(pa,ap,req,rep,session);
+	     return mav;
+	}
+	 
 	 
 	//반품 
 	@PostMapping(value = "/Purchase/rRegistration", produces= "application/json;charest=utf-8" )

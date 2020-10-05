@@ -59,6 +59,7 @@ a{
         <ul id="menuList">
             <li><a href="#" id="pregistration">구매관리</a></li>
             <li><a href="#" id="rregistration">반품 관리</a></li>
+            <li><a href="#" id="puchaseAppvalInfo">결재 상세보기</a></li>
         </ul>
     </div>
     <center>
@@ -100,6 +101,20 @@ a{
 	   });
    });
    
+   $("#puchaseAppvalInfo").click(function(){
+	   $.ajax({
+		   type:'get',
+		   url:' /erp/Purchase/purchaseApprovalInfo',
+		   dataType: 'html',
+		   success: function(data){
+			   $("#description").html(data);
+		   },
+		   error: function(err){
+			   console.log(err);
+		   }
+	   });
+   });
+
 
 
 </script>

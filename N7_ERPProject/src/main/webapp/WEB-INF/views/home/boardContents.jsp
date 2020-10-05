@@ -103,8 +103,8 @@ margin-left: 400px;
 	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP상담게시판</h1></div>
 	<div class="center">
         <div id="container">
-        <br/>
-<br/>
+        <br>
+<br>
 	<form action="boardContnes">
 		<h2>상세보기</h2>
 		<table id="table">
@@ -128,15 +128,9 @@ margin-left: 400px;
 	</form>
 		<div>
 			<button id="aaa"><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
-			<button type="button" id="update">수정</button>		
-			   <a href="/erp/home/boarddelete?CB_Num=${board.CB_NUM}">삭제</a>
-			<!-- <button type="button" id="delete">삭제</button> -->
+			<c:if test="${id!=null}">
+				<button type="button" id="delete">삭제</button>
+			</c:if>
 		</div>
-	</div>
-</div>
-</div>
-
-<script>
-</script>	
 </body>
 </html>
