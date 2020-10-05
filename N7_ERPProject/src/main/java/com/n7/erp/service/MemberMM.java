@@ -159,7 +159,7 @@ public ModelAndView moveMyInfo(HttpSession session) {
 
 	public ResponseEntity<String> modifyPassword(String userPassword, String userId) {
 		mDao.modifyPassword(userPassword,userId);
-		return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕�뜝�뜽�뿉 �뜝�룞�삕�뜝�룞�삕�뜝�떦�슱�삕�뜝�룞�삕�뜝�떦�뙋�삕."));
+		return ResponseEntity.ok(new Gson().toJson("OK"));
 	}
 
 	public String getDupleID(String m_id) {
@@ -183,6 +183,7 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		mDao.deleteB_shipment(cCode);
 		mDao.deleteAc_salestatementlist(cCode);
 		mDao.deleteAc_realsalestatementlist(cCode);
+		mDao.deleteAc_Realsalestatement(cCode);
 		mDao.deleteB_uncollectedmoney(cCode);
 		mDao.deleteB_shipregist(cCode);
 		mDao.deleteS_itemcode(cCode);
@@ -202,6 +203,9 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		mDao.deleteS_category(cCode);
 		mDao.deleteApprovaldocu(cCode);
 		mDao.deleteAc_companylist(cCode);
+		mDao.deleteERPFunction(cCode);
+		mDao.deleteMember(cCode);
+		mDao.deleteCompany(cCode);
 		
 		return new Gson().toJson("�꽦怨�");
 	}
