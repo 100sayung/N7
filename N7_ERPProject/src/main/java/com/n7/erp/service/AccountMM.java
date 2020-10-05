@@ -1014,7 +1014,7 @@ public class AccountMM {
 		return sMap;
 	}
 
-	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+	public ModelAndView apUpSalesnum(String s_num, HttpSession session) {
 		mav = new ModelAndView();
 		String cCode = session.getAttribute("cCode").toString();
 		String view = "";
@@ -1023,14 +1023,73 @@ public class AccountMM {
 		ad = aDao.selectapcode(s_num,cCode);
 		aList = aDao.selectSales(s_num,cCode);
 		if(ad!=null) {
-			view = "Account/asSalesinfo";
+			view = "Account/apUpSalesinfo";
 			mav.addObject("ad", ad);
 			mav.addObject("aList", new Gson().toJson(aList));
 		}else {
-			view = "Account/asSalesinfo";
+			view = "Account/apUpSalesinfo";
 			mav.addObject("msg","자료가 없습니다.");
 		}
 	    mav.setViewName(view);
+		return mav;
+	}
+
+	public ModelAndView asUpSalesnum(String s_num, HttpSession session) {
+		mav = new ModelAndView();
+		String cCode = session.getAttribute("cCode").toString();
+		String view = "";
+		List<ApprovalDocument> aList = new ArrayList<>();
+		ApprovalDocument ad = new ApprovalDocument();
+		ad = aDao.selectapcode(s_num,cCode);
+		aList = aDao.selectSales(s_num,cCode);
+		if(ad!=null) {
+			view = "Account/asUpSalesinfo";
+			mav.addObject("ad", ad);
+			mav.addObject("aList", new Gson().toJson(aList));
+		}else {
+			view = "Account/asUpSalesinfo";
+			mav.addObject("msg","자료가 없습니다.");
+		}
+	    mav.setViewName(view);
+		return mav;
+	}
+	public ModelAndView apDownSalesnum(String s_num, HttpSession session) {
+		mav = new ModelAndView();
+		String cCode = session.getAttribute("cCode").toString();
+		String view = "";
+		List<ApprovalDocument> aList = new ArrayList<>();
+		ApprovalDocument ad = new ApprovalDocument();
+		ad = aDao.selectapcode(s_num,cCode);
+		aList = aDao.selectSales(s_num,cCode);
+		if(ad!=null) {
+			view = "Account/apDownSalesinfo";
+			mav.addObject("ad", ad);
+			mav.addObject("aList", new Gson().toJson(aList));
+		}else {
+			view = "Account/apDownSalesinfo";
+			mav.addObject("msg","자료가 없습니다.");
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+	
+	public ModelAndView asDownSalesnum(String s_num, HttpSession session) {
+		mav = new ModelAndView();
+		String cCode = session.getAttribute("cCode").toString();
+		String view = "";
+		List<ApprovalDocument> aList = new ArrayList<>();
+		ApprovalDocument ad = new ApprovalDocument();
+		ad = aDao.selectapcode(s_num,cCode);
+		aList = aDao.selectSales(s_num,cCode);
+		if(ad!=null) {
+			view = "Account/asDownSalesinfo";
+			mav.addObject("ad", ad);
+			mav.addObject("aList", new Gson().toJson(aList));
+		}else {
+			view = "Account/asDownSalesinfo";
+			mav.addObject("msg","자료가 없습니다.");
+		}
+		mav.setViewName(view);
 		return mav;
 	}
 }

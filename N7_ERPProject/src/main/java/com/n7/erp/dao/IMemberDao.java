@@ -118,7 +118,9 @@ public interface IMemberDao {
 	
 	boolean ectupdate3(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
 	
-	boolean approvalagree(@Param("num")String num,@Param("status")String status,@Param("cCode") String cCode);
+	boolean approvalagree(@Param("num")String num,@Param("cCode") String cCode);
+	
+	boolean approvalagree2(@Param("num")String num,@Param("cCode") String cCode);
 	
 	ApprovalDocu getStatus(@Param("num")String num,@Param("cCode") String cCode);
 	

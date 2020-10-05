@@ -62,7 +62,7 @@ table, tr, th, td {
 <body>
    <form id="for">
       <div
-         style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">전표 
+         style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">매입전표 
          상세보기</div>
       <div
          style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
@@ -85,9 +85,9 @@ table, tr, th, td {
                            <tr>
                               <th colspan="2">담당자</th>
                               <th colspan="2"><input type="text" name="s_employee"
-                                 class="txt" value="${ad.rs_employee}" readonly></th>
+                                 class="txt" value="${ad.rs_apname0}" readonly></th>
                               <th colspan="2">문서번호</th>
-                              <th colspan="2"><input type="text" name="s_num"
+                              <th colspan="2"><input id="num" type="text" name="s_num"
                                  class="txt" value="${ad.rs_num}" readonly></th>
 
                            </tr>
@@ -110,27 +110,7 @@ table, tr, th, td {
                            </tr>
                            <tbody id="tbody">
                            </tbody>
-<!--                            <tr> -->
-<!--                               <th colspan="2">차변금액</th> -->
-<!--                               <td colspan="5"><input type="text" name="j_debit" -->
-<%--                                  class="draft" value="${ac.j_debit}" readonly></td> --%>
-<!--                            </tr> -->
-<!--                            <tr> -->
-<!--                               <th colspan="2">대변금액</th> -->
-<!--                               <td colspan="5"><input type="text" name="j_credit" -->
-<%--                                  class="draft" value="${ac.j_credit}" readonly></td> --%>
-<!--                            </tr> -->
 
-<!--                            <tr> -->
-<!--                               <th>적요</th> -->
-<!--                               <td colspan="7"><input type="text" name="j_sumup" -->
-<%--                                  class="draft" value="${ac.j_sumup}" readonly></td> --%>
-<!--                            </tr> -->
-<!--                            <tr> -->
-<!--                               <th>반려사유</th> -->
-<!--                               <th colspan="8"><input type="text" name="j_reasion" -->
-<%--                                  value="${ac.j_reasion}" id="ect"></th> --%>
-<!--                            </tr> -->
                         </table>
                      </div>
                   </div>
@@ -138,6 +118,9 @@ table, tr, th, td {
             </tr>
          </table>
       </div>
+       <button type="button" id="submit">제출하기</button>
+         <button type="button" id="arbitrarily">전결하기</button>
+         <button type="button" id="turnback">반려하기</button>
    </form>
    <script>
       //레디 펑션 줘서 결재자 info 불러오기
@@ -188,6 +171,76 @@ table, tr, th, td {
     	 str+="<td>"+aList[i].rs_memo+"</td></tr>"; 
       }
       $("#tbody").html(str);
+      
+      $('#turnback').click(function(){
+  		var ect = $("#ect").val();
+  		var num= $("#num").val();
+
+  		$.ajax({
+  			url:'/erp/rest/home/turnback',
+  			type:'post',
+  			data:{num:num,ect:ect},
+  			success:function(data){
+  				console.log(data);
+  				if(data==1){
+  					alert("반려완료");
+  					window.close();
+  				}else{
+  					alert("반려실패");
+  				}
+
+  			},
+  			error:function(error){
+  				console.log(error);
+
+  			}
+  		});
+  	});
+  	
+  	$("#submit").click(function(){
+  		var num= $("#num").val();
+  		$.ajax({
+  			url:'/erp/rest/home/approvalagree',
+  			type:'post',
+  			data:{num:num},
+  			datatype:'json',
+  			success:function(data){
+  				console.log(data);
+  				if(data==1){
+  					alert("결재완료");
+  					window.close();
+  				}else{
+  					alert("결재실패");
+  				}
+  			},
+  			error:function(error){
+  			}
+  		});
+  		
+  	});
+  	
+  	$("#arbitrarily").click(function(){
+  		var num= $("#num").val();
+  		$.ajax({
+  			url:'/erp/rest/home/arbitrarily',
+  			type:'post',
+  			data:{num:num},
+  			datatype:'json',
+  			success:function(data){
+  				console.log(data);
+  				if(data==1){
+  					alert("전결완료");
+  					window.close();
+  				}else{
+  					alert("전결실패");
+  				}
+  			},
+  			error:function(error){
+  			}
+  		});
+  		
+  	});
+
 </script> 
 </body>
 </html>
