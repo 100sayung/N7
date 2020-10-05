@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.n7.erp.bean.ac.A_company;
 import com.n7.erp.bean.ac.Account;
@@ -96,7 +97,6 @@ public interface AccountDao {
 
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-//	public List<ApprovalDocu> apupPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode); //내가 올린 결재안(페이징x)
 	public List<ApprovalDocu> apupPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
 			@Param("vo") PagingVO vo, @Param("start") int start, @Param("end") int end); // 내가 올린 결재안
 
@@ -158,8 +158,9 @@ public interface AccountDao {
 
 	List<ApprovalDocument> selectSales(@Param("s_num")String s_num,@Param("cCode") String cCode);
 
-//	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
+	public com.n7.erp.bean.ac.approvalLine getAu_name(@Param("cCode")String cCode,@Param("hrCode") String hrCode);
 
+//	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 

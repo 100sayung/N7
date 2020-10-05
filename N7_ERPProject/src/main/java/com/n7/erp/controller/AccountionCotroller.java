@@ -158,6 +158,29 @@ public class AccountionCotroller {
 		Map<String, List<ApprovalDocu>> sMap = am.comparecode(code, session);
 		return sMap;
 	}
+	
+	// 내가올린 결재안 상세보기(영미니미니민-AP)
+		@GetMapping(value = "Account/apDownSalesnum", produces = "application/json;charset=utf-8")
+		public ModelAndView apDownSalesnum(String s_num, HttpSession session) {
+			mav = am.apDownSalesnum(s_num, session);
+			return mav;
+		}
+		@GetMapping(value = "Account/asDownSalesnum", produces = "application/json;charset=utf-8")
+		public ModelAndView asDownSalesnum(String s_num, HttpSession session) {
+			mav = am.asDownSalesnum(s_num, session);
+			return mav;
+		}
+		
+		@GetMapping(value = "Account/apUpSalesnum", produces = "application/json;charset=utf-8")
+		public ModelAndView apUpSalesnum(String s_num, HttpSession session) {
+			mav = am.apUpSalesnum(s_num, session);
+			return mav;
+		}
+		@GetMapping(value = "Account/asUpSalesnum", produces = "application/json;charset=utf-8")
+		public ModelAndView asUpSalesnum(String s_num, HttpSession session) {
+			mav = am.asUpSalesnum(s_num, session);
+			return mav;
+		}
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -203,13 +226,6 @@ public class AccountionCotroller {
 		int result = am.countDocument2(ac, session);
 		return Integer.toString(result);
 	}
-
-//// 내가올린 결재안 목록(페이징x)
-//@GetMapping(value = "Account/apupPaymentList", produces = "application/json;charset=utf-8")
-//public Map<String, List<ApprovalDocu>> apupPaymentList(HttpSession session) {
-//Map<String, List<ApprovalDocu>> pMap = am.apupPaymentList(session);
-//return pMap;
-//}
 
 	// 내가올린 결재완료 목록(페이징o)
 	@GetMapping(value = "Account/apupPaymentList3", produces = "application/json;charset=utf-8")
@@ -273,13 +289,6 @@ public class AccountionCotroller {
 		return mav;
 	}
 
-//// 내가받은 결재안 목록(페이징x)
-//@GetMapping(value = "Account/apdownPaymentList", produces = "application/json;charset=utf-8")
-//public Map<String, List<ApprovalDocu>> apdownPaymentList(HttpSession session) {
-//Map<String, List<ApprovalDocu>> pMap = am.apdownPaymentList(session);
-//return pMap;
-//}
-
 	// 내가받은 결재안 목록(페이징o)
 	@GetMapping(value = "Account/apdownPaymentList", produces = "application/json;charset=utf-8")
 	public String apdownPaymentList(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
@@ -305,12 +314,6 @@ public class AccountionCotroller {
 		return mav;
 	}
 
-//// 임시저장 결재안 목록
-//@GetMapping(value = "Account/acTemporaryList", produces = "application/json;charset=utf-8")
-//public Map<String, List<Account>> acTemporaryList(HttpSession session) {
-//Map<String, List<Account>> aMap = am.acTemporaryList(session);
-//return aMap;
-//}
 	// 임시저장 결재안 목록(페이징o)
 	@GetMapping(value = "Account/acTemporaryList", produces = "application/json;charset=utf-8")
 	public String acTemporaryList(HttpSession session, String nowPage, String cntPerPage, Account ac) {
@@ -383,29 +386,13 @@ public class AccountionCotroller {
 		return mMap;
 	}
 	
-	
-	///////////////////////////////////////////////////////////////////////////////////////////////
-	// 내가올린 결재안 상세보기(영미니미니민-AP)
-	@GetMapping(value = "Account/apDownSalesnum", produces = "application/json;charset=utf-8")
-	public ModelAndView apDownSalesnum(String s_num, HttpSession session) {
-		mav = am.apDownSalesnum(s_num, session);
-		return mav;
-	}
-	@GetMapping(value = "Account/asDownSalesnum", produces = "application/json;charset=utf-8")
-	public ModelAndView asDownSalesnum(String s_num, HttpSession session) {
-		mav = am.asDownSalesnum(s_num, session);
-		return mav;
+	//부서명 찾아오기
+	@RequestMapping(value = "Account/getAu_name", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public Map<String, List<approvalLine>> getAu_name(HttpSession session) {
+		Map<String, List<approvalLine>> aMap = am.getAu_name(session);
+		System.out.println("부서명 찾아오기 ");
+		return aMap;
 	}
 	
-	@GetMapping(value = "Account/apUpSalesnum", produces = "application/json;charset=utf-8")
-	public ModelAndView apUpSalesnum(String s_num, HttpSession session) {
-		mav = am.apUpSalesnum(s_num, session);
-		return mav;
-	}
-	@GetMapping(value = "Account/asUpSalesnum", produces = "application/json;charset=utf-8")
-	public ModelAndView asUpSalesnum(String s_num, HttpSession session) {
-		mav = am.asUpSalesnum(s_num, session);
-		return mav;
-	}
-
 }
