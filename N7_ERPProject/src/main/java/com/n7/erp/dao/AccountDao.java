@@ -84,7 +84,7 @@ public interface AccountDao {
 
 	SaleInfo getDate(String s_num);
 
-	List<shipment> getshipment(String cCode);
+	List<shipment> getshipment(@Param("num")String num,@Param("cCode")String cCode);
 
 	boolean trensCom(@Param("use") String use, @Param("code") String code, @Param("cCode") String cCode);
 

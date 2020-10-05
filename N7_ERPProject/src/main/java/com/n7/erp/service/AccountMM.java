@@ -564,11 +564,11 @@ public class AccountMM {
 		return sMap;
 	}
 
-	public Map<String, List<shipment>> getshipment(HttpSession session) {
+	public Map<String, List<shipment>> getshipment(String num, HttpSession session) {
 		Map<String, List<shipment>> aMap = null;
 		List<shipment> sList = null;
 		String cCode = session.getAttribute("cCode").toString();
-		sList = aDao.getshipment(cCode);
+		sList = aDao.getshipment(num,cCode);
 		if (sList != null) {
 			aMap = new HashMap<>();
 			aMap.put("sList", sList);

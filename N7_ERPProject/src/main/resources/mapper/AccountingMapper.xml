@@ -44,7 +44,7 @@
 	</select>
 	
 	<select parameterType="String" id="getcomcode2" resultType="A_com">
-	SELECT * FROM AC_COMPANYLIST WHERE CL_CODE = #{s_code} AND CL_CCODE=#{cCode}
+	SELECT * FROM AC_COMPANYLIST WHERE CL_CODE = #{s_clcode} AND CL_CCODE=#{cCode}
 	</select>
 
 	<select id="getComList" parameterType="String" resultType="A_com">
@@ -123,11 +123,11 @@
 	</select>
 	
 	<select id="getshipment" parameterType="String" resultType="ship">
-	SELECT * FROM REQUEST WHERE IE_CPCODE=#{cCode} AND IE_ACCODE='0'
+	SELECT * FROM REQUEST WHERE CL_CCODE=#{cCode} AND IE_STATUS=#{num} AND IE_ACCODE='0'
 	</select>
 
 	<select parameterType="String" id="Ieport" resultType="ship">
-	SELECT * FROM REQUEST WHERE IE_CPCODE=#{cCode} AND IE_SEQNUM=#{code} 
+	SELECT * FROM REQUEST WHERE CL_CCODE=#{cCode} AND IE_SEQNUM=#{code} 
 	</select>
 	
 	<select id="comparecode" parameterType="String" resultType="ap">
