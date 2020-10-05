@@ -85,7 +85,7 @@ html, body {
                         <table>
                            <tr>
                               <th colspan="2">문서번호</th>
-                              <th colspan="6"><input type="text" name="p_documentcode"
+                              <th colspan="6"><input id="num" type="text" name="p_documentcode"
                                  class="txt" value="${pa.p_documentcode}" readonly>
 
                            </tr>

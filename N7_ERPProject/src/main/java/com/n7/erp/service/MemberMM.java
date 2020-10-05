@@ -247,7 +247,6 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		ApprovalDocu ad =new ApprovalDocu();
 		String cCode = session.getAttribute("cCode").toString();
 		ad = mDao.getStatus(num,cCode);
-		System.out.println(ad.getAp_status());
 		String status = ad.getAp_status();
 		boolean result = false;
 		boolean result2 = false;
