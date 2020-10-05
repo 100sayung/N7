@@ -86,7 +86,7 @@ border: 1px solid silver;
                           <!--  <td><input type="text" name="r_itcode" ></td> -->
                            <td id="it"></td>
                            <td><input type="number" min="1" name="r_amount"></td>
-                           <td><input type="text" name="r_unlit"></td>
+                           <td><input type="text" name="r_unlit" class="unlit"></td>
                            <td><input type="text" name="r_budget"></td>
                            <td><input type="text" name="r_reason"></td>
                        </tr>
@@ -102,7 +102,14 @@ border: 1px solid silver;
          </form>
 	</div>
 <script type="text/javascript">
-     
+	$(document).on("keyup",".unlit",function(){
+	 	var cnt =$(this).parent().prev().children().val();
+	 	console.log(cnt);
+	 	var unlit = $(this).val();
+	 	var budget=cnt*unlit;
+		 $(this).parent().next().children().val(budget);
+ 	});
+
 	  function setChildValue(data) {
 		   console.log(data)
 		   for(var i in data.aList){ 
