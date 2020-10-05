@@ -11,13 +11,14 @@ import com.n7.erp.bean.Company;
 import com.n7.erp.bean.CompanyTemp;
 import com.n7.erp.bean.Member;
 import com.n7.erp.dao.AdminDao;
+import com.n7.erp.dao.HRIDeptDao;
 import com.n7.erp.userClass.PagingVO;
 
 @Service
 public class AdminMM {
 
 	@Autowired AdminDao aDao;
-	
+	@Autowired HRIDeptDao hDao;
 
 	//占쏙옙占쏙옙징 처占쏙옙 占쏙옙占�
 	public int countMember() {
@@ -54,6 +55,8 @@ public class AdminMM {
 		CompanyTemp ct = aDao.getCompany(ct_code);
 		if(aDao.insertCompanyTemp(ct)) {
 			aDao.deleteCompanyTemp(ct);
+			hDao.insertTax(ct_code);
+			hDao.insertInsurance(ct_code);
 			return "1";
 		}else {
 			return "0";
