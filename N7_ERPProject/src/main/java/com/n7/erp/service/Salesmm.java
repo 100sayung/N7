@@ -161,6 +161,29 @@ public class Salesmm {
       mav.setViewName(view);
       return mav;
     }
+   
+//	public ModelAndView shippingrequestinput(HttpServletRequest request, Shippingbean ss, HttpSession session) { // 출하등록		
+//		mav = new ModelAndView();
+//		String view = null;
+//
+//		ss.setBs_docunum("G");
+//
+//		String cCode = session.getAttribute("cCode").toString();
+//		Shippingbean sb = new Shippingbean();
+//		sb = sDao.shippingrequestinput(ss.getBs_clcode(), cCode);
+//		ss.setBs_clcode(ss.getBs_clcode());
+//		if (sb == null) {
+//			mav.addObject("msg", "정보 없음");
+//		}else {
+//            ss.setBs_ccode(bs_ccode);
+//			} else {
+//				mav.addObject("msg", "출하입력이 실패하였습니다.");
+//				view = "sales/shippingrequestinputfrm";
+//			}
+//		}
+//		mav.setViewName(view);
+//		return mav;
+//	}
 
 
    public Map<String, List<Shippingbean>> shippingitem(HttpSession session) {
@@ -573,10 +596,10 @@ public class Salesmm {
      String cCode=session.getAttribute("cCode").toString();
      Map<String, List<Businessbean>> sMap = null;
       if (sDao.businessactivitiesdelete(check, cCode)) {
-         List<Businessbean> sList = sDao.businessitem(cCode);
+         List<Businessbean> bList = sDao.businessitem(cCode);
          sMap = new HashMap<>();
-         sMap.put("sList", sList);
-         System.out.println(sList);
+         sMap.put("bList", bList);
+         System.out.println(bList);
       } else {
          System.out.println("지워짐?");
          sMap = null;
