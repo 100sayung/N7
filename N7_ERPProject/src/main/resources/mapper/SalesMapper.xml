@@ -9,7 +9,7 @@
    </select>
 
    <insert id="orderregistrationinput" parameterType="sales">
-      INSERT INTO B_ORDER VALUES(#{bo_num}||LPAD(B_ORDER_SEQ.NEXTVAL,4,0),#{bo_clcode},#{bo_ccode},#{bo_unit},#{bo_manager},#{bo_dept},#{bo_pronum},#{bo_orderdate},#{bo_duedate},#{bo_proquantity},#{bo_prosalesamount},#{bo_orderbudget})
+      INSERT INTO B_ORDER VALUES(#{bo_num}||LPAD(B_ORDER_SEQ.NEXTVAL,9,0),#{bo_clcode},#{bo_ccode},#{bo_unit},#{bo_manager},#{bo_dept},#{bo_pronum},#{bo_orderdate},#{bo_duedate},#{bo_proquantity},#{bo_prosalesamount},#{bo_orderbudget})
    </insert>
 
    <select id="orderregistrationsearch" parameterType="String" resultType="sales">
@@ -32,7 +32,7 @@
    </delete>
 
     <insert id="shippingrequestinput" parameterType="shipping">
-      INSERT INTO B_SHIPREGIST VALUES(#{bs_docunum}||LPAD(B_SHIPREGIST_SEQ.NEXTVAL,4,0),#{bs_ccode},#{bs_bonum},#{bs_itcode},#{bs_proname},#{bs_clcode},#{bs_basedate},#{bs_unit},#{bs_quantity},#{bs_price})
+      INSERT INTO B_SHIPREGIST VALUES(#{bs_docunum}||LPAD(B_SHIPREGIST_SEQ.NEXTVAL,9,0),#{bs_ccode},#{bs_bonum},#{bs_itcode},#{bs_proname},#{bs_clcode},#{bs_basedate},#{bs_unit},#{bs_quantity},#{bs_price})
    </insert>
 
    <select id="shippingitem" parameterType="String" resultType="shipping">
@@ -190,7 +190,7 @@
    </select>
 
    <insert id="businessactivitiesinput" parameterType="business">
-      INSERT INTO B_ACTIVITES VALUES(#{ba_ocode}||LPAD(B_ACTIVITES_SEQ.NEXTVAL,4,0),#{ba_ccode},#{ba_clcode},#{ba_hrcode},#{ba_unit},#{ba_startperiod},#{ba_endperiod},#{ba_date},#{ba_content},#{ba_estimatedsalesamount},#{ba_actualsalesamount},#{ba_enddate},#{ba_memo})
+      INSERT INTO B_ACTIVITES VALUES(#{ba_ocode}||LPAD(B_ACTIVITES_SEQ.NEXTVAL,9,0),#{ba_ccode},#{ba_clcode},#{ba_hrcode},#{ba_unit},#{ba_startperiod},#{ba_endperiod},#{ba_date},#{ba_content},#{ba_estimatedsalesamount},#{ba_actualsalesamount},#{ba_enddate},#{ba_memo})
    </insert>
 
    <select id="businessactivitiessearch" parameterType="String" resultType="business">
