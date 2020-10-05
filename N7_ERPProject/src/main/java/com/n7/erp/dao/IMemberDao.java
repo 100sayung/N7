@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 
 public interface IMemberDao {
@@ -101,4 +102,17 @@ public interface IMemberDao {
 	
 	@Select("SELECT M_GRADE FROM MEMBER WHERE M_ID = #{id}")
 	String checkGrade(String id);
+	boolean turnback(@Param("num")String num,@Param("cCode") String cCode);
+	
+	boolean ectupdate1(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
+	
+	boolean ectupdate2(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
+	
+	boolean ectupdate3(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
+	
+	boolean approvalagree(@Param("num")String num,@Param("status")String status,@Param("cCode") String cCode);
+	
+	ApprovalDocu getStatus(@Param("num")String num,@Param("cCode") String cCode);
+	
+	boolean arbitrarily(@Param("num")String num,@Param("cCode") String cCode);
 }

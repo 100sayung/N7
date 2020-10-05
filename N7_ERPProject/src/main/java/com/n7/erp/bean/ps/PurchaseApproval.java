@@ -28,5 +28,6 @@ public class PurchaseApproval {
 	private int p_unlit;
 	private int p_amount;
 	private int p_budget;
+	private String p_status;
 }
 

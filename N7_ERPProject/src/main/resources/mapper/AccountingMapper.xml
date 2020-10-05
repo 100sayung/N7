@@ -21,7 +21,7 @@
 	VALUES(#{cl_code},#{cl_ccode},#{cl_name},#{cl_comnum},#{cl_comnum2},#{cl_ceo},#{cl_employee},#{cl_phone},
 	#{cl_phone2},#{cl_fax},#{cl_email},#{cl_addr},#{cl_kind},#{cl_kind2},#{cl_kind3},#{cl_bank},
 	#{cl_bankholder},#{cl_memo},#{cl_banknum},'1')
-	</insert>
+	</insert> 
 	
 	<insert id="approvaldocu" parameterType="rs">
 	INSERT INTO APPROVALDOCU
@@ -63,16 +63,16 @@
 	SELECT * FROM AC_SALESTATEMENT WHERE S_CCODE=#{cCode}
 	</select>
 	
+	<select id="getsaleList2" parameterType="String" resultType="saleInfo">
+	SELECT * FROM AC_SALESTATEMENTLIST WHERE S_CCODE=#{cCode}
+	</select>
+	
 	<select id="saleDetaile" parameterType="String" resultType="saleInfo">
 	SELECT * FROM AC_SALESTATEMENT WHERE S_NUM= #{check} AND S_CCODE=#{cCode}
 	</select>
 	
 	<select id="saleDetaile2" parameterType="String" resultType="saleInfo">
 	SELECT * FROM AC_SALESTATEMENTLIST WHERE S_NUM = #{check} AND S_CCODE=#{cCode}
-	</select>
-	
-	<select id="getsaleList2" parameterType="String" resultType="saleInfo">
-	SELECT * FROM AC_SALESTATEMENTLIST
 	</select>
 	
 	<select id="getList" parameterType="String" resultType="saleInfo">
@@ -130,24 +130,12 @@
 	SELECT * FROM REQUEST WHERE IE_CPCODE=#{cCode} AND IE_SEQNUM=#{code} 
 	</select>
 	
-	<select id="comparecode" parameterType="String" resultType="approvaldocu">
+	<select id="comparecode" parameterType="String" resultType="ap">
 	SELECT * FROM APPROVALDOCU WHERE AP_DOCUNUM=#{code} AND AP_CCODE=#{cCode}
 	</select>
 	
-	<select id="getchild1" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM B_ORDER WHERE BO_CLCODE=#{check} AND BO_CCODE=#{cCode}
-	</select>
-	
-	<select id="getchild2" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM O_PURCHASECOMMOM WHERE P_CLCODE=#{check} AND P_CCODE=#{cCode}
-	</select>
-	
-	<select id="getchild3" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM S_IEPORT WHERE IE_CLCODE=#{check} AND IE_CPCODE=#{cCode}
-	</select>
-	
-	<select id="getchild4" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM AC_SALESTATEMENT WHERE S_CLCODE=#{check} AND S_CCODE=#{cCode}
+	<select id="comparecode2" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM APPROVALDOCU WHERE AP_DOCUNUM=#{code} AND AP_CCODE=#{cCode}
 	</select>
 
 
@@ -155,13 +143,13 @@
 	SELECT * FROM AC_SALESTATEMENT
 	<where>
 	<if test="choice.equals('num')">
-	S_NUM=#{select}
+	S_NUM=#{select} AND S_CCODE=#{cCode}
 	</if>
 	<if test="choice.equals('company')">
-	S_COMPANY=#{select}
+	S_COMPANY=#{select} AND S_CCODE=#{cCode}
 	</if>
 	<if test="choice.equals('employee')">
-	S_EMPLOYEE=#{select}
+	S_EMPLOYEE=#{select} AND S_CCODE=#{cCode}
 	</if>
 	</where>
 	</select>
@@ -192,10 +180,25 @@
 	<!-- 여기부터 분개전표 -->
 
 
-	<!-- 페이징 위한 결재안 카운트 -->
+	<!-- 페이징 위한 내가 올린 결재안 카운트 -->
 	<select id="countDocument" resultType="int">
 		SELECT COUNT(*)
 		FROM APPROVALDOCU
+		WHERE AP_CCODE = #{ap_ccode} AND AP_FROMAPPROVER = #{ap_fromapprover}
+	</select>
+	
+	<!-- 페이징 위한 내가 받은 결재안 카운트 -->
+	<select id="countDocument1" resultType="int">
+		SELECT COUNT(*)
+		FROM APPROVALDOCU
+		WHERE AP_CCODE = #{ap_ccode} AND AP_STATUS != '4' AND AP_TOAPPROVER = #{ap_toapprover}
+	</select>
+	
+	<!-- 페이징 위한 임시저장 결재안 카운트 -->
+	<select id="countDocument2" resultType="int">
+		SELECT COUNT(*)
+		FROM AC_JNOB
+		WHERE J_NONE = #{j_none} AND J_CCODE = #{j_ccode}
 	</select>
 
 	<!-- 임시저장 (결재등급0으로 INSERT) -->
@@ -354,4 +357,12 @@
 		resultType="Line">
 		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}
 	</select>
+	
+	<select id="apupSaleinfo1" resultType="saleInfo">
+	SELECT *
+	FROM AC_SALESTATEMENT
+	</select>
+	
 </mapper>
+
+

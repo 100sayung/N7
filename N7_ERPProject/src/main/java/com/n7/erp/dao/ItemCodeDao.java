@@ -40,4 +40,7 @@ public interface ItemCodeDao {
 	@Update("UPDATE S_ITEMCODE SET IT_STOCK =#{i} WHERE IT_CODE = #{ie_itcode} AND IT_CPCODE = #{cCode}")
 	public void updateItqty(@Param("i")int i,@Param("cCode") String string,@Param("ie_itcode") String ie_itcode);
 
+	@Select("Select IT_STOCK FROM IT WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{it_cpcode}")
+	public int getStock(ItemCode it);
+
 }

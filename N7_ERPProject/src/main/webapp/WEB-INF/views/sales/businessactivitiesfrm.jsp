@@ -33,11 +33,11 @@ text-align:center;
                <th>영업코드</th>
                <th><input type="text" name="ba_ocode" placeholder="자동생성" readonly></th>
                <th>회사코드</th>
-               <th><input type="text" name="ba_ccode"></th>
+               <th><input type="text" name="ba_ccode" value="${cCode}" readonly></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="ba_clcode"></th>
+               <th><input type="text" name="ba_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>사원코드</th>
-               <th><input type="text" name="ba_hrcode"></th>
+               <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th>
             </tr>
             <tr>
                <th>사업단위</th>
@@ -97,7 +97,17 @@ text-align:center;
     <br>
 
     
-    <script type="text/javascript">        
+    <script type="text/javascript">     
+    
+    function setChildValue(data) {
+  	   console.log(data)
+  	   for(var i in data.aList){ 
+  	   var clcode=data.aList[i].cl_code;
+  	      
+  	   }
+  	   
+  	   $("#clcode").val(clcode);
+  	};
         //추가삭제
         $(document).ready(function(){
               $('.addList').click(function(){

@@ -25,7 +25,7 @@ public class StockRestController {
 	@Autowired
 	StockMM stmm;
 
-	@RequestMapping(value = "/categoryconfirm", method = RequestMethod.POST) 
+	@RequestMapping(value = "/categoryconfirm", method = RequestMethod.POST)
 	public ResponseEntity<String> categoryCofirm(Category ct,HttpSession session) {
 		return stmm.categoryCofirm(ct,session);
 	}
@@ -101,7 +101,7 @@ public class StockRestController {
 	public ResponseEntity<String> getByItemStockList(ItemCode it,HttpSession session) {
 		return stmm.getByItemStockList(it,session);
 	}
-	
+
 	@RequestMapping(value = "/getmonthpayment", method = RequestMethod.POST)
 	public ResponseEntity<String> getMonthPayment(String date1, String date2,HttpSession session) {
 		return stmm.getMonthPayment(date1,date2,session);
@@ -122,5 +122,10 @@ public class StockRestController {
 	@RequestMapping(value = "/getclcode", method = RequestMethod.GET)
 	public ResponseEntity<String> getClcode(HttpSession session) {
 		return stmm.getClcode(session);
+	}
+	
+	@RequestMapping(value = "/getstock", method = RequestMethod.GET)
+	public ResponseEntity<String> getstock(ItemCode it,HttpSession session) {
+		return stmm.getStock(it,session);
 	}
 }

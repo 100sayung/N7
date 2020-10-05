@@ -53,12 +53,19 @@ public class AccountionCotroller {
 		Map<String, List<SaleInfo>> sMap = am.getList(code);
 		return sMap;
 	}
+
 	@GetMapping(value = "/Account/shipmentDetaile")
 	public ModelAndView shipmentdetaile(String CNT, String ARR, HttpSession session) {
 		int cnt = Integer.parseInt(CNT);
 		String[] strArray = ARR.split(",");
-		mav = am.shipmentDetaile(cnt,strArray,session);
+		mav = am.shipmentDetaile(cnt, strArray, session);
 		return mav;
+	}
+
+	@PostMapping(value = "/Account/analysis")
+	public Map<String, List<SaleInfo>> analysis(HttpSession session) {
+		Map<String, List<SaleInfo>> sMap = am.analysis(session);
+		return sMap;
 	}
 	/*
 	 * @PostMapping(value = "/selectsale",produces="application/json;charset=utf-8"
@@ -140,10 +147,8 @@ public class AccountionCotroller {
 	}
 
 	@PostMapping(value = "/Account/selectSearch", produces = "application/json;charset=utf-8")
-	public Map<String, List<SaleInfo>> selectSearch(String select, String choice) {
-		System.out.println(select);
-		System.out.println(choice);
-		Map<String, List<SaleInfo>> sMap = am.selectSearch(select, choice);
+	public Map<String, List<SaleInfo>> selectSearch(String select, String choice, HttpSession session) {
+		Map<String, List<SaleInfo>> sMap = am.selectSearch(select, choice,session);
 		return sMap;
 	}
 
@@ -164,10 +169,24 @@ public class AccountionCotroller {
 		return a; // DAO
 	}
 
-// 페이징
+	// 내가올린 페이징
 	@GetMapping(value = "/Account/documentPagenumber")
-	public String documentPagenumber() {
-		int result = am.countDocument();
+	public String documentPagenumber(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument(ap, session);
+		return Integer.toString(result);
+	}
+
+	// 내가받은 페이징
+	@GetMapping(value = "/Account/documentPagenumber1")
+	public String documentPagenumber1(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument1(ap, session);
+		return Integer.toString(result);
+	}
+
+	// 임시저장 페이징
+	@GetMapping(value = "/Account/documentPagenumber2")
+	public String documentPagenumber2(HttpSession session, Account ac) {
+		int result = am.countDocument2(ac, session);
 		return Integer.toString(result);
 	}
 
@@ -178,10 +197,10 @@ public class AccountionCotroller {
 //return pMap;
 //}
 
-// 내가올린 결재안 목록(페이징o)
+	// 내가올린 결재안 목록(페이징o)
 	@GetMapping(value = "Account/apupPaymentList", produces = "application/json;charset=utf-8")
-	public String apupPaymentList(HttpSession session, String nowPage, String cntPerPage) {
-		int total = am.countDocument();
+	public String apupPaymentList(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument(ap, session);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -211,10 +230,10 @@ public class AccountionCotroller {
 //return pMap;
 //}
 
-// 내가받은 결재안 목록(페이징o)
+	// 내가받은 결재안 목록(페이징o)
 	@GetMapping(value = "Account/apdownPaymentList", produces = "application/json;charset=utf-8")
-	public String apdownPaymentList(HttpSession session, String nowPage, String cntPerPage) {
-		int total = am.countDocument();
+	public String apdownPaymentList(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument1(ap, session);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -242,10 +261,10 @@ public class AccountionCotroller {
 //Map<String, List<Account>> aMap = am.acTemporaryList(session);
 //return aMap;
 //}
-// 임시저장 결재안 목록(페이징o)
+	// 임시저장 결재안 목록(페이징o)
 	@GetMapping(value = "Account/acTemporaryList", produces = "application/json;charset=utf-8")
-	public String acTemporaryList(HttpSession session, String nowPage, String cntPerPage) {
-		int total = am.countDocument();
+	public String acTemporaryList(HttpSession session, String nowPage, String cntPerPage, Account ac) {
+		int total = am.countDocument2(ac, session);
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
 			cntPerPage = "10";
@@ -312,6 +331,16 @@ public class AccountionCotroller {
 		String[] strArray = ARR.split(",");
 		Map<String, List<approvalLine>> mMap = am.getApprinfo(cnt, strArray, session);
 		return mMap;
+	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	// 내가올린 결재안 상세보기(영미니미니민-AP)
+	@GetMapping(value = "Account/apSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+		mav = am.apSalesnum(s_num, session);
+		System.out.println(s_num);
+		return mav;
 	}
 
 }

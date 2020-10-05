@@ -21,6 +21,8 @@ border: 1px solid silver;
 </head>
 <body>
        <div style="width: auto; background-color: white; padding: 1%;">
+        	<span style="padding-left: 5px";><a href="#"
+         	onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
             <button id="Wearing">입고현황</button>
             <button id="rInfo">반품조회</button>
          </div>
@@ -39,15 +41,16 @@ border: 1px solid silver;
             <table>
                      <tr>
                        <th>반품번호</th>
-                       <th><input type="text" name="r_documentcode" value="R" readonly></th>
+                       <td><input type="text" name="r_documentcode" value="R" readonly></td>
                        <th>입고번호</th>
-                        <th><input type="text" name="r_ieseqnum"></th>
-                        <th>담당자</th>
-                       <th><input type="text" name="r_writer"></th>
-                       <th>거래처</th>
-                        <th><input type="text" name="r_clcode"></th>
-                        <th>반품일</th>
-                        <th><input type="date" name="r_date" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
+                       <!-- <td><input type="text" name="r_ieseqnum"></td> -->
+                       <td id="ie"></td>
+                       <th>담당자</th>
+                       <td><input type="text" name="r_writer"></td>
+                      <th>거래처</th>
+                     	<th><input id="clcode" type="text" name="r_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+                       <th>반품일</th>
+                       <td><input type="date" name="r_date" min="2000-01-01" max="2030-12-31" style="width: 161px;"></td>
                      </tr>
                </table>
             </div>
@@ -78,7 +81,8 @@ border: 1px solid silver;
                   <tr>
                      <td><input type="checkbox" name="each_check" class="each"></td>
                            <td><input type="text" name="r_name" ></td>
-                           <td><input type="text" name="r_itcode" ></td>
+                          <!--  <td><input type="text" name="r_itcode" ></td> -->
+                           <td id="it"></td>
                            <td><input type="number" min="1" name="r_amount"></td>
                            <td><input type="text" name="r_unlit"></td>
                            <td><input type="text" name="r_budget"></td>
@@ -95,7 +99,41 @@ border: 1px solid silver;
             </div>
          </form>
 
-     <script type="text/javascript">
+<script type="text/javascript">
+     
+     var select;
+     $.ajax({
+           url:"/erp/stock/getitemcode",
+           dataType:"json",
+           type:"get",
+           success:function(data){
+              select = makeSelectBox(data);
+              $("#it").html(select);
+           },
+           error:function(err){
+              console.log(err);
+           }
+        });
+     function makeSelectBox(arr){
+         var arrStr = "<select class='select' name = 'r_itcode'><option></option>"
+         if(arr.length==0){
+            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+         }else{
+            for(var i = 0; i<arr.length;i++){
+               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
+            }
+         }
+         arrStr+="</select>";
+         return arrStr;
+      }
+     
+	  function setChildValue(data) {
+		   console.log(data)
+		   for(var i in data.aList){ 
+		   var clcode=data.aList[i].cl_code;
+		   }
+		   $("#clcode").val(clcode);
+		};
      
     $(function() {
 		$("#allCheck").click(function() {
@@ -110,17 +148,19 @@ border: 1px solid silver;
 	  $('#save').click(function(){
 	         var obj = $('#rRegistration').serialize();
 	         $.ajax({
-	            url: '/erp/rest/Purchase/rRegistration',
-	            type: 'post',
+	            url: "/erp/rest/Purchase/rRegistration",
+	            type: "post",
 	            data: obj,
 	            success: function(data){
 	               //consloe.log(data);
+	            $("input").val("");
+	            alert("등록이 완료되었습니다.");
 	            },
 	            error: function(error){
 	            	console.log(error);
+	            	alert("등록이 실패하였습니다.");
 	            }
 	         });
-	            $('input').val("");
 	      });
 	  
 	  $('#rInfo').click(function(){
@@ -231,19 +271,59 @@ border: 1px solid silver;
 			})	  
 			
 	
-	$('#Wearing').click(function(){
-		$.ajax({
-			url: "/erp/stock/getimportlist",
-			type: "post",
-			dataType: "json",
-			success: function(data){
-				console.log(data);
-			},
-			error: function(err){
-				console.log(err);
-			}
-		});
-	});
-   </script>
+	$("#Wearing").click(function(){
+		  $.ajax({
+			  url:"/erp/rest/Purchase/stocklist",
+			  type: "get",
+			  dataType: "json",
+			  success: function(data){
+				  console.log(data);
+				  var str="";
+				  str+="<tr style='text-align: center;'><th>입고번호</th><th>품목코드</th><th>거래처</th><th>날짜</th><th>수량</th><th>가격</th></tr>";
+				  for(var i in data.sList){
+				  	str+="<tr style='text-align: center;'><td>"+data.sList[i].ie_seqnum+"</td>";
+					str+="<td>"+data.sList[i].ie_itcode+"</td>";
+					str+="<td>"+data.sList[i].ie_clcode+"</td>";
+				  	str+="<td>"+data.sList[i].ie_date+"</td>";
+				  	str+="<td>"+data.sList[i].ie_qty+"</td>";
+				  	str+="<td>"+data.sList[i].ie_price+"</td><tr>";
+				  }
+				  $('#list').html(str);
+			  },
+			  error: function(err){
+				  console.log(err);
+			  }
+		  })
+  	})
+  	
+	 var select2;
+	     $.ajax({
+	    	 url: "/erp/stock/getimportlist",
+	         dataType: "json",
+	         type: "post",
+	         success:function(data){
+	              select = makeSelectBox2(data);
+	              $("#ie").html(select);
+	         },
+	         error:function(err){
+	             console.log(err);
+	         }
+	     });
+	     function makeSelectBox2(arr){
+	         var arrStr = "<select class='select' name = 'r_ieseqnum'><option></option>"
+	         if(arr.length==0){
+	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+	         }else{
+	            for(var i = 0; i<arr.length;i++){
+	               arrStr+="<option value='"+arr[i].ie_seqnum+"'>"+arr[i].ie_seqnum+"</option>"; 
+	            }
+	         }
+	         arrStr+="</select>";
+	         return arrStr;
+	      }
+  	
+  	
+
+</script>
 </body>
 </html>

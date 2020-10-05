@@ -153,46 +153,44 @@ td {
 	apupPaymentList(1);
 	pageNumber(1);
 
-	// 	$.ajax({
-	// 				type : 'get',
-	// 				url : '/erp/rest/Account/apupPaymentList',
-	// 				dataType : 'json',
-	// 	 			contentType : 'application/json; charset=UTF-8',
-	// 				success : function(data) {
-	// 					console.log(data);
-	// 					var str = "";
-	// 					for ( var i in data.pList) {
-	// 						str += "<tr>"
-	// 						str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>"
-	// 						str += '<td>' + data.pList[i].ap_docunum + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_ccode + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_docuname + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_fromapprover + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_toapprover + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_date + '</td>'
-	// 						str += '<td>' + data.pList[i].ap_status + '</td>'
-	// 						str += '</tr>'
-	// 					}
-	// 					$("#Info").html(str);
-	// 				},
-	// 				error : function(err) {
-	// 					console.log(err);
-	// 				}
-	// 			});
 </script>
 <script>
-	$("#approval").click(
-			function() {
-				var check = '';
-				$("input[name='checknum']:checked").each(
-						function() {
-							check = $(this).attr('value');
+$("#approval").click(
+		function() {
+			var check = '';
+			$("input[name='checknum']:checked").each(
+		               function() {
+		                  check = $(this).attr('value');
 
-							window.open(
-									'/erp/rest/Account/apRequest?j_docunum='
-											+ check, 'apRequest',
-									'width=1500, height=600');
-						});
-			});
+
+		                  if(check.indexOf("AC") != -1){
+		                     window.open(
+		                        '/erp/rest/Account/apRequest?j_docunum='
+		                              + check, 'apRequest',
+		                        'width=1500, height=600');
+		                  }else if(check.indexOf("P") != -1){ //예은
+		                     window.open(
+		                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
+		                        'width=1500, height=600');
+	                      }else if(check.indexOf("G") != -1){ //수진
+	                         window.open(
+	                           '/erp/rest/sales/sRequest?bs_docunum='+ check, 'sRequest',
+	                           'width=1500, height=600');
+		                  }else if(check.indexOf("H") != -1){ //인사
+		                	  console.log(check);
+		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
+		                  }else if(check.indexOf("AP") != -1){ //영민
+		                	  console.log(check);
+		                      window.open('/erp/Account/apSalesnum?s_num=' + check, 'apSalesinfo', 'width=1400, heigth=700');
+		                  }else if(check.indexOf("AS") != -1){ //영민
+		                	  console.log(check);
+		                      window.open('/erp/Account/apSalesnum?s_num=' + check, 'asSalesinfo', 'width=1400, heigth=700');
+		                  }else{
+		                	  window.open(
+		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
+		                  }
+
+		               });
+		      });
 </script>
 </html>

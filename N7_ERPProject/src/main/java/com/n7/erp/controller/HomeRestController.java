@@ -25,6 +25,7 @@ public class HomeRestController {
 
 	@Autowired
 	private MemberMM mm;
+	
 
 	@GetMapping(value = "/home/searchfromid")
 	public String getSearchFromId(String m_id) {
@@ -53,5 +54,25 @@ public class HomeRestController {
 		String result= mm.checkGrade(session);
 		return result;
 	}
+	@PostMapping(value="/home/turnback")
+	public String turnback(String num,String ect,HttpSession session) {
+		String value= mm.turnback(num,ect,session);
+		return value;
+	}
+	@PostMapping(value="/home/approvalagree")
+	public String approvalagree(String num,HttpSession session) {
+		String value= mm.approvalagree(num,session);
+		return value;
+	}
 
+	@PostMapping(value = "/home/forcewithdrawal")
+	public String forceWithDrawal(String jsonStr) { 
+		System.out.println(jsonStr);
+		List<String> slist = new Gson().fromJson(jsonStr, new TypeToken<List<String>>() {
+		}.getType());
+		System.out.println(slist);
+		mm.forceWithDrawal(slist);
+		return null;
+	}
+	
 }

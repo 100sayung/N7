@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.n7.erp.bean.ac.A_company;
 import com.n7.erp.bean.ac.Account;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.ac.Approvaldocu;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.ac.SaleInfo;
 import com.n7.erp.bean.ac.myCompany;
@@ -56,7 +57,7 @@ public class AccountMM {
 	public Map<String, List<A_company>> serchcomlist(String use, HttpSession session) {
 		Map<String, List<A_company>> aMap = null;
 		String cCode = session.getAttribute("cCode").toString();
-		List<A_company> aList = aDao.getCompanyList(use,cCode);
+		List<A_company> aList = aDao.getCompanyList(use, cCode);
 		aMap = new HashMap<>();
 		aMap.put("aList", aList);
 		return aMap;
@@ -77,21 +78,21 @@ public class AccountMM {
 
 	public Map<String, List<A_company>> trensCom(String USE, String CODE, HttpSession session) {
 		Map<String, List<A_company>> aMap = null;
-		List<A_company> aList=null;
+		List<A_company> aList = null;
 		boolean result = false;
 		String cCode = session.getAttribute("cCode").toString();
-		
-			result = aDao.trensCom(USE, CODE, cCode);
-			
+
+		result = aDao.trensCom(USE, CODE, cCode);
+
 		System.out.println(result);
 		if (result) {
-			if(Integer.parseInt(USE)==0) {
+			if (Integer.parseInt(USE) == 0) {
 				System.out.println("여기로와?1");
-				USE="1";
+				USE = "1";
 				aList = aDao.getCompanyList(USE, cCode);
-			}else if(Integer.parseInt(USE)==1) {
+			} else if (Integer.parseInt(USE) == 1) {
 				System.out.println("여기로와?2");
-				USE="0";
+				USE = "0";
 				aList = aDao.getCompanyList(USE, cCode);
 			}
 			aMap = new HashMap<>();
@@ -112,19 +113,20 @@ public class AccountMM {
 		String view = null;
 		boolean a = false;
 		boolean b = false;
-		
-		String cCode=session.getAttribute("cCode").toString();
+
+		String cCode = session.getAttribute("cCode").toString();
 		A_company ac = new A_company();
-		if(si.getIe_seqnum()==null) {
-			ac = aDao.getcomcode(si.getS_comnum(),cCode);
-		}else{
-			ac = aDao.getcomcode2(si.getS_clcode(),cCode);
-		};
+		if (si.getIe_seqnum() == null) {
+			ac = aDao.getcomcode(si.getS_comnum(), cCode);
+		} else {
+			ac = aDao.getcomcode2(si.getS_clcode(), cCode);
+		}
+		;
 		if (ac == null) {
 			mav.addObject("msg", "등록된 거래처가 없습니다.");
 		} else {
 			si.setS_comnum(ac.getCl_comnum());
-            System.out.println("여기 안들어와?1");
+			System.out.println("여기 안들어와?1");
 			si.setS_clcode(ac.getCl_code());
 			si.setS_ccode(cCode);
 			a = aDao.saleinsert(si);
@@ -145,54 +147,56 @@ public class AccountMM {
 				si.setS_memo(strmemo[i]);
 				b = aDao.saleinsert2(si);
 			}
-           if(si.getIe_seqnum()==null) {
-        	   if (a && b) {
-        		   System.out.println("여기도들어와?2");
-        		   mav.addObject("msg", "전표등록성공");
-        		   view = "Account/openTable";
-        	   } else {
-        		   mav.addObject("msg", "전표등록실패");
-        		   view = "Account/openTable";
-        	   }        	   
-           }else {
-        	   
-        	   if (a && b) {
-        		   System.out.println("여기도들어와?3");
-        		   String [] seqnum = request.getParameterValues("ie_seqnum");
-        		   for(int i=0; i<seqnum.length; i++) {
-        			   aDao.statusupdate(seqnum[i],cCode);
-        			   
-        		   }
-        		   mav.addObject("msg", "전표등록성공");
-        		   view = "Account/openTable";
-        	   } else {
-        		   mav.addObject("msg", "전표등록실패");
-        		   view = "Account/openTable";
-        	   }
-           }
+			if (si.getIe_seqnum() == null) {
+				if (a && b) {
+					System.out.println("여기도들어와?2");
+					mav.addObject("msg", "전표등록성공");
+					view = "Account/openTable";
+				} else {
+					mav.addObject("msg", "전표등록실패");
+					view = "Account/openTable";
+				}
+			} else {
+
+				if (a && b) {
+					System.out.println("여기도들어와?3");
+					String[] seqnum = request.getParameterValues("ie_seqnum");
+					for (int i = 0; i < seqnum.length; i++) {
+						aDao.statusupdate(seqnum[i], cCode);
+
+					}
+					mav.addObject("msg", "전표등록성공");
+					view = "Account/openTable";
+				} else {
+					mav.addObject("msg", "전표등록실패");
+					view = "Account/openTable";
+				}
+			}
 		}
 		mav.setViewName(view);
 		return mav;
 	}
+
 	public ModelAndView shipmentDetaile(int cnt, String[] strArray, HttpSession session) {
 		mav = new ModelAndView();
-		String cCode= session.getAttribute("cCode").toString();
+		String cCode = session.getAttribute("cCode").toString();
 		String view = "";
-		List<shipment> sList=new ArrayList<>();
+		List<shipment> sList = new ArrayList<>();
 		shipment sp = new shipment();
-		String code="";
-		for(int i=0; i<cnt; i++) {
-			code=strArray[i];
-			sp=aDao.Ieport(code,cCode);
+		String code = "";
+		for (int i = 0; i < cnt; i++) {
+			code = strArray[i];
+			sp = aDao.Ieport(code, cCode);
 			sList.add(sp);
 		}
-		if(sList!=null) {
-			mav.addObject("sList",new Gson().toJson(sList));
-			view="Account/shipmentDetaile";
+		if (sList != null) {
+			mav.addObject("sList", new Gson().toJson(sList));
+			view = "Account/shipmentDetaile";
 		}
 		mav.setViewName(view);
 		return mav;
 	}
+
 	public Map<String, List<SaleInfo>> getsaleList(HttpSession session) {
 		Map<String, List<SaleInfo>> aMap = null;
 		String cCode = session.getAttribute("cCode").toString();
@@ -268,20 +272,33 @@ public class AccountMM {
 		boolean result = false;
 		boolean result2 = false;
 		String code = "";
+		int count =0;
 		for (int i = 0; i < cnt; i++) {
 			code = strArray[i];
-			result2 = aDao.deleteSale2(code, cCode);
-			result = aDao.deleteSale(code, cCode);
+		    count=aDao.comparecode2(code,cCode);
+		    
 		}
-		if (result && result2) {
-			List<SaleInfo> sList = aDao.getsaleList(cCode);
-			aMap = new HashMap<>();
-			aMap.put("sList", sList);
-		} else {
+		if(count==0) {
+			for (int i = 0; i < cnt; i++) {
+				code = strArray[i];
+				result2 = aDao.deleteSale2(code, cCode);
+				result = aDao.deleteSale(code, cCode);
+			}
+			if (result && result2) {
+				List<SaleInfo> sList = aDao.getsaleList(cCode);
+				aMap = new HashMap<>();
+				aMap.put("sList", sList);
+			} else {
+				aMap = null;
+			}
+			
+		}else {
+			
 			aMap = null;
 		}
 		return aMap;
 	}
+
 
 	public ModelAndView saledetails(String check, HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
@@ -416,13 +433,13 @@ public class AccountMM {
 
 	public ModelAndView approdocument(HttpServletRequest request, ApprovalDocument ad, HttpSession session) {
 		String view = null;
-		String cCode =session.getAttribute("cCode").toString();
+		String cCode = session.getAttribute("cCode").toString();
 		mav = new ModelAndView();
 		boolean a = false;
 		boolean b = false;
 		boolean c = false;
 		A_company ac = new A_company();
-		ac = aDao.getcomcode(ad.getRs_comnum(),cCode);
+		ac = aDao.getcomcode(ad.getRs_comnum(), cCode);
 		ad.setRs_clcode(ac.getCl_code());
 		ad.setRs_ccode(cCode);
 		String[] strpkind = request.getParameterValues("rs_pkind");
@@ -501,10 +518,11 @@ public class AccountMM {
 		return mav;
 	}
 
-	public Map<String, List<SaleInfo>> selectSearch(String select, String choice) {
+	public Map<String, List<SaleInfo>> selectSearch(String select, String choice, HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
 		Map<String, List<SaleInfo>> sMap = null;
 		List<SaleInfo> sList = null;
-		sList = aDao.selectSreach(select, choice);
+		sList = aDao.selectSreach(select, choice,cCode);
 		System.out.println(sList);
 		if (sList != null) {
 			sMap = new HashMap<>();
@@ -787,7 +805,7 @@ public class AccountMM {
 		String view = null;
 		String hrCode = (String) session.getAttribute("hrCode");
 		String cCode = (String) session.getAttribute("cCode");
-		
+
 		ac.setJ_ccode(cCode);
 		ac.setJ_none(req.getParameter("rs_apcode0"));
 		ac.setJ_ntwo(req.getParameter("rs_apcode1"));
@@ -863,9 +881,9 @@ public class AccountMM {
 		if (ac.getJ_reasion() == null || ac.getJ_reasion() == "" || ac.getJ_reasion().equals("사유")) {
 			ac.setJ_reasion("사유없음");
 		}
-		
+
 		ac.setJ_ccode(cCode);
-		
+
 		ap.setAp_ccode(cCode);
 		ap.setAp_docunum(ac.getJ_docunum());
 
@@ -906,8 +924,110 @@ public class AccountMM {
 		return aMap;
 	}
 
-//결재안문서 카운트
-	public int countDocument() {
-		return aDao.countDocument();
+	// 내가올린 결재안문서 카운트
+	public int countDocument(ApprovalDocu ap, HttpSession session) {
+		String hrCode = (String) session.getAttribute("hrCode");
+		String cCode = (String) session.getAttribute("cCode");
+
+		ap.setAp_ccode(cCode);
+		ap.setAp_fromapprover(hrCode);
+
+		return aDao.countDocument(ap);
+	}
+
+	// 내가받은 결재안문서 카운트
+	public int countDocument1(ApprovalDocu ap, HttpSession session) {
+		String hrCode = (String) session.getAttribute("hrCode");
+		String cCode = (String) session.getAttribute("cCode");
+
+		ap.setAp_ccode(cCode);
+		ap.setAp_toapprover(hrCode);
+
+		return aDao.countDocument1(ap);
+	}
+
+	// 임시저장 결재안문서 카운트
+	public int countDocument2(Account ac, HttpSession session) {
+		String hrCode = (String) session.getAttribute("hrCode");
+		String cCode = (String) session.getAttribute("cCode");
+
+		ac.setJ_none(hrCode);
+		ac.setJ_ccode(cCode);
+
+		return aDao.countDocument2(ac);
+	}
+
+	public Map<String, List<SaleInfo>> analysis(HttpSession session) {
+		Map<String, List<SaleInfo>> sMap = null;
+		List<SaleInfo> sList = null;
+		List<SaleInfo> sList2 = null;
+		String cCode = session.getAttribute("cCode").toString();
+		sList = aDao.getsaleList(cCode);
+		sList2 = aDao.getsaleList2(cCode);
+		if (sList != null) {
+			sMap = new HashMap<>();
+			sMap.put("sList", sList);
+			sMap.put("sList2", sList2);
+		} else {
+			sMap = null;
+		}
+		return sMap;
+	}
+
+	public ModelAndView apSalesnum(String s_num, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
+		
+		SaleInfo si = aDao.apupSaleinfo1(s_num, cCode);
+		
+		if(si != null) {
+			mav.addObject("si", si);
+			System.out.println("sales상세인포성공");
+			view = "Account/apupSaleinfo";
+		}else {
+			System.out.println("실패했다 이새기야");
+			view = "Account/apupPayment";
+		}
+		
+			
+//			for (int i = 0; i < strpkind.length; i++) {
+//				si.setS_pkind(strpkind[i]);
+//				si.setS_cnt(strcnt[i]);
+//				si.setS_price(strprice[i]);
+//				si.setS_price2(strprice2[i]);
+//				si.setS_tax(strtax[i]);
+//				si.setS_total(strtotal[i]);
+//				si.setS_memo(strmemo[i]);
+//				b = aDao.saleinsert2(si);
+//			}
+//			if (si.getIe_seqnum() == null) {
+//				if (a && b) {
+//					System.out.println("여기도들어와?2");
+//					mav.addObject("msg", "전표등록성공");
+//					view = "Account/openTable";
+//				} else {
+//					mav.addObject("msg", "전표등록실패");
+//					view = "Account/openTable";
+//				}
+//			} else {
+//
+//				if (a && b) {
+//					System.out.println("여기도들어와?3");
+//					String[] seqnum = request.getParameterValues("ie_seqnum");
+//					for (int i = 0; i < seqnum.length; i++) {
+//						aDao.statusupdate(seqnum[i], cCode);
+//
+//					}
+//					mav.addObject("msg", "전표등록성공");
+//					view = "Account/openTable";
+//				} else {
+//					mav.addObject("msg", "전표등록실패");
+//					view = "Account/openTable";
+//				}
+//			}
+//		}
+		mav.setViewName(view);
+		return mav;
 	}
 }

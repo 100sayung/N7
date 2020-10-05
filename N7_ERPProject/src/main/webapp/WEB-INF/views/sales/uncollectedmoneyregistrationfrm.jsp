@@ -34,13 +34,13 @@ text-align:center;
          <thead>
             <tr>
                <th>회사코드</th>
-               <th><input type="text" name="bs_ccode"></th>
+               <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="bs_clcode"></th>
+               <th><input type="text" name="bs_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>제품코드</th>
                <th><input type="text" name="bs_itcode"></th>
-               <th>수주번호</th>
-               <th><input type="text" name="bs_bonum"></th>
+<!--           <th>수주번호</th>
+               <th><input type="text" name="bs_bonum"></th> -->
                <th>등록자</th>
                <th><input type="text" name="bu_person"></th>
             </tr>
@@ -62,6 +62,7 @@ text-align:center;
                     <tr>
                         <th><input type="radio" id="allCheck"></th>
                         <th>날짜(출하의뢰일)</th>
+                        <th>제품명</th>
                         <th>판매단가</th>
                         <th>수량</th>
                         <th>현미수액</th>
@@ -71,6 +72,7 @@ text-align:center;
                     <tr>
                         <td><input type="radio" class="each_check"></td>          
                         <td><input type="text" name="bs_date" placeholder="자동생성" readonly></td>
+                        <td><input type="text" name="bs_proname"  required></td>
                         <td><input type="number" name="bs_unit"  required></td>
                         <td><input type="number" name="bs_quantity"  required></td>
                         <td><input type="number" name="bs_price" required></td>                  
@@ -88,7 +90,16 @@ text-align:center;
     <br>
     <br>
 
-    <script type="text/javascript">    
+    <script type="text/javascript"> 
+    function setChildValue(data) {
+  	   console.log(data)
+  	   for(var i in data.aList){ 
+  	   var clcode=data.aList[i].cl_code;
+  	      
+  	   }
+  	   
+  	   $("#clcode").val(clcode);
+  	};
      $('#uncollectedmoneyitemfrm').click(function(){
        var str="";
        
@@ -99,16 +110,18 @@ text-align:center;
           success:function(data){
              console.log(data);
              
-             for(var i in data.sList){//개별 등록한 거
-                str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bu_person+"></td>";
+             for(var i in data.sList){//개별 미수금 등록한 거
+                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bu_person+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
+                 str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
              }
               for(var i in data.sList2){ //결재창에서 끌고 온거
-                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
+                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
+                 str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
@@ -144,7 +157,7 @@ text-align:center;
      //추가삭제
      $(document).ready(function(){
            $('.addList').click(function(){
-              $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_date" class="input-text"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
+              $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_date" class="input-text"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
            });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
        }); 
         function thisRowDel(row){
@@ -172,6 +185,7 @@ text-align:center;
                   for(var i in data.sList){
                      str+="<tr class='tr'><td><input type='radio' name='each_check' value="+data.sList[i].bs_clcode+"></td>";
                      str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
+                     str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                      str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
                      str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
                      str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
@@ -212,6 +226,7 @@ text-align:center;
               for(var i in data.sList){
                  str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
+                 str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
@@ -243,6 +258,7 @@ text-align:center;
              for(var i in data.sList){
                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
+                 str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
@@ -270,6 +286,7 @@ text-align:center;
               for(var i in data.sList){
                  str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_credit+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
+                 str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";

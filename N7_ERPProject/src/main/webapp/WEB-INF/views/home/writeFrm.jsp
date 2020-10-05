@@ -41,7 +41,6 @@ Released   : 20130526
    border: 1px solid black;
    border-collapse: collapse;
 }
-
 #boardList {
    margin-top: 30px;
    font-size: 30px;
@@ -60,7 +59,6 @@ Released   : 20130526
    margin:auto;
    width: 800px;
 }
-
 #writeFrm{
    margin-left:500px; 
 }
@@ -74,55 +72,81 @@ Released   : 20130526
 .writeText{
    padding: 10px;
 }
+h1{
+font-size: 36px;
+margin-top: 15px;
+margin-bottom: 10px;
+font-family: inherit;
+font-weight: 500;
+color: inherit;
+text-transform: uppercase;
+display: block;    
+}
+#write{
+resize: none;
+}
+#pw{
+display : block;
+float: left;
+margin-left: -195px;
+padding: 8px;
+}
 </style>
 </head>
 <body>
-   <div id="header" class="container">
-      <div id="logo">
-         <h1>
-            <a href="/erp/">N7 ERP SYSTEM</a>
-         </h1>
-      </div>
-      <div id="menu">
-         <ul>
-            <li><a href="/erp/" accesskey="4" title="">MAIN</a></li>
-            <li><a href="/erp/introducecompany" accesskey="2" title="">회사
-                  소개</a></li>
-            <li><a href="/erp/erpapply" accesskey="3" title="">erp 신청</a></li>
-            <li><a href="/erp/login" accesskey="5" title="">LOGIN</a></li>
-            <li><a href="/erp/join" accesskey="6" title="">JOIN</a></li>
-            <li class="current_page_item"><a href="/erp/hrCard">ERP시작</a></li>
-            <li><a href="/erp/hr/deptregistpage">러훙러후미어</a></li>
-         </ul>
-      </div>
-   </div>
+	<div id="header" class="container">
+		<div id="logo">
+			<h1>
+				<a href="/erp/" style="color: black;">N7 ERP SYSTEM</a>
+			</h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="/erp/">MAIN</a></li>
+				<li><a href="/erp/introducecompany">회사 소개</a></li>
+				<li><a href="/erp/erpboard" accesskey="5" title="">상담 게시판</a></li>
+				<li><a href="/erp/erpapply">ERP 신청</a></li>
+				<li><a href="/erp/login">LOGIN</a></li>
+				<li><a href="/erp/join">JOIN</a></li>
+				<li class="current_page_item"><a href="#">ERP시작</a></li>
+			</ul>
+		</div>
+	</div>
    <form action="writeBoard" id="writeFrm" method="post">
       <h1>글쓰기</h1>
-      <table>
-         <tr>
-            <td><input id="CB_WRITER" placeholder="아이디를 입력해 주세요." required="required" class="writeText" name="CB_WRITER">
-            <input placeholder="비밀번호를 입력해주세요" required="required" class="writeText" name="CB_PASSWORD">
-            <input type="checkbox" class="writeclass" id="writecheck" checked="checked" name="CB_TYPE" value="a">공개글
-            <input type="checkbox" class="writeclass" name="CB_TYPE" value="b">비밀글</td>
+	<table>
+		 <tr>
+		 	<input type="radio" class="writeclass" id="check1" checked="checked" name="CB_TYPE" value="a">공개글
+            <input type="radio" class="writeclass" id="check2" name="CB_TYPE" value="b">비밀글</td>
          </tr>
          <tr>
-            <td><input id="writeTitle" placeholder="제목을 입력해 주세요." required="required" class="writeText" name="CB_TITLE"></td>
+           <c:if test="${id==null}">
+            	<td><input type="text" name="CB_WRITER" class="writeText" placeholder="작성자를 입력해주세요." required="required"></td>
+           	</c:if>
+           	<td><input type="hidden" name="CB_WRITER" value="${id}"></td>
          </tr>
          <tr>
-            <td><textarea rows="20" cols="100" required="required" name="CB_CONTENTS">            
-            </textarea>
+            <td>
+            <input id="writeTitle" placeholder="제목을 입력해 주세요." required="required" class="writeText" name="CB_TITLE"></td>
+			</td>
+         </tr>
+         <tr>
+            <th><textarea rows="20" cols="100" id="write" class="writeText" name="CB_CONTENTS" required="required" placeholder="내용을 입력해주세요."></textarea></th>
+         </tr>
+         <tr>
+            <td id="aaa">
+               <button type="submit">글 작성</button>
+               <button type="reset">다시쓰기</button>
+               <button><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
             </td>
+            <c:if test="${id==null}">
+				<td><input type="password" name="CB_PASSWORD" id="pw" placeholder="비밀번호 입력" ></td>
+			</c:if>
+			<td><input type="hidden" name="CB_PASSWORD" value="${id}"></td>
          </tr>
          <tr>
-            <td><button type="submit">글 작성</button>
-               <button type="reset">리셋</button>
-               <a href="/erp/home/erpboard">게시판으로 돌아가기</a>
-            </td>
          </tr>
-      </table>
+      </table> 
    </form>
 </body>
-<script>
-
-</script>
 </html>

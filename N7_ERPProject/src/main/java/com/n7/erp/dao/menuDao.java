@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
 import com.n7.erp.bean.Authority;
@@ -34,5 +35,7 @@ public interface menuDao {
 	int depratmentDelete(Authority au);
 
 	int depratmentDelete(@Param("au_name")String au_name, @Param("cCode") String cCode);
+	
+	int namecheck(Authority au);
 
 }

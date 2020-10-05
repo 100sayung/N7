@@ -50,7 +50,7 @@ ${msg}
                      	<th>담당자</th>
                     	<th><input type="text" name="p_writer"></th>
                     	<th>거래처</th>
-                     	<th><input type="text" name="p_clcode"></th>
+                     	<th><input id="clcode" type="text" name="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                      	<th>구매일</th>
                      	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
                   	</tr>
@@ -83,9 +83,10 @@ ${msg}
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
                      		<td><input type="text" name="p_name"></td>
-                     		<td><input type="text" name="p_itcode"></td>
+                     		<!-- <td><input type="text" name="p_itcode"></td> -->
+                     		<td class="it"></td>
                      		<td><input type="number" min="1" name="p_amount"></td>
-                     		<td><input type="text" name="p_unlit"></td>
+                     		<td><input class="unlit" type="text" name="p_unlit"></td>
                      		<td><input type="text" name="p_budget"></td>
                     	</tr>
 					</tbody>
@@ -105,11 +106,79 @@ ${msg}
 	</div>
 	
 	  <script type="text/javascript">
+	  $(document).on("keyup",".unlit",function(){
+		 var cnt =$(this).parent().prev().children().val();
+		 console.log(cnt);
+		 var unlit = $(this).val();
+		 var budget=cnt*unlit;
+		 $(this).parent().next().children().val(budget);
+	  });
 	  
+	  function setChildValue(data) {
+		   console.log(data)
+		   for(var i in data.aList){ 
+		   var clcode=data.aList[i].cl_code;
+		   }
+		   
+		   $("#clcode").val(clcode);
+		};
+		
 	 $(document).ready(function(){
+		 var select;
+			$.ajax({
+				url: "/erp/stock/getitemcode",
+				type: "get",
+				dataType: 'json',
+				success: function(data){
+					select=makeSelectBox(data);
+					$(".it").html(select);
+				},
+				error: function(err){
+					console.log(err);
+				}
+			})
+			function makeSelectBox(arr){
+				var arrStr="<select class='select' name='p_itcode'><option></option>";
+				if(arr.length==0){
+					arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
+				}else{
+					for(var i=0; i<arr.length; i++){
+						arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+					}
+				}
+				arrStr+="</select>";
+				return arrStr;
+			}
+			
 		 $('.addList').click(function(){
-			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name"></td><td><input type="text" name="p_itcode"></td><td><input type="number" min="1" name="p_amount"></td><td><input type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-		 });
+			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name"></td><td class="it"></td><td><input type="number" min="1" name="p_amount"></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+		
+	var select;
+	$.ajax({
+		url: "/erp/stock/getitemcode",
+		type: "get",
+		dataType: "json",
+		success: function(data){
+			select=makeSelectBox(data);
+			$(".it").html(select);
+		},
+		error: function(err){
+			console.log(err);
+		}
+	})
+	function makeSelectBox(arr){
+		var arrStr="<select class='select' name='p_itcode'><option></option>";
+		if(arr.length==0){
+			arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
+		}else{
+			for(var i=0; i<arr.length; i++){
+				arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+			}
+		}
+		arrStr+="</select>";
+		return arrStr;
+	}
+		 });	
 	 });
 	 function thisRowDel(row){
 		   console.log(row);
@@ -262,18 +331,28 @@ ${msg}
       });
       
       $("#stock").click(function(){
-    	  $.ajax({
-    		  url: "/erp/stock/getbyitemstocklist",
-    		  type: "post",
-    		  dataType: "json",
-    		  success: function(data){
-    			  console.log(data);
-    		  },
-    		  error: function(err){
-    			  console.log(err);
-    		  }
-    	  })
-      })
+		  $.ajax({
+			  url:"/erp/rest/Purchase/getstocklist",
+			  type: "get",
+			  dataType: "json",
+			  success: function(data){
+				  console.log(data);
+				  var str="";
+				  str+="<tr style='text-align: center;'><th>품목코드</th><th>상품명</th><th>재고량</th><th>단위</th><th>크기</th></tr>";
+				  for(var i in data.sList){
+				  	str+="<tr style='text-align: center;'><td>"+data.sList[i].it_code+"</td>";
+					str+="<td>"+data.sList[i].it_pname+"</td>";
+				  	str+="<td>"+data.sList[i].it_stock+"</td>";
+				  	str+="<td>"+data.sList[i].it_unit+"</td>";
+				  	str+="<td>"+data.sList[i].it_size+"</td><tr>";
+				  }
+				  $('#list').html(str);
+			  },
+			  error: function(err){
+				  console.log(err);
+			  }
+		  })
+  	})
      
    </script>
 </body>

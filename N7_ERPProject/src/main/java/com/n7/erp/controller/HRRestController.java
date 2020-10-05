@@ -20,51 +20,57 @@ import com.n7.erp.service.HRDepartmentMM;
 import com.n7.erp.service.HrMM;
 import com.n7.erp.userClass.PagingVO;
 
-@RestController // @ResponseBody 생략가능
+@RestController
 @RequestMapping(value = "/rest")
 public class HRRestController {
 
 	@Autowired
 	private HrMM hm;
 	@Autowired private HRDepartmentMM deptmm;
+	
 	//자격증 리스트 출력
 	@GetMapping(value="/hr/certification")
 	public List<Certification> getCTFInfo(String m_id, HttpServletRequest request) {
 		List<Certification> ctfList = hm.getCertificationInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
 		return ctfList;
 	}
+	
 	//인사카드 정보 출력
 	@GetMapping(value="/hr/hrcard")
 	public HR_Card getHRCInfo(String m_id, HttpServletRequest request) {
 		HR_Card hrCard = hm.getHrCardInfo(m_id);
 		return hrCard;
 	}
+	
 	//학력 리스트 출력
 	@GetMapping(value="/hr/academic")
 	public List<Academic> getACInfo(String m_id, HttpServletRequest request) {
 		List<Academic> acList = hm.getAcademicInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
 		return acList;
 	}
+
 	//이력 리스트 출력
 	@GetMapping(value="/hr/career")
 	public List<Career> getCRInfo(String m_id, HttpServletRequest request) {
 		List<Career> crList = hm.getCareerInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
 		return crList;
 	}
-	//열 삭제하면서 데이터지우기
+	
+	//열 삭제하면서 데이터 지우기
 	@PostMapping(value="/hr/removeinfo")
 	public String removeInfo(HttpSession session, String num, String type) {
 		String result = hm.removeInfo(session, num, type);
 		return result;
 	}
 
-	//id로부터 hrCard가 존재하는지 안하는지 체크함!!!
+	//id로부터 hrCard가 존재하는지 안하는지 체크함
 	@GetMapping(value="/hr/hrcodefromid")
 	public boolean haveHRCodeFromID(String m_id) {
 		boolean flag = hm.haveHRCodeFromId(m_id);
 		return flag;
 	}
-	//id로부터 member정보 가져옴!
+	
+	//id로부터 member정보 가져옴
 	@GetMapping(value="/hr/memberfromid")
 	public Member getMemberInfo(String m_id) {
 		System.out.println(m_id);
@@ -112,7 +118,7 @@ public class HRRestController {
 
 	//HRCARD !!!~\
 
-	//부서로 직책가져오기
+	//부서로 직책 가져오기
 	@GetMapping(value="/hr/positionfromdept")
 	public String getPositionFromDept(HttpSession session, String dept) {
 		String result = hm.getPositionFromDept(session, dept);
@@ -125,37 +131,45 @@ public class HRRestController {
 		String result = hm.getSearchFromName(session, name);
 		return result;
 	}
+	
 	@GetMapping(value="/hr/searchstatusfromname",  produces = "application/text; charset=utf8")
 	public String getSearchStatusFromName(HttpSession session, String name) {
 		String result = hm.getSearchStatusFromName(session, name);
 		return result;
 	}
+	
 	@GetMapping(value="/hr/searchfromstatus",  produces = "application/text; charset=utf8")
 	public String getSearchFromStatus(HttpSession session, String status) {
 		String result = hm.getSearchFromStatus(session, status);
 		return result;
 	}
 
-	//
 	@GetMapping(value = "/hr/deptlist")
 	public String getDeptList(HttpSession session) {
 		Department dept = new Department();
 		String result = deptmm.getDeptList(session.getAttribute("cCode").toString());
 		return result;
 	}
+	
 	//부서 등급 검색
 	@GetMapping(value = "/hr/deptauthlist")
 	public String getDeptAuthList(HttpSession session) {
 		String result = deptmm.getDeptAuthList(session.getAttribute("cCode").toString());
 		return result;
 	}
-	//휴가신청
+	
+	//휴가 신청
 	@GetMapping(value = "/hr/myleaderlist")
 	public String getMyLeaderUsingGrade(HttpSession session){
 		String leaderList = hm.getMyLeaderUsingGrade(session, "1");
 		return leaderList;
 	}
 
+	@GetMapping(value="/hr/ourdept")
+	public String getOurDept(HttpSession session) {
+		String result = hm.getOurDept(session);
+		return result;
+	}
 
 	//근태관리
 
@@ -165,6 +179,7 @@ public class HRRestController {
 		String result = hm.logAttendance(session.getAttribute("cCode").toString(), session.getAttribute("id").toString(), status,time);
 		return result;
 	}
+	
 	//현재상태확인
 	@GetMapping(value="/hr/currentattendance")
 	public String getCurAttendance(HttpSession session) {
@@ -180,11 +195,32 @@ public class HRRestController {
 	}
 
 	//근무조회
-	@GetMapping(value="/hr/employeestatus")
-	public String getEmployeeStatus(HttpSession session) {
-		String result = hm.getEmployeeStatus(session);
+//	@GetMapping(value="/hr/employeestatus")
+//	public String getEmployeeStatus(HttpSession session) {
+//		String result = hm.getEmployeeStatus(session);
+//		return result;
+//	}
+
+	@GetMapping(value="/hr/employeestatuspagenumber")
+	public String employeeStatusPageNumber(HttpSession session, String status) {
+		int result = hm.countEmployeeStatus(session, status);
+		return Integer.toString(result);
+	}
+
+	@GetMapping(value="/hr/employeestatuslist")
+	public String employeeStatusList(String nowPage, String cntPerPage, HttpSession session, String status) {
+		int total = hm.countEmployeeStatus(session, status);
+		if(nowPage == null) {
+			nowPage = "1";
+		}
+
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), session.getAttribute("cCode").toString(), status);
+		String result = new Gson().toJson(hm.selectEmployeeStatus(vo));
 		return result;
 	}
+	
+	
+	
 	//사원 휴가 조회
 	@GetMapping(value="/hr/employeeholiday")
 	public String getEmployeeHoliday(HttpSession session, String yearmonth) {
@@ -199,6 +235,7 @@ public class HRRestController {
 		String result = hm.getEmployeeHoliday(cCode, yearmonth, hrCode);
 		return result;
 	}
+	
 	//휴가 승인/반려
 	@PostMapping(value="/hr/holidaystatus")
 	public String registHoliday(HttpSession session, String yesno, String docunum) {
@@ -222,6 +259,38 @@ public class HRRestController {
 	@GetMapping(value="/hr/detailholiday")
 	public String getDetailHoliday(HttpSession session, String docunum) {
 		String result = hm.getDetailHoliday(session.getAttribute("cCode").toString(), docunum);
+		return result;
+	}
+
+	@GetMapping(value="/hr/attendanceDelete")
+	public String getAttendanceDelete(HttpSession session, String hrcode, String time) {
+		String result=hm.DeleteAttendance(session.getAttribute("cCode").toString(), hrcode, time);
+		return result;
+	}
+
+	@GetMapping(value="/hr/attendanceUpdate")
+	public String getAttendanceUpdate(HttpSession session, String hrcode, String time, String textTime) {
+		String result=hm.Updateattendance(session.getAttribute("cCode"),hrcode,time,textTime);
+		return result;
+	}
+	
+	
+
+	@GetMapping(value="/hr/wagespagenumber")
+	public String wagesPageNumber(HttpSession session) {
+		int result = hm.countwages(session);
+		return Integer.toString(result);
+	}
+
+	@GetMapping(value="/hr/wageslist")
+	public String wagesList(String nowPage, String cntPerPage, HttpSession session) {
+		int total = hm.countwages(session);
+		if(nowPage == null) {
+			nowPage = "1";
+		}
+
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage), session.getAttribute("cCode").toString());
+		String result = new Gson().toJson(hm.selectwages(vo));
 		return result;
 	}
 }

@@ -152,12 +152,12 @@ float: left;
 					<tr>
 						<td><input type="checkbox" class="check"></td>
 						<td><input class="data" type="text" name="s_pkind" /></td>
-						<td><input id="cnt" class="data" type="text" name="s_cnt" /></td>
-						<td><input id="price" class="data" type="text" name="s_price" /></td>
-						<td><input id="price2" class="data" type="text"
+						<td><input class="data" type="text" name="s_cnt" /></td>
+						<td><input class="price" type="text" name="s_price" /></td>
+						<td><input class="data" type="text"
 							name="s_price2" /></td>
-						<td><input id="tax" class="data" type="text" name="s_tax" /></td>
-						<td><input id="total" class="data" type="text" name="s_total" /></td>
+						<td><input class="data" type="text" name="s_tax" /></td>
+						<td><input class="data" type="text" name="s_total" /></td>
 						<td><input class="data" name="s_memo" /></td>
 					</tr>
 				</tbody>
@@ -173,6 +173,19 @@ float: left;
 
 </body>
 <script type="text/javascript">
+    $(document).on("keyup",".price",function(){
+    	
+    	var cnt=$(this).parent().prev().children().val();
+    	var price = $(this).val();
+    	var price2 =cnt*price;
+    	$(this).parent().next().children().val(price2);
+    	var tax=price2/10;
+    		$(this).parent().next().next().children().val(tax);
+    	var total = price2+tax; 
+    		$(this).parent().next().next().next().children().val(total);
+    	
+    });
+
 
 function setChildValue(data) {
 	console.log(data)
@@ -316,7 +329,7 @@ function saleInsertInfo(){
     			str += "<tbody id='tBody'><tr><td><input type='checkbox' class='check'></td>"
     				str += "<td><input class='data' type='text' name='s_pkind'/></td>"
     				str += "<td><input class='data' type='text' name='s_cnt'/></td>"
-    				str += "<td><input class='data' type='text' name='s_price'/></td>"
+    				str += "<td><input class='price' type='text' name='s_price'/></td>"
     				str += "<td><input class='data' type='text' name='s_price2'/></td>"
     				str += "<td><input class='data' type='text' name='s_tax'/></td>"
     				str += "<td><input class='data' type='text' name='s_total' /></td>"
@@ -366,7 +379,7 @@ $("#addList").click(function() {
 						str += "<tr><td><input type='checkbox' class='check'></td>"
 						str += "<td><input class='data' type='text' name='s_pkind'/></td>"
 						str += "<td><input class='data' type='text' name='s_cnt'/></td>"
-						str += "<td><input class='data' type='text' name='s_price'/></td>"
+						str += "<td><input class='price' type='text' name='s_price'/></td>"
 						str += "<td><input class='data' type='text' name='s_price2'/></td>"
 						str += "<td><input class='data' type='text' name='s_tax'/></td>"
 						str += "<td><input class='data' type='text' name='s_total' /></td>"
@@ -386,7 +399,7 @@ $("#addList").click(function() {
 	str += "<tbody id='tBody'><tr><td><input type='checkbox' class='check'></td>"
 		str += "<td><input class='data' type='text' name='s_pkind'/></td>"
 		str += "<td><input class='data' type='text' name='s_cnt'/></td>"
-		str += "<td><input class='data' type='text' name='s_price'/></td>"
+		str += "<td><input class='price' type='text' name='s_price'/></td>"
 		str += "<td><input class='data' type='text' name='s_price2'/></td>"
 		str += "<td><input class='data' type='text' name='s_tax'/></td>"
 		str += "<td><input class='data' type='text' name='s_total' /></td>"
@@ -527,6 +540,10 @@ $("#addList").click(function() {
 										data : 'ARR=' + arr + '&CNT=' + cnt,
 										datatype : 'json',
 										success : function(data) {
+											if(data.sList==null){
+												alert("이미결제요청된 데이터라 삭제할 수 없습니다.")
+											}else{
+												
 											var str = '';
 											str += "<tr id='colume'><td>체크</td><td>전표번호</td><td>유형</td><td>거래처명</td><td>사업자번호</td><td>입력날짜</td><td>입력자</td></tr>"
 											for ( var i in data.sList) {
@@ -539,6 +556,7 @@ $("#addList").click(function() {
 												str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+"></td></tr>";
 											}
 											$("#testTable").html(str);
+											}
 										},
 										error : function(error) {
 											console.log(error)
