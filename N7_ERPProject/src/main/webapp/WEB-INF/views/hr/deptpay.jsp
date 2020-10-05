@@ -42,11 +42,15 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
 	list-style: none;
+}
+#id,td{
+	border:1px solid #D9EDF7;
+	border-collapse: collapse;
 }
 </style>
 </head>
@@ -54,7 +58,7 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -82,7 +86,7 @@ ul {
 			</li>
 			<li id="showMenu3">급여 관리
 				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
+					<li><a href="/erp/hr/deptpay">부서 직책 관리</a></li>
 					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
 					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
 				</ul>
@@ -90,8 +94,10 @@ ul {
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">부서 or 직책 적용</div>
-	<table>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">부서 직책 관리</Strong>
+	</div>
+	<table align="right">
 		<tr id="seldplist">
 			<td><select id="disdept" name="disdept" onchange="changeDept()"><option selected="selected"
 						 value="">부서 선택</option>
@@ -99,18 +105,18 @@ ul {
 			<td><select id="disposition" name="disposition"><option selected="selected"
 						 value="">직급 선택</option>
 			</select></td>
-			<td><button type="button" onclick="distinct()">검색</button></td>
+			<td><button type="button" class="infobtn" onclick="distinct()">검색</button></td>
 			<!-- 검색 버튼 클릭시  -->
 		</tr>
 	</table>
 	<div id="container" style="overflow:auto; height: 500px;">
-	<table id="id">
-		<tr align="center">
+	<table id="id" align="center" width="100%">
+		<tr style="background-color: #F8F7F7">
 			<td>부서</td>
 			<td>직급</td>
 			<td>금액</td>
 			<td>수정 금액</td>
-			<td></td>
+			<td colspan="2"></td>
 		</tr>
 	</table>
 	</div>
@@ -146,8 +152,8 @@ $("#showMenu3").hover(function() {
 			+"<td width='100px'>"+dept[i].HDP_position+"</td>"
 			+"<td id='"+dept[i].HDP_num+"' width='100px'>"+dept[i].HDP_pay+"</td>"
 			+"<td><input id='modifypay_"+dept[i].HDP_num+"'></td>"
-			+"<td><button type='button' id='"+dept[i].HDP_num+dept[i].HDP_pay+"'  onclick='dify("+dept[i].HDP_num+")'>수정</button></td>"
-			+"<td><button type='button' onclick='erase("+dept[i].HDP_num+")'>삭제</button></td></tr>");
+			+"<td><button type='button' class='infobtn' id='"+dept[i].HDP_num+dept[i].HDP_pay+"'  onclick='dify("+dept[i].HDP_num+")'>수정</button></td>"
+			+"<td><button type='button' class='infobtn' onclick='erase("+dept[i].HDP_num+")'>삭제</button></td></tr>");
 		}
 	});
 	
@@ -211,7 +217,7 @@ $("#showMenu3").hover(function() {
 				location.reload();
 			},
 			error : function(err) {
-				console.log(err);
+				alert("해당 부서와 직책을 사용하는 사원이 있습니다. 제거하고 다시 시도해 주세요.");
 			}
 		});
 	}

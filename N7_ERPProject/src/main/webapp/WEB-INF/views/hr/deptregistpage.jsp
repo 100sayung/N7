@@ -11,6 +11,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+	media="all" />
 <style>
 #header {
 	width: 100%;
@@ -42,11 +44,21 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
 	list-style: none;
+}
+#depttable,td{
+	
+	margin:auto;
+	text-align:center;
+	border-collapse: collapse;
+	border: 1px solid #D9EDF7;
+}
+#dept{
+	padding: 5px 50px;
 }
 </style>
 </head>
@@ -59,7 +71,7 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -87,7 +99,7 @@ ul {
 			</li>
 			<li id="showMenu3">급여 관리
 				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
+					<li><a href="/erp/hr/deptpay">부서 직책 관리</a></li>
 					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
 					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
 				</ul>
@@ -95,19 +107,19 @@ ul {
 		</ul>
 	</div>
 	<div id="description">
-
-	<h1 align="center">부서 등록 페이지</h1>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">부서 등록</Strong>
+	</div>
 	<form action="/erp/hr/deptregistinsert" name="deptregistinsert" method="post" accept-charset="utf-8">
-		<button>등록</button>
-		<table id="depttable">
-			<tr>
-				<td>부서 :</td>
+		<table id="depttable" width="100%">
+			<tr style="background-color: #F8F7F7;">
+				<td>부서 </td>
 				<td><span id="positionS"></span></td>
-				<td>직책 :</td>
-				<td><input type="text" name="HDP_position" id="dept"></td>
+				<td>직책 </td>
+				<td><input type="text" name="HDP_position" id="position"></td>
+				<td><button class="infobtn">등록</button></td>
 			</tr>
 		</table>
-		${failure}
 	</form>
 <!-- 	<button type="button" id="deptbutton">+부서등록추가</button> -->
 	</div>
@@ -152,18 +164,6 @@ $("#showMenu3").hover(function() {
 	$("#smallMenu3").attr("style", "display:none");
 })
 
-// 	$("#deptbutton")
-// 			.click(
-// 					function() {
-// 						$("#depttable")
-// 								.append(
-// 										"<tr>"
-// 												+ "<td>부서 : </td>"
-// 												+ "<td><input type'text' name='HDP_position' id='position'></td>"
-// 												+ "<td>직책 : </td>"
-// 												+ "<td><input type'text' name='HDP_dept' id='dept'></td>"
-// 												+ "</tr>");
-// 					});
 
 	$("#showMenu1").hover(function() {
 		$("#smallMenu1").attr("style", "display:inline-block");

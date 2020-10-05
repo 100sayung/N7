@@ -10,8 +10,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
-<style>
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+	media="all" /><style>
 #header {
 	width: 100%;
 	height: 200px;
@@ -42,11 +42,17 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
 	list-style: none;
+}
+#deductiontable,td{
+	border-collapse: collapse;
+}
+td{
+	border: 1px solid #D9EDF7;
 }
 </style>
 </head>
@@ -54,7 +60,7 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -82,7 +88,7 @@ ul {
 			</li>
 			<li id="showMenu3">급여 관리
 				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
+					<li><a href="/erp/hr/deptpay">부서 직책 관리</a></li>
 					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
 					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
 				</ul>
@@ -90,15 +96,15 @@ ul {
 		</ul>
 	</div>
 	<div id="description">
-<div class="divcss">공제 금액 관리</div>
-<table id="deductiontable">
-<tr align="center">
-	<td width="100px">항목</td>
-	<td width="100px">현재 공제액</td>
-	<td width="100px">수정 금액</td>
-	<td width="100px"></td>
-</tr>
-</table></div>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">공제 금액 관리</Strong>
+	</div>
+	<table id="deductiontable" width="100%">
+		<tr style="background-color: #F8F7F7; text-align: center;">
+		
+		</tr>
+	</table>
+	</div>
 </body>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script>
@@ -119,14 +125,14 @@ $("#showMenu3").hover(function() {
 })
 
 	$(function(){
-		var str='<tr align="center"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
+		var str='<tr style="background-color: #F8F7F7; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
 		var deduct=${deduct};
 		console.log(deduct);
 		for(var i=0;i<deduct.length;i++){
-			str+="<tr align='center'><td width='100px'>"+deduct[i].HDD_NAME+"</td>"
-				 +"<td id='123"+deduct[i].HDD_NAME+"' width='100px'>"+deduct[i].HDD_AMOUNT+"</td>"
-				 +"<td width='100px'><input type='text' id='deduct_"+deduct[i].HDD_NAME+"'></td>"
-				 +"<td width='100px'><button type='button' onclick='modifydeduction(\""+deduct[i].HDD_NAME+"\")'>수정</button></td></tr>";
+			str+="<tr align='center'><td>"+deduct[i].HDD_NAME+"</td>"
+				 +"<td id='123"+deduct[i].HDD_NAME+"'>"+deduct[i].HDD_AMOUNT+"</td>"
+				 +"<td><input type='text' id='deduct_"+deduct[i].HDD_NAME+"'></td>"
+				 +"<td><button type='button' onclick='modifydeduction(\""+deduct[i].HDD_NAME+"\")'>수정</button></td></tr>";
 		}
 		$("#deductiontable").html(str);
 	});

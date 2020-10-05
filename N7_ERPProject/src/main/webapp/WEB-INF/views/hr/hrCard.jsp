@@ -55,7 +55,7 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
@@ -83,7 +83,7 @@ ul {
 			</li>
 			<li id="showMenu3">급여 관리
 				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
+					<li><a href="/erp/hr/deptpay">부서 직책 관리</a></li>
 					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
 					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
 				</ul>
