@@ -23,8 +23,8 @@ public class Account{
 	private String j_title;			//문서제목
 	private String j_account;		//계정과목
 	private String j_group;			//비용구분
-	private String j_debit;			//차변금액
-	private String j_credit;		//대변금액
+	private int j_debit;			//차변금액
+	private int j_credit;		//대변금액
 	private String j_sumup;			//적요
 	private String j_section;		//귀속부서
 	private String j_centre;		//활동센터
