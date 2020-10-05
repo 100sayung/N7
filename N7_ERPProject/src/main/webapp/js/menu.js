@@ -16,7 +16,7 @@
 							let menu = "";
 							menu += "<li><a href='/erp/myinfo/checkattendance'>출/퇴근 등록</a></li>";
 							menu += "<li><a href='/erp/myinfo/myPaycheck'>급여명세서 보기</li>";
-							menu += "<li><a href=/erp/myinfo/myattendance'>내 출결 보기</li>";
+							menu += "<li><a href='/erp/myinfo/myattendance'>내 출결 보기</li>";
 							menu += "<li><a href='/erp/myinfo/myholiday'>내 휴가 보기</li>";
 							menu += "<li><a href='/erp/myinfo/applyholiday'>휴가신청</a></li>";
 							$("#myInfoMenu").html(menu);
