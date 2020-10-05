@@ -72,8 +72,8 @@ ul {
 					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
 				</ul>
 			</li>
-
-			<li id="showMenu2">근태 관리
+			<div id="hrMenu"></div>
+<!-- 			<li id="showMenu2">근태 관리
 				<ul id="smallMenu2" style="display: none;">
 					<li><a href="/erp/hr/receiptholiday">휴가 접수</a></li>
 					<li><a href="/erp/hr/attendance">사원 출결 관리</a></li>
@@ -87,7 +87,7 @@ ul {
 					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
 					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
 				</ul>
-			</li>
+			</li> -->
 		</ul>
 	</div>
 	<div id="description" align="center"> ${msg }<br><br>

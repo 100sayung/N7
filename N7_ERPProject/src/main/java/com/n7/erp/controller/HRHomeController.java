@@ -228,4 +228,10 @@ public class HRHomeController {
 		mav = hm.getReceipHoliDay(docunum, session);
 		return mav;
 	}
+	@RequestMapping(value = "hr/approvalLine", method = RequestMethod.GET)
+	public ModelAndView approvalLine(HttpSession session) {
+		mav = am.approvalLine(session);
+		return mav;
+	}
+
 }
