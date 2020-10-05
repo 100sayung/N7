@@ -241,8 +241,27 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		ApprovalDocu ad =new ApprovalDocu();
 		String cCode = session.getAttribute("cCode").toString();
 		ad = mDao.getStatus(num,cCode);
+		System.out.println(ad.getAp_status());
 		String status = ad.getAp_status();
-		boolean result = mDao.approvalagree(num,status,cCode);
+		boolean result = false;
+		boolean result2 = false;
+		if(status.equals("1")) {
+		   result = mDao.approvalagree(num,cCode);
+		}else {
+		   result2 = mDao.approvalagree2(num,cCode);
+		}
+		if(result || result2) {
+			value="1";
+		}else {
+			value="2";
+		}
+		return value;
+	}
+
+	public String arbitrarily(String num, HttpSession session) {
+		String value="";
+		String cCode = session.getAttribute("cCode").toString();
+		boolean result = mDao.arbitrarily(num,cCode);
 		if(result) {
 			value="1";
 		}else {

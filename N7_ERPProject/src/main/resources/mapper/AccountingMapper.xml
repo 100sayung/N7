@@ -137,6 +137,14 @@
 	<select id="comparecode2" parameterType="String" resultType="int">
 	SELECT COUNT(*) FROM APPROVALDOCU WHERE AP_DOCUNUM=#{code} AND AP_CCODE=#{cCode}
 	</select>
+	
+	<select id="selectapcode" parameterType="String" resultType="rs">
+	SELECT * FROM AC_REALSALESTATEMENT WHERE RS_NUM=#{s_num} AND RS_CCODE=#{cCode}
+	</select>
+	
+	<select id="selectSales" parameterType="String" resultType="rs">
+	SELECT * FROM AC_REALSALESTATEMENTLIST WHERE RS_NUM=#{s_num} AND RS_CCODE=#{cCode}
+	</select>
 
 
 	<select id="selectSreach" parameterType="String" resultType="saleInfo">

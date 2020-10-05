@@ -19,15 +19,11 @@
 	</select>
 	
 	<update id="approvalagree" parameterType="String">
-	UPDATE APPROVALDOCU
-	<choose>
-	<when test="status.equals('1')">
-	SET AP_STATUS = '2' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
-	</when>
-	<when test="status.equals('2')">
-	SET AP_STATUS = '3' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
-	</when>
-	</choose> 
+	UPDATE APPROVALDOCU SET AP_STATUS = '2' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
+	</update>
+	
+	<update id="approvalagree2" parameterType="String">
+    UPDATE APPROVALDOCU SET AP_STATUS = '3' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
 	</update>
 	
 	<update id="turnback" parameterType="String">
@@ -50,7 +46,7 @@
 	UPDATE O_PURCHASEPROGRAMCOMMOM SET P_ETC = #{ect}  WHERE P_DOCUMENTCODE =#{num} AND P_CCODE=#{cCode}
 	</update>
 	
-	<select id="getStatus" parameterType="string" resultType="string">
-	SELECT AP_STATUS FROM APPROVALDOCU WHERE AP_DOCUNUM = #{num} AND AP_CCODE =#{cCode}
+	<select id="getStatus" parameterType="string" resultType="approvaldocu">
+	SELECT * FROM APPROVALDOCU WHERE AP_DOCUNUM = #{num} AND AP_CCODE =#{cCode}
 	</select>
 </mapper>
