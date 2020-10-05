@@ -64,6 +64,11 @@ public class HomeRestController {
 		String value= mm.approvalagree(num,session);
 		return value;
 	}
+	@PostMapping(value="/home/arbitrarily")
+	public String arbitrarily(String num,HttpSession session) {
+		String value= mm.arbitrarily(num,session);
+		return value;
+	}
 
 	@PostMapping(value = "/home/forcewithdrawal")
 	public String forceWithDrawal(String jsonStr) { 

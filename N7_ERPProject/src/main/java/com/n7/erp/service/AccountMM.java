@@ -975,59 +975,22 @@ public class AccountMM {
 	}
 
 	public ModelAndView apSalesnum(String s_num, HttpSession session) {
-		ModelAndView mav= new ModelAndView();
-		String view= null;
-		String cCode= (String)session.getAttribute("cCode");
-		
-		SaleInfo si = aDao.apupSaleinfo1(s_num, cCode);
-		
-		if(si != null) {
-			mav.addObject("si", si);
-			System.out.println("sales상세인포성공");
-			view = "Account/apupSaleinfo";
+		mav = new ModelAndView();
+		String cCode = session.getAttribute("cCode").toString();
+		String view = "";
+		List<ApprovalDocument> aList = new ArrayList<>();
+		ApprovalDocument ad = new ApprovalDocument();
+		ad = aDao.selectapcode(s_num,cCode);
+		aList = aDao.selectSales(s_num,cCode);
+		if(ad!=null) {
+			view = "Account/asSalesinfo";
+			mav.addObject("ad", ad);
+			mav.addObject("aList", new Gson().toJson(aList));
 		}else {
-			System.out.println("실패했다 이새기야");
-			view = "Account/apupPayment";
+			view = "Account/asSalesinfo";
+			mav.addObject("msg","자료가 없습니다.");
 		}
-		
-			
-//			for (int i = 0; i < strpkind.length; i++) {
-//				si.setS_pkind(strpkind[i]);
-//				si.setS_cnt(strcnt[i]);
-//				si.setS_price(strprice[i]);
-//				si.setS_price2(strprice2[i]);
-//				si.setS_tax(strtax[i]);
-//				si.setS_total(strtotal[i]);
-//				si.setS_memo(strmemo[i]);
-//				b = aDao.saleinsert2(si);
-//			}
-//			if (si.getIe_seqnum() == null) {
-//				if (a && b) {
-//					System.out.println("여기도들어와?2");
-//					mav.addObject("msg", "전표등록성공");
-//					view = "Account/openTable";
-//				} else {
-//					mav.addObject("msg", "전표등록실패");
-//					view = "Account/openTable";
-//				}
-//			} else {
-//
-//				if (a && b) {
-//					System.out.println("여기도들어와?3");
-//					String[] seqnum = request.getParameterValues("ie_seqnum");
-//					for (int i = 0; i < seqnum.length; i++) {
-//						aDao.statusupdate(seqnum[i], cCode);
-//
-//					}
-//					mav.addObject("msg", "전표등록성공");
-//					view = "Account/openTable";
-//				} else {
-//					mav.addObject("msg", "전표등록실패");
-//					view = "Account/openTable";
-//				}
-//			}
-//		}
-		mav.setViewName(view);
+	    mav.setViewName(view);
 		return mav;
 	}
 }
