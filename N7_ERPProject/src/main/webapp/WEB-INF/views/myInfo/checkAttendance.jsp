@@ -10,6 +10,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+	media="all" />
 <style>
 #header {
 	width: 100%;
@@ -70,6 +72,13 @@ ul {
 	height:150px;
 	text-align: center;
 	align-content: center;
+	border-bottom: 1px solid black;
+}
+#calendar{
+	border:1px solid black;
+	text-align:center;
+	width: 448px;
+	height: 350px;
 }
 </style>
 </head>
@@ -98,12 +107,13 @@ ul {
 		</ul>
 	</div>
 	<div id="description">
-	
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">출 / 퇴근 등록</Strong>
+	</div>
 	<h1 align="center">현재시각</h1>
 	<h1 align="center" id="clock"></h1><br><br>
 	
 	<div style="align:center;" id="currentStatus"></div>
-	<br>
 	<br>
 	<div id='check'>
 	<span id="in" class="attendance">출근 등록</span>

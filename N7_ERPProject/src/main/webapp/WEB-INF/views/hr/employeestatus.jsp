@@ -94,15 +94,23 @@ ul {
 		</ul>
 	</div>
 <div>
-<div class="divcss">사원 출퇴근 상태 조회</div>
-	<input type="text" id="nameSearch" placeholder="이름으로 검색"> 
-	<button onclick="searchFromName()" class="infobtn" id="nameSearching" style="margin-right: 200px;">검색</button>
-	<button onclick="paging(1, 1)" class="infobtn">출근중</button><button onclick="paging(1, 0)" class="infobtn">퇴근중</button>
+<div id="description">
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 출퇴근 상태 조회</Strong>
+	</div>
+	<div style="float: right;">
+		<input type="text" id="nameSearch" placeholder="이름으로 검색"> 
+		<button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
+	</div>
+	<div>
+	<button onclick="paging(1, 1)" class="infobtn">출근중</button><button onclick="paging(1, 0)" class="infobtn" style="margin-left: 10px;">퇴근중</button>
+	</div>
 	<div id ="container">
 	</div>
 	<div id="paging"></div>
 
 	 </div>
+</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
 
@@ -143,7 +151,7 @@ ul {
 			success : function(data){
 				console.log(data);
 				let str = "<table>";
-				str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td style='width:150px;'>상태</td></tr>";
+				str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td class='menu'>상태</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
 					if(data[i].hc_status == 1){

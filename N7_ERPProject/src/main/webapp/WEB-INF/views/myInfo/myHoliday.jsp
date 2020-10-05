@@ -42,7 +42,7 @@ a {
 
 #description {
    float: left;
-   height: 100%;
+   height: 500px;
    
 }
 
@@ -90,7 +90,9 @@ table, th, td{
 		</ul>
 	</div>
    <div id="description">
-   <div class="divcss">내 휴가 보기</div>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">내 휴가 보기</Strong>
+	</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
    		<tr style="background-color: #C4C5C4">

@@ -119,8 +119,23 @@ ul {
 	</div>
 	<!-- 09-25 change  -->
 	<div id="description" align="center">
-		<div class="divcss">사원 휴가 관리</div><br>
-		<table align="center" >
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 휴가 관리</Strong>
+	</div>
+	<div style="float: right; ">
+		<table style="border: 1px solid black; ">
+   			<tr style="background-color: #C4C5C4">
+   				<td>대기중</td>
+   				<td>회색</td>
+   			</tr>
+   			<tr style="background-color: #03D62A">
+   				<td>승인</td>
+   				<td>초록색</td>
+   			</tr>
+		</table>
+   </div>
+   <div>
+		<table align="center" style="margin-top: 50px;">
 			<tr style="border-left: 1px solid black;border-right: 1px solid black;">
 				<td style="width: 100px;"><font color="#B3B6B3"><label
 						onclick="beforem()" id="before"></label></font></td>
@@ -132,10 +147,10 @@ ul {
 		</table>
 		<table align="center" id="calendar">
 		</table>
-	<!-- ////////// -->
 		<br>
-		<div id="container"></div>
-
+		<div id="container">
+		</div>
+	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>

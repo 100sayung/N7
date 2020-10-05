@@ -208,7 +208,7 @@ span {
 				console.log(data.length);
 				var str='';
 				var da=data.toString();
-				str +='<table id="wages" style="text-align: center; width: 100%;>';
+				str +='<table id="wages" style="text-align: center; width: 100%;">';
 				str += '<tr id="id_back">';
 				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan="2"></td></tr>';
 				for(var i=0;i<data.length;i++){
