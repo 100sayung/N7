@@ -85,7 +85,7 @@ border: 1px solid silver;
                           <!--  <td><input type="text" name="r_name"></td> -->
                           <!--  <td><input type="text" name="r_itcode" ></td> -->
                            <td id="it"></td>
-                           <td><input type="number" min="1" name="r_amount"></td>
+                           <td><input onclick="chageItcode(this)" type="number" min="1" name="r_amount"></td>
                            <td><input type="text" name="r_unlit" class="unlit"></td>
                            <td><input type="text" name="r_budget"></td>
                            <td><input type="text" name="r_reason"></td>
@@ -358,6 +358,23 @@ border: 1px solid silver;
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
+	     
+	     function changeItcode(id){
+	    	 var it_stock = $(id).val();
+	    	 var it_code = $(id).parent().siblings("#name").children().val();
+	    	 $.ajax({
+	    		 url: "/erp/stock/getstock",
+	    		 data: {it_code: ti_code, it_stock : it_stock},
+	    		 dataType: 'json',
+	    		 success: function(result){
+	    			 alert("재고가 부족합니다.");
+	    			 id.value= result;
+	    		 },
+	    		 error: function(err){
+	    			 console.log(err);
+	    		 }
+	    	 })
+	     }
   	
   	
 </script>
