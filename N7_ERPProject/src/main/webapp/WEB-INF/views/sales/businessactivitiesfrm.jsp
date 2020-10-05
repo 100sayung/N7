@@ -63,9 +63,9 @@ text-align:center;
                 </colgroup>
                 <thead valign="top">
                     <tr>
-                <th><input type="radio" id="allCheck"></th>
-                  <th>날짜</th>
-                  <th>내용</th>
+                        <th><input type="radio" id="allCheck"></th>
+                        <th>날짜</th>
+                        <th>내용</th>
                   <th>예상매출금액</th>
                   <th>실제매출금액</th>
                   <th>종료일자</th>
@@ -216,14 +216,14 @@ text-align:center;
                 success : function(data) {                   
                    console.log(data);
                    var str="";
-                   for(var i in data.bList){
-                       str+="<tr><td><input type='radio' name='each_check' value="+data.bList[i].ba_ocode+"></td>";
-                       str+="<td><input type='text' value="+data.bList[i].ba_date+"></td>";
-                       str+="<td><input type='text' value="+data.bList[i].ba_content+"></td>";
-                       str+="<td><input type='text' value="+data.bList[i].ba_estimatedsalesamount+"></td>";
-                       str+="<td><input type='text' value="+data.bList[i].ba_actualsalesamount+"></td>";
-                       str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
-                       str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td>";
+                   for(var i in data.sList){
+                       str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].ba_ocode+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].ba_date+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].ba_content+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].ba_estimatedsalesamount+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].ba_actualsalesamount+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].ba_enddate+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].ba_memo+"></td>";
 
                     }
                        $('#tBody').html(str);
