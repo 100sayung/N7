@@ -11,7 +11,7 @@
 #center{
 text-align:center;
 }
-html, body {
+/* html, body {
 text-align:center;
    height: 100%;
    margin: 0
@@ -21,7 +21,7 @@ tr,td{
 text-align: center;
 width: 150px;
 border: 1px solid;
-}
+} */
 
 </style>
 <body>
@@ -93,7 +93,7 @@ border: 1px solid;
                         <td><input type="date" name="bs_basedate" required></td>
                         <td style="width:400px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                         <td class = "cl"></td>
-                        <td><input type="text" name="bs_proname" required></td>
+                        <td class = "pn"></td> <!-- <td><input type="text" name="bs_proname" required></td> -->
                         <td><input type="number" name="bs_unit"  required></td>
                         <td><input onclick="changeItcode(this)" type="number" name="bs_quantity" required></td>
                         <td><input type="number" name="bs_price" required></td>
@@ -183,10 +183,10 @@ border: 1px solid;
   });
 
         //select형식의 추가삭제로 바꿔야함!
-        //추가삭제
+        //추가삭제 2번씩 됨......
 
 
-         $(document).ready(function(){
+   $(document).ready(function(){
     var select;
     $.ajax({
           url:"/erp/stock/getitemcode",
@@ -201,7 +201,7 @@ border: 1px solid;
        });
 
               $('.addList').click(function(){
-                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+                $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
    
     var select;
     
@@ -218,8 +218,45 @@ border: 1px solid;
           }
        });
 
-              });
+             });
+        
+
+         $(document).ready(function(){
+        	    var select2;
+        	    $.ajax({
+        	          url:"/erp/stock/getitemcode",
+        	          dataType:'json',
+        	          success:function(data){
+        	             select = makeSelectBox2(data);
+        	             $(".pn").html(select);
+        	          },
+        	          error:function(err){
+        	             console.log(err);
+        	          }
+        	       });
+
+        	              $('.addList').click(function(){
+        	                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+        	   
+        	    var select2;
+        	    
+        	    $.ajax({
+        	          url:"/erp/stock/getitemcode",
+        	          dataType: 'json',
+        	          success:function(data){
+        	        	 console.log(data);
+        	             select = makeSelectBox2(data);
+        	             $(".pn").html(select);
+        	          },
+        	          error:function(err){
+        	             console.log(err);
+        	          }
+        	       });
+
+        	              });
+        	          });
           });
+         
 
          function makeSelectBox(arr){
              var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
@@ -228,6 +265,24 @@ border: 1px solid;
              }else{
                 for(var i = 0; i<arr.length;i++){
                    arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+                }
+             }
+             arrStr+="</select>";
+             return arrStr;
+          }
+           function thisRowDel(row){
+                console.log(row);
+                let tr = row.parentNode.parentNode;
+                tr.parentNode.removeChild(tr);
+         };
+         
+         function makeSelectBox2(arr){
+             var arrStr = "<select class='select' name = 'bs_proname'><option></option>"
+             if(arr.length==0){
+                arrStr+="<option>품목명을 먼저 작성해주세요 </option>";
+             }else{
+                for(var i = 0; i<arr.length;i++){
+                   arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>";
                 }
              }
              arrStr+="</select>";

@@ -12,7 +12,7 @@
 text-align:center;
 width:1300px;
 }
-html, body {
+/* html, body {
 text-align:center;
    height: 100%;
    margin: 0
@@ -22,7 +22,7 @@ tr,td{
 text-align: center;
 width: 150px;
 border: 1px solid ;
-}
+} */
 #item{
 text-align:center;
 width:1400px;
@@ -110,7 +110,7 @@ width:1400px;
             </div>
             <br>
             <div>
-                 <button type="button" class="addList" value="추가">추가</button>
+                <!--  <button type="button" class="addList" value="추가">추가</button> -->
                <!-- <button type="button" id="change" value="변경" >변경</button> -->
                  <button type="button" id="deleteCheck" value="삭제">삭제</button>
                <button type="button" id="subb" value="저장">저장</button> 
