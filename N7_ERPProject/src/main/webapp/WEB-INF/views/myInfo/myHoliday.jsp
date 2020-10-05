@@ -101,10 +101,6 @@ table, th, td{
    			<td>승인</td>
    			<td>초록색</td>
    		</tr>
-   		<tr>
-   			<td>거절</td>
-   			<td>삭제됨</td>
-   		</tr>
    </table>
    </div>
       <table align="center" style="margin-top: 50px;">
