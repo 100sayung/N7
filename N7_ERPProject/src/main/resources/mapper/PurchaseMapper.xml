@@ -151,20 +151,4 @@
 		SELECT * FROM S_ITEMCODE WHERE IT_CPCODE=#{cCode}
 	</select>
 	
-	<update id="paSign2">
-		UPDATE O_PURCHASEPROGRAM SET P_STATUS = #{p_status} 
-		WHERE P_DOCUMENTCODE=#{p_documentcode} AND P_CCODE=#{p_ccode}
-	</update>
-	
-	<!-- 공통결재 결재업데이트 -->
-	<update id="apSign2">
-		UPDATE APPROVALDOCU SET AP_STATUS = #{ap_status}, AP_TOAPPROVER = #{ap_toapprover}
-		WHERE AP_DOCUNUM = #{ap_docunum} AND AP_CCODE = #{ap_ccode}
-	</update>
-	
-	<update id="paBack">
-		UPDATE O_PURCHASEPROGRAM SET P_STATUS = '3', P_ETC = #{p_etc}
-		WHERE P_DOCUMENTCODE = #{p_documentcode} AND P_CCODE = #{p_ccode}
-	</update>
-	
 </mapper>

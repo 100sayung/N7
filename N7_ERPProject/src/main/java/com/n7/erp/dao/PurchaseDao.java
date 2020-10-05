@@ -69,10 +69,6 @@ public interface PurchaseDao {
 
 	List<PurchaseApproval> pListRequest2(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
 	
-	boolean paSign2(PurchaseApproval pa);
-
-	boolean apSign2(ApprovalDocu ap);
-
 	boolean rRegistration(Return rt);
 	
 	List<Return> rInfo();
