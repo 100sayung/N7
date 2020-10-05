@@ -90,11 +90,11 @@ public class AcHomeController {
 		mav = am.approdocument(request, ad, session);
 		return mav;
 	}
-	@RequestMapping(value = "Account/apSalesnum", method = RequestMethod.POST)
-	public ModelAndView apSalesnum(String s_num,HttpSession session) {
-		mav = am.apSalesnum(s_num, session);
-		return mav;
-	}
+	/*
+	 * @RequestMapping(value = "Account/apSalesnum", method = RequestMethod.POST)
+	 * public ModelAndView apSalesnum(String s_num,HttpSession session) { mav =
+	 * am.apSalesnum(s_num, session); return mav; }
+	 */
 	
 ////////////////////////////////////////////////////////////////////////////////
 //분개전표
@@ -146,6 +146,26 @@ public class AcHomeController {
 	@RequestMapping(value = "Account/acTemroinfo", method = RequestMethod.GET)
 	public String acapPreinfo(Locale locale) {
 		return "Account/acTemroinfo";
+	}
+	
+	@RequestMapping(value = "Account/asDownSalesinfo", method = RequestMethod.GET)
+	public String asDownSalesinfo(Locale locale) {
+		return "Account/asDownSalesinfo";
+	}
+	
+	@RequestMapping(value = "Account/apDownSalesinfo", method = RequestMethod.GET)
+	public String apDownSalesinfo(Locale locale) {
+		return "Account/apDownSalesinfo";
+	}
+	
+	@RequestMapping(value = "Account/asUpSalesinfo", method = RequestMethod.GET)
+	public String asUpSalesinfo(Locale locale) {
+		return "Account/asUpSalesinfo";
+	}
+	
+	@RequestMapping(value = "Account/apUpSalesinfo", method = RequestMethod.GET)
+	public String apUpSalesinfo(Locale locale) {
+		return "Account/apUpSalesinfo";
 	}
 
 }
