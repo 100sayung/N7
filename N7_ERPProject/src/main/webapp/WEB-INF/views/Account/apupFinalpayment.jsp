@@ -89,7 +89,7 @@ td {
 	function pageNumber(j) {
 		currPage = j;
 		$.ajax({
-			url : "/erp/rest/Account/documentPagenumber",
+			url : "/erp/rest/Account/documentPagenumber3",
 			dataType : "json",
 			method : "get",
 			success : function(page) {
@@ -119,9 +119,8 @@ td {
 	}
 
 	function apupPaymentList(nowPage) {
-		$
-				.ajax({
-					url : "/erp/rest/Account/apupPaymentList",
+		$.ajax({
+					url : "/erp/rest/Account/apupPaymentList3",
 					dataType : "json",
 					data : {
 						nowPage : nowPage,
@@ -140,7 +139,7 @@ td {
 							str += "<td>" + data[i].ap_fromapprover + "</td>";
 							str += "<td>" + data[i].ap_toapprover + "</td>";
 							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>결재중</td>";
+							str += "<td>결재완료</td>";
 							str += "</tr>"
 						}
 						str += "</table>";

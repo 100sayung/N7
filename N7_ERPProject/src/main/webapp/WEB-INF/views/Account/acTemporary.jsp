@@ -138,7 +138,7 @@ text-align: center;
 							str += "<td>" + data[i].j_section + "</td>";
 							str += "<td>" + data[i].j_centre + "</td>";
 							str += "<td>" + data[i].j_company + "</td>";
-							str += "<td>" + data[i].j_grade + "</td>";
+							str += "<td>" + '임시저장' + "</td>";
 							str += "</tr>"
 						}
 						str += "</table>";

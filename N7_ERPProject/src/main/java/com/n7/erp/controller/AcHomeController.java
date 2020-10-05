@@ -106,10 +106,20 @@ public class AcHomeController {
 		return "Account/acWritefrm";
 	}
 
-// 내가올린 결재함 - 공통
+// 내가올린 결재함 - 결재중
 	@RequestMapping(value = "Account/apupPayment", method = RequestMethod.GET)
 	public String acPend(Locale locale) {
 		return "Account/apupPayment";
+	}
+// 내가올린 결재함 - 최종결재완료
+	@RequestMapping(value = "Account/apupFinalpayment", method = RequestMethod.GET)
+	public String apupFinalpayment(Locale locale) {
+		return "Account/apupFinalpayment";
+	}
+// 내가올린 결재함 - 반려
+	@RequestMapping(value = "Account/apupBackpayment", method = RequestMethod.GET)
+	public String apupBackpayment(Locale locale) {
+		return "Account/apupBackpayment";
 	}
 
 // 내가받은 결재함 -공통

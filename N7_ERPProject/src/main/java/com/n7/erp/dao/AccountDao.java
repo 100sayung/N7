@@ -100,11 +100,15 @@ public interface AccountDao {
 	public List<ApprovalDocu> apupPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
 			@Param("vo") PagingVO vo, @Param("start") int start, @Param("end") int end); // 내가 올린 결재안
 
-//	public List<ApprovalDocu> apdownPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode); //내가 받은 결재안
 	public List<ApprovalDocu> apdownPaymentList(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
 			@Param("vo") PagingVO vo, @Param("start") int start, @Param("end") int end); // 내가 받은 결재안
+	
+	public List<ApprovalDocu> apupPaymentList3(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
+			@Param("vo") PagingVO vo, @Param("start") int start, @Param("end") int end); // 내가 올린 결재안
+	
+	public List<ApprovalDocu> apupPaymentList4(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
+			@Param("vo") PagingVO vo, @Param("start") int start, @Param("end") int end); // 내가 올린 결재안
 
-//	public List<Account> acTemporaryList(@Param("hrCode") String hrCode,@Param("cCode") String cCode); //임시저장 결재함
 	public List<Account> acTemporaryList(@Param("hrCode") String hrCode, @Param("cCode") String cCode,
 			@Param("vo") PagingVO vo, @Param("start") int start, @Param("end") int end); // 임시저장 결재함
 
@@ -134,17 +138,21 @@ public interface AccountDao {
 
 	com.n7.erp.bean.ac.approvalLine getApprinfo(String code); // 결재안에서 결재자 표시
 
-	public int countDocument(ApprovalDocu ap);
+	public int countDocument(ApprovalDocu ap); //내가올린 결재중 문서 카운트
 
-	public int countDocument1(ApprovalDocu ap);
+	public int countDocument1(ApprovalDocu ap); //내가받은 문서 카운트
 
-	public int countDocument2(Account ac);
+	public int countDocument2(Account ac); //임시저장 문서 카운트
 
 	List<SaleInfo> getsaleList2(String cCode);
 
 	public SaleInfo apupSaleinfo1(String s_num, String cCode);
 
-	int comparecode2(@Param("code")String code,@Param("cCode") String cCode);
+	public int comparecode2(@Param("code")String code,@Param("cCode") String cCode);
+
+	public int countDocument3(ApprovalDocu ap); //내가올린 결재완료
+	
+	public int countDocument4(ApprovalDocu ap); //내가올린 반려
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 
