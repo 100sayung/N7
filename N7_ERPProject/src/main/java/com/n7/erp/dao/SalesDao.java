@@ -109,7 +109,7 @@ public interface SalesDao {
    List<Salesbean> getsearchCode(@Param("code") String code,@Param("cCode") String cCode);
 
 
-int compareCode(@Param("check")String check,@Param("cCode") String cCode);
+   int compareCode(@Param("check")String check,@Param("cCode") String cCode);
 
 
 //   List<Shippingbean> shippingquantity(String check, String cCode); //출하수량비교

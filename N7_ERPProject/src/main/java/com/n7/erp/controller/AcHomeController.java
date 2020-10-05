@@ -90,6 +90,12 @@ public class AcHomeController {
 		mav = am.approdocument(request, ad, session);
 		return mav;
 	}
+	/*
+	 * @RequestMapping(value = "Account/apSalesnum", method = RequestMethod.POST)
+	 * public ModelAndView apSalesnum(String s_num,HttpSession session) { mav =
+	 * am.apSalesnum(s_num, session); return mav; }
+	 */
+	
 ////////////////////////////////////////////////////////////////////////////////
 //분개전표
 ////////////////////////////////////////////////////////////////////////////////
@@ -106,10 +112,20 @@ public class AcHomeController {
 		return "Account/acWritefrm";
 	}
 
-// 내가올린 결재함 - 공통
+// 내가올린 결재함 - 결재중
 	@RequestMapping(value = "Account/apupPayment", method = RequestMethod.GET)
 	public String acPend(Locale locale) {
 		return "Account/apupPayment";
+	}
+// 내가올린 결재함 - 최종결재완료
+	@RequestMapping(value = "Account/apupFinalpayment", method = RequestMethod.GET)
+	public String apupFinalpayment(Locale locale) {
+		return "Account/apupFinalpayment";
+	}
+// 내가올린 결재함 - 반려
+	@RequestMapping(value = "Account/apupBackpayment", method = RequestMethod.GET)
+	public String apupBackpayment(Locale locale) {
+		return "Account/apupBackpayment";
 	}
 
 // 내가받은 결재함 -공통
@@ -140,6 +156,26 @@ public class AcHomeController {
 	@RequestMapping(value = "Account/acTemroinfo", method = RequestMethod.GET)
 	public String acapPreinfo(Locale locale) {
 		return "Account/acTemroinfo";
+	}
+	
+	@RequestMapping(value = "Account/asDownSalesinfo", method = RequestMethod.GET)
+	public String asDownSalesinfo(Locale locale) {
+		return "Account/asDownSalesinfo";
+	}
+	
+	@RequestMapping(value = "Account/apDownSalesinfo", method = RequestMethod.GET)
+	public String apDownSalesinfo(Locale locale) {
+		return "Account/apDownSalesinfo";
+	}
+	
+	@RequestMapping(value = "Account/asUpSalesinfo", method = RequestMethod.GET)
+	public String asUpSalesinfo(Locale locale) {
+		return "Account/asUpSalesinfo";
+	}
+	
+	@RequestMapping(value = "Account/apUpSalesinfo", method = RequestMethod.GET)
+	public String apUpSalesinfo(Locale locale) {
+		return "Account/apUpSalesinfo";
 	}
 
 }

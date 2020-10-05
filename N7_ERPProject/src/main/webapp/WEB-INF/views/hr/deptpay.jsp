@@ -197,7 +197,7 @@ $("#showMenu3").hover(function() {
 			data : {deptnum : deptnum},
 			dataType: 'JSON',
 			success : function(data) {
-				var str='<tr align="center"><td width="100px">부서</td><td width="100px">직급</td><td width="100px">금액</td><td width="100px">수정 금액</td></tr>';
+	/* 			var str='<tr align="center"><td width="100px">부서</td><td width="100px">직급</td><td width="100px">금액</td><td width="100px">수정 금액</td></tr>';
 				for(var i=0;i<data.length;i++){
 					str+="<tr align='center'><td width='100px'>"+data[i].HDP_position+"</td>"
 					+"<td width='100px'>"+data[i].HDP_dept+"</td>"
@@ -207,7 +207,8 @@ $("#showMenu3").hover(function() {
 					+"<td><button type='button' onclick='erase("+data[i].HDP_num+")'>삭제</button></td></tr>";
 				}
 				console.log(str);
-				$("#id").html(str);
+				$("#id").html(str); */
+				location.reload();
 			},
 			error : function(err) {
 				console.log(err);

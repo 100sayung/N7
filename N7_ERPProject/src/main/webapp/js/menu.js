@@ -10,9 +10,21 @@
 
 				for(var i in data.mList){
 					str+="<li><a id="+data.mList[i].f_functions+" onclick=menu('"+data.mList[i].f_functions+"')>"+data.mList[i].f_functions+"</a></li>";
+					
+					if(data.mList[i].f_functions == "인사관리"){
+						let menu = "";
+						menu += "<li><a href='/erp/myinfo/checkattendance'>출/퇴근 등록</a></li>";
+						menu += "<li><a href='/erp/myinfo/myPaycheck'>급여명세서 보기</li>";
+						menu += "<li><a href=/erp/myinfo/myattendance'>내 출결 보기</li>";
+						menu += "<li><a href='/erp/myinfo/myholiday'>내 휴가 보기</li>";
+						menu += "<li><a href='/erp/myinfo/applyholiday'>휴가신청</a></li>";
+						$("#myInfoMenu").html(menu);
+						console.log(menu);
+					}
 				}
-
+				
 				$("#mainmenu").html(str);
+				
 			},
 			error:function(error){
 				console.log(error);

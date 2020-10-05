@@ -199,16 +199,16 @@ public class HRDepartmentMM {
 
 	public String getDeptList(String cCode) {
 
-		ArrayList<Department> distinctdept = Ddao.distinctdept(cCode);
-		ArrayList<Department> distinctposition = Ddao.distinctposition(cCode);
-		System.out.println(distinctdept);
+		ArrayList<Department> distinctdept = Ddao.distinctposition(cCode);
+		ArrayList<Department> distinctposition = Ddao.distinctdept(cCode);
+		System.out.println("asdflksalkfj "+distinctdept);
 		ArrayList<String> deptList = new ArrayList<String>();
 		ArrayList<String> positionList = new ArrayList<String>();
 		for (int i = 0; i < distinctdept.size(); i++) {
-			deptList.add(distinctdept.get(i).getHDP_dept());
+			deptList.add(distinctdept.get(i).getHDP_position());
 		}
 		for (int i = 0; i < distinctposition.size(); i++) {
-			positionList.add(distinctposition.get(i).getHDP_position());
+			positionList.add(distinctposition.get(i).getHDP_dept());
 		}
 		HashMap<String, ArrayList<String>> deptAll = new HashMap<String, ArrayList<String>>();
 		deptAll.put("deptList", deptList);

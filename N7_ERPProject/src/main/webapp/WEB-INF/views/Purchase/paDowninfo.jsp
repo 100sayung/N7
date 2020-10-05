@@ -85,7 +85,7 @@ html, body {
                         <table>
                            <tr>
                               <th colspan="2">문서번호</th>
-                              <th colspan="6"><input id="num" type="text" name="p_documentcode"
+                              <th colspan="6"><input type="text" name="p_documentcode"
                                  class="txt" value="${pa.p_documentcode}" readonly>
 
                            </tr>
@@ -102,11 +102,6 @@ html, body {
 							  <th colspan="2">합계</th>
                            </tr>
                            <tbody id="list"></tbody>
-                           <tr>
-                              <th colspan="2">적요</th>
-                              <td colspan="6"><input type="text" name="p_etc"
-                                 class="draft" value="${pa.p_etc}" readonly></td>
-                           </tr>
 							<tr>
 								<th>반려사유</th>
 								<th colspan="8"><input type="text" name="p_etc"
@@ -118,8 +113,11 @@ html, body {
                </td>
             </tr>
          </table>
-       		<button type="button" id="paSign2">결재</button>
-			<button type="button" id="turnback">반려</button>
+       </div>
+     </form>
+         <button type="button" id="submit">제출하기</button>
+         <button type="button" id="arbitrarily">전결하기</button>
+         <button type="button" id="turnback">반려하기</button>
 		</div>
      </form>
 <script type="text/javascript">
@@ -166,28 +164,6 @@ html, body {
 		});
 	});
 
-	$('#paSign2').click(function(){
-		var obj=$("#fo").serialize();
-		console.log(obj);
-
-		$.ajax({
-			url: '/erp/rest/Purchase/paSign2',
-			type: 'post',
-			data: obj,
-			success: function(data){
-				alert("결재요청이 완료되었습니다.");
-				window.close();
-				window.opener.location.reload();
-				console.log(data);
-			},
-			error: function(err){
-				alert("결재요청이 실패했습니다.");
-				console.log(err);
-
-			}
-		})
-	});
-
 	$('#turnback').click(function(){
 		var ect = $("#ect").val();
 		var num= $("#num").val();
@@ -212,6 +188,51 @@ html, body {
 			}
 		});
 	});
+	
+	$("#submit").click(function(){
+		var num= $("#num").val();
+		$.ajax({
+			url:'/erp/rest/home/approvalagree',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("결재완료");
+					window.close();
+				}else{
+					alert("결재실패");
+				}
+			},
+			error:function(error){
+			}
+		});
+		
+	});
+	
+	$("#arbitrarily").click(function(){
+		var num= $("#num").val();
+		$.ajax({
+			url:'/erp/rest/home/arbitrarily',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				if(data==1){
+					alert("전결완료");
+					window.close();
+				}else{
+					alert("전결실패");
+				}
+			},
+			error:function(error){
+			}
+		});
+		
+	});
+
 
 </script>
 </body>

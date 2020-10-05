@@ -56,28 +56,16 @@ margin-left: 30px;
 				<a href="/erp/" style="color: black;">N7 COMPANY</a>
 			</h1>
 		</div>
-		<%-- <div id="menu">
-			<ul>
-				<li><a href="/erp/" accesskey="1" title="">MAIN</a></li>
-				<li><a href="/erp/introducecompany" accesskey="2" title="">회사
-						소개</a></li>
-				<li><a href="/erp/erpboard" accesskey="3" title="">상담 게시판</a></li>
-				<li><a href="/erp/erpapply" accesskey="4" title="">ERP 신청</a></li>
-				<c:if test="${id==null}">
-				<li><a href="/erp/join" accesskey="5" title="">JOIN</a></li>
-				</c:if>
-				<c:if test="${id!=null}">
-             	<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
-				<li class="current_page_item"><a href="#" accesskey="6">ERP시작</a></li>
-				</c:if>
-			</ul>
-		</div> --%>
 	</div>
 	<br>
-	<div class="out">
-	<div class="center">
-	<img src="http://www.probono.kr/template/BUILDER_core/resource/page_join_img.jpg">
+	<div id="container">
+		<img src="http://www.probono.kr/template/BUILDER_core/resource/page_join_img.jpg"></img>
+		<br>
+		<a href="/erp/">홈으로 돌아가기</a>
 	</div>
+
+	
+	
 </body>
 
 

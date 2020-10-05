@@ -162,7 +162,7 @@
    </update>
 
    <insert id="uncollectedmoneyinput" parameterType="appdetail">
-      INSERT INTO B_UNCOLLECTEDMONEY VALUES(#{bs_ccode},#{bs_clcode},#{bs_itcode},#{bu_person},DEFAULT,#{bs_proname},#{bs_unit},#{bs_quantity},#{bs_price},DEFAULT)
+      INSERT INTO B_UNCOLLECTEDMONEY VALUES(#{bs_ccode},#{bs_clcode},#{bs_itcode},#{bu_person},DEFAULT,#{bs_proname},#{bs_unit},#{bs_quantity},#{bs_price})
    </insert>
 
    <select id="uncollectedmoneyitem" parameterType="String" resultType="appdetail">

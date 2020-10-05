@@ -71,7 +71,7 @@
    </select>
    
 	<select id="getMyInfo" parameterType="String" resultType="pALine">
-   SELECT * FROM MLIST  WHERE HC_HRCODE=#{code}
+   		SELECT * FROM MLIST  WHERE HC_HRCODE=#{code}
    </select>
    
 	<insert id="Approval" parameterType="pApproval">
@@ -87,20 +87,20 @@
 	</insert>
 	
 	<insert id="rRegistration" parameterType="Return">
-		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,4,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT)
+		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,4,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
 	</insert>
 		
-	<update id="itupdate">
+<!-- 	<update id="itupdate">
 		UPDATE S_ITEMCODE SET IE_STATUS = '3'
 		WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{it_ccode}
-	</update>
+	</update> -->
 	
 	<select id="rInfo" resultType="Return">
 		SELECT * FROM O_RETURN
 	</select>
 	
   	<delete id="rDelete" parameterType="Return">
-		DELETE FROM RETURN1  WHERE R_DOCUMENTCODE= #{check_list}
+		DELETE FROM O_RETURN  WHERE R_DOCUMENTCODE= #{check_list}
 	</delete> 
 	
 	<select id="rSearch" resultType="Return">
@@ -150,21 +150,5 @@
 	<select id="getstocklist" parameterType="String" resultType="itemcode">
 		SELECT * FROM S_ITEMCODE WHERE IT_CPCODE=#{cCode}
 	</select>
-	
-	<update id="paSign2">
-		UPDATE O_PURCHASEPROGRAM SET P_STATUS = #{p_status} 
-		WHERE P_DOCUMENTCODE=#{p_documentcode} AND P_CCODE=#{p_ccode}
-	</update>
-	
-	<!-- 공통결재 결재업데이트 -->
-	<update id="apSign2">
-		UPDATE APPROVALDOCU SET AP_STATUS = #{ap_status}, AP_TOAPPROVER = #{ap_toapprover}
-		WHERE AP_DOCUNUM = #{ap_docunum} AND AP_CCODE = #{ap_ccode}
-	</update>
-	
-	<update id="paBack">
-		UPDATE O_PURCHASEPROGRAM SET P_STATUS = '3', P_ETC = #{p_etc}
-		WHERE P_DOCUMENTCODE = #{p_documentcode} AND P_CCODE = #{p_ccode}
-	</update>
 	
 </mapper>

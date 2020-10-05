@@ -56,28 +56,23 @@ table, tr, th, td {
 	height: 300px;
 	width: 950px;
 }
-
 </style>
 </head>
 <body>
 	<form id="for">
 		<div
-			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">전표 
+			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">전표
 			상세보기</div>
 		<div
 			style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
 			<table>
-				<tr>
-					<th>제목</th>
-					<th><input type="hidden" name="j_title" value="${si.j_title}">${ac.j_title}</th>
-				</tr>
+
 				<tr>
 					<th>결재자</th>
-					<th id="line">
-					<input type="hidden" value="${ac.j_none}" id="j_none" name="code"> 
-					<input type="hidden" value="${ac.j_ntwo}" id="j_ntwo" name="code"> 
-					<input type="hidden" value="${ac.j_nthr}" id="j_nthr" name="code">
-					</th>
+					<th id="line"><input type="hidden" value="" id=""
+						name="code"> <input type="hidden" value="" id=""
+						name="code"> <input type="hidden" value="" id=""
+						name="code"></th>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -113,27 +108,27 @@ table, tr, th, td {
 											class="draft3" value="${si.s_company}" readonly></td>
 
 									</tr>
-<!-- 									<tr> -->
-<!-- 										<th colspan="2">차변금액</th> -->
-<!-- 										<td colspan="5"><input type="text" name="j_debit" -->
-<%-- 											class="draft" value="${ac.j_debit}" readonly></td> --%>
-<!-- 									</tr> -->
-<!-- 									<tr> -->
-<!-- 										<th colspan="2">대변금액</th> -->
-<!-- 										<td colspan="5"><input type="text" name="j_credit" -->
-<%-- 											class="draft" value="${ac.j_credit}" readonly></td> --%>
-<!-- 									</tr> -->
+									<!-- 									<tr> -->
+									<!-- 										<th colspan="2">차변금액</th> -->
+									<!-- 										<td colspan="5"><input type="text" name="j_debit" -->
+									<%-- 											class="draft" value="${ac.j_debit}" readonly></td> --%>
+									<!-- 									</tr> -->
+									<!-- 									<tr> -->
+									<!-- 										<th colspan="2">대변금액</th> -->
+									<!-- 										<td colspan="5"><input type="text" name="j_credit" -->
+									<%-- 											class="draft" value="${ac.j_credit}" readonly></td> --%>
+									<!-- 									</tr> -->
 
-<!-- 									<tr> -->
-<!-- 										<th>적요</th> -->
-<!-- 										<td colspan="7"><input type="text" name="j_sumup" -->
-<%-- 											class="draft" value="${ac.j_sumup}" readonly></td> --%>
-<!-- 									</tr> -->
-									<tr>
-										<th>반려사유</th>
-										<th colspan="8"><input type="text" name="j_reasion"
-											value="${ac.j_reasion}" id="ect"></th>
-									</tr>
+									<!-- 									<tr> -->
+									<!-- 										<th>적요</th> -->
+									<!-- 										<td colspan="7"><input type="text" name="j_sumup" -->
+									<%-- 											class="draft" value="${ac.j_sumup}" readonly></td> --%>
+									<!-- 									</tr> -->
+									<!-- 									<tr> -->
+									<!-- 										<th>반려사유</th> -->
+									<!-- 										<th colspan="8"><input type="text" name="j_reasion" -->
+									<%-- 											value="${ac.j_reasion}" id="ect"></th> --%>
+									<!-- 									</tr> -->
 								</table>
 							</div>
 						</div>
@@ -144,7 +139,8 @@ table, tr, th, td {
 	</form>
 	<script>
 		//레디 펑션 줘서 결재자 info 불러오기
-		$(document).ready(
+		$(document)
+				.ready(
 						function() {
 							arr = new Array();
 							var cnt = $("input[name='code']").length;
@@ -153,7 +149,8 @@ table, tr, th, td {
 								arr.push($(this).attr('value'));
 							});
 
-							$.ajax({
+							$
+									.ajax({
 										url : '/erp/rest/Account/getApprinfo',
 										type : 'post',
 										traditional : true,
@@ -176,8 +173,6 @@ table, tr, th, td {
 										}
 									});
 						});
-		
-		
-</script> 
+	</script>
 </body>
 </html>
