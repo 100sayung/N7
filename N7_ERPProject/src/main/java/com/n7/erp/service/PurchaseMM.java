@@ -283,20 +283,17 @@ public class PurchaseMM {
         return sMap;   
 	}
 
-	public ModelAndView rRegistration(Return rt, HttpSession session, ItemCode it) {
+	public ModelAndView rRegistration(Return rt, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
 		rt.setR_ccode(session.getAttribute("cCode").toString());
-		it.setIt_ccode(session.getAttribute("cCode").toString());
 		
 		if(rt.getR_ccode()!="") {
-			boolean result = pDao.rRegistration(rt);
-			if(result) {
-				boolean rs= pDao.itupdate(it);
-				view= "/Purchase/returnregistration";
+			if(pDao.rRegistration(rt)) {
+				view= "/Purchase/rRegistration";
 				mav.addObject("msg", "데이터입력 완료");
 			}else {
-				view="/Purchase/returnregistration";
+				view="/Purchase/rRegistration";
 				mav.addObject("msg", "데이터입력 실패");
 			}
 		}

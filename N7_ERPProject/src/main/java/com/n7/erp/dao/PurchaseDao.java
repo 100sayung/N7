@@ -81,7 +81,7 @@ public interface PurchaseDao {
 
 	List<ItemCode> getstocklist(String cCode);
 
-	boolean itupdate(ItemCode it);
+//	boolean itupdate(ItemCode it);
 
 	
 }
