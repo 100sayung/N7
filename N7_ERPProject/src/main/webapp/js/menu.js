@@ -23,20 +23,13 @@
 							console.log(menu);
 						}else if($("#hrMenu").length>0){
 							let menu="";
-							menu += "<li id='showMenu2'>근태 관리";
-							menu += "<ul id='smallMenu2' style='display: none;'>";
 							menu += "<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>";
 							menu += "<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>";
 							menu += "<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>";
 							menu += "<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>";
-							menu += "</ul>";
-							menu += "</li>";
-							menu += "<li id='showMenu3'>급여 관리";
-							menu += "<ul id='smallMenu3' style='display: none;'>";
 							menu += "<li><a href='/erp/hr/deptpay'>부서/직급별 급여</a></li>";
 							menu += "<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>";
 							menu += "<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>";
-							menu += "</ul>";
 							menu += "</li>";
 							$("#hrMenu").html(menu);
 						}

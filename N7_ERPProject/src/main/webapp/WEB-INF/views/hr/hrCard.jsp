@@ -66,12 +66,8 @@ ul {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
 					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
 					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
 			<div id="hrMenu"></div>
 <!-- 			<li id="showMenu2">근태 관리
 				<ul id="smallMenu2" style="display: none;">
