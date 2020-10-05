@@ -205,10 +205,10 @@ public class HRDepartmentMM {
 		ArrayList<String> deptList = new ArrayList<String>();
 		ArrayList<String> positionList = new ArrayList<String>();
 		for (int i = 0; i < distinctdept.size(); i++) {
-			deptList.add(distinctdept.get(i).getHDP_position());
+			positionList.add(distinctdept.get(i).getHDP_position());
 		}
 		for (int i = 0; i < distinctposition.size(); i++) {
-			positionList.add(distinctposition.get(i).getHDP_dept());
+			deptList.add(distinctposition.get(i).getHDP_dept());
 		}
 		HashMap<String, ArrayList<String>> deptAll = new HashMap<String, ArrayList<String>>();
 		deptAll.put("deptList", deptList);
@@ -256,7 +256,7 @@ public class HRDepartmentMM {
 		String code = card.getHc_ccode();
 		String hrcode = card.getHc_hrcode();
 		String name = Ddao.findname(hc);
-		System.out.println(name);
+		System.out.println(name); 
 		ArrayList<Deduct> deduct = Ddao.deduct(code);
 		Payroll incentive = Ddao.findincentive(hrcode);
 		mav.addObject("incentive", incentive);

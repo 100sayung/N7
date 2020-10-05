@@ -146,12 +146,9 @@ tr {
 
 				<div id="addRecord"></div>
 			</div>
-			<input type='hidden' value='' id='current'> <input
-				type='button' value='추가하기' class='infobtn' onclick='addRecord()'
-				id='addRecordBtn'> <input type='button' value='수정하기'
-				class='infobtn' onclick='changeMode()' id='changeBtn'> <input
-				type='submit' value='등록하기' class='infobtn' disabled="disabled"
-				id='registBtn'>
+<input type='button' value='추가하기' class = 'infobtn' onclick='addRecord()' id='addRecordBtn'>
+<input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
+<input type='submit' value='등록완료'  class = 'infobtn' disabled="disabled" id='registBtn'>
 		</form>
 
 
@@ -373,35 +370,39 @@ tr {
 
 			}
 		}
-
-		function changeMode() {
+		
+		function changeMode(){
 			console.log($("#changeBtn").attr('class'));
-			if ($("#changeBtn").attr('class') == "infobtn mf") {
-				$(".detailInfo").attr("readonly", true).addClass("modifyMode")
-						.removeClass("registMode");
+			if($("#changeBtn").attr('class')=="infobtn mf"){
+				$(".detailInfo").attr("readonly", true).addClass("modifyMode").removeClass("registMode");
 				$("#registBtn").attr("disabled", false);
-				for (let i = 0; i < $(".origin").length; i++) {
-					if ($("#origin_" + i)[0].lastChild.className == "removebtn") {
-						$("#origin_" + i)[0].lastChild.remove();
+				$("#registBtn").css('background-color','#3D6B9B');
+				for(let i = 0 ; i<$(".origin").length ; i++){
+					if($("#origin_"+i)[0].lastChild.className=="removebtn"){
+					$("#origin_"+i)[0].lastChild.remove();
 					}
 				}
-			} else {
-				$(".detailInfo").removeAttr("readonly").removeClass(
-						"modifyMode").addClass("registMode");
+			}else{
+				if($("#current").val()=='HRCard'){
+					changeDept(document.getElementById("dept"));
+					console.log("dd");
+				}
+				$(".detailInfo").removeAttr("readonly").removeClass("modifyMode").addClass("registMode");
 				$("#registBtn").attr("disabled", true);
-				for (let i = 0; i < $(".origin").length; i++) {
-					$("#origin_" + i)
-							.append(
-									"<td class='removebtn'><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td>");
+				$("#registBtn").css('background-color','#d2d2d2');
+				for(let i = 0 ; i <$(".origin").length ; i++){
+					$("#origin_"+i).append("<td class='removebtn'><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td>");
 				}
 			}
 			$("#changeBtn").toggleClass("mf");
-
+			
 		}
+
 
 		var formURL = "/erp/myinfo";
 
 		function AcademicInfo() {
+			onBtn();
 			$("#form").attr("action", formURL + "/newacademic");
 			$("#current").val("Academic");
 			$
@@ -442,6 +443,7 @@ tr {
 		}
 
 		function CertificationInfo() {
+			onBtn();
 			$("#form").attr("action", formURL + "/newcertification");
 			$("#current").val("Certification");
 			$
@@ -480,6 +482,7 @@ tr {
 					});
 		}
 		function CareerInfo() {
+			onBtn();
 			$("#form").attr("action", formURL + "/newcareer");
 			$("#current").val("Career");
 			$
@@ -524,8 +527,8 @@ tr {
 		function InCompanyInfo() {
 			$("#form").attr("action", formURL + "/newhrcard");
 			$("#current").val("HRCard");
-			$
-					.ajax({
+			offBtn();
+			$.ajax({
 						url : "/erp/rest/myinfo/hrcard",
 						dataType : "json",
 						method : "get",
@@ -580,6 +583,22 @@ tr {
 						}
 					});
 		}
+		function offBtn(){
+			$("#registBtn").attr("disabled", true);
+			$("#registBtn").css('background-color','#d2d2d2');
+			$("#changeBtn").attr("disabled", true);
+			$("#changeBtn").css('background-color','#d2d2d2');
+			$("#addRecordBtn").attr("disabled", true);
+			$("#addRecordBtn").css('background-color','#d2d2d2');
+		}
+		function onBtn(){
+			$("#registBtn").attr("disabled", false);
+			$("#registBtn").css('background-color','#3D6B9B');
+			$("#changeBtn").attr("disabled", false);
+			$("#changeBtn").css('background-color','#3D6B9B');
+			$("#addRecordBtn").attr("disabled", false);
+			$("#addRecordBtn").css('background-color','#3D6B9B');
+		}
 	</script>
 	<script>
 		$("#showMenu1").hover(function() {
@@ -625,6 +644,7 @@ tr {
 			});
 
 		});
+		
 	</script>
 </body>
 </html>
