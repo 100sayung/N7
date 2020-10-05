@@ -7,7 +7,7 @@
 <title>Purchase Details</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
-html,body{
+#aaa{
 text-align: center;
 }
 input{
@@ -20,13 +20,14 @@ border: 1px solid silver;
 </style>
 </head>
 <body>
+	<div id="aaa">
        <div style="width: auto; background-color: white; padding: 1%;">
         	<span style="padding-left: 5px";><a href="#"
          	onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
             <button id="Wearing">입고현황</button>
             <button id="rInfo">반품조회</button>
          </div>
-      <div style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">반품관리</div>
+      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
                <select id="choice">
                   <option value="r_documentcode">반품번호</option>
                   <option value="r_ieseqnum">입고번호</option>
@@ -35,7 +36,7 @@ border: 1px solid silver;
                </select>
                <input type="text" id="search" name="search" style="height: 18px";>
                <button id="searchbtn">검색</button>
-      <form id="rRegistration">
+      <form id="o_return">
          <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7;">
             <div style="margin-left: 55px">
             <table>
@@ -80,7 +81,8 @@ border: 1px solid silver;
                <tbody id="tbody">
                   <tr>
                      <td><input type="checkbox" name="each_check" class="each"></td>
-                           <td><input type="text" name="r_name" ></td>
+                     	   <td id="name"></td>
+                          <!--  <td><input type="text" name="r_name"></td> -->
                           <!--  <td><input type="text" name="r_itcode" ></td> -->
                            <td id="it"></td>
                            <td><input type="number" min="1" name="r_amount"></td>
@@ -98,34 +100,8 @@ border: 1px solid silver;
             <button type="reset">다시작성</button>
             </div>
          </form>
-
+	</div>
 <script type="text/javascript">
-     
-     var select;
-     $.ajax({
-           url:"/erp/stock/getitemcode",
-           dataType:"json",
-           type:"get",
-           success:function(data){
-              select = makeSelectBox(data);
-              $("#it").html(select);
-           },
-           error:function(err){
-              console.log(err);
-           }
-        });
-     function makeSelectBox(arr){
-         var arrStr = "<select class='select' name = 'r_itcode'><option></option>"
-         if(arr.length==0){
-            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
-         }else{
-            for(var i = 0; i<arr.length;i++){
-               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
-            }
-         }
-         arrStr+="</select>";
-         return arrStr;
-      }
      
 	  function setChildValue(data) {
 		   console.log(data)
@@ -146,7 +122,8 @@ border: 1px solid silver;
 	}); 
     
 	  $('#save').click(function(){
-	         var obj = $('#rRegistration').serialize();
+	         var obj = $("#o_return").serialize();
+	         console.log(obj);
 	         $.ajax({
 	            url: "/erp/rest/Purchase/rRegistration",
 	            type: "post",
@@ -194,18 +171,18 @@ border: 1px solid silver;
 		  })
 	  })
 	  
- 	  	  $('#rDelete').click(function(){
-  	  		  var check_list=[];
-  	  		  $("input[name=each_check]:checked").each(function(){
-  	  			  var cid= $(this).val();
-  	  			  console.log(check_list);
+ 	  $('#rDelete').click(function(){
+  	  		 var check_list=[];
+  	  		 $("input[name=each_check]:checked").each(function(){
+  	  			 var cid= $(this).val();
+  	  			 console.log(check_list);
   	  			  
-  	  			  $.ajax({
-  	  				  url: '/erp/rest/Purchase/rdelete',
-  	  				  type: 'post',
-  	  				  data: {check_list:cid},
-  	  				  dataType: 'json',
-  	  				  success: function(data){
+  	  			 $.ajax({
+  	  				 url: '/erp/rest/Purchase/rdelete',
+  	  				 type: 'post',
+  	  				 data: {check_list:cid},
+  	  				 dataType: 'json',
+  	  				 success: function(data){
   	  				  console.log(data);
   					  var str="";
   					  str+="<tr><th><span>선택</span></th><th>반품번호</th><th>입고번호</th><th>상품명</th><th>상품코드</th><th>담당자</th><th>거래처</th><th>반품일</th><th>수량</th><th>단가</th><th>합계</th><th>적요</th></tr>";
@@ -270,45 +247,71 @@ border: 1px solid silver;
   	  			  })
 			})	  
 			
-	
-	$("#Wearing").click(function(){
-		  $.ajax({
-			  url:"/erp/rest/Purchase/stocklist",
-			  type: "get",
-			  dataType: "json",
-			  success: function(data){
-				  console.log(data);
-				  var str="";
-				  str+="<tr style='text-align: center;'><th>입고번호</th><th>품목코드</th><th>거래처</th><th>날짜</th><th>수량</th><th>가격</th></tr>";
-				  for(var i in data.sList){
-				  	str+="<tr style='text-align: center;'><td>"+data.sList[i].ie_seqnum+"</td>";
-					str+="<td>"+data.sList[i].ie_itcode+"</td>";
-					str+="<td>"+data.sList[i].ie_clcode+"</td>";
-				  	str+="<td>"+data.sList[i].ie_date+"</td>";
-				  	str+="<td>"+data.sList[i].ie_qty+"</td>";
-				  	str+="<td>"+data.sList[i].ie_price+"</td><tr>";
+		$("#Wearing").click(function(){
+			  $.ajax({
+				  url:"/erp/rest/Purchase/stocklist",
+				  type: "get",
+				  dataType: "json",
+				  success: function(data){
+					  console.log(data);
+					  var str="";
+					  str+="<tr style='text-align: center;'><th>입고번호</th><th>품목코드</th><th>거래처</th><th>날짜</th><th>수량</th><th>가격</th></tr>";
+					  for(var i in data.sList){
+					  	str+="<tr style='text-align: center;'><td>"+data.sList[i].ie_seqnum+"</td>";
+						str+="<td>"+data.sList[i].ie_itcode+"</td>";
+						str+="<td>"+data.sList[i].ie_clcode+"</td>";
+					  	str+="<td>"+data.sList[i].ie_date+"</td>";
+					  	str+="<td>"+data.sList[i].ie_qty+"</td>";
+					  	str+="<td>"+data.sList[i].ie_price+"</td><tr>";
+					  }
+					  $('#list').html(str);
+				  },
+				  error: function(err){
+					  console.log(err);
 				  }
-				  $('#list').html(str);
-			  },
-			  error: function(err){
-				  console.log(err);
-			  }
-		  })
-  	})
+		 	 })
+  		})
   	
-	 var select2;
-	     $.ajax({
-	    	 url: "/erp/stock/getimportlist",
-	         dataType: "json",
-	         type: "post",
-	         success:function(data){
-	              select = makeSelectBox2(data);
-	              $("#ie").html(select);
-	         },
-	         error:function(err){
-	             console.log(err);
+  		 var select;
+    	 $.ajax({
+    	       url:"/erp/stock/getitemcode",
+           dataType:"json",
+           type:"get",
+           success:function(data){
+              select = makeSelectBox(data);
+              
+              $("#it").html(select);
+           },
+           error:function(err){
+              console.log(err);
+           }
+        });
+	     function makeSelectBox(arr){
+	         var arrStr = "<select class='select' name = 'r_itcode'><option></option>"
+	         if(arr.length==0){
+	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+	         }else{
+	            for(var i = 0; i<arr.length;i++){
+	               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
+	            }
 	         }
-	     });
+	         arrStr+="</select>";
+	         return arrStr;
+	      }
+  	
+		 var select2;
+		     $.ajax({
+		    	 url: "/erp/stock/getimportlist",
+		         dataType: "json",
+		         type: "post",
+		         success:function(data){
+		              select = makeSelectBox2(data);
+		              $("#ie").html(select);
+		         },
+		         error:function(err){
+		             console.log(err);
+		         }
+		     });
 	     function makeSelectBox2(arr){
 	         var arrStr = "<select class='select' name = 'r_ieseqnum'><option></option>"
 	         if(arr.length==0){
@@ -321,9 +324,34 @@ border: 1px solid silver;
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
+	     
+	   var select3;
+	     $.ajax({
+	           url:"/erp/stock/getitemcode",
+	           dataType:"json",
+	           type:"get",
+	           success:function(data){
+	              select = makeSelectBox3(data);
+	              $("#name").html(select);
+	           },
+	           error:function(err){
+	              console.log(err);
+	           }
+	        });
+	     function makeSelectBox3(arr){
+	         var arrStr = "<select class='select' name = 'r_name'><option></option>"
+	         if(arr.length==0){
+	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+	         }else{
+	            for(var i = 0; i<arr.length;i++){
+	               arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>"; 
+	            }
+	         }
+	         arrStr+="</select>";
+	         return arrStr;
+	      }
   	
   	
-
 </script>
 </body>
 </html>

@@ -30,7 +30,7 @@ ${msg}
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
 		<button type="button" id="pDetail">상세보기</button>
       	</div>
-      <div style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">구매관리</div>
+      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">구매관리</div>
 					<select id="choice">
 						<option value="p_documentcode">구매번호</option>
 						<option value="p_writer">담당자</option>

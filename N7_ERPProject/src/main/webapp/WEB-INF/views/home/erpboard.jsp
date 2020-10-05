@@ -41,30 +41,26 @@ Released   : 20130526
 <link href="default_ie6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 <style type="text/css">
-table.List {
-border-collapse: separate;
-border-spacing: 1px;
-text-align: left;
-line-height: 1.5;
-order-top: 1px solid #ccc;
-margin : auto;
-text-align: center;
-margin-top: -60px;
-}
-table.List th {
-width: 140px;
-padding: 7px;
-padding-top: 10px;
-font-weight: bold;
-vertical-align: top;
-border-bottom: 1px solid #ccc;
+.List {
+border-collapse: collapse;
+border-top: 3px solid #168;
+}  
+.List th {
+color: #168;
+background: #f0f6f9;
 text-align: center;
 }
-table.List td {
-width: 250px;
-padding: 8px;
-vertical-align: top;
-border-bottom: 1px solid #ccc;
+.List th, .List td {
+padding: 10px;
+border: 1px solid #ddd;
+}
+.List th:first-child, .List td:first-child {
+border-left: 0;
+}
+.List th:last-child, .List td:last-child {
+border-right: 0;
+}
+.List tr td:first-child{
 text-align: center;
 }
 #paging{
@@ -82,7 +78,7 @@ margin-top: 10px;
 position:relative;
 float: right;
 margin-top: 10px;
-padding-bottom: */ 20px;
+padding-bottom: 20px;
 }
 </style>
 </head>
@@ -106,10 +102,10 @@ padding-bottom: */ 20px;
 	<div id="a">
 <!-- 		<h2>상담 게시판</h2> -->
 		<table class="List">
-			<tr style="background-color: #3D6B9B; width: 350px; color:white;">
-				<th scope="row">번호</th>
-				<th scope="row">제목</th>
-				<th scope="row">작성자</th>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
 			</tr>
 		</table>
 	</div>

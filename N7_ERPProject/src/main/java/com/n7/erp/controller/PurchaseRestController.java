@@ -121,16 +121,10 @@ public class PurchaseRestController {
 		return mMap;
 	}
 
-	@PostMapping(value = "/Purchase/paSign2", produces= "application/json;charest=utf-8" )
-	public ModelAndView paSign2(PurchaseApproval pa, ApprovalDocu ap, HttpServletRequest req, HttpServletResponse rep ,HttpSession session) {
-		 mav=pm.paSign2(pa,ap,req,rep,session);
-	     return mav;
-	}
-
 	//반품
 	@PostMapping(value = "/Purchase/rRegistration", produces= "application/json;charest=utf-8" )
-	public ModelAndView rRegistration(Return rt, HttpSession session, ItemCode it) {
-		mav= pm.rRegistration(rt, session, it);
+	public ModelAndView rRegistration(Return rt, HttpSession session) {
+		mav= pm.rRegistration(rt, session);
 		return mav;
 	}
 

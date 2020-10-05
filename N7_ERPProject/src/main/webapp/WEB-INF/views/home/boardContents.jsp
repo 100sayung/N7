@@ -126,11 +126,11 @@ margin-left: 400px;
 			</tr>
 		</table>
 	</form>
-		<div>
-			<button id="aaa"><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
-			<c:if test="${id!=null}">
-				<button type="button" id="delete">삭제</button>
-			</c:if>
-		</div>
+	 <div>
+		<button id="aaa"><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
+		<button type="button" id="delete">삭제</button>
+	</div>
+</div>
+
 </body>
 </html>
