@@ -175,11 +175,11 @@ public interface IHrDao {
 	@Select("SELECT * FROM HR_ATTENDANCE WHERE HA_TIME LIKE '%'||#{day}||'%'")
 	ArrayList<Attendance> getEmployeeAttendanceTwo(String day);
 
-	@Select("SELECT * FROM HR_ATTNEDANCE WHERE HA_CCODE=#{cCode} AND HA_TIME=#{time}")
-	boolean selectAttendance(HashMap<String, Object> hMap);
+	@Select("SELECT * FROM HR_ATTENDANCE WHERE HA_CCODE=#{cCode} AND HA_TIME=#{time}")
+	String selectAttendance(HashMap<String, String> hMap);
 
-	@Update("UPDATE HR_ATTENDANCE SET HA_TIME=#{time}")
-	void updateAttendance(HashMap<String, Object> hMap);
+	@Update("UPDATE HR_ATTENDANCE SET HA_TIME=#{combine} WHERE HA_CCODE=#{cCode} AND HA_TIME=#{time} AND HA_HRCODE=#{hrcode}")
+	void updateAttendance(HashMap<String, String> hMap);
 
 	@Update("UPDATE APPROVALDOCU SET AP_STATUS = #{status} WHERE AP_CCODE = #{cCode} AND AP_DOCUNUM = #{docunum}")
 	void registDocuStatsu(HashMap<String, String> hMap);

@@ -79,7 +79,7 @@ public class MemberMM {
 		mb.setM_photo(file);
 
 		if (mDao.join(mb)) {
-			mav.setViewName("redirect:/home/welcome");
+			mav.setViewName("redirect:/welcome");
 		} else {
 			mav.setViewName("/home/join");
 			mav.addObject("msg", "0");
@@ -90,7 +90,7 @@ public class MemberMM {
 public String getSearchFromId(String m_id) {
 	ArrayList<Member> mlist = new ArrayList<Member>();
 	if (m_id.equals("")) {
-		System.out.println("占쏙옙");
+		System.out.println("�뜝�룞�삕");
 		mlist = mDao.getAllMember();
 	} else {
 		m_id = "%" + m_id + "%";
@@ -119,7 +119,7 @@ public void forceWithDrawal(List<String> slist) {
 
 public ModelAndView moveMyInfo(HttpSession session) {
 	if(!hDao.haveHrCode(session.getAttribute("id").toString())) {
-		mav.addObject("msg", "占쎌선 占싸삼옙카占쏙옙 占쏙옙占쏙옙占� 占쏙옙청占쏙옙占쌍쇽옙占쏙옙.");
+		mav.addObject("msg", "�뜝�럩�꽑 �뜝�떥�궪�삕移닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕泥��뜝�룞�삕�뜝�뙇�눦�삕�뜝�룞�삕.");
 	}
 	mav.setViewName("myInfo/myInfo");
 	return mav;
@@ -136,13 +136,13 @@ public ModelAndView moveMyInfo(HttpSession session) {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 			messageHelper.setFrom("mykyj2000@gmail.com");
 			messageHelper.setTo(userEmail);
-			messageHelper.setSubject("N7 ERP 占쏙옙占쏙옙占쏙옙호占쌉니댐옙.");
-			messageHelper.setText("占쏙옙占쏙옙占쏙옙호占쏙옙 " + authentictionNum + " 占쌉니댐옙");
+			messageHelper.setSubject("N7 ERP �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�뙃�땲�뙋�삕.");
+			messageHelper.setText("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕 " + authentictionNum + " �뜝�뙃�땲�뙋�삕");
 			mailSender.send(mimeMessage);
-			return ResponseEntity.ok(new Gson().toJson("占쏙옙占쏙옙占쏙옙호占쏙옙占쏙옙 占쏙옙占쏙옙"));
+			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(new Gson().toJson("占쏙옙占쏙옙占쏙옙호占쏙옙占쏙옙 占쏙옙占쏙옙"));
+			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
 		}
 	}
 
@@ -159,7 +159,7 @@ public ModelAndView moveMyInfo(HttpSession session) {
 
 	public ResponseEntity<String> modifyPassword(String userPassword, String userId) {
 		mDao.modifyPassword(userPassword,userId);
-		return ResponseEntity.ok(new Gson().toJson("占쏙옙橘占싫� 占쏙옙占썸에 占쏙옙占쏙옙占싹울옙占쏙옙占싹댐옙."));
+		return ResponseEntity.ok(new Gson().toJson("OK"));
 	}
 
 	public String getDupleID(String m_id) {
@@ -183,6 +183,7 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		mDao.deleteB_shipment(cCode);
 		mDao.deleteAc_salestatementlist(cCode);
 		mDao.deleteAc_realsalestatementlist(cCode);
+		mDao.deleteAc_Realsalestatement(cCode);
 		mDao.deleteB_uncollectedmoney(cCode);
 		mDao.deleteB_shipregist(cCode);
 		mDao.deleteS_itemcode(cCode);
@@ -202,8 +203,11 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		mDao.deleteS_category(cCode);
 		mDao.deleteApprovaldocu(cCode);
 		mDao.deleteAc_companylist(cCode);
+		mDao.deleteERPFunction(cCode);
+		mDao.deleteMember(cCode);
+		mDao.deleteCompany(cCode);
 		
-		return new Gson().toJson("성공");
+		return new Gson().toJson("�꽦怨�");
 	}
 
 
@@ -244,7 +248,25 @@ public ModelAndView moveMyInfo(HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
 		ad = mDao.getStatus(num,cCode);
 		String status = ad.getAp_status();
-		boolean result = mDao.approvalagree(num,status,cCode);
+		boolean result = false;
+		boolean result2 = false;
+		if(status.equals("1")) {
+		   result = mDao.approvalagree(num,cCode);
+		}else {
+		   result2 = mDao.approvalagree2(num,cCode);
+		}
+		if(result || result2) {
+			value="1";
+		}else {
+			value="2";
+		}
+		return value;
+	}
+
+	public String arbitrarily(String num, HttpSession session) {
+		String value="";
+		String cCode = session.getAttribute("cCode").toString();
+		boolean result = mDao.arbitrarily(num,cCode);
 		if(result) {
 			value="1";
 		}else {

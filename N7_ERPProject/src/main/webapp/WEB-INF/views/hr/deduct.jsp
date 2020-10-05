@@ -98,7 +98,7 @@ ul {
 	<td width="100px">수정 금액</td>
 	<td width="100px"></td>
 </tr>
-</table> 본 화면 </div>
+</table></div>
 </body>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script>

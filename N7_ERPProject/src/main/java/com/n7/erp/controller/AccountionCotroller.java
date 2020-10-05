@@ -134,9 +134,9 @@ public class AccountionCotroller {
 		return mMap;
 	}
 
-	@GetMapping(value = "/Account/getshipment", produces = "application/json;charset=utf-8")
-	public Map<String, List<shipment>> getshipment(HttpSession session) {
-		Map<String, List<shipment>> aMap = am.getshipment(session);
+	@PostMapping(value = "/Account/getshipment", produces = "application/json;charset=utf-8")
+	public Map<String, List<shipment>> getshipment(String num,HttpSession session) {
+		Map<String, List<shipment>> aMap = am.getshipment(num,session);
 		return aMap;
 	}
 
@@ -169,10 +169,24 @@ public class AccountionCotroller {
 		return a; // DAO
 	}
 
-	// 내가올린 페이징
+	// 내가올린 결재중 페이징
 	@GetMapping(value = "/Account/documentPagenumber")
 	public String documentPagenumber(HttpSession session, ApprovalDocu ap) {
 		int result = am.countDocument(ap, session);
+		return Integer.toString(result);
+	}
+	
+	// 내가올린 결재완료 페이징
+	@GetMapping(value = "/Account/documentPagenumber3")
+	public String documentPagenumber3(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument3(ap, session);
+		return Integer.toString(result);
+	}
+	
+	// 내가올린 반려 페이징
+	@GetMapping(value = "/Account/documentPagenumber4")
+	public String documentPagenumber4(HttpSession session, ApprovalDocu ap) {
+		int result = am.countDocument4(ap, session);
 		return Integer.toString(result);
 	}
 
@@ -197,7 +211,43 @@ public class AccountionCotroller {
 //return pMap;
 //}
 
-	// 내가올린 결재안 목록(페이징o)
+	// 내가올린 결재완료 목록(페이징o)
+	@GetMapping(value = "Account/apupPaymentList3", produces = "application/json;charset=utf-8")
+	public String apupPaymentList3(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument3(ap, session);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		}
+		
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		int start = vo.getStart();
+		int end = vo.getEnd();
+		System.out.println(vo);
+		String result = new Gson().toJson(am.apupPaymentList3(session, vo, start, end));
+		
+		return result;
+	}
+	
+	// 내가올린 빈려 목록(페이징o)
+	@GetMapping(value = "Account/apupPaymentList4", produces = "application/json;charset=utf-8")
+	public String apupPaymentList4(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
+		int total = am.countDocument4(ap, session);
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		}
+		
+		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		int start = vo.getStart();
+		int end = vo.getEnd();
+		System.out.println(vo);
+		String result = new Gson().toJson(am.apupPaymentList4(session, vo, start, end));
+		
+		return result;
+	}
+	
+	// 내가올린 결재중 목록(페이징o)
 	@GetMapping(value = "Account/apupPaymentList", produces = "application/json;charset=utf-8")
 	public String apupPaymentList(HttpSession session, String nowPage, String cntPerPage, ApprovalDocu ap) {
 		int total = am.countDocument(ap, session);
@@ -336,10 +386,25 @@ public class AccountionCotroller {
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	// 내가올린 결재안 상세보기(영미니미니민-AP)
-	@GetMapping(value = "Account/apSalesnum", produces = "application/json;charset=utf-8")
-	public ModelAndView apSalesnum(String s_num, HttpSession session) {
-		mav = am.apSalesnum(s_num, session);
-		System.out.println(s_num);
+	@GetMapping(value = "Account/apDownSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apDownSalesnum(String s_num, HttpSession session) {
+		mav = am.apDownSalesnum(s_num, session);
+		return mav;
+	}
+	@GetMapping(value = "Account/asDownSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView asDownSalesnum(String s_num, HttpSession session) {
+		mav = am.asDownSalesnum(s_num, session);
+		return mav;
+	}
+	
+	@GetMapping(value = "Account/apUpSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView apUpSalesnum(String s_num, HttpSession session) {
+		mav = am.apUpSalesnum(s_num, session);
+		return mav;
+	}
+	@GetMapping(value = "Account/asUpSalesnum", produces = "application/json;charset=utf-8")
+	public ModelAndView asUpSalesnum(String s_num, HttpSession session) {
+		mav = am.asUpSalesnum(s_num, session);
 		return mav;
 	}
 

@@ -1,6 +1,7 @@
 package com.n7.erp.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
@@ -16,6 +17,8 @@ public interface IConsultingBoardDao {
 	boolean boardWrite(ConsultingBoard board);
 
 	ConsultingBoard getContents(int CB_NUM);
+
+	List<ConsultingBoard> bsearch(String choice, String keyword);
 
 	//boolean writeBoard(ConsultingBoard board);
 //	

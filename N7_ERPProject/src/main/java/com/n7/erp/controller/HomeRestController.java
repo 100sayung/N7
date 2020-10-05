@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.n7.erp.bean.ConsultingBoard;
 import com.n7.erp.bean.Member;
+import com.n7.erp.service.ConsultingBoardMM;
 import com.n7.erp.service.MemberMM;
 import com.n7.erp.userClass.PagingVO;
 
@@ -25,6 +27,9 @@ public class HomeRestController {
 
 	@Autowired
 	private MemberMM mm;
+	
+	@Autowired
+	private ConsultingBoardMM cbm;
 	
 
 	@GetMapping(value = "/home/searchfromid")
@@ -64,6 +69,11 @@ public class HomeRestController {
 		String value= mm.approvalagree(num,session);
 		return value;
 	}
+	@PostMapping(value="/home/arbitrarily")
+	public String arbitrarily(String num,HttpSession session) {
+		String value= mm.arbitrarily(num,session);
+		return value;
+	}
 
 	@PostMapping(value = "/home/forcewithdrawal")
 	public String forceWithDrawal(String jsonStr) { 
@@ -74,5 +84,6 @@ public class HomeRestController {
 		mm.forceWithDrawal(slist);
 		return null;
 	}
+	
 	
 }

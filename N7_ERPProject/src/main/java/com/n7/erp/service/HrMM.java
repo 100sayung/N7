@@ -675,20 +675,26 @@ public class HrMM {
 		return result;
 	}
 
-	public String Updateattendance(Object cCode, String hrcode, String time, String textTime) {
-		String front=time.substring(0, 8);
-		String back=time.substring(16,0);
-
-		HashMap<String, Object> hMap=new HashMap<String, Object>();
+	public String Updateattendance(String cCode, String hrcode, String time, String textTime) {
+		String front=time.substring(0, 16);
+		String back=time.substring(24,44);
+		String combine=front.concat(textTime.concat(back));
+		System.out.println(combine);
+		System.out.println(cCode);
+		HashMap<String, String> hMap=new HashMap<String, String>();
 		hMap.put("cCode", cCode);
 		hMap.put("hrcode", hrcode);
 		hMap.put("time", time);
-		hMap.put("textTime", textTime);
-		boolean attendace=hDao.selectAttendance(hMap);
-		if(attendace) {
+		hMap.put("combine", combine);
+		String attendace=hDao.selectAttendance(hMap);
+		if(attendace!=null) {
 			hDao.updateAttendance(hMap);
 		}
-		return null;
+		String day=time.substring(0,15);
+		hMap.put("dateStandard", day);
+		ArrayList<Attendance> aList=hDao.getEmployeeAttendance(hMap);
+		String result=new Gson().toJson(aList);
+		return result;
 	}
 
 	
@@ -708,5 +714,22 @@ public class HrMM {
 	public List<ViewPay> selectwages(PagingVO vo){
 		return hDao.selectWages(vo);
 	}
+
+	public ModelAndView getReceipHoliDay(String docunum, HttpSession session) {
+		HashMap<String, String> hMap = new HashMap<String, String>();
+		String hrCode = session.getAttribute("hrCode").toString();
+		hMap.put("cCode", session.getAttribute("cCode").toString());
+		hMap.put("docunum", docunum);
+		ApplyHoliday apholi = hDao.getDetailHoliday(hMap);
+		String fromapprover=hDao.getFromApprover(apholi.getHap_fromapprover());
+		String toapprover=hDao.getToApprover(apholi.getHap_toapprover());
+		mav.addObject("fromapprover", fromapprover);
+		mav.addObject("toapprover", toapprover);
+		mav.addObject("apholi", apholi);
+		mav.addObject("hrCode", hrCode);
+		mav.setViewName("/hr/receipholidayDetail");
+		return mav;
+	}
+
 
 }

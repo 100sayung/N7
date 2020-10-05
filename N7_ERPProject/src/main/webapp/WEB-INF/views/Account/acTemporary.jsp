@@ -75,7 +75,7 @@ text-align: center;
 	<br>
 	<div id="center">
 	<button id="approval">결재안 상세보기</button>
-	<button id="acDelete2">삭제요청</button>
+	<button id="acDelete2">삭제</button>
 	</div>
 </body>
 <script>
@@ -138,7 +138,7 @@ text-align: center;
 							str += "<td>" + data[i].j_section + "</td>";
 							str += "<td>" + data[i].j_centre + "</td>";
 							str += "<td>" + data[i].j_company + "</td>";
-							str += "<td>" + data[i].j_grade + "</td>";
+							str += "<td>" + '임시저장' + "</td>";
 							str += "</tr>"
 						}
 						str += "</table>";

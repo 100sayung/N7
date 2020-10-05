@@ -20,6 +20,10 @@
    <select id="getContents" parameterType="int" resultType="board">
    		SELECT * FROM CONSULTING_BOARD WHERE CB_NUM = #{CB_NUM}
    </select>
+   
+   <select id="bsearch" resultType="board">
+   		
+   </select>
 	
 <!--    <insert id="writeBoard" parameterType="board">
       INSERT INTO CONSULTING_BOARD

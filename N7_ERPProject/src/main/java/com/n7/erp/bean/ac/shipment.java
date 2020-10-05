@@ -15,6 +15,7 @@ public class shipment {
    private String it_pname;
    private String cl_name;
    private String cl_code;
+   private String ie_clcode;   
    private String ie_cpcode;
    private String it_code;
    private String ie_status;

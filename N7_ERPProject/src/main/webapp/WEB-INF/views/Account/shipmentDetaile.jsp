@@ -93,7 +93,7 @@ var sList = ${sList};
 console.log(sList);
 
   $("#company").val(sList[0].cl_name);
-  $("#code").val(sList[0].cl_code);
+  $("#code").val(sList[0].ie_clcode);
   
   $("#testTable").html("");
 	var str='';

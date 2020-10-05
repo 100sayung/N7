@@ -132,7 +132,7 @@ text-align: center;
 							str += "<td>" + data[i].ap_fromapprover + "</td>";
 							str += "<td>" + data[i].ap_toapprover + "</td>";
 							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>" + data[i].ap_status + "</td>";
+							str += "<td>" + '결재중' + "</td>";
 							str += "</tr>"
 						}
 						str += "</table>";
@@ -198,8 +198,14 @@ text-align: center;
 				                  }else if(check.indexOf("H") != -1){ //인사
 				                	  console.log(check);
 				                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
-				                  }else{
-				                     window.open(
+				                  }else if(check.indexOf("AP") != -1){ //영민
+					                	  console.log(check);
+					                      window.open('/erp/rest/Account/apDownSalesnum?s_num=' + check, 'apDownSalesinfo', 'width=1400, heigth=700');
+					                  }else if(check.indexOf("AS") != -1){ //영민
+					                	  console.log(check);
+					                      window.open('/erp/rest/Account/asDownSalesnum?s_num=' + check, 'asDownSalesinfo', 'width=1400, heigth=700');
+					                  }else{
+					                      window.open(
 				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
 				                  }
 
