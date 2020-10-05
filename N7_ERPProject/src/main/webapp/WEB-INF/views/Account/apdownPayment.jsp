@@ -132,7 +132,7 @@ text-align: center;
 							str += "<td>" + data[i].ap_fromapprover + "</td>";
 							str += "<td>" + data[i].ap_toapprover + "</td>";
 							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>" + data[i].ap_status + "</td>";
+							str += "<td>" + '결재중' + "</td>";
 							str += "</tr>"
 						}
 						str += "</table>";

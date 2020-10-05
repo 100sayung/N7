@@ -130,7 +130,6 @@ public class FileManager {
 				file.delete();
 				System.out.println("�뙆�씪 �궘�젣");
 			} else {
-				log.info("�씠誘� �궘�젣�맂 �뙆�씪");
 			}
 
 		}

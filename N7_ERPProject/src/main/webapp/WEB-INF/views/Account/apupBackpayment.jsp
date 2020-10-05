@@ -89,7 +89,7 @@ td {
 	function pageNumber(j) {
 		currPage = j;
 		$.ajax({
-			url : "/erp/rest/Account/documentPagenumber",
+			url : "/erp/rest/Account/documentPagenumber4",
 			dataType : "json",
 			method : "get",
 			success : function(page) {
@@ -119,9 +119,8 @@ td {
 	}
 
 	function apupPaymentList(nowPage) {
-		$
-				.ajax({
-					url : "/erp/rest/Account/apupPaymentList",
+		$.ajax({
+					url : "/erp/rest/Account/apupPaymentList4",
 					dataType : "json",
 					data : {
 						nowPage : nowPage,
@@ -140,7 +139,7 @@ td {
 							str += "<td>" + data[i].ap_fromapprover + "</td>";
 							str += "<td>" + data[i].ap_toapprover + "</td>";
 							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>결재중</td>";
+							str += "<td>반려</td>";
 							str += "</tr>"
 						}
 						str += "</table>";
@@ -183,10 +182,10 @@ $("#approval").click(
 		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
 		                  }else if(check.indexOf("AP") != -1){ //영민
 		                	  console.log(check);
-		                      window.open('/erp/rest/Account/apUpSalesnum?s_num=' + check, 'apUpSalesinfo', 'width=1400, heigth=700');
+		                      window.open('/erp/Account/apSalesnum?s_num=' + check, 'apSalesinfo', 'width=1400, heigth=700');
 		                  }else if(check.indexOf("AS") != -1){ //영민
 		                	  console.log(check);
-		                      window.open('/erp/rest/Account/asUpSalesnum?s_num=' + check, 'asUpSalesinfo', 'width=1400, heigth=700');
+		                      window.open('/erp/Account/apSalesnum?s_num=' + check, 'asSalesinfo', 'width=1400, heigth=700');
 		                  }else{
 		                	  window.open(
 		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');

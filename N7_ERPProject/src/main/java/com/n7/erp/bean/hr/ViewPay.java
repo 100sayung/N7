@@ -5,8 +5,8 @@ import org.apache.ibatis.type.Alias;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-@Accessors(chain = true)
 @Alias("viewpay")
+@Accessors(chain = true)
 @Data
 public class ViewPay {
 	private int HDP_PAY;

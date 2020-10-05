@@ -222,4 +222,10 @@ public class HRHomeController {
 		String result=dm.deptsearchposition(dept,session.getAttribute("cCode").toString());
 		return result;
 	}
+	
+	@GetMapping(value = "/hr/receipholidaydetail")
+	public ModelAndView getreceiphoilday(String docunum,HttpSession session) {
+		mav = hm.getReceipHoliDay(docunum, session);
+		return mav;
+	}
 }

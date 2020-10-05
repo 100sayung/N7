@@ -2,7 +2,6 @@ package com.n7.erp.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -10,7 +9,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.n7.erp.bean.ConsultingBoard;
 import com.n7.erp.bean.entity.NameHrCode;
 import com.n7.erp.bean.hr.Deduct;
 import com.n7.erp.bean.hr.Department;
@@ -60,7 +58,6 @@ public interface HRIDeptDao {
 	ArrayList<Department> findDisdept(HashMap<String, String> fdpMap);
 	@Select("SELECT * FROM HR_DEPT WHERE HDP_POSITION=#{disposition} AND HDP_CCODE = #{cCode}")
 	ArrayList<Department> findDisposition(HashMap<String, String> fdpMap);
-
 
 	ArrayList<NameHrCode> getMyLeaderUsingGradeDept(HashMap<String, String> hMap);
 

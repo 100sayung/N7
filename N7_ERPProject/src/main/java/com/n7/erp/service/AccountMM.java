@@ -648,6 +648,22 @@ public class AccountMM {
 
 		return aDao.apupPaymentList(hrCode, cCode, vo, start, end);
 	}
+	
+//내가 올린 결재완료 목록 페이징
+	public List<ApprovalDocu> apupPaymentList3(HttpSession session, PagingVO vo, int start, int end) {
+		String hrCode = (String) session.getAttribute("hrCode");
+		String cCode = (String) session.getAttribute("cCode");
+		
+		return aDao.apupPaymentList3(hrCode, cCode, vo, start, end);
+	}
+	
+//내가 올린 반려 목록 페이징
+	public List<ApprovalDocu> apupPaymentList4(HttpSession session, PagingVO vo, int start, int end) {
+		String hrCode = (String) session.getAttribute("hrCode");
+		String cCode = (String) session.getAttribute("cCode");
+		
+		return aDao.apupPaymentList4(hrCode, cCode, vo, start, end);
+	}
 
 //public Map<String, List<ApprovalDocu>> apdownPaymentList(HttpSession session) {
 //Map<String, List<ApprovalDocu>> pMap = null;
@@ -782,7 +798,7 @@ public class AccountMM {
 				out = rep.getWriter();
 				out.println("<script>alert('결재요청완료');</script>");
 				out.println("<script>window.close();</script>");
-				out.println("<script>window.opener.location.reload();</script>");
+				out.println("<script>window.location.reload();</script>");
 				out.flush();
 				out.close();
 				mav.setViewName("Account/acTemporary");
@@ -924,7 +940,8 @@ public class AccountMM {
 		return aMap;
 	}
 
-	// 내가올린 결재안문서 카운트
+	
+	// 내가올린 결재안문서 카운트 - 결재중
 	public int countDocument(ApprovalDocu ap, HttpSession session) {
 		String hrCode = (String) session.getAttribute("hrCode");
 		String cCode = (String) session.getAttribute("cCode");
@@ -934,6 +951,29 @@ public class AccountMM {
 
 		return aDao.countDocument(ap);
 	}
+	
+
+	// 내가올린 결재안문서 카운트 - 결재완료
+		public int countDocument3(ApprovalDocu ap, HttpSession session) {
+			String hrCode = (String) session.getAttribute("hrCode");
+			String cCode = (String) session.getAttribute("cCode");
+
+			ap.setAp_ccode(cCode);
+			ap.setAp_fromapprover(hrCode);
+
+			return aDao.countDocument3(ap);
+		}
+		
+		// 내가올린 결재안문서 카운트 -반려
+		public int countDocument4(ApprovalDocu ap, HttpSession session) {
+			String hrCode = (String) session.getAttribute("hrCode");
+			String cCode = (String) session.getAttribute("cCode");
+
+			ap.setAp_ccode(cCode);
+			ap.setAp_fromapprover(hrCode);
+
+			return aDao.countDocument4(ap);
+		}
 
 	// 내가받은 결재안문서 카운트
 	public int countDocument1(ApprovalDocu ap, HttpSession session) {

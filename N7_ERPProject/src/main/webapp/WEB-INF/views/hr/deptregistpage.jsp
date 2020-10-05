@@ -104,7 +104,7 @@ ul {
 				<td>부서 :</td>
 				<td><span id="positionS"></span></td>
 				<td>직책 :</td>
-				<td><input type="text" name="HDP_dept" id="dept"></td>
+				<td><input type="text" name="HDP_position" id="dept"></td>
 			</tr>
 		</table>
 		${failure}
@@ -123,7 +123,7 @@ $(document).ready(function(){
 		success : function(data){
 			console.log(data);
 			let str = "";
-			str += "<select name='HDP_position' id='position'>";
+			str += "<select name='HDP_dept' id='dept'>";
 			for(let i = 0 ; i < data.length ; i++){
 				str += "<option value='"+data[i].au_name+"'>"+data[i].au_name+"</option>";
 			}

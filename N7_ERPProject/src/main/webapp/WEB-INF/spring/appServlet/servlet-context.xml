@@ -45,6 +45,8 @@
 			<exclude-mapping path="/" />
 			<exclude-mapping path="/introducecompany" />
 			<exclude-mapping path="/join" />
+			<exclude-mapping path="/welcome" />
+			<exclude-mapping path="/welcomepage" />
 			<exclude-mapping path="/joinpage" />
 			<exclude-mapping path="/login" />
 			<exclude-mapping path="/access" />

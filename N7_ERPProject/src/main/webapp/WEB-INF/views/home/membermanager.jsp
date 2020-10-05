@@ -73,10 +73,12 @@ margin-left: 200px;
 	</div>
 	<div id="description" class="out" style="height: 700px;">
 	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>회원관리</h1></div>
-	<div class="center">
+	<div class="center" style="height:500px; width:700px; text-align:center;" >
+	<div style='float:right;'>
 	<input type="text" id="m_ccode" placeholder='회사코드검색'><button id="searchbtn" onclick="searchStart();">검색</button>
+	</div>
 	<br></br>
-		<div id="container" ></div>
+		<div id="container" ></div><br>
 		<div id="paging" style="text-align: center"></div>
 	<br><br>
 	
@@ -135,7 +137,7 @@ margin-left: 200px;
 				console.log(data);
 				let str = "";
 				str = "<table>"
-				str += "<tr class='infomenu'><td> &nbsp; </td><td style='width:200px;'>이름(아이디)</td><td style='width:150px;'>회사코드</td><td style='width:100px;'>등급</td></tr>"
+				str += "<tr class='infomenu' style='heigth:90px; font-size:18px; text-align : center;'><td style='width:30px;'> &nbsp; </td><td style='width:250px;'>이름(아이디)</td><td style='width:200px;'>회사코드</td><td style='width:200px;'>등급</td></tr>"
 				for(let i = 0 ; i<data.length ; i++){
 				str += "<tr class = '' id='"+data[i].m_id+"'>";					
 					str += "<td><input type='checkbox' id='chkbx' name='chkbx' value='"+data[i].m_id+"'></td>";

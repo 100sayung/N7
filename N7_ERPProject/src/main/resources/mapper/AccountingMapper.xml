@@ -188,20 +188,34 @@
 	<!-- 여기부터 분개전표 -->
 
 
-	<!-- 페이징 위한 내가 올린 결재안 카운트 -->
+	<!-- 페이징 위한 내가 올린 결재중 카운트 -->
 	<select id="countDocument" resultType="int">
 		SELECT COUNT(*)
 		FROM APPROVALDOCU
-		WHERE AP_CCODE = #{ap_ccode} AND AP_FROMAPPROVER = #{ap_fromapprover}
+		WHERE AP_CCODE = #{ap_ccode} AND AP_FROMAPPROVER = #{ap_fromapprover} AND (AP_STATUS = '1' OR AP_STATUS = '2')
+	</select>
+	
+	<!-- 페이징 위한 내가 올린 결재완료 카운트 -->
+	<select id="countDocument3" resultType="int">
+		SELECT COUNT(*)
+		FROM APPROVALDOCU
+		WHERE AP_CCODE = #{ap_ccode} AND AP_FROMAPPROVER = #{ap_fromapprover} AND AP_STATUS = '3'
+	</select>
+	
+	<!-- 페이징 위한 내가 올린 반려 카운트 -->
+	<select id="countDocument4" resultType="int">
+		SELECT COUNT(*)
+		FROM APPROVALDOCU
+		WHERE AP_CCODE = #{ap_ccode} AND AP_FROMAPPROVER = #{ap_fromapprover} AND AP_STATUS = '4'
 	</select>
 	
 	<!-- 페이징 위한 내가 받은 결재안 카운트 -->
 	<select id="countDocument1" resultType="int">
 		SELECT COUNT(*)
 		FROM APPROVALDOCU
-		WHERE AP_CCODE = #{ap_ccode} AND AP_STATUS != '4' AND AP_TOAPPROVER = #{ap_toapprover}
+		WHERE AP_CCODE = #{ap_ccode} AND AP_TOAPPROVER = #{ap_toapprover} AND (AP_STATUS = '1' OR AP_STATUS = '2')
 	</select>
-	
+	 
 	<!-- 페이징 위한 임시저장 결재안 카운트 -->
 	<select id="countDocument2" resultType="int">
 		SELECT COUNT(*)
@@ -221,7 +235,35 @@
 		#{j_none}, #{j_ntwo}, #{j_nthr}, DEFAULT)
 	</insert>
 
-	<!-- 내가 올린 결재안 목록 -->
+	<!-- 내가 올린 결재안 결재완료 목록 -->
+	<select id="apupPaymentList3" resultType="approvaldocu">
+		SELECT *
+		FROM (
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM APPROVALDOCU
+		WHERE AP_FROMAPPROVER = #{hrCode} AND AP_CCODE = #{cCode} AND AP_STATUS = '3'
+		) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end} 
+	</select>
+	
+	<!-- 내가 올린 결재안 반려 목록 -->
+	<select id="apupPaymentList4" resultType="approvaldocu">
+		SELECT *
+		FROM (
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM APPROVALDOCU
+		WHERE AP_FROMAPPROVER = #{hrCode} AND AP_CCODE = #{cCode} AND AP_STATUS = '4'
+		) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end} 
+	</select>
+	
+	<!-- 내가 올린 결재안 결재중 목록 -->
 	<select id="apupPaymentList" resultType="approvaldocu">
 		SELECT *
 		FROM (
@@ -229,7 +271,7 @@
 		FROM (
 		SELECT *
 		FROM APPROVALDOCU
-		WHERE AP_FROMAPPROVER = #{hrCode} AND AP_CCODE = #{cCode}
+		WHERE AP_FROMAPPROVER = #{hrCode} AND AP_CCODE = #{cCode} AND (AP_STATUS = '1' OR AP_STATUS = '2')
 		) A
 		)
 		WHERE RN BETWEEN #{start} AND #{end} 
@@ -244,7 +286,7 @@
 		FROM (
 		SELECT *
 		FROM APPROVALDOCU
-		WHERE AP_TOAPPROVER = #{hrCode} AND AP_CCODE = #{cCode} AND AP_STATUS != '4'
+		WHERE AP_TOAPPROVER = #{hrCode} AND AP_CCODE = #{cCode} AND (AP_STATUS = '1' OR AP_STATUS = '2')
 		) A
 		)
 		WHERE RN BETWEEN #{start} AND #{end}
@@ -288,7 +330,7 @@
 		SELECT *
 		FROM AC_JNOB
 		WHERE
-		J_DOCUNUM=#{j_docunum} AND J_GRADE !='4' AND J_CCODE = #{cCode}
+		J_DOCUNUM=#{j_docunum} AND (J_GRADE !='4' AND J_GRADE != '3') AND J_CCODE = #{cCode}
 	</select>
 
 	<!-- 임시저장 결재 상세 -->
@@ -366,9 +408,10 @@
 		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}
 	</select>
 	
-	<select id="apupSaleinfo1" resultType="saleInfo">
+	<select id="apupSaleinfo" resultType="saleInfo">
 	SELECT *
 	FROM AC_SALESTATEMENT
+	WHERE S_NUM = #{s_num}
 	</select>
 	
 </mapper>
