@@ -29,7 +29,7 @@ public class HRDepartmentMM {
 	private HRIDeptDao Ddao;
 
 	ModelAndView mav = new ModelAndView();
-	//遺��꽌 �벑濡�
+	//�겫占쏙옙苑� 占쎈쾻嚥∽옙
 	public ModelAndView deptregistinsert(Department dept, String cCode) {
 		String view = null;
 		System.out.println(dept.getHDP_dept());
@@ -39,18 +39,18 @@ public class HRDepartmentMM {
 				view = "hr/deptregistpage";
 			}
 		}else {
-			mav.addObject("failure", "부서 및 직책이 입력되지 않았습니다 입력해주세요.");
+			mav.addObject("failure", "遺��꽌 諛� 吏곸콉�씠 �엯�젰�릺吏� �븡�븯�뒿�땲�떎 �엯�젰�빐二쇱꽭�슂.");
 			view="hr/deptregistpage";
 		}
 		mav.setViewName(view);
 		return mav;
 	}
 
-	// 遺��꽌,吏곴툒 湲됱뿬 蹂�寃� �럹�씠吏� �씠�룞�떆 遺��꽌,吏곴툒 紐⑸줉 異쒕젰
+	// �겫占쏙옙苑�,筌욊낫�닋 疫뀀맩肉� 癰귨옙野껓옙 占쎈읂占쎌뵠筌욑옙 占쎌뵠占쎈짗占쎈뻻 �겫占쏙옙苑�,筌욊낫�닋 筌뤴뫖以� �빊�뮆�젾
 	public ModelAndView deptpayselect(String cCode) {
 		String view = null;
 		ArrayList<Department> dept = Ddao.deptpayselect(cCode);
-		System.out.println("泥ル쾲吏� =" + dept.size());
+		System.out.println("筌ｃ꺂苡뀐쭪占� =" + dept.size());
 
 		Gson gson = new Gson();
 		String json = gson.toJson(dept);
@@ -64,7 +64,7 @@ public class HRDepartmentMM {
 		return mav;
 	}
 
-	// 寃��깋�븷�븣 遺��꽌 吏곴툒<select>李� 紐⑸줉
+	// 野껓옙占쎄퉳占쎈막占쎈르 �겫占쏙옙苑� 筌욊낫�닋<select>筌∽옙 筌뤴뫖以�
 	public ModelAndView distictdp(String cCode) {
 		String view = null;
 		ArrayList<Department> distinctdept = Ddao.distinctdept(cCode);
@@ -85,7 +85,7 @@ public class HRDepartmentMM {
 		return mav;
 	}
 
-	// 遺��꽌,吏곴툒 蹂�寃�
+	// �겫占쏙옙苑�,筌욊낫�닋 癰귨옙野껓옙
 	public String deptpayupdate(String dept, Integer pay, String cCode) {
 		System.out.println(dept);
 		System.out.println(pay);
@@ -97,7 +97,7 @@ public class HRDepartmentMM {
 		if (Ddao.deptpayupdate(hMap)) {
 			System.out.println("popopo");
 			String resultdept = Ddao.payselect(hMap);
-			System.out.println("�븘�븘 = " + resultdept);
+			System.out.println("占쎈툡占쎈툡 = " + resultdept);
 			if (resultdept != null) {
 				return resultdept;
 			}
@@ -105,7 +105,7 @@ public class HRDepartmentMM {
 		return null;
 	}
 
-	// 遺��꽌/吏곴툒 �궘�젣
+	// �겫占쏙옙苑�/筌욊낫�닋 占쎄텣占쎌젫
 	public String deptdelete(Integer deptnum, String cCode) {
 		String json = null;
 		HashMap<String, String> delMap = new HashMap<String, String>();
@@ -122,17 +122,17 @@ public class HRDepartmentMM {
 
 	public ModelAndView searchpay(String cCode) {
 		ArrayList<HR_Card> deList = Ddao.searchpay(cCode);
-		System.out.println("紐⑸줉="+deList);
+		System.out.println("筌뤴뫖以�="+deList);
 		String view="/hr/searchpaymm";
 		mav.setViewName(view);
 		return mav;
 	}
 
-	// 怨듭젣�궗�빆 愿�由� �럹�씠吏� �씠�룞 and 怨듭젣 紐⑸줉 異쒕젰
+	// �⑤벊�젫占쎄텢占쎈퉮 �꽴占썹뵳占� 占쎈읂占쎌뵠筌욑옙 占쎌뵠占쎈짗 and �⑤벊�젫 筌뤴뫖以� �빊�뮆�젾
 	public ModelAndView moveDeduct(String cCode) {
 		String view = null;
 		ArrayList<Deduct> duList = Ddao.moveDeduct(cCode);
-		System.out.println("怨듭젣 = " + duList.size());
+		System.out.println("�⑤벊�젫 = " + duList.size());
 		if (duList != null) {
 			Gson gson = new Gson();
 			String json = gson.toJson(duList);
@@ -143,7 +143,7 @@ public class HRDepartmentMM {
 		return mav;
 	}
 
-	// 怨듭젣 湲덉븸 �닔�젙
+	// �⑤벊�젫 疫뀀뜆釉� 占쎈땾占쎌젟
 	public String modifyDeduction(String deduct, Integer denum, String cCode) {
 		HashMap<String, String> duMap = new HashMap<String, String>();
 		duMap.put("deduct", deduct);
@@ -161,7 +161,7 @@ public class HRDepartmentMM {
 		return null;
 	}
 
-	// 遺��꽌 吏곴툒寃��깋 湲곕뒫
+	// �겫占쏙옙苑� 筌욊낫�닋野껓옙占쎄퉳 疫꿸퀡�뮟
 	public String findDeptPosition(String disdept, String disposition, String cCode) {
 		System.out.println(disdept + "," + disposition);
 		System.out.println(disdept);
@@ -220,7 +220,7 @@ public class HRDepartmentMM {
 	}
 
 	public String getDeptAuthList(String cCode) {
-		ArrayList<Department> deptlist = Ddao.getDeptAuthlist(cCode); // �궗�떎 �씠寃� �쟾泥닿툈�뼱�삤�뒗嫄곗엫
+		ArrayList<Department> deptlist = Ddao.getDeptAuthlist(cCode); // 占쎄텢占쎈뼄 占쎌뵠野껓옙 占쎌읈筌ｋ떯�늿占쎈선占쎌궎占쎈뮉椰꾧퀣�뿫
 		String result = new Gson().toJson(deptlist);
 		return result;
 	}
@@ -237,7 +237,7 @@ public class HRDepartmentMM {
 		}
 	}
 
-	// 湲됱뿬議고쉶 �럹�씠吏� 紐⑸줉
+	// 疫뀀맩肉ц�곌퀬�돳 占쎈읂占쎌뵠筌욑옙 筌뤴뫖以�
 	public String searchwages() {
 		ArrayList<ViewPay> mList = new ArrayList<ViewPay>();
 		mList = Ddao.searchwages();
@@ -247,9 +247,9 @@ public class HRDepartmentMM {
 		return gson;
 	}
 
-	// 湲됱뿬紐낆꽭�꽌
+	// 疫뀀맩肉э쭗�굞苑�占쎄퐣
 	public ModelAndView detailpay(String hc) {
-		System.out.println("�삤�굹�뿬?" + hc);
+		System.out.println("占쎌궎占쎄돌占쎈연?" + hc);
 		mav = new ModelAndView();
 		HR_Card card = Ddao.detailpay(hc);
 		ViewPay pay = Ddao.paysearch(hc);
@@ -267,20 +267,20 @@ public class HRDepartmentMM {
 		return mav;
 	}
 
-	// 湲됱뿬 紐낆꽭�꽌 �엯�젰 諛� �닔�젙
+	// 疫뀀맩肉� 筌뤿굞苑�占쎄퐣 占쎌뿯占쎌젾 獄쏉옙 占쎈땾占쎌젟
 	public ModelAndView payroll(ViewPay pay) {
 		System.out.println("DJ?");
 		String view = null;
 		String selectpay = Ddao.findpay(pay);
 		if (selectpay == null) {
-			// �씤�꽌�듃
+			// 占쎌뵥占쎄퐣占쎈뱜
 			if (Ddao.insertpay(pay)) {
 				view = "/hr/searchpaymm";
 			} else {
 				view = "/hr/payinputmodify";
 			}
 		} else if (selectpay != null) {
-			// �뾽�뜲�씠�듃
+			// 占쎈씜占쎈쑓占쎌뵠占쎈뱜
 			if (Ddao.updatepay(pay)) {
 				view = "/hr/searchpaymm";
 			} else {
@@ -306,14 +306,14 @@ public class HRDepartmentMM {
 		}
 		return null;
 	}
-	//급여명세서 아이디나 이름으로 검색
+	//湲됱뿬紐낆꽭�꽌 �븘�씠�뵒�굹 �씠由꾩쑝濡� 寃��깋
 	public String findcheckpayid(String checkpayid) {
 		System.out.println("checkpayid="+checkpayid);
 		StringBuilder sb=new StringBuilder();
 		if(checkpayid!=null) {
 			ArrayList<ViewPay> ViewList=Ddao.checkingidname(checkpayid);
-			System.out.println("성공?"+ViewList);
-				sb.append("<tr><td>아이디</td><td>이름</td><td>부서</td><td>직책</td><td>급여</td><td>기본공제액</td><td>기본수령액</td></tr>");
+			System.out.println("�꽦怨�?"+ViewList);
+				sb.append("<tr><td>�븘�씠�뵒</td><td>�씠由�</td><td>遺��꽌</td><td>吏곸콉</td><td>湲됱뿬</td><td>湲곕낯怨듭젣�븸</td><td>湲곕낯�닔�졊�븸</td></tr>");
 			for(int i=0;i<ViewList.size();i++) {
 				int result=ViewList.get(i).getHDP_PAY()-ViewList.get(i).getHDD_AMOUNT();
 				sb.append("<tr id='\""+ViewList.get(i).getHC_ID()+"\"'>");
@@ -324,15 +324,15 @@ public class HRDepartmentMM {
 				sb.append("<td>"+ViewList.get(i).getHDP_PAY()+"</td>");
 				sb.append("<td>"+ViewList.get(i).getHDD_AMOUNT()+"</td>");
 				sb.append("<td>"+result+"</td>");
-				sb.append("<td><button type='button' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>입력 수정하기</button></td>");
-				sb.append("<td><button type='button' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>상세보기</button></td></tr>");
+				sb.append("<td><button type='button' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>�엯�젰 �닔�젙�븯湲�</button></td>");
+				sb.append("<td><button type='button' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>�긽�꽭蹂닿린</button></td></tr>");
 			}
-			System.out.println("배열로="+sb.toString());
+			System.out.println("諛곗뿴濡�="+sb.toString());
 			Gson gson=new Gson();
 			String total=gson.toJson(sb.toString());
 			return total;
 		}else if(checkpayid==null) {
-			
+			 
 		}
 		return null;
 	}
