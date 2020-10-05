@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Document</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
 #center{
@@ -100,6 +100,7 @@ text-align:center;
   	   
   	   $("#clcode").val(clcode);
   	};
+  	
      $('#uncollectedmoneyitemfrm').click(function(){
        var str="";
        
@@ -111,7 +112,7 @@ text-align:center;
              console.log(data);
              
              for(var i in data.sList){//개별 미수금 등록한 거
-                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bu_person+"></td>";
+                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_ccode+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
@@ -119,12 +120,12 @@ text-align:center;
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
              }
               for(var i in data.sList2){ //결재창에서 끌고 온거
-                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_proname+"></td>";
-                 str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
-                 str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-                 str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-                 str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-                 str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList2[i].bs_docunum+"></td>";
+                 str+="<td><input type='text' value="+data.sList2[i].bs_date+"></td>";
+                 str+="<td><input type='text' value="+data.sList2[i].bs_proname+"></td>";
+                 str+="<td><input type='number' value="+data.sList2[i].bs_unit+"></td>";
+                 str+="<td><input type='number' value="+data.sList2[i].bs_quantity+"></td>";
+                 str+="<td><input type='number' value="+data.sList2[i].bs_price+"></td>";
               }
                $('#tBody').html(str);
            
@@ -200,7 +201,45 @@ text-align:center;
                }
             });
          }); 
-     
+      
+/*       $('#deleteCheck').click(function(){
+          var check="";
+          $("input[name=each_check]:checked").each(function(){
+             check = $(this).attr("value");
+             console.log(check);
+          });
+          
+          $.ajax({
+                type : 'post',
+                url : '/erp/rest/sales/orderregistrationdelete',
+                data: {check:check},
+                dataType: "json",
+                success : function(data) {                   
+                   console.log(data);
+                   var str="";
+                   if(data.sList[0].bo_num==check){
+                      alert("출하 등록된 자료입니다.");
+                   }else{
+                      
+                   for(var i in data.sList){
+                       str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
+                       str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
+                       str+="<td><input type='number' value="+data.sList[i].bo_proquantity+"></td>";
+                       str+="<td><input type='number' value="+data.sList[i].bo_prosalesamount+"></td>";
+                       str+="<td><input type='number' value="+data.sList[i].bo_orderbudget+"></td>";
+                    }
+                       $('#tBody').html(str);
+                   }
+                },
+                error : function(error) {
+                   console.log(error);
+                }
+             });
+          }); 
+      */
     
       //완납 처리 버튼
       $('#fullpaymentcheck').click(function(){

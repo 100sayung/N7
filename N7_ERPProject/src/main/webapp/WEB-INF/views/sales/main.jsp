@@ -62,35 +62,34 @@ ul {
          </h1>
       </div>
       <div id="menu">
-         <ul>
-            <li><a href="#" accesskey="4" title="">내 정보</a></li>
-            <li><a href="#" accesskey="2" title="">인사 관리</a></li>
-            <li class="current_page_item"><a href="#" accesskey="3" title="">영업 관리</a></li>
-            <li><a href="#" accesskey="5" title="">구매 관리</a></li>
-            <li><a href="#" accesskey="6" title="">자재 관리</a></li>
-            <li><a href="#">회계 관리</a></li>
-         </ul>
+			<ul>
+				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu">
       </div>
    </div>
    <div id="side_menu">
       <ul id="menuList">
-         <li id="showMenu1">수주등록</li>
-         <li id="showMenu2">출하의뢰입력  </li>
-         <li id="showMenu3">미수금등록</li>
-         <li id="showMenu4">영업활동 조회</li>
-         <li id="showMenu5">내 결재함</li>
+         <li><a href="#" id="showMenu1">수주등록</a></li>
+         <li><a href="#" id="showMenu2">출하의뢰입력</a></li>
+         <li><a href="#" id="showMenu3">미수금등록</a></li>
+         <li><a href="#" id="showMenu4">영업활동 조회</a></li>
+         <li><a href="#" id="showMenu5">내 결재함</a></li>
       </ul>
    </div>
+   <center>
    <div id="description">
     
    </div>
+   <center>
+   </body>
+   <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
    <script>
    
    $('#showMenu1').click(function() {
 
        $.ajax({
           type : 'get',
-          url : 'orderregistrationfrm',
+          url : '/erp/sales/orderregistrationfrm',
           dataType : 'html',
           success : function(data) {
              $('#description').html(data);
@@ -105,7 +104,7 @@ ul {
        
        $.ajax({
           type : 'get',
-          url : 'shippingrequestinputfrm',
+          url : '/erp/sales/shippingrequestinputfrm',
           dataType : 'html',
           success : function(data) {
              console.log(data);
@@ -141,12 +140,11 @@ ul {
     });
  });  */
    
-   $('#showMenu3').on('click', function(e) {
-       e.preventDefault();
+   $('#showMenu3').on('click', function() {
 
        $.ajax({
           type : 'get',
-          url : 'uncollectedmoneyregistrationfrm',
+          url : '/erp/sales/uncollectedmoneyregistrationfrm',
           dataType : 'html',
           success : function(data) {
              console.log(data);
@@ -158,12 +156,10 @@ ul {
        });
     });
    
-   $('#showMenu4').on('click', function(e) {
-       e.preventDefault();
-
+   $('#showMenu4').on('click', function() {
        $.ajax({
           type : 'get',
-          url : 'businessactivitiesfrm',
+          url : '/erp/sales/businessactivitiesfrm',
           dataType : 'html',
           success : function(data) {
              console.log(data);
@@ -175,15 +171,15 @@ ul {
        });
     });
    
-   $('#showMenu5').on('click', function(e) {
+/*    $('#showMenu5').on('click', function(e) {
        e.preventDefault();
 
-/*        var check='';
+        var check='';
        $("input[name=each_check]:checked").each(function(){
           check= $(this).attr("value");
           
           console.log(check);
-          if(check!=""){ */
+          if(check!=""){
       
        $.ajax({
           type : 'get',
@@ -197,8 +193,9 @@ ul {
              console.log(error);
           }
         });
-    });
-  
+    }); */
+    
+    
     var select;
       $.ajax({
             url:"/erp/stock/getitemcode",
@@ -225,7 +222,7 @@ ul {
           return arrStr;
        } 
      
-      var select2;
+/*       var select2;
       $.ajax({
             url:"/erp/rest/sales/getbonum",
             dataType:"json",
@@ -249,7 +246,6 @@ ul {
           }
           arrStr+="</select>";
           return arrStr;
-       } 
+       }  */
    </script>
-</body>
 </html>
