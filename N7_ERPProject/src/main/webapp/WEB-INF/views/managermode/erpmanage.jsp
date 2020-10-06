@@ -260,7 +260,7 @@ button {
 						var au_name = document.getElementById("au_name").value;
 						var au_authority = document
 								.getElementById("au_authority").value;
-
+						
 						if (au_name == '' || au_name == null
 								&& au_authority == "" || au_authority == null) {
 							alert("모두 입력해주세요.");
@@ -396,96 +396,5 @@ button {
 					});
 		}
 	}
-
-	// 	function namecheck() {
-	// 		var au_name = $("#au_name").val();
-	// 		console.log(au_name);
-
-	// 		if(au_name == null || au_name == ''){
-	// 			$("#ncheck").html("<font style='color:red;'>부서이름을 입력해 주세요.</font>");
-	// 		}else{
-
-	// 		$.ajax({
-	// 					url : "/erp/rest/managermode/namecheck",
-	// 					data : {
-	// 						au_name : au_name
-	// 					},
-	// 					dataType : "text",
-	// 					method : "get",
-	// 					async : false,
-	// 					success : function(data) {
-	// 						console.log(data)
-	// 						if (data == 1) {
-	// 							checkccode = false;
-	// 							$("#ncheck").html("<font style='color:red;'>해당 부서가 이미 존재합니다.</font>");
-	// 						} else {
-	// 							checkccode = true;
-	// 							$("#ncheck").html(
-	// 									"<font style='color:green;'>확인</font>");
-	// 						}
-	// 					},
-	// 					error : function(err) {
-	// 						console.log(err);
-	// 					}
-	// 				});
-	// 		}
-	// 	}
-
-	// 	$(document).ready(
-	// 					function() {
-
-	// 						$.ajax({
-	// 									url : '/erp/rest/managermode/getCompanyInfo',
-	// 									type : 'get',
-	// 									datatype : 'json',
-	// 									success : function(data) {
-	// 										console.log(data);
-	// 										var str = "";
-	// 										for ( var i in data.mList) {
-
-	// 											str += "<table class='companyInfo'><thead><tr>";
-	// 											str += "<th colspan='4'><div class='input-group'><span class='input-group-addon'>회사코드</span>";
-	// 											str += "<input type='text' name='c_code' class='form-control' value='"
-	// 													+ data.mList[i].c_code
-	// 													+ "' readonly style='width:130%;'></div></th></tr>";
-	// 											str += "<tr><th colspan='2'><div class='input-group'><span class='input-group-addon'>부서이름</span>";
-	// 											str += "<input type='text' name='c_name' value='"
-	// 													+ data.mList[i].c_name
-	// 													+ "' class='form-control' style='width:128%;'></div></th>";
-	// 											str += "<th colspan='2'><div class='input-group'><span class='input-group-addon'>대표자명</span>";
-	// 											str += "<input type='text' name='c_ceo' value='"
-	// 													+ data.mList[i].c_ceo
-	// 													+ "' class='form-control' style='width:121%;'></div></th></tr></thead>";
-	// 											str += "<tbody><tr><th colspan='2'><div class='input-group'><span class='input-group-addon'>사업자번호</span>";
-	// 											str += "<input type='text' name='c_comnum' value='"
-	// 													+ data.mList[i].c_comnum
-	// 													+ "' class='form-control' style='width:120%;'></div></th>";
-	// 											str += "<th colspan='2'><div class='input-group'><span class='input-group-addon'>전화번호</span>";
-	// 											str += "<input type='text' name='c_phonenum' value='"
-	// 													+ data.mList[i].c_phonenum
-	// 													+ "' class='form-control' style='width:120%;'></div></th></tr>";
-	// 											str += "<tr><th colspan='2'><div class='input-group'><span class='input-group-addon'>업태</span>";
-	// 											str += "<input type='text' name='c_kind' value='"
-	// 													+ data.mList[i].c_kind
-	// 													+ "' class='form-control' style='width:141%;'></div></th>";
-	// 											str += "<th colspan='2'><div class='input-group'><span class='input-group-addon'>종류</span>";
-	// 											str += "<input type='text' name='c_kind2' value='"
-	// 													+ data.mList[i].c_kind2
-	// 													+ "' class='form-control' style='width:134%;'></div></th></tr>";
-	// 											str += "<tr><th colspan='4'><div class='input-group'><span class='input-group-addon'>주소</span>";
-	// 											str += "<input type='text' name='c_addr' value='"
-	// 													+ data.mList[i].c_addr
-	// 													+ "' class='form-control' style='width:313%;'></div></th></tr></tbody></table>";
-
-	// 										}
-	// 										$(".company-div").html(str);
-
-	// 									},
-	// 									error : function(error) {
-	// 										console.log(error);
-	// 									}
-
-	// 								});
-	// 					});
 </script>
 </html>
