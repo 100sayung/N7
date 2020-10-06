@@ -91,11 +91,11 @@
 	</insert>
 	
    <insert id="insertIeport">
-      INSERT INTO S_IEPORT VALUES(#{r_ieseqnum}, #{r_ccode}, DEFAULT, #{r_hrcode}, '3', #{r_clcode}, #{r_itcode}, #{r_amount}, #{r_unlit}, 0)
+      INSERT INTO S_IEPORT VALUES(S_IEPORT_SEQ.NEXTVAL, #{r_ccode}, DEFAULT, #{r_hrcode}, '' ,'3', #{r_clcode}, #{r_documentcode} ,#{r_itcode}, #{r_amount}, #{r_unlit}, 0)
    </insert>
    
    <select id="getitcode" resultType="itemcode" parameterType="String">
-   		SELECT * FROM S_ITEMCODE WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{cCode}
+   	 	SELECT * FROM S_ITEMCODE WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{cCode}
    </select>
    
    <update id="updateitcode">

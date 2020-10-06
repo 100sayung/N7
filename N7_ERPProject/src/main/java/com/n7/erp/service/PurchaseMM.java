@@ -298,7 +298,7 @@ public class PurchaseMM {
 		rt.setR_ccode(session.getAttribute("cCode").toString());
 		String hr_code= session.getAttribute("hrCode").toString();
 		rt.setR_hrcode(hr_code);
-		
+
 		int cnt= 0;
 		int cnt2=0;
 		int tot=0;
