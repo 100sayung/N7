@@ -1,6 +1,7 @@
 package com.n7.erp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import com.n7.erp.bean.ConsultingBoard;
 import com.n7.erp.bean.Member;
 import com.n7.erp.dao.IConsultingBoardDao;
 import com.n7.erp.userClass.Paging;
+import com.n7.erp.userClass.PagingSH;
 
 
 @Service
@@ -51,7 +53,7 @@ public class ConsultingBoardMM {
 		int maxNum = CBdao.getBoarCount();
 		int listCount=10;
 		int pageCount=5;
-		String boardName="/erp/erpboard";
+		String boardName="/erp/home/erpboard";
 		Paging paging= new Paging(maxNum, pageNum, listCount, pageCount, boardName);
 		return paging.makeHtmlPaging();
 	}
@@ -65,18 +67,18 @@ public class ConsultingBoardMM {
 		String pw=null;
 		
 		if(id==null) {
-			if(board.getCB_PASSWORD()==null) {
+			if(board.getCb_password()==null) {
 				mav.addObject("msg", "비밀번호를 입력해주세요.");
 				mav.addObject("id", id);
 			}else {
-				pw=board.getCB_PASSWORD();
+				pw=board.getCb_password();
 			}
 		}else {
 			pw=mb.getM_pw();
 			
 		}
 		CBdao.boardWrite(board);
-		view="/home/erpboard";
+		view="redirect:/erpboard";
 		
 		mav.setViewName(view);
 		return mav;
@@ -96,6 +98,37 @@ public class ConsultingBoardMM {
 		
 		return mav;
 	}
+	
+	public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword, Integer pageNum) {
+		System.out.println("pageNum="+pageNum);
+		Map<String, List<ConsultingBoard>>bMap = null;
+		ConsultingBoard cb = new ConsultingBoard();
+		pageNum=(pageNum==null)?1:pageNum;
+		List<ConsultingBoard>bList=CBdao.boardSearch(choice, keyword, pageNum);
+		cb.setCb_count(CBdao.getSearchCount(choice,keyword));
+		bList.add(cb);
+		if(pageNum<=0) {
+			System.out.println("잘못된 페이지 번호");
+		}
+		if(bList!=null && bList.size()!=0) {
+			bMap=new HashMap<>();
+			bMap.put("bList", bList);
+			//bMap.put("paging", getPaging(pageNum));
+		}else {
+			bMap=null;
+		}
+		return bMap;
+	}
+	
+	private Object getPaging2(Integer pageNum, String keyword) {
+		int maxNum = CBdao.getBoarCount();
+		int listCount=10;
+		int pageCount=5;
+		String boardName="/erp/home/erpboard";
+		PagingSH paging= new PagingSH(maxNum, pageNum, listCount, pageCount, boardName, keyword);
+		return paging.makeHtmlPaging();
+	}
+	
 
 //	//게시글 수정 목록 출력
 //	public String boardmodifyajax(Integer num) {

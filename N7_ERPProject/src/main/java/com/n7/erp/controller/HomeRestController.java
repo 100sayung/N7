@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -74,6 +75,11 @@ public class HomeRestController {
 		String value= mm.arbitrarily(num,session);
 		return value;
 	}
+	@PostMapping(value = "/home/boardSearch")
+	public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword, Integer pageNum) { 
+		Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword, pageNum);
+		return bMap;
+	}
 
 	@PostMapping(value = "/home/forcewithdrawal")
 	public String forceWithDrawal(String jsonStr) { 
@@ -84,6 +90,7 @@ public class HomeRestController {
 		mm.forceWithDrawal(slist);
 		return null;
 	}
+	
 	
 	
 }
