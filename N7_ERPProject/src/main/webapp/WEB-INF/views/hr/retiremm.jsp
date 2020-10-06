@@ -42,7 +42,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
@@ -80,13 +80,13 @@ ul {
 		<Strong class="deptregist_color_size">사원 휴 - 퇴직 관리</Strong>
 	</div>
 	<div style="float: right;">
-		<input type="text" id="nameSearch" placeholder="이름으로 입력"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
+		<input type="text" id="nameSearch" placeholder="이름으로 입력" style="padding: 5px 10px;"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
 	</div>
 	<div>
 		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a> 
 		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a> 
 		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
-		<div id="container" style="overflow:auto; width:800px; height:600px;">
+		<div id="container" style="overflow:auto; width:1000px; height:600px;">
 			<input type="hidden" value="" id="status">
 		</div>
 	</div>
@@ -109,11 +109,11 @@ ul {
 			data : {status : status},
 			success : function(data){
 				let str = "";
-				str += "<table style='border:1px solid #D9EDF7; width:800px;'>";
+				str += "<table style='border:1px solid #D9EDF7; width:1000px;text-align:center;'>";
 				console.log(data);
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr>"
-					str += "<td><input type='hidden' class='border_delete_btn' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
+					str += "<td><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
 					str += "<td><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
 					str += "<td><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
 					str+="<td><select name='hc_work'>";

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>부서 직책 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -83,21 +83,22 @@ ul {
 	<div class="first_div_css">
 		<Strong class="deptregist_color_size">부서 직책 관리</Strong>
 	</div>
-	<table align="right">
+	<div align="right" width="100%">
+	<table>
 		<tr id="seldplist">
-			<td><select id="disdept" name="disdept" onchange="changeDept()"><option selected="selected"
+			<td><select id="disdept" name="disdept" onchange="changeDept()" style="padding: 5px 10px;"><option selected="selected"
 						 value="">부서 선택</option>
 			</select></td>
-			<td><select id="disposition" name="disposition"><option selected="selected"
+			<td><select id="disposition" name="disposition" style="padding: 5px 10px;"><option selected="selected"
 						 value="">직급 선택</option>
 			</select></td>
 			<td><button type="button" class="infobtn" onclick="distinct()">검색</button></td>
-			<!-- 검색 버튼 클릭시  -->
 		</tr>
 	</table>
+	</div>
 	<div id="container" style="overflow:auto; height: 500px;">
-	<table id="id" align="center" width="100%">
-		<tr style="background-color: #F8F7F7">
+	<table id="id" align="center" width="100%" style="text-align: center;">
+		<tr style="background-color: lightgray;color : black;">
 			<td>부서</td>
 			<td>직급</td>
 			<td>금액</td>

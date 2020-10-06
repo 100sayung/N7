@@ -111,7 +111,7 @@ input{
             <td align="center"><font color=#7ED5E4>토</font></td>
         </tr>
     </table>
-    <div id="at"></div>
+    <div id="at" style="height: 400px;overflow: auto;"></div>
 	</div>
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
@@ -127,7 +127,7 @@ input{
 			success : function(data){
 				console.log(data);
 				//09-24 table change
-				let str = "<div style='height:400px;overflow-x:hidden;float:right;position:static;'><table style='width:500px;overflow-y:scroll;'>";
+				let str = "<div style='height:400px;float:right;position:static;'><table style='width:500px;overflow-y:scroll;'>";
     			for(let i = 0 ; i<data.length ; i++){
 					let type = "";
        				let time = data[i].ha_time.substr(16, 8);

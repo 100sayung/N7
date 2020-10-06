@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 급여 입력및 수정</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -114,30 +114,30 @@ table {
 		</tr>
 		<tr>
 			<td class="font_color_paydetail">기본급</td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${pay.HDP_PAY}" class="rightinput"></td>
+			<td><input style="border: none;" type="text" readonly="readonly" value="${pay.HDP_PAY}"></td>
 			<td class="font_color_paydetail">${deduct[0].HDD_NAME}</td>
 			<td><input id="insurance" autocomplete="off" type="text" name="HP_INSURANCE" required="required"
-						 value="${deduct[0].HDD_AMOUNT}" onkeypress="return checkinsurance(event)" min="0" class="rightinput"></td>
+						 value="${deduct[0].HDD_AMOUNT}" onkeypress="return checkinsurance(event)" min="0"></td>
 		</tr>
 		<tr>
 			<td class="font_color_paydetail">인센티브</td>
 			<td><input id="incen" autocomplete="off" type="text" required="required" value="0"
-					 name="HP_INCEN" onkeypress="return checkincen(event)" min="0" class="rightinput"></td>
+					 name="HP_INCEN" onkeypress="return checkincen(event)" min="0"></td>
 			<td class="font_color_paydetail">${deduct[1].HDD_NAME}</td>
 			<td><input id="tax" autocomplete="off" type="text" name="HP_TAX" required="required"
-			 value="${deduct[1].HDD_AMOUNT}" onkeypress="return checktax(event)" min="0" class="rightinput"></td>
+			 value="${deduct[1].HDD_AMOUNT}" onkeypress="return checktax(event)" min="0"></td>
 		</tr>
 		<tr>
 			<td class="font_color_paydetail"></td>
 			<td></td>
 			<td class="font_color_paydetail">공제액계</td>
-			<td><input id="deductsum" style="border: none;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}" class="rightinput"></td>
+			<td><input id="deductsum" style="border: none;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}"></td>
 		</tr>
 		<tr>
 			<td class="font_color_paydetail">지급액 계</td>
-			<td><input id="provide" style="border: none;" type="text" readonly="readonly" value="0" class="rightinput"></td>
+			<td><input id="provide" style="border: none;" type="text" readonly="readonly" value="0"></td>
 			<td class="font_color_paydetail">실수령액</td>
-			<td><input id="receive" style="border: none;" type="text" readonly="readonly" value="0" name="HP_REALMONEY" class="rightinput"></td>
+			<td><input id="receive" style="border: none;" type="text" readonly="readonly" value="0" name="HP_REALMONEY"></td>
 		</tr>
 	</table>
 		<div align="center" style="margin-top: 30px;">
