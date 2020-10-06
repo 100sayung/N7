@@ -25,19 +25,6 @@
 					}
 				}
 				
-				$.ajax({
-					url:"/erp/rest/managermode/checkauth",
-					dataType:"json",
-					type:"get",
-					success : function(auth){
-						console.log(auth);
-						if(auth==1){	
-						str += "<li><a href="/hr/movehrcardpage">사원관리</a></li>";
-						}
-					}, error : function(err){
-	-					console.log(err);
-					}
-				});
 				str += "</ul>";
 				$("#mainmenu").html(str);
 				

@@ -76,7 +76,8 @@ td{
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
@@ -84,6 +85,17 @@ td{
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
 			<div id="myInfoMenu">
 			</div>
+			<li id="showMenu1">나의 결재함</a></li>
+			<ul id="menu2" style="display: none;">
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+				</ul>
+				<li id="apdownPayment">내가 받은 결재함</li>
+				<li id="acTemporary">임시저장 결재함</li>
+			</ul>
 		</ul>
 	</div>
 

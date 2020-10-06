@@ -87,4 +87,9 @@ public class managerModeRestController {
 		return result;
 	}
 	
+	@GetMapping(value="/managermode/checkauth")
+	public String checkAuth(HttpSession session) {
+		String result = mm.checkAuth(session);
+		return result;
+	}
 }
