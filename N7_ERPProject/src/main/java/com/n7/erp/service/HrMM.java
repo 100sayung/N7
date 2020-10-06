@@ -192,7 +192,7 @@ public class HrMM {
 	public ModelAndView hrCard(HttpSession session) {
 		String m_ccode = session.getAttribute("cCode").toString();
 		mav.setViewName("/hr/hrCard");
-		if (checkMemberHrCardCnt(m_ccode)) {
+		if (!checkMemberHrCardCnt(m_ccode)) {
 			mav.addObject("msg", "인사카드를 등록해주세요.");
 		}
 
@@ -478,9 +478,9 @@ public class HrMM {
 
 	private boolean checkMemberHrCardCnt(String cCode) {
 		if (hDao.checkMemberHrCardCnt(cCode)) {
-			return true;
-		} else {
 			return false;
+		} else {
+			return true;
 		}
 	}
 //

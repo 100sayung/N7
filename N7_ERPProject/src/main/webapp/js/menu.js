@@ -10,7 +10,7 @@
 
 				for(var i in data.mList){
 					str+="<li><a id="+data.mList[i].f_functions+" onclick=menu('"+data.mList[i].f_functions+"')>"+data.mList[i].f_functions+"</a></li>";
-					
+
 					if(data.mList[i].f_functions == "인사관리"){
 						if($("#myInfoMenu").length>0){
 							let menu = "";
@@ -24,10 +24,10 @@
 						}
 					}
 				}
-				
+
 				str += "</ul>";
 				$("#mainmenu").html(str);
-				
+
 			},
 			error:function(error){
 				console.log(error);

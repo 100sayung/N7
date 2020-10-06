@@ -72,13 +72,13 @@ td{
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li> 
-					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li> 
-					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li> 
-					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li> 
-					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li> 
-					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li> 
-					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li> 
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
@@ -87,7 +87,7 @@ td{
 	</div>
 	<table id="deductiontable" width="100%">
 		<tr style="background-color: #F8F7F7; text-align: center;">
-		
+
 		</tr>
 	</table>
 	</div>

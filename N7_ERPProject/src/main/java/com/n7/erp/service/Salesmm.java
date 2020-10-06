@@ -452,16 +452,20 @@ public class Salesmm {
       return mav;
    }
 
-   public Map<String, List<Businessbean>> businessitem(HttpSession session) {
+   public ModelAndView salesResult(HttpSession session) {
+	 ModelAndView mav = new ModelAndView();
      String cCode=session.getAttribute("cCode").toString();
-     Map<String, List<Businessbean>> sMap= null;
-      System.out.println("3333333333333333333");
+     String view = "";
       List<Businessbean> bList= sDao.businessitem(cCode);
       if(bList!=null) {
-         sMap=new HashMap<>();
-         sMap.put("bList", bList);
+    	  mav.addObject("bList",new Gson().toJson(bList));
+    	  view = "/sales/SalesResult";
+      }else {
+    	  mav.addObject("msg", "영업실적이 없습니다.");
+    	  view = "/sales/businessactivitiesfrm";    	  
       }
-      return sMap;
+      mav.setViewName(view);
+      return mav;
    }
 
 

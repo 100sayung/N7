@@ -120,9 +120,9 @@ body{
 			<td class="font_color_paydetail">급여일</td>
 			<td><input type="month" id="month" name="month"></td>
 		</tr>
-	</table>	
+	</table>
 	<div id="paycheckpage">
-		
+
 	</div>
 	</div>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
@@ -130,7 +130,7 @@ body{
 		$("#month").change(function(){
 			var month=$("#month").val();
 			console.log(month);
-			
+
 			$.ajax({
 				url:"/erp/myinfo/paycheckselect",
 				method:'POST',
@@ -174,7 +174,7 @@ body{
 					alert('이 달에 받은 급여가 없네요');
 				}
 			});
-		});	
+		});
 	</script>
 </body>
 </html>

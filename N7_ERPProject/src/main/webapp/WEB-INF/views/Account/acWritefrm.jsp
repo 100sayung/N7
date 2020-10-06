@@ -42,7 +42,6 @@ table, tr, th, td {
 	height: 20px;
 	border-style: none;
 	text-align: center;
-	
 }
 
 .draft2 {
@@ -88,8 +87,7 @@ input {
 				<tr>
 					<th>제목</th>
 					<th><input type="text" id="j_title" name="j_title"
-						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"
-						></th>
+						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"></th>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -112,11 +110,7 @@ input {
 											name="j_centre" class="txt" style="width: 400px;"></th>
 										<th colspan="2">부서명</th>
 										<!-- 귀속부서 -->
-										<th colspan="2" id="hc">
-<!-- 										<input type="text" id="j_section" -->
-<!-- 											name="j_section" class="txt" style="width: 400px;" -->
-<%-- 										value="${data.aList[i].hc_dept}" readonly>  --%>
-											</th>
+										<th colspan="2" id="hc"></th>
 									</tr>
 									<tr>
 										<th colspan="2">비용구분</th>
@@ -160,10 +154,6 @@ input {
 <script>
 	$('#su').click(
 			function() {
-				var num = /^[0-9]+$/; //숫자
-				// 				var eng = /[a-zA-Z]/; //문자
-				// 				var spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-				// 				var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
 
 				var title = document.getElementById('j_title');
 				var account = document.getElementById('j_account');
@@ -228,29 +218,28 @@ input {
 							console.log(error);
 							alert("야 오류얌");
 						}
-
 					});
 				}
-
 			});
 
-	$(document).ready(function() {
-		$.ajax({
-			url : '/erp/rest/Account/getAu_name',
-			type : 'get',
-			data : 'json',
-			success : function(data) {
-				console.log(data);
-				var str = "";
-				for ( var i in data.aList) {
-					str += "<input type='text' class='txt' id='j_section' style='width: 400px; color:gray;' readonly name='j_section' value='"+data.aList[i].hc_dept+"'>";
-				}
-				$("#hc").html(str);
-			},
-			error : function(error) {
-				console.log(error);
-			}
-		});
-	});
+	$(document).ready(
+					function() {
+						$.ajax({
+									url : '/erp/rest/Account/getAu_name',
+									type : 'get',
+									data : 'json',
+									success : function(data) {
+										console.log(data);
+										var str = "";
+										for ( var i in data.aList) {
+											str += "<input type='text' class='txt' id='j_section' style='width: 400px; color:gray;' readonly name='j_section' value='"+data.aList[i].hc_dept+"'>";
+										}
+										$("#hc").html(str);
+									},
+									error : function(error) {
+										console.log(error);
+									}
+								});
+					});
 </script>
 </html>

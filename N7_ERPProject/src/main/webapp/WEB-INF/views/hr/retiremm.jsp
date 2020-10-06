@@ -66,13 +66,13 @@ ul {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li> 
-					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li> 
-					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li> 
-					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li> 
-					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li> 
-					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li> 
-					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li> 
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
@@ -83,8 +83,8 @@ ul {
 		<input type="text" id="nameSearch" placeholder="이름으로 입력" style="padding: 5px 10px;"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
 	</div>
 	<div>
-		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a> 
-		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a> 
+		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a>
+		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a>
 		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
 		<div id="container" style="overflow:auto; width:1000px; height:600px;">
 			<input type="hidden" value="" id="status">
@@ -99,8 +99,8 @@ ul {
 
 	//검색 조건 끝
 	CheckRetired(0);
-	
-	
+
+
 	function CheckRetired(status){
 		$.ajax({
 			url:"/erp/rest/hr/checkretired",

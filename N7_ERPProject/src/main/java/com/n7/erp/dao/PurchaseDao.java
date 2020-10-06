@@ -23,7 +23,7 @@ public interface PurchaseDao {
 
 	@Update("UPDATE O_ORDER SET O_STATUS = '1' WHERE O_CCODE = #{ie_cpcode} AND O_CODE = #{ie_ocode} ")
 	boolean updatePurchase(IePort iePort);
-	
+
 	boolean pregistration(Purchase ps);
 
 	boolean pcommom(Purchase ps);
@@ -59,7 +59,7 @@ public interface PurchaseDao {
 	boolean pApproval1(PurchaseApproval pa);
 
 	boolean pApproval2(PurchaseApproval pa);
-	
+
 	PurchaseApproval pRequest(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
 
 	List<PurchaseApproval> pListRequest(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
@@ -69,9 +69,9 @@ public interface PurchaseDao {
 	PurchaseApproval pRequest2(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
 
 	List<PurchaseApproval> pListRequest2(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
-	
+
 	boolean rRegistration(Return rt);
-	
+
 	List<Return> rInfo(String cCode);
 
 	boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
@@ -89,5 +89,5 @@ public interface PurchaseDao {
 	ItemCode getitcode(@Param("it_code") String itcode, @Param("cCode") String cCode);
 
 
-	
+
 }

@@ -86,7 +86,7 @@ ul {
 			</ul>
 		</ul>
 	</div>
-	<div id="description"> 
+	<div id="description">
 	<button id="approval" class="goodbtn">결재자등록</button>
 	<form action="/erp/hr/applyholiday" method="post">
 	<table style='text-align: center;'>
@@ -110,8 +110,8 @@ ul {
 	<input type="submit" class='infobtn' value="제출">
 	</form>
 	</div>
-	
-	
+
+
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
 	function setChildValue(data) {
@@ -127,7 +127,7 @@ ul {
 		};
 	};
 
-		
+
 	$(document).ready(function() {
 		$.ajax({
 			url : "/erp/rest/hr/myleaderlist",
@@ -150,12 +150,12 @@ ul {
 		console.log("123");
 		window.open('/erp/hr/approvalLine', 'approvalLine', 'width=1400,height=700');
 	});
-	
+
 
 	function replaceAll(str, searchStr, replaceStr) {
 	    return str.split(searchStr).join(replaceStr);
 	 }
-	
+
 
 	function checkDateValue(val1, val2){
 		let date1 = Number(replaceAll(val1.value, "-", ""));
