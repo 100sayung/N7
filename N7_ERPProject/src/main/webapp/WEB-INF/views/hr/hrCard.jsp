@@ -62,13 +62,13 @@ ul {
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu">
-				<li><a href="/hr/movehrcardpage" accesskey="4" title="">사원관리</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
 					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
 					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
+			<div id="hrMenu"></div>
 		</ul>
 	</div>
 	<div id="description" align="center"> ${msg }<br><br>

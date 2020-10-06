@@ -122,7 +122,7 @@ button {
 				</div>
 				<div class="form-group">
 					<input type="text" class="form-control"
-						placeholder="핸드폰 번호를 입력해주세요 / -(하이픈)제외" required name="m_phonenum" maxlength="11"/>
+						placeholder="핸드폰 번호를 입력해주세요" required name="m_phonenum" />
 				</div>
 				<div class="form-group">
 					<input type="email" class="form-control" placeholder="이메일을 입력해주세요"

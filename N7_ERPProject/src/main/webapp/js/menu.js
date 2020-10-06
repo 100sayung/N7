@@ -21,38 +21,37 @@
 							menu += "<li><a href='/erp/myinfo/applyholiday'>휴가신청</a></li>";
 							$("#myInfoMenu").html(menu);
 							console.log(menu);
+						}else if($("#hrMenu").length>0){
+							let menu="";
+							menu += "<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>";
+							menu += "<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>";
+							menu += "<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>";
+							menu += "<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>";
+							menu += "<li><a href='/erp/hr/deptpay'>부서/직급별 급여</a></li>";
+							menu += "<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>";
+							menu += "<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>";
+							menu += "</li>";
+							$("#hrMenu").html(menu);
 						}
 					}
 				}
 				
-				$.ajax({
-					url:"/erp/rest/managermode/checkauth",
-					dataType:"json",
-					type:"get",
-					success : function(auth){
-						console.log(auth);
-						if(auth==1){	
-						str += "<li><a href="/hr/movehrcardpage">사원관리</a></li>";
-						}
-					}, error : function(err){
-	-					console.log(err);
-					}
-				});
-				str += "</ul>";
 				$("#mainmenu").html(str);
 				
 			},
 			error:function(error){
 				console.log(error);
 			}
+
 		});
+
 	});
 
 	function menu(menu){
 		console.log(menu);
 
 		if(menu=="인사관리"){
-			$("#"+menu).attr("href","/erp/hr/hr");
+			$("#"+menu).attr("href","/erp/hr/movehrcardpage");
 			}else if(menu=="영업관리"){
 			$("#"+menu).attr("href","/erp/sales/main");
 			}else if(menu=="구매관리"){
