@@ -70,6 +70,7 @@ h2 {
 }
 
 #formContent {
+  margin-bottom: 200px;
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -279,7 +280,7 @@ input[type=text]:placeholder {
 
 
 
-#loginContainer {
+ #loginContainer {
 	width: 300px; 
 /* 	width: auto; */
 	margin-left: 600px;
@@ -333,18 +334,14 @@ button {
 			</ul>
 		</div> --%>
 	</div>
-	
-fadeInDown
-위에서 떨어지는거 간격 줄이고 싶은데 모르겠음.......
-그래도 로그인은 됨....ㅎㅎㅎㅎ
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
 
     <!-- Icon -->
-    <div class="fadeIn first" style="height:50px; , text-align:center;">
-      <a href="/erp/" style="color: black;">로고 박아야됨</a>
+    <div class="fadeIn first" style="height:100px; , text-align:center;">
+      <a href="/erp/" style="color: black;"><img src="img/logo.png" style="width:200px; height:100px;"></a>
     </div>
 
     <!-- Login Form -->
