@@ -19,7 +19,7 @@
 	</select>
 	
 	<update id="approvalagree" parameterType="String">
-	UPDATE APPROVALDOCU SET AP_STATUS = '2' WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
+	UPDATE APPROVALDOCU SET AP_STATUS = '2' AND AP_TOAPPROVEL=#{apcode} WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
 	</update>
 	
 	<update id="approvalagree2" parameterType="String">
@@ -48,5 +48,17 @@
 	
 	<select id="getStatus" parameterType="string" resultType="approvaldocu">
 	SELECT * FROM APPROVALDOCU WHERE AP_DOCUNUM = #{num} AND AP_CCODE =#{cCode}
+	</select>
+	
+	<select id="getAScode" parameterType="string" resultType="rs">
+	SELECT * FROM AC_REALSALESTATEMENT WHERE RS_NUM = #{num} AND RS_CCODE =#{cCode}
+	</select>
+	
+	<select id="getAPcode" parameterType="string" resultType="pApproval">
+	SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_DOCUMENTCODE = #{num} AND P_CCODE =#{cCode}
+	</select>
+	
+	<select id="getAGcode" parameterType="string" resultType="appdetail">
+	SELECT * FROM B_SHIPMENT WHERE BS_DOCUNUM = #{num} AND BS_CCODE =#{cCode}
 	</select>
 </mapper>

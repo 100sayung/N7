@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
+import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.ps.PurchaseApproval;
+import com.n7.erp.bean.sales.approvaldetail;
 import com.n7.erp.dao.IHrDao;
 import com.n7.erp.dao.IMemberDao;
 import com.n7.erp.userClass.FileManager;
@@ -245,13 +248,27 @@ public ModelAndView moveMyInfo(HttpSession session) {
 	public String approvalagree(String num, HttpSession session) {
 		String value="";
 		ApprovalDocu ad =new ApprovalDocu();
+		ApprovalDocument as = new ApprovalDocument();
+		PurchaseApproval ap = new PurchaseApproval();
+		approvaldetail av = new approvaldetail();
 		String cCode = session.getAttribute("cCode").toString();
 		ad = mDao.getStatus(num,cCode);
 		String status = ad.getAp_status();
+		String apcode = "";
+		if(num.contains("AS")||num.contains("AP")) {
+			as= mDao.getAScode(num,cCode);
+			apcode = as.getRs_apcode2();
+		}else if(num.contains("P")) {
+			ap= mDao.getAPcode(num,cCode);
+			apcode = ap.getP_apcode3();
+		}else {
+			av= mDao.getAGcode(num,cCode);
+			apcode= av.getBs_apcode3();
+		}
 		boolean result = false;
 		boolean result2 = false;
 		if(status.equals("1")) {
-		   result = mDao.approvalagree(num,cCode);
+		   result = mDao.approvalagree(num,apcode,cCode);
 		}else {
 		   result2 = mDao.approvalagree2(num,cCode);
 		}
