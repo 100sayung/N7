@@ -76,7 +76,9 @@ td {
 ul {
 	list-style: none;
 }
-
+body{
+	color:black;
+}
 </style>
 </head>
 <body onload='build();'>
@@ -107,7 +109,7 @@ ul {
 	<!-- 09-25 change  -->
 	<div id="description" align="center">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 휴가 관리</Strong>
+		<Strong class="deptregist_color_size">사원 휴가 접수</Strong>
 	</div>
 	<div style="float: right; ">
 		<table style="border: 1px solid black; width: 100px;">
@@ -122,13 +124,13 @@ ul {
 		</table>
    </div>
    <div>
-		<table align="center" style="margin-top: 50px;">
-			<tr style="border-left: 1px solid black;border-right: 1px solid black;">
-				<td style="width: 100px;"><font color="#B3B6B3"><label
+		<table align="center" style="margin-top: 50px;background-color: #D9EDF7;">
+			<tr style="border: 1px solid black;">
+				<td style="width: 100px;"><font color="#8A7F8D"><label
 						onclick="beforem()" id="before"></label></font></td>
 				<td style="width: 150px; font-size: 15px;" align="center"
 					id="yearmonth" style="font-size: 15px;"></td>
-				<td style="width: 100px;"><font color="#B3B6B3"><label
+				<td style="width: 100px;"><font color="#8A7F8D"><label
 						onclick="nextm()" id="next"></label></font></td>
 			</tr>
 		</table>
@@ -138,24 +140,24 @@ ul {
 		<div id="container">
 		</div>
 	</div>
-	<table>
-		<tr width="50px" height="40px">
-			<td style="background-color:#00FF00"></td>
-			<td style="background-color:#4FFFB0"></td>
-			<td style="background-color:#1B4D3E"></td>
-			<td style="background-color:#3FFF00"></td>
-			<td style="background-color:#0BDA51"></td>
-			<td style="background-color:#39FF14"></td>
-			<td style="background-color:#55DD33"></td>
-		</tr>
-		<tr width="50px" height="40px">
-			<td style="background-color:#DCDCDC"></td>
-			<td style="background-color:#E5E4E2"></td>
-			<td style="background-color:#B2BEB5"></td>
-			<td style="background-color:#91A3B0"></td>
-			<td style="background-color:#8A7F8D"></td>
-		</tr>
-	</table>
+<!-- 	<table> -->
+<!-- 		<tr width="50px" height="40px"> -->
+<!-- 			<td style="background-color:#00FF00"></td> -->
+<!-- 			<td style="background-color:#4FFFB0"></td> -->
+<!-- 			<td style="background-color:#1B4D3E"></td> -->
+<!-- 			<td style="background-color:#3FFF00"></td> -->
+<!-- 			<td style="background-color:#0BDA51"></td> -->
+<!-- 			<td style="background-color:#39FF14"></td> -->
+<!-- 			<td style="background-color:#55DD33"></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr width="50px" height="40px"> -->
+<!-- 			<td style="background-color:#DCDCDC"></td> -->
+<!-- 			<td style="background-color:#E5E4E2"></td> -->
+<!-- 			<td style="background-color:#B2BEB5"></td> -->
+<!-- 			<td style="background-color:#91A3B0"></td> -->
+<!-- 			<td style="background-color:#8A7F8D"></td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -303,7 +305,7 @@ ul {
 		                           cell.style.width="90px;";
 		                           cell.className="last"
 		                              cell = row.insertCell();
-		                           cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+		                           cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
 		                           cell.clssName="last"
 
 		                        }
@@ -312,7 +314,7 @@ ul {
 		                        cell.style.width="90px;";
 		                        cell.clssName="last"
 		                        cell = row.insertCell();
-		                        cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+		                        cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
 		                        cell.clssName="last"
 		                     } else {
 		                        cell.innerHTML = "";
