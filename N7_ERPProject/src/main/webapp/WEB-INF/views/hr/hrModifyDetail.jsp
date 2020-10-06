@@ -7,7 +7,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
-<title>Insert title here</title>
+<title>인사카드상세</title>
 <style>
 .modifyMode{
 	background-color: skyblue;

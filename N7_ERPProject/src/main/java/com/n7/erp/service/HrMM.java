@@ -18,6 +18,7 @@ import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Authority;
 import com.n7.erp.bean.Company;
 import com.n7.erp.bean.Member;
+import com.n7.erp.bean.ac.approvalLine;
 import com.n7.erp.bean.entity.NameHoliday;
 import com.n7.erp.bean.entity.NameHrCode;
 import com.n7.erp.bean.hr.Academic;
@@ -28,6 +29,7 @@ import com.n7.erp.bean.hr.Certification;
 import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.hr.Payroll;
 import com.n7.erp.bean.hr.ViewPay;
+import com.n7.erp.dao.AccountDao;
 import com.n7.erp.dao.HRIDeptDao;
 import com.n7.erp.dao.IBaiscDao;
 import com.n7.erp.dao.IHrDao;
@@ -47,6 +49,8 @@ public class HrMM {
 	private HRIDeptDao dDao;
 	@Autowired
 	private IBaiscDao bDao;
+	@Autowired
+	private AccountDao aDao;
 
 	String view = "";
 
@@ -727,6 +731,24 @@ public class HrMM {
 		mav.addObject("apholi", apholi);
 		mav.addObject("hrCode", hrCode);
 		mav.setViewName("/hr/receipholidayDetail");
+		return mav;
+	}
+
+	public ModelAndView approvalLine(HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
+		String view = null;
+		mav = new ModelAndView();
+		List<approvalLine> aList = null;
+		aList = aDao.approvalLine(cCode);
+		if (aList.size() != 0) {
+			mav.addObject("aList", new Gson().toJson(aList));
+			view = "hr/hrApprovalLine";
+		} else {
+			mav.addObject("msg", "주소록에 정보가 없습니다");
+			view = "hr/hrApprovalLine";
+		}
+
+		mav.setViewName(view);
 		return mav;
 	}
 
