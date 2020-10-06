@@ -112,7 +112,7 @@ span {
 	</div>
 	<div id="container">
 	</div>
-	<div id="paging">
+	<div id="paging" align="center">
 	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->

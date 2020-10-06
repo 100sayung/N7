@@ -48,6 +48,14 @@ a {
 ul {
 	list-style: none;
 }
+body{
+	font-size:medium;
+	color:black;
+	font-weight: bold;
+}
+input,select{
+	font-size: medium;
+}
 </style>
 </head>
 <body>
@@ -86,6 +94,16 @@ ul {
 		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a>
 		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a>
 		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
+		<div>
+			<table style="width: 100%;border-collapse: collapse;text-align: center;border: #D9EDF7"border="1">
+				<tr style="background-color: #B2BEB5">
+					<td width="150px">이름</td>
+					<td width="330px">부서</td>
+					<td width="330px">직책</td>
+					<td width="190px" colspan="2"></td>
+				</tr>
+			</table>
+		</div>
 		<div id="container" style="overflow:auto; width:1000px; height:600px;">
 			<input type="hidden" value="" id="status">
 		</div>

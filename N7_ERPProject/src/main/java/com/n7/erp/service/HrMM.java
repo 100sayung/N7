@@ -506,11 +506,9 @@ public class HrMM {
 		return mav;
 	}
 
-	// �뜝�럡�� �뼨��留⑵굢占� 嶺뚮ㅏ援욆땻占썲뜝�럡�맋 �뜝�럩逾졾뜝�럥吏�
 	public ModelAndView moveMyPayCheck(HttpSession session) {
 		String hrCode = session.getAttribute("hrCode").toString();
 		HR_Card check = hDao.selectcheckpay(hrCode);
-		System.out.println("�뤆�룆占썬굦逾� �뜝�럡�룎�뜝�럩湲�=" + check);
 		if (check != null) {
 			mav.addObject("paycheck", check);
 			view = "/myInfo/myPaycheck";
@@ -526,7 +524,6 @@ public class HrMM {
 		hMap.put("hrCode", hrCode);
 		hMap.put("month", month);
 		Payroll pay = hDao.getMyPaySelect(hMap);
-		System.out.println("�뼨轅몃궚�젆源띿삕占쎄텛 pay=" + pay);
 		if (pay != null) {
 			Gson gson = new Gson();
 			String json = gson.toJson(pay);
@@ -541,12 +538,10 @@ public class HrMM {
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		hMap.put("docunum", docunum);
 		ApplyHoliday apholi = hDao.getDetailHoliday(hMap);
-		//09-24 change
 		String fromapprover=hDao.getFromApprover(apholi.getHap_fromapprover());
 		String toapprover=hDao.getToApprover(apholi.getHap_toapprover());
 		mav.addObject("fromapprover", fromapprover);
 		mav.addObject("toapprover", toapprover);
-		//
 		mav.addObject("apholi", apholi);
 		mav.addObject("hrCode", hrCode);
 		mav.setViewName("/hr/holidayDetail");
@@ -678,8 +673,6 @@ public class HrMM {
 		String front=time.substring(0, 16);
 		String back=time.substring(24,44);
 		String combine=front.concat(textTime.concat(back));
-		System.out.println(combine);
-		System.out.println(cCode);
 		HashMap<String, String> hMap=new HashMap<String, String>();
 		hMap.put("cCode", cCode);
 		hMap.put("hrcode", hrcode);

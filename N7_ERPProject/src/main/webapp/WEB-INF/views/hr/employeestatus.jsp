@@ -42,7 +42,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
@@ -50,7 +50,7 @@ ul {
 }
 
 .menu{
-	width:200px;
+	width:250px;
 }
 </style>
 </head>
@@ -82,7 +82,7 @@ ul {
 <div>
 <div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 출퇴근 상태 조회</Strong>
+		<Strong class="deptregist_color_size">사원 근무 조회</Strong>
 	</div>
 	<div style="float: right;">
 		<input type="text" id="nameSearch" placeholder="이름으로 검색">
@@ -93,7 +93,7 @@ ul {
 	</div>
 	<div id ="container">
 	</div>
-	<div id="paging"></div>
+	<div id="paging" align="center"></div>
 
 	 </div>
 </div>
