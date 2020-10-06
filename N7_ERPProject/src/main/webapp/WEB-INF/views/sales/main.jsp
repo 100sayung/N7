@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>영업 메뉴창</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -74,7 +74,6 @@ ul {
          <li><a href="#" id="showMenu2">출하의뢰입력</a></li>
          <li><a href="#" id="showMenu3">미수금등록</a></li>
          <li><a href="#" id="showMenu4">영업활동 조회</a></li>
-         <li><a href="#" id="showMenu5">내 결재함</a></li>
       </ul>
    </div>
    <center>
@@ -100,7 +99,8 @@ ul {
           }
        });
     });
-   
+   	
+	
    $('#showMenu2').click(function() {
        
        $.ajax({

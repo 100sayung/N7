@@ -111,35 +111,6 @@ public class Salesmm {
       return sMap;
    }
 
-//   public Map<String, List<Shippingbean>> shippingrequestinput(Shippingbean ss, HttpSession session, HttpServletRequest request) {
-//     ss.setBs_ccode(session.getAttribute("cCode").toString());
-//     ss.setBs_docunum("G");
-//
-//     String bs_quantity = request.getParameter("bs_quantity"); //출하등록창에 입력한 값
-//     request.setAttribute("bs_quantity", bs_quantity);
-//
-//      Map<String, List<Shippingbean>> sMap = null;
-//      List<Shippingbean> sList = new ArrayList<>();
-//      Shippingbean sb=new Shippingbean();
-//      Shippingbean sb2=new Shippingbean();
-//      sb= sDao.shippingrequestinput(ss, bs_quantity);
-//      sb2 = IeportDao.getImportList(ie_qty); //재고수량
-//
-//      if(ss.getBs_ccode()!="") {
-//       if(sb > sb2) {
-//              sList = sDao.shippingrequestinput(ss, bs_quantity);
-//             sMap = new HashMap<>();
-//             sMap.put("sList", sList);
-//       }else {
-//          sMap=null;
-//       }
-//    }
-//   }
-
-//      재고테이블 다녀와야함
-//      품목코드로 재고수량 가져외기
-//      if(내것이 더 많다) {
-//       return mav 그럴수없습니다.
 
    public ModelAndView shippingrequestinput(Shippingbean ss, HttpSession session) { //출하등록
       ss.setBs_ccode(session.getAttribute("cCode").toString());
@@ -230,7 +201,6 @@ public class Salesmm {
       return sMap;
    }
 
-   //사원코드, 아이디, cCode???
    public Map<String, List<approvalLine>> addApproval(int cnt, String[] strArray) {
       //app.setBs_apcode1(session.getAttribute("hc_hrcode").toString());
 
@@ -494,66 +464,6 @@ public class Salesmm {
       return sMap;
    }
 
-//   public Map<String, List<A_company>> insertcomlist(A_company ac, HttpSession session) {
-//         Map<String, List<A_company>> aMap=null;
-//         ac.setCl_ccode(session.getAttribute("cCode").toString());
-//         if(ac.getCl_code()!="") {
-//            if(sDao.insertcomlist(ac)) {
-//               List<A_company> aList = sDao.getComList(ac.getCl_code());
-//               aMap=new HashMap<>();
-//               aMap.put("aList", aList);
-//            }else {
-//               aMap=null;
-//            }
-//         }else {
-//            List<A_company> aList = sDao.getComList(ac.getCl_code());
-//            aMap=new HashMap<>();
-//            aMap.put("aList", aList);
-//         }
-//
-//         return aMap;
-//      }
-//
-//   public Map<String, List<A_company>> searchcomlist() {
-//         Map<String, List<A_company>> aMap=null;
-//               List<A_company> aList = sDao.getCompanyList();
-//               aMap=new HashMap<>();
-//               aMap.put("aList", aList);
-//
-//         return aMap;
-//      }
-//
-//   public Map<String, List<A_company>> searchcode(A_company ac, String code) {
-//         Map<String, List<A_company>> aMap=null;
-//            List<A_company> aList = sDao.getsearchCode(ac);
-//            if(aList!=null) {
-//               aMap=new HashMap<>();
-//               aMap.put("aList", aList);
-//            }
-//
-//      return aMap;
-//   }
-//
-//   public Map<String, List<A_company>> deleteCom(int cnt, String[] strArray) {
-//         Map<String, List<A_company>> aMap=null;
-//         boolean result=false;
-//         String code="";
-//         for(int i=0; i<cnt; i++) {
-//            code=strArray[i];
-//            result=sDao.deleteCom(code);
-//         }
-//         if(result) {
-//            List<A_company> aList = sDao.getCompanyList();
-//            aMap=new HashMap<>();
-//               aMap.put("aList", aList);
-//         }else {
-//            aMap=null;
-//         }
-//         return aMap;
-//      }
-
-
-
 
    public Map<String, List<Businessbean>> businessactivitiessearch(String search, String choice, HttpSession session) {
      String cCode=session.getAttribute("cCode").toString();
@@ -751,37 +661,22 @@ public class Salesmm {
 		return sMap;
 	}
 
+	public Map<String, List<com.n7.erp.bean.sales.approvalLine>> getbodept(HttpSession session) {
+	      Map<String, List<approvalLine>> sMap = null;
+	      List<approvalLine> sList = new ArrayList<>();
+	      
+	      String cCode = session.getAttribute("cCode").toString();
+	      String hrCode = (String) session.getAttribute("hrCode");
+	      approvalLine al = new approvalLine();
+	      al = sDao.getbodept(cCode, hrCode);
+	      sList.add(al);
+	      
+	      if(sList !=null) {
+	    	 System.out.println(al.getHc_dept());
+	         sMap = new HashMap<>();
+	         sMap.put("sList", sList);
+	      } 
+	      return sMap;
+	   }
 
-//   public Map<String, List<Shippingbean>> shippingquantity(String check, HttpSession session) {
-//      String cCode=session.getAttribute("cCode").toString();
-//      Map<String, List<Shippingbean>> sMap= null;
-//       List<Shippingbean> sList=new ArrayList<>();
-//       sList=sDao.shippingquantity(check, cCode);
-//
-//       if(check>) {
-//        if(sList!=null) {
-//            sMap=new HashMap<>();
-//            sMap.put("sList", sList);
-//       }else {
-//            sMap=null;
-//         }
-//       }
-//         return sMap;
-//   }
-
-
-
-//  view 테이블 만들어야함
-//   public Map<String, List<approvaldetail>> approvaldelete(String check) { // 결재완료 삭제
-//      Map<String, List<approvaldetail>> sMap = null;
-//      if (sDao.approvaldelete(check)) {
-//         List<approvaldetail> sList = sDao.shippingitem();
-//         sMap = new HashMap<>();
-//         sMap.put("sList", sList);
-//         System.out.println(sList);
-//      } else {
-//         sMap = null;
-//      }
-//      return sMap;
-//   }
 }

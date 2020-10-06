@@ -42,16 +42,6 @@ public interface SalesDao {
 
    List<Businessbean> businessitem(@Param("cCode") String cCode);
 
-//   boolean insertcomlist(A_company ac);
-
-//   List<A_company> getComList(String cl_code);
-
-//   List<A_company> getCompanyList();
-
-//   List<A_company> getsearchCode(A_company ac);
-
-//   boolean deleteCom(String code);
-
    List<com.n7.erp.bean.sales.approvalLine> approvalLine();
 
    List<com.n7.erp.bean.sales.approvalLine> searchName(String name);
@@ -108,12 +98,8 @@ public interface SalesDao {
 
    List<Salesbean> getsearchCode(@Param("code") String code,@Param("cCode") String cCode);
 
-
    int compareCode(@Param("check")String check,@Param("cCode") String cCode);
 
-
-//   List<Shippingbean> shippingquantity(String check, String cCode); //출하수량비교
-
-//   boolean approvaldelete(String check); //결재완료 삭제
+   com.n7.erp.bean.sales.approvalLine getbodept(@Param("cCode") String cCode, @Param("hrCode") String hrCode);
 
 }
