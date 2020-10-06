@@ -90,7 +90,11 @@ ul {
 			</li>
 		</ul>
 	</div>
-	<div id="description" align="center"> ${msg }<br><br>
+	<div id="description" align="center">
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 인사 카드</Strong>
+	</div>	
+	${msg}<br><br>
 	<div class="divcss">사원 인사카드 조회 및 미등록 카드 등록</div>
 	<div id="noHaveHrCard"></div>
 	<input type="text" id="nameSearch" placeholder="이름으로 검색">
@@ -148,8 +152,8 @@ ul {
 			success : function(data){
 				console.log(data);
 				let str = "";
-			 	str = "<table id='table1' border='1' cellspacing='0'>";
-			 	str += "<tr class='infomenu'><td>사진</td><td>이름</td><td>생년월일</td><td>이메일</td><td>수정</td></tr>";
+			 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center;'>";
+			 	str += "<tr class='infomenu'><td>사진</td><td width='100px'>이름</td><td width='150px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
 					str += "<td>"+data[i].m_name+"</td>";

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>부서 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -126,7 +126,6 @@ ul {
 </body>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
-
 $(document).ready(function(){
 	$.ajax({
 		url:"/erp/rest/hr/ourdept",
@@ -164,22 +163,6 @@ $("#showMenu3").hover(function() {
 	$("#smallMenu3").attr("style", "display:none");
 })
 
-
-	$("#showMenu1").hover(function() {
-		$("#smallMenu1").attr("style", "display:inline-block");
-	}, function() {
-		$("#smallMenu1").attr("style", "display:none");
-	})
-	$("#showMenu2").hover(function() {
-		$("#smallMenu2").attr("style", "display:inline-block");
-	}, function() {
-		$("#smallMenu2").attr("style", "display:none");
-	})
-	$("#showMenu3").hover(function() {
-		$("#smallMenu3").attr("style", "display:inline-block");
-	}, function() {
-		$("#smallMenu3").attr("style", "display:none");
-	})
 
 	function modifyDetail(id) {
 		window.open('/erp/hr/hrModifyDetail?id=' + id, '사원 인사카드 등록',

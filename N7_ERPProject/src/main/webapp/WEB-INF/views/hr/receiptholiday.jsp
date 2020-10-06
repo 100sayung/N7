@@ -76,6 +76,7 @@ td {
 ul {
 	list-style: none;
 }
+
 </style>
 </head>
 <body onload='build();'>
@@ -123,12 +124,12 @@ ul {
 		<Strong class="deptregist_color_size">사원 휴가 관리</Strong>
 	</div>
 	<div style="float: right; ">
-		<table style="border: 1px solid black; ">
-   			<tr style="background-color: #C4C5C4">
+		<table style="border: 1px solid black; width: 100px;">
+   			<tr style="background-color: #B2BEB5;color:black;">
    				<td>대기중</td>
    				<td>회색</td>
    			</tr>
-   			<tr style="background-color: #03D62A">
+   			<tr style="background-color: #39FF14;color:black;">
    				<td>승인</td>
    				<td>초록색</td>
    			</tr>
@@ -151,6 +152,24 @@ ul {
 		<div id="container">
 		</div>
 	</div>
+	<table>
+		<tr width="50px" height="40px">
+			<td style="background-color:#00FF00"></td>
+			<td style="background-color:#4FFFB0"></td>
+			<td style="background-color:#1B4D3E"></td>
+			<td style="background-color:#3FFF00"></td>
+			<td style="background-color:#0BDA51"></td>
+			<td style="background-color:#39FF14"></td>
+			<td style="background-color:#55DD33"></td>
+		</tr>
+		<tr width="50px" height="40px">
+			<td style="background-color:#DCDCDC"></td>
+			<td style="background-color:#E5E4E2"></td>
+			<td style="background-color:#B2BEB5"></td>
+			<td style="background-color:#91A3B0"></td>
+			<td style="background-color:#8A7F8D"></td>
+		</tr>
+	</table>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -272,14 +291,14 @@ ul {
 		                     }
 		                     //09-24 change
 		                     if(data[k].hap_status=="3"){
-		                    	 cell.style.backgroundColor="#03D62A";
+		                    	 cell.style.backgroundColor="#39FF14";
 		                    	 cell.style.color="black";
 		                    	 cell.style.fontWeight="bolder";
 		                    	 cell.style.textShadow="black 0px 1px";
 		                     }
 		                     if(data[k].hap_status=="1"){
 		                    	 cell.style.color="black";
-		                    	 cell.style.backgroundColor="#C4C5C4";
+		                    	 cell.style.backgroundColor="#B2BEB5";
 		                     }
 		                     if(data[k].hap_status=="4"){
 		                    	 cell.innerHTML = row.remove();

@@ -108,4 +108,6 @@ public interface HRIDeptDao {
 	void insertTax(String ct_code);
 	@Insert("INSERT INTO HR_DEDUCTION VALUES('보험', '0', #{ct_code})")
 	void insertInsurance(String ct_code);
+	@Select("SELECT HDP_POSITION FROM HR_DEPT WHERE HDP_CCODE=#{hdp_ccode} AND HDP_DEPT=#{HDP_dept} AND HDP_POSITION=#{HDP_position}")
+	String checkingDept(Department dept);
 }

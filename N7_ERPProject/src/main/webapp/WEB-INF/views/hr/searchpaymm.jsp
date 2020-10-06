@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 급여 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -121,8 +121,8 @@ span {
 		<Strong class="deptregist_color_size">사원 급여 관리</Strong>
 	</div>
 	<div align="right" >
-		<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색">
-		<input type="button" id="checkpayid" class="cssbutton" onclick="checkpayid()" value="검색">
+		<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색" autocomplete="off">
+		<input type="button" id="checkpayid" onclick="checkpayid()" value="검색" class="infobtn">
 	</div>
 	<div id="container">
 	</div>
@@ -220,8 +220,8 @@ span {
 						+"<td>"+data[i].HDP_PAY+"</td>"
 						+"<td>"+data[i].HDD_AMOUNT+"</td>"
 						+"<td>"+result+"</td>"
-						+"<td><button type='button' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력및수정</button></td>"
-						+"<td><button type='button' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
+						+"<td><button type='button' class='infobtn' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력수정</button></td>"
+						+"<td><button type='button' class='infobtn' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
 				}
 				str += '</table>'
 				$("#container").html(str);

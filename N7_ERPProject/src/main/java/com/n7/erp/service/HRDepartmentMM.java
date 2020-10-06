@@ -32,14 +32,17 @@ public class HRDepartmentMM {
 	//�겫占쏙옙苑� 占쎈쾻嚥∽옙
 	public ModelAndView deptregistinsert(Department dept, String cCode) {
 		String view = null;
-		System.out.println(dept.getHDP_dept());
 		dept.setHdp_ccode(cCode);
-		if(dept.getHDP_dept()!="" && dept.getHDP_position()!="") {
-			if (Ddao.deptregistinsert(dept)) {
-				view = "hr/deptregistpage";
+		String check=Ddao.checkingDept(dept);
+		if(check==null) {
+			if(dept.getHDP_dept()!="" && dept.getHDP_position()!="") {
+				if (Ddao.deptregistinsert(dept)) {
+					view = "hr/deptregistpage";
+				}
+			}else {
+				view="hr/deptregistpage";
 			}
 		}else {
-			mav.addObject("failure", "遺��꽌 諛� 吏곸콉�씠 �엯�젰�릺吏� �븡�븯�뒿�땲�떎 �엯�젰�빐二쇱꽭�슂.");
 			view="hr/deptregistpage";
 		}
 		mav.setViewName(view);
@@ -324,8 +327,8 @@ public class HRDepartmentMM {
 				sb.append("<td>"+ViewList.get(i).getHDP_PAY()+"</td>");
 				sb.append("<td>"+ViewList.get(i).getHDD_AMOUNT()+"</td>");
 				sb.append("<td>"+result+"</td>");
-				sb.append("<td><button type='button' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>입력및수정</button></td>");
-				sb.append("<td><button type='button' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>삭제</button></td></tr>");
+				sb.append("<td><button type='button' class='infobtn' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>입력수정</button></td>");
+				sb.append("<td><button type='button' class='infobtn' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>삭제</button></td></tr>");
 			}
 			System.out.println("諛곗뿴濡�="+sb.toString());
 			Gson gson=new Gson();
