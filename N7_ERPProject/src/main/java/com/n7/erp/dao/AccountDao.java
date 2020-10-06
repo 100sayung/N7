@@ -160,6 +160,12 @@ public interface AccountDao {
 
 	public com.n7.erp.bean.ac.approvalLine getAu_name(@Param("cCode")String cCode,@Param("hrCode") String hrCode);
 
+	public String searchFromname(String ap_fromapprover);
+
+	public String searchToname(String ap_toapprover);
+
+
+
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);
 
 //	public List<ApprovalDocu> selectUpdocument(PagingVO vo);

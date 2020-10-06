@@ -700,14 +700,15 @@ public class AccountMM {
 	}
 
 
-
+//임시저장 결재함
 	public List<Account> acTemporaryList(HttpSession session, PagingVO vo, int start, int end) {
 		String hrCode = (String) session.getAttribute("hrCode");
 		String cCode = (String) session.getAttribute("cCode");
-
+		
 		return aDao.acTemporaryList(hrCode, cCode, vo, start, end);
-
+		
 	}
+	
 
 //내가 올린 결재안 목록 페이징
 	public List<ApprovalDocu> apupPaymentList(HttpSession session, PagingVO vo, int start, int end) {
@@ -733,32 +734,45 @@ public class AccountMM {
 		return aDao.apupPaymentList4(hrCode, cCode, vo, start, end);
 	}
 
-//public Map<String, List<ApprovalDocu>> apdownPaymentList(HttpSession session) {
-//Map<String, List<ApprovalDocu>> pMap = null;
-//String hrCode = (String) session.getAttribute("hrCode");
-//String cCode = (String) session.getAttribute("cCode");
-//System.out.println("사원코드: " + hrCode);
-//
-//List<ApprovalDocu> pList = aDao.apdownPaymentList(hrCode, cCode);
-//
-//if (pList != null) {
-//pMap = new HashMap<>();
-//pMap.put("pList", pList);
-//System.out.println("내가받은 jList가져왓어");
-//} else {
-//System.out.println("못가져왓져");
-//}
-//
-//return pMap;
-//}
 
+////내가 받은 결재안 목록 페이징
+//	public List<ApprovalDocu> apdownPaymentList(HttpSession session, PagingVO vo, int start, int end) {
+//		String hrCode = (String) session.getAttribute("hrCode");
+//		String cCode = (String) session.getAttribute("cCode");
+//		System.out.println("사원코드: " + hrCode);
+//		
+//		return aDao.apdownPaymentList(hrCode, cCode, vo, start, end);
+//	}
+	
 //내가 받은 결재안 목록 페이징
-	public List<ApprovalDocu> apdownPaymentList(HttpSession session, PagingVO vo, int start, int end) {
+	public  Map<String, List<ApprovalDocu>> apdownPaymentList(HttpSession session, PagingVO vo, int start, int end) {
+		Map<String, List<ApprovalDocu>> pMap = null;
+		ApprovalDocu al = new ApprovalDocu();
 		String hrCode = (String) session.getAttribute("hrCode");
 		String cCode = (String) session.getAttribute("cCode");
 		System.out.println("사원코드: " + hrCode);
 
-		return aDao.apdownPaymentList(hrCode, cCode, vo, start, end);
+		List<ApprovalDocu> pList = aDao.apdownPaymentList(hrCode, cCode, vo, start, end);
+		List<ApprovalDocu> nList = new ArrayList<>();
+		
+		if (pList != null) {
+			for (int i=0; i<pList.size();i++) {
+				al.setAp_fromname(aDao.searchFromname(pList.get(i).getAp_fromapprover()));	//보낸사람
+				al.setAp_toname(aDao.searchToname(pList.get(i).getAp_toapprover()));		//받는사람
+				nList.add(al);
+			}
+			
+			System.out.println("pList: "+pList);
+			System.out.println("nList: "+nList);
+			
+			pMap = new HashMap<>();
+			pMap.put("pList", pList);
+			pMap.put("nList", nList);
+			System.out.println("내가받은 결재안목록 가져왓어");
+			} else {
+			System.out.println("못가져왓져");
+			}
+		return pMap;
 	}
 
 // 임시저장 결재안 상세보기
