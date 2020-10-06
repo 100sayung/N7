@@ -74,25 +74,25 @@ ul {
 	<div id="description" align="center">
 	<div class="first_div_css">
 		<Strong class="deptregist_color_size">사원 인사 카드</Strong>
-	</div>	
+	</div>
 	${msg}<br><br>
 	<div class="divcss">사원 인사카드 조회 및 미등록 카드 등록</div>
 	<div id="noHaveHrCard"></div>
 	<input type="text" id="nameSearch" placeholder="이름으로 검색">
 	<button onclick="searchFromName()" class='infobtn' id="nameSearching">검색</button>
-	
+
 	<div id="container"></div>
 	<div id="paging">
-	
-	
-	
-	
+
+
+
+
 	</div>
 	</div>
-	
-	
+
+
 	<script src=/erp/js/menu.js></script>
-	<script> 
+	<script>
 	//페이지 변경 스크립트
  	hrCardList(1);
  	pageNumber(1);
@@ -146,7 +146,7 @@ ul {
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
-			}	
+			}
 		});
 	}
 	function paging(num){
@@ -201,17 +201,17 @@ ul {
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
-			}	
+			}
 		});
 	}
-	
+
 	function noHrCardPaging(num){
 		console.log(num);
 		noHrCardPageNumber(num);
 		noHrCardHrCardList(num);
 	}
-	
-	
+
+
 	function searchFromName(){
 		$name = $("#nameSearch").val();
 		console.log($name);
@@ -244,7 +244,7 @@ ul {
 			}
 		});
 	}
-	
+
   	  $(function(){
   	      var responseMessage = "<c:out value="${msg}" />";
   	      if (responseMessage != ""){
@@ -264,13 +264,13 @@ ul {
 			$("#nameSearching").click();
 		}
 	});
-  	  
-  	  
-  	  
-  	  
-  	  
-  	  
-	
+
+
+
+
+
+
+
 		$("#showMenu1").hover(function() {
 			$("#smallMenu1").attr("style", "display:inline-block");
 		}, function() {
@@ -294,7 +294,7 @@ ul {
 		window.onbeforeunload = function(){
 			window.reload();
 		}
-		
+
 
 	</script>
 </body>

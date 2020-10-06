@@ -51,7 +51,7 @@ ul {
 	list-style: none;
 }
 #depttable,td{
-	
+
 	margin:auto;
 	text-align:center;
 	border-collapse: collapse;
@@ -67,7 +67,7 @@ ul {
 <%
     request.setCharacterEncoding("UTF-8");
 %>
-	
+
 	<div id="header">
 		<div id="logo">
 			<h1>
@@ -79,7 +79,7 @@ ul {
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
-				
+
 		</div>
 	</div>
 	<div id="side_menu">
@@ -125,7 +125,7 @@ $(document).ready(function(){
 		}, error : function(err){
 			console.log(err);
 		}
-		
+
 	});
 });
 

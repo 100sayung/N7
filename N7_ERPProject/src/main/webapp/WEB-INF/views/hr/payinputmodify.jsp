@@ -72,13 +72,13 @@ table {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li> 
-					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li> 
-					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li> 
-					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li> 
-					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li> 
-					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li> 
-					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li> 
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
@@ -103,7 +103,7 @@ table {
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
 			<td class="font_color_paydetail">급여일  </td>
 			<td><input id="HP_PAYDATE" type="month" name="HP_PAYDATE"></td>
-		</tr>				
+		</tr>
 	</table>
 	<table style="margin-top: 30px; width: 1000px; text-align: center; height: 300px;" >
 		<tr>
@@ -158,13 +158,13 @@ table {
 		$("#tax").click(function(){
 			$(this).select();
 		});
-		
+
 		//금액 실시간 변경
 		$("#incen").change(function(){
 			console.log($("#incen").val());
 			var total=Number($(this).val())+${pay.HDP_PAY};
 			$("#provide").val(total);
-			
+
 			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
 			$("#receive").val(power);
 		});
@@ -172,7 +172,7 @@ table {
 			var sum=Number($(this).val())+Number($("#tax").val());
 			console.log(sum);
 			$("#deductsum").val(sum);
-			
+
 			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
 			$("#receive").val(power);
 		});
@@ -180,7 +180,7 @@ table {
 			var sul=Number($(this).val())+Number($("#insurance").val());
 			console.log(sul);
 			$("#deductsum").val(sul);
-			
+
 			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
 			$("#receive").val(power);
 		});
@@ -189,11 +189,11 @@ table {
 			var sul=Number($(this).val())+Number($("#insurance").val());
 			console.log(sul);
 			$("#deductsum").val(sul);
-			
+
 			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
 			$("#receive").val(power);
 		});
-	
+
 		$("#showMenu1").hover(function() {
 			$("#smallMenu1").attr("style", "display:inline-block");
 		}, function() {
@@ -209,8 +209,8 @@ table {
 		}, function() {
 			$("#smallMenu3").attr("style", "display:none");
 		})
-		
-		
+
+
 		function checkpayinputmodify(){
 			if($("#HP_PAYDATE").val()==""){
 				alert("급여일을 안고르셨습니다 선택해주세요.");

@@ -43,7 +43,7 @@ a {
 #description {
    float: left;
    height: 500px;
-   
+
 }
 
 ul {
@@ -176,13 +176,13 @@ table, th, td{
          }
 
            // 남은 테이블 줄 삭제
-           while (tbcal.rows.length > 0) 
+           while (tbcal.rows.length > 0)
            {
                tbcal.deleteRow(tbcal.rows.length - 1);
            }
 
          var row = null;
-         row = tbcal.insertRow();   
+         row = tbcal.insertRow();
          var cnt = 0;
          // 달력 출력
          for (i = 1; i <= lastDate.getDate(); i++) // 1일부터 마지막 일까지
@@ -274,7 +274,7 @@ table, th, td{
                               cell = row.insertCell();
                            cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
                            cell.clssName="last"
-                           
+
                         }
                      } else if (j == cnt) {
                         cell.innerHTML = data[k].m_name;
@@ -297,12 +297,12 @@ table, th, td{
             }
          });
       }
-      
+
       function designThis(cell){
          console.log(cell);
          cell.style.width = "100px";
       }
-      
+
       function showDetail(docunum){
          console.log(docunum);
          window.open('/erp/hr/holidaydetail?docunum=' + docunum, '휴가상세정보', 'width=1400, heigth=700');

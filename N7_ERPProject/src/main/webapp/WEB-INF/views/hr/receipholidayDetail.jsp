@@ -107,7 +107,7 @@ html, body {
                </td>
             </tr>
          </table>
-     
+
       <c:if test="${apholi.hap_status eq 1 or apholi.hap_status eq 3}">
          <input type='hidden' value='${apholi.hap_docunum}' name='docunum' id="docunum">
         	 <c:if test="${apholi.hap_status eq 1}">
@@ -119,16 +119,16 @@ html, body {
          <button id='no'>거부</button>
       </c:if>
        </div>
-   
+
    <script>
-   
+
       $(document).ready(function(){
          console.log("123");
          console.log("${apholi.hap_fromapprover}");
          console.log("${apholi.hap_toapprover}");
          console.log("${hrCode}");
       });
-      
+
       $("button").click(function(){
          console.log(this.id);
          if(confirm("정말 확인하시겠습니까?")){
@@ -137,7 +137,7 @@ html, body {
             alert("취소되었습니다.");
          }
       });
-      
+
       function regist(yesno){
          $.ajax({
             url:"/erp/rest/hr/holidaystatus",
@@ -151,8 +151,8 @@ html, body {
             }
          });
       }
-      
-            
+
+
    </script>
 </body>
 </html>

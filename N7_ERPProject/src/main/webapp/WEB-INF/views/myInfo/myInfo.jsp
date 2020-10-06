@@ -96,7 +96,7 @@ table,tr,td {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 			<div id="menu">
@@ -111,7 +111,7 @@ table,tr,td {
 	<div id="side_menu">
 		<ul id="menuList">
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
-			<div id="myInfoMenu"><!-- 
+			<div id="myInfoMenu"><!--
 		 		<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 				<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
 				<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
@@ -166,7 +166,7 @@ table,tr,td {
 	$("#showMenu1").hover(function() {
 		$("#menu2").attr("style", "display:inline-block");
 	});
-	
+
 	$("#menu2").hover(function() {
 		$("#smenu3").attr("style", "display:inline-block");
 	});
@@ -183,7 +183,7 @@ table,tr,td {
 		});
 
 	});
-	
+
 	$("#apupBackpayment").click(function() {
 		$.ajax({
 			url : '/erp/Account/apupBackpayment',
@@ -196,7 +196,7 @@ table,tr,td {
 		});
 
 	});
-	
+
 	$("#apupPayment").click(function() {
 		$.ajax({
 			url : '/erp/Account/apupPayment',
@@ -354,7 +354,7 @@ table,tr,td {
 						num = tr.childNodes[3].children.hcr_num.value;
 					} else if ($current == "Certification") {
 						num = tr.childNodes[2].children.hct_num.value;
-						
+
 					}
 					$.ajax({
 						url : "/erp/rest/hr/removeinfo",
@@ -377,7 +377,7 @@ table,tr,td {
 
 			}
 		}
-		
+
 		function changeMode(){
 			console.log($("#changeBtn").attr('class'));
 			if($("#changeBtn").attr('class')=="infobtn mf"){
@@ -402,7 +402,7 @@ table,tr,td {
 				}
 			}
 			$("#changeBtn").toggleClass("mf");
-			
+
 		}
 
 
@@ -656,7 +656,7 @@ table,tr,td {
 			});
 
 		});
-		
+
 	</script>
 </body>
 </html>

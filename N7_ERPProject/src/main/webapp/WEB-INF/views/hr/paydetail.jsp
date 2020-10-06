@@ -74,13 +74,13 @@ table{
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li> 
-					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li> 
-					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li> 
-					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li> 
-					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li> 
-					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li> 
-					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li> 
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
@@ -105,7 +105,7 @@ table{
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
 			<td class="font_color_paydetail">급여일  </td>
 			<td><input type="month" id="month" name="month"></td>
-		</tr>				
+		</tr>
 	</table>
 	</form>
 	<div id="detailpage">
@@ -117,7 +117,7 @@ table{
 		function moving(){
 			location.href="/erp/hr/searchpaymm";
 		}
-	
+
 		//달력이 변경되면 정보 출력
 		$("#month").change(function(){
 			var month=$(this).val();
@@ -165,8 +165,8 @@ table{
 				}
 			});
 		});
-		
-	
+
+
 		$("#showMenu1").hover(function() {
 			$("#smallMenu1").attr("style", "display:inline-block");
 		}, function() {
@@ -182,7 +182,7 @@ table{
 		}, function() {
 			$("#smallMenu3").attr("style", "display:none");
 		})
-		
+
 	</script>
 </body>
 </html>

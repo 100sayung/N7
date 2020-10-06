@@ -119,11 +119,11 @@ border: 1px solid;
     <script type="text/javascript">
     function setChildValue(data) {
  	   console.log(data)
- 	   for(var i in data.aList){ 
+ 	   for(var i in data.aList){
  	   var clcode=data.aList[i].cl_code;
- 	      
+
  	   }
- 	   
+
  	   $("#clcode").val(clcode);
  	};
 
@@ -189,9 +189,9 @@ border: 1px solid;
 
 /*               $('.addList').click(function(){
                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-   
+
     var select;
-    
+
     $.ajax({
           url:"/erp/stock/getitemcode",
           dataType: 'json',
@@ -206,7 +206,7 @@ border: 1px solid;
        });
 
              }); */
-        
+
 
          $(document).ready(function(){
         	    var select2;
@@ -224,9 +224,9 @@ border: 1px solid;
 
 /*         	              $('.addList').click(function(){
         	                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-        	   
+
         	    var select2;
-        	    
+
         	    $.ajax({
         	          url:"/erp/stock/getitemcode",
         	          dataType: 'json',
@@ -243,7 +243,7 @@ border: 1px solid;
         	              });
         	          }); */
           });
-         
+
 
          function makeSelectBox(arr){
              var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
@@ -262,7 +262,7 @@ border: 1px solid;
                 let tr = row.parentNode.parentNode;
                 tr.parentNode.removeChild(tr);
          };
-         
+
          function makeSelectBox2(arr){
              var arrStr = "<select class='select' name = 'bs_proname'><option></option>"
              if(arr.length==0){
@@ -326,9 +326,9 @@ border: 1px solid;
                 	error:function(error){
                 		console.log(error);
                 	}
-                	
+
                 })
-              
+
             });
          });
 

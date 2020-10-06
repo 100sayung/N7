@@ -259,7 +259,7 @@ public class HRDepartmentMM {
 		String code = card.getHc_ccode();
 		String hrcode = card.getHc_hrcode();
 		String name = Ddao.findname(hc);
-		System.out.println(name); 
+		System.out.println(name);
 		ArrayList<Deduct> deduct = Ddao.deduct(code);
 		Payroll incentive = Ddao.findincentive(hrcode);
 		mav.addObject("incentive", incentive);
@@ -335,7 +335,7 @@ public class HRDepartmentMM {
 			String total=gson.toJson(sb.toString());
 			return total;
 		}else if(checkpayid==null) {
-			 
+
 		}
 		return null;
 	}
@@ -352,4 +352,3 @@ public class HRDepartmentMM {
 		return json;
 	}
 }
-
