@@ -61,7 +61,7 @@ public class HRHomeController {
 		return "redirect:/hr/hrModifyDetail?id="+id;
 	}
 
-	@GetMapping(value={"/hr/movehrcardpage", "/hr/hr"})
+	@GetMapping(value="/hr/movehrcardpage")
 	public ModelAndView moveHrCard(HttpSession session) {
 		mav = hm.hrCard(session);
 		return mav;
@@ -72,7 +72,7 @@ public class HRHomeController {
 		mav = hm.checkMemberHrCard(session, "/hr/attendance");
 		return mav;
 	}
-	@GetMapping(value = "/hr/employeestatus")
+	@GetMapping(value = {"/hr/employeestatus", "/hr/hr"})
 	public ModelAndView moveEmployeeStatus(HttpSession session) {
 		mav = hm.checkMemberHrCard(session, "/hr/employeestatus");
 		return mav;

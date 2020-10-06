@@ -91,6 +91,7 @@ input[type='text'], input[type='number'] {
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo"
 					accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu">
+				<li><a href="/hr/movehrcardpage" accesskey="4" title="">사원관리</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
