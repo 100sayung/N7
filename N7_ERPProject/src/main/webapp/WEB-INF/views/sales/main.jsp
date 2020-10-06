@@ -80,7 +80,7 @@ ul {
    <div id="description">
 
    </div>
-   <center>
+   </center>
    </body>
    <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
    <script>
