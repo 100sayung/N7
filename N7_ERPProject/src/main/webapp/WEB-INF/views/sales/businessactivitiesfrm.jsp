@@ -89,9 +89,7 @@ text-align:center;
             </div>  
         </form>
         <br>
-        <br>
-            <!-- <button type="button" id="addList" value="추가">추가</button> -->
-            <button type="button" id="deleteCheck" value="삭제">삭제</button>
+            <!-- <button type="button" id="deleteCheck" value="삭제">삭제</button> -->
             <button type="button" id="sub" value="저장">저장</button>
       </div>
      <br>
@@ -110,17 +108,6 @@ text-align:center;
   	   
   	   $("#clcode").val(clcode);
   	};
-/*         //추가삭제
-        $(document).ready(function(){
-              $('.addList').click(function(){
-                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="ba_date" class="input-text"></td><td><input type="text" name="ba_content" class="input-text" ></td><td><input type="number" name="ba_estimatedsalesamount" class="input-text" ></td><td><input type="number" name="ba_actualsalesamount" class="input-text" ></td><td><input type="text" name="ba_enddate" class="input-text" ></td><td><input type="text" name="ba_memo" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
-              });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-          }); 
-           function thisRowDel(row){
-                console.log(row);
-                let tr = row.parentNode.parentNode;
-                tr.parentNode.removeChild(tr);
-         } */   
         
         
 /*       $('#businessitemfrm').click(function(){

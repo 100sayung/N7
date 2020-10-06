@@ -116,29 +116,6 @@ ul {
        });
     }); 
     
-    
-/*   $('#showMenu2').click(function() {
-    var str="";
-    
-    $.ajax({
-       type : 'get',
-       url:'rest/orderitem'
-       dataType : "json",
-       success : function(data) {
-          console.log(data);
-          
-          for(var i in data.sList){
-             str+="<tr><td><input type='text' name='checknum' value="+data.sList[i].pro_order_num+"></td>";
-             str+="<td><input type='text' name='pro_name' value="+data.sList[i].pro_name+"</td>";
-             
-          }
-          $('#tBody').html(str);
-       },
-       error: function(error){
-          console.log(error);
-       }
-    });
- });  */
    
    $('#showMenu3').on('click', function() {
 
@@ -170,32 +147,8 @@ ul {
           }
        });
     });
+    
    
-/*    $('#showMenu5').on('click', function(e) {
-       e.preventDefault();
-
-        var check='';
-       $("input[name=each_check]:checked").each(function(){
-          check= $(this).attr("value");
-          
-          console.log(check);
-          if(check!=""){
-      
-       $.ajax({
-          type : 'get',
-          url :  'salesapprovaldetail',
-          dataType : 'html',
-          success : function(data) {
-             console.log(data);
-             $('#description').html(data);
-          },
-          error: function(error){
-             console.log(error);
-          }
-        });
-    }); */
-    
-    
     var select;
       $.ajax({
             url:"/erp/stock/getitemcode",
