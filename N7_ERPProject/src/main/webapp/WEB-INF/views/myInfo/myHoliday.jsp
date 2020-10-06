@@ -43,7 +43,8 @@ a {
 #description {
    float: left;
    height: 500px;
-   
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -256,7 +257,6 @@ body{
                     	 cell.style.backgroundColor="#39FF14";
                     	 cell.style.color="black";
                     	 cell.style.fontWeight="bolder";
-                    	 cell.style.textShadow="black 0px 1px";
                      }else if(data[k].hap_status=="1"){
                     	 cell.style.color="black";
                     	 cell.style.backgroundColor="#B2BEB5";
