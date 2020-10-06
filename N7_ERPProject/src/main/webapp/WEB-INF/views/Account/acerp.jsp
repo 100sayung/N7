@@ -5,7 +5,7 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>회계MAIN</title>
     <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <style>

@@ -96,7 +96,7 @@ public class SalesController {
      mav=sm.shippingrequestinput(ss, session);
       return mav;
    }
-
+   
    @GetMapping(value = "/sales/shippingitem") //출하 DB데이터 긁어온 거
    public @ResponseBody Map<String, List<Shippingbean>> shippingitem(Shippingbean ss, HttpSession session) {
      Map<String, List<Shippingbean>> sMap=sm.shippingitem(session);
@@ -203,12 +203,6 @@ public class SalesController {
       return mav;
    }
 
-   @GetMapping(value = "/sales/businessitem") //영업 DB데이터 긁어온 거
-   public @ResponseBody Map<String, List<Businessbean>> businessitem(HttpSession session) {
-      System.out.println("여긴들어와?333333333");
-      Map<String, List<Businessbean>> sMap=sm.businessitem(session);
-      return sMap;
-   }
 
    @PostMapping(value = "/sales/businessactivitiessearch") //영업활동 검색
    public Map<String, List<Businessbean>> businessactivitiessearch(String search, String choice, HttpSession session) {

@@ -16,7 +16,6 @@ text-align:center;
       <div id="center">
       <br>
         <button type="button" id="businessitemfrm">영업 실적조회</button>${msg}
-        <button type="button" id="print" onclick="window.print()">영업실적 인쇄</button>
         <br>
         <br>
         <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">영업활동</div>
@@ -122,31 +121,8 @@ text-align:center;
         
         
       $('#businessitemfrm').click(function(){
-           var str="";
            
-           $.ajax({
-              url:'/erp/rest/sales/businessitem',
-              type: 'get',
-              dataType: "json",
-              success:function(data){
-                 console.log(data);
-                 
-                 for(var i in data.bList){
-                    str+="<tr><td><input type='radio' name='checknum' value="+data.bList[i].ba_ocode+"></td>";
-                    str+="<td><input type='text' value="+data.bList[i].ba_date+"></td>";
-                    str+="<td><input type='text' value="+data.bList[i].ba_content+"></td>";
-                    str+="<td><input type='text' value="+data.bList[i].ba_estimatedsalesamount+"></td>";
-                    str+="<td><input type='text' value="+data.bList[i].ba_actualsalesamount+"></td>";
-                    str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
-                    str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td></tr>";
-
-                 }
-                    $('#tBody').html(str);
-              },
-              error:function(error){
-                 console.log(error);
-              }
-           })
+              window.open('/erp/sales/SalesResult','영업실적조회','width=1350,height=600');
         });
         
        $('#sub').click(function(){

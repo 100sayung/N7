@@ -25,7 +25,7 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <meta charset="UTF-8">
-<title>매출매입 상세정보</title>
+<title>매출상세정보</title>
 <style>
 table{
 width:100%;

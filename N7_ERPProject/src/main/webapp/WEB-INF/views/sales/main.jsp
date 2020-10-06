@@ -64,7 +64,8 @@ ul {
       <div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				</ul>
+				<ul id="mainmenu"></ul>
       </div>
    </div>
    <div id="side_menu">
@@ -80,7 +81,7 @@ ul {
    <div id="description">
     
    </div>
-   <center>
+   </center>
    </body>
    <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
    <script>
