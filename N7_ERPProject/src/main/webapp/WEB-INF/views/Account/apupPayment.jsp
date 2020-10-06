@@ -58,7 +58,10 @@ td {
 	text-align: center;
 }
 
-
+button{
+font-size: larger;
+padding: 10px;
+}
 
 </style>
 </head>
@@ -71,8 +74,8 @@ td {
 			<td id="ap_docunum">문서번호</td>
 			<td id="ap_ccode">회사코드</td>
 			<td id="ap_docuname">결재문서이름</td>
-			<td id="ap_fromapprover">수신인</td>
-			<td id="ap_toapprover ">발신인</td>
+			<td id="ap_fromapprover">발신인</td>
+			<td id="ap_toapprover ">수신인</td>
 			<td id="ap_date">올린시간</td>
 			<td id="ap_statu">결재상태</td>
 		</tr>

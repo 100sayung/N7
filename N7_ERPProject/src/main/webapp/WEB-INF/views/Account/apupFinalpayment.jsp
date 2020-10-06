@@ -31,6 +31,10 @@
 
 <title>Insert title here</title>
 <style>
+button{
+font-size: larger;
+padding: 10px;
+}
 table, tr, td {
 	border: 1px solid black;
 	text-align: center;

@@ -48,8 +48,12 @@ td {
 }
 
 #center{
-
 text-align: center;
+}
+
+button{
+font-size: larger;
+padding: 5px 8px 3px 8px;
 }
 </style>
 </head>
