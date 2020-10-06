@@ -15,7 +15,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css"></link>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -50,6 +50,7 @@ button {
 	font-weight: bolder;
 	border-radius: 8%;
 }
+
 </style>
 </head>
 
@@ -60,7 +61,7 @@ button {
 				<a href="/erp/" style="color: black;">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
-		<div id="menu">
+		<%-- <div id="menu">
 			<ul>
 				<li><a href="/erp/" accesskey="1" title="">MAIN</a></li>
 				<li><a href="/erp/introducecompany" accesskey="2" title="">회사
@@ -77,7 +78,7 @@ button {
 					<li class="current_page_item"><a href="#" accesskey="6">ERP시작</a></li>
 				</c:if>
 			</ul>
-		</div>
+		</div> --%>
 	</div>
 	<form action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
 		<div id="joinContainer">

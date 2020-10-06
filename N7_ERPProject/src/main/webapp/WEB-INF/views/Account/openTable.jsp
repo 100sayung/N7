@@ -11,7 +11,7 @@
 #cal {
 	font-size: 20px;
 	font-family: 굴림;
-	border: 2px border-color:#3333FF;
+	border: 2px border-color:#3D6B9B;
 	float: left;
 }
 

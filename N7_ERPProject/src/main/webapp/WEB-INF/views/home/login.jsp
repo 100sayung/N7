@@ -17,12 +17,12 @@
 	rel="stylesheet" type="text/css">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->	
-	
+<!------ Include the above in your HEAD tag ---------->
+
 
 <style>
 
@@ -51,7 +51,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
-  margin: 40px 8px 10px 8px; 
+  margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
 
@@ -61,7 +61,7 @@ h2 {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -69,6 +69,7 @@ h2 {
 }
 
 #formContent {
+  margin-bottom: 200px;
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -278,8 +279,8 @@ input[type=text]:placeholder {
 
 
 
-#loginContainer {
-	width: 300px; 
+ #loginContainer {
+	width: 300px;
 /* 	width: auto; */
 	margin-left: 600px;
 	margin-top: 170px;
@@ -333,18 +334,14 @@ button {
 			</ul>
 		</div> --%>
 	</div>
-	
-fadeInDown
-위에서 떨어지는거 간격 줄이고 싶은데 모르겠음.......
-그래도 로그인은 됨....ㅎㅎㅎㅎ
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
 
     <!-- Icon -->
-    <div class="fadeIn first" style="height:50px; , text-align:center;">
-      <a href="/erp/" style="color: black; font-size: larger;">N7 COMPANY</a>
+    <div class="fadeIn first" style="height:100px; , text-align:center;">
+      <a href="/erp/" style="color: black;"><img src="img/logo.png" style="width:200px; height:100px;"></a>
     </div>
 
     <!-- Login Form -->
@@ -358,12 +355,12 @@ fadeInDown
       <br>
 
     <span class="warnMsg">${warn}</span><br>
-    
+
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
-      <a href="/erp/findidfrm" id="idserach">아이디 찾기</a> | 
-      <a href="/erp/findpasswordfrm">비밀번호 찾기</a> 
+      <a href="/erp/findidfrm" id="idserach">아이디 찾기</a> |
+      <a href="/erp/findpasswordfrm">비밀번호 찾기</a>
     </div>
     <div style="padding:5px;">회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></div>
     </form>
