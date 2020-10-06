@@ -43,7 +43,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
@@ -54,7 +54,6 @@ ul {
 	border-collapse: collapse;
 }
 table{
-	border: 1px solid black;
 	border-collapse: collapse;
 }
 </style>
@@ -84,24 +83,26 @@ table{
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">사원 급여 상세정보</div>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 급여 상세정보</Strong>
+	</div>
 	<form action="searchpaymm" method="post" name="payroll">
 	<input type="hidden" value="${card.hc_ccode}" name="HP_CCODE">
-	<table id="payinputmodify" style="align-self: center; width: 800px;height: 100px;" >
+	<table id="payinputmodify" style="text-align: center; width: 1000px;height: 100px;border: 1px solid #D9EDF7" >
 		<tr>
-			<td>사원코드  </td>
+			<td class="font_color_paydetail">사원코드  </td>
 			<td><input id="hrcode" name="hrcode" style="border: none;" type="text" readonly="readonly" value="${card.hc_hrcode}"></td>
-			<td>이름  </td>
+			<td class="font_color_paydetail">이름  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${name}"></td>
-			<td>입사일  </td>
+			<td class="font_color_paydetail">입사일  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
 		</tr>
 		<tr>
-			<td>부서  </td>
+			<td class="font_color_paydetail">부서  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
-			<td>직급  </td>
+			<td class="font_color_paydetail">직급  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
-			<td>급여일  </td>
+			<td class="font_color_paydetail">급여일  </td>
 			<td><input type="month" id="month" name="month"></td>
 		</tr>				
 	</table>
@@ -132,26 +133,26 @@ table{
 					var str='';
 					console.log(data);
 					if(data!="1"){
-						str+="<table style='width:800px; height:300px; border:1px solid black;'><tr>"
-							+"<td>지급내역</td>"
-							+"<td>지급액</td>"
-							+"<td>공제내역</td>"
-							+"<td>공제액</td></tr>"
-							+"<tr><td>기본급</td>"
+						str+="<table style='width:1000px; height:300px; border:1px solid #D9EDF7;'><tr>"
+							+"<td class='font_color_paydetail'>지급내역</td>"
+							+"<td class='font_color_paydetail'>지급액</td>"
+							+"<td class='font_color_paydetail'>공제내역</td>"
+							+"<td class='font_color_paydetail'>공제액</td></tr>"
+							+"<tr><td class='font_color_paydetail'>기본급</td>"
 							+"<td>"+data.HDP_PAY+"</td>"
-							+"<td>보험</td>"
+							+"<td class='font_color_paydetail'>보험</td>"
 							+"<td>"+data.HP_INSURANCE+"</td></tr>"
-							+"<tr><td>인센티브</td>"
+							+"<tr><td class='font_color_paydetail'>인센티브</td>"
 							+"<td>"+data.HP_INCEN+"</td>"
-							+"<td>소득세</td>"
+							+"<td class='font_color_paydetail'>소득세</td>"
 							+"<td>"+data.HP_TAX+"</td></tr>"
-							+"<tr><td></td>"
+							+"<tr><td class='font_color_paydetail'></td>"
 							+"<td></td>"
-							+"<td>공제액계</td>"
+							+"<td class='font_color_paydetail'>공제액계</td>"
 							+"<td>"+ince+"</td></tr>"
-							+"<td>급여 계</td>"
+							+"<td class='font_color_paydetail'>급여 계</td>"
 							+"<td>"+provide+"</td>"
-							+"<td>실지급액</td>"
+							+"<td class='font_color_paydetail'>실지급액</td>"
 							+"<td>"+receive+"</td></tr></table>"
 					}else if(data=="1"){
 						str+="<h1>해당 월에는 받은 급액이 없습니다.</h1>";

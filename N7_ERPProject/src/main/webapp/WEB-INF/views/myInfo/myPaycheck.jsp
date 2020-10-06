@@ -43,7 +43,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
@@ -74,9 +74,11 @@ ul {
 			</div>
 		</ul>
 	</div>
-
-	<h1> 급여 명세서 보기 </h1>
-	<table style="border: 1px solid black; width: 800px; height: 100px; text-align: center;">
+	<div id="description">
+		<div class="first_div_css">
+			<Strong class="deptregist_color_size">내 급여 명세서 보기</Strong>
+		</div>
+	<table style="border: 1px solid black; width: 1000px; height: 100px; text-align: center;">
 		<tr>
 			<td>사원코드 : </td>
 			<td>${paycheck.hc_hrcode}</td>
@@ -97,6 +99,7 @@ ul {
 	<div id="paycheckpage">
 		
 	</div>
+	</div>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
 		$("#month").change(function(){
@@ -115,7 +118,7 @@ ul {
 					var ince=Number(data.HP_INSURANCE)+Number(data.HP_TAX);
 					var receive=provide-ince;
 					var str='';
-						str+="<table style='border:1px solid black;width:800px;height:300px; text-align: center;'><tr>"
+						str+="<table style='border:1px solid black;width:1000px;height:300px; text-align: center;'><tr>"
 							+"<td>지급내역<td>"
 							+"<td>지급액<td>"
 							+"<td>공제내역<td>"

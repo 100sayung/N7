@@ -75,14 +75,20 @@ ul {
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">사원 휴 - 퇴직 관리</div>
-		<input type="text" id="nameSearch"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 휴 - 퇴직 관리</Strong>
+	</div>
+	<div style="float: right;">
+		<input type="text" id="nameSearch" placeholder="이름으로 입력"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
+	</div>
+	<div>
 		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a> 
 		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a> 
 		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
-		<div id="container" style="overflow:auto; width:750px; height:600px;">
+		<div id="container" style="overflow:auto; width:800px; height:600px;">
 			<input type="hidden" value="" id="status">
 		</div>
+	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -102,7 +108,7 @@ ul {
 			data : {status : status},
 			success : function(data){
 				let str = "";
-				str += "<table style='border:1px solid black;'>";
+				str += "<table style='border:1px solid #D9EDF7; width:800px;'>";
 				console.log(data);
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr>"

@@ -60,7 +60,8 @@ ul {
 	width: 600px;
 }
 
-tr {
+table,tr,td {
+	border-radius:5px;
 	border: 1px solid black;
 	border-collapse: collapse;
 }
@@ -91,14 +92,14 @@ tr {
 
 </style>
 </head>
-<body>
+<body onload="build();">
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
+				<a href="#">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
-		<div id="menu">
+			<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo"
 					accesskey="4" title="">내 정보</a></li>
@@ -130,7 +131,9 @@ tr {
 		</ul>
 	</div>
 	<div id="description" align="center">
-		<h1 align="center" style="color: #3D6B9B">내 정보 보기</h1>
+		<div class="first_div_css">
+			<Strong class="deptregist_color_size">내 정보 보기</Strong>
+		</div>
 		<div id="member"></div>
 
 		<br> <br> <br>
@@ -245,19 +248,19 @@ tr {
 										success : function(data) {
 											console.log(data);
 											let info = "";
-											info += '<div style="margin-left:300px;"><div class="dataSpan"><img style="width:250px; height: 300px;" src="/erp/upload/'+data.photo+'"></div>';
-											info += '<div class="dataSpan"><table id="dataTable"><tr  class="infomenu"><td>이름</td></tr>'
+											info += '<div style="margin-left:200px;"><div class="dataSpan"><img style="width:250px; height: 300px;" src="/erp/upload/'+data.photo+'"></div>';
+											info += '<div class="dataSpan"><table id="dataTable" height="300px"><tr  class="infomenu"><td>이름</td></tr>'
 											info += '<tr><td id="m_name">'
 													+ data.name + '</td></tr>';
-											info += '<tr  class="infomenu"><td>생년월일</td></tr>';
+											info += '<tr class="infomenu"><td>생년월일</td></tr>';
 											info += '<tr><td id="m_birth">'
 													+ data.birth + '</td></tr>';
-											info += '<tr  class="infomenu"><td>전화번호</td></tr>';
+											info += '<tr class="infomenu"><td>전화번호</td></tr>';
 											info += '<tr><td id="m_phonenum">'
 													+ data.phonenum
 													+ '</td></tr>';
-											info += '<tr  class="infomenu"><td conlspan="2">주소</td></tr>'
-											info += '<tr style="height:40px;"><td id="m_address" colspan="2">'
+											info += '<tr class="infomenu"><td conlspan="2">주소</td></tr>'
+											info += '<tr><td id="m_address" colspan="2">'
 													+ data.address
 													+ '</td></tr></table></div></div>';
 											$("#member").html(info);
@@ -498,7 +501,7 @@ tr {
 							str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
 							str += "<td>회사/프로젝트명</td><td>기간</td><td>직책</td><td colspan='2'>내용</td></tr>";
 							for (let i = 0; i < data.length; i++) {
-								str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_cname' class='detailInfo' value='"+data[i].hcr_cname+"' readonly ></td>"
+								str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_cname' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
 								str += "<td><input type='date' name='hcr_startperiod' id='chk"
 										+ (i * 2)
 										+ "'class='detailInfo checkDate' value='"

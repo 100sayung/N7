@@ -90,7 +90,9 @@ input{
 	</div>
 	<div id="description">
 
-	<div class="divcss">사원 출결 조회</div>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 출결 관리</Strong>
+	</div>
 								<!-- 09-24 style change -->
     <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin: 0px 20px;">
         <tr>

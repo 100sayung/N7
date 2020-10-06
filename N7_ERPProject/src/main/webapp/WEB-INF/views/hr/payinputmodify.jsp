@@ -43,26 +43,16 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
 	list-style: none;
 }
 table {
-	border: 1px solid black;
+	border: 1px solid #D9EDF7;
 	border-collapse: collapse;
 }
-
-td, th {
-	width: 100px;
-	height: 30px;
-}
-
-tr {
-	text-align: center;
-}
-
 
 </style>
 </head>
@@ -90,67 +80,71 @@ tr {
 					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li> 
 		</ul>
 	</div>
-	<h1>직원 급여명세서 입력 및 수정</h1>
+	<div id="description">
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 급여 상세정보</Strong>
+	</div>
 	<form action="searchpaymm" method="post" name="payroll" onsubmit="return checkpayinputmodify()">
 	<input type="hidden" value="${card.hc_ccode}" name="HC_CCODE">
-	<table id="payinputmodify" style="align-self: center; width: 800px; height: 100px;" >
+	<table id="payinputmodify" style="text-align: center; width: 1000px; height: 100px;" >
 		<tr>
-			<td>직원코드  </td>
+			<td class="font_color_paydetail">직원코드  </td>
 			<td><input style="border: none;" type="text" name="HC_HRCODE" readonly="readonly" value="${card.hc_hrcode}"></td>
-			<td>이름  </td>
+			<td class="font_color_paydetail">이름  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${name}"></td>
-			<td>입사일  </td>
+			<td class="font_color_paydetail">입사일  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
 		</tr>
 		<tr>
-			<td>부서  </td>
+			<td class="font_color_paydetail">부서  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
-			<td>직급  </td>
+			<td class="font_color_paydetail">직급  </td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
-			<td>급여일  </td>
+			<td class="font_color_paydetail">급여일  </td>
 			<td><input id="HP_PAYDATE" type="month" name="HP_PAYDATE"></td>
 		</tr>				
 	</table>
-	<table style="margin-top: 30px; width: 800px; align-items: center; height: 300px;" >
-		<tr class="tr_chart_color">
-			<td>지급내역</td>
-			<td>지급 액</td>
-			<td>공제내역</td>
-			<td>공제액</td>
+	<table style="margin-top: 30px; width: 1000px; text-align: center; height: 300px;" >
+		<tr>
+			<td class="font_color_paydetail">지급내역</td>
+			<td class="font_color_paydetail">지급 액</td>
+			<td class="font_color_paydetail">공제내역</td>
+			<td class="font_color_paydetail">공제액</td>
 		</tr>
 		<tr>
-			<td>기본급</td>
+			<td class="font_color_paydetail">기본급</td>
 			<td><input style="border: none;" type="text" readonly="readonly" value="${pay.HDP_PAY}" class="rightinput"></td>
-			<td>${deduct[0].HDD_NAME}</td>
+			<td class="font_color_paydetail">${deduct[0].HDD_NAME}</td>
 			<td><input id="insurance" autocomplete="off" type="text" name="HP_INSURANCE" required="required"
 						 value="${deduct[0].HDD_AMOUNT}" onkeypress="return checkinsurance(event)" min="0" class="rightinput"></td>
 		</tr>
 		<tr>
-			<td>인센티브</td>
+			<td class="font_color_paydetail">인센티브</td>
 			<td><input id="incen" autocomplete="off" type="text" required="required" value="0"
 					 name="HP_INCEN" onkeypress="return checkincen(event)" min="0" class="rightinput"></td>
-			<td>${deduct[1].HDD_NAME}</td>
+			<td class="font_color_paydetail">${deduct[1].HDD_NAME}</td>
 			<td><input id="tax" autocomplete="off" type="text" name="HP_TAX" required="required"
 			 value="${deduct[1].HDD_AMOUNT}" onkeypress="return checktax(event)" min="0" class="rightinput"></td>
 		</tr>
 		<tr>
+			<td class="font_color_paydetail"></td>
 			<td></td>
-			<td></td>
-			<td>공제액계</td>
+			<td class="font_color_paydetail">공제액계</td>
 			<td><input id="deductsum" style="border: none;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}" class="rightinput"></td>
 		</tr>
 		<tr>
-			<td>지급액 계</td>
+			<td class="font_color_paydetail">지급액 계</td>
 			<td><input id="provide" style="border: none;" type="text" readonly="readonly" value="0" class="rightinput"></td>
-			<td>실수령액</td>
+			<td class="font_color_paydetail">실수령액</td>
 			<td><input id="receive" style="border: none;" type="text" readonly="readonly" value="0" name="HP_REALMONEY" class="rightinput"></td>
 		</tr>
 	</table>
-	<div class="centertype">
-	<input type="submit" value="확인" id="ok" class="cssbutton">
-	<a href="/erp/hr/searchpaymm" class="cssbutton" style="padding: 6px 20px;">돌아가기</a>
-	</div>
+		<div align="center" style="margin-top: 30px;">
+			<input type="submit" value="확인" id="ok" class="infobtn">
+			<a href="/erp/hr/searchpaymm" class="infobtn" style="padding: 6px 20px;">돌아가기</a>
+		</div>
 	</form>
+	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
 		//input창 클릭스 해당 창 문자 전체 선택

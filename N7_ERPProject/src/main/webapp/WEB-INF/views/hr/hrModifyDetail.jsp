@@ -408,7 +408,7 @@ function CareerInfo(){
 					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>사용한 월차</td></tr>";
 					str += "<td><input type='text' value='"+status+"' readonly></td>"
 					str += "<td><input type='text' value='"+work+"'readonly></td>"
-					str += "<td><input type='text' value='"+data.hc_numholi+"' readonly></td></tr></table>";
+					str += "<td><input type='text' value='"+data.hc_holynum+"' readonly></td></tr></table>";
 					console.log(data.hc_joindate);
 					$("#hrDetailInfo").html(str);
 					curPosition = data.hc_position;
