@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>영업 메뉴창</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
