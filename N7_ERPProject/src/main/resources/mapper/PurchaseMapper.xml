@@ -102,14 +102,9 @@
       UPDATE S_ITEMCODE SET IT_STOCK = #{r_amount}
       WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{cCode}
    </update>
-		
-<!-- 	<update id="itupdate">
-		UPDATE S_ITEMCODE SET IE_STATUS = '3'
-		WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{it_ccode}
-	</update> -->
 	
 	<select id="rInfo" resultType="Return">
-		SELECT * FROM O_RETURN AND R_CCODE=#{cCode}
+		SELECT * FROM O_RETURN WHERE R_CCODE=#{cCode}
 	</select>
 	
   	<delete id="rDelete" parameterType="Return">
