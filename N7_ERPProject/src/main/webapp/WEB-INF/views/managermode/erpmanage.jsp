@@ -258,8 +258,8 @@ button {
 					function() {
 
 						var au_name = document.getElementById("au_name").value;
-						var au_authority = document
-								.getElementById("au_authority").value;
+						var au_authority = document.getElementById("au_authority").value;
+						var namecheck = document.getElementById("namecheck").value;
 						
 						if (au_name == '' || au_name == null
 								&& au_authority == "" || au_authority == null) {
@@ -268,6 +268,8 @@ button {
 							alert("부서명을 입력해주세요.");
 						} else if (au_authority == "" || au_authority == null) {
 							alert("권한을 선택해주세요.");
+						} else if (namecheck != 1) {
+							alert("부서 이름을 확인해주세요.");
 
 						} else {
 
@@ -383,11 +385,11 @@ button {
 								checkccode = false;
 								$("#ncheck")
 										.html(
-												"<font style='color:red;'>해당 부서가 이미 존재합니다.</font>");
+												"<font style='color:red;'>해당 부서가 이미 존재합니다.</font><input type='hidden' id='namecheck' value='0'>");
 							} else {
 								checkccode = true;
 								$("#ncheck").html(
-										"<font style='color:green;'>확인되었습니다.</font>");
+										"<font style='color:green;'>확인되었습니다.</font><input type='hidden' id='namecheck' value='1'>");
 							}
 						},
 						error : function(err) {
