@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Component;
 
 import com.n7.erp.bean.ApprovalDocu;
@@ -27,21 +28,21 @@ public interface PurchaseDao {
 
 	boolean pcommom(Purchase ps);
 
-	List<Purchase> pFrerence();
+	List<Purchase> pFrerence(String cCode);
 
-	List<Purchase> pfSearch(@Param("search") String search, @Param("choice") String choice);
+	List<Purchase> pfSearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode);
 
-	boolean pfDelete(String check_list);
+	boolean pfDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
 
-	boolean pcDelete(String check_list);
+	boolean pcDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
 
-	List<Purchase> pDetail(String check);
+	List<Purchase> pDetail(@Param("check") String check, @Param("cCode") String cCode);
 
-	Purchase pInfo(String check);
+	Purchase pInfo(@Param("check") String check, @Param("cCode") String cCode);
 
-	Purchase pBring(String check);
+	Purchase pBring(@Param("check") String check, @Param("cCode") String cCode);
 
-	List<Purchase> pProgram(String check);
+	List<Purchase> pProgram(@Param("check") String check, @Param("cCode") String cCode);
 
 	List<approvalLine> approvalLine();
 
@@ -71,17 +72,22 @@ public interface PurchaseDao {
 	
 	boolean rRegistration(Return rt);
 	
-	List<Return> rInfo();
+	List<Return> rInfo(String cCode);
 
-	boolean rDelete(String check_list);
+	boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
 
-	List<Return> rSearch(@Param("search") String search, @Param("choice") String choice);
+	List<Return> rSearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode);
 
 	List<IePort> stocklist(String cCode);
 
 	List<ItemCode> getstocklist(String cCode);
 
-//	boolean itupdate(ItemCode it);
+	boolean insertIeport(Return rt);
+
+	boolean updateitcode(@Param("tot2") int tot2, @Param("it_code") String itcode, @Param("cCode") String cCode);
+
+	ItemCode getitcode(@Param("it_code") String itcode, @Param("cCode") String cCode);
+
 
 	
 }
