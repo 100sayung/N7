@@ -109,19 +109,24 @@ ul {
 	border-color: gray;
 }
 
-#table{
-	margin: 10px 20px 10px 30px;
-	width: 800px;
-
+#table {
+	margin: 10px 10px 10px 50px;
+	width: 1000px;
 }
 
-#deleteBt{
+#deleteBt {
 	float: right;
 }
 
-button{
+button {
 	margin: 2px 2px 2px 2px;
-	
+}
+
+#au {
+	height: 20px;
+	width: auto;
+	background-color: #3D6B9B;
+	color: white;
 }
 </style>
 </head>
@@ -134,7 +139,7 @@ button{
 			</div>
 		</div>
 		<hr>
-		<div>
+		<div id="au">
 			<label><input type="radio" class="active" id="insert"
 				value="option" name="option">부서권한등록</label>
 		</div>
@@ -143,7 +148,8 @@ button{
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="alert alert-info">
-							<strong>ERP 부서 등록 페이지입니다.</strong><button class="btn btn-success" id="save">저장</button>
+							<strong>ERP 부서 등록 페이지입니다.</strong>
+							<button class="btn btn-success" id="save">저장</button>
 						</div>
 					</div>
 				</div>
@@ -168,7 +174,7 @@ button{
 													oninput="checkau_name()">
 											</div> <span id="ncheck" style="text-align: center;"></span></th>
 										<th style="border-color: white;">
-											<!-- 											<button onclick="namecheck()" type="button">중복확인</button> -->
+<!-- 											<button onclick="namecheck()" type="button">중복확인</button> -->
 										</th>
 
 									</tr>
@@ -186,18 +192,19 @@ button{
 									</tr>
 								</tbody>
 							</table>
-							<div>
-							</div>
+							<div></div>
 						</div>
 					</form>
-						
+
 				</div>
 			</div>
 		</div>
 		<br> <br>
 		<div>
-			<label><input type="radio" class="active" id="delete"
-				value="option" name="option">부서권한삭제</label>
+			<div id="au">
+				<label><input type="radio" class="active" id="delete"
+					value="option" name="option">부서권한삭제</label>
+			</div>
 			<div id="deleteBox">
 				<div class="row">
 					<div class="col-lg-12 ">
@@ -209,7 +216,7 @@ button{
 				</div>
 				<table id="table">
 					<tbody>
-						<tr id="tr">
+						<tr id="tr" style="width: auto;">
 							<td>check</td>
 							<td>부서명</td>
 							<td>권한</td>
@@ -380,7 +387,7 @@ button{
 							} else {
 								checkccode = true;
 								$("#ncheck").html(
-										"<font style='color:green;'>확인</font>");
+										"<font style='color:green;'>확인되었습니다.</font>");
 							}
 						},
 						error : function(err) {

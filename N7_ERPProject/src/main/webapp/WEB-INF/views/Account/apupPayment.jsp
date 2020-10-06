@@ -11,6 +11,8 @@
 
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <!-- FONTAWESOME STYLES-->
 <!--<link href="/erp/assets/css/font-awesome.css" rel="stylesheet"> -->
 <!-- CUSTOM STYLES-->
@@ -27,7 +29,7 @@
 <!-- CUSTOM SCRIPTS -->
 <!-- <script src="/erp/assets/js/custom.js"></script>-->
 
-<title>Insert title here</title>
+<title>진행중 결재함</title>
 <style>
 table, tr, td {
 	border: 1px solid black;
@@ -61,15 +63,16 @@ td {
 </style>
 </head>
 <body>
-	<!-- 	<h1>acPend.jsp(임시저장)</h1> -->
-	<table id="table">
+	 <div
+         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger;">진행중 결재함</div>
+	<table id="table" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
 			<td id="ap_docunum">문서번호</td>
 			<td id="ap_ccode">회사코드</td>
 			<td id="ap_docuname">결재문서이름</td>
-			<td id="ap_fromapprover">결재올린사람</td>
-			<td id="ap_toapprover ">결재받는사람</td>
+			<td id="ap_fromapprover">수신인</td>
+			<td id="ap_toapprover ">발신인</td>
 			<td id="ap_date">올린시간</td>
 			<td id="ap_statu">결재상태</td>
 		</tr>
