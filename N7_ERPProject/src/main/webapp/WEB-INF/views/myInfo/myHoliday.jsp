@@ -52,16 +52,19 @@ ul {
 .attendance{
    border: 1px solid black;
 }
-table{
-   text-align: center;
-}
+
 table, th, td{
-   border-bottom : 1px solid balck;
-   border-top : 1px solid black;
-   border-collapse: collapse;
+	text-align:center;
+	border-bottom : 1px solid balck;
+	border-top : 1px solid black;
+	border-collapse: collapse;
 }
 #calendar td{
    width:30px;
+}
+
+body{
+	color:black;
 }
 </style>
 </head>
@@ -103,22 +106,22 @@ table, th, td{
 	</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
-   		<tr style="background-color: #C4C5C4">
+   		<tr style="background-color: #B2BEB5">
    			<td>대기중</td>
    			<td>회색</td>
    		</tr>
-   		<tr style="background-color: #03D62A">
+   		<tr style="background-color: #39FF14">
    			<td>승인</td>
    			<td>초록색</td>
    		</tr>
    </table>
    </div>
-      <table align="center" style="margin-top: 50px;">
-         <tr>
-            <td style="width : 100px;"><font color="#B3B6B3"><label
+      <table align="center" style="margin-top: 50px;background-color: #D9EDF7;">
+         <tr style="border: 1px solid black;">
+            <td style="width : 100px;"><font color="#8A7F8D"><label
                   onclick="beforem()" id="before"></label></font></td>
             <td style="width : 150px; font-size: 15px;" align="center" id="yearmonth" style="font-size: 15px;"></td>
-            <td style="width : 100px;"><font color="#B3B6B3"><label
+            <td style="width : 100px;"><font color="#8A7F8D"><label
                   onclick="nextm()" id="next"></label></font></td>
          </tr>
       </table>
@@ -250,13 +253,13 @@ table, th, td{
                      }
                      //09-24 change
                      if(data[k].hap_status=="3"){
-                    	 cell.style.backgroundColor="#03D62A";
+                    	 cell.style.backgroundColor="#39FF14";
                     	 cell.style.color="black";
                     	 cell.style.fontWeight="bolder";
                     	 cell.style.textShadow="black 0px 1px";
                      }else if(data[k].hap_status=="1"){
                     	 cell.style.color="black";
-                    	 cell.style.backgroundColor="#C4C5C4";
+                    	 cell.style.backgroundColor="#B2BEB5";
                      }
                      ///////
                      let date = "" + year + month + day;
@@ -272,7 +275,7 @@ table, th, td{
                            cell.style.width="90px;";
                            cell.className="last"
                               cell = row.insertCell();
-                           cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+                           cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
                            cell.clssName="last"
                            
                         }
@@ -281,7 +284,7 @@ table, th, td{
                         cell.style.width="90px;";
                         cell.clssName="last"
                         cell = row.insertCell();
-                        cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+                        cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
                         cell.clssName="last"
                      } else {
                         cell.innerHTML = "";
