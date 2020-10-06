@@ -19,39 +19,39 @@
 		SELECT * FROM O_PURCHASECOMMOM 
 		<where>
 			<if test="choice.equals('p_documentcode')">
-				P_DOCUMENTCODE = #{search}
+				P_DOCUMENTCODE = #{search} AND P_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('p_writer')">
-				P_WRITER = #{search}
+				P_WRITER = #{search} AND P_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('p_day')">
-				P_DAY = #{search} 
+				P_DAY = #{search} AND P_CCODE=#{cCode}
 			</if>
 		</where>
 	</select>
 	
 	<delete id="pcDelete" parameterType="Purchase">
-		DELETE FROM O_PURCHASELIST WHERE P_DOCUMENTCODE = #{check_list}
+		DELETE FROM O_PURCHASELIST WHERE P_DOCUMENTCODE = #{check_list} AND P_CCODE=#{cCode}
 	</delete>
 	
 	<delete id="pfDelete" parameterType="Purchase">
-		DELETE FROM O_PURCHASECOMMOM WHERE P_DOCUMENTCODE = #{check_list}
+		DELETE FROM O_PURCHASECOMMOM WHERE P_DOCUMENTCODE = #{check_list} AND P_CCODE=#{cCode}
 	</delete>
 	
 	<select id="pInfo" parameterType="String" resultType="Purchase">
-		SELECT * FROM O_PURCHASECOMMOM WHERE P_DOCUMENTCODE = #{check}
+		SELECT * FROM O_PURCHASECOMMOM WHERE P_DOCUMENTCODE = #{check} AND P_CCODE=#{cCode}
 	</select>
 	
 	<select id="pDetail" parameterType="String" resultType="Purchase">
-		SELECT * FROM O_PURCHASELIST WHERE P_DOCUMENTCODE = #{check}
+		SELECT * FROM O_PURCHASELIST WHERE P_DOCUMENTCODE = #{check} AND P_CCODE=#{cCode}
 	</select>
 	
 	<select id="pBring" parameterType="String" resultType="Purchase">
-		SELECT * FROM O_PURCHASECOMMOM WHERE P_DOCUMENTCODE = #{check}
+		SELECT * FROM O_PURCHASECOMMOM WHERE P_DOCUMENTCODE = #{check} AND P_CCODE=#{cCode}
 	</select>
 	
 	<select id="pProgram" parameterType="String" resultType="Purchase">
-		SELECT * FROM O_PURCHASELIST WHERE P_DOCUMENTCODE= #{check}
+		SELECT * FROM O_PURCHASELIST WHERE P_DOCUMENTCODE= #{check} AND P_CCODE=#{cCode}
 	</select>
 	
     <select id="approvalLine" parameterType="String" resultType="pALine">
@@ -89,34 +89,42 @@
 	<insert id="rRegistration" parameterType="Return">
 		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,4,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
 	</insert>
-		
-<!-- 	<update id="itupdate">
-		UPDATE S_ITEMCODE SET IE_STATUS = '3'
-		WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{it_ccode}
-	</update> -->
+	
+   <insert id="insertIeport">
+      INSERT INTO S_IEPORT VALUES(#{r_ieseqnum}, #{r_ccode}, DEFAULT, #{r_hrcode}, '3', #{r_clcode}, #{r_itcode}, #{r_amount}, #{r_unlit}, 0)
+   </insert>
+   
+   <select id="getitcode" resultType="itemcode" parameterType="String">
+   		SELECT * FROM S_ITEMCODE WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{cCode}
+   </select>
+   
+   <update id="updateitcode">
+      UPDATE S_ITEMCODE SET IT_STOCK = #{r_amount}
+      WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{cCode}
+   </update>
 	
 	<select id="rInfo" resultType="Return">
-		SELECT * FROM O_RETURN
+		SELECT * FROM O_RETURN WHERE R_CCODE=#{cCode}
 	</select>
 	
   	<delete id="rDelete" parameterType="Return">
-		DELETE FROM O_RETURN  WHERE R_DOCUMENTCODE= #{check_list}
+		DELETE FROM O_RETURN  WHERE R_DOCUMENTCODE= #{check_list} AND R_CCODE=#{cCode}
 	</delete> 
 	
 	<select id="rSearch" resultType="Return">
 		SELECT * FROM O_RETURN
 		<where>
 			<if test="choice.equals('r_documentcode')">
-				R_DOCUMENTCODE = #{search}
+				R_DOCUMENTCODE = #{search} AND R_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('r_ieseqnum')">
-				R_IESEQNUM = #{search}
+				R_IESEQNUM = #{search} AND R_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('r_writer')">
-				R_WRITER = #{search}
+				R_WRITER = #{search} AND R_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('r_day')">
-				R_DAY = #{search}
+				R_DAY = #{search} AND R_CCODE=#{cCode}
 			</if>
 		</where>
 	</select>
