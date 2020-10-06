@@ -11,8 +11,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="/erp/css/default.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -306,6 +305,7 @@ button {
 #idserach {
 	margin-left: 30px;
 }
+
 </style>
 </head>
 
@@ -344,7 +344,7 @@ fadeInDown
 
     <!-- Icon -->
     <div class="fadeIn first" style="height:50px; , text-align:center;">
-      <a href="/erp/" style="color: black;">로고 박아야됨</a>
+      <a href="/erp/" style="color: black; font-size: larger;">N7 COMPANY</a>
     </div>
 
     <!-- Login Form -->
