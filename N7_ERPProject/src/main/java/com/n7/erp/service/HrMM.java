@@ -123,17 +123,17 @@ public class HrMM {
 		crMap.put("hrcode", hc_hrcode);
 		crMap.put("cCode", cCode);
 		Integer cnt = hDao.selectCareer(crMap);
-		for (int i = 0; i < request.getParameterValues("hcr_cname").length; i++) {
+		for (int i = 0; i < request.getParameterValues("hcr_name").length; i++) {
 			Career cr = new Career();
 			cr.setHcr_ccode(cCode);
-			cr.setHcr_name(request.getParameterValues("hcr_cname")[i]);
+			cr.setHcr_name(request.getParameterValues("hcr_name")[i]);
 			cr.setHcr_content(request.getParameterValues("hcr_content")[i]);
 			cr.setHcr_startperiod(request.getParameterValues("hcr_startperiod")[i]);
 			cr.setHcr_endperiod(request.getParameterValues("hcr_endperiod")[i]);
 			cr.setHcr_position(request.getParameterValues("hcr_position")[i]);
 			cr.setHcr_hrcode(hc_hrcode);
 			if (i < cnt) {
-				cr.setHcr_num(request.getParameterValues("hra_num")[i]);
+				cr.setHcr_num(request.getParameterValues("hcr_num")[i]);
 				hDao.updateCareer(cr);
 			} else {
 				hDao.registCareer(cr);
@@ -478,9 +478,9 @@ public class HrMM {
 
 	private boolean checkMemberHrCardCnt(String cCode) {
 		if (hDao.checkMemberHrCardCnt(cCode)) {
-			return false;
-		} else {
 			return true;
+		} else {
+			return false;
 		}
 	}
 //

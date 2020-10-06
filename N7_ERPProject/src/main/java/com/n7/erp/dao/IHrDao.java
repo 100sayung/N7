@@ -59,7 +59,7 @@ public interface IHrDao {
 	@Select("SELECT COUNT(*) FROM HR_CAREER WHERE Hcr_HRCODE = #{hrcode} AND HCR_CCODE = #{cCode}")
 	Integer selectCareer(HashMap<String, String> crMap);
 
-	@Select("SELECT COUNT(*) FROM HR_CERTIFICATION WHERE Hct_HRCODE = #{hrcode} AND HCT_CCODE = #{ccode}")
+	@Select("SELECT COUNT(*) FROM HR_CERTIFICATION WHERE Hct_HRCODE = #{hrcode} AND HCT_CCODE = #{cCode}")
 	Integer selectCertification(HashMap<String, String> ctfMap);
 
 	@Insert("INSERT INTO HR_CARD VALUES(#{hc_hrcode}||HR_CARD_SEQ.NEXTVAL, #{hc_ccode}, #{hc_id}, #{hc_dept}, #{hc_position}, #{hc_joindate}, DEFAULT, DEFAULT, DEFAULT)")

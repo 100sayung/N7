@@ -252,6 +252,8 @@ var formURL = "/erp/hr";
 function AcademicInfo(){
 	$("#form").attr("action", formURL + "/newacademic/" + id);
 	$("#current").val("Academic");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	console.log("aca");
 	$.ajax({
 		url:"/erp/rest/hr/academic",
@@ -292,6 +294,8 @@ function AcademicInfo(){
 function CertificationInfo(){
 	$("#form").attr("action", formURL + "/newcertification/" + id);
 	$("#current").val("Certification");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url:"/erp/rest/hr/certification",
 		dataType:"json",
@@ -328,6 +332,8 @@ function CertificationInfo(){
 function CareerInfo(){
 	$("#form").attr("action", formURL + "/newcareer/" + id);
 	$("#current").val("Career");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url:"/erp/rest/hr/career",
 		dataType:"json",
@@ -356,6 +362,8 @@ function CareerInfo(){
 }function InCompanyInfo(){
 	$("#form").attr("action", formURL + "/newhrcard/" +id);
 	$("#current").val("HRCard");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url :"/erp/rest/hr/deptlist",
 		dataType:"json",

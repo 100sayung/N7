@@ -156,7 +156,7 @@ table,tr,td {
 <input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
 <input type='submit' value='등록완료'  class = 'infobtn' disabled="disabled" id='registBtn'>
 		</form>
-
+<input type='hidden' id='current'>
 
 
 	</div>
@@ -325,7 +325,7 @@ table,tr,td {
 				str += "<td><input type='date' name='hct_date' class='detailInfo'></td>"
 				str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 			} else if ($current == 'Career') {
-				str += "<tr><td><input type='text' name='hcr_cname' class='detailInfo'></td>";
+				str += "<tr><td><input type='text' name='hcr_name' class='detailInfo'></td>";
 				str += "<td><input type='date' name='hcr_startperiod' id='chk"
 						+ (num * 2) + "' class='detailInfo checkDate'><br>";
 				str += "<input type='date' name='hcr_endperiod' id='chk"
@@ -354,6 +354,7 @@ table,tr,td {
 						num = tr.childNodes[3].children.hcr_num.value;
 					} else if ($current == "Certification") {
 						num = tr.childNodes[2].children.hct_num.value;
+						
 					}
 					$.ajax({
 						url : "/erp/rest/hr/removeinfo",
@@ -411,8 +412,9 @@ table,tr,td {
 			onBtn();
 			$("#form").attr("action", formURL + "/newacademic");
 			$("#current").val("Academic");
-			$
-					.ajax({
+			$("#registBtn").attr("disabled", true);
+			$("#registBtn").css('background-color','#d2d2d2');
+			$.ajax({
 						url : "/erp/rest/myinfo/academic",
 						dataType : "json",
 						method : "get",
@@ -452,6 +454,8 @@ table,tr,td {
 			onBtn();
 			$("#form").attr("action", formURL + "/newcertification");
 			$("#current").val("Certification");
+			$("#registBtn").attr("disabled", true);
+			$("#registBtn").css('background-color','#d2d2d2');
 			$
 					.ajax({
 						url : "/erp/rest/myinfo/certification",
@@ -491,6 +495,8 @@ table,tr,td {
 			onBtn();
 			$("#form").attr("action", formURL + "/newcareer");
 			$("#current").val("Career");
+			$("#registBtn").attr("disabled", true);
+			$("#registBtn").css('background-color','#d2d2d2');
 			$
 					.ajax({
 						url : "/erp/rest/myinfo/career",
@@ -502,7 +508,7 @@ table,tr,td {
 							str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
 							str += "<td>회사/프로젝트명</td><td>기간</td><td>직책</td><td colspan='2'>내용</td></tr>";
 							for (let i = 0; i < data.length; i++) {
-								str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_cname' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
+								str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_name' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
 								str += "<td><input type='date' name='hcr_startperiod' id='chk"
 										+ (i * 2)
 										+ "'class='detailInfo checkDate' value='"
