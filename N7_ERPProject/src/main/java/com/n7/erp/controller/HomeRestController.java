@@ -30,10 +30,10 @@ public class HomeRestController {
 
 	@Autowired
 	private MemberMM mm;
-	
+
 	@Autowired
 	private ConsultingBoardMM cbm;
-	
+
 
 	@GetMapping(value = "/home/searchfromid")
 	public String getSearchFromId(String m_id) {
@@ -46,7 +46,7 @@ public class HomeRestController {
 		String result = mm.getDupleID(m_id);
 		return result;
 	}
-	
+
 	@GetMapping(value="/home/dupleccode")
 	public String getDupleCCode(String m_ccode) {
 		String result = mm.getDupleCCode(m_ccode);
@@ -56,7 +56,7 @@ public class HomeRestController {
 	public String deleteCompany(String cCode) {
 		return mm.deleteCompany(cCode);
 	}
-	
+
 	@PostMapping(value="/home/checkgrade")
 	public String checkGrade(HttpSession session) {
 		String result= mm.checkGrade(session);
@@ -78,22 +78,44 @@ public class HomeRestController {
 		return value;
 	}
 	@PostMapping(value = "/home/boardSearch")
-	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) { 
+	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
 	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
 	      return bMap;
 	   }
 	@GetMapping(value = "/home/getfunction")
-	public ResponseEntity<String> getFunction(HttpSession session) { 
+	public ResponseEntity<String> getFunction(HttpSession session) {
 		return mm.getFunction(session.getAttribute("cCode").toString());
 	}
 
 	@PostMapping(value = "/home/forcewithdrawal")
-	public String forceWithDrawal(String jsonStr) { 
+	public String forceWithDrawal(String jsonStr) {
 		System.out.println(jsonStr);
 		List<String> slist = new Gson().fromJson(jsonStr, new TypeToken<List<String>>() {
 		}.getType());
 		System.out.println(slist);
 		mm.forceWithDrawal(slist);
 		return null;
+	}
+	@PostMapping(value = "/home/boardSearch")
+	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
+	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
+	      return bMap;
+	   }
+	@PostMapping(value = "/home/insertReply")
+	public Map<String,ConsultingBoard> insertReply(String num, String reply) {
+		Map<String,ConsultingBoard>bMap=cbm.insertReply(num, reply);
+		return bMap;
+	}
+
+	@PostMapping(value = "/home/writeBoard")
+	public String writeBoard(ConsultingBoard board, HttpSession session) {
+	     String value=cbm.writeBoard(board, session);
+	    return value;
+	}
+
+	@PostMapping(value = "/home/delectBoard")
+	public String delectBoard(String num, String password) {
+		String value=cbm.delectBoard(num, password);
+		return value;
 	}
 }

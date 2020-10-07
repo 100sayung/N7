@@ -8,7 +8,7 @@ SELECT * FROM MENU
 </select>
 
 <select id="getaddmenu" parameterType="String" resultType="fmenu">
-SELECT * FROM ERP_FUNCTION WHERE F_CCODE=#{cCode}
+SELECT * FROM ERP_FUNCTION WHERE F_CCODE=#{cCode} ORDER BY F_FUNCTIONS
 </select>
 
 <select id="getCompanyInfo" parameterType="String" resultType="company">

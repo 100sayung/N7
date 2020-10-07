@@ -194,12 +194,7 @@ public class HomeController {
 	   return "/home/writeFrm";
 	}
 
-	//野껊슣�뻻疫뀐옙 占쎌삂占쎄쉐
-	@RequestMapping(value = "/home/writeBoard", method = RequestMethod.POST)
-	public ModelAndView writeBoard(ConsultingBoard board, HttpSession session, Member mb) {
-	    mav=cbm.writeBoard(board, session, mb);
-	    return mav;
-	}
+	
 	
 	@RequestMapping(value = "/home/boardContents", method = RequestMethod.GET)
 	 public ModelAndView boardContents(int CB_NUM) {

@@ -13,7 +13,7 @@ import com.n7.erp.bean.ConsultingBoard;
 public interface IConsultingBoardDao {
 
 	ArrayList<ConsultingBoard> getBoardList(Integer pageNum);
-	
+
 	@Select("SELECT COUNT(*) FROM CONSULTING_BOARD")
 	int getBoarCount();
 
@@ -26,9 +26,12 @@ public interface IConsultingBoardDao {
 
   ArrayList<ConsultingBoard> boardSearch(@Param("choice") String choice, @Param("keyword") String keyword);
 
-  int getSearchCount(@Param("choice") String choice, @Param("keyword") String keyword);
+boolean insertReply(@Param("num")String num,@Param("reply") String reply);
+
+boolean delectBoard(@Param("num")String num,@Param("password") String password);
+
 	//boolean writeBoard(ConsultingBoard board);
-//	
+//
 //	ConsultingBoard boardmodifyajax(Integer num);
 //
 //	boolean boardmodify(ConsultingBoard board);
