@@ -15,7 +15,7 @@ text-align:center;
 <body>
       <div id="center">
       <br>
-        <button type="button" id="businessitemfrm">영업 실적조회</button>${msg}
+        <button type="button" id="businessitemfrm" onclick="window.open('/erp/sales/SalesResult','SalesResult','width=1200,height=1200')">영업 실적조회</button>${msg}
         <br>
         <br>
         <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">영업활동</div>
@@ -126,7 +126,7 @@ text-align:center;
                     str+="<td><input type='text' value="+data.bList[i].ba_estimatedsalesamount+"></td>";
                     str+="<td><input type='text' value="+data.bList[i].ba_actualsalesamount+"></td>";
                     str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
-                    str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td></tr>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td></tr>"; */
 
        $('#sub').click(function(){
            var obj= $('#businessactivitiesinput').serialize();

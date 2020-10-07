@@ -28,6 +28,9 @@ border: 1px solid;
     <div id="center">
         <br>
         <button type="button" id="shippingitemfrm">출하등록 현황</button>
+        <input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
+        <input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
+        <input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" >
         <button type="button" id="approvalplan">결재 요청하기</button>
         <br>
         <br>
