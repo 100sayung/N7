@@ -165,7 +165,7 @@ table {
 			console.log("왜 안 돼?");
 			if($("#checkbonus").is(":checked")){
 				if(confirm("연차수당을 지급하시겠습니까?")){
-					var input = (${pay.HDP_PAY} /200 *8)
+					var input = (${pay.HDP_PAY}/200 *8)
 					console.log(input);
 					input = input*${holynum};
 					console.log(input);

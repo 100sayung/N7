@@ -108,11 +108,11 @@ body{
 	</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
-   		<tr style="background-color: #B2BEB5">
+   		<tr style="background-color: #FFFFFF">
    			<td>대기중</td>
    			<td>회색</td>
    		</tr>
-   		<tr style="background-color: #39FF14">
+   		<tr style="background-color: #D2E9FF">
    			<td>승인</td>
    			<td>초록색</td>
    		</tr>
@@ -256,12 +256,12 @@ body{
                      //09-24 change
                    	 cell.style.padding="10px 0px";
                      if(data[k].hap_status=="3"){
-                    	 cell.style.backgroundColor="#39FF14";
+                    	 cell.style.backgroundColor="#D2E9FF";
                     	 cell.style.color="black";
                     	 cell.style.fontWeight="bolder";
                      }else if(data[k].hap_status=="1"){
                     	 cell.style.color="black";
-                    	 cell.style.backgroundColor="#B2BEB5";
+                    	 cell.style.backgroundColor="#FFFFFF";
                      }
                      ///////
                      let date = "" + year + month + day;
@@ -270,7 +270,7 @@ body{
                      } else if (endday == date) {
                         cell.innerHTML = "-->";
                      } else if (startday < date && date < endday) {
-                        if(j!=cnt){
+                        if(j!=cnt){	
                            cell.innerHTML = "---";
                         }else{
                            cell.innerHTML = data[k].m_name;
