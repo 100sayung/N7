@@ -19,9 +19,38 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 200;
+}
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px;
+  color: #cccccc;
+}
+
+
+
+
+
+
+
+
 #loginContainer {
 	width: 500px;
-	margin-left: 700px;
+	margin-left: 600px;
 	margin-top: 170px;
 }
 
@@ -49,13 +78,19 @@ input[type="text"] {
 </head>
 
 <body>
-	<div id="header" class="container">
+		<div id="header" class="container" style="text-align: center;">
+		<div id="logo">
+			<h1>
+				<a href="/erp/" style="color: black;">N7 COMPANY</a>
+			</h1>
+		</div>
+<!-- 	<div id="header" class="container">
 		<div id="logo">
 			<h1>
 				<a href="/erp/" style="color: black;">N7 ERP SYSTEM</a>
 			</h1>
-		</div>
-		<div id="menu">
+		</div> -->
+<%-- 		<div id="menu">
 			<ul>
 				<li><a href="/erp/">MAIN</a></li>
 				<li><a href="/erp/introducecompany">회사 소개</a></li>
@@ -69,7 +104,7 @@ input[type="text"] {
 				</c:if>
 				<li class="current_page_item"><a href="#">ERP시작</a></li>
 			</ul>
-		</div>
+		</div> --%>
 	</div>
 	<div id="loginContainer">
 		<div class="table-responsive">

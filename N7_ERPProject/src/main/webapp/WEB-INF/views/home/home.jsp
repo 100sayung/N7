@@ -100,7 +100,7 @@ font-size: 30px;
       <div class="carousel-inner" role="listbox">
 
         <div class="item active">
-          <img src="img/mainerp3.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
+          <img src="img/mainerp5.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
           <!-- <div class="carousel-caption">
             <h2>기술</h2>
             <p>혁신적인 기술로 시장을 선도하는 기업</p>
