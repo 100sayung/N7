@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>휴가신청</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -58,27 +58,35 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
-			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
-			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
-			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
-			<li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
+			<div id="myInfoMenu">
+			</div>
+			<li id="showMenu1">나의 결재함</a></li>
+			<ul id="menu2" style="display: none;">
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+				</ul>
+				<li id="apdownPayment">내가 받은 결재함</li>
+				<li id="acTemporary">임시저장 결재함</li>
+			</ul>
 		</ul>
 	</div>
-	<div id="description"> 
+	<div id="description">
 	<button id="approval" class="goodbtn">결재자등록</button>
 	<form action="/erp/hr/applyholiday" method="post">
 	<table style='text-align: center;'>
@@ -102,8 +110,8 @@ ul {
 	<input type="submit" class='infobtn' value="제출">
 	</form>
 	</div>
-	
-	
+
+
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
 	function setChildValue(data) {
@@ -119,7 +127,7 @@ ul {
 		};
 	};
 
-		
+
 	$(document).ready(function() {
 		$.ajax({
 			url : "/erp/rest/hr/myleaderlist",
@@ -140,14 +148,14 @@ ul {
 	});
 	$("#approval").click(function() {
 		console.log("123");
-		window.open('/erp/Account/approvalLine', 'approvalLine', 'width=1400,height=700');
+		window.open('/erp/hr/approvalLine', 'approvalLine', 'width=1400,height=700');
 	});
-	
+
 
 	function replaceAll(str, searchStr, replaceStr) {
 	    return str.split(searchStr).join(replaceStr);
 	 }
-	
+
 
 	function checkDateValue(val1, val2){
 		let date1 = Number(replaceAll(val1.value, "-", ""));

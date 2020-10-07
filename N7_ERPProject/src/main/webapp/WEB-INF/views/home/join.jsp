@@ -19,7 +19,9 @@
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 	
+
 <style>
 /*
 *
@@ -191,6 +193,8 @@ button {
                                 <i class="fa fa-phone-square text-muted"></i>
                             </span>
                         </div>                         
+
+
                      <!-- <font style="color:gray;">회사코드가 없으신분은</font><font style="font-weight : bold;">N7</font><font style="color:gray;">을 입력해주세요.</font><br/> -->
                           <br>
                           <br>
@@ -199,7 +203,7 @@ button {
                         <br><span id="dupleCCode"></span>
                     </div>
 
-                    
+
                     <!--email-->
                     <div class="input-group col-lg-12 mb-4">
                          <div class="input-group-prepend">
@@ -209,13 +213,14 @@ button {
                         </div>
                       <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
-                    
+
                     <!-- 주소 -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <p class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-lock text-muted"></i>
                             </p>
+
                         </div> 
 					    <input type="text" style="width:300px;" id="addr1" name="addr1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" / required><br>
                         &nbsp;&nbsp;<button type="button" id="postcodify_search_button" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
@@ -227,6 +232,7 @@ button {
                                 <i class="fa fa-lock text-muted"></i>
                             </p>
                         </div> 
+
 					    <input id="addr2" type="text" name="addr2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
 					    <input type="text" name="addr3" id="addr3" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" / required>
                     </div>
@@ -261,8 +267,8 @@ button {
                         </div>
                       <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
-                        
-                    
+
+
                     <!-- join -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
                         <input type="hidden" name="m_address" id="addr"></input>
@@ -282,7 +288,7 @@ button {
                     <!-- Already Registered -->
                     <div class="text-center w-100">
                         <p class="text-muted font-weight-bold">Already Registered? <a href="/erp/login" class="text-primary ml-2">Login</a></p>
-                    </div> 
+                    </div>
 
                 </div>
             </form>
@@ -290,7 +296,7 @@ button {
     </div>
 </div>
 
-	
+
 	<script>
 	// For Demo Purpose [Changing input group text on focus]
 	$(function () {
@@ -300,7 +306,7 @@ button {
 	    $('input, select').on('blur', function () {
 	        $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
 	    });
-	}); 
+	});
 
 
 		var checkid;

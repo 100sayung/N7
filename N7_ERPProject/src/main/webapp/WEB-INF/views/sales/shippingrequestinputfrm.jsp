@@ -107,11 +107,11 @@ border: 1px solid;
     <script type="text/javascript">
     function setChildValue(data) {
  	   console.log(data)
- 	   for(var i in data.aList){ 
+ 	   for(var i in data.aList){
  	   var clcode=data.aList[i].cl_code;
- 	      
+
  	   }
- 	   
+
  	   $("#clcode").val(clcode);
  	};
 
@@ -183,7 +183,7 @@ border: 1px solid;
         	          }
         	       });
           });
-         
+
 
          function makeSelectBox(arr){
              var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
@@ -202,7 +202,7 @@ border: 1px solid;
                 let tr = row.parentNode.parentNode;
                 tr.parentNode.removeChild(tr);
          };
-         
+
          function makeSelectBox2(arr){
              var arrStr = "<select class='select' name = 'bs_proname'><option></option>"
              if(arr.length==0){
@@ -266,9 +266,9 @@ border: 1px solid;
                 	error:function(error){
                 		console.log(error);
                 	}
-                	
+
                 })
-              
+
             });
          });
 

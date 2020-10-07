@@ -1,6 +1,7 @@
 package com.n7.erp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class ConsultingBoardMM {
 
 	@Autowired
 	private IConsultingBoardDao CBdao;
-	
+
 	ModelAndView mav = new ModelAndView();
 
 	//게시판 이동시 목록 출력
@@ -46,12 +47,12 @@ public class ConsultingBoardMM {
 		mav.setViewName(view);
 		return mav;
 	}
-	
+
 	private String getPaging(Integer pageNum) {
 		int maxNum = CBdao.getBoarCount();
 		int listCount=10;
 		int pageCount=5;
-		String boardName="/erp/erpboard";
+		String boardName="/erp/home/erpboard";
 		Paging paging= new Paging(maxNum, pageNum, listCount, pageCount, boardName);
 		return paging.makeHtmlPaging();
 	}
@@ -63,39 +64,55 @@ public class ConsultingBoardMM {
 		String id=(String)session.getAttribute("id");
 		System.out.println("id="+id);
 		String pw=null;
-		
+
 		if(id==null) {
-			if(board.getCB_PASSWORD()==null) {
+			if(board.getCb_password()==null) {
 				mav.addObject("msg", "비밀번호를 입력해주세요.");
 				mav.addObject("id", id);
 			}else {
-				pw=board.getCB_PASSWORD();
+				pw=board.getCb_password();
 			}
 		}else {
 			pw=mb.getM_pw();
-			
+
 		}
 		CBdao.boardWrite(board);
-		view="/home/erpboard";
-		
+		view="redirect:/erpboard";
+
 		mav.setViewName(view);
 		return mav;
 	}
-	
+
 	public ModelAndView boardContents(int CB_NUM) {
 		mav= new ModelAndView();
 		String view= null;
-		
+
 		ConsultingBoard board= CBdao.getContents(CB_NUM);
 		System.out.println("들어감?");
-		
+
 		System.out.println("board="+board);
 		mav.addObject("board", board);
 		view="/home/boardContents";
 		mav.setViewName(view);
-		
+
 		return mav;
 	}
+
+	  public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
+	      Map<String, List<ConsultingBoard>>bMap = null;
+	      ConsultingBoard cb = new ConsultingBoard();
+	      List<ConsultingBoard> bList =CBdao.boardSearch(choice, keyword);
+	      cb.setCb_count(CBdao.getSearchCount(choice,keyword));
+	      bList.add(cb);
+	      if(bList!=null) {
+	         bMap=new HashMap<>();
+	         bMap.put("bList", bList);
+	      }else {
+	         bMap=null;
+	      }
+	      return bMap;
+	   }
+
 
 //	//게시글 수정 목록 출력
 //	public String boardmodifyajax(Integer num) {

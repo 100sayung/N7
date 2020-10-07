@@ -11,19 +11,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="/erp/css/default.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->	
-	
+<!------ Include the above in your HEAD tag ---------->
+
 
 <style>
 
@@ -52,7 +51,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
-  margin: 40px 8px 10px 8px; 
+  margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
 
@@ -62,7 +61,7 @@ h2 {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -302,7 +301,7 @@ input[type=text]:placeholder {
 
 
  #loginContainer {
-	width: 300px; 
+	width: 300px;
 /* 	width: auto; */
 	margin-left: 600px;
 	margin-top: 170px;
@@ -328,6 +327,7 @@ button {
 #idserach {
 	margin-left: 30px;
 }
+
 </style>
 </head>
 
@@ -376,12 +376,12 @@ button {
       <br>
 
     <span class="warnMsg">${warn}</span><br>
-    
+
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
-      <a href="/erp/findidfrm" id="idserach">아이디 찾기</a> | 
-      <a href="/erp/findpasswordfrm">비밀번호 찾기</a> 
+      <a href="/erp/findidfrm" id="idserach">아이디 찾기</a> |
+      <a href="/erp/findpasswordfrm">비밀번호 찾기</a>
     </div>
     <div style="padding:5px;">회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></div>
     </form>

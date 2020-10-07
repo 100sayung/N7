@@ -22,12 +22,12 @@ text-align:center;
         <br>
         <br>
         <div style="width:auto; background-color:#FFB2D9; color:white; padding:1%;">미수금 등록</div>
-          <select id="choice" style="width:180px;">                    
+          <select id="choice" style="width:180px;">
                       <option value="bu_clcode">거래처회사코드</option>
                       <option value="bu_person">등록자</option>
           </select>
-        <input type="text" name="search" id="search">    
-        <button id="searchh">검색</button>   
+        <input type="text" name="search" id="search">
+        <button id="searchh">검색</button>
         <form id="uncollectedmoneyinput">
         <div border="1" style="height:60px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:100px;">
@@ -38,13 +38,13 @@ text-align:center;
                <th>거래처회사코드</th>
                <th><input type="text" name="bs_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>제품코드</th>
-               <th class = "cl"></th> 
+               <th class = "cl"></th>
                <th>등록자</th>
                <th><input type="text" name="bu_person"></th>
             </tr>
          </thead>
       </table>
-      </div> 
+      </div>
             <div style="background-color:#ECEBEA;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
                style="margin-left:350px;">
@@ -68,27 +68,27 @@ text-align:center;
                 </thead>
                 <tbody id="tBody">
                     <tr>
-                        <td><input type="radio" class="each_check"></td>          
+                        <td><input type="radio" class="each_check"></td>
                         <td><input type="text" name="bs_date" placeholder="자동생성" readonly></td>
-                        <td class="pn"></td> 
+                        <td class="pn"></td>
                         <td><input type="number" name="bs_unit"  required></td>
                         <td><input type="number" name="bs_quantity"  required></td>
-                        <td><input type="number" name="bs_price" required></td>                  
+                        <td><input type="number" name="bs_price" required></td>
                     </tr>
                 </tbody>
             </table>
-            </div>  
-            <br>  
+            </div>
+            <br>
             <div>
             <button type="button" id="sub" value="저장">저장</button>
             </div>
         </form>
-       </div> 
+       </div>
     <br>
     <br>
 
-    <script type="text/javascript"> 
-    
+    <script type="text/javascript">
+
     $(document).ready(function(){
         var select;
         $.ajax({
@@ -103,15 +103,15 @@ text-align:center;
               }
            });
     });
-    
+
     function setChildValue(data) {
   	   console.log(data)
-  	   for(var i in data.aList){ 
+  	   for(var i in data.aList){
   	   var clcode=data.aList[i].cl_code;
-  	      
+
   	   }
-    }; 
-    
+    };
+
        function makeSelectBox(arr){
            var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
            if(arr.length==0){
@@ -129,8 +129,8 @@ text-align:center;
               let tr = row.parentNode.parentNode;
               tr.parentNode.removeChild(tr);
        };
-       
-       
+
+
        $(document).ready(function(){
    	    var select2;
    	    $.ajax({
@@ -145,18 +145,18 @@ text-align:center;
    	          }
    	       });
    	    });
-  	   
-  	
+
+
      $('#uncollectedmoneyitemfrm').click(function(){
        var str="";
-       
+
        $.ajax({
           url:'/erp/rest/sales/uncollectedmoneyitem',
           type: 'get',
           dataType: "json",
           success:function(data){
              console.log(data);
-             
+
              for(var i in data.sList){//개별 미수금 등록한 거
                  str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_ccode+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>"; //내가 입력한 출하의뢰일
@@ -174,14 +174,14 @@ text-align:center;
                  str+="<td><input type='number' value="+data.sList2[i].bs_price+"></td>";
               }
                $('#tBody').html(str);
-           
+
           },
           error:function(error){
              console.log(error);
           }
        });
      });
-     
+
      $('#sub').click(function(){
         var obj= $('#uncollectedmoneyinput').serialize();
 
@@ -199,8 +199,8 @@ text-align:center;
               }
            });
             $('input').val("");
-        }); 
-     
+        });
+
       $('#searchh').click(function(){
         var choice=$('#choice').val();
          var search=$('#search').val();
@@ -211,9 +211,9 @@ text-align:center;
                url : '/erp/rest/sales/uncollectedmoneysearch',
                data: "choice="+choice+"&search="+search,
                dataType: "json",
-               success : function(data) {                   
+               success : function(data) {
                   console.log(data);
-                  
+
                   var str="";
                    if(data.sList!=""){
                   for(var i in data.sList){
@@ -227,33 +227,33 @@ text-align:center;
                       $('#tBody').html(str);
                    }else{
                       alert("데이터가 없습니다.");
-                   }   
+                   }
                },
                error : function(error) {
                   console.log(error);
                }
             });
-         }); 
-      
+         });
+
        $('#deleteCheck').click(function(){
           var check="";
           $("input[name=each_check]:checked").each(function(){
              check = $(this).attr("value");
              console.log(check);
           });
-          
+
           $.ajax({
                 type : 'post',
                 url : '/erp/rest/sales/orderregistrationdelete',
                 data: {check:check},
                 dataType: "json",
-                success : function(data) {                   
+                success : function(data) {
                    console.log(data);
                    var str="";
                    if(data.sList[0].bo_num==check){
                       alert("출하 등록된 자료입니다.");
                    }else{
-                      
+
                    for(var i in data.sList){
                        str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
                        str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
@@ -271,9 +271,9 @@ text-align:center;
                    console.log(error);
                 }
              });
-          }); 
-      
-    
+          });
+
+
       //완납 처리 버튼
       $('#fullpaymentcheck').click(function(){
 
@@ -283,7 +283,7 @@ text-align:center;
                 if(check==""){
                    alert("완납처리할 버튼을 체크해주세요");
                 }else{
-                     
+
           $.ajax({
            url: '/erp/rest/sales/fullpaymentprocess',
            type: 'post',
@@ -292,9 +292,9 @@ text-align:center;
            success:function(data){
               console.log(data);
               alert("완납처리 되었습니다.");
- 
+
               var str="";
-              
+
               for(var i in data.sList){
                  str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
@@ -303,30 +303,30 @@ text-align:center;
                  str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
               }
-              
+
                  $('#tBody').html(str);
-                 
+
            },
            error:function(error){
               console.log(error);
            }
           });
-        } 
-     }); 
+        }
      });
-      
+     });
+
      //결재창에서 끌고 온 미수금 조회
      $('#uncollectedsearch').click(function(){
-    
+
        $.ajax({
           url:'/erp/rest/sales/creditsearch',
           type: 'get',
           dataType: "json",
           success:function(data){
              console.log(data);
-       
+
              var str="";
-             
+
              for(var i in data.sList){
                 str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
@@ -336,25 +336,25 @@ text-align:center;
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
              }
                 $('#tBody').html(str);
-                
+
           },
           error:function(error){
              console.log(error);
           }
        });
-    }); 
+    });
      //완납 현황 조회
      $('#fullpaymentsearch').click(function(){
-           
+
         $.ajax({
            url:'/erp/rest/sales/fullpaymentsearch',
            type: 'get',
            dataType: "json",
            success:function(data){
               console.log(data);
-        
+
               var str="";
-              
+
               for(var i in data.sList){
                  str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_credit+"></td>";
                  str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
@@ -364,14 +364,14 @@ text-align:center;
                  str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
               }
                  $('#tBody').html(str);
-                 
+
            },
            error:function(error){
               console.log(error);
            }
         });
-     }); 
-     
+     });
+
 		$('#uncollectedmoneyitemfrm').click(function(){
 			$("#sub").attr("style","visibility: hidden");
 	});
@@ -384,8 +384,8 @@ text-align:center;
 		$('#fullpaymentsearch').click(function(){
 			$("#sub").attr("style","visibility: hidden");
 	});
-     
-     
+
+
 </script>
 </body>
 </html>

@@ -25,7 +25,7 @@ import com.n7.erp.dao.PurchaseDao;
 
 @Component
 public class PurchaseMM {
-	
+
 	@Autowired
 	PurchaseDao pDao;
 
@@ -48,7 +48,7 @@ public class PurchaseMM {
 				ps.setP_amount(Integer.parseInt(p_amount[i]));
 				ps.setP_unlit(Integer.parseInt(p_unlit[i]));
 				ps.setP_budget(Integer.parseInt(p_budget[i]));
-				b= pDao.pregistration(ps); 
+				b= pDao.pregistration(ps);
 			}
 			if(a&&b) {
 				view = "/Purchase/pregistration";
@@ -62,10 +62,11 @@ public class PurchaseMM {
 		return mav;
 	}
 
-	public Map<String, List<Purchase>> pFrerence() {
+	public Map<String, List<Purchase>> pFrerence(HttpSession session) {
 		Map<String, List<Purchase>> pMap = null;
-		
-		List<Purchase> pList = pDao.pFrerence();
+		String cCode = session.getAttribute("cCode").toString();
+
+		List<Purchase> pList = pDao.pFrerence(cCode);
 		System.out.println("제발...");
 			if (pList != null) {
 					pMap = new HashMap<>();
@@ -78,9 +79,10 @@ public class PurchaseMM {
 	}
 
 
-	public Map<String, List<Purchase>> pfsearch(String search, String choice) {
+	public Map<String, List<Purchase>> pfsearch(String search, String choice, HttpSession session) {
 		Map<String, List<Purchase>> pMap = null;
-		List<Purchase> pList = pDao.pfSearch(search, choice);
+		String cCode= (String)session.getAttribute("cCode");
+		List<Purchase> pList = pDao.pfSearch(search, choice, cCode);
 		if (pList != null) {
 			pMap = new HashMap<>();
 			pMap.put("pList", pList);
@@ -91,12 +93,13 @@ public class PurchaseMM {
 		return pMap;
 	}
 
-	public Map<String, List<Purchase>> pfdelete(String check_list) {
+	public Map<String, List<Purchase>> pfdelete(String check_list, HttpSession session) {
 		Map<String, List<Purchase>> pMap = null;
+		String cCode= (String)session.getAttribute("cCode");
 		System.out.println(check_list);
 
-		if(pDao.pcDelete(check_list) && pDao.pfDelete(check_list)) {
-			List<Purchase>pList= pDao.pFrerence();
+		if(pDao.pcDelete(check_list, cCode) && pDao.pfDelete(check_list, cCode)) {
+			List<Purchase>pList= pDao.pFrerence(cCode);
 			pMap = new HashMap<>();
 			pMap.put("pList", pList);
 			System.out.println("지워짐");
@@ -107,15 +110,16 @@ public class PurchaseMM {
 		return pMap;
 	}
 
-	public ModelAndView pDetail(String check) {
+	public ModelAndView pDetail(String check, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
 		List<Purchase> pList= null;
 		Purchase ps= new Purchase();
-		
+
 		if(check!=null) {
-			ps= pDao.pInfo(check);
-			pList= pDao.pDetail(check);
+			ps= pDao.pInfo(check, cCode);
+			pList= pDao.pDetail(check, cCode);
 			if(pList!=null) {
 				mav.addObject("pList", new Gson().toJson(pList));
 				System.out.println("PLIST"+pList);
@@ -130,15 +134,16 @@ public class PurchaseMM {
 		return mav;
 	}
 
-	public ModelAndView pProgram(String check) {
+	public ModelAndView pProgram(String check, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
 		List<Purchase> pList= null;
-		
+
 		if(check!=null) {
 			Purchase ps= new Purchase();
-				ps= pDao.pBring(check);
-				pList= pDao.pProgram(check);
+				ps= pDao.pBring(check,cCode);
+				pList= pDao.pProgram(check,cCode);
 				if(pList!=null) {
 					mav.addObject("pList", new Gson().toJson(pList));
 					mav.addObject("ps", ps);
@@ -150,8 +155,8 @@ public class PurchaseMM {
 		mav.setViewName(view);
 		return mav;
 	}
-	
-    //결재라인 
+
+    //결재라인
    public Map<String, List<com.n7.erp.bean.ps.approvalLine>> searchName(String name) {
          Map<String, List<approvalLine>> sMap= null;
          List<approvalLine> aList=null;
@@ -188,19 +193,19 @@ public class PurchaseMM {
             Map<String, List<approvalLine>> sMap=null;
             System.out.println(code01.length);
             //System.out.println(code02[0]);
-            
+
             if(code01.length!=0) {
                   List<approvalLine> tList1 = new ArrayList<>();
 //                  List<approvalLine> tList2= new ArrayList<>();
-                  
+
                   for(int i=0; i<code01.length; i++) {
                      approvalLine al = new approvalLine();
-                     al=pDao.approLinecom1(code01[i]); 
+                     al=pDao.approLinecom1(code01[i]);
                      tList1.add(al);
                   }
 //                  for(int i=0; i<code02.length; i++) {
 //                     approvalLine al = new approvalLine();
-//                     al=sDao.approLinecom2(code02[i]); 
+//                     al=sDao.approLinecom2(code02[i]);
 //                     tList2.add(al);
 //                  }
                   sMap=new HashMap<>();
@@ -208,7 +213,7 @@ public class PurchaseMM {
                   sMap.put("tList1",tList1);
                   //sMap.put("tList2",tList2);
                }else {
-                  
+
                   sMap=null;
                }
             return sMap;
@@ -218,20 +223,20 @@ public class PurchaseMM {
             String view=null;
             ModelAndView mav= new ModelAndView();
             List<approvalLine> aList = null;
-            aList=pDao.approvalLine(); 
+            aList=pDao.approvalLine();
             if(aList.size()!=0) {
                   mav.addObject("aList",new Gson().toJson(aList));
                   view="/Purchase/approvalLine";
                }else {
-                  
+
                    mav.addObject("msg","주소록에 정보가 없습니다");
                   view="/Purchase/pprogramwrite";
                }
-            
+
             mav.setViewName(view);
             return mav;
          }
-      
+
 	public ModelAndView purchaseApproval(HttpServletRequest request, PurchaseApproval pa, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		pa.setP_ccode(session.getAttribute("cCode").toString());
@@ -253,7 +258,7 @@ public class PurchaseMM {
 				pa.setP_amount(Integer.parseInt(p_amount[i]));
 				pa.setP_unlit(Integer.parseInt(p_unlit[i]));
 				pa.setP_budget(Integer.parseInt(p_budget[i]));
-				c= pDao.pApproval2(pa); 
+				c= pDao.pApproval2(pa);
 			}
 			if(a&&b&&c) {
 				System.out.println("다 들어가는거야?");
@@ -267,7 +272,7 @@ public class PurchaseMM {
 		mav.setViewName(view);
 		return mav;
 	}
-	
+
 	public Map<String, List<approvalLine>> getMyInfo(HttpSession session) {
         Map<String, List<approvalLine>> sMap=null;
         List<approvalLine> sList=null;
@@ -280,29 +285,49 @@ public class PurchaseMM {
         }else {
            sMap=null;
         }
-        return sMap;   
+        return sMap;
 	}
 
 	public ModelAndView rRegistration(Return rt, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
+
+		IePort ie= new IePort();
+		ItemCode it= new ItemCode();
+
 		rt.setR_ccode(session.getAttribute("cCode").toString());
-		
+		String hr_code= session.getAttribute("hrCode").toString();
+		rt.setR_hrcode(hr_code);
+
+		int cnt= 0;
+		int cnt2=0;
+		int tot=0;
+		int tot2=0;
+
+		it=pDao.getitcode(rt.getR_itcode(), rt.getR_ccode());
+		cnt=it.getIt_stock();
+		cnt2= rt.getR_amount();
+		tot=cnt-cnt2;
+		tot2=Math.abs(tot);
+
 		if(rt.getR_ccode()!="") {
-			if(pDao.rRegistration(rt)) {
-				view= "/Purchase/retrunregistration";
+			if(pDao.rRegistration(rt) && pDao.insertIeport(rt)) {
+				  if(pDao.updateitcode(tot2, rt.getR_itcode(), rt.getR_ccode())) {
+					  view= "/Purchase/retrunregistration";
+				  }
+			}
 			}else {
 				view="/Purchase/retrunregistration";
-			}
 		}
 		mav.setViewName(view);
 		return mav;
 	}
 
 
-	public Map<String, List<Return>> rInfo() {
+	public Map<String, List<Return>> rInfo(HttpSession session) {
 		Map<String, List<Return>> rMap = null;
-		List<Return> rList = pDao.rInfo();
+		String cCode= (String)session.getAttribute("cCode");
+		List<Return> rList = pDao.rInfo(cCode);
 		if (rList != null) {
 			rMap = new HashMap<>();
 			rMap.put("rList", rList);
@@ -313,12 +338,13 @@ public class PurchaseMM {
 		return rMap;
 	}
 
-	public Map<String, List<Return>> rDelete(String check_list) {
+	public Map<String, List<Return>> rDelete(String check_list, HttpSession session) {
 		Map<String, List<Return>> rMap=null;
 		System.out.println(check_list);
-		
-		if(pDao.rDelete(check_list)) {
-			List<Return>rList=pDao.rInfo();
+		String cCode= (String)session.getAttribute("cCode");
+
+		if(pDao.rDelete(check_list,cCode)) {
+			List<Return>rList=pDao.rInfo(cCode);
 			rMap= new HashMap<>();
 			rMap.put("rList", rList);
 			System.out.println("지워짐");
@@ -329,9 +355,10 @@ public class PurchaseMM {
 		return rMap;
 	}
 
-	public Map<String, List<Return>> rSearch(String search, String choice) {
+	public Map<String, List<Return>> rSearch(String search, String choice, HttpSession session) {
 		Map<String, List<Return>> rMap= null;
-		List<Return> rList= pDao.rSearch(search, choice);
+		String cCode= (String)session.getAttribute("cCode");
+		List<Return> rList= pDao.rSearch(search, choice, cCode);
 		if(rList!=null) {
 			rMap= new HashMap<>();
 			rMap.put("rList", rList);
@@ -346,12 +373,12 @@ public class PurchaseMM {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
 		String cCode= (String)session.getAttribute("cCode");
-		
+
 		PurchaseApproval pa= pDao.pRequest(p_documentcode, cCode);
 
 		List<PurchaseApproval>pList= pDao.pListRequest(p_documentcode, cCode);
-		
-		
+
+
 		if(pa!=null) {
 			if(pList!=null) {
 				mav.addObject("pa", pa);
@@ -371,18 +398,18 @@ public class PurchaseMM {
 	public Map<String, List<com.n7.erp.bean.ps.approvalLine>> getApprovalInfo(int cnt, String[] strArray, HttpSession session) {
 		Map<String, List<approvalLine>> pMap=null;
 		List<approvalLine> pList= new ArrayList<>();
-		
+
 		System.out.println("cnt="+cnt);
 		System.out.println("이름값="+strArray.length);
 		String code="";
-		
+
 		approvalLine al= new com.n7.erp.bean.ps.approvalLine();
 		for(int i=0; i<cnt; i++) {
 			code=strArray[i];
 			al=pDao.getApprovalInfo(code);
 			pList.add(al);
 		}
-		
+
 		if(pList!=null) {
 			pMap= new HashMap<>();
 			pMap.put("pList", pList);
@@ -396,9 +423,9 @@ public class PurchaseMM {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
 		String cCode= (String)session.getAttribute("cCode");
-		
+
 		PurchaseApproval pa= pDao.pRequest2(p_documentcode, cCode);
-		
+
 		List<PurchaseApproval>pList= pDao.pListRequest2(p_documentcode, cCode);
 
 		if(pa!=null) {

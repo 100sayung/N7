@@ -16,15 +16,14 @@ text-align:center;
       <div id="center">
       <br>
         <button type="button" id="businessitemfrm">영업 실적조회</button>${msg}
-        <button type="button" id="print" onclick="window.print()">영업실적 인쇄</button>
         <br>
         <br>
         <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">영업활동</div>
          <select id="choice" style="width:180px;">
                       <option value="ba_ocode">영업코드</option>
                       <option value="ba_hrcode">사원코드</option></select>
-          <input type="text" name="search" id="search">    
-          <button type="button" id="searchh" value="검색">검색</button>   
+          <input type="text" name="search" id="search">
+          <button type="button" id="searchh" value="검색">검색</button>
         <form id="businessactivitiesinput">
         <div border="1" style="height:80px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:180px;">
@@ -51,7 +50,7 @@ text-align:center;
             </tr>
          </thead>
       </table>
-      </div> 
+      </div>
             <div style="background-color:#ECEBEA;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
               style="margin-left:140px;">
@@ -76,17 +75,17 @@ text-align:center;
                 </thead>
                 <tbody id="tBody">
                     <tr>
-                        <td><input type="radio" class="each"></td>          
+                        <td><input type="radio" class="each"></td>
                         <td><input type="date" name="ba_date" id="add"></td>
                         <td><input type="text" name="ba_content"  required></td>
                         <td><input type="number" name="ba_estimatedsalesamount" required></td>
-                        <td><input type="number" name="ba_actualsalesamount"></td>                
+                        <td><input type="number" name="ba_actualsalesamount"></td>
                         <td><input type="text" name="ba_enddate" required></td>
-                        <td><input type="text" name="ba_memo" required></td>    
+                        <td><input type="text" name="ba_memo" required></td>
                     </tr>
                 </tbody>
             </table>
-            </div>  
+            </div>
         </form>
         <br>
             <!-- <button type="button" id="deleteCheck" value="삭제">삭제</button> -->
@@ -96,30 +95,30 @@ text-align:center;
     <br>
     <br>
 
-    
-    <script type="text/javascript">     
-    
+
+    <script type="text/javascript">
+
     function setChildValue(data) {
   	   console.log(data)
-  	   for(var i in data.aList){ 
+  	   for(var i in data.aList){
   	   var clcode=data.aList[i].cl_code;
-  	      
+
   	   }
-  	   
+
   	   $("#clcode").val(clcode);
   	};
-        
-        
+
+
 /*       $('#businessitemfrm').click(function(){
            var str="";
-           
+
            $.ajax({
               url:'/erp/rest/sales/businessitem',
               type: 'get',
               dataType: "json",
               success:function(data){
                  console.log(data);
-                 
+
                  for(var i in data.bList){
                     str+="<tr><td><input type='radio' name='checknum' value="+data.bList[i].ba_ocode+"></td>";
                     str+="<td><input type='text' value="+data.bList[i].ba_date+"></td>";
@@ -129,21 +128,6 @@ text-align:center;
                     str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
                     str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td></tr>";
 
-                 }
-                    $('#tBody').html(str);
-              },
-              error:function(error){
-                 console.log(error);
-              }
-           })
-        }); */
-        
-        
-        $("#businessitemfrm").click(function() {
-            window.open('/erp/sales/businessperformance', 'businessperformance', 'width=1400,height=700');
-         }); 
-        
-        
        $('#sub').click(function(){
            var obj= $('#businessactivitiesinput').serialize();
 
@@ -160,12 +144,12 @@ text-align:center;
                  }
               });
                $('input').val("");
-           });           
-        
+           });
+
        $('#searchh').click(function(){
          var choice=$('#choice').val();
          var search=$('#search').val();
-         
+
          $.ajax({
             type : 'post',
              url : '/erp/rest/sales/businessactivitiessearch',
@@ -173,7 +157,7 @@ text-align:center;
              dataType: "json",
              success : function(data){
                 console.log(data);
-                
+
                 var str="";
                 if(data.bList!=""){
                  for(var i in data.bList){
@@ -192,23 +176,23 @@ text-align:center;
              },
              error : function(error){
                 console.log(error);
-             } 
+             }
          });
        });
-       
+
        $('#deleteCheck').click(function(){
           var check="";
           $("input[name=each_check]:checked").each(function(){
              check = $(this).attr("value");
              console.log(check);
           });
-          
+
           $.ajax({
                 type : 'post',
                 url : '/erp/rest/sales/businessactivitiesdelete',
                 data: {check:check},
                 dataType: "json",
-                success : function(data) {                   
+                success : function(data) {
                    console.log(data);
                    var str="";
                    for(var i in data.sList){
@@ -227,7 +211,7 @@ text-align:center;
                    console.log(error);
                 }
              });
-          }); 
+          });
 
 </script>
 </body>

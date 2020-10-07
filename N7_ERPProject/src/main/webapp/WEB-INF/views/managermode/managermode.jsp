@@ -246,10 +246,10 @@ $.ajax({
 				 for(var i in data.mList){
 					 newMenu.push(data.mList[i].m_menu);
 				 }
-				 console.log(newMenu);
-				 console.log(clientMenu);
+				
 				 newMenu = newMenu.sort();
 				 clientMenu = clientMenu.sort();
+				
 				 for(var i=0; i<clientMenu.length; i++){
 					 newMenu.splice(newMenu.indexOf(clientMenu[i]),1)
 				 }
@@ -284,6 +284,7 @@ $.ajax({
   var menuName= new Array();
   var count =0;
 function addmenu(menu){
+	var clientMenu2 = clientMenu.indexOf(menu);
 	var addmenu = $("#"+menu).html();
     if($("#"+menu).parent().attr("id")=="menu"){
     	clientMenu.push(menu);
@@ -293,13 +294,15 @@ function addmenu(menu){
     }else{
 	 $("#"+menu).remove();
 	 $("#menu").append("<li id='"+menu+"'>"+addmenu+"</li>");
-	 clientMenu.splice(menuName.indexOf(menu),1);
+	 clientMenu.splice(clientMenu2,1);
     }
 	
-  console.log(clientMenu);
 };
 
    $("#save").click(function(){
+	   console.log(clientMenu);
+	   clientMenu.sort();
+	   console.log(clientMenu);
 	   if($("#addmenu").html()==""){
 		   alert("선택한 메뉴가 없습니다.");
 	   }else{

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>부서 직책 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -42,11 +42,15 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
 	list-style: none;
+}
+#id,td{
+	border:1px solid #D9EDF7;
+	border-collapse: collapse;
 }
 </style>
 </head>
@@ -54,63 +58,52 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
-					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
-					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 접수</a></li>
-					<li><a href="/erp/hr/attendance">사원 출결 조회</a></li>
-					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
-					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">부서 or 직책 적용</div>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">부서 직책 관리</Strong>
+	</div>
+	<div align="right" width="100%">
 	<table>
 		<tr id="seldplist">
-			<td><select id="disdept" name="disdept" onchange="changeDept()"><option selected="selected"
+			<td><select id="disdept" name="disdept" onchange="changeDept()" style="padding: 5px 10px;"><option selected="selected"
 						 value="">부서 선택</option>
 			</select></td>
-			<td><select id="disposition" name="disposition"><option selected="selected"
+			<td><select id="disposition" name="disposition" style="padding: 5px 10px;"><option selected="selected"
 						 value="">직급 선택</option>
 			</select></td>
-			<td><button type="button" onclick="distinct()">검색</button></td>
-			<!-- 검색 버튼 클릭시  -->
+			<td><button type="button" class="infobtn" onclick="distinct()">검색</button></td>
 		</tr>
 	</table>
+	</div>
 	<div id="container" style="overflow:auto; height: 500px;">
-	<table id="id">
-		<tr align="center">
+	<table id="id" align="center" width="100%" style="text-align: center;">
+		<tr style="background-color: lightgray;color : black;">
 			<td>부서</td>
 			<td>직급</td>
 			<td>금액</td>
 			<td>수정 금액</td>
-			<td></td>
+			<td colspan="2"></td>
 		</tr>
 	</table>
 	</div>
@@ -146,11 +139,11 @@ $("#showMenu3").hover(function() {
 			+"<td width='100px'>"+dept[i].HDP_position+"</td>"
 			+"<td id='"+dept[i].HDP_num+"' width='100px'>"+dept[i].HDP_pay+"</td>"
 			+"<td><input id='modifypay_"+dept[i].HDP_num+"'></td>"
-			+"<td><button type='button' id='"+dept[i].HDP_num+dept[i].HDP_pay+"'  onclick='dify("+dept[i].HDP_num+")'>수정</button></td>"
-			+"<td><button type='button' onclick='erase("+dept[i].HDP_num+")'>삭제</button></td></tr>");
+			+"<td><button type='button' class='infobtn' id='"+dept[i].HDP_num+dept[i].HDP_pay+"'  onclick='dify("+dept[i].HDP_num+")'>수정</button></td>"
+			+"<td><button type='button' class='infobtn' onclick='erase("+dept[i].HDP_num+")'>삭제</button></td></tr>");
 		}
 	});
-	
+
 // 	$(function(){
 // 		var division = ${dept};
 // 		for(var i=0;i<division.length;i++){
@@ -203,7 +196,7 @@ $("#showMenu3").hover(function() {
 					+"<td width='100px'>"+data[i].HDP_dept+"</td>"
 					+"<td id='"+data[i].HDP_num+"' width='100px'>"+data[i].HDP_pay+"</td>"
 					+"<td><input id='modifypay_"+data[i].HDP_num+"'></td>"
-					+"<td><button type='button id='"+dept[i].HDP_num+dept[i].HDP_pay+"'' onclick='dify("+data[i].HDP_num+")'>수정</button></td>"
+					+"<td><button type='button id='"+data[i].HDP_num+dept[i].HDP_pay+"'' onclick='dify("+data[i].HDP_num+")'>수정</button></td>"
 					+"<td><button type='button' onclick='erase("+data[i].HDP_num+")'>삭제</button></td></tr>";
 				}
 				console.log(str);
@@ -211,7 +204,7 @@ $("#showMenu3").hover(function() {
 				location.reload();
 			},
 			error : function(err) {
-				console.log(err);
+				alert("해당 부서와 직책을 사용하는 사원이 있습니다. 제거하고 다시 시도해 주세요.");
 			}
 		});
 	}
@@ -269,7 +262,7 @@ $("#showMenu3").hover(function() {
 					+"<td width='100px'>"+data[i].HDP_position+"</td>"
 					+"<td id='"+data[i].HDP_num+"' width='100px'>"+data[i].HDP_pay+"</td>"
 					+"<td><input id	='modifypay_"+data[i].HDP_num+"'></td>"
-					+"<td><button type='button' id='"+dept[i].HDP_num+dept[i].HDP_pay+"' onclick='dify("+data[i].HDP_num+")' class='mopay'>수정</button></td>"
+					+"<td><button type='button' id='"+data[i].HDP_num+data[i].HDP_pay+"' onclick='dify("+data[i].HDP_num+")' class='mopay'>수정</button></td>"
 					+"<td><button type='button' onclick='erase("+data[i].HDP_num+")' class='mopay'>삭제</button></td></tr>";
 					console.log(data[i].HDP_num);
 				}
@@ -282,6 +275,6 @@ $("#showMenu3").hover(function() {
 		});
 	}
 
-	
+
 </script>
 </html>

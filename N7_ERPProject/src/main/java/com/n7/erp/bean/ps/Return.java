@@ -21,4 +21,5 @@ public class Return {
 	private int r_budget;
 	private String r_name; 
 	private String r_reason; 
+	private String r_hrcode;
 }

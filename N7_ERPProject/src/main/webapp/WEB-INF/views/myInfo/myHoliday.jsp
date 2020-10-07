@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>내 휴가보기</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -42,8 +42,9 @@ a {
 
 #description {
    float: left;
-   height: 100%;
-   
+   height: 500px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -52,16 +53,19 @@ ul {
 .attendance{
    border: 1px solid black;
 }
-table{
-   text-align: center;
-}
+
 table, th, td{
-   border-bottom : 1px solid balck;
-   border-top : 1px solid black;
-   border-collapse: collapse;
+	text-align:center;
+	border-bottom : 1px solid balck;
+	border-top : 1px solid black;
+	border-collapse: collapse;
 }
 #calendar td{
    width:30px;
+}
+
+body{
+	color:black;
 }
 </style>
 </head>
@@ -69,50 +73,56 @@ table, th, td{
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
-			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
-			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
-			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
-			<li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
+			<div id="myInfoMenu">
+			</div>
+			<li id="showMenu1">나의 결재함</a></li>
+			<ul id="menu2" style="display: none;">
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+				</ul>
+				<li id="apdownPayment">내가 받은 결재함</li>
+				<li id="acTemporary">임시저장 결재함</li>
+			</ul>
 		</ul>
 	</div>
    <div id="description">
-   <div class="divcss">내 휴가 보기</div>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">내 휴가 보기</Strong>
+	</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
-   		<tr>
+   		<tr style="background-color: #B2BEB5">
    			<td>대기중</td>
    			<td>회색</td>
    		</tr>
-   		<tr>
+   		<tr style="background-color: #39FF14">
    			<td>승인</td>
    			<td>초록색</td>
    		</tr>
-   		<tr>
-   			<td>거절</td>
-   			<td>삭제됨</td>
-   		</tr>
    </table>
    </div>
-      <table align="center" style="margin-top: 50px;">
-         <tr>
-            <td style="width : 100px;"><font color="#B3B6B3"><label
+      <table align="center" style="margin-top: 50px;background-color: #D9EDF7;">
+         <tr style="border: 1px solid black;">
+            <td style="width : 100px;"><font color="#8A7F8D"><label
                   onclick="beforem()" id="before"></label></font></td>
             <td style="width : 150px; font-size: 15px;" align="center" id="yearmonth" style="font-size: 15px;"></td>
-            <td style="width : 100px;"><font color="#B3B6B3"><label
+            <td style="width : 100px;"><font color="#8A7F8D"><label
                   onclick="nextm()" id="next"></label></font></td>
          </tr>
       </table>
@@ -244,13 +254,12 @@ table, th, td{
                      }
                      //09-24 change
                      if(data[k].hap_status=="3"){
-                    	 cell.style.backgroundColor="#03D62A";
+                    	 cell.style.backgroundColor="#39FF14";
                     	 cell.style.color="black";
                     	 cell.style.fontWeight="bolder";
-                    	 cell.style.textShadow="black 0px 1px";
                      }else if(data[k].hap_status=="1"){
                     	 cell.style.color="black";
-                    	 cell.style.backgroundColor="#C4C5C4";
+                    	 cell.style.backgroundColor="#B2BEB5";
                      }
                      ///////
                      let date = "" + year + month + day;
@@ -266,7 +275,7 @@ table, th, td{
                            cell.style.width="90px;";
                            cell.className="last"
                               cell = row.insertCell();
-                           cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+                           cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
                            cell.clssName="last"
                            
                         }
@@ -275,7 +284,7 @@ table, th, td{
                         cell.style.width="90px;";
                         cell.clssName="last"
                         cell = row.insertCell();
-                        cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+                        cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
                         cell.clssName="last"
                      } else {
                         cell.innerHTML = "";
