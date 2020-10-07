@@ -38,10 +38,13 @@ a{
 }
 
 #description{
-	float: left;
-	height: 100%; 
-	width: 1300px;
+    float:left;
+    height:100%;
+    width:80%;
+    position: absolute;
+    transform:translate(300px, 0);   
 }
+
 </style>
 </head>
 <body>

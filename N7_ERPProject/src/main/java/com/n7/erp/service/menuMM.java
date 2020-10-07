@@ -33,7 +33,6 @@ public class menuMM {
 	public Map<String, List<Menu>> getmenu() {
 		Map<String, List<Menu>> mMap = null;
 		List<Menu> mList = new ArrayList<>();
-
 		mList = mDao.getmenu();
 		if (mList != null) {
 			mMap = new HashMap<>();
