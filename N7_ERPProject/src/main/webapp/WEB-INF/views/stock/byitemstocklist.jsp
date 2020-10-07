@@ -95,8 +95,6 @@ input[type='text'], input[type='number'] {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/setcategory">분류명 작성</a></li>
-			<li><a href="/erp/stock/setitemcode">품목 코드 작성</a></li>
 			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
 			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
 			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>

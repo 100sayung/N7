@@ -96,8 +96,6 @@ input[type='text'], input[type='number'] {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/setcategory">분류명 작성</a></li>
-			<li><a href="/erp/stock/setitemcode">품목 코드 작성</a></li>
 			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
 			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
 			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
@@ -111,12 +109,12 @@ input[type='text'], input[type='number'] {
 
 	<div id="description">
 	<form id="form" action="/erp/stock/confirmimport" method="post"> 
-		<button type="button" id="account">거래처 등록</button>
-		<button type="button" id="addTable">거래처 추가</button>
+		<input type="button" id="account" value="거래처 등록">
+		<input type="button" id="addTable" value="거래처 추가">
 		<div id="contain">
 			<div class='div'>
-			<button type="button" onclick="addRow(this)">행 추가</button>
-			<button type="button" onclick="deleteTable(this)">테이블 삭제</button>
+			<input type="button" onclick="addRow(this)" value="행 추가">
+			<input type="button" onclick="deleteTable(this)" value="테이블 삭제">
 				<table>
 					<caption id="tbCation0" class="clcode"></caption>
 					<tr>
@@ -138,8 +136,8 @@ input[type='text'], input[type='number'] {
 				</table>
 			</div>
 		</div>
-		<button type="button" id="deleteBtn">삭제</button>
-		<button type="button" onclick="addClcode()">등록</button>
+		<input type="button" id="deleteBtn" value="삭제">
+		<input type="button" onclick="addClcode()" value="등록">
 		</form>
 	</div>
 	<script src=/erp/js/menu.js></script>
@@ -188,7 +186,7 @@ input[type='text'], input[type='number'] {
 		$('#addTable')
 				.click(
 						function() {
-							var str = '<div class="div"><button type="button" onclick="addRow(this)">행 추가</button>	<button type="button" onclick="deleteTable(this)">테이블 삭제</button><table><caption>'
+							var str = '<div class="div"><input type="button" onclick="addRow(this)" value="행 추가"><input type="button" onclick="deleteTable(this)" value="테이블 삭제"><table><caption>'
 									+ clArr
 									+ '</caption><tr><td>제품 코드</td><td>수량</td><td>단가</td><td>총액</td>	<td>삭제</td>	<td></td></tr>'
 									+'<tr><td>'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'

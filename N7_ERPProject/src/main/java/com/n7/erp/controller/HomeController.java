@@ -66,6 +66,10 @@ public class HomeController {
 	public String introduceCompany() {
 		return "/home/introducecompany";
 	}
+	@RequestMapping(value = "/jusopopup", method = RequestMethod.GET)
+	public String jusoPopUp() {
+		return "/home/jusopopup";
+	}
 
 	@RequestMapping(value = "/erpboard", method = RequestMethod.GET)
 	public ModelAndView erpBoard(Integer pageNum) {
