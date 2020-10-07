@@ -13,7 +13,7 @@
    </select>
    
     <insert id="boardWrite" parameterType="board">
-         INSERT INTO CONSULTING_BOARD
+         INSERT INTO CONSULTING_BOARD (CB_NUM,CB_TYPE,CB_WRITER,CB_PASSWORD,CB_TITLE,CB_CONTENTS)
         VALUES(BR_NUM_SEQ.NEXTVAL, #{cb_type}, #{cb_writer}, #{cb_password}, #{cb_title}, #{cb_contents})
    </insert>
    
