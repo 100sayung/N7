@@ -127,7 +127,7 @@ public interface IHrDao {
 	boolean checkMemberHrCardCnt(String cCode);
 
 
-	@Select("SELECT * FROM MEMBER WHERE M_CCODE = #{cCode} AND M_NAME = #{name}")
+	@Select("SELECT * FROM MEMBER WHERE M_CCODE = #{cCode} AND M_NAME LIKE '%'||#{name}||'%'")
 	ArrayList<Member> getSearchFromName(HashMap<String, String> hMap);
 
 	ArrayList<HR_Card> getHrCodeFromStatus(HashMap<String, String> hMap);
