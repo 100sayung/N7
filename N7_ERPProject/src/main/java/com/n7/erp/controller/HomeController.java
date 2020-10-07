@@ -233,6 +233,10 @@ public class HomeController {
 	public ResponseEntity<String> modifyPassword(String userPassword, String userId) {
 		return mm.modifyPassword(userPassword, userId);
 	}
+	@RequestMapping(value = "/home/jusopopup", method = RequestMethod.GET)
+	public String jusoPopUp(String userPassword, String userId) {
+		return "home/jusopopup";
+	}
 	
 	
 	

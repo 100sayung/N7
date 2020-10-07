@@ -10,9 +10,9 @@
 	// ※ 행정망 내에서 운영되는 시스템도 이용 가능합니다. 행정망 서비스를 위한 API 요청URL은 별도로 문의 주시기 바랍니다.(1588-0061)
 	String resultType = "4"; // 검색결과 화면 출력유(1 : 도로명, 2 : 도로명+지번, 3 : 도로명+상세건물명, 4 : 도로명+지번+상세건물명)
 %>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="/erp/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/erp/js/addrlink.js"></script>
-<link rel="stylesheet" type="text/css" href="erp/css/addrlink.css"></link>
+<link rel="stylesheet" type="text/css" href="/erp/css/addrlink.css"></link>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>주소정보연계 | 도로명주소 안내시스템</title>
 <script language="javascript">
@@ -68,6 +68,7 @@
 				}else{
 					var xmlData = xmlStr.returnXml;
 				}
+				$(".popSearchNoResult").html("");
 				var errCode = $(xmlData).find("errorCode").text();
 				var errDesc = $(xmlData).find("errorMessage").text();
 				
@@ -290,9 +291,32 @@
 	
 	
 	function setParent(){
+		var rtRoadAddr = $.trim($("#rtRoadAddr").val());
 		var rtAddrPart1 = $.trim($("#rtAddrPart1").val());
 		var rtAddrPart2 = $.trim($("#rtAddrPart2").val());
+		var rtEngAddr = $.trim($("#rtEngAddr").val());
+		var rtJibunAddr = $.trim($("#rtJibunAddr").val());
 		var rtAddrDetail = $.trim($("#rtAddrDetail").val());
+		var rtZipNo = $.trim($("#rtZipNo").val());
+		var rtAdmCd = $.trim($("#rtAdmCd").val());
+		var rtRnMgtSn = $.trim($("#rtRnMgtSn").val());
+		var rtBdMgtSn = $.trim($("#rtBdMgtSn").val());
+		var rtDetBdNmList = $.trim($("#rtDetBdNmList").val());
+		var rtBdNm = $.trim($("#rtBdNm").val());
+		var rtBdKdcd = $.trim($("#rtBdKdcd").val());
+		var rtSiNm = $.trim($("#rtSiNm").val());
+		var rtSggNm = $.trim($("#rtSggNm").val());
+		var rtEmdNm = $.trim($("#rtEmdNm").val());
+		var rtLiNm = $.trim($("#rtLiNm").val());
+		var rtRn = $.trim($("#rtRn").val());
+		var rtUdrtYn = $.trim($("#rtUdrtYn").val());
+		var rtBuldMnnm = $.trim($("#rtBuldMnnm").val());
+		var rtBuldSlno = $.trim($("#rtBuldSlno").val());
+		var rtMtYn = $.trim($("#rtMtYn").val());
+		var rtLnbrMnnm = $.trim($("#rtLnbrMnnm").val());
+		var rtLnbrSlno = $.trim($("#rtLnbrSlno").val());
+		var rtEmdNo = $.trim($("#rtEmdNo").val());
+		
 		var rtRoadFullAddr = rtAddrPart1;
 		if(rtAddrDetail != "" && rtAddrDetail != null){
 			rtRoadFullAddr += ", " + rtAddrDetail;
@@ -304,7 +328,7 @@
 		// IE에서 opener관련 오류가 발생하는 경우, 부모창에서 지정한 이름으로 opener를 재정의
 		if(opener == null || opener == undefined) opener = window.open("", "jusoPopup");
 		
-		opener.jusoCallBack(rtAddrPart1, rtAddrDetail, rtAddrPart2);
+		opener.jusoCallBack(rtRoadFullAddr, rtAddrPart1, rtAddrDetail, rtAddrPart2, rtEngAddr, rtJibunAddr, rtZipNo, rtAdmCd, rtRnMgtSn, rtBdMgtSn, rtDetBdNmList, rtBdNm, rtBdKdcd, rtSiNm, rtSggNm, rtEmdNm, rtLiNm, rtRn, rtUdrtYn, rtBuldMnnm, rtBuldSlno, rtMtYn, rtLnbrMnnm, rtLnbrSlno, rtEmdNo);
 		window.open("about:blank","_self").close();
 		
 	}
