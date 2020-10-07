@@ -34,6 +34,8 @@
             float: left;
             height: 100%;
             width: 1300px;
+/*             position: absolute; */
+            
         }
     </style>
 </head>
@@ -57,7 +59,6 @@
     </div>
     <center>
     <div id="description">
-
     </div>
     </center>
 </body>

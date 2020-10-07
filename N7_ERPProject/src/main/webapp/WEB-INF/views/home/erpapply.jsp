@@ -79,11 +79,11 @@ body {
 		<div id="menu"></div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
-		<div
-			style="width: 100%; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger;">ERP신청</div>
-		<!-- 		<div -->
-		<!-- 			style='width: 100%; height: 60px; text-align: center; background-color: #3D6B9B;'> -->
-		<!-- 			<h1 style='color: white'>ERP신청</h1> -->
+<!-- 		<div -->
+<!-- 			style="width: 100%; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger;">ERP신청</div> -->
+				<div
+					style='width: 100%; height: 60px; text-align: center; background-color: #3D6B9B;'>
+					<h1 style='color: white'>ERP신청</h1>
 	</div>
 	<div class="center">
 		<div id="container" class='input-group'>

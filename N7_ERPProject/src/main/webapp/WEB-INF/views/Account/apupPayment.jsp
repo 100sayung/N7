@@ -7,43 +7,48 @@
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
 <!-- FONTAWESOME STYLES-->
-<!--<link href="/erp/assets/css/font-awesome.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/font-awesome.css" rel="stylesheet">
 <!-- CUSTOM STYLES-->
-<!--<link href="/erp/assets/css/custom.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/custom.css" rel="stylesheet">
 <!-- GOOGLE FONTS-->
-<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans"
-	rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans"
+	rel="stylesheet" type="text/css">
 <!-- /. WRAPPER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- JQUERY SCRIPTS -->
-<!--<script src="/erp/assets/js/jquery-1.10.2.js"></script> -->
+<script src="/erp/assets/js/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<!--<script src="/erp/assets/js/bootstrap.min.js"></script> -->
+<script src="/erp/assets/js/bootstrap.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<!-- <script src="/erp/assets/js/custom.js"></script>-->
+<script src="/erp/assets/js/custom.js"></script>
 
 <title>진행중 결재함</title>
 <style>
+
 table, tr, td {
 	border: 1px solid black;
 	text-align: center;
+	height: auto;
+}
+
+a{
+color:#222222;
+font-weight: bold;
 }
 
 td {
 	padding: 5px;
-	font-size: large;
+	font-size: medium; 
 /* 	width: 58px; */
 	height: 10px;
 }
 
-#table {
+#t{
 	width: 1200px;
 	height: auto;
 	text-align: center;
@@ -58,17 +63,18 @@ td {
 	text-align: center;
 }
 
-button{
-font-size: larger;
-padding: 10px;
+/* button{ */
+/* padding: 10px; */
+/* } */
+ul {
+   list-style: none;
 }
-
 </style>
 </head>
 <body>
 	 <div
-         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger;">진행중 결재함</div>
-	<table id="table" class="table table-hover">
+         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%;">진행중 결재함</div>
+	<table id="t" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
 			<td id="ap_docunum">문서번호</td>

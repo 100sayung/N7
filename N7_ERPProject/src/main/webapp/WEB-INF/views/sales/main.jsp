@@ -73,7 +73,6 @@ ul {
          <li><a href="#" id="showMenu2">출하의뢰입력</a></li>
          <li><a href="#" id="showMenu3">미수금등록</a></li>
          <li><a href="#" id="showMenu4">영업활동 조회</a></li>
-         <li><a href="#" id="showMenu5">내 결재함</a></li>
       </ul>
    </div>
    <center>
