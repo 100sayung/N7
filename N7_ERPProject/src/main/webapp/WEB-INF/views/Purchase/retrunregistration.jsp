@@ -112,12 +112,12 @@ border: 1px solid silver;
 
 	  function setChildValue(data) {
 		   console.log(data)
-		   for(var i in data.aList){
+		   for(var i in data.aList){ 
 		   var clcode=data.aList[i].cl_code;
 		   }
 		   $("#clcode").val(clcode);
 		};
-
+     
     $(function() {
 		$("#allCheck").click(function() {
 			if ($("#allCheck").prop("checked")) {
@@ -126,8 +126,8 @@ border: 1px solid silver;
 				$("input[type=checkbox]").prop("checked", false);
 			}
 		});
-	});
-
+	}); 
+    
 	  $('#save').click(function(){
 	         var obj = $("#o_return").serialize();
 	         console.log(obj);
@@ -147,7 +147,7 @@ border: 1px solid silver;
 	            }
 	         });
 	      });
-
+	  
 	  $('#rInfo').click(function(){
 		  $.ajax({
 			  url: '/erp/rest/Purchase/rInfo',
@@ -178,13 +178,13 @@ border: 1px solid silver;
 			  }
 		  })
 	  })
-
+	  
  	  $('#rDelete').click(function(){
   	  		 var check_list=[];
   	  		 $("input[name=each_check]:checked").each(function(){
   	  			 var cid= $(this).val();
   	  			 console.log(check_list);
-
+  	  			  
   	  			 $.ajax({
   	  				 url: '/erp/rest/Purchase/rdelete',
   	  				 type: 'post',
@@ -209,15 +209,15 @@ border: 1px solid silver;
   		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
   				 	  }
   				 	  $('#list').html(str);
-
+  				 	  
   	  				  },
   	  				  error: function(error){
   	  					  consoel.log(error);
   	  				  }
   	  			  })
   	  		  })
-  	  	  })
-
+  	  	  })  
+  	  
 	 	$('#searchbtn').click(function(){
 			var choice= $('#choice').val();
 			var search= $('#search').val();
@@ -247,14 +247,14 @@ border: 1px solid silver;
   		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
   				 	  }
   				 	  $('#list').html(str);
-
+  				 	  
   	  				  },
   	  				  error: function(error){
   	  					  consoel.log(error);
   	  				  }
   	  			  })
-			})
-
+			})	  
+			
 		$("#Wearing").click(function(){
 			  $.ajax({
 				  url:"/erp/rest/Purchase/stocklist",
@@ -279,7 +279,7 @@ border: 1px solid silver;
 				  }
 		 	 })
   		})
-
+  	
   		 var select;
     	 $.ajax({
     	       url:"/erp/stock/getitemcode",
@@ -287,7 +287,7 @@ border: 1px solid silver;
            type:"get",
            success:function(data){
               select = makeSelectBox(data);
-
+              
               $("#it").html(select);
            },
            error:function(err){
@@ -300,13 +300,13 @@ border: 1px solid silver;
 	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
-	               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+	               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
 	            }
 	         }
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
-
+  	
 		 var select2;
 		     $.ajax({
 		    	 url: "/erp/stock/getimportlist",
@@ -326,13 +326,13 @@ border: 1px solid silver;
 	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
-	               arrStr+="<option value='"+arr[i].ie_seqnum+"'>"+arr[i].ie_seqnum+"</option>";
+	               arrStr+="<option value='"+arr[i].ie_seqnum+"'>"+arr[i].ie_seqnum+"</option>"; 
 	            }
 	         }
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
-
+	     
 	   var select3;
 	     $.ajax({
 	           url:"/erp/stock/getitemcode",
@@ -352,13 +352,13 @@ border: 1px solid silver;
 	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
-	               arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>";
+	               arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>"; 
 	            }
 	         }
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
-
+	     
 	     function changeItcode(id){
 	    	 var it_stock = $(id).val();
 	    	 var it_code = $(id).parent().siblings("#name").children().val();
@@ -375,8 +375,8 @@ border: 1px solid silver;
 	    		 }
 	    	 })
 	     }
-
-
+  	
+  	
 </script>
 </body>
 </html>
