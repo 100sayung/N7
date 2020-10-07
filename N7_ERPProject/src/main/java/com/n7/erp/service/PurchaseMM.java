@@ -28,8 +28,7 @@ public class PurchaseMM {
 
 	@Autowired
 	PurchaseDao pDao;
-	
-	//구매
+
 	public ModelAndView pregistration(HttpServletRequest request, Purchase ps, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		ps.setP_ccode(session.getAttribute("cCode").toString());
@@ -237,8 +236,7 @@ public class PurchaseMM {
             mav.setViewName(view);
             return mav;
          }
-      
-    //결재
+
 	public ModelAndView purchaseApproval(HttpServletRequest request, PurchaseApproval pa, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		pa.setP_ccode(session.getAttribute("cCode").toString());
@@ -290,103 +288,6 @@ public class PurchaseMM {
         return sMap;
 	}
 
-	public Map<String, List<PurchaseApproval>> approvalcheck(String check, HttpSession session) {
-		String cCode = session.getAttribute("cCode").toString();
-		Map<String, List<PurchaseApproval>> pMap = null;
-		int count=0;
-		count=pDao.compareCode(check, cCode);
-		
-		if(count==1) {
-			List<PurchaseApproval> pList= null;
-			pMap= new HashMap<>();
-			pMap.put("pList", pList);
-		}else {
-			List<PurchaseApproval> pList= new ArrayList<>();
-			PurchaseApproval pa = new PurchaseApproval();
-			pa.setP_status("0");
-			pList.add(pa);
-			pMap= new HashMap<>();
-			pMap.put("pList", pList);
-		}
-		return pMap;
-	}
-	
-	public ModelAndView pRequest(String p_documentcode, HttpSession session) {
-		ModelAndView mav= new ModelAndView();
-		String view= null;
-		String cCode= (String)session.getAttribute("cCode");
-
-		PurchaseApproval pa= pDao.pRequest(p_documentcode, cCode);
-
-		List<PurchaseApproval>pList= pDao.pListRequest(p_documentcode, cCode);
-
-
-		if(pa!=null) {
-			if(pList!=null) {
-				mav.addObject("pa", pa);
-				mav.addObject("pList", new Gson().toJson(pList));
-				System.out.println(pa.getP_approver1());
-				System.out.println("성공");
-				view="/Purchase/paUpinfo";
-			}
-		}else {
-			view="/Purchase/paUpinfo";
-			System.out.println("실패");
-		}
-		mav.setViewName(view);
-		return mav;
-	}
-
-	public Map<String, List<com.n7.erp.bean.ps.approvalLine>> getApprovalInfo(int cnt, String[] strArray, HttpSession session) {
-		Map<String, List<approvalLine>> pMap=null;
-		List<approvalLine> pList= new ArrayList<>();
-
-		System.out.println("cnt="+cnt);
-		System.out.println("이름값="+strArray.length);
-		String code="";
-
-		approvalLine al= new com.n7.erp.bean.ps.approvalLine();
-		for(int i=0; i<cnt; i++) {
-			code=strArray[i];
-			al=pDao.getApprovalInfo(code);
-			pList.add(al);
-		}
-
-		if(pList!=null) {
-			pMap= new HashMap<>();
-			pMap.put("pList", pList);
-		}else {
-			pMap= null;
-		}
-		return pMap;
-	}
-
-	public ModelAndView pRequest2(String p_documentcode, HttpSession session) {
-		ModelAndView mav= new ModelAndView();
-		String view= null;
-		String cCode= (String)session.getAttribute("cCode");
-
-		PurchaseApproval pa= pDao.pRequest2(p_documentcode, cCode);
-
-		List<PurchaseApproval>pList= pDao.pListRequest2(p_documentcode, cCode);
-
-		if(pa!=null) {
-			if(pList!=null) {
-				mav.addObject("pa", pa);
-				mav.addObject("pList", new Gson().toJson(pList));
-				System.out.println(pa.getP_approver1());
-				System.out.println("성공");
-				view="/Purchase/paDowninfo";
-			}
-		}else {
-			view="/Purchase/paDowninfo";
-			System.out.println("실패");
-		}
-		mav.setViewName(view);
-		return mav;
-	}
-
-	//반품
 	public ModelAndView rRegistration(Return rt, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
@@ -468,7 +369,80 @@ public class PurchaseMM {
 		return rMap;
 	}
 
-	//입고현황
+	public ModelAndView pRequest(String p_documentcode, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
+
+		PurchaseApproval pa= pDao.pRequest(p_documentcode, cCode);
+
+		List<PurchaseApproval>pList= pDao.pListRequest(p_documentcode, cCode);
+
+
+		if(pa!=null) {
+			if(pList!=null) {
+				mav.addObject("pa", pa);
+				mav.addObject("pList", new Gson().toJson(pList));
+				System.out.println(pa.getP_approver1());
+				System.out.println("성공");
+				view="/Purchase/paUpinfo";
+			}
+		}else {
+			view="/Purchase/paUpinfo";
+			System.out.println("실패");
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public Map<String, List<com.n7.erp.bean.ps.approvalLine>> getApprovalInfo(int cnt, String[] strArray, HttpSession session) {
+		Map<String, List<approvalLine>> pMap=null;
+		List<approvalLine> pList= new ArrayList<>();
+
+		System.out.println("cnt="+cnt);
+		System.out.println("이름값="+strArray.length);
+		String code="";
+
+		approvalLine al= new com.n7.erp.bean.ps.approvalLine();
+		for(int i=0; i<cnt; i++) {
+			code=strArray[i];
+			al=pDao.getApprovalInfo(code);
+			pList.add(al);
+		}
+
+		if(pList!=null) {
+			pMap= new HashMap<>();
+			pMap.put("pList", pList);
+		}else {
+			pMap= null;
+		}
+		return pMap;
+	}
+
+	public ModelAndView pRequest2(String p_documentcode, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		String cCode= (String)session.getAttribute("cCode");
+
+		PurchaseApproval pa= pDao.pRequest2(p_documentcode, cCode);
+
+		List<PurchaseApproval>pList= pDao.pListRequest2(p_documentcode, cCode);
+
+		if(pa!=null) {
+			if(pList!=null) {
+				mav.addObject("pa", pa);
+				mav.addObject("pList", new Gson().toJson(pList));
+				System.out.println(pa.getP_approver1());
+				System.out.println("성공");
+				view="/Purchase/paDowninfo";
+			}
+		}else {
+			view="/Purchase/paDowninfo";
+			System.out.println("실패");
+		}
+		mav.setViewName(view);
+		return mav;
+	}
 	public Map<String, List<IePort>> stocklist(HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
 		Map<String, List<IePort>> sMap= null;
@@ -482,8 +456,7 @@ public class PurchaseMM {
 		}
 		return sMap;
 	}
-	
-	//재고현황
+
 	public Map<String, List<ItemCode>> getstocklist(HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
 		Map<String, List<ItemCode>> sMap= null;
@@ -497,6 +470,5 @@ public class PurchaseMM {
 		}
 		return sMap;
 	}
-
 
 }

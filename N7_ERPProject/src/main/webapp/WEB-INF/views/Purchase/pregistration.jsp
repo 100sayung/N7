@@ -17,9 +17,6 @@ text-align: center;
 width: 1140px; 
 border: 1px solid silver;
 }
-.select{
-width: 160px;
-}
 </style>
 </head>
 <body>
@@ -28,10 +25,9 @@ ${msg}
 		<br>
 		 <span style="padding-left: 5px";><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" ></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" ></span>
          <button type="button"id="stock">재고현황</button>
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
+		<button type="button" id="pDetail">상세보기</button>
      	<br>
      	<br>
       <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
@@ -81,9 +77,6 @@ ${msg}
 						</tr>
 					</thead>
 					<tbody id="tbody">
-						<tr>
-							<button type="button" id="pDetail" style="float: left;">상세보기</button>
-						</tr>
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
                      		<td><input type="text" name="p_name"></td>
@@ -272,12 +265,12 @@ ${msg}
 					 str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
 					 if(data.pList!=""){
 						 for(var i in data.pList){
-		    					str+="<tr class='tr'><td><input type='radio' value='"+data.pList[i].p_documentcode+"' name='each_check' class='each_check'></td>";
-		    					str+="<td><input type='text' value='"+data.pList[i].p_documentcode+"' readonly></td>";
-		    					str+="<td><input type='text' value='"+data.pList[i].p_productnum+"' readonly></td>";
-		    					str+="<td><input type='text' value='"+data.pList[i].p_writer+"' readonly></td>";
-		    					str+="<td><input type='text' value='"+data.pList[i].p_clcode+"' readonly></td>";
-		    					str+="<td><input type='text' value='"+data.pList[i].p_day+"' readonly></td></tr>";
+			    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
+			    			str+="<td>"+data.pList[i].p_documentcode+"</td>";
+			    			str+="<td>"+data.pList[i].p_productnum+"</td>";
+			    			str+="<td>"+data.pList[i].p_writer+"</td>";
+			    			str+="<td>"+data.pList[i].p_clcode+"</td>";
+			    			str+="<td>"+data.pList[i].p_day+"</td>";
 			    		}
 			    			$('#list').html(str); 
 					 }else{
@@ -308,12 +301,12 @@ ${msg}
 					var str="";
      				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
     				for(var i in data.pList){
-    					str+="<tr class='tr'><td><input type='radio' value='"+data.pList[i].p_documentcode+"' name='each_check' class='each_check'></td>";
-    					str+="<td><input type='text' value='"+data.pList[i].p_documentcode+"' readonly></td>";
-    					str+="<td><input type='text' value='"+data.pList[i].p_productnum+"' readonly></td>";
-    					str+="<td><input type='text' value='"+data.pList[i].p_writer+"' readonly></td>";
-    					str+="<td><input type='text' value='"+data.pList[i].p_clcode+"' readonly></td>";
-    					str+="<td><input type='text' value='"+data.pList[i].p_day+"' readonly></td></tr>";
+    					str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
+    					str+="<td>"+data.pList[i].p_documentcode+"</td>";
+    					str+="<td>"+data.pList[i].p_productnum+"</td>";
+    					str+="<td>"+data.pList[i].p_writer+"</td>";
+    					str+="<td>"+data.pList[i].p_clcode+"</td>";
+    					str+="<td>"+data.pList[i].p_day+"</td>";
     				}
     				$('#list').html(str); 
 				},
@@ -330,22 +323,9 @@ ${msg}
     		 var check= $(this).attr("value");
     		 console.log(check);
     		 
-    		 $.ajax({
-    			 url: '/erp/rest/Purchase/approvalcheck',
-    			 type: 'post',
-    			 data: {check: check},
-    			 success: function(data){
-    				 console.log(data);
-    				 if(data.pList==null){
-    					 alert("이미 결재요청되었습니다.");
-    				 }else{
-		    			 window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=620, top=80 left=200");
-    				 }
-    			 },
-    			 error: function(err){
-    				 console.log(err);
-    			 }
-    		 })
+    		 if(check!=""){
+    			 window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=620, top=80 left=200");
+             }
     	 });
       });
       

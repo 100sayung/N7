@@ -92,12 +92,6 @@ public class PurchaseRestController {
 		mav= pm.purchaseApproval(request, pa, session);
 		return mav;
 	}
-	
-	@PostMapping(value = "/Purchase/approvalcheck", produces= "application/json;charest=utf-8" )
-	public Map<String, List<PurchaseApproval>> approvalcheck(String check, HttpSession session) {
-		Map<String, List<PurchaseApproval>> pMap= pm.approvalcheck(check, session);
-		return pMap;
-	}
 
 	@GetMapping(value = "/Purchase/getMyInfo",produces="application/json;charset=utf-8" )
 	public  Map<String, List<approvalLine>> getMyInfo(HttpSession session) {

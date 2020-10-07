@@ -86,14 +86,10 @@
 		INSERT INTO O_PURCHASEPROGRAM VALUES(#{p_documentcode}, #{p_ccode}, #{p_name}, #{p_itcode}, #{p_unlit}, #{p_amount},#{p_budget})
 	</insert>
 
-	<select id="compareCode" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM APPROVALDOCU WHERE AP_DOCUNUM=#{check} AND AP_CCODE=#{cCode}
-	</select>
-	
 	<insert id="rRegistration" parameterType="Return">
 		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,9,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
 	</insert>
-	
+
    <insert id="insertIeport">
       INSERT INTO S_IEPORT VALUES(S_IEPORT_SEQ.NEXTVAL, #{r_ccode}, DEFAULT, #{r_hrcode}, '' ,'3', #{r_clcode}, #{r_documentcode} ,#{r_itcode}, -#{r_amount}, #{r_unlit}, 0)
    </insert>

@@ -17,9 +17,6 @@ text-align: center;
 width: 1140px;
 border: 1px solid silver;
 }
-.select{
-width: 160px;
-}
 </style>
 </head>
 <body>
