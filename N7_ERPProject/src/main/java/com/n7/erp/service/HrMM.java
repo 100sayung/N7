@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.omg.CosNaming.NameHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -225,6 +226,7 @@ public class HrMM {
 		return type;
 	}
 
+	@Transactional
 	public ModelAndView applyHoliday(ApplyHoliday apholi, HttpSession session) {
 		String id = session.getAttribute("id").toString();
 		String cCode = session.getAttribute("cCode").toString();
@@ -552,17 +554,19 @@ public class HrMM {
 		return mav;
 	}
 
-	public void registHolidayStatus(HttpSession session, String docunum, String yesno) {
-		System.out.println(docunum);
-		System.out.println(yesno);
+	@Transactional
+	public void registHolidayStatus(HttpSession session, String docunum, String yesno, String term, String hrcode) {
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		hMap.put("docunum", docunum);
+		hMap.put("term", term);
+		hMap.put("hrCode", hrcode);
 		if (yesno.equals("ok")) {
 			hMap.put("status", "3");
 			System.out.println(hMap);
 			hDao.registHolidayStatus(hMap);
 			hDao.registDocuStatsu(hMap);
+			hDao.updateLeftHoliday(hMap);
 		} else if (yesno.equals("no")) {
 			hMap.put("status", "4");
 			System.out.println(hMap);

@@ -222,4 +222,16 @@
 	WHERE
 		HC_CCODE = #{cCode} AND HC_STATUS = #{status}
 </select>
+
+<update id="updateLeftHoliday" parameterType="hashMap">
+	UPDATE
+		HR_CARD
+	SET
+		HC_HOLYNUM = (SELECT HC_HOLYNUM
+						FROM HR_CARD
+						WHERE HC_HRCODE = #{hrCode}
+					 )-${term}
+	WHERE
+		HC_HRCODE = #{hrCode}
+</update>
 </mapper>

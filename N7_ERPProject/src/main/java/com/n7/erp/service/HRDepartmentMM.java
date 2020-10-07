@@ -232,13 +232,15 @@ public class HRDepartmentMM {
 		String code = card.getHc_ccode();
 		String hrcode = card.getHc_hrcode();
 		String name = Ddao.findname(hc);
+		String holynum = card.getHc_holynum();
 		ArrayList<Deduct> deduct = Ddao.deduct(code);
 		Payroll incentive = Ddao.findincentive(hrcode);
 		mav.addObject("incentive", incentive);
 		mav.addObject("name", name);
 		mav.addObject("deduct", deduct);
 		mav.addObject("pay", pay);
-		mav.addObject("card", card);
+		mav.addObject("card", card); 
+		mav.addObject("holynum", holynum);
 		return mav;
 	}
 	
@@ -248,6 +250,15 @@ public class HRDepartmentMM {
 		String selectpay = Ddao.findpay(pay);
 		if (selectpay == null) {
 			if (Ddao.insertpay(pay)) {
+	//			int bonus = Integer.parseInt(pay.getHP_MONTHLYBONUS());
+	//			int realMoney = Integer.parseInt(pay.getHP_REALMONEY());
+	//			int tax = Integer.parseInt(pay.getHP_TAX());
+	//			int insurance = Integer.parseInt(pay.getHP_INSURANCE());
+	//			int incen = Integer.parseInt(pay.getHP_INCEN());
+	//			int originPay = realMoney + tax + insurance - incen - bonus;
+	//			int leftHoliday = Integer.parseInt(Ddao.leftHoliday(pay));
+	//			String holiday = String.valueOf((bonus*200/8/originPay));
+				Ddao.updateHolyday(pay);
 				view = "/hr/searchpaymm";
 			} else {
 				view = "/hr/payinputmodify";

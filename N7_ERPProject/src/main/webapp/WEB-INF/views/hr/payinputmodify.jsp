@@ -128,8 +128,11 @@ table {
 			 value="${deduct[1].HDD_AMOUNT}" onkeypress="return checktax(event)" min="0"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail"></td>
-			<td></td>
+			<td class="font_color_paydetail">연차수당</td>
+			<td id="monthlybonustd">
+			<input type="checkbox" id="checkbonus"> 연차수당 지급
+			<input type="hidden" id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;" type="text" readonly="readonly" value="0">
+			</td>
 			<td class="font_color_paydetail">공제액계</td>
 			<td><input id="deductsum" style="border: none;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}"></td>
 		</tr>
@@ -158,14 +161,36 @@ table {
 		$("#tax").click(function(){
 			$(this).select();
 		});
-
-		//금액 실시간 변경
+		$("#checkbonus").click(function(){
+			console.log("왜 안 돼?");
+			if($("#checkbonus").is(":checked")){
+				if(confirm("연차수당을 지급하시겠습니까?")){
+					var input = (${pay.HDP_PAY} /200 *8)
+					console.log(input);
+					input = input*${holynum};
+					console.log(input);
+					let str = "";
+					str = '<input id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;" type="text" readonly="readonly" value="'+input+'">';
+					console.log("확인");
+					$("#monthlybonustd").html(str);
+					let provide = $("#provide").val();
+					provide = (provide*1) + (input*1);
+					$("#provide").val(provide);
+					var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val())+($("#monthlybonus").val()*1);
+					$("#receive").val(power);
+				}else{
+					alert("취소되었습니다.");
+				}
+			}
+		});
+		//금액 실시간 변경 
+		
 		$("#incen").change(function(){
 			console.log($("#incen").val());
-			var total=Number($(this).val())+${pay.HDP_PAY};
+			var total=Number($(this).val())+${pay.HDP_PAY}+($("#monthlybonus").val()*1);
 			$("#provide").val(total);
 
-			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
+			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val())+($("#monthlybonus").val()*1);
 			$("#receive").val(power);
 		});
 		$("#insurance").change(function(){
@@ -173,7 +198,7 @@ table {
 			console.log(sum);
 			$("#deductsum").val(sum);
 
-			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
+			var power=$("#provide").val()-Number($("#tax").val())-Number($("#insurance").val());
 			$("#receive").val(power);
 		});
 		$("#tax").change(function(){
@@ -181,17 +206,20 @@ table {
 			console.log(sul);
 			$("#deductsum").val(sul);
 
-			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
+			var power=$("#provide").val()-Number($("#tax").val())-Number($("#insurance").val());
 			$("#receive").val(power);
 		});
 		//맨처음 화면 나올때 총 수령액
 		$(document).ready(function(){
-			var sul=Number($(this).val())+Number($("#insurance").val());
+			$("#provide").val("${pay.HDP_PAY}"*1);
+			var sul=Number($(this).val())+Number($("#insurance").val())+Number($("#tax").val());
 			console.log(sul);
 			$("#deductsum").val(sul);
 
-			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
+	//		var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
+			var power = $("#provide").val()-$("#deductsum").val();
 			$("#receive").val(power);
+			console.log(power);
 		});
 
 		$("#showMenu1").hover(function() {

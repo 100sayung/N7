@@ -130,7 +130,6 @@ table{
 				success:function(data){
 					var provide=Number(data.HDP_PAY)+Number(data.HP_INCEN);
 					var ince=Number(data.HP_INSURANCE)+Number(data.HP_TAX);
-					var receive=provide-ince;
 					var str='';
 					console.log(data);
 					if(data!="1"){
@@ -147,14 +146,14 @@ table{
 							+"<td>"+data.HP_INCEN+"</td>"
 							+"<td class='font_color_paydetail'>소득세</td>"
 							+"<td>"+data.HP_TAX+"</td></tr>"
-							+"<tr><td class='font_color_paydetail'></td>"
-							+"<td></td>"
+							+"<tr><td class='font_color_paydetail'>월차수당</td>"
+							+"<td>"+data.HP_MONTHLYBONUS+"</td>"
 							+"<td class='font_color_paydetail'>공제액계</td>"
 							+"<td>"+ince+"</td></tr>"
 							+"<td class='font_color_paydetail'>급여 계</td>"
 							+"<td>"+provide+"</td>"
 							+"<td class='font_color_paydetail'>실지급액</td>"
-							+"<td>"+receive+"</td></tr></table>"
+							+"<td>"+data.HP_REALMONEY+"</td></tr></table>"
 					}else if(data=="1"){
 						str+="<h1>해당 월에는 받은 급액이 없습니다.</h1>";
 					}

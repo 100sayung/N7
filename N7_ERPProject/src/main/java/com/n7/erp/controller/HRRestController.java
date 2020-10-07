@@ -34,6 +34,12 @@ public class HRRestController {
 		List<Certification> ctfList = hm.getCertificationInfo(m_id, request.getServletPath().substring(9), request.getSession().getAttribute("cCode").toString());
 		return ctfList;
 	}
+	//세션으로 인사카드 출력
+	@GetMapping(value="/hr/hrcardinfo")
+	public String getHrCardInfo(HttpSession session) {
+		String result = new Gson().toJson(hm.getHrCardInfo(session.getAttribute("id").toString()));
+		return result;
+	}
 	
 	//인사카드 정보 출력
 	@GetMapping(value="/hr/hrcard")
@@ -238,8 +244,8 @@ public class HRRestController {
 	
 	//휴가 승인/반려
 	@PostMapping(value="/hr/holidaystatus")
-	public String registHoliday(HttpSession session, String yesno, String docunum) {
-		hm.registHolidayStatus(session, docunum, yesno);
+	public String registHoliday(HttpSession session, String yesno, String docunum, String term, String hrcode) {
+		hm.registHolidayStatus(session, docunum, yesno,term, hrcode);
 		return "ok";
 	}
 

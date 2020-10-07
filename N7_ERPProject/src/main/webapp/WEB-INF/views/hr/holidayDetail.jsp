@@ -70,9 +70,9 @@ html, body {
             <tr>
                <th>--</th>
          		<th>신청인</th>
-         		<th>${fromapprover }</th>
+         		<th>${fromapprover}</th>
         		 <th>결재자</th>
-         		<th>${toapprover }</th>
+         		<th>${toapprover}</th>
             </tr>
             <tr>
                <th>내용</th>
@@ -118,12 +118,13 @@ html, body {
        </div>
    
    <script>
-   
+   	var term = "";
+   	
       $(document).ready(function(){
-         console.log("123");
-         console.log("${apholi.hap_fromapprover}");
-         console.log("${apholi.hap_toapprover}");
-         console.log("${hrCode}");
+ 		 var startDay = new Date("${apholi.hap_startday}");
+ 		 var endDay = new Date("${apholi.hap_endday}");
+ 		 term = endDay - startDay;
+ 		 term = (term/86400000)+1;
       });
       
       $("button").click(function(){
@@ -139,11 +140,12 @@ html, body {
          $.ajax({
             url:"/erp/rest/hr/holidaystatus",
             dataType:"text",
-            data:{yesno : yesno, docunum : $("#docunum").val()},
+            data:{yesno : yesno, docunum : $("#docunum").val(), term : term, hrcode : "${apholi.hap_fromapprover}"},
             method:"post",
             success : function(data){
                window.open("about:blank", "_self").close();
             }, error : function(err){
+            	alert("알수없는 이유로 취소되었습니다.");
                console.log(err);
             }
          });

@@ -91,7 +91,7 @@ public interface IHrDao {
 	@Insert("UPDATE HR_CARD SET HC_STATUS = #{type} WHERE HC_CCODE = #{cCode} AND HC_HRCODE = #{hrCode}")
 	void logStatusToHrCard(HashMap<String, String> logAtMap);
 
-	@Insert("INSERT INTO HR_APPLYHOLIDAY VALUES(#{hap_docunum}||HR_APPLYHOLIDAY_SEQ.currval, #{hap_ccode}, #{hap_hrcode}, #{hap_docuname},"
+	@Insert("INSERT INTO HR_APPLYHOLIDAY VALUES(#{hap_docunum}||LPAD(HR_APPLYHOLIDAY_SEQ.currval,9,0), #{hap_ccode}, #{hap_hrcode}, #{hap_docuname},"
 			+ "#{hap_fromapprover}, #{hap_toapprover}, DEFAULT, #{hap_type}, #{hap_reason}, #{hap_startday}, #{hap_endday}, DEFAULT)")
 	void registHoliday(ApplyHoliday apholi);
 
@@ -188,4 +188,6 @@ public interface IHrDao {
 
 	int countWages(String cCode);
 	List<ViewPay> selectWages(PagingVO vo);
+
+	void updateLeftHoliday(HashMap<String, String> hMap);
 }

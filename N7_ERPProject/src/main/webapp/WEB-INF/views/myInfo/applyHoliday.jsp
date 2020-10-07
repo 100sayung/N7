@@ -88,14 +88,21 @@ ul {
 	</div>
 	<div id="description">
 	<button id="approval" class="goodbtn">결재자등록</button>
-	<form action="/erp/hr/applyholiday" method="post">
+	<form action="/erp/hr/applyholiday" method="post" onsubmit="return checkHoliday();">
 	<table style='text-align: center;'>
 	<tr><td class='infomenu'>결재자</td><td><div id='line'></div></td></tr>
 	<tr class='infomenu'>
 		<td>문서제목</td><td>휴가종류</td>
 	</tr><tr>
 		<td><input type="text" name="hap_docuname" placeholder="문서 제목을 입력해주세요 글자제한 20자" required="required" style="width:300px;"></td>
-		<td><input type="text" name="hap_type" placeholder="휴가 종류를 입력해주세요 글자제한 20자" required="required"  style="width:300px;"></td>
+		<td>
+			<select style="width:200px;" name="hap_type" id="type">
+				<option value="year">연차</option>
+				<option value="period">생리</option>
+				<option value="pregnancy">임신/육아</option>
+				<option value="etc">기타</option>
+			</select>
+		</td>
 	</tr><tr class='infomenu'>
 		<td>휴가시작일</td><td>휴가종료일</td>
 	</tr><tr>
@@ -126,26 +133,37 @@ ul {
 			$("#line").append(str);
 		};
 	};
-
-
-	$(document).ready(function() {
+	var holidaycnt = "";
+	$(document).ready(function(){
 		$.ajax({
-			url : "/erp/rest/hr/myleaderlist",
-			dataType : "json",
-			method : "get",
+			url:"/erp/rest/hr/hrcardinfo",
+			dataType:"json",
+			type:"get",
+			async:false,
 			success : function(data){
 				console.log(data);
-				var str = "<td><select name='hap_toapprover'>";
-				for(let i = 0 ; i<data.length ; i++){
-					str += "<option value='"+data[i].hr_hrcode+"' selected='selected'>"+data[i].m_name+"("+data[i].hc_position+")</option>";
-					}
-				str += "</select>"
-				$("#myleader").html(str);
+				holidaycnt = data;
 			}, error : function(err){
 				console.log(err);
 			}
 		});
 	});
+	function checkHoliday(){
+		var startDay = new Date($("#start").val());
+		var endDay = new Date($("#end").val());
+		var term = endDay - startDay;
+		term = (term/86400000)+1;
+		if($("#type").val()=="year"){
+			if(holidaycnt>=term){
+				return true;
+			}else{
+				alert("남은휴가보다 더 많은 일수를 신청하셨습니다.");		
+				return false;
+			}
+		}
+		return true;
+	}
+
 	$("#approval").click(function() {
 		console.log("123");
 		window.open('/erp/hr/approvalLine', 'approvalLine', 'width=1400,height=700');
