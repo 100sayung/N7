@@ -76,10 +76,10 @@ public class HomeRestController {
 		return value;
 	}
 	@PostMapping(value = "/home/boardSearch")
-	public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword, Integer pageNum) { 
-		Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword, pageNum);
-		return bMap;
-	}
+	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) { 
+	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
+	      return bMap;
+	   }
 
 	@PostMapping(value = "/home/forcewithdrawal")
 	public String forceWithDrawal(String jsonStr) { 
@@ -90,12 +90,4 @@ public class HomeRestController {
 		mm.forceWithDrawal(slist);
 		return null;
 	}
-	
-	@PostMapping(value = "/home/boardSearch")
-	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword, int pageNum) { 
-	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword, pageNum);
-	      return bMap;
-	}
-	
-	
 }

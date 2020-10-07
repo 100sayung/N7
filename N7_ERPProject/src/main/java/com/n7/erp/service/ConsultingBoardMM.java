@@ -98,26 +98,20 @@ public class ConsultingBoardMM {
 		return mav;
 	}
 
-	public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword, Integer pageNum) {
-		System.out.println("pageNum="+pageNum);
-		Map<String, List<ConsultingBoard>>bMap = null;
-		ConsultingBoard cb = new ConsultingBoard();
-		pageNum=(pageNum==null)?1:pageNum;
-		List<ConsultingBoard>bList=CBdao.boardSearch(choice, keyword, pageNum);
-		cb.setCb_count(CBdao.getSearchCount(choice,keyword));
-		bList.add(cb);
-		if(pageNum<=0) {
-			System.out.println("잘못된 페이지 번호");
-		}
-		if(bList!=null && bList.size()!=0) {
-			bMap=new HashMap<>();
-			bMap.put("bList", bList);
-			//bMap.put("paging", getPaging(pageNum));
-		}else {
-			bMap=null;
-		}
-		return bMap;
-	}
+	  public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
+	      Map<String, List<ConsultingBoard>>bMap = null;
+	      ConsultingBoard cb = new ConsultingBoard();
+	      List<ConsultingBoard> bList =CBdao.boardSearch(choice, keyword);
+	      cb.setCb_count(CBdao.getSearchCount(choice,keyword));
+	      bList.add(cb);
+	      if(bList!=null) {
+	         bMap=new HashMap<>();
+	         bMap.put("bList", bList);
+	      }else {
+	         bMap=null;
+	      }
+	      return bMap;
+	   }
 
 
 //	//게시글 수정 목록 출력

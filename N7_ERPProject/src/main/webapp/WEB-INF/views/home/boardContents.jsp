@@ -110,19 +110,19 @@ margin-left: 400px;
 		<table id="table">
 			<tr>
 				<th scope="row"">글 번호</th>
-				<td>${board.CB_NUM}</td>
+				<td>${board.cb_num}</td>
 			</tr>
 			<tr>
 				<th scope="row">작성자</th>
-				<td>${board.CB_WRITER}</td>
+				<td>${board.cb_writer}</td>
 			</tr>
 			<tr>
 				<th scope="row">글 제목</th>
-				<td>${board.CB_TITLE}</td>
+				<td>${board.cb_title}</td>
 			</tr>
 			<tr>
 				<th scope="row">글 내용</th>
-				<td><textarea rows="15" cols="90" style="resize: none;">${board.CB_CONTENTS}</textarea></td>
+				<td><textarea rows="15" cols="90" style="resize: none;">${board.cb_contents}</textarea></td>
 			</tr>
 		</table>
 	</form>
