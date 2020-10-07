@@ -83,7 +83,7 @@ td{
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">공제 금액 관리</Strong>
+		<h1 class="deptregist_color_size">공제 금액 관리</h1>
 	</div>
 	<table id="deductiontable" width="100%">
 		<tr style="background-color: #F8F7F7; text-align: center;">

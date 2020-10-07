@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>사원 재/휴직 관리</title>
+<title>사원 휴 -퇴직 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -85,7 +85,7 @@ input,select{
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 휴 - 퇴직 관리</Strong>
+		<h1 class="deptregist_color_size">사원 휴 - 퇴직 관리</h1>
 	</div>
 	<div style="float: right;">
 		<input type="text" id="nameSearch" placeholder="이름으로 입력" style="padding: 5px 10px;"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
@@ -98,9 +98,9 @@ input,select{
 			<table style="width: 100%;border-collapse: collapse;text-align: center;border: #D9EDF7"border="1">
 				<tr style="background-color: #B2BEB5">
 					<td width="150px">이름</td>
-					<td width="330px">부서</td>
-					<td width="330px">직책</td>
-					<td width="190px" colspan="2"></td>
+					<td width="300px">부서</td>
+					<td width="300px">직책</td>
+					<td width="250px" colspan="2"></td>
 				</tr>
 			</table>
 		</div>
@@ -131,9 +131,9 @@ input,select{
 				console.log(data);
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr>"
-					str += "<td><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
-					str += "<td><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
-					str += "<td><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
+					str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
+					str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
+					str += "<td width-'300px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
 					str+="<td><select name='hc_work'>";
 					if(status == 1){
 						str+="<option value = '1' selected = 'selected'> 휴직 </option>";
@@ -148,7 +148,7 @@ input,select{
 						str+="<option value = '2'> 퇴사 </option>";
 						str+="<option value = '0' selected = 'selected'> 재직 </option>";
 					}
-					str += "</select></td><td><input type='button' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
+					str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
 				}
 				str+="</table>"
 				$("#container").html(str);
@@ -191,12 +191,37 @@ input,select{
 		$name = $("#nameSearch").val();
 		console.log($name);
 		$.ajax({
-			url:"/erp/rest/hr/searchfromname",
+			url:"/erp/rest/hr/searchingretirename",
 			data:{name:$name},
-			dataType:"text",
-			method:"get",
+			dataType:"json",
+			method:"post",
 			success : function(data){
+				let str = "";
+				str += "<table style='border:1px solid #D9EDF7; width:1000px;text-align:center;'>";
 				console.log(data);
+				for(let i = 0 ; i<data.length ; i++){
+					str += "<tr>"
+					str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
+					str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
+					str += "<td width='300px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
+					str+="<td><select name='hc_work'>";
+					if(data[i].hc_work == 1){
+						str+="<option value = '1' selected = 'selected'> 휴직 </option>";
+						str+="<option value = '2'> 퇴사 </option>";
+						str+="<option value = '0'> 재직 </option>";
+					}else if(data[i].hc_work == 2){
+						str+="<option value = '1'> 휴직 </option>";
+						str+="<option value = '2' selected = 'selected'> 퇴사 </option>";
+						str+="<option value = '0'> 재직 </option>";
+					}else if(data[i].hc_work == 0){
+						str+="<option value = '1'> 휴직 </option>";
+						str+="<option value = '2'> 퇴사 </option>";
+						str+="<option value = '0' selected = 'selected'> 재직 </option>";
+					}
+					str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
+				}
+				str+="</table>"
+				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
 			}

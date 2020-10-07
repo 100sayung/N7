@@ -697,7 +697,7 @@ public class HrMM {
 		return result;
 	}
 
-	
+
 	public int countEmployeeStatus(HttpSession session, String status) {
 		String cCode = session.getAttribute("cCode").toString();
 		return hDao.countEmployeeStatus(cCode, status);
@@ -731,6 +731,20 @@ public class HrMM {
 		return mav;
 	}
 
+	public String SearchingRetireName(HttpSession session, String name) {
+		String cCode=session.getAttribute("cCode").toString();
+		HashMap<String, String> hMap=new HashMap<String, String>();
+		hMap.put("cCode", cCode);
+		hMap.put("name", name);
+		System.out.println(name);
+		if(name!=null) {
+			ArrayList<HR_Card> CardList=hDao.SearchingRetireName(hMap);
+			System.out.println("??="+CardList);
+			String result=new Gson().toJson(CardList);
+			return result;
+		}
+		return null;
+	}
 	public ModelAndView approvalLine(HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
 		String view = null;

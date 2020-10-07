@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>휴가신청</title>
+<title>휴가 신청</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -157,7 +157,7 @@ ul {
 			if(holidaycnt>=term){
 				return true;
 			}else{
-				alert("남은휴가보다 더 많은 일수를 신청하셨습니다.");		
+				alert("남은휴가보다 더 많은 일수를 신청하셨습니다.");
 				return false;
 			}
 		}

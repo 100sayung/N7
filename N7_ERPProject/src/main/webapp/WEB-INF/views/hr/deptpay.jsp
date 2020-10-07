@@ -81,7 +81,7 @@ ul {
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">부서 직책 관리</Strong>
+		<h1 class="deptregist_color_size">부서 직책 관리</h1>
 	</div>
 	<div align="right" width="100%">
 	<table>

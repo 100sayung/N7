@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>인사카드</title>
+<title>사원 인사 카드</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -73,7 +73,7 @@ ul {
 	</div>
 	<div id="description" align="center">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 인사 카드</Strong>
+		<h1 class="deptregist_color_size">사원 인사 카드</h1>
 	</div>
 	${msg}<br><br>
 	<div class="divcss">사원 인사카드 조회 및 미등록 카드 등록</div>
