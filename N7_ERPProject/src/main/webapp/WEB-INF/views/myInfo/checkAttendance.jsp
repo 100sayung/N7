@@ -77,7 +77,7 @@ ul {
 #calendar{
 	border:1px solid black;
 	text-align:center;
-	width: 448px;
+	width: 450px;
 	height: 350px;
 }
 </style>
@@ -117,7 +117,7 @@ ul {
 	<div class="first_div_css">
 		<Strong class="deptregist_color_size">출 / 퇴근 등록</Strong>
 	</div>
-	<h1 align="center">현재시각</h1>
+	<h1 align="center">(☞ﾟヮﾟ)☞현재시각☜(ﾟヮﾟ☜)</h1>
 	<h1 align="center" id="clock"></h1><br><br>
 
 	<div style="align:center;" id="currentStatus"></div>
@@ -129,20 +129,20 @@ ul {
 	</div>
 
 
-    <table align="center" id="calendar">
+    <table align="center" id="calendar" style="margin-left: 1050px;position: absolute;">
         <tr>
             <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
             <td colspan="5" align="center" id="yearmonth"></td>
             <td><font size=1%; color="#B3B6B3"><label onclick="nextm()" id="next"></label></font></td>
         </tr>
-        <tr>
-            <td align="center"> <font color="#FF9090">일</font></td>
-            <td align="center"> 월 </td>
-            <td align="center"> 화 </td>
-            <td align="center"> 수 </td>
-            <td align="center"> 목 </td>
-            <td align="center"> 금 </td>
-            <td align="center"><font color=#7ED5E4>토</font></td>
+        <tr align="center">
+            <td> <font color="#FF9090">일</font></td>
+            <td> 월 </td>
+            <td> 화 </td>
+            <td> 수 </td>
+            <td> 목 </td>
+            <td> 금 </td>
+            <td><font color=#7ED5E4>토</font></td>
         </tr>
     </table>
 
