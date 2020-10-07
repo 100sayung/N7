@@ -82,7 +82,7 @@ span {
 	width: 176px;
 	text-align: center;
 }
-body{
+#description *{
 font-size: 20px;
 font-weight: bolder;
 }
@@ -114,7 +114,8 @@ position: relative;
 		<ul id="menuList">
 		</ul>
 	</div>
-	<div id='contain'>
+	<div id='description'>
+	<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입/출고 내역</div>
 		입고 내역<input class='checkNum' type="radio" name='ie_status' value="1">출고
 		내역<input class="checkNum" type="radio" name="ie_status" value="2"><br>
 		시작일 : <input class='checkDate' id='date0' type="date" name='ie_date'><br>
@@ -122,7 +123,7 @@ position: relative;
 			readonly><br>
 		<br>
 		<center>
-			<div id="description"></div>
+			<div id="contain"></div>
 		</center>
 	</div>
 	<script src=/erp/js/menu.js></script>
@@ -144,14 +145,14 @@ position: relative;
 						success : function(result) {
 							console.log(result);
 							if (result == null) {
-								$('#description').html('입/출고 내역이 없습니다.')
+								$('#contain').html('입/출고 내역이 없습니다.')
 								return;
 							}
 							if (result.length == 0) {
-								$('#description').html('입/출고 내역이 없습니다.')
+								$('#contain').html('입/출고 내역이 없습니다.')
 								return;
 							}
-							var str = '  <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입/출고 내역</div><div style="background-color:#F8F7F7;"><table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
+							var str = '  <div style="background-color:#F8F7F7;"><table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
 							for (var i = 0; i < result.length; i++) {
 								str += '<tr><td>' + result[i].ie_itcode
 										+ '</td>';
@@ -175,7 +176,7 @@ position: relative;
 										+ '</td></tr>'
 							}
 							str += '</table></div>';
-							$('#description').html(str);
+							$('#contain').html(str);
 						},
 						error : function(err) {
 							console.log(err);

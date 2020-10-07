@@ -82,7 +82,7 @@ span {
 input[type='text'], input[type='number'] {
 	width: 70px;
 }
-body{
+#description *{
 font-size: 20px;
 font-weight: bolder;
 }
@@ -116,17 +116,20 @@ width: 300px;
 		<ul id="menuList">
 		</ul>
 	</div>
-
+<center>
 	<div id="description">
-		<h3>입고 수정 및 확정</h3>
-		<c:if test="${importCheckList eq ''} ">
+		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고 수정 및 확정</div>
+		<div id="contain">
+		<c:if test="${importCheckList eq null} ">
 		<h2>입/출고 내역이 없습니다.</h2>
 		</c:if>
 		<c:if test="${importCheckList ne ''} ">
 		${importCheckList}
-		<input type="button" id="btn" value="입고 확정"></button>
+		<input type="button" id="btn" value="입고 확정">
 		</c:if>
+		</div>
 	</div>
+	</center>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
 	console.log("${importCheckList}")

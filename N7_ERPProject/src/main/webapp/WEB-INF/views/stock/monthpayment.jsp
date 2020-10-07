@@ -82,7 +82,7 @@ span {
 	width: 176px;
 	text-align: center;
 }
-body{
+#description *{
 font-size: 20px;
 font-weight: bolder;
 }
@@ -117,14 +117,14 @@ width: 300px;
 		</ul>
 	</div>
 
-	<div id='contain'>
-	
+		<center>
+		<div id="description">
+		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">월수불실적</div>
 		<input id='date1' type="month" onchange='checkDate()'><br><br>
 		<div id="msg"></div>
-		<center>
-		<div id="description"></div>
+		<div id="contain"></div>
+		</div>
 		</center>
-	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
 	stockSideMenu();
@@ -155,11 +155,11 @@ width: 300px;
 					return;
 				}
 				console.log(result);
-				$('#description').html('<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">월수불실적</div><div style="background-color:#F8F7F7;">'+result.responseText+'</div>')
+				$('#contain').html('<div style="background-color:#F8F7F7;">'+result.responseText+'</div>')
 			},
 			error:function(err){
 				console.log(err)
-				$('#description').html('<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">월수불실적</div><div style="background-color:#F8F7F7;">'+err.responseText+'</div>')
+				$('#contain').html('<div style="background-color:#F8F7F7;">'+err.responseText+'</div>')
 			}
 		})
 	}

@@ -39,8 +39,10 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1200px;
+    height:100%;
+    width:80%;
+    position: absolute;
+    transform:translate(300px, 0);
 }
 
 ul {
@@ -79,6 +81,21 @@ span {
 input[type='text'], input[type='number'] {
 	width: 70px;
 }
+
+input[type="button"]{
+font-size: 20px;
+font-weight: bolder;
+}
+body{
+position: relative;
+}
+td{
+width: 300px;
+}
+#description *{
+font-size:20px;
+font-weight: bolder;
+}
 </style>
 </head>
 <body>
@@ -101,8 +118,9 @@ input[type='text'], input[type='number'] {
 	</div>
 <div id="container">
 <span></span>
+<center>
 	<div id="description">
-		<h3>출고 확정</h3>
+		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">출고 확정</div>
 		<c:if test="${exportStockCheck eq ''}">
 		출고 내역이 없습니다.
 		</c:if>
@@ -111,6 +129,7 @@ input[type='text'], input[type='number'] {
 		<input type="button" id="btn" value="출고 확정"></button>
 		</c:if>
 	</div>
+	</center>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
