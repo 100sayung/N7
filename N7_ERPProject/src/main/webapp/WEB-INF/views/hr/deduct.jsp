@@ -111,7 +111,7 @@ $("#showMenu3").hover(function() {
 })
 
 	$(function(){
-		var str='<tr style="background-color: #F8F7F7; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
+		var str='<tr style="background-color: lightgray; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
 		var deduct=${deduct};
 		console.log(deduct);
 		for(var i=0;i<deduct.length;i++){

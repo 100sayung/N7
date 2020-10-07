@@ -572,12 +572,13 @@ public class HrMM {
 
 		String cCode = session.getAttribute("cCode").toString();
 
-		name = "%" + name + "%";
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("cCode", cCode);
 		hMap.put("name", name);
 		ArrayList<Member> memberList = new ArrayList<>();
 		memberList = hDao.getSearchFromName(hMap);
+		System.out.println(name);
+		System.out.println("memberList="+memberList);
 		ArrayList<HR_Card> hrCardList = new ArrayList<HR_Card>();
 		for (int i = 0; i < memberList.size(); i++) {
 			HR_Card hCard = new HR_Card();
@@ -585,6 +586,7 @@ public class HrMM {
 			hCard.setM_name(memberList.get(i).getM_name());
 			hrCardList.add(hCard);
 		}
+		System.out.println("hrCardList="+hrCardList);
 		String list = new Gson().toJson(hrCardList);
 		return list;
 	}
