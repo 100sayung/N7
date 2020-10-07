@@ -292,17 +292,7 @@
 		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 
-	<!-- 내가 받은 결재안 목록 -->
-	<!-- <select id="apdownPaymentList" resultType="approvaldocu" -->
-	<!-- parameterType="approvaldocu"> -->
-	<!-- SELECT * -->
-	<!-- FROM APPROVALDOCU -->
-	<!-- WHERE AP_TOAPPROVER = #{hrCode} AND AP_CCODE = #{cCode} -->
-	<!-- AND AP_STATUS!= '0' -->
-	<!-- WHERE (J_NTWO = #{cCode} OR J_NTHR = #{cCode}) AND J_GRADE != '0' -->
-	<!-- </select> -->
-
-	<!-- 임시저장 결재안 -->
+	<!-- 임시저장 결재안 목록-->
 	<select id="acTemporaryList" resultType="account">
 		SELECT *
 		FROM (
@@ -415,7 +405,30 @@
 	FROM MLIST 
 	WHERE HC_HRCODE=#{hrCode} AND HC_CCODE = #{cCode} 
 	</select> 
-	 
+	
+	<select id="searchFromname" parameterType="String" resultType="String">
+	SELECT M_NAME 
+	FROM MLIST
+	WHERE HC_HRCODE = #{ap_fromapprover}
+	</select>
+	
+	<select id="searchToname" parameterType="String" resultType="String">
+	SELECT M_NAME 
+	FROM MLIST
+	WHERE HC_HRCODE = #{ap_toapprover}
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
 
 

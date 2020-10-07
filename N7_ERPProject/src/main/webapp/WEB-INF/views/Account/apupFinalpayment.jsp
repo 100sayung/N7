@@ -136,18 +136,18 @@ td {
 					method : "get",
 					success : function(data) {
 						let str = "";
-						for (let i = 0; i < data.length; i++) {
+						for (let i = 0; i < data.pList.length; i++) {
 							str += "<table>"
-							str += "<tr>"
-							str += "<td><input type='radio' name='checknum' class='check' value='"+data[i].ap_docunum+"'></td>";
-							str += "<td>" + data[i].ap_docunum + "</td>";
-							str += "<td>" + data[i].ap_ccode + "</td>";
-							str += "<td>" + data[i].ap_docuname + "</td>";
-							str += "<td>" + data[i].ap_fromapprover + "</td>";
-							str += "<td>" + data[i].ap_toapprover + "</td>";
-							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>결재완료</td>";
-							str += "</tr>"
+								str += "<tr>"
+								str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>";
+								str += "<td>" + data.pList[i].ap_docunum + "</td>";
+								str += "<td>" + data.pList[i].ap_ccode + "</td>";
+								str += "<td>" + data.pList[i].ap_docuname + "</td>";
+								str += "<td>" + data.nList[i].ap_fromname + "</td>";
+								str += "<td>" + data.nList[i].ap_toname + "</td>";
+								str += "<td>" + data.pList[i].ap_date + "</td>";
+								str += "<td>" + '결재완료' + "</td>";
+								str += "</tr>"
 						}
 						str += "</table>";
 						$("#Info").html(str);
