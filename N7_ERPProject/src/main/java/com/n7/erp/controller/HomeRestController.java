@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -89,5 +90,21 @@ public class HomeRestController {
 	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
 	      return bMap;
 	   }
+	@PostMapping(value = "/home/insertReply")
+	public Map<String,ConsultingBoard> insertReply(String num, String reply) { 
+		Map<String,ConsultingBoard>bMap=cbm.insertReply(num, reply);
+		return bMap;
+	}
 	
+	@PostMapping(value = "/home/writeBoard")
+	public String writeBoard(ConsultingBoard board, HttpSession session) {
+	     String value=cbm.writeBoard(board, session);
+	    return value;
+	}
+	
+	@PostMapping(value = "/home/delectBoard")
+	public String delectBoard(String num, String password) {
+		String value=cbm.delectBoard(num, password);
+		return value;
+	}
 }

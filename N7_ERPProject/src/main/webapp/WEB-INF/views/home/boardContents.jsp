@@ -2,45 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
-
-Name       : UpRight
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20130526
-
--->
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
 		<link href="img/favicon.png" rel="icon" />
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="lib/icomoon/icomoon.css" rel="stylesheet" />
-  <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1a9e4h5a1u&callback=initMap"></script>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous" />
-	<!--[if IE 6]>
-<link href="default_ie6.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-<style type="text/css">
+<title>게시판 상세보기</title>
+
+
+<style>
 h2{
 font-size: 36px;
 margin-top: -70px;
@@ -85,8 +64,13 @@ border-bottom: 1px solid #ccc;
 }
 #aaa{
 float: left;
-margin-left: 400px;
+margin-left: 315px;
 }
+
+#container{
+margin-top: 200px;
+}
+
 </style>
 </head>
 <body>
@@ -103,34 +87,122 @@ margin-left: 400px;
 	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP상담게시판</h1></div>
 	<div class="center">
         <div id="container">
-        <br>
-<br>
-	<form action="boardContnes">
 		<h2>상세보기</h2>
-		<table id="table">
+		<table id="table" style="width:600px;">
 			<tr>
-				<th scope="row"">글 번호</th>
-				<td>${board.CB_NUM}</td>
+				<th scope="row">글 번호</th>
+				<td id="num">${board.cb_num}</td>
 			</tr>
 			<tr>
 				<th scope="row">작성자</th>
-				<td>${board.CB_WRITER}</td>
+				<td>${board.cb_writer}</td>
 			</tr>
 			<tr>
 				<th scope="row">글 제목</th>
-				<td>${board.CB_TITLE}</td>
+				<td>${board.cb_title}</td>
 			</tr>
 			<tr>
 				<th scope="row">글 내용</th>
-				<td><textarea rows="15" cols="90" style="resize: none;">${board.CB_CONTENTS}</textarea></td>
+				<td>${board.cb_contents}</td>
 			</tr>
+			<tr>
+			<th>댓글</th><td id="response">${board.cb_reply}</td>
+			</tr>
+			<tr>
+			<th>비밀번호</th><td><input type="text" id="password" placeholder="삭제하실려면 입력하세요"/></td>
+			</tr>
+			<c:choose>
+			<c:when test="${id eq 'admin'}">
+			<tr>
+			<td colspan="2"><textarea rows="10" cols="90" id="reply" style="resize: none;"></textarea><br><button id="commit">댓글등록</button></td>
+			</tr>
+			</c:when>
+			</c:choose>
 		</table>
-	</form>
-	 <div>
-		<button id="aaa"><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
-		<button type="button" id="delete">삭제</button>
+		</div>
+		<a href="/erp/home/erpboard" style="text-decoration: none;"><button id="aaa">뒤로</button></a>
+		<c:choose>
+			<c:when test="${id==null}">
+		  <button type="button" id="delete">삭제</button>
+			</c:when>
+			<c:when test="${id eq 'admin'}">
+		  <button type="button" id="admindelete" value="${board.cb_password}">삭제</button>
+			</c:when>
+			</c:choose>
 	</div>
 </div>
 
 </body>
+<script>
+
+$("#commit").click(function(){
+	var num = $("#num").html();
+	var reply = $("#reply").val();
+	$.ajax({
+		url:'/erp/rest/home/insertReply',
+		type:'post',
+		data:{num:num,reply:reply},
+		dataType:'json',
+		success:function(data){
+			console.log(data);
+			$("#response").html(data.cb.cb_reply);
+			$("#reply").val("");
+		},
+		error:function(error){
+			console.log(error);
+		}
+		
+	});
+	
+});
+
+$("#delete").click(function(){
+	var num = Number($("#num").html());
+	var password = $("#password").val();
+	$.ajax({
+		url:'/erp/rest/home/delectBoard',
+		type:'post',
+		data:{num:num,password:password},
+		dataType:'json',
+		success:function(data){
+			if(data==1){
+				alert("삭제완료");
+				location.href="/erp/home/erpboard";
+			}else{
+				alert("비번이 맞지 않습니다.");
+			}
+			
+		},
+		error:function(error){
+			console.log(error);
+		}
+		
+	});
+});
+
+$("#admindelete").click(function(){
+	var num = $("#num").html();
+	var password = $("#admindelete").val();
+	$.ajax({
+		url:'/erp/rest/home/delectBoard',
+		type:'post',
+		data:{num:num,password:password},
+		dataType:'json',
+		success:function(data){
+			if(data==1){
+				alert("삭제완료");
+				location.href="/erp/home/erpboard";
+			}else{
+				alert("비번이 맞지 않습니다.");
+			}
+			
+		},
+		error:function(error){
+			console.log(error);
+		}
+		
+	});
+});
+
+</script>
 </html>
