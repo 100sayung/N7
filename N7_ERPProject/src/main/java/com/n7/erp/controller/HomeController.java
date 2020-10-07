@@ -69,6 +69,10 @@ public class HomeController {
 	public String introduceCompany() {
 		return "/home/introducecompany";
 	}
+	@RequestMapping(value = "/jusopopup", method = RequestMethod.GET)
+	public String jusoPopUp() {
+		return "/home/jusopopup";
+	}
 
 	@RequestMapping(value = "/home/erpboard", method = RequestMethod.GET)
 	public ModelAndView erpBoard(Integer pageNum) {
@@ -228,6 +232,10 @@ public class HomeController {
 	@RequestMapping(value = "/home/modifypassword", method = RequestMethod.POST)
 	public ResponseEntity<String> modifyPassword(String userPassword, String userId) {
 		return mm.modifyPassword(userPassword, userId);
+	}
+	@RequestMapping(value = "/home/jusopopup", method = RequestMethod.GET)
+	public String jusoPopUp(String userPassword, String userId) {
+		return "home/jusopopup";
 	}
 	
 	

@@ -128,4 +128,8 @@ public class StockRestController {
 	public ResponseEntity<String> getstock(ItemCode it,HttpSession session) {
 		return stmm.getStock(it,session);
 	}
+	@RequestMapping(value = "/searchitcode", method = RequestMethod.GET)
+	public ResponseEntity<String> searchItCode(ItemCode it,HttpSession session) {
+		return stmm.searchItCode(it,session);
+	}
 }

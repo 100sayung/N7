@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta name="keywords" content="" />
@@ -304,89 +305,81 @@ button {
 
 		var checkid;
 		var checkccode
+		$("#searchAddr").click(function () {
+			// IE에서 opener관련 오류가 발생하는 경우, window에 이름을 명시해줍니다.
+			window.name = "jusoPopup";
 
-		function dupleID() {
-			var $id = $("#id").val()
-			if ($id == null || $id == '') {
-				$("#dupleID").html(
-						"<font style='color:red;'>ID를 입력해주세요.</font>");
+			// 주소검색을 수행할 팝업 페이지를 호출합니다.
+			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+			var pop = window.open("/erp/jusopopup", "pop",
+					"width=570,height=420, scrollbars=yes, resizable=yes");
+		})
+
+		function jusoCallBack(roadAddrPart1, addrDetail,
+				roadAddrPart2) {
+			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+			document.form.roadAddrPart1.value = roadAddrPart1;
+			document.form.roadAddrPart2.value = roadAddrPart2;
+			document.form.addrDetail.value = addrDetail;
+
+		}
+	function dupleID() { 
+		var $id = $("#id").val() 
+		if ($id == null || $id =='') { 
+			$("#dupleID").html( "<font style='color:red;'>ID를 입력해주세요.</font>"); 
 			} else {
-
-				console.log($id)
-				$
-						.ajax({
-							url : "/erp/rest/home/dupleid",
-							data : {
-								m_id : $id
-							},
-							dataType : "text",
-							method : "get",
-							async : false,
-							success : function(data) {
-								console.log(data)
-								if (data == 1) {
-									checkid = false;
-									$("#dupleID")
-											.html(
-													"<font style='color:red;'>아이디가 중복됩니다.</font>");
-								} else {
-									checkid = true;
-									$("#dupleID").html("<font style='color:blue;'>가능한 아이디입니다.</font>");
-								}
-							},
-							error : function(err) {
-								console.log(err);
-							}
-						});
-			}
-		}
-
-		function dupleCCode() {
-			var $cCode = $("#cCode").val();
-			console.log($cCode);
-			$
-					.ajax({
-						url : "/erp/rest/home/dupleccode",
-						data : {
-							m_ccode : $cCode
-						},
-						dataType : "text",
-						method : "get",
-						async : false,
-						success : function(data) {
-							console.log(data)
-							if (data == 1) {
-								checkccode = true;
-								$("#dupleCCode").html("<font style='color:blue;'>해당 회사코드가 존재합니다.</font>");
-							} else {
-								checkccode = false;
-								$("#dupleCCode")
-										.html(
-												"<font style='color:red;'>해당 회사코드가 존재하지 않습니다.</font>");
-							}
-						},
-						error : function(err) {
-							console.log(err);
-						}
-					})
-		}
-
-		$(function() {
-			$("#postcodify_search_button").postcodifyPopUp();
-		});
-
-		function sum() {
-			console.log(checkid, checkccode);
-			if (checkid && checkccode) {
-				$("#addr").val(
-						$('#addr1').val() + $('#addr2').val()
-								+ $('#addr3').val());
-				return true;
-			} else {
-				alert("회사코드 혹은 아이디 중복을 확인해주세요.");
-				return false;
-			}
-		}
+	console.log($id) 
+	$ .ajax({ url : "/erp/rest/home/dupleid", 
+		data : {m_id : $id }, 
+		dataType : "text", 
+		method : "get", 
+		async : false, 
+		success	: function(data) { 
+			console.log(data) 
+			if (data == 1) { 
+				checkid = false;
+	$("#dupleID") .html( "<font style='color:red;'>아이디가 중복됩니다.</font>"); 
+	} else { 
+		checkid = true;
+		$("#dupleID").html("<font style='color:blue;'>가능한 아이디입니다.</font>"); } 
+	}, 
+	error :	function(err) { 
+		console.log(err); 
+		} 
+	}); 
+	}
+	}
+	function dupleCCode() { 
+		var	$cCode = $("#cCode").val(); 
+		console.log($cCode); 
+		$ .ajax({ url :	"/erp/rest/home/dupleccode", 
+			data : { m_ccode : $cCode }, 
+			dataType :	"text", 
+			method : "get", 
+			async : false, 
+			success : function(data) {
+	console.log(data) 
+	if (data == 1) { 
+		checkccode = true;
+	$("#dupleCCode").html("<font style='color:blue;'>해당 회사코드가 존재합니다.</font>"); 
+	} else {
+		checkccode	= false;
+		$("#dupleCCode") .html( "<font style='color:red;'>해당 회사코드가 존재하지 않습니다.</font>"); 
+		} 
+	}, 
+	error :	function(err) { 
+		console.log(err); } }) } 
+	
+	function sum() {
+	console.log(checkid, checkccode); 
+	if (checkid && checkccode) {
+	$("#addr").val( $('#addr1').val() + $('#addr2').val() +
+	$('#addr3').val()); return true; 
+	} else {
+		alert("회사코드 혹은 아이디 중복을 확인해주세요."); 
+	return false; 
+	} 
+	}
 	</script>
 </body>
 </html>
