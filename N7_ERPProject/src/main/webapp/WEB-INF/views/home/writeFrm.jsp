@@ -128,7 +128,7 @@ $("#submit").click(function(){
 			console.log(data);
 			if(data==1){
 				alert("등록완료");
-				location.href="/erp/home/erpboard"
+				location.href="/erp/home/erpboard";
 			}else{
 				alert("등록실패");
 			}
