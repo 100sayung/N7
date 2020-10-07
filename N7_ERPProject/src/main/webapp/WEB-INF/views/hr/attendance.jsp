@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 출결 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -92,7 +92,7 @@ input{
 	<div id="description">
 
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 출결 관리</Strong>
+		<h1 class="deptregist_color_size">사원 출결 관리</h1>
 	</div>
 								<!-- 09-24 style change -->
     <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin-right: 20px;">
@@ -143,8 +143,8 @@ input{
     				console.log(date);
     				console.log(timenumber);
 					str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
-					str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
-					str +="<button type='button' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+					str +="<td><button type='button' class='infobtn' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
+					str +="<button type='button' class='infobtn' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
 
 				}
 				str += "</table></div>";
@@ -194,8 +194,8 @@ input{
 		    				console.log(date);
 		    				console.log(timenumber);
 							str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
-							str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
-							str +="<button type='button' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+							str +="<td><button type='button' class='infobtn' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
+							str +="<button type='button' class='infobtn' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
 						}
 						str += "</table></div>";
 						$("#at").html(str);

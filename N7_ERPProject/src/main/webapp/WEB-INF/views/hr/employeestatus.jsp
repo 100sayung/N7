@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 근무 조회</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -50,7 +50,14 @@ ul {
 }
 
 .menu{
+	font-size:medium;
 	width:250px;
+}
+
+table,td{
+	border-collapse:collapse;
+	border:2px solid #D9EDF7;
+	text-align: center;
 }
 </style>
 </head>
@@ -82,7 +89,7 @@ ul {
 <div>
 <div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 근무 조회</Strong>
+		<h1 class="deptregist_color_size">사원 근무 조회</h1>
 	</div>
 	<div style="float: right;">
 		<input type="text" id="nameSearch" placeholder="이름으로 검색">
@@ -224,7 +231,7 @@ ul {
 	function makeContainer(data){
 		data = JSON.parse(data);
 		let str = "<table>";
-		str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td style='width:150px;'>상태</td></tr>";
+		str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td class='menu'>상태</td></tr>";
 		for(let i = 0 ; i<data.length ; i++){
 			str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
 			if(data[i].hc_status == 1){

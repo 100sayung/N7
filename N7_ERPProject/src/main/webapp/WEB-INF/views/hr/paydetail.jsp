@@ -85,7 +85,7 @@ table{
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 급여 상세정보</Strong>
+		<h1 class="deptregist_color_size">사원 급여 상세정보</h1>
 	</div>
 	<form action="searchpaymm" method="post" name="payroll">
 	<input type="hidden" value="${card.hc_ccode}" name="HP_CCODE">
@@ -108,7 +108,7 @@ table{
 		</tr>
 	</table>
 	</form>
-	<div id="detailpage">
+	<div id="detailpage" align="center">
 	</div>
 	<input type="button" class="infobtn" onclick="moving()" value="확인">
 	</div>
@@ -156,7 +156,7 @@ table{
 							+"<td class='font_color_paydetail'>실지급액</td>"
 							+"<td>"+receive+"</td></tr></table>"
 					}else if(data=="1"){
-						str+="<h1>해당 월에는 받은 급액이 없습니다.</h1>";
+						str+="<img src='http://mjscholarship.com/k1/board/images/no_article.gif' width='500px' height='350px'>";
 					}
 					$("#detailpage").html(str);
 				},

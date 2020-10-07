@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>출 /퇴근 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -44,6 +44,8 @@ a {
 	float: left;
 	height: 100%;
 	width: 800px;
+	position: absolute;
+	transform:translate(250px, 0);
 }
 
 ul {
@@ -57,7 +59,7 @@ ul {
 }
 
 .emphasis{
-	background:#FFB2D9;
+	background:#3D6B9B;
 	font-size: 30px;
 	font-weight: bold;
 	color:white;
@@ -69,7 +71,7 @@ ul {
 
 #check{
 	width:800px;
-	height:150px;
+	height:100px;
 	text-align: center;
 	align-content: center;
 	border-bottom: 1px solid black;
@@ -79,6 +81,8 @@ ul {
 	text-align:center;
 	width: 450px;
 	height: 350px;
+	position: absolute;
+	transform:translate(1050px, 0);
 }
 </style>
 </head>
@@ -115,10 +119,10 @@ ul {
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">출 / 퇴근 등록</Strong>
+		<h1 class="deptregist_color_size">출 / 퇴근 등록</h1>
 	</div>
 	<h1 align="center">(☞ﾟヮﾟ)☞현재시각☜(ﾟヮﾟ☜)</h1>
-	<h1 align="center" id="clock"></h1><br><br>
+	<h1 align="center" id="clock" style="margin-bottom: 30px;"></h1>
 
 	<div style="align:center;" id="currentStatus"></div>
 	<br>
@@ -129,7 +133,7 @@ ul {
 	</div>
 
 
-    <table align="center" id="calendar" style="margin-left: 1050px;position: absolute;">
+    <table align="center" id="calendar">
         <tr>
             <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
             <td colspan="5" align="center" id="yearmonth"></td>

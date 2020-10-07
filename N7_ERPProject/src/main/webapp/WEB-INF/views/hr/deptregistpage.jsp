@@ -62,6 +62,9 @@ ul {
 #dept{
 	padding: 5px 50px;
 }
+#position{
+	padding:5px 0px;
+}
 </style>
 </head>
 <body>
@@ -92,7 +95,7 @@ ul {
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">부서 등록</Strong>
+		<h1 class="deptregist_color_size">부서 등록</h1>
 	</div>
 	<form action="/erp/hr/deptregistinsert" name="deptregistinsert" method="post" accept-charset="utf-8">
 		<table id="depttable" width="100%">
@@ -111,6 +114,9 @@ ul {
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
 $(document).ready(function(){
+	
+	$("#position").focus();
+	
 	$.ajax({
 		url:"/erp/rest/hr/ourdept",
 		dataType:"json",

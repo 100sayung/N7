@@ -7,7 +7,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
-<title>Insert title here</title>
+<title>사원 인사 카드 수정 및 입력</title>
 <style>
 .modifyMode{
 	background-color: skyblue;

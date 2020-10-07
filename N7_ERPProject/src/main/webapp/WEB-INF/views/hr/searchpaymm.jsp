@@ -104,7 +104,7 @@ span {
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 급여 관리</Strong>
+		<h1 class="deptregist_color_size">사원 급여 관리</h1>
 	</div>
 	<div align="right" >
 		<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색" autocomplete="off">

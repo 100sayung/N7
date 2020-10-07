@@ -293,4 +293,11 @@ public class HRRestController {
 		String result = new Gson().toJson(hm.selectwages(vo));
 		return result;
 	}
+	
+	
+	@PostMapping(value="/hr/searchingretirename")
+	public String SearchingRetireName(HttpSession session, String name) {
+		String result = hm.SearchingRetireName(session, name);
+		return result;
+	}
 }

@@ -101,7 +101,7 @@ body{
 	</div>
 	<div id="description">
 		<div class="first_div_css">
-			<Strong class="deptregist_color_size">내 급여 명세서 보기</Strong>
+			<h1 class="deptregist_color_size">내 급여 명세서 보기</h1>
 		</div>
 	<table style="border: 2px solid #D9EDF7; width: 1000px; height: 100px; text-align: center;">
 		<tr>
@@ -121,7 +121,7 @@ body{
 			<td><input type="month" id="month" name="month"></td>
 		</tr>
 	</table>
-	<div id="paycheckpage">
+	<div id="paycheckpage" align="center">
 
 	</div>
 	</div>
@@ -166,7 +166,7 @@ body{
 							+"<td class='leftmoney'>"+receive+"</td></tr>"
 					$("#paycheckpage").html(str);
 					}else if(data=="1"){
-						$("#paycheckpage").html("<h1 align='center'>선택한 날짜에는 받은 급여가 없습니다.</h1>");
+						$("#paycheckpage").html("<img src='http://mjscholarship.com/k1/board/images/no_article.gif' width='500px' height='350px'>");
 					}
 				},
 				errorr:function(err){

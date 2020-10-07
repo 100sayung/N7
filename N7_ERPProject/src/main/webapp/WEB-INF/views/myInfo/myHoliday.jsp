@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>내 휴가 보기</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -103,7 +103,7 @@ body{
 	</div>
    <div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">내 휴가 보기</Strong>
+		<h1 class="deptregist_color_size">내 휴가 보기</h1>
 	</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
@@ -253,6 +253,7 @@ body{
                         day = "0" + day;
                      }
                      //09-24 change
+                   	 cell.style.padding="10px 0px";
                      if(data[k].hap_status=="3"){
                     	 cell.style.backgroundColor="#39FF14";
                     	 cell.style.color="black";
@@ -272,7 +273,7 @@ body{
                            cell.innerHTML = "---";
                         }else{
                            cell.innerHTML = data[k].m_name;
-                           cell.style.width="90px;";
+                           cell.style.width="90px";
                            cell.className="last"
                               cell = row.insertCell();
                            cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
@@ -281,7 +282,7 @@ body{
                         }
                      } else if (j == cnt) {
                         cell.innerHTML = data[k].m_name;
-                        cell.style.width="90px;";
+                        cell.style.width="90px";
                         cell.clssName="last"
                         cell = row.insertCell();
                         cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"

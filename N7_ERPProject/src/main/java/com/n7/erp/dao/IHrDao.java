@@ -188,4 +188,8 @@ public interface IHrDao {
 
 	int countWages(String cCode);
 	List<ViewPay> selectWages(PagingVO vo);
+	@Select("SELECT HR_CARD.HC_DEPT, HR_CARD.HC_POSITION, HR_CARD.HC_HRCODE, HR_CARD.HC_WORK, MEMBER.M_NAME, HR_CARD.HC_WORK "
+			+ "FROM HR_CARD INNER JOIN MEMBER ON HR_CARD.HC_ID = MEMBER.M_ID WHERE HC_CCODE = #{cCode} AND M_NAME LIKE '%'||#{name}||'%'"
+			+"ORDER BY MEMBER.M_NAME ASC")
+	ArrayList<HR_Card> SearchingRetireName(HashMap<String, String> hMap);
 }

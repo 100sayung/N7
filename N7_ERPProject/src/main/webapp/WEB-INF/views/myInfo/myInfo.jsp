@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>내 정보 보기</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -133,7 +133,7 @@ table,tr,td {
 	</div>
 	<div id="description" align="center">
 		<div class="first_div_css">
-			<Strong class="deptregist_color_size">내 정보 보기</Strong>
+			<h1 class="deptregist_color_size">내 정보 보기</h1>
 		</div>
 		<div id="member"></div>
 

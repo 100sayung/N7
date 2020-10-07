@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>신청 사원 휴가 접수</title>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -45,6 +45,7 @@ a {
 
 #description {
 	float: left;
+	width:1000px;
 	height: 100%;
 }
 
@@ -62,7 +63,6 @@ table, th, td {
 	width: 30px;
 }
 
-width:1000px;
 }
 table, td, th {
 	border: 1px solid black;
@@ -109,7 +109,7 @@ body{
 	<!-- 09-25 change  -->
 	<div id="description" align="center">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 휴가 접수</Strong>
+		<h1 class="deptregist_color_size">사원 휴가 접수</h1>
 	</div>
 	<div style="float: right; ">
 		<table style="border: 1px solid black; width: 100px;">
