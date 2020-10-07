@@ -19,7 +19,7 @@
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 	
 
 <style>
@@ -152,7 +152,7 @@ button {
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
             <form action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
-                <div class="row">
+                <div class="row" style="margin-right:-25px;">
 
                     <!-- id -->
                     <div class="input-group col-lg-10 mb-4">
@@ -170,7 +170,7 @@ button {
                     <div class="input-group col-lg-10 mb-4">
                         <div class="input-group-prepend">
                              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-user text-muted"></i>
+                                <i class='fas fa-lock' style="font-size:15px color:gray;"></i>
                             </span>
                         </div>
                     <input type="password" style="width:300px;" class="form-control bg-white border-left-0 border-md" placeholder="password를 입력해주세요" required id="pw" name="m_pw" required/>
@@ -190,7 +190,7 @@ button {
                     <div class="input-group col-lg-12 mb-4">
                          <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-phone-square text-muted"></i>
+                                <i class='fas fa-address-card' style='font-size:15px'></i>
                             </span>
                         </div>                         
 
@@ -208,7 +208,7 @@ button {
                     <div class="input-group col-lg-12 mb-4">
                          <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class='fas fa-envelope-open' style='font-size:15px'></i>
                             </span>
                         </div>
                       <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
@@ -218,7 +218,7 @@ button {
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <p class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class='fas fa-home' style='font-size:15px'></i>
                             </p>
 
                         </div> 
@@ -229,7 +229,7 @@ button {
                      <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                             <p class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class=''></i>
                             </p>
                         </div> 
 
@@ -242,7 +242,7 @@ button {
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-black-tie text-muted"></i>
+                                <i class='fas fa-address-card' style='font-size:15px'></i>
                             </span>
                         </div> 
                         <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3" required>
@@ -252,7 +252,7 @@ button {
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class="fa fa-phone-square text-muted"></i>
                             </span>
                         </div> 
                       <input type="text" name="m_phonenum" placeholder="핸드폰 번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
@@ -262,7 +262,7 @@ button {
                     <div class="input-group col-lg-6 mb-4">
                          <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class='fas fa-images' style='font-size:15px'></i>
                             </span>
                         </div>
                       <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3" required>

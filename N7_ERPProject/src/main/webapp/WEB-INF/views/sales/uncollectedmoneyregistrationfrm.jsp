@@ -21,7 +21,7 @@ text-align:center;
         <button type="button" id="fullpaymentsearch" value="완납현황 조회하기">완납현황 조회하기</button>
         <br>
         <br>
-        <div style="width:auto; background-color:#FFB2D9; color:white; padding:1%;">미수금 등록</div>
+        <div style="width:1300px; background-color:#3D6B9B; color:white; padding:1%;">미수금 등록</div>
           <select id="choice" style="width:180px;">
                       <option value="bu_clcode">거래처회사코드</option>
                       <option value="bu_person">등록자</option>
@@ -29,7 +29,7 @@ text-align:center;
         <input type="text" name="search" id="search">
         <button id="searchh">검색</button>
         <form id="uncollectedmoneyinput">
-        <div border="1" style="height:60px; padding-top:25px; background-color:#F8F7F7;">
+        <div border="1" style="width:1300px; height:60px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:100px;">
          <thead>
             <tr>
@@ -45,9 +45,9 @@ text-align:center;
          </thead>
       </table>
       </div>
-            <div style="background-color:#ECEBEA;">
+            <div style="background-color:#ECEBEA; width:1200px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-               style="margin-left:350px;">
+               style="width:1200px; margin-left:100px;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
