@@ -222,7 +222,7 @@ button {
                             </p>
                         </div> -->
 					    <input type="text" style="width:300px;" id="addr1" name="addr1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" /><br>
-                        &nbsp;&nbsp;<button id="postcodify_search_button" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
+                        &nbsp;&nbsp;<button type="button" id="postcodify_search_button" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
                     </div>
 
                     <div class="input-group col-lg-12 mb-4">
