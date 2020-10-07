@@ -40,7 +40,7 @@ border: 1px solid;
         <input type="text" name="search" id="search">
         <button id="searchh">검색</button>
         <form id="shippingrequestinput">
-        <div border="1" style="width:1300px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+        <div border="1" style="width:1300px; height:60px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:250px;">
          <thead>
             <tr>
@@ -50,16 +50,6 @@ border: 1px solid;
                <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>수주번호</th>
                <th><input id="bonum" type="text" name="bs_bonum"><button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
-<!--           <th>품목코드</th>
-               <th><input type="text" name="bs_itcode"></th>  -->
-            </tr>
-            <tr>
-<!--           <th>제품명</th>
-               <th><input type="text" name="bs_proname"></th>
-               <th>거래처회사코드</th>
-               <th><input type="text" name="bs_clcode"></th> -->
-<!--           <th>출하의뢰일</th>
-               <th><input type="date" name="bs_basedate"></th>       -->
             </tr>
          </thead>
       </table>
@@ -75,8 +65,6 @@ border: 1px solid;
                 </colgroup>
                 <colgroup span="3" align="center">
                 </colgroup>
-                <!-- <thead valign="top">
-                </thead> -->
                 <tbody id="tBody">
                     <tr>
                         <th><input type="radio" id="allCheck"></th>
@@ -132,9 +120,7 @@ border: 1px solid;
  	   var bonum="";
  	   for(var i in data.sList){
  	   bonum=data.sList[i].bo_num;
-
  	   }
-
  	   $("#bonum").val(bonum);
  	};
 
@@ -168,10 +154,6 @@ border: 1px solid;
    });
   });
 
-        //select형식의 추가삭제로 바꿔야함!
-        //추가삭제 2번씩 됨......
-
-
    $(document).ready(function(){
     var select;
     $.ajax({
@@ -187,27 +169,6 @@ border: 1px solid;
        });
    });
 
-/*               $('.addList').click(function(){
-                $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-
-    var select;
-
-    $.ajax({
-          url:"/erp/stock/getitemcode",
-          dataType: 'json',
-          success:function(data){
-        	 console.log(data);
-             select = makeSelectBox(data);
-             $(".cl").html(select);
-          },
-          error:function(err){
-             console.log(err);
-          }
-       });
-
-             }); */
-
-
          $(document).ready(function(){
         	    var select2;
         	    $.ajax({
@@ -221,27 +182,6 @@ border: 1px solid;
         	             console.log(err);
         	          }
         	       });
-
-/*         	              $('.addList').click(function(){
-        	                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-
-        	    var select2;
-
-        	    $.ajax({
-        	          url:"/erp/stock/getitemcode",
-        	          dataType: 'json',
-        	          success:function(data){
-        	        	 console.log(data);
-        	             select = makeSelectBox2(data);
-        	             $(".pn").html(select);
-        	          },
-        	          error:function(err){
-        	             console.log(err);
-        	          }
-        	       });
-
-        	              });
-        	          }); */
           });
 
 
@@ -410,19 +350,6 @@ border: 1px solid;
             });
 
 
-/*           function makeSelectBox2(arr){
-            var arrStr = "<select name = 'bs_bonum'>"
-            if(arr.length==0){
-               arrStr+="<option>수주번호를 작성해주세요 </option>";
-            }else{
-               for(var i = 0;i<arr.length;i++){
-                  arrStr+="<option value='"+arr[i].bo_num+"'>"+arr[i].bo_num+"</option>";
-               }
-            }
-            arrStr+="</select>";
-            return arrStr;
-         }   */
-
         function changeItcode(id){
            var it_stock = $(id).val();
            var it_code = $(id).parent().siblings(".cl").children().val();
@@ -441,6 +368,9 @@ border: 1px solid;
            })
         }
 
+  		$('#shippingitemfrm').click(function(){
+			$("#sub").attr("style","visibility: hidden");
+	});
 
 </script>
 </body>

@@ -88,9 +88,7 @@ text-align:center;
             </div>
         </form>
         <br>
-        <br>
-            <!-- <button type="button" id="addList" value="추가">추가</button> -->
-            <button type="button" id="deleteCheck" value="삭제">삭제</button>
+            <!-- <button type="button" id="deleteCheck" value="삭제">삭제</button> -->
             <button type="button" id="sub" value="저장">저장</button>
       </div>
      <br>
@@ -109,23 +107,26 @@ text-align:center;
 
   	   $("#clcode").val(clcode);
   	};
-/*         //추가삭제
-        $(document).ready(function(){
-              $('.addList').click(function(){
-                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="ba_date" class="input-text"></td><td><input type="text" name="ba_content" class="input-text" ></td><td><input type="number" name="ba_estimatedsalesamount" class="input-text" ></td><td><input type="number" name="ba_actualsalesamount" class="input-text" ></td><td><input type="text" name="ba_enddate" class="input-text" ></td><td><input type="text" name="ba_memo" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
-              });
-          });
-           function thisRowDel(row){
-                console.log(row);
-                let tr = row.parentNode.parentNode;
-                tr.parentNode.removeChild(tr);
-         } */
 
 
-      $('#businessitemfrm').click(function(){
+/*       $('#businessitemfrm').click(function(){
+           var str="";
 
-              window.open('/erp/sales/SalesResult','영업실적조회','width=1350,height=600');
-        });
+           $.ajax({
+              url:'/erp/rest/sales/businessitem',
+              type: 'get',
+              dataType: "json",
+              success:function(data){
+                 console.log(data);
+
+                 for(var i in data.bList){
+                    str+="<tr><td><input type='radio' name='checknum' value="+data.bList[i].ba_ocode+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_date+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_content+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_estimatedsalesamount+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_actualsalesamount+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td></tr>";
 
        $('#sub').click(function(){
            var obj= $('#businessactivitiesinput').serialize();
