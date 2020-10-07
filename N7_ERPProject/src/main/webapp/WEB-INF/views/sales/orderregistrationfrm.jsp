@@ -35,8 +35,6 @@ width:1400px;
            <button type="button" id="orderitemfrm">수주품목 현황</button>
            <span style="padding-left: 5px"><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-           <!-- <span style="padding-left: 5px"><a href="#"
-         onclick="window.open('clientfrm','clientfrm','width=1200,height=700')"><button>거래처등록</button></a></span> -->
         </div>
         <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">수주관리 양식</div>
               <select id="choice" style="width:180px;">
@@ -52,7 +50,7 @@ width:1400px;
          <thead>
             <tr>
                <th>수주번호</th>
-               <th><input type="number" name="bo_num" placeholder="자동생성" readonly></th> <!-- placeholder="자동생성" readonly -->
+               <th><input type="number" name="bo_num" placeholder="자동생성" readonly></th>
                <th>거래처회사코드</th>
                <th><input id="clcode" type="text" name="bo_clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>회사코드</th>
@@ -110,10 +108,8 @@ width:1400px;
             </div>
             <br>
             <div>
-                <!--  <button type="button" class="addList" value="추가">추가</button> -->
-               <!-- <button type="button" id="change" value="변경" >변경</button> -->
                  <button type="button" id="deleteCheck" value="삭제">삭제</button>
-               <button type="button" id="subb" value="저장">저장</button>
+                 <button type="button" id="subb" value="저장">저장</button>
             </div>
           </form>
          </div>
@@ -179,19 +175,6 @@ width:1400px;
         });
 
 
-        //추가삭제
-
-/*       $(document).ready(function(){
-            $('.addList').click(function(){
-               $('#tBody').append('<tr><td frame=void><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bo_num" class="input-text"></td><td><input type="text" name="bo_pronum" class="input-text"></td><td><input type="text" name="bo_orderdate" class="input-text" ></td><td><input type="text" name="bo_duedate" class="input-text" ></td><td><input type="number" name="bo_proquantity" class="input-text"></td><td><input type="number" name="bo_prosalesamount" class="input-text"></td><td><input type="number" name="bo_orderbudget" class="input-text" ></td><td frame=void><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
-            });
-        });
-         function thisRowDel(row){
-              console.log(row);
-              let tr = row.parentNode.parentNode;
-              tr.parentNode.removeChild(tr);
-       }  */
-
         $('#subb').click(function(){
            var obj= $('#orderregistrationinput').serialize();
 
@@ -210,6 +193,7 @@ width:1400px;
               });
            $('input').val("");
            });
+
 
          $('#searchh').click(function(){
             var choice=$('#choice').val();
@@ -285,6 +269,13 @@ width:1400px;
                  }
               });
            });
+
+
+ 		$('#orderitemfrm').click(function(){
+				$("#subb").attr("style","visibility: hidden");
+		});
+
+
 </script>
 </body>
 </html>

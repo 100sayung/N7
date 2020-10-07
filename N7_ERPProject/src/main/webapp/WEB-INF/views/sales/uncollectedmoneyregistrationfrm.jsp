@@ -38,9 +38,7 @@ text-align:center;
                <th>거래처회사코드</th>
                <th><input type="text" name="bs_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>제품코드</th>
-               <th class = "cl"></th> <!-- <th><input type="text" name="bs_itcode"></th> -->
-<!--           <th>수주번호</th>
-               <th><input type="text" name="bs_bonum"></th> -->
+               <th class = "cl"></th>
                <th>등록자</th>
                <th><input type="text" name="bu_person"></th>
             </tr>
@@ -72,7 +70,7 @@ text-align:center;
                     <tr>
                         <td><input type="radio" class="each_check"></td>
                         <td><input type="text" name="bs_date" placeholder="자동생성" readonly></td>
-                        <td class="pn"></td> <!-- <td><input type="text" name="bs_proname"  required></td> -->
+                        <td class="pn"></td>
                         <td><input type="number" name="bs_unit"  required></td>
                         <td><input type="number" name="bs_quantity"  required></td>
                         <td><input type="number" name="bs_price" required></td>
@@ -82,7 +80,6 @@ text-align:center;
             </div>
             <br>
             <div>
-            <!-- <button type="button" class="addList" value="추가">추가</button> -->
             <button type="button" id="sub" value="저장">저장</button>
             </div>
         </form>
@@ -147,26 +144,7 @@ text-align:center;
    	             console.log(err);
    	          }
    	       });
-
-/*    	              $('.addList').click(function(){
-   	                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_date" class="input-text"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-
-   	    var select2;
-
-   	    $.ajax({
-   	          url:"/erp/stock/getitemcode",
-   	          dataType: 'json',
-   	          success:function(data){
-   	        	 console.log(data);
-   	             select = makeSelectBox2(data);
-   	             $(".pn").html(select);
-   	          },
-   	          error:function(err){
-   	             console.log(err);
-   	          }
-   	       }); */
-
-   	          });
+   	    });
 
 
      $('#uncollectedmoneyitemfrm').click(function(){
@@ -223,19 +201,6 @@ text-align:center;
             $('input').val("");
         });
 
-/*      //추가삭제
-     $(document).ready(function(){
-           $('.addList').click(function(){
-              $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_date" class="input-text"></td><td><input type="text" name="bs_proname" class="input-text" ></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
-           });
-       });
-        function thisRowDel(row){
-             console.log(row);
-             let tr = row.parentNode.parentNode;
-             tr.parentNode.removeChild(tr);
-      }  */
-
-
       $('#searchh').click(function(){
         var choice=$('#choice').val();
          var search=$('#search').val();
@@ -270,7 +235,7 @@ text-align:center;
             });
          });
 
-/*       $('#deleteCheck').click(function(){
+       $('#deleteCheck').click(function(){
           var check="";
           $("input[name=each_check]:checked").each(function(){
              check = $(this).attr("value");
@@ -307,7 +272,7 @@ text-align:center;
                 }
              });
           });
-      */
+
 
       //완납 처리 버튼
       $('#fullpaymentcheck').click(function(){
@@ -406,6 +371,21 @@ text-align:center;
            }
         });
      });
+
+		$('#uncollectedmoneyitemfrm').click(function(){
+			$("#sub").attr("style","visibility: hidden");
+	});
+		$('#uncollectedsearch').click(function(){
+			$("#sub").attr("style","visibility: hidden");
+	});
+		$('#fullpaymentcheck').click(function(){
+			$("#sub").attr("style","visibility: hidden");
+	});
+		$('#fullpaymentsearch').click(function(){
+			$("#sub").attr("style","visibility: hidden");
+	});
+
+
 </script>
 </body>
 </html>

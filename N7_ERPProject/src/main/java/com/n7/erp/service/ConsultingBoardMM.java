@@ -23,7 +23,7 @@ public class ConsultingBoardMM {
 
 	@Autowired
 	private IConsultingBoardDao CBdao;
-	
+
 	ModelAndView mav = new ModelAndView();
 
 	//게시판 이동시 목록 출력
@@ -47,7 +47,7 @@ public class ConsultingBoardMM {
 		mav.setViewName(view);
 		return mav;
 	}
-	
+
 	private String getPaging(Integer pageNum) {
 		int maxNum = CBdao.getBoarCount();
 		int listCount=10;
@@ -64,7 +64,7 @@ public class ConsultingBoardMM {
 		String id=(String)session.getAttribute("id");
 		System.out.println("id="+id);
 		String pw=null;
-		
+
 		if(id==null) {
 			if(board.getCb_password()==null) {
 				mav.addObject("msg", "비밀번호를 입력해주세요.");
@@ -74,51 +74,45 @@ public class ConsultingBoardMM {
 			}
 		}else {
 			pw=mb.getM_pw();
-			
+
 		}
 		CBdao.boardWrite(board);
 		view="redirect:/erpboard";
-		
+
 		mav.setViewName(view);
 		return mav;
 	}
-	
+
 	public ModelAndView boardContents(int CB_NUM) {
 		mav= new ModelAndView();
 		String view= null;
-		
+
 		ConsultingBoard board= CBdao.getContents(CB_NUM);
 		System.out.println("들어감?");
-		
+
 		System.out.println("board="+board);
 		mav.addObject("board", board);
 		view="/home/boardContents";
 		mav.setViewName(view);
-		
+
 		return mav;
 	}
-	
-	public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword, Integer pageNum) {
-		System.out.println("pageNum="+pageNum);
-		Map<String, List<ConsultingBoard>>bMap = null;
-		ConsultingBoard cb = new ConsultingBoard();
-		pageNum=(pageNum==null)?1:pageNum;
-		List<ConsultingBoard>bList=CBdao.boardSearch(choice, keyword, pageNum);
-		cb.setCb_count(CBdao.getSearchCount(choice,keyword));
-		bList.add(cb);
-		if(pageNum<=0) {
-			System.out.println("잘못된 페이지 번호");
-		}
-		if(bList!=null && bList.size()!=0) {
-			bMap=new HashMap<>();
-			bMap.put("bList", bList);
-			//bMap.put("paging", getPaging(pageNum));
-		}else {
-			bMap=null;
-		}
-		return bMap;
-	}
-	
+
+	  public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
+	      Map<String, List<ConsultingBoard>>bMap = null;
+	      ConsultingBoard cb = new ConsultingBoard();
+	      List<ConsultingBoard> bList =CBdao.boardSearch(choice, keyword);
+	      cb.setCb_count(CBdao.getSearchCount(choice,keyword));
+	      bList.add(cb);
+	      if(bList!=null) {
+	         bMap=new HashMap<>();
+	         bMap.put("bList", bList);
+	      }else {
+	         bMap=null;
+	      }
+	      return bMap;
+	   }
+
 
 //	//게시글 수정 목록 출력
 //	public String boardmodifyajax(Integer num) {

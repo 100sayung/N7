@@ -164,7 +164,7 @@ public class HomeController {
 
 	@PostMapping(value = "/newerp")
 	public String registNewERP(Company com) {
-		cm.registNewERP(com); //�뜝�룞�삕�뜝�룞�삕�뜝占� temp�뜝�룞�삕�뜝�룞�삕 �뜝��怨ㅼ삕�뜝�룞�삕.
+		cm.registNewERP(com); 
 		return "/home/home";
 	}
 

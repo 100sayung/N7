@@ -110,7 +110,7 @@ table{
 	</form>
 	<div id="detailpage">
 	</div>
-	<input type="button" onclick="moving()" value="확인">
+	<input type="button" class="infobtn" onclick="moving()" value="확인">
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>

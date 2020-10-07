@@ -18,4 +18,7 @@ public class ApprovalDocu { //결재 문서 양식
 	String ap_date; //DATE 가 아니라 STRING 형식임!!!!!!!!!!!수정해야할 이유있으면 말해주세요!!!!
 	///---------
 	String ap_status;
+	//////////////////
+	String ap_fromname;
+	String ap_toname;
 }

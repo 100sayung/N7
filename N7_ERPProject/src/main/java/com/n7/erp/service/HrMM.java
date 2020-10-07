@@ -18,6 +18,7 @@ import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Authority;
 import com.n7.erp.bean.Company;
 import com.n7.erp.bean.Member;
+import com.n7.erp.bean.ac.approvalLine;
 import com.n7.erp.bean.entity.NameHoliday;
 import com.n7.erp.bean.entity.NameHrCode;
 import com.n7.erp.bean.hr.Academic;
@@ -28,6 +29,7 @@ import com.n7.erp.bean.hr.Certification;
 import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.hr.Payroll;
 import com.n7.erp.bean.hr.ViewPay;
+import com.n7.erp.dao.AccountDao;
 import com.n7.erp.dao.HRIDeptDao;
 import com.n7.erp.dao.IBaiscDao;
 import com.n7.erp.dao.IHrDao;
@@ -47,6 +49,8 @@ public class HrMM {
 	private HRIDeptDao dDao;
 	@Autowired
 	private IBaiscDao bDao;
+	@Autowired
+	private AccountDao aDao;
 
 	String view = "";
 
@@ -506,11 +510,9 @@ public class HrMM {
 		return mav;
 	}
 
-	// �뜝�럡�� �뼨��留⑵굢占� 嶺뚮ㅏ援욆땻占썲뜝�럡�맋 �뜝�럩逾졾뜝�럥吏�
 	public ModelAndView moveMyPayCheck(HttpSession session) {
 		String hrCode = session.getAttribute("hrCode").toString();
 		HR_Card check = hDao.selectcheckpay(hrCode);
-		System.out.println("�뤆�룆占썬굦逾� �뜝�럡�룎�뜝�럩湲�=" + check);
 		if (check != null) {
 			mav.addObject("paycheck", check);
 			view = "/myInfo/myPaycheck";
@@ -526,7 +528,6 @@ public class HrMM {
 		hMap.put("hrCode", hrCode);
 		hMap.put("month", month);
 		Payroll pay = hDao.getMyPaySelect(hMap);
-		System.out.println("�뼨轅몃궚�젆源띿삕占쎄텛 pay=" + pay);
 		if (pay != null) {
 			Gson gson = new Gson();
 			String json = gson.toJson(pay);
@@ -541,12 +542,10 @@ public class HrMM {
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		hMap.put("docunum", docunum);
 		ApplyHoliday apholi = hDao.getDetailHoliday(hMap);
-		//09-24 change
 		String fromapprover=hDao.getFromApprover(apholi.getHap_fromapprover());
 		String toapprover=hDao.getToApprover(apholi.getHap_toapprover());
 		mav.addObject("fromapprover", fromapprover);
 		mav.addObject("toapprover", toapprover);
-		//
 		mav.addObject("apholi", apholi);
 		mav.addObject("hrCode", hrCode);
 		mav.setViewName("/hr/holidayDetail");
@@ -678,8 +677,6 @@ public class HrMM {
 		String front=time.substring(0, 16);
 		String back=time.substring(24,44);
 		String combine=front.concat(textTime.concat(back));
-		System.out.println(combine);
-		System.out.println(cCode);
 		HashMap<String, String> hMap=new HashMap<String, String>();
 		hMap.put("cCode", cCode);
 		hMap.put("hrcode", hrcode);
@@ -727,6 +724,24 @@ public class HrMM {
 		mav.addObject("apholi", apholi);
 		mav.addObject("hrCode", hrCode);
 		mav.setViewName("/hr/receipholidayDetail");
+		return mav;
+	}
+
+	public ModelAndView approvalLine(HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
+		String view = null;
+		mav = new ModelAndView();
+		List<approvalLine> aList = null;
+		aList = aDao.approvalLine(cCode);
+		if (aList.size() != 0) {
+			mav.addObject("aList", new Gson().toJson(aList));
+			view = "hr/hrApprovalLine";
+		} else {
+			mav.addObject("msg", "주소록에 정보가 없습니다");
+			view = "hr/hrApprovalLine";
+		}
+
+		mav.setViewName(view);
 		return mav;
 	}
 

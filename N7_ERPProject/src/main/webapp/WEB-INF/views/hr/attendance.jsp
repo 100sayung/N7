@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 출결 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -95,7 +95,7 @@ input{
 		<Strong class="deptregist_color_size">사원 출결 관리</Strong>
 	</div>
 								<!-- 09-24 style change -->
-    <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin: 0px 20px;">
+    <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin-right: 20px;">
         <tr>
             <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
             <td colspan="5" align="center" id="yearmonth"></td>

@@ -53,6 +53,7 @@ public class menuMM {
 		mDao.deletemenu(cCode);
 		for (int i = 0; i < strArray.length; i++) {
 			menu = strArray[i];
+			System.out.println(menu);
 			result = mDao.addmenu(menu, cCode);
 		}
 		if (result) {
