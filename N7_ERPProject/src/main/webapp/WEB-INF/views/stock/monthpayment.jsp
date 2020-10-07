@@ -37,9 +37,11 @@ a {
 }
 
 #description {
-	float: left;
-	height: 100%;
-	width: 1500px;
+float: left;
+    height:100%;
+    width:80%;
+    position: absolute;
+    transform:translate(300px, 0);
 }
 
 ul {
@@ -80,6 +82,20 @@ span {
 	width: 176px;
 	text-align: center;
 }
+body{
+font-size: 20px;
+font-weight: bolder;
+}
+input[type="button"]{
+font-size: 20px;
+font-weight: bolder;
+}
+body{
+position: relative;
+}
+td{
+width: 300px;
+}
 </style>
 </head>
 <body>
@@ -98,24 +114,20 @@ span {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
 
 	<div id='contain'>
+	
 		<input id='date1' type="month" onchange='checkDate()'><br><br>
 		<div id="msg"></div>
+		<center>
 		<div id="description"></div>
+		</center>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
+	stockSideMenu();
 	var date1 = new Date();
 		var date2 = new Date(date1.getFullYear(),date1.getMonth(),1);
 		var date3 = new Date(date1.getFullYear(),date1.getMonth()+1,1);
@@ -143,11 +155,11 @@ span {
 					return;
 				}
 				console.log(result);
-				$('#description').html(result.responseText)
+				$('#description').html('<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">월수불실적</div><div style="background-color:#F8F7F7;">'+result.responseText+'</div>')
 			},
 			error:function(err){
 				console.log(err)
-				$('#description').html(err.responseText)
+				$('#description').html('<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">월수불실적</div><div style="background-color:#F8F7F7;">'+err.responseText+'</div>')
 			}
 		})
 	}

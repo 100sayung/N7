@@ -50,3 +50,17 @@
 			$("#"+menu).attr("href","/erp/Account/acerp");
 			}
 	}
+	function stockSideMenu(){
+		$.ajax({
+			url:"/erp/rest/home/getfunction",
+			type:"get",
+			dataType:"json",
+			success:function(result){
+				console.log(result)
+				$("#menuList").html(result);
+			},
+			error:function(err){
+				
+			}
+		});
+	}

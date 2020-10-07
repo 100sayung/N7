@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,24 +97,24 @@ input[type='text'], input[type='number'] {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
-
+<div id="container">
+<span></span>
 	<div id="description">
 		<h3>출고 확정</h3>
-		${exportStockCheck} <input type="hidden" value="${id}">
-		<button type="button" id="btn">출고 확정</button>
+		<c:if test="${exportStockCheck eq ''}">
+		출고 내역이 없습니다.
+		</c:if>
+		<c:if test="${exportStockCheck ne ''}">
+		${exportStockCheck}
+		<input type="button" id="btn" value="출고 확정"></button>
+		</c:if>
+	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
+	stockSideMenu();
 		$('#btn').click(function() {
 							var ipList = [];
 							var num = 1;
@@ -173,11 +174,11 @@ input[type='text'], input[type='number'] {
 										success : function(result) {
 											console.log(result)
 											if(result.responseText!=undefined)
-											$('#description').html("<h3>입고 내역 및 수정</h3>"+result.responseText+"<button type='button' id='btn'>입고 확정</button>")
+											$('#description').html("<h3>출고 내역 및 수정</h3>"+result.responseText+"<input type='button' id='btn' value='출고 확정'></button>")
 										},
 										error : function(err) {
 											console.log(err)
-											$('#description').html("<h3>입고 내역 및 수정</h3>"+err.responseText+"<button type='button' id='btn'>입고 확정</button>")
+											$('#description').html("<h3>출고 내역 및 수정</h3>"+err.responseText+"<input type='button' id='btn' value='출고 확정'></button>")
 										}
 									})
 

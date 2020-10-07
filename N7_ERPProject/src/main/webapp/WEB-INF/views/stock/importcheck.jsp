@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,9 +39,12 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1200px;
+    height:100%;
+    width:80%;
+    position: absolute;
+    transform:translate(300px, 0);
 }
+
 
 ul {
 	list-style: none;
@@ -78,6 +82,20 @@ span {
 input[type='text'], input[type='number'] {
 	width: 70px;
 }
+body{
+font-size: 20px;
+font-weight: bolder;
+}
+input[type="button"]{
+font-size: 20px;
+font-weight: bolder;
+}
+body{
+position: relative;
+}
+td{
+width: 300px;
+}
 </style>
 </head>
 <body>
@@ -96,24 +114,23 @@ input[type='text'], input[type='number'] {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
 
 	<div id="description">
-		<h3>입고 내역 및 수정</h3>
-		${importCheckList} <input type="hidden" value="${id}">
-		<button type="button" id="btn">입고 확정</button>
+		<h3>입고 수정 및 확정</h3>
+		<c:if test="${importCheckList eq ''} ">
+		<h2>입/출고 내역이 없습니다.</h2>
+		</c:if>
+		<c:if test="${importCheckList ne ''} ">
+		${importCheckList}
+		<input type="button" id="btn" value="입고 확정"></button>
+		</c:if>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
+	console.log("${importCheckList}")
+	stockSideMenu();
 		$('#btn')
 				.click(
 						function() {
@@ -173,12 +190,16 @@ input[type='text'], input[type='number'] {
 										contentType : "application/json;charset=UTF-8",
 										dataType : "json",
 										success : function(result) {
+											if(result.length==0){
+												$("#description").html("<h3>입고 수정 및 확정</h3>입고 내역이 없습니다.");
+												return;
+											}
 											console.log(result)
-											$('#description').html("<h3>입고 내역 및 수정</h3>"+err.responseText+"<button type='button' id='btn'>입고 확정</button>")
+											$('#description').html("<h3>입고 수정 및 확정</h3>"+result.responseText+"<button type='button' id='btn'>입고 확정</button>")
 										},
 										error : function(err) {
 											console.log(err)
-											$('#description').html("<h3>입고 내역 및 수정</h3>"+err.responseText+"<button type='button' id='btn'>입고 확정</button>")
+											$('#description').html("<h3>입고 수정 및 확정</h3>"+err.responseText+"<input type='button' id='btn' value='입고 확정'>")
 										}
 									})
 

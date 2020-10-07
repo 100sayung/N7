@@ -38,8 +38,10 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1200px;
+    height:100%;
+    width:80%;
+    position: absolute;
+    transform:translate(300px, 0);
 }
 
 ul {
@@ -78,6 +80,28 @@ span {
 input[type='text'], input[type='number'] {
 	width: 70px;
 }
+body{
+font-size: 20px;
+font-weight: bolder;
+}
+input[type="button"]{
+font-size: 20px;
+font-weight: bolder;
+}
+body{
+position: relative;
+}
+td{
+width: 300px;
+}
+select{
+width: 200px;
+height: 50px;
+}
+option{
+width: 200px;
+height: 50px;
+}
 </style>
 </head>
 <body>
@@ -96,17 +120,9 @@ input[type='text'], input[type='number'] {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
-
+<center>
 	<div id="description">
 	<div id="getCt_code">
 	</div>
@@ -115,8 +131,10 @@ input[type='text'], input[type='number'] {
 		<div id="contain">
 		</div>
 	</div>
+	</center>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
+	stockSideMenu();
 	$.ajax({
 		url:"/erp/stock/getcategory",
 		type:"post",
@@ -131,10 +149,10 @@ input[type='text'], input[type='number'] {
 				return;
 			}
 			console.log(result)
-			var str='<h3>품목별 거래현황</h3><table><tr><td>분류 : </td><td><select id="selectit_ccode" onchange="getItemCodeFromItemCCode()"><option></option>';
+			var str=' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><div style="background-color:#F8F7F7;"><table><tr><td>분류 : </td><td><select id="selectit_ccode" onchange="getItemCodeFromItemCCode()"><option></option>';
 			for(var i = 0;i<result.length;i++){
 				str+='<option data-value="'+result[i].ct_code+'">'+result[i].ct_name+'</option>'
-			}str+='</select></td></tr></table>'
+			}str+='</select></td></tr></table></div>'
 			$('#getCt_code').html(str);
 			
 		},
@@ -153,10 +171,10 @@ input[type='text'], input[type='number'] {
 					dataType:"json",
 					success:function(result){
 					console.log(result);
-					var str="<table><tr><td>품목 : </td><td><select id='selectit_code' onchange='JsonParseObject({it_code:\"\"})'><option></option>";
+					var str="<div style='background-color:#F8F7F7;'><table><tr><td>품목 : </td><td><select id='selectit_code' onchange='JsonParseObject({it_code:\"\"})'><option></option>";
 					for(var i = 0;i<result.length;i++){
 						str+='<option data-value="'+result[i].it_code+'">'+result[i].it_pname+":"+result[i].it_size+"("+result[i].it_unit+")"+'</option>'
-					}str+='</select></td></tr></table>'
+					}str+='</select></td></tr></table></div>'
 					$('#getItemCodeFromItemCcode').html(str);
 					JsonParseObject({it_ccode:""})
 					},
@@ -181,7 +199,7 @@ input[type='text'], input[type='number'] {
 				}else{
 					$('#selectit_code').attr('readonly',false);
 				}
-				var str = '<table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
+				var str = '<div style="background-color:#F8F7F7;"><table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
 				for (var i = 0; i < result.length; i++) {
 					str += '<tr><td>' + result[i].ie_itcode + '</td>';
 					str += '<td>' + result[i].ie_clcode + '</td>';
@@ -190,13 +208,15 @@ input[type='text'], input[type='number'] {
 						str += '<td>입고</td>'
 					} else if(result[i].ie_status==2){
 						str += '<td>출고</td>'
+					}else{
+						str += '<td>반품</td>'
 					}
-					str += '<td>' +parseInt(result[i].ie_price/result[i].ie_qty) + '</td>'
-					str += '<td>' + result[i].ie_qty + '</td>'
+					str += '<td>' +Math.abs(result[i].ie_price/result[i].ie_qty) + '</td>'
+					str += '<td>' + Math.abs(result[i].ie_qty) + '</td>'
 					str += '<td>' + result[i].ie_hrcode + '</td>'
-					str += '<td>'+ result[i].ie_price+ '</td></tr>'
+					str += '<td>'+ Math.abs(result[i].ie_price)+ '</td></tr>'
 				}
-				str+='</table>'
+				str+='</table></div>'
 				$('#contain').html(str)
 			},
 			error:function(err){

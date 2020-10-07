@@ -1,6 +1,7 @@
 package com.n7.erp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.n7.erp.userClass.PagingVO;
 import java.lang.reflect.Type;
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @RestController // @ResponseBody ��������
@@ -80,6 +82,10 @@ public class HomeRestController {
 	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
 	      return bMap;
 	   }
+	@GetMapping(value = "/home/getfunction")
+	public ResponseEntity<String> getFunction(HttpSession session) { 
+		return mm.getFunction(session.getAttribute("cCode").toString());
+	}
 
 	@PostMapping(value = "/home/forcewithdrawal")
 	public String forceWithDrawal(String jsonStr) { 
