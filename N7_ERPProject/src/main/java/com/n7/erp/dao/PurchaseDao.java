@@ -88,7 +88,7 @@ public interface PurchaseDao {
 
 	ItemCode getitcode(@Param("it_code") String itcode, @Param("cCode") String cCode);
 
-	int compareCode(@Param("check") String check, @Param("cCode") String cCode);
+	
 
 
 

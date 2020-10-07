@@ -290,27 +290,6 @@ public class PurchaseMM {
         return sMap;
 	}
 
-	public Map<String, List<PurchaseApproval>> approvalcheck(String check, HttpSession session) {
-		String cCode = session.getAttribute("cCode").toString();
-		Map<String, List<PurchaseApproval>> pMap = null;
-		int count=0;
-		count=pDao.compareCode(check, cCode);
-		
-		if(count==1) {
-			List<PurchaseApproval> pList= null;
-			pMap= new HashMap<>();
-			pMap.put("pList", pList);
-		}else {
-			List<PurchaseApproval> pList= new ArrayList<>();
-			PurchaseApproval pa = new PurchaseApproval();
-			pa.setP_status("0");
-			pList.add(pa);
-			pMap= new HashMap<>();
-			pMap.put("pList", pList);
-		}
-		return pMap;
-	}
-	
 	public ModelAndView pRequest(String p_documentcode, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
