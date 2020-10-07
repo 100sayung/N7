@@ -24,6 +24,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<!-- @import url("//netdna.bootstrapcdn.com/bootstrap/3.0/css/bootstrap-glyphicons.css"); -->
+
 <style>
 /*
 *
@@ -133,7 +136,7 @@ button {
             <a href="#" class="navbar-brand">
                 <img src="https://res.cloudinary.com/mhmd/image/upload/v1571398888/Group_1514_tjekh3_zkts1c.svg" alt="logo" width="150">
             </a> -->
-			<h3><a href="/erp/" style="color: black;">N7 ERP SYSTEM</a></h3>
+			<h3><a href="/erp/" style="color: black;  text-decoration: none;">N7 ERP SYSTEM</a></h3>
 		</div>
         </div>
     </nav>
@@ -163,7 +166,7 @@ button {
                                 <i class="fa fa-user text-muted"></i>
                          </p>
                         </div> -->
-                    <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;"></div> <!-- oninput="dupleID()" -->
+                    <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;" required></div> <!-- oninput="dupleID()" -->
                           &nbsp;&nbsp;<input type="button" value="중복체크" onclick="dupleID()">
                         <br><div id="dupleID"></div>
                     </div>
@@ -175,7 +178,7 @@ button {
                                 <i class="fa fa-user text-muted"></i>
                             </span>
                         </div> -->
-                         <input type="password" style="width:300px;" class="form-control bg-white border-left-0 border-md" placeholder="password를 입력해주세요" required id="pw" name="m_pw" />
+                         <input type="password" style="width:300px;" class="form-control bg-white border-left-0 border-md" placeholder="password를 입력해주세요" required id="pw" name="m_pw" required/>
                     </div>
 
                     <!-- name -->
@@ -185,7 +188,7 @@ button {
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
                         </div> -->
-                        <input id="name" style="width:300px;" type="text" name="m_name" placeholder="이름을 입력해주세요" class="form-control bg-white border-left-0 border-md">
+                        <input id="name" style="width:300px;" type="text" name="m_name" placeholder="이름을 입력해주세요" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- companycode -->
@@ -198,7 +201,7 @@ button {
                      <!-- <font style="color:gray;">회사코드가 없으신분은</font><font style="font-weight : bold;">N7</font><font style="color:gray;">을 입력해주세요.</font><br/> -->
                           <br>
                           <br>
-                    <div><input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3"></div>
+                    <div><input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required></div>
                         &nbsp;&nbsp;<input type="button" value="코드확인" onclick="dupleCCode()">
                         <br><span id="dupleCCode"></span>
                     </div>
@@ -211,7 +214,7 @@ button {
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div> -->
-                      <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3">
+                      <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
                     
                     <!-- 주소 -->
@@ -221,13 +224,13 @@ button {
                                 <i class="fa fa-lock text-muted"></i>
                             </p>
                         </div> -->
-					    <input type="text" style="width:300px;" id="addr1" name="addr1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" /><br>
-                        &nbsp;&nbsp;<button id="postcodify_search_button" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
-                    </div>
+					    <input type="text" style="width:300px;" id="addr1" name="addr1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" / required><br>
+                        &nbsp;&nbsp;<button type="button" id="postcodify_search_button" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
+                   </div>
                     
-                    <div class="input-group col-lg-12 mb-4">
+                     <div class="input-group col-lg-12 mb-4">
 					    <input id="addr2" type="text" name="addr2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
-					    <input type="text" name="addr3" id="addr3" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" />
+					    <input type="text" name="addr3" id="addr3" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" / required>
                     </div>
 
 
@@ -238,7 +241,7 @@ button {
                                 <i class="fa fa-black-tie text-muted"></i>
                             </span>
                         </div> -->
-                        <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3">
+                        <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
                     <!-- phone-->
@@ -248,7 +251,7 @@ button {
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div> -->
-                      <input type="text" name="m_phonenum" placeholder="핸드폰 번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3">
+                      <input type="text" name="m_phonenum" placeholder="핸드폰 번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
                    <!--file-->
@@ -258,7 +261,7 @@ button {
                                 <i class="fa fa-lock text-muted"></i>
                             </span>
                         </div> -->
-                      <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3">
+                      <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
                         
                     
