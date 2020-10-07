@@ -4,11 +4,11 @@
 
 <mapper namespace="com.n7.erp.dao.PurchaseDao">
 	<insert id="pcommom" parameterType="Purchase">
-		INSERT INTO O_PURCHASECOMMOM VALUES(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.NEXTVAL,4,0), #{p_ccode}, #{p_productnum}, #{p_day}, #{p_clcode}, #{p_writer})
+		INSERT INTO O_PURCHASECOMMOM VALUES(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.NEXTVAL,9,0), #{p_ccode}, #{p_productnum}, #{p_day}, #{p_clcode}, #{p_writer})
 	</insert>
 
 	<insert id="pregistration" parameterType="Purchase">
-		INSERT INTO O_PURCHASELIST VALUES(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.CURRVAL,4,0), #{p_ccode}, #{p_itcode}, #{p_name}, #{p_unlit}, #{p_amount}, #{p_budget})
+		INSERT INTO O_PURCHASELIST VALUES(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.CURRVAL,9,0), #{p_ccode}, #{p_itcode}, #{p_name}, #{p_unlit}, #{p_amount}, #{p_budget})
 	</insert>
 
 	<select id="pFrerence" resultType="Purchase">
@@ -87,11 +87,11 @@
 	</insert>
 
 	<insert id="rRegistration" parameterType="Return">
-		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,4,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
+		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,9,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
 	</insert>
 
    <insert id="insertIeport">
-      INSERT INTO S_IEPORT VALUES(S_IEPORT_SEQ.NEXTVAL, #{r_ccode}, DEFAULT, #{r_hrcode}, '' ,'3', #{r_clcode}, #{r_documentcode} ,#{r_itcode}, #{r_amount}, #{r_unlit}, 0)
+      INSERT INTO S_IEPORT VALUES(S_IEPORT_SEQ.NEXTVAL, #{r_ccode}, DEFAULT, #{r_hrcode}, '' ,'3', #{r_clcode}, #{r_documentcode} ,#{r_itcode}, -#{r_amount}, #{r_unlit}, 0)
    </insert>
 
    <select id="getitcode" resultType="itemcode" parameterType="String">
@@ -99,7 +99,7 @@
    </select>
 
    <update id="updateitcode">
-       UPDATE S_ITEMCODE SET IT_STOCK = #{r_amount}
+       UPDATE S_ITEMCODE SET IT_STOCK = #{tot2}
        WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{cCode}
    </update>
 
@@ -151,7 +151,7 @@
 
 	<!-- 입고현황 -->
 	<select id="stocklist" parameterType="String" resultType="ieport">
-		SELECT * FROM S_IEPORT WHERE IE_CPCODE=#{cCode}
+		SELECT * FROM S_IEPORT WHERE IE_CPCODE=#{cCode} AND IE_STATUS = '1'
 	</select>
 
 	<!-- 재고현황 -->
