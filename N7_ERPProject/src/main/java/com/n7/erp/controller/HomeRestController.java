@@ -90,11 +90,12 @@ public class HomeRestController {
 		mm.forceWithDrawal(slist);
 		return null;
 	}
+	
 	@PostMapping(value = "/home/boardSearch")
-	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) { 
-	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
+	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword, int pageNum) { 
+	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword, pageNum);
 	      return bMap;
-	   }
+	}
 	
 	
 }

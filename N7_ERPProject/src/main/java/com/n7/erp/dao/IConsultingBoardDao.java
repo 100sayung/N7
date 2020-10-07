@@ -23,11 +23,10 @@ public interface IConsultingBoardDao {
 
 
 	 List<ConsultingBoard> bsearch(String choice, String keyword);
+	 
+	 ArrayList<ConsultingBoard> boardSearch(@Param("choice") String choice, @Param("keyword") String keyword, Integer pageNum);
 
-   ArrayList<ConsultingBoard> boardSearch(@Param("choice") String choice, @Param("keyword") String keyword);
-
-   int getSearchCount(@Param("choice") String choice, @Param("keyword") String keyword);
-
+	   int getSearchCount(@Param("choice") String choice, @Param("keyword") String keyword);
 
 	//boolean writeBoard(ConsultingBoard board);
 //	
