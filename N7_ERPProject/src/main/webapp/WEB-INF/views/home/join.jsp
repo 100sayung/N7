@@ -152,7 +152,7 @@ button {
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
+            <form id="form" name="form" action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
                 <div class="row" style="margin-right:-25px;">
 
                     <!-- id -->
@@ -223,8 +223,8 @@ button {
                             </p>
 
                         </div> 
-					    <input type="text" style="width:300px;" id="addr1" name="addr1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" / required><br>
-                        &nbsp;&nbsp;<button type="button" id="postcodify_search_button" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
+					    <input type="text" style="width:300px;" id="roadAddrPart1" name="roadAddrPart1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" / required><br>
+                        &nbsp;&nbsp;<button type="button" onclick="goPopup()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
                    </div>
                     
                      <div class="input-group col-lg-12 mb-4">
@@ -234,8 +234,8 @@ button {
                             </p>
                         </div> 
 
-					    <input id="addr2" type="text" name="addr2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
-					    <input type="text" name="addr3" id="addr3" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" / required>
+					    <input type="text" name="addrDetail" id="addrDetail" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" / required>
+					    <input id="roadAddrPart2" type="text" name="roadAddrPart2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
                     </div>
 
 
@@ -299,6 +299,20 @@ button {
 
 
 	<script>
+	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+		document.form.roadAddrPart1.value = roadAddrPart1;
+		document.form.roadAddrPart2.value = roadAddrPart2;
+		document.form.addrDetail.value = addrDetail;
+		
+}
+	function goPopup(){
+		// IE에서 opener관련 오류가 발생하는 경우, window에 이름을 명시해줍니다.
+		window.name="jusoPopup";
+		
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("/erp/home/jusopopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	}
 	// For Demo Purpose [Changing input group text on focus]
 	$(function () {
 	    $('input, select').on('focus', function () {
@@ -380,8 +394,8 @@ button {
 	function sum() {
 	console.log(checkid, checkccode); 
 	if (checkid && checkccode) {
-	$("#addr").val( $('#addr1').val() + $('#addr2').val() +
-	$('#addr3').val()); return true; 
+	$("#addr").val( $('#roadAddrPart1').val() + $('#addrDetail').val() +
+	$('#roadAddrPart2').val()); return true; 
 	} else {
 		alert("회사코드 혹은 아이디 중복을 확인해주세요."); 
 	return false; 
