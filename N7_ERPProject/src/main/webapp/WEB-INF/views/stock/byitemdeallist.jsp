@@ -80,7 +80,7 @@ span {
 input[type='text'], input[type='number'] {
 	width: 70px;
 }
-body{
+#description *{
 font-size: 20px;
 font-weight: bolder;
 }
