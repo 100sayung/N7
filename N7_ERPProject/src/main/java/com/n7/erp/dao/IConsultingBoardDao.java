@@ -23,7 +23,7 @@ public interface IConsultingBoardDao {
 
 
 	 List<ConsultingBoard> bsearch(String choice, String keyword);
-
+	 int getSearchCount(@Param("choice") String choice, @Param("keyword") String keyword);
   ArrayList<ConsultingBoard> boardSearch(@Param("choice") String choice, @Param("keyword") String keyword);
 
 boolean insertReply(@Param("num")String num,@Param("reply") String reply);
