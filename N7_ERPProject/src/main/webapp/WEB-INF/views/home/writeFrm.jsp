@@ -12,20 +12,26 @@
 
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
-		<link href="img/favicon.png" rel="icon" />
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="lib/icomoon/icomoon.css" rel="stylesheet" />
-  <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1a9e4h5a1u&callback=initMap"></script>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous" />
-	<!--[if IE 6]>
-<link href="default_ie6.css" rel="stylesheet" type="text/css" />
-<![endif]-->
+
+<!-- BOOTSTRAP STYLES-->
+<link href="/erp/assets/css/bootstrap.css" rel="stylesheet" />
+<!-- FONTAWESOME STYLES-->
+<link href="/erp/assets/css/font-awesome.css" rel="stylesheet" />
+<!-- CUSTOM STYLES-->
+<link href="/erp/assets/css/custom.css" rel="stylesheet" />
+<!-- GOOGLE FONTS-->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans"
+<title>게시판 글쓰기</title>
+	rel="stylesheet" type="text/css" />
+<!-- /. WRAPPER  -->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- JQUERY SCRIPTS -->
+<script src="/erp/assets/js/jquery-1.10.2.js"></script>
+<!-- BOOTSTRAP SCRIPTS -->
+<script src="/erp/assets/js/bootstrap.min.js"></script>
+<!-- CUSTOM SCRIPTS -->
+<script src="/erp/assets/js/custom.js"></script>
+
 <style type="text/css">
 h1{
 font-size: 36px;
@@ -37,50 +43,7 @@ color: inherit;
 text-transform: uppercase;
 display: block;    
 }
-#writeTitle{
-width: 300px;
-} 
-.writeclass{
-width: 20px;
-height: 15px;
-}
-.writeText{
-padding: 10px;
-}
-#write{
-resize: none;
-}
-#pw{
-display : block;
-float: left;
-margin-left: -195px;
-padding: 8px;
-}
 
-
-<title>게시판 글쓰기</title>
-<!-- BOOTSTRAP STYLES-->
-<link href="/erp/assets/css/bootstrap.css" rel="stylesheet" />
-<!-- FONTAWESOME STYLES-->
-<link href="/erp/assets/css/font-awesome.css" rel="stylesheet" />
-<!-- CUSTOM STYLES-->
-<link href="/erp/assets/css/custom.css" rel="stylesheet" />
-<!-- GOOGLE FONTS-->
-<link href="http://fonts.googleapis.com/css?family=Open+Sans"
-	rel="stylesheet" type="text/css" />
-<!-- /. WRAPPER  -->
-<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-<!-- JQUERY SCRIPTS -->
-<script src="/erp/assets/js/jquery-1.10.2.js"></script>
-<!-- BOOTSTRAP SCRIPTS -->
-<script src="/erp/assets/js/bootstrap.min.js"></script>
-<!-- CUSTOM SCRIPTS -->
-<script src="/erp/assets/js/custom.js"></script>
-
-
-
-
-<style type="text/css">
 #container {
 	margin-top: 5%;
 	margin-left: 27%;
@@ -100,48 +63,7 @@ padding: 8px;
 				<a href="/erp/" style="color: black;">N7 COMPANY</a>
 			</h1>
 		</div>
-		<div id="menu"></div>
-	</div>
-	<div id="description" class="out" style="height: 700px;">
-
-	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
-	<div class="center">
-        <div id="container">
-        <br>
-<br>
-   <form action="writeBoard" id="writeFrm" method="post">
-      <h1>글쓰기</h1>
-	<table>
-         <tr>
-           <c:if test="${id==null}">
-            	<td><input type="text" name="CB_WRITER" class="writeText" placeholder="작성자를 입력해주세요." required="required"></td>
-           	</c:if>
-           	<td><input type="hidden" name="CB_WRITER" value="${id}"></td>
-         </tr>
-         <tr>
-            <td>
-            <input id="writeTitle" placeholder="제목을 입력해 주세요." required="required" class="writeText" name="CB_TITLE"></td>
-			</td>
-         </tr>
-         <tr>
-            <th><textarea rows="20" cols="100" id="write" class="writeText" name="CB_CONTENTS" required="required" placeholder="내용을 입력해주세요."></textarea></th>
-         </tr>
-         <tr>
-            <td id="aaa">
-               <button type="submit">글 작성</button>
-               <button type="reset">다시쓰기</button>
-               <button><a href="/erp/erpboard" style="text-decoration: none;">뒤로</a></button>
-            </td>
-            <c:if test="${id==null}">
-				<td><input type="password" name="CB_PASSWORD" id="pw" placeholder="비밀번호 입력" ></td>
-			</c:if>
-			<td><input type="hidden" name="CB_PASSWORD" value="${id}"></td>
-         </tr>
-         <tr>
-         </tr>
-      </table> 
-   </form>
-  </div> 
+		
 
 		<div
 			style='width: 100%; height: 50px; text-align: center; background-color: #3D6B9B;'>

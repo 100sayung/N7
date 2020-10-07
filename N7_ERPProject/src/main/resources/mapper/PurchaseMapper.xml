@@ -73,7 +73,7 @@
 	<select id="getMyInfo" parameterType="String" resultType="pALine">
    		SELECT * FROM MLIST  WHERE HC_HRCODE=#{code}
    </select>
-
+   	
 	<insert id="Approval" parameterType="pApproval">
 		INSERT INTO APPROVALDOCU VALUES(#{p_documentcode}, #{p_ccode}, #{p_title}, #{p_apcode1}, #{p_apcode2}, DEFAULT, '1')
 	</insert>

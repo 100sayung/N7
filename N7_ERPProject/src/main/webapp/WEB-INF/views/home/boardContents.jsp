@@ -90,13 +90,8 @@ margin-top: 200px;
 		<h2>상세보기</h2>
 		<table id="table" style="width:600px;">
 			<tr>
-
-				<th scope="row"">글 번호</th>
-				<td>${board.cb_num}</td>
-
 				<th scope="row">글 번호</th>
 				<td id="num">${board.cb_num}</td>
-
 			</tr>
 			<tr>
 				<th scope="row">작성자</th>
@@ -108,9 +103,6 @@ margin-top: 200px;
 			</tr>
 			<tr>
 				<th scope="row">글 내용</th>
-
-				<td><textarea rows="15" cols="90" style="resize: none;">${board.cb_contents}</textarea></td>
-
 				<td>${board.cb_contents}</td>
 			</tr>
 			<tr>

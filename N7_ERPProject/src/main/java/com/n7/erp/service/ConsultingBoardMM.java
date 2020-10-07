@@ -59,39 +59,13 @@ public class ConsultingBoardMM {
 
 
 	public String writeBoard(ConsultingBoard board, HttpSession session) {
-		mav= new ModelAndView();
-
-		String view= null;
-		String id=(String)session.getAttribute("id");
-		System.out.println("id="+id);
-		String pw=null;
-
-		if(id==null) {
-			if(board.getCb_password()==null) {
-				mav.addObject("msg", "비밀번호를 입력해주세요.");
-				mav.addObject("id", id);
-
 		String value= null;
 		boolean result= CBdao.boardWrite(board);
-		
 		if(result) {
 				value="1";
-
 			}else {
 				value="2";
 			}
-
-		}else {
-			pw=mb.getM_pw();
-
-		}
-		CBdao.boardWrite(board);
-		view="redirect:/erpboard";
-
-		mav.setViewName(view);
-		return mav;
-
-		
 		return value;
 
 	}
@@ -99,10 +73,6 @@ public class ConsultingBoardMM {
 	public ModelAndView boardContents(int CB_NUM) {
 		mav= new ModelAndView();
 		String view= null;
-
-
-		ConsultingBoard board= CBdao.getContents(CB_NUM);
-
 		int num = CB_NUM;
 		ConsultingBoard board= CBdao.getContents(num);
 
