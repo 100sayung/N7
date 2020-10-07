@@ -51,27 +51,25 @@ color: inherit;
 text-transform: uppercase;
 display: block;    
 }
-#boardList,.writelist {
-text-align: center; 
-border-collapse : collapse;
-border: 1px solid black;
-border-collapse: collapse;
+#writeTitle{
+width: 300px;
+} 
+.writeclass{
+width: 20px;
+height: 15px;
 }
-#container {
-margin-left: 300px;
+.writeText{
+padding: 10px;
 }
-#boardList,.writelist {
-text-align: center; border-collapse : collapse;
-border: 1px solid black;
-border-collapse: collapse;
+#write{
+resize: none;
 }
-#boardList {
-margin-top: 30px;
-font-size: 30px;
+#pw{
+display : block;
+float: left;
+margin-left: -195px;
+padding: 8px;
 }
-
-
-
 
 </style>
 </head>
@@ -86,7 +84,7 @@ font-size: 30px;
 		</div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
-	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP상담게시판</h1></div>
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
 	<div class="center">
         <div id="container">
         <br>
@@ -94,10 +92,6 @@ font-size: 30px;
    <form action="writeBoard" id="writeFrm" method="post">
       <h1>글쓰기</h1>
 	<table>
-		 <tr>
-		 	<input type="radio" class="writeclass" id="check1" checked="checked" name="CB_TYPE" value="a">공개글
-            <input type="radio" class="writeclass" id="check2" name="CB_TYPE" value="b">비밀글</td>
-         </tr>
          <tr>
            <c:if test="${id==null}">
             	<td><input type="text" name="CB_WRITER" class="writeText" placeholder="작성자를 입력해주세요." required="required"></td>

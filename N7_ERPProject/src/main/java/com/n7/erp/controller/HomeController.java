@@ -1,5 +1,8 @@
 package com.n7.erp.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,11 +70,19 @@ public class HomeController {
 		return "/home/introducecompany";
 	}
 
-	@RequestMapping(value = "/erpboard", method = RequestMethod.GET)
+	@RequestMapping(value = "/home/erpboard", method = RequestMethod.GET)
 	public ModelAndView erpBoard(Integer pageNum) {
-	mav=cbm.moveBoardList(pageNum);
-	return mav;
+		mav=cbm.moveBoardList(pageNum);
+		return mav;
 	}
+	
+	/*
+	 * @RequestMapping(value = "/home/boardSearch", method = RequestMethod.POST)
+	 * public Map<String, List<ConsultingBoard>> boardSearch(String choice, String
+	 * keyword, Integer pageNum) { Map<String,
+	 * List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword, pageNum); return
+	 * bMap; }
+	 */
 	
 	@RequestMapping(value = "/home/comInfo", method = RequestMethod.GET)
 	public String comInfo() {

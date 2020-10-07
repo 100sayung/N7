@@ -28,6 +28,10 @@ public interface IConsultingBoardDao {
 
    int getSearchCount(@Param("choice") String choice, @Param("keyword") String keyword);
 
+	ArrayList<ConsultingBoard> boardSearch(@Param("choice") String choice, @Param("keyword") String keyword, Integer pageNum);
+
+	int getSearchCount(@Param("choice") String choice, @Param("keyword") String keyword);
+
 	//boolean writeBoard(ConsultingBoard board);
 //	
 //	ConsultingBoard boardmodifyajax(Integer num);
