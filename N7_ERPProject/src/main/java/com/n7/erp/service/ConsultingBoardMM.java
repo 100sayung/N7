@@ -16,7 +16,6 @@ import com.n7.erp.bean.ConsultingBoard;
 import com.n7.erp.bean.Member;
 import com.n7.erp.dao.IConsultingBoardDao;
 import com.n7.erp.userClass.Paging;
-import com.n7.erp.userClass.PagingSH;
 
 
 @Service
@@ -118,15 +117,6 @@ public class ConsultingBoardMM {
 			bMap=null;
 		}
 		return bMap;
-	}
-	
-	private Object getPaging2(Integer pageNum, String keyword) {
-		int maxNum = CBdao.getBoarCount();
-		int listCount=10;
-		int pageCount=5;
-		String boardName="/erp/home/erpboard";
-		PagingSH paging= new PagingSH(maxNum, pageNum, listCount, pageCount, boardName, keyword);
-		return paging.makeHtmlPaging();
 	}
 	
 

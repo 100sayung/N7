@@ -95,12 +95,12 @@
    </insert>
    
    <select id="getitcode" resultType="itemcode" parameterType="String">
-   	 	SELECT * FROM S_ITEMCODE WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{cCode}
+   	  SELECT * FROM S_ITEMCODE WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{cCode}
    </select>
    
    <update id="updateitcode">
-      UPDATE S_ITEMCODE SET IT_STOCK = #{r_amount}
-      WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{cCode}
+       UPDATE S_ITEMCODE SET IT_STOCK = #{r_amount}
+       WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{cCode}
    </update>
 	
 	<select id="rInfo" resultType="Return">
