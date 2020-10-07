@@ -39,11 +39,11 @@
 	text-align: center;
 }
 #testTable{
-width:1300px;
+width:1380px;
 overflow: auto;
 }
 #ListTable{
-width:1300px;
+width:1380px;
 height: 300px;
 overflow: auto;
 }

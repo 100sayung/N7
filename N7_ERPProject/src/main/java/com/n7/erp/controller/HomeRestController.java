@@ -90,4 +90,28 @@ public class HomeRestController {
 		mm.forceWithDrawal(slist);
 		return null;
 	}
+
+	@PostMapping(value = "/home/boardSearch")
+	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) { 
+	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
+	      return bMap;
+	   }
+	@PostMapping(value = "/home/insertReply")
+	public Map<String,ConsultingBoard> insertReply(String num, String reply) { 
+		Map<String,ConsultingBoard>bMap=cbm.insertReply(num, reply);
+		return bMap;
+	}
+	
+	@PostMapping(value = "/home/writeBoard")
+	public String writeBoard(ConsultingBoard board, HttpSession session) {
+	     String value=cbm.writeBoard(board, session);
+	    return value;
+	}
+	
+	@PostMapping(value = "/home/delectBoard")
+	public String delectBoard(String num, String password) {
+		String value=cbm.delectBoard(num, password);
+		return value;
+	}
+
 }

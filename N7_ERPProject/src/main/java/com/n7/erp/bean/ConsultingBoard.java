@@ -17,4 +17,7 @@ public class ConsultingBoard {
    private String cb_password;
    private String cb_title;
    private String cb_contents;
+
+   private String cb_reply;
 }
+

@@ -58,8 +58,9 @@ public class ConsultingBoardMM {
 	}
 
 
-	public ModelAndView writeBoard(ConsultingBoard board, HttpSession session, Member mb) {
+	public String writeBoard(ConsultingBoard board, HttpSession session) {
 		mav= new ModelAndView();
+
 		String view= null;
 		String id=(String)session.getAttribute("id");
 		System.out.println("id="+id);
@@ -69,9 +70,17 @@ public class ConsultingBoardMM {
 			if(board.getCb_password()==null) {
 				mav.addObject("msg", "비밀번호를 입력해주세요.");
 				mav.addObject("id", id);
+
+		String value= null;
+		boolean result= CBdao.boardWrite(board);
+		
+		if(result) {
+				value="1";
+
 			}else {
-				pw=board.getCb_password();
+				value="2";
 			}
+
 		}else {
 			pw=mb.getM_pw();
 
@@ -81,13 +90,22 @@ public class ConsultingBoardMM {
 
 		mav.setViewName(view);
 		return mav;
+
+		
+		return value;
+
 	}
 
 	public ModelAndView boardContents(int CB_NUM) {
 		mav= new ModelAndView();
 		String view= null;
 
+
 		ConsultingBoard board= CBdao.getContents(CB_NUM);
+
+		int num = CB_NUM;
+		ConsultingBoard board= CBdao.getContents(num);
+
 		System.out.println("들어감?");
 
 		System.out.println("board="+board);
@@ -150,6 +168,33 @@ public class ConsultingBoardMM {
 //		mav.setViewName(view);
 //		return mav;
 //	}
+
+	public Map<String,ConsultingBoard> insertReply(String num2, String reply) {
+		  Map<String,ConsultingBoard>bMap = null;
+	      ConsultingBoard cb = new ConsultingBoard();
+	      boolean result =CBdao.insertReply(num2,reply);
+	      if(result) {
+	    	  int num = Integer.parseInt(num2);
+	         cb =CBdao.getContents(num);
+	         bMap=new HashMap<>();
+	         bMap.put("cb", cb);
+	      }else {
+	         bMap=null;
+	      }
+	      return bMap;
+	   }
+
+	public String delectBoard(String num, String password) {
+		String value= null;
+		boolean result= CBdao.delectBoard(num,password);
+		if(result) {
+				value="1";
+			}else {
+				value="2";
+			}
+		
+		return value;
+	}
 
 
 
