@@ -55,59 +55,44 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
 					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
 					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 접수</a></li>
-					<li><a href="/erp/hr/attendance">사원 출결 관리</a></li>
-					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
-					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
 		</ul>
 	</div>
-	<div id="description" align="center"> ${msg }<br><br>
+	<div id="description" align="center">
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 인사 카드</Strong>
+	</div>
+	${msg}<br><br>
 	<div class="divcss">사원 인사카드 조회 및 미등록 카드 등록</div>
 	<div id="noHaveHrCard"></div>
 	<input type="text" id="nameSearch" placeholder="이름으로 검색">
 	<button onclick="searchFromName()" class='infobtn' id="nameSearching">검색</button>
-	
+
 	<div id="container"></div>
 	<div id="paging">
-	
-	
-	
-	
+
+
+
+
 	</div>
 	</div>
-	
-	
+
+
 	<script src=/erp/js/menu.js></script>
-	<script> 
+	<script>
 	//페이지 변경 스크립트
  	hrCardList(1);
  	pageNumber(1);
@@ -148,8 +133,8 @@ ul {
 			success : function(data){
 				console.log(data);
 				let str = "";
-			 	str = "<table id='table1' border='1' cellspacing='0'>";
-			 	str += "<tr class='infomenu'><td>사진</td><td>이름</td><td>생년월일</td><td>이메일</td><td>수정</td></tr>";
+			 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center;'>";
+			 	str += "<tr class='infomenu'><td>사진</td><td width='100px'>이름</td><td width='150px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
 					str += "<td>"+data[i].m_name+"</td>";
@@ -161,7 +146,7 @@ ul {
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
-			}	
+			}
 		});
 	}
 	function paging(num){
@@ -216,45 +201,50 @@ ul {
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
-			}	
+			}
 		});
 	}
-	
+
 	function noHrCardPaging(num){
 		console.log(num);
 		noHrCardPageNumber(num);
 		noHrCardHrCardList(num);
 	}
-	
-	
+
+
 	function searchFromName(){
 		$name = $("#nameSearch").val();
 		console.log($name);
 		$.ajax({
 			url:"/erp/rest/hr/searchfromname",
 			data:{name:$name},
-			dataType:"text",
+			dataType:"json",
 			method:"get",
 			success : function(data){
 				console.log(data);
+				console.log(data.length)
 				let str = "";
-			 	str = "<table id='table1' border='1' cellspacing='0'>";
-			 	str += "<tr class='infomenu'><td>사진</td><td>이름</td><td>생년월일</td><td>이메일</td><td>수정</td></tr>";
-				for(let i = 0 ; i<data.length ; i++){
-					str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
-					str += "<td>"+data[i].m_name+"</td>";
-					str += "<td>"+data[i].m_birth+"</td>";
-					str += "<td>"+data[i].m_email+"</td>";
-					str += "<td><input type='button' value='수정' class='infobtn' onclick='modifyDetail(\""+data[i].m_id+"\")'></td></tr>";
+				if(data.length<1){
+					str+="<br><img src ='https://new.acecounter.com/assets/img/img_cst_result3.png'><br>";
+				}else{
+					str = "<table id='table1' border='1' cellspacing='0'>";
+				 	str += "<tr class='infomenu'><td>사진</td><td>이름</td><td>생년월일</td><td>이메일</td><td>수정</td></tr>";
+					for(let i = 0 ; i<data.length ; i++){
+						str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
+						str += "<td>"+data[i].m_name+"</td>";
+						str += "<td>"+data[i].m_birth+"</td>";
+						str += "<td>"+data[i].m_email+"</td>";
+						str += "<td><input type='button' value='수정' class='infobtn' onclick='modifyDetail(\""+data[i].m_id+"\")'></td></tr>";
+					}
+					str += "</table>";
 				}
-				str += "</table>";
-				$("#container").html(data);
+				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
 			}
 		});
 	}
-	
+
   	  $(function(){
   	      var responseMessage = "<c:out value="${msg}" />";
   	      if (responseMessage != ""){
@@ -274,13 +264,13 @@ ul {
 			$("#nameSearching").click();
 		}
 	});
-  	  
-  	  
-  	  
-  	  
-  	  
-  	  
-	
+
+
+
+
+
+
+
 		$("#showMenu1").hover(function() {
 			$("#smallMenu1").attr("style", "display:inline-block");
 		}, function() {
@@ -304,7 +294,7 @@ ul {
 		window.onbeforeunload = function(){
 			window.reload();
 		}
-		
+
 
 	</script>
 </body>

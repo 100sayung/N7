@@ -395,7 +395,6 @@
 		#{ap_fromapprover}, #{ap_toapprover}, DEFAULT, #{ap_status})
 	</insert>
 
-
 	<!-- 공통결재안 반려 -->
 	<update id="apBack2" parameterType="approvaldocu">
 		UPDATE APPROVALDOCU
@@ -405,15 +404,18 @@
 
 	<select id="getApprinfo" parameterType="String"
 		resultType="Line">
-		SELECT * FROM MLIST WHERE HC_HRCODE=#{code}
+		SELECT * 
+		FROM MLIST 
+		WHERE HC_HRCODE=#{code}
 	</select>
 	
-	<select id="apupSaleinfo" resultType="saleInfo">
+	<!-- 부서 이름 가져오기 -->
+	<select id="getAu_name" parameterType="String" resultType="Line">
 	SELECT *
-	FROM AC_SALESTATEMENT
-	WHERE S_NUM = #{s_num}
-	</select>
-	
+	FROM MLIST 
+	WHERE HC_HRCODE=#{hrCode} AND HC_CCODE = #{cCode} 
+	</select> 
+	 
 </mapper>
 
 

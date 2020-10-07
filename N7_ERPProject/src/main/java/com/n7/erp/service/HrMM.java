@@ -123,17 +123,17 @@ public class HrMM {
 		crMap.put("hrcode", hc_hrcode);
 		crMap.put("cCode", cCode);
 		Integer cnt = hDao.selectCareer(crMap);
-		for (int i = 0; i < request.getParameterValues("hcr_cname").length; i++) {
+		for (int i = 0; i < request.getParameterValues("hcr_name").length; i++) {
 			Career cr = new Career();
 			cr.setHcr_ccode(cCode);
-			cr.setHcr_name(request.getParameterValues("hcr_cname")[i]);
+			cr.setHcr_name(request.getParameterValues("hcr_name")[i]);
 			cr.setHcr_content(request.getParameterValues("hcr_content")[i]);
 			cr.setHcr_startperiod(request.getParameterValues("hcr_startperiod")[i]);
 			cr.setHcr_endperiod(request.getParameterValues("hcr_endperiod")[i]);
 			cr.setHcr_position(request.getParameterValues("hcr_position")[i]);
 			cr.setHcr_hrcode(hc_hrcode);
 			if (i < cnt) {
-				cr.setHcr_num(request.getParameterValues("hra_num")[i]);
+				cr.setHcr_num(request.getParameterValues("hcr_num")[i]);
 				hDao.updateCareer(cr);
 			} else {
 				hDao.registCareer(cr);
@@ -192,7 +192,7 @@ public class HrMM {
 	public ModelAndView hrCard(HttpSession session) {
 		String m_ccode = session.getAttribute("cCode").toString();
 		mav.setViewName("/hr/hrCard");
-		if (checkMemberHrCardCnt(m_ccode)) {
+		if (!checkMemberHrCardCnt(m_ccode)) {
 			mav.addObject("msg", "인사카드를 등록해주세요.");
 		}
 
@@ -226,7 +226,6 @@ public class HrMM {
 		String cCode = session.getAttribute("cCode").toString();
 		String hrCode = hDao.getHrCodeFromID(id);
 
-		// �뇦猿됲�ｏ옙�궨占쎈닱筌뤾쑨�맋�뜝�럥�렧�뜝�럥六쇽옙寃ュ뜝�룞�삕�땻占� �뜝�럥苡삣슖�댙�삕
 		ApprovalDocu docu = new ApprovalDocu();
 		docu.setAp_ccode(cCode).setAp_docuname(apholi.getHap_docuname()).setAp_docunum("H");
 		docu.setAp_fromapprover(hrCode).setAp_toapprover(apholi.getHap_toapprover());

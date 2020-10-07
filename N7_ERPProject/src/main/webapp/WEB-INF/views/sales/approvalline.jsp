@@ -111,8 +111,8 @@ height:10px;
       <div id="main3"><br>
       <button id="addapproval1" class="but">></button><br>
       <button id="deleteCheck1"><</button><br><br><br><br><br>
-   <button id="addapproval2" class="but">></button><br>
-   <button id="deleteCheck2"><</button><br><br>
+<!--    <button id="addapproval2" class="but">></button><br>
+   <button id="deleteCheck2"><</button><br><br> -->
    
       </div>
       <div id="main4">

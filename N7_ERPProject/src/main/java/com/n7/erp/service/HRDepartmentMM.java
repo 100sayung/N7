@@ -32,14 +32,17 @@ public class HRDepartmentMM {
 	//�겫占쏙옙苑� 占쎈쾻嚥∽옙
 	public ModelAndView deptregistinsert(Department dept, String cCode) {
 		String view = null;
-		System.out.println(dept.getHDP_dept());
 		dept.setHdp_ccode(cCode);
-		if(dept.getHDP_dept()!="" && dept.getHDP_position()!="") {
-			if (Ddao.deptregistinsert(dept)) {
-				view = "hr/deptregistpage";
+		String check=Ddao.checkingDept(dept);
+		if(check==null) {
+			if(dept.getHDP_dept()!="" && dept.getHDP_position()!="") {
+				if (Ddao.deptregistinsert(dept)) {
+					view = "hr/deptregistpage";
+				}
+			}else {
+				view="hr/deptregistpage";
 			}
 		}else {
-			mav.addObject("failure", "遺��꽌 諛� 吏곸콉�씠 �엯�젰�릺吏� �븡�븯�뒿�땲�떎 �엯�젰�빐二쇱꽭�슂.");
 			view="hr/deptregistpage";
 		}
 		mav.setViewName(view);
@@ -205,10 +208,10 @@ public class HRDepartmentMM {
 		ArrayList<String> deptList = new ArrayList<String>();
 		ArrayList<String> positionList = new ArrayList<String>();
 		for (int i = 0; i < distinctdept.size(); i++) {
-			deptList.add(distinctdept.get(i).getHDP_position());
+			positionList.add(distinctdept.get(i).getHDP_position());
 		}
 		for (int i = 0; i < distinctposition.size(); i++) {
-			positionList.add(distinctposition.get(i).getHDP_dept());
+			deptList.add(distinctposition.get(i).getHDP_dept());
 		}
 		HashMap<String, ArrayList<String>> deptAll = new HashMap<String, ArrayList<String>>();
 		deptAll.put("deptList", deptList);
@@ -313,7 +316,7 @@ public class HRDepartmentMM {
 		if(checkpayid!=null) {
 			ArrayList<ViewPay> ViewList=Ddao.checkingidname(checkpayid);
 			System.out.println("�꽦怨�?"+ViewList);
-				sb.append("<tr><td>�븘�씠�뵒</td><td>�씠由�</td><td>遺��꽌</td><td>吏곸콉</td><td>湲됱뿬</td><td>湲곕낯怨듭젣�븸</td><td>湲곕낯�닔�졊�븸</td></tr>");
+				sb.append("<tr><td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan='2'></td></tr>");
 			for(int i=0;i<ViewList.size();i++) {
 				int result=ViewList.get(i).getHDP_PAY()-ViewList.get(i).getHDD_AMOUNT();
 				sb.append("<tr id='\""+ViewList.get(i).getHC_ID()+"\"'>");
@@ -324,15 +327,15 @@ public class HRDepartmentMM {
 				sb.append("<td>"+ViewList.get(i).getHDP_PAY()+"</td>");
 				sb.append("<td>"+ViewList.get(i).getHDD_AMOUNT()+"</td>");
 				sb.append("<td>"+result+"</td>");
-				sb.append("<td><button type='button' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>�엯�젰 �닔�젙�븯湲�</button></td>");
-				sb.append("<td><button type='button' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>�긽�꽭蹂닿린</button></td></tr>");
+				sb.append("<td><button type='button' class='infobtn' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>입력수정</button></td>");
+				sb.append("<td><button type='button' class='infobtn' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>삭제</button></td></tr>");
 			}
 			System.out.println("諛곗뿴濡�="+sb.toString());
 			Gson gson=new Gson();
 			String total=gson.toJson(sb.toString());
 			return total;
 		}else if(checkpayid==null) {
-			 
+
 		}
 		return null;
 	}
@@ -349,4 +352,3 @@ public class HRDepartmentMM {
 		return json;
 	}
 }
-

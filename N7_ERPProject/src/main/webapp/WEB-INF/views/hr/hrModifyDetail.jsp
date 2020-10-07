@@ -13,7 +13,6 @@
 	background-color: skyblue;
 }
 .registMode{
-	background-color:red;
 }
 img{
 width: 200px;
@@ -76,13 +75,14 @@ tr{
 </div>
 <input type='hidden' value='' id='current'>
 <input type='button' value='추가하기' class = 'infobtn' onclick='addRecord()' id='addRecordBtn'>
-<input type='button' value='수정하기'  class = 'infobtn' onclick='changeMode()' id='changeBtn'>
-<input type='submit' value='등록하기'  class = 'infobtn' disabled="disabled" id='registBtn'>
+<input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
+<input type='submit' value='등록완료'  class = 'infobtn' disabled="disabled" id='registBtn'>
 </form>
 
 
 <script>
 var num;
+var curPosition = "";
 var id = location.search.substr(4);
 $(document).ready(function(){
 	$.ajax({
@@ -221,14 +221,20 @@ function changeMode(){
 	if($("#changeBtn").attr('class')=="infobtn mf"){
 		$(".detailInfo").attr("readonly", true).addClass("modifyMode").removeClass("registMode");
 		$("#registBtn").attr("disabled", false);
+		$("#registBtn").css('background-color','#3D6B9B');
 		for(let i = 0 ; i<$(".origin").length ; i++){
 			if($("#origin_"+i)[0].lastChild.className=="removebtn"){
 			$("#origin_"+i)[0].lastChild.remove();
 			}
 		}
 	}else{
+		if($("#current").val()=='HRCard'){
+			changeDept(document.getElementById("dept"));
+			console.log("dd");
+		}
 		$(".detailInfo").removeAttr("readonly").removeClass("modifyMode").addClass("registMode");
 		$("#registBtn").attr("disabled", true);
+		$("#registBtn").css('background-color','#d2d2d2');
 		for(let i = 0 ; i <$(".origin").length ; i++){
 			$("#origin_"+i).append("<td class='removebtn'><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td>");
 		}
@@ -246,6 +252,8 @@ var formURL = "/erp/hr";
 function AcademicInfo(){
 	$("#form").attr("action", formURL + "/newacademic/" + id);
 	$("#current").val("Academic");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	console.log("aca");
 	$.ajax({
 		url:"/erp/rest/hr/academic",
@@ -286,6 +294,8 @@ function AcademicInfo(){
 function CertificationInfo(){
 	$("#form").attr("action", formURL + "/newcertification/" + id);
 	$("#current").val("Certification");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url:"/erp/rest/hr/certification",
 		dataType:"json",
@@ -322,6 +332,8 @@ function CertificationInfo(){
 function CareerInfo(){
 	$("#form").attr("action", formURL + "/newcareer/" + id);
 	$("#current").val("Career");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url:"/erp/rest/hr/career",
 		dataType:"json",
@@ -350,10 +362,13 @@ function CareerInfo(){
 }function InCompanyInfo(){
 	$("#form").attr("action", formURL + "/newhrcard/" +id);
 	$("#current").val("HRCard");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url :"/erp/rest/hr/deptlist",
 		dataType:"json",
 		method :"get",
+		async : false,
 		success : function(deptList){
 			$.ajax({
 				url:"/erp/rest/hr/hrcard",
@@ -384,7 +399,7 @@ function CareerInfo(){
 					str += "<table border='1px solid black'><tr>";
 					str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
 					str += "<tr><td><input type='text' name='hc_code' value='"+data.hc_hrcode+"' readonly></td>"
-					str += "<td><select name='hc_dept' class='detailInfo' onchange='changeDept(this)'>"
+					str += "<td><select name='hc_dept' class='detailInfo' onchange='changeDept(this)' id='dept'>"
 					for(let i = 0 ; i<deptList.deptList.length ; i++){
 						if(data.hc_dept===deptList.deptList[i]){
 							str += "<option value='"+deptList.deptList[i]+"' selected='selected'>"+deptList.deptList[i]+"</option>";
@@ -401,9 +416,10 @@ function CareerInfo(){
 					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>사용한 월차</td></tr>";
 					str += "<td><input type='text' value='"+status+"' readonly></td>"
 					str += "<td><input type='text' value='"+work+"'readonly></td>"
-					str += "<td><input type='text' value='"+data.hc_numholi+"' readonly></td></tr></table>";
+					str += "<td><input type='text' value='"+data.hc_holynum+"' readonly></td></tr></table>";
 					console.log(data.hc_joindate);
 					$("#hrDetailInfo").html(str);
+					curPosition = data.hc_position;
 				},error : function(err){
 					console.log(deptList);
 					console.log(err);
@@ -411,7 +427,7 @@ function CareerInfo(){
 					str += "<table border='1px solid black'><tr>";
 					str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
 					str += "<tr><td><input type='text' name='hc_code' placeholder='---' readonly></td>"
-					str += "<td><select name='hc_dept' class='detailInfo' onchange='changeDept(this)'>"
+					str += "<td><select name='hc_dept' class='detailInfo' id='dept' onchange='changeDept(this)'>"
 						for(let i = 0 ; i<deptList.deptList.length ; i++){
 							str += "<option>"+deptList.deptList[i]+"</option>";
 						}
@@ -423,6 +439,7 @@ function CareerInfo(){
 					str += "<td><input type='text' placeholder='---' readonly></td>"
 					str += "<td><input type='text' placeholder='---' readonly></td></tr></table>";
 					$("#hrDetailInfo").html(str);
+					changeDept(document.getElementById("dept"));
 				} 
 			}); 
 		},error : function(err){
@@ -444,7 +461,11 @@ function changeDept(id){
 			let str = "";
 			str += "<select name='hc_position' class='detailInfo'>";
 			for(let i = 0 ; i<data.length ; i++){
-				str += "<option value='"+data[i]+"'>"+data[i]+"</option>";
+				if(curPosition == data[i]){
+					str += "<option value='"+data[i]+"' selected='selected'>"+data[i]+"</option>";					
+				}else{
+					str += "<option value='"+data[i]+"'>"+data[i]+"</option>";					
+				}
 			}
 			$("#position").html(str);
 		}, error : function(err){

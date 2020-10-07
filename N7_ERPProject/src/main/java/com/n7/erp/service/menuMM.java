@@ -166,6 +166,11 @@ public class menuMM {
 		int ccodecnt = mDao.namecheck(au);
 		return Integer.toString(ccodecnt);
 	}
+
+	public String checkAuth(HttpSession session) {
+		String auth = mDao.checkAuth(session.getAttribute("cCode").toString());
+		return auth;
+	}
 		
 
 }

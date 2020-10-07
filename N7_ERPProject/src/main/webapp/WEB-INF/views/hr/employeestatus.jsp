@@ -58,51 +58,45 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
-					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
-					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 접수</a></li>
-					<li><a href="/erp/hr/attendance">사원 출결 관리</a></li>
-					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
-					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 <div>
-<div class="divcss">사원 출퇴근 상태 조회</div>
-	<input type="text" id="nameSearch" placeholder="이름으로 검색"> 
-	<button onclick="searchFromName()" class="infobtn" id="nameSearching" style="margin-right: 200px;">검색</button>
-	<button onclick="paging(1, 1)" class="infobtn">출근중</button><button onclick="paging(1, 0)" class="infobtn">퇴근중</button>
+<div id="description">
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 출퇴근 상태 조회</Strong>
+	</div>
+	<div style="float: right;">
+		<input type="text" id="nameSearch" placeholder="이름으로 검색">
+		<button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
+	</div>
+	<div>
+	<button onclick="paging(1, 1)" class="infobtn">출근중</button><button onclick="paging(1, 0)" class="infobtn" style="margin-left: 10px;">퇴근중</button>
+	</div>
 	<div id ="container">
 	</div>
 	<div id="paging"></div>
 
 	 </div>
+</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
 
@@ -143,7 +137,7 @@ ul {
 			success : function(data){
 				console.log(data);
 				let str = "<table>";
-				str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td style='width:150px;'>상태</td></tr>";
+				str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td class='menu'>상태</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
 					if(data[i].hc_status == 1){
@@ -157,15 +151,15 @@ ul {
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
-			}	
+			}
 		});
 	}
 	function paging(num, status){
 		pageNumber(num, status);
 		employeeStatusList(num, status);
 	}
-	
-	
+
+
 	$(document).ready(function() {
 		paging(1, "1");
 /* 		$.ajax({
@@ -192,7 +186,7 @@ ul {
 		}); */
 	});
 
-/* 
+/*
 	function searchFromStatus(status){
 		$.ajax({
 			url:"/erp/rest/hr/searchfromstatus",
@@ -201,14 +195,14 @@ ul {
 			method:"get",
 			success : function(data){
 				console.log(data);
-				makeContainer(data);	
+				makeContainer(data);
 			}, error : function(err){
 				console.log(err);
 			}
 		});
 	} */
-	
-	
+
+
 	function searchFromName(){
 		$name = $("#nameSearch").val();
 		console.log($name);
@@ -219,13 +213,13 @@ ul {
 			method:"get",
 			success : function(data){
 				console.log(data);
-				makeContainer(data);	
+				makeContainer(data);
 			}, error : function(err){
 				console.log(err);
 			}
 		});
 	}
-	
+
 
 	function makeContainer(data){
 		data = JSON.parse(data);

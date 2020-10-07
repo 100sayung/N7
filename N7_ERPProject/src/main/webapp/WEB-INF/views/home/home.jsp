@@ -78,7 +78,7 @@ font-size: 30px;
 				<li><form action="logout" method="post"><button>LOGOUT</button></li>
 				</c:when>
 				<c:when test="${id!=null and id ne 'manager'}">
-				<li class="current_page_item"><a href="#" onClick='window.open("/erp/main", "ERP START", "width=1200, height=900, toolbar=no, menubar=no, resizable=yes"); return false;'>ERP시작</a></li>
+				<li class="current_page_item"><a href="#" onClick='window.open("/erp/main", "ERP START", "width=1600, height=900, status=no, toolbar=no, menubar=no, scrollbar = no, resizable=yes"); return false;'>ERP시작</a></li>
 				<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
 				</c:when>
 				</c:choose> 
