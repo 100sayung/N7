@@ -5,14 +5,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 급여 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+
 <style>
 #header {
 	width: 100%;
@@ -44,7 +44,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1000px;
 }
 
 ul {
@@ -68,56 +68,52 @@ span {
 	text-align: center;
 	color: red;
 }
-
+#wages,td{
+	border-collapse: collapse;
+	border:1px solid #D9EDF7;
+}
+#id_back{
+	background-color: #F8F7F7;
+}
 </style>
 </head>
 <body onload="build();">
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
-					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
-					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 조회</a></li>
-					<li><a href="/erp/hr/attendance">사원 출결 조회</a></li>
-					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
-					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">사원 급여 관리</div>
-	<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색">
-	<input type="button" id="checkpayid" class="cssbutton" onclick="checkpayid()" value="검색">
-	<br><br>
+	<div class="first_div_css">
+		<Strong class="deptregist_color_size">사원 급여 관리</Strong>
+	</div>
+	<div align="right" >
+		<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색" autocomplete="off">
+		<input type="button" id="checkpayid" onclick="checkpayid()" value="검색" class="infobtn">
+	</div>
 	<div id="container">
 	</div>
-	<div id="paging"></div>
+	<div id="paging" align="center">
+	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -127,7 +123,7 @@ span {
 			$("#checkpayid").click();
 		}
 	});
-	
+
 	//사원들 급여 조회
 	$(function(){
 	/* 	$.ajax({
@@ -198,9 +194,9 @@ span {
 				console.log(data.length);
 				var str='';
 				var da=data.toString();
-				str +='<table id="wages" style="text-align: center; width: 800px; border: 1px solid black;">';
-				str += '<tr class="tr_chart_color"  style="background-color: lightblue;">';
-				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td></tr>';
+				str +='<table id="wages" style="text-align: center; width: 100%;">';
+				str += '<tr id="id_back">';
+				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan="2"></td></tr>';
 				for(var i=0;i<data.length;i++){
 					var result=data[i].HDP_PAY-data[i].HDD_AMOUNT;
 					str+="<tr id='\""+data[i].HC_ID+"\"'><td>"+data[i].HC_ID+"</td>"
@@ -210,22 +206,22 @@ span {
 						+"<td>"+data[i].HDP_PAY+"</td>"
 						+"<td>"+data[i].HDD_AMOUNT+"</td>"
 						+"<td>"+result+"</td>"
-						+"<td><button type='button' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력 수정하기</button></td>"
-						+"<td><button type='button' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
+						+"<td><button type='button' class='infobtn' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력수정</button></td>"
+						+"<td><button type='button' class='infobtn' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
 				}
 				str += '</table>'
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
-			}	
+			}
 		});
 	}
 	function paging(num){
 		pageNumber(num);
 		wagesList(num);
 	}
-	
-	
+
+
 	//사원 급여관리 수정 및 입력페이지 이동
 	function clickwages(hc){
 		$.ajax({
@@ -256,7 +252,7 @@ span {
 			}
 		});
 	}
-	
+
 	//사원 이름 or 아이디 검색
 	function checkpayid(){
 		var checkpayid=$("#findcheckpayid").val();
@@ -275,9 +271,9 @@ span {
 			}
 		});
 	}
-	
-	
-	
+
+
+
 		$("#showMenu1").hover(function() {
 			$("#smallMenu1").attr("style", "display:inline-block");
 		}, function() {
@@ -293,8 +289,8 @@ span {
 		}, function() {
 			$("#smallMenu3").attr("style", "display:none");
 		})
-		
-		
+
+
 	</script>
 </body>
 </html>

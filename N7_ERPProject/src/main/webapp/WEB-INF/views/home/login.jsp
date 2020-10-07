@@ -11,19 +11,18 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="/erp/css/default.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->	
-	
+<!------ Include the above in your HEAD tag ---------->
+
 
 <style>
 
@@ -52,7 +51,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
-  margin: 40px 8px 10px 8px; 
+  margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
 
@@ -62,7 +61,7 @@ h2 {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -70,6 +69,7 @@ h2 {
 }
 
 #formContent {
+  margin-bottom: 200px;
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
@@ -144,6 +144,27 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
 }
 
 input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -279,8 +300,8 @@ input[type=text]:placeholder {
 
 
 
-#loginContainer {
-	width: 300px; 
+ #loginContainer {
+	width: 300px;
 /* 	width: auto; */
 	margin-left: 600px;
 	margin-top: 170px;
@@ -306,6 +327,7 @@ button {
 #idserach {
 	margin-left: 30px;
 }
+
 </style>
 </head>
 
@@ -333,24 +355,20 @@ button {
 			</ul>
 		</div> --%>
 	</div>
-	
-fadeInDown
-위에서 떨어지는거 간격 줄이고 싶은데 모르겠음.......
-그래도 로그인은 됨....ㅎㅎㅎㅎ
 
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
 
     <!-- Icon -->
-    <div class="fadeIn first" style="height:50px; , text-align:center;">
-      <a href="/erp/" style="color: black;">로고 박아야됨</a>
+    <div class="fadeIn first" style="height:100px; , text-align:center;">
+      <a href="/erp/" style="color: black;"><img src="img/logo.png" style="width:200px; height:100px;"></a>
     </div>
 
     <!-- Login Form -->
     <form action="access" method="post">
       <input type="text" id="login" class="form-control" name="m_id" placeholder="id를 입력해주세요" required id="usr">
-      <input type="text" id="password" class="form-control" name="m_pw" placeholder="password를 입력해주세요" required id="pwd" >
+      <input type="password" id="password" class="form-control" name="m_pw" placeholder="password를 입력해주세요" required id="pwd" >
       <br>
       <br>
       <button class="fadeIn fourth" value="LogIn" style="width:150px;">Login</button>
@@ -358,12 +376,12 @@ fadeInDown
       <br>
 
     <span class="warnMsg">${warn}</span><br>
-    
+
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
-      <a href="/erp/findidfrm" id="idserach">아이디 찾기</a> | 
-      <a href="/erp/findpasswordfrm">비밀번호 찾기</a> 
+      <a href="/erp/findidfrm" id="idserach">아이디 찾기</a> |
+      <a href="/erp/findpasswordfrm">비밀번호 찾기</a>
     </div>
     <div style="padding:5px;">회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></div>
     </form>

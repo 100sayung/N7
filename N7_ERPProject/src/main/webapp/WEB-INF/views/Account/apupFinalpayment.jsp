@@ -11,6 +11,8 @@
 
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <!-- FONTAWESOME STYLES-->
 <!--<link href="/erp/assets/css/font-awesome.css" rel="stylesheet"> -->
 <!-- CUSTOM STYLES-->
@@ -29,6 +31,10 @@
 
 <title>Insert title here</title>
 <style>
+button{
+font-size: larger;
+padding: 10px;
+}
 table, tr, td {
 	border: 1px solid black;
 	text-align: center;
@@ -61,15 +67,16 @@ td {
 </style>
 </head>
 <body>
-	<!-- 	<h1>acPend.jsp(임시저장)</h1> -->
-	<table id="table">
+		 <div
+         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger;">결재완료 결재함</div>
+	<table id="table" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
 			<td id="ap_docunum">문서번호</td>
 			<td id="ap_ccode">회사코드</td>
 			<td id="ap_docuname">결재문서이름</td>
-			<td id="ap_fromapprover">결재올린사람</td>
-			<td id="ap_toapprover ">결재받는사람</td>
+			<td id="ap_fromapprover">발신인</td>
+			<td id="ap_toapprover ">수신인</td>
 			<td id="ap_date">올린시간</td>
 			<td id="ap_statu">결재상태</td>
 		</tr>
@@ -129,18 +136,18 @@ td {
 					method : "get",
 					success : function(data) {
 						let str = "";
-						for (let i = 0; i < data.length; i++) {
+						for (let i = 0; i < data.pList.length; i++) {
 							str += "<table>"
-							str += "<tr>"
-							str += "<td><input type='radio' name='checknum' class='check' value='"+data[i].ap_docunum+"'></td>";
-							str += "<td>" + data[i].ap_docunum + "</td>";
-							str += "<td>" + data[i].ap_ccode + "</td>";
-							str += "<td>" + data[i].ap_docuname + "</td>";
-							str += "<td>" + data[i].ap_fromapprover + "</td>";
-							str += "<td>" + data[i].ap_toapprover + "</td>";
-							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>결재완료</td>";
-							str += "</tr>"
+								str += "<tr>"
+								str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>";
+								str += "<td>" + data.pList[i].ap_docunum + "</td>";
+								str += "<td>" + data.pList[i].ap_ccode + "</td>";
+								str += "<td>" + data.pList[i].ap_docuname + "</td>";
+								str += "<td>" + data.nList[i].ap_fromname + "</td>";
+								str += "<td>" + data.nList[i].ap_toname + "</td>";
+								str += "<td>" + data.pList[i].ap_date + "</td>";
+								str += "<td>" + '결재완료' + "</td>";
+								str += "</tr>"
 						}
 						str += "</table>";
 						$("#Info").html(str);

@@ -53,6 +53,7 @@ public class menuMM {
 		mDao.deletemenu(cCode);
 		for (int i = 0; i < strArray.length; i++) {
 			menu = strArray[i];
+			System.out.println(menu);
 			result = mDao.addmenu(menu, cCode);
 		}
 		if (result) {
@@ -165,6 +166,11 @@ public class menuMM {
 		au.setAu_name(au_name);
 		int ccodecnt = mDao.namecheck(au);
 		return Integer.toString(ccodecnt);
+	}
+
+	public String checkAuth(HttpSession session) {
+		String auth = mDao.checkAuth(session.getAttribute("cCode").toString());
+		return auth;
 	}
 		
 

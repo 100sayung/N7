@@ -8,6 +8,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <!-- FONTAWESOME STYLES-->
 <link href="/erp/assets/css/font-awesome.css" rel="stylesheet">
 <!-- CUSTOM STYLES-->
@@ -47,21 +48,26 @@ td {
 }
 
 #center{
-
 text-align: center;
+}
+
+button{
+font-size: larger;
+padding: 5px 8px 3px 8px;
 }
 </style>
 </head>
 <body>
-	<!-- 	<h1>acPend.jsp(임시저장)</h1> -->
-	<table id="table">
+ <div
+         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger;">받은 결재함</div>
+	<table id="table" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
 			<td>문서번호</td>
 			<td>회사코드</td>
 			<td>결재문서이름</td>
-			<td>결재올린사람</td>
-			<td>결재받는사람</td>
+			<td>발신인</td>
+			<td>수신인</td>
 			<td>올린시간</td>
 			<td>결재상태</td>
 		</tr>
@@ -111,6 +117,38 @@ text-align: center;
 		apdownPaymentList(num);
 	}
 
+// 	function apdownPaymentList(nowPage) {
+// 		$.ajax({
+// 					url : "/erp/rest/Account/apdownPaymentList",
+// 					dataType : "json",
+// 					data : {
+// 						nowPage : nowPage,
+// 						cntPerPage : "10"
+// 					},
+// 					method : "get",
+// 					success : function(data) {
+// 						let str = "";
+// 						for (let i = 0; i < data.length; i++) {
+// 							str += "<table>"
+// 							str += "<tr>"
+// 							str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>";
+// 							str += "<td>" + data.pList[i].ap_docunum + "</td>";
+// 							str += "<td>" + data.pList[i].ap_ccode + "</td>";
+// 							str += "<td>" + data.pList[i].ap_docuname + "</td>";
+// 							str += "<td>" + data.pList[i].ap_fromapprover + "</td>";
+// 							str += "<td>" + data.pList[i].ap_toapprover + "</td>";
+// 							str += "<td>" + data.pList[i].ap_date + "</td>";
+// 							str += "<td>" + '결재중' + "</td>";
+// 							str += "</tr>"
+// 						}
+// 						str += "</table>";
+// 						$("#Info").html(str);
+// 					},
+// 					error : function(err) {
+// 						console.log(err);
+// 					}
+// 				});
+// 	}
 	function apdownPaymentList(nowPage) {
 		$.ajax({
 					url : "/erp/rest/Account/apdownPaymentList",
@@ -121,17 +159,18 @@ text-align: center;
 					},
 					method : "get",
 					success : function(data) {
+						console.log(data);
 						let str = "";
-						for (let i = 0; i < data.length; i++) {
+						for (let i = 0; i < data.pList.length; i++) {
 							str += "<table>"
 							str += "<tr>"
-							str += "<td><input type='radio' name='checknum' class='check' value='"+data[i].ap_docunum+"'></td>";
-							str += "<td>" + data[i].ap_docunum + "</td>";
-							str += "<td>" + data[i].ap_ccode + "</td>";
-							str += "<td>" + data[i].ap_docuname + "</td>";
-							str += "<td>" + data[i].ap_fromapprover + "</td>";
-							str += "<td>" + data[i].ap_toapprover + "</td>";
-							str += "<td>" + data[i].ap_date + "</td>";
+							str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>";
+							str += "<td>" + data.pList[i].ap_docunum + "</td>";
+							str += "<td>" + data.pList[i].ap_ccode + "</td>";
+							str += "<td>" + data.pList[i].ap_docuname + "</td>";
+							str += "<td>" + data.nList[i].ap_fromname + "</td>";
+							str += "<td>" + data.nList[i].ap_toname + "</td>";
+							str += "<td>" + data.pList[i].ap_date + "</td>";
 							str += "<td>" + '결재중' + "</td>";
 							str += "</tr>"
 						}

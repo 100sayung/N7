@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>영업활동 조회</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
@@ -16,15 +16,14 @@ text-align:center;
       <div id="center">
       <br>
         <button type="button" id="businessitemfrm">영업 실적조회</button>${msg}
-        <button type="button" id="print" onclick="window.print()">영업실적 인쇄</button>
         <br>
         <br>
         <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">영업활동</div>
          <select id="choice" style="width:180px;">
                       <option value="ba_ocode">영업코드</option>
                       <option value="ba_hrcode">사원코드</option></select>
-          <input type="text" name="search" id="search">    
-          <button type="button" id="searchh" value="검색">검색</button>   
+          <input type="text" name="search" id="search">
+          <button type="button" id="searchh" value="검색">검색</button>
         <form id="businessactivitiesinput">
         <div border="1" style="height:80px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:180px;">
@@ -41,7 +40,9 @@ text-align:center;
             </tr>
             <tr>
                <th>사업단위</th>
-               <th><input type="text" name="ba_unit"></th>
+               <th><select name="ba_unit" style="width:180px;">
+                   <option value="본사">본사</option>
+                   <option value="지사">지사</option></select></th>
                <th>영업기간 시작</th>
                <th><input type="date" name="ba_startperiod" min="2000-01-01" max="2030-12-31" style="width:140px;"></th>
                <th>영업기간 끝</th>
@@ -49,7 +50,7 @@ text-align:center;
             </tr>
          </thead>
       </table>
-      </div> 
+      </div>
             <div style="background-color:#ECEBEA;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
               style="margin-left:140px;">
@@ -74,63 +75,50 @@ text-align:center;
                 </thead>
                 <tbody id="tBody">
                     <tr>
-                        <td><input type="radio" class="each"></td>          
+                        <td><input type="radio" class="each"></td>
                         <td><input type="date" name="ba_date" id="add"></td>
                         <td><input type="text" name="ba_content"  required></td>
                         <td><input type="number" name="ba_estimatedsalesamount" required></td>
-                        <td><input type="number" name="ba_actualsalesamount"></td>                
+                        <td><input type="number" name="ba_actualsalesamount"></td>
                         <td><input type="text" name="ba_enddate" required></td>
-                        <td><input type="text" name="ba_memo" required></td>    
+                        <td><input type="text" name="ba_memo" required></td>
                     </tr>
                 </tbody>
             </table>
-            </div>  
+            </div>
         </form>
         <br>
-        <br>
-            <button type="button" id="addList" value="추가">추가</button>
-            <button type="button" id="deleteCheck" value="삭제">삭제</button>
+            <!-- <button type="button" id="deleteCheck" value="삭제">삭제</button> -->
             <button type="button" id="sub" value="저장">저장</button>
       </div>
      <br>
     <br>
     <br>
 
-    
-    <script type="text/javascript">     
-    
+
+    <script type="text/javascript">
+
     function setChildValue(data) {
   	   console.log(data)
-  	   for(var i in data.aList){ 
+  	   for(var i in data.aList){
   	   var clcode=data.aList[i].cl_code;
-  	      
+
   	   }
-  	   
+
   	   $("#clcode").val(clcode);
   	};
-        //추가삭제
-        $(document).ready(function(){
-              $('.addList').click(function(){
-                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="ba_date" class="input-text"></td><td><input type="text" name="ba_content" class="input-text" ></td><td><input type="number" name="ba_estimatedsalesamount" class="input-text" ></td><td><input type="number" name="ba_actualsalesamount" class="input-text" ></td><td><input type="text" name="ba_enddate" class="input-text" ></td><td><input type="text" name="ba_memo" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
-              });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-          }); 
-           function thisRowDel(row){
-                console.log(row);
-                let tr = row.parentNode.parentNode;
-                tr.parentNode.removeChild(tr);
-         }   
-        
-        
-      $('#businessitemfrm').click(function(){
+
+
+/*       $('#businessitemfrm').click(function(){
            var str="";
-           
+
            $.ajax({
               url:'/erp/rest/sales/businessitem',
               type: 'get',
               dataType: "json",
               success:function(data){
                  console.log(data);
-                 
+
                  for(var i in data.bList){
                     str+="<tr><td><input type='radio' name='checknum' value="+data.bList[i].ba_ocode+"></td>";
                     str+="<td><input type='text' value="+data.bList[i].ba_date+"></td>";
@@ -140,15 +128,6 @@ text-align:center;
                     str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
                     str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td></tr>";
 
-                 }
-                    $('#tBody').html(str);
-              },
-              error:function(error){
-                 console.log(error);
-              }
-           })
-        });
-        
        $('#sub').click(function(){
            var obj= $('#businessactivitiesinput').serialize();
 
@@ -165,12 +144,12 @@ text-align:center;
                  }
               });
                $('input').val("");
-           });           
-        
+           });
+
        $('#searchh').click(function(){
          var choice=$('#choice').val();
          var search=$('#search').val();
-         
+
          $.ajax({
             type : 'post',
              url : '/erp/rest/sales/businessactivitiessearch',
@@ -178,7 +157,7 @@ text-align:center;
              dataType: "json",
              success : function(data){
                 console.log(data);
-                
+
                 var str="";
                 if(data.bList!=""){
                  for(var i in data.bList){
@@ -197,23 +176,23 @@ text-align:center;
              },
              error : function(error){
                 console.log(error);
-             } 
+             }
          });
        });
-       
+
        $('#deleteCheck').click(function(){
           var check="";
           $("input[name=each_check]:checked").each(function(){
              check = $(this).attr("value");
              console.log(check);
           });
-          
+
           $.ajax({
                 type : 'post',
                 url : '/erp/rest/sales/businessactivitiesdelete',
                 data: {check:check},
                 dataType: "json",
-                success : function(data) {                   
+                success : function(data) {
                    console.log(data);
                    var str="";
                    for(var i in data.sList){
@@ -232,7 +211,7 @@ text-align:center;
                    console.log(error);
                 }
              });
-          }); 
+          });
 
 </script>
 </body>

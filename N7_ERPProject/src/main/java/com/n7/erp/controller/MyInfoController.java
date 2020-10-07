@@ -65,7 +65,7 @@ public class MyInfoController {
 	public String registAcademic(HttpServletRequest request){
 		String id = request.getSession().getAttribute("id").toString();
 		hm.registAcademic(request, id);
-		return "redirect:/myinfo/myinfo";
+		return "/myInfo/myInfo";
 	}
 	//새로운 이력 정보 등록
 	@PostMapping(value="/myinfo/newcareer")

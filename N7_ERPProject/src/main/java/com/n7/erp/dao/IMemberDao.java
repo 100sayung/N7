@@ -9,6 +9,9 @@ import org.apache.ibatis.annotations.Update;
 
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
+import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.ps.PurchaseApproval;
+import com.n7.erp.bean.sales.approvaldetail;
 
 public interface IMemberDao {
 	boolean access(Member mb);
@@ -118,11 +121,17 @@ public interface IMemberDao {
 	
 	boolean ectupdate3(@Param("num") String num,@Param("ect") String ect,@Param("cCode") String cCode);
 	
-	boolean approvalagree(@Param("num")String num,@Param("cCode") String cCode);
+	boolean approvalagree(@Param("num")String num,@Param("apcode")String apcode,@Param("cCode") String cCode);
 	
 	boolean approvalagree2(@Param("num")String num,@Param("cCode") String cCode);
 	
 	ApprovalDocu getStatus(@Param("num")String num,@Param("cCode") String cCode);
 	
 	boolean arbitrarily(@Param("num")String num,@Param("cCode") String cCode);
+	
+	ApprovalDocument getAScode(@Param("num")String num,@Param("cCode") String cCode);
+	
+	PurchaseApproval getAPcode(@Param("num")String num,@Param("cCode") String cCode);
+	
+	approvaldetail getAGcode(@Param("num")String num,@Param("cCode") String cCode);
 }

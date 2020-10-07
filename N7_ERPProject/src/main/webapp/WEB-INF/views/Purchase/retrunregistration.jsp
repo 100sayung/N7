@@ -85,8 +85,8 @@ border: 1px solid silver;
                           <!--  <td><input type="text" name="r_name"></td> -->
                           <!--  <td><input type="text" name="r_itcode" ></td> -->
                            <td id="it"></td>
-                           <td><input type="number" min="1" name="r_amount"></td>
-                           <td><input type="text" name="r_unlit"></td>
+                           <td><input onclick="chageItcode(this)" type="number" min="1" name="r_amount"></td>
+                           <td><input type="text" name="r_unlit" class="unlit"></td>
                            <td><input type="text" name="r_budget"></td>
                            <td><input type="text" name="r_reason"></td>
                        </tr>
@@ -102,15 +102,22 @@ border: 1px solid silver;
          </form>
 	</div>
 <script type="text/javascript">
-     
+	$(document).on("keyup",".unlit",function(){
+	 	var cnt =$(this).parent().prev().children().val();
+	 	console.log(cnt);
+	 	var unlit = $(this).val();
+	 	var budget=cnt*unlit;
+		 $(this).parent().next().children().val(budget);
+ 	});
+
 	  function setChildValue(data) {
 		   console.log(data)
-		   for(var i in data.aList){ 
+		   for(var i in data.aList){
 		   var clcode=data.aList[i].cl_code;
 		   }
 		   $("#clcode").val(clcode);
 		};
-     
+
     $(function() {
 		$("#allCheck").click(function() {
 			if ($("#allCheck").prop("checked")) {
@@ -119,8 +126,8 @@ border: 1px solid silver;
 				$("input[type=checkbox]").prop("checked", false);
 			}
 		});
-	}); 
-    
+	});
+
 	  $('#save').click(function(){
 	         var obj = $("#o_return").serialize();
 	         console.log(obj);
@@ -140,7 +147,7 @@ border: 1px solid silver;
 	            }
 	         });
 	      });
-	  
+
 	  $('#rInfo').click(function(){
 		  $.ajax({
 			  url: '/erp/rest/Purchase/rInfo',
@@ -171,13 +178,13 @@ border: 1px solid silver;
 			  }
 		  })
 	  })
-	  
+
  	  $('#rDelete').click(function(){
   	  		 var check_list=[];
   	  		 $("input[name=each_check]:checked").each(function(){
   	  			 var cid= $(this).val();
   	  			 console.log(check_list);
-  	  			  
+
   	  			 $.ajax({
   	  				 url: '/erp/rest/Purchase/rdelete',
   	  				 type: 'post',
@@ -202,15 +209,15 @@ border: 1px solid silver;
   		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
   				 	  }
   				 	  $('#list').html(str);
-  				 	  
+
   	  				  },
   	  				  error: function(error){
   	  					  consoel.log(error);
   	  				  }
   	  			  })
   	  		  })
-  	  	  })  
-  	  
+  	  	  })
+
 	 	$('#searchbtn').click(function(){
 			var choice= $('#choice').val();
 			var search= $('#search').val();
@@ -240,14 +247,14 @@ border: 1px solid silver;
   		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
   				 	  }
   				 	  $('#list').html(str);
-  				 	  
+
   	  				  },
   	  				  error: function(error){
   	  					  consoel.log(error);
   	  				  }
   	  			  })
-			})	  
-			
+			})
+
 		$("#Wearing").click(function(){
 			  $.ajax({
 				  url:"/erp/rest/Purchase/stocklist",
@@ -272,7 +279,7 @@ border: 1px solid silver;
 				  }
 		 	 })
   		})
-  	
+
   		 var select;
     	 $.ajax({
     	       url:"/erp/stock/getitemcode",
@@ -280,7 +287,7 @@ border: 1px solid silver;
            type:"get",
            success:function(data){
               select = makeSelectBox(data);
-              
+
               $("#it").html(select);
            },
            error:function(err){
@@ -293,13 +300,13 @@ border: 1px solid silver;
 	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
-	               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
+	               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
 	            }
 	         }
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
-  	
+
 		 var select2;
 		     $.ajax({
 		    	 url: "/erp/stock/getimportlist",
@@ -319,13 +326,13 @@ border: 1px solid silver;
 	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
-	               arrStr+="<option value='"+arr[i].ie_seqnum+"'>"+arr[i].ie_seqnum+"</option>"; 
+	               arrStr+="<option value='"+arr[i].ie_seqnum+"'>"+arr[i].ie_seqnum+"</option>";
 	            }
 	         }
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
-	     
+
 	   var select3;
 	     $.ajax({
 	           url:"/erp/stock/getitemcode",
@@ -345,14 +352,31 @@ border: 1px solid silver;
 	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
-	               arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>"; 
+	               arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>";
 	            }
 	         }
 	         arrStr+="</select>";
 	         return arrStr;
 	      }
-  	
-  	
+
+	     function changeItcode(id){
+	    	 var it_stock = $(id).val();
+	    	 var it_code = $(id).parent().siblings("#name").children().val();
+	    	 $.ajax({
+	    		 url: "/erp/stock/getstock",
+	    		 data: {it_code: ti_code, it_stock : it_stock},
+	    		 dataType: 'json',
+	    		 success: function(result){
+	    			 alert("재고가 부족합니다.");
+	    			 id.value= result;
+	    		 },
+	    		 error: function(err){
+	    			 console.log(err);
+	    		 }
+	    	 })
+	     }
+
+
 </script>
 </body>
 </html>

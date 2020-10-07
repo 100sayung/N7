@@ -42,7 +42,6 @@ table, tr, th, td {
 	height: 20px;
 	border-style: none;
 	text-align: center;
-	"
 }
 
 .draft2 {
@@ -88,8 +87,7 @@ input {
 				<tr>
 					<th>제목</th>
 					<th><input type="text" id="j_title" name="j_title"
-						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"
-						placeholder="분개전표 제목을 입력해주세요."></th>
+						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"></th>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -103,7 +101,6 @@ input {
 											name="j_account" class="txt" style="width: 400px;"></th>
 										<th colspan="2">문서번호</th>
 										<td colspan="2" style="width: 400px;">문서번호는 자동으로 입력됩니다.</td>
-										<!-- 										<td>결재상태</td> -->
 
 									</tr>
 									<tr>
@@ -113,8 +110,7 @@ input {
 											name="j_centre" class="txt" style="width: 400px;"></th>
 										<th colspan="2">부서명</th>
 										<!-- 귀속부서 -->
-										<th colspan="2"><input type="text" id="j_section"
-											name="j_section" class="txt" style="width: 400px;"></th>
+										<th colspan="2" id="hc"></th>
 									</tr>
 									<tr>
 										<th colspan="2">비용구분</th>
@@ -158,10 +154,6 @@ input {
 <script>
 	$('#su').click(
 			function() {
-				var num = /^[0-9]+$/; //숫자
-// 				var eng = /[a-zA-Z]/; //문자
-// 				var spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-// 				var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
 
 				var title = document.getElementById('j_title');
 				var account = document.getElementById('j_account');
@@ -204,44 +196,50 @@ input {
 				} else if (debit.value != credit.value) {
 					alert("차변금액과 대변금액이 같지 않습니다.");
 				} else {
-// 					if (num.test(debit)) 
-// 							&& !(eng.test(debit))
-// 							&& !(spc.test(debit)) && !(kor.test(debit))
-// 							||(num.test(credit)) && !(eng.test(credit))
-// 							&& !(spc.test(credit)) && !(kor.test(credit))
-							 { //차변대변금액
-// 						return true
+					var obj = $("#form1").serialize();
+					console.log(obj);
 
-						var obj = $("#form1").serialize();
-						console.log(obj);
-
-						$.ajax({
-							url : '/erp/rest/Account/actempoInsert',
-							type : 'post',
-							data : obj,
-							dateType : "json",
-							success : function(data) {
-								if (data == 1) {
-									console.log(data);
-									$("#form1")[0].reset();
-									alert("결재안 임시저장을 완료하였습니다.");
-								} else {
-									alert("결재안 임시저장이 실패하였습니다.");
-									console.log(data);
-								}
-							},
-							error : function(error) {
-								console.log(error);
-								alert("야 오류얌");
+					$.ajax({
+						url : '/erp/rest/Account/actempoInsert',
+						type : 'post',
+						data : obj,
+						dateType : "json",
+						success : function(data) {
+							if (data == 1) {
+								console.log(data);
+								$("#form1")[0].reset();
+								alert("결재안 임시저장을 완료하였습니다.");
+							} else {
+								alert("결재안 임시저장이 실패하였습니다.");
+								console.log(data);
 							}
-
-						})
-// 					} else {
-// 						alert("차변금액과 대변금액은 숫자만 입력 가능합니다.");
-// 						return false
-					}
+						},
+						error : function(error) {
+							console.log(error);
+							alert("야 오류얌");
+						}
+					});
 				}
-
 			});
+
+	$(document).ready(
+					function() {
+						$.ajax({
+									url : '/erp/rest/Account/getAu_name',
+									type : 'get',
+									data : 'json',
+									success : function(data) {
+										console.log(data);
+										var str = "";
+										for ( var i in data.aList) {
+											str += "<input type='text' class='txt' id='j_section' style='width: 400px; color:gray;' readonly name='j_section' value='"+data.aList[i].hc_dept+"'>";
+										}
+										$("#hc").html(str);
+									},
+									error : function(error) {
+										console.log(error);
+									}
+								});
+					});
 </script>
 </html>

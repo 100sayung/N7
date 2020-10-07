@@ -55,6 +55,6 @@
 		SELECT * FROM HR_CD_D 
 		WHERE HC_ID LIKE '%'||#{checkpayid}||'%' 
 		OR M_NAME LIKE '%'||#{checkpayid}||'%' 
-		OR HC_ID LIKE '%'||#{checkpayid}||'%' AND M_NAME LIKE '%'||#{checkpayid}||'%'
+		OR HC_ID LIKE '%'||#{checkpayid}||'%' AND M_NAME LIKE '%'||#{checkpayid}||'%' ORDER BY HC_DEPT DESC
 	</select>
 </mapper>

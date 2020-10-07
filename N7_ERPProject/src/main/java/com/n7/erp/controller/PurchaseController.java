@@ -2,6 +2,8 @@ package com.n7.erp.controller;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +35,16 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value = "Purchase/purchasedetail", method = RequestMethod.GET)
-	public ModelAndView purchasedetail(String check) {
-		mav = pm.pDetail(check);
+	public ModelAndView purchasedetail(String check, HttpSession session) {
+		mav = pm.pDetail(check, session);
 		System.out.println("check들어감?="+check);
 		return mav;
 	}
 	
 	@RequestMapping(value = "Purchase/pprogramwrite", method = RequestMethod.GET)
-	public ModelAndView pprogramwrite(String check) {
+	public ModelAndView pprogramwrite(String check, HttpSession session) {
 		System.out.println("check="+check);
-		mav = pm.pProgram(check);
+		mav = pm.pProgram(check, session);
 		return mav;
 	}
 	

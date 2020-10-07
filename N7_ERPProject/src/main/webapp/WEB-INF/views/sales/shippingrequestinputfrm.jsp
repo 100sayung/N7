@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>출하입력 form</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
@@ -40,7 +40,7 @@ border: 1px solid;
         <input type="text" name="search" id="search">
         <button id="searchh">검색</button>
         <form id="shippingrequestinput">
-        <div border="1" style="width:1300px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+        <div border="1" style="width:1300px; height:60px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:250px;">
          <thead>
             <tr>
@@ -50,16 +50,6 @@ border: 1px solid;
                <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>수주번호</th>
                <th><input id="bonum" type="text" name="bs_bonum"><button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
-<!--           <th>품목코드</th>
-               <th><input type="text" name="bs_itcode"></th>  -->
-            </tr>
-            <tr>
-<!--           <th>제품명</th>
-               <th><input type="text" name="bs_proname"></th>
-               <th>거래처회사코드</th>
-               <th><input type="text" name="bs_clcode"></th> -->
-<!--           <th>출하의뢰일</th>
-               <th><input type="date" name="bs_basedate"></th>       -->
             </tr>
          </thead>
       </table>
@@ -75,8 +65,6 @@ border: 1px solid;
                 </colgroup>
                 <colgroup span="3" align="center">
                 </colgroup>
-                <!-- <thead valign="top">
-                </thead> -->
                 <tbody id="tBody">
                     <tr>
                         <th><input type="radio" id="allCheck"></th>
@@ -103,7 +91,7 @@ border: 1px solid;
             </div>
             <br>
             <div>
-              <button type="button" class="addList" value="추가">추가</button>
+              <!-- <button type="button" class="addList" value="추가">추가</button> -->
               <button type="button" id="deleteCheck" value="삭제">삭제</button>
               <button type="button" id="sub">저장</button>
             </div>
@@ -119,11 +107,11 @@ border: 1px solid;
     <script type="text/javascript">
     function setChildValue(data) {
  	   console.log(data)
- 	   for(var i in data.aList){ 
+ 	   for(var i in data.aList){
  	   var clcode=data.aList[i].cl_code;
- 	      
+
  	   }
- 	   
+
  	   $("#clcode").val(clcode);
  	};
 
@@ -132,26 +120,10 @@ border: 1px solid;
  	   var bonum="";
  	   for(var i in data.sList){
  	   bonum=data.sList[i].bo_num;
-
  	   }
-
  	   $("#bonum").val(bonum);
  	};
 
-
-/*         var select2;
-       $.ajax({
-             url:"/erp/rest/sales/getbonum",
-             dataType:"json",
-             type:"post",
-             success:function(data){
-                select2 = makeSelectBox2(data);
-                $(".cl2").html(select2);
-             },
-             error:function(err){
-                console.log(err);
-             }
-          }); */
 
     $('#shippingitemfrm').click(function(){
       var str="";
@@ -182,10 +154,6 @@ border: 1px solid;
    });
   });
 
-        //select형식의 추가삭제로 바꿔야함!
-        //추가삭제 2번씩 됨......
-
-
    $(document).ready(function(){
     var select;
     $.ajax({
@@ -199,27 +167,7 @@ border: 1px solid;
              console.log(err);
           }
        });
-
-              $('.addList').click(function(){
-                $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-   
-    var select;
-    
-    $.ajax({
-          url:"/erp/stock/getitemcode",
-          dataType: 'json',
-          success:function(data){
-        	 console.log(data);
-             select = makeSelectBox(data);
-             $(".cl").html(select);
-          },
-          error:function(err){
-             console.log(err);
-          }
-       });
-
-             });
-        
+   });
 
          $(document).ready(function(){
         	    var select2;
@@ -234,29 +182,8 @@ border: 1px solid;
         	             console.log(err);
         	          }
         	       });
-
-        	              $('.addList').click(function(){
-        	                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="bs_docunum" class="input-text"></td><td style="width:250px;"><input type="text" name="bs_clcode" class="input-text" ></td><td class="cl"></td><td class="pn"></td><td><input type="number" name="bs_unit" class="input-text" ></td><td><input type="number" name="bs_quantity" class="input-text" ></td><td><input type="number" name="bs_price" class="input-text" ></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
-        	   
-        	    var select2;
-        	    
-        	    $.ajax({
-        	          url:"/erp/stock/getitemcode",
-        	          dataType: 'json',
-        	          success:function(data){
-        	        	 console.log(data);
-        	             select = makeSelectBox2(data);
-        	             $(".pn").html(select);
-        	          },
-        	          error:function(err){
-        	             console.log(err);
-        	          }
-        	       });
-
-        	              });
-        	          });
           });
-         
+
 
          function makeSelectBox(arr){
              var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
@@ -275,7 +202,7 @@ border: 1px solid;
                 let tr = row.parentNode.parentNode;
                 tr.parentNode.removeChild(tr);
          };
-         
+
          function makeSelectBox2(arr){
              var arrStr = "<select class='select' name = 'bs_proname'><option></option>"
              if(arr.length==0){
@@ -339,9 +266,9 @@ border: 1px solid;
                 	error:function(error){
                 		console.log(error);
                 	}
-                	
+
                 })
-              
+
             });
          });
 
@@ -399,7 +326,7 @@ border: 1px solid;
                      console.log(data);
                      var str="";
                       if(data.sList==null){
-                    	  alert("이미결제 요청된 데이터입니다.");
+                    	  alert("이미 결재 요청된 데이터입니다.");
                       }else{
                         str+="<tr><th><input type='radio' id='allCheck'></th><th>수주번호</th><th>거래처회사코드</th><th>품목코드</th><th>제품명</th><th>판매단가</th><th>수량</th><th>판매금액</th></tr>";
 
@@ -423,19 +350,6 @@ border: 1px solid;
             });
 
 
-/*           function makeSelectBox2(arr){
-            var arrStr = "<select name = 'bs_bonum'>"
-            if(arr.length==0){
-               arrStr+="<option>수주번호를 작성해주세요 </option>";
-            }else{
-               for(var i = 0;i<arr.length;i++){
-                  arrStr+="<option value='"+arr[i].bo_num+"'>"+arr[i].bo_num+"</option>";
-               }
-            }
-            arrStr+="</select>";
-            return arrStr;
-         }   */
-
         function changeItcode(id){
            var it_stock = $(id).val();
            var it_code = $(id).parent().siblings(".cl").children().val();
@@ -454,6 +368,9 @@ border: 1px solid;
            })
         }
 
+  		$('#shippingitemfrm').click(function(){
+			$("#sub").attr("style","visibility: hidden");
+	});
 
 </script>
 </body>
