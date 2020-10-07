@@ -124,7 +124,7 @@
 <update parameterType="Career" id="updateCareer">
 	UPDATE HR_CAREER
 	SET
-		HCR_CNAME = #{hcr_cname},
+		HCR_NAME = #{hcr_name},
 		HCR_STARTPERIOD = #{hcr_startperiod},
 		HCR_ENDPERIOD = #{hcr_endperiod},
 		HCR_CONTENT = #{hcr_content},
@@ -222,4 +222,16 @@
 	WHERE
 		HC_CCODE = #{cCode} AND HC_STATUS = #{status}
 </select>
+
+<update id="updateLeftHoliday" parameterType="hashMap">
+	UPDATE
+		HR_CARD
+	SET
+		HC_HOLYNUM = (SELECT HC_HOLYNUM
+						FROM HR_CARD
+						WHERE HC_HRCODE = #{hrCode}
+					 )-${term}
+	WHERE
+		HC_HRCODE = #{hrCode}
+</update>
 </mapper>

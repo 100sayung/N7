@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>영업 메뉴창</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -38,7 +38,7 @@ a {
 }
 
 #body{
-    position: relative; 
+    position: relative;
 }
 
 #description{
@@ -46,7 +46,7 @@ a {
     height:100%;
     width:80%;
     position: absolute;
-    transform:translate(300px, 0);   
+    transform:translate(300px, 0);
 }
 
 ul {
@@ -64,7 +64,8 @@ ul {
       <div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
       </div>
    </div>
    <div id="side_menu">
@@ -77,13 +78,13 @@ ul {
    </div>
    <center>
    <div id="description">
-    
+
    </div>
-   <center>
+   </center>
    </body>
    <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
    <script>
-   
+
    $('#showMenu1').click(function() {
 
        $.ajax({
@@ -98,9 +99,10 @@ ul {
           }
        });
     });
-   
+
+
    $('#showMenu2').click(function() {
-       
+
        $.ajax({
           type : 'get',
           url : '/erp/sales/shippingrequestinputfrm',
@@ -113,32 +115,9 @@ ul {
              console.log(error);
           }
        });
-    }); 
-    
-    
-/*   $('#showMenu2').click(function() {
-    var str="";
-    
-    $.ajax({
-       type : 'get',
-       url:'rest/orderitem'
-       dataType : "json",
-       success : function(data) {
-          console.log(data);
-          
-          for(var i in data.sList){
-             str+="<tr><td><input type='text' name='checknum' value="+data.sList[i].pro_order_num+"></td>";
-             str+="<td><input type='text' name='pro_name' value="+data.sList[i].pro_name+"</td>";
-             
-          }
-          $('#tBody').html(str);
-       },
-       error: function(error){
-          console.log(error);
-       }
     });
- });  */
-   
+
+
    $('#showMenu3').on('click', function() {
 
        $.ajax({
@@ -154,7 +133,7 @@ ul {
           }
        });
     });
-   
+
    $('#showMenu4').on('click', function() {
        $.ajax({
           type : 'get',
@@ -169,32 +148,8 @@ ul {
           }
        });
     });
-   
-/*    $('#showMenu5').on('click', function(e) {
-       e.preventDefault();
 
-        var check='';
-       $("input[name=each_check]:checked").each(function(){
-          check= $(this).attr("value");
-          
-          console.log(check);
-          if(check!=""){
-      
-       $.ajax({
-          type : 'get',
-          url :  'salesapprovaldetail',
-          dataType : 'html',
-          success : function(data) {
-             console.log(data);
-             $('#description').html(data);
-          },
-          error: function(error){
-             console.log(error);
-          }
-        });
-    }); */
-    
-    
+
     var select;
       $.ajax({
             url:"/erp/stock/getitemcode",
@@ -207,19 +162,19 @@ ul {
                console.log(err);
             }
          });
-      
+
      function makeSelectBox(arr){
           var arrStr = "<select name = 'bs_itcode'>"
           if(arr.length==0){
              arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
           }else{
              for(var i = 0;i<arr.length;i++){
-                arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
+                arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
              }
           }
           arrStr+="</select>";
           return arrStr;
-       } 
-     
+       }
+
    </script>
 </html>

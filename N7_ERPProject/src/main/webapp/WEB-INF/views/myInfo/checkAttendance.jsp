@@ -5,10 +5,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>출 /퇴근 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
 <style>
 #header {
@@ -42,6 +44,8 @@ a {
 	float: left;
 	height: 100%;
 	width: 800px;
+	position: absolute;
+	transform:translate(250px, 0);
 }
 
 ul {
@@ -55,7 +59,7 @@ ul {
 }
 
 .emphasis{
-	background:#FFB2D9;
+	background:#3D6B9B;
 	font-size: 30px;
 	font-weight: bold;
 	color:white;
@@ -67,9 +71,18 @@ ul {
 
 #check{
 	width:800px;
-	height:150px;
+	height:100px;
 	text-align: center;
 	align-content: center;
+	border-bottom: 1px solid black;
+}
+#calendar{
+	border:1px solid black;
+	text-align:center;
+	width: 450px;
+	height: 350px;
+	position: absolute;
+	transform:translate(1050px, 0);
 }
 
 #menu2 {
@@ -87,17 +100,15 @@ ul {
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
-			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
-			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
-			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
+			<div id="myInfoMenu">
+			</div>
 			<li id="showMenu1">나의 결재함</a></li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>
@@ -112,37 +123,38 @@ ul {
 		</ul>
 	</div>
 	<div id="description">
-	
-	<h1 align="center">현재시각</h1>
-	<h1 align="center" id="clock"></h1><br><br>
-	
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size">출 / 퇴근 등록</h1>
+	</div>
+	<h1 align="center">(☞ﾟヮﾟ)☞현재시각☜(ﾟヮﾟ☜)</h1>
+	<h1 align="center" id="clock" style="margin-bottom: 30px;"></h1>
+
 	<div style="align:center;" id="currentStatus"></div>
-	<br>
 	<br>
 	<div id='check'>
 	<span id="in" class="attendance">출근 등록</span>
 	<span id="out" class="attendance">퇴근 등록</span>
 	</div>
 	</div>
-	
-	
+
+
     <table align="center" id="calendar">
         <tr>
             <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
             <td colspan="5" align="center" id="yearmonth"></td>
             <td><font size=1%; color="#B3B6B3"><label onclick="nextm()" id="next"></label></font></td>
         </tr>
-        <tr>
-            <td align="center"> <font color="#FF9090">일</font></td>
-            <td align="center"> 월 </td>
-            <td align="center"> 화 </td>
-            <td align="center"> 수 </td>
-            <td align="center"> 목 </td>
-            <td align="center"> 금 </td>
-            <td align="center"><font color=#7ED5E4>토</font></td>
+        <tr align="center">
+            <td> <font color="#FF9090">일</font></td>
+            <td> 월 </td>
+            <td> 화 </td>
+            <td> 수 </td>
+            <td> 목 </td>
+            <td> 금 </td>
+            <td><font color=#7ED5E4>토</font></td>
         </tr>
     </table>
-	
+
 
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
@@ -244,14 +256,14 @@ $("#acTemporary").click(function() {
 				console.log(err);
 			}
 		});
-		
-		
+
+
 	};
 	load();
 	$(".attendance").click(function(){
 		console.log(this.id);
 		let curtime = new Date();
-	
+
 		$.ajax({
 			url:"/erp/rest/hr/attendance",
 			data:{status : this.id, time : curtime.toString()},
@@ -268,7 +280,7 @@ $("#acTemporary").click(function() {
 			}, error : function(err){
 				console.log(err);
 			}
-		}); 
+		});
 	});
 
 	var clockTarget = document.getElementById("clock");
@@ -276,17 +288,17 @@ $("#acTemporary").click(function() {
 
 	function clock() {
 	    var date = new Date();
-	    // date Object를 받아오고 
+	    // date Object를 받아오고
 	    var month = date.getMonth();
-	    // 달을 받아옵니다 
+	    // 달을 받아옵니다
 	    var clockDate = date.getDate();
-	    // 몇일인지 받아옵니다 
+	    // 몇일인지 받아옵니다
 	    var day = date.getDay();
-	    // 요일을 받아옵니다. 
+	    // 요일을 받아옵니다.
 	    var week = ['일', '월', '화', '수', '목', '금', '토'];
-	    // 요일은 숫자형태로 리턴되기때문에 미리 배열을 만듭니다. 
+	    // 요일은 숫자형태로 리턴되기때문에 미리 배열을 만듭니다.
 	    var hours = date.getHours();
-	    // 시간을 받아오고 
+	    // 시간을 받아오고
 	    var minutes = date.getMinutes();
 	    // 분도 받아옵니다.
 	    var seconds = date.getSeconds();
@@ -302,25 +314,25 @@ $("#acTemporary").click(function() {
 	}
 
 	init();
-	
 
-	
+
+
 	//이 아래로 달력
 	    var today = new Date(); // 오늘 날짜
 	    var date = new Date();
-	 
+
 	    function beforem() //이전 달을 today에 값을 저장
-	    { 
+	    {
 	        today = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
 	        build(); //만들기
 	    }
-	    
+
 	    function nextm()  //다음 달을 today에 저장
 	    {
 	        today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
 	        build();
 	    }
-	    
+
 	    function build()
 	    {
 	        var nMonth = new Date(today.getFullYear(), today.getMonth(), 1); //현재달의 첫째 날
@@ -328,7 +340,7 @@ $("#acTemporary").click(function() {
 	        var tbcal = document.getElementById("calendar"); // 테이블 달력을 만들 테이블
 	        var yearmonth = document.getElementById("yearmonth"); //  년도와 월 출력할곳
 	        yearmonth.innerHTML = today.getFullYear() + "년 "+ (today.getMonth() + 1) + "월"; //년도와 월 출력
-	        
+
 	        if(today.getMonth()+1==12) //  눌렀을 때 월이 넘어가는 곳
 	        {
 	            before.innerHTML=(today.getMonth())+"월";
@@ -344,27 +356,27 @@ $("#acTemporary").click(function() {
 	            before.innerHTML=(today.getMonth())+"월";
 	            next.innerHTML=(today.getMonth()+2)+"월";
 	        }
-	        
-	       
+
+
 	        // 남은 테이블 줄 삭제
-	        while (tbcal.rows.length > 2) 
+	        while (tbcal.rows.length > 2)
 	        {
 	            tbcal.deleteRow(tbcal.rows.length - 1);
 	        }
 	        var row = null;
 	        row = tbcal.insertRow();
 	        var cnt = 0;
-	 
+
 	        // 1일 시작칸 찾기
-	        for (i = 0; i < nMonth.getDay(); i++) 
+	        for (i = 0; i < nMonth.getDay(); i++)
 	        {
 	            cell = row.insertCell();
 	            cnt = cnt + 1;
 	        }
-	 
+
 	        // 달력 출력
 	        for (i = 1; i <= lastDate.getDate(); i++) // 1일부터 마지막 일까지
-	        { 
+	        {
 	            cell = row.insertCell();
 	            cell.innerHTML = i;
 	            cnt = cnt + 1;
@@ -375,12 +387,12 @@ $("#acTemporary").click(function() {
 	                cell.innerHTML = "<font color=#7ED5E4>" + i//토요일에 색
 	                row = calendar.insertRow();// 줄 추가
 	            }
-	            if(today.getFullYear()==date.getFullYear()&&today.getMonth()==date.getMonth()&&i==date.getDate()) 
+	            if(today.getFullYear()==date.getFullYear()&&today.getMonth()==date.getMonth()&&i==date.getDate())
 	            {
 	                cell.bgColor = "#BCF1B1"; //오늘날짜배경색
 	            }
 	        }
-	 
+
 	    }
 </script>
 </body>

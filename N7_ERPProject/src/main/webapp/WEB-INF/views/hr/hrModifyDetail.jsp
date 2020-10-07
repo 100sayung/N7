@@ -7,7 +7,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
-<title>Insert title here</title>
+<title>사원 인사 카드 수정 및 입력</title>
 <style>
 .modifyMode{
 	background-color: skyblue;
@@ -145,7 +145,7 @@ if(str1>str2){
 function replaceAll(str, searchStr, replaceStr) {
     return str.split(searchStr).join(replaceStr);
  }
- 
+
 function checkDateValue(val1, val2){
 	let date1 = Number(replaceAll(val1.value, "-", ""));
 	let date2 = Number(replaceAll(val2.value, "-", ""));
@@ -183,7 +183,7 @@ function addRecord(){
 //		$("#hrDetail > tbody:last").append(str);
 	$("#infoTable > tbody:last").append(str);
 }
-function thisRowDel(row){	
+function thisRowDel(row){
 	let tr = row.parentNode.parentNode;
 	console.log(tr);
 	tr.parentNode.removeChild(tr);
@@ -212,9 +212,9 @@ function thisRowDel(row){
 		}else{
 			alert("취소되었습니다.")
 		}
-		
+
 	}
-}	
+}
 
 function changeMode(){
 	console.log($("#changeBtn").attr('class'));
@@ -240,7 +240,7 @@ function changeMode(){
 		}
 	}
 	$("#changeBtn").toggleClass("mf");
-	
+
 }
 
 var formURL = "/erp/hr";
@@ -252,6 +252,8 @@ var formURL = "/erp/hr";
 function AcademicInfo(){
 	$("#form").attr("action", formURL + "/newacademic/" + id);
 	$("#current").val("Academic");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	console.log("aca");
 	$.ajax({
 		url:"/erp/rest/hr/academic",
@@ -292,6 +294,8 @@ function AcademicInfo(){
 function CertificationInfo(){
 	$("#form").attr("action", formURL + "/newcertification/" + id);
 	$("#current").val("Certification");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url:"/erp/rest/hr/certification",
 		dataType:"json",
@@ -328,6 +332,8 @@ function CertificationInfo(){
 function CareerInfo(){
 	$("#form").attr("action", formURL + "/newcareer/" + id);
 	$("#current").val("Career");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url:"/erp/rest/hr/career",
 		dataType:"json",
@@ -356,6 +362,8 @@ function CareerInfo(){
 }function InCompanyInfo(){
 	$("#form").attr("action", formURL + "/newhrcard/" +id);
 	$("#current").val("HRCard");
+	$("#registBtn").attr("disabled", true);
+	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url :"/erp/rest/hr/deptlist",
 		dataType:"json",
@@ -408,7 +416,7 @@ function CareerInfo(){
 					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>사용한 월차</td></tr>";
 					str += "<td><input type='text' value='"+status+"' readonly></td>"
 					str += "<td><input type='text' value='"+work+"'readonly></td>"
-					str += "<td><input type='text' value='"+data.hc_numholi+"' readonly></td></tr></table>";
+					str += "<td><input type='text' value='"+data.hc_holynum+"' readonly></td></tr></table>";
 					console.log(data.hc_joindate);
 					$("#hrDetailInfo").html(str);
 					curPosition = data.hc_position;
@@ -432,8 +440,8 @@ function CareerInfo(){
 					str += "<td><input type='text' placeholder='---' readonly></td></tr></table>";
 					$("#hrDetailInfo").html(str);
 					changeDept(document.getElementById("dept"));
-				} 
-			}); 
+				}
+			});
 		},error : function(err){
 			console.log(err);
 		}
@@ -454,9 +462,9 @@ function changeDept(id){
 			str += "<select name='hc_position' class='detailInfo'>";
 			for(let i = 0 ; i<data.length ; i++){
 				if(curPosition == data[i]){
-					str += "<option value='"+data[i]+"' selected='selected'>"+data[i]+"</option>";					
+					str += "<option value='"+data[i]+"' selected='selected'>"+data[i]+"</option>";
 				}else{
-					str += "<option value='"+data[i]+"'>"+data[i]+"</option>";					
+					str += "<option value='"+data[i]+"'>"+data[i]+"</option>";
 				}
 			}
 			$("#position").html(str);
@@ -464,7 +472,7 @@ function changeDept(id){
 			console.log(err);
 		}
 	});
-	
+
 /*	for(let i = 0 ; i<deptList.positionList.length ; i++){
 		if(data.hc_position===deptList.positionList[i]){
 			str += "<option value='"+deptList.positionList[i]+"' selected='selected'>"+deptList.positionList[i]+"</option>";

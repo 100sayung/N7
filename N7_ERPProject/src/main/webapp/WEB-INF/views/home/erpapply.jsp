@@ -87,7 +87,7 @@ body {
 	</div>
 	<div class="center">
 		<div id="container" class='input-group'>
-			<form action="newerp" method="post" onsubmit="return sum();">
+			<form id="form" name="form" action="newerp" method="post" onsubmit="return sum();">
 				<table class="table table-condensed">
 					<tr>
 						<th colspan='4'><div class='input-group'>
@@ -141,17 +141,12 @@ body {
 								<span class='input-group-addon'>&nbsp;&nbsp;&nbsp;&nbsp;주소&nbsp;&nbsp;&nbsp;&nbsp;</span>
 
 								<div class="form-group">
-									<button id="postcodify_search_button"
-										style="width: 100px; height: 30px;" type="button">주소검색</button>
-									<input type="text" id="addr1" name="addr1"
-										class="postcodify_address form-control" value=""
-										class='form-control' style='width: 62%;' /> <input id="addr2"
-										type="text" name="addr2"
-										class="postcodify_details form-control" value=""
-										class='form-control' style='width: 62%;' /> <input
-										type="text" name="addr3" id="addr3"
-										class="postcodify_extra_info form-control" value=""
-										class='form-control' style='width: 62%;' />
+								<div id="callBackDiv">
+									<button onclick="goPopup()" type="button">주소검색</button>
+									<input type="text" id="roadAddrPart1" name="roadAddrPart1"	class='form-control' style='width: 62%;' /> 
+									<input	type="text" name="roadAddrPart2" id="roadAddrPart2"	class='form-control' style='width: 62%;' />
+									<input id="addrDetail"type="text" name="addrDetail"class='form-control' style='width: 62%;' /> 
+								</div>
 								</div>
 							</div></th>
 					</tr>
@@ -180,8 +175,21 @@ body {
 		</div>
 	</div>
 	</div>
-
 	<script>
+	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+		document.form.roadAddrPart1.value = roadAddrPart1;
+		document.form.roadAddrPart2.value = roadAddrPart2;
+		document.form.addrDetail.value = addrDetail;
+		
+}
+	function goPopup(){
+		// IE에서 opener관련 오류가 발생하는 경우, window에 이름을 명시해줍니다.
+		window.name="jusoPopup";
+		
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("/erp/home/jusopopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	}
 		// 				var checkccode;
 
 		// 				$(function() {
@@ -227,15 +235,12 @@ body {
 			}
 		}
 
-		$(function() {
-			$("#postcodify_search_button").postcodifyPopUp();
-		});
 
 		function sum() {
 			if (checkccode) {
 				$("#addr").val(
-						$('#addr1').val() + $('#addr2').val()
-								+ $('#addr3').val());
+						$('#roadAddrPart1').val() + $('#roadAddrPart2').val()
+								+ $('#addrDetail').val());
 				console.log($("#addr").val());
 				return true;
 			} else {

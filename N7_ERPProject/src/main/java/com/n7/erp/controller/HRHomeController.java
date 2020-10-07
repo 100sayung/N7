@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,18 +62,17 @@ public class HRHomeController {
 		return "redirect:/hr/hrModifyDetail?id="+id;
 	}
 
-	@GetMapping(value={"/hr/movehrcardpage", "/hr/hr"})
+	@GetMapping(value="/hr/movehrcardpage")
 	public ModelAndView moveHrCard(HttpSession session) {
 		mav = hm.hrCard(session);
 		return mav;
 	}
-
 	@GetMapping(value = "/hr/attendance")
 	public ModelAndView moveAttendance(HttpSession session) {
 		mav = hm.checkMemberHrCard(session, "/hr/attendance");
 		return mav;
 	}
-	@GetMapping(value = "/hr/employeestatus")
+	@GetMapping(value = {"/hr/employeestatus", "/hr/hr"})
 	public ModelAndView moveEmployeeStatus(HttpSession session) {
 		mav = hm.checkMemberHrCard(session, "/hr/employeestatus");
 		return mav;
@@ -199,7 +199,7 @@ public class HRHomeController {
 	}
 	@GetMapping(value="/hr/holidayap")
 	public ModelAndView holidayAp(HttpSession session) {
-		mav=am.approvalLine(session);
+		mav=hm.approvalLine(session);
 		return mav;
 	}
 

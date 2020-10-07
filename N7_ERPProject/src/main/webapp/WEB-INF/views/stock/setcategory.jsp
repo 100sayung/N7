@@ -76,32 +76,6 @@ color: red;
 </style>
 </head>
 <body>
-	<div id="header">
-		<div id="logo">
-			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
-			</h1>
-		</div>
-		<div id="menu">
-			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
-		</div>
-	</div>
-	<div id="side_menu">
-		<ul id="menuList">
-			<li><a href="/erp/stock/setcategory">분류명 작성</a></li>
-			<li><a href="/erp/stock/setitemcode">품목 코드 작성</a></li>
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>		</ul>
-	</div>
-
 	<div id="description">
 		<h3>분류명 작성</h3>
 		<table style="border: 0px;">
@@ -116,14 +90,14 @@ color: red;
 					maxlength="1" required="required"></td>
 			<tr>
 			<tr>
-				<td colspan="2" style="border: 0px;"><button type="button"
-						id="btn">확정</button></td>
+				<td colspan="2" style="border: 0px;"><input type="button"
+						id="btn" value="확정"></td>
 			</tr>
 		</table>
 
 		<span id='msg'></span><br><br>
 		<h3>분류명 내역</h3>
-		<button type="button" id="modify">수정</button>
+		<input type="button"  id="modify" value="수정">
 		<table id="tb"></table>
 
 	</div>
@@ -169,8 +143,8 @@ color: red;
 										+ result[i].ct_name
 										+ '" readonly></td><td class="ct_code"><input type="text" value="'
 										+ result[i].ct_code
-										+ '" readonly></td><td><button type="button" id="btn'+i+'" onclick="modifyCategory(\'#btn'+i+'\')">확정</button></td>'
-										+ '<td><button type="button" id="del'+i+'"onclick="deleteCategory(\'#del'+i+'\')">삭제</button></td>'
+										+ '" readonly></td><td><input type="button" id="btn'+i+'" onclick="modifyCategory(\'#btn'+i+'\')" value="확정"></td>'
+										+ '<td><input type="button" id="del'+i+'"onclick="deleteCategory(\'#del'+i+'\')" value="삭제"></td>'
 										+ '</tr>';
 							}
 							$('#tb').html(str);

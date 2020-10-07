@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>신청 사원 휴가 접수</title>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -45,6 +45,7 @@ a {
 
 #description {
 	float: left;
+	width:1000px;
 	height: 100%;
 }
 
@@ -62,7 +63,6 @@ table, th, td {
 	width: 30px;
 }
 
-width:1000px;
 }
 table, td, th {
 	border: 1px solid black;
@@ -76,6 +76,9 @@ td {
 ul {
 	list-style: none;
 }
+body{
+	color:black;
+}
 </style>
 </head>
 <body onload='build();'>
@@ -88,35 +91,73 @@ ul {
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
-					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-			<div id="hrMenu"></div>
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<!-- 09-25 change  -->
 	<div id="description" align="center">
-		<div class="divcss">사원 휴가 관리</div><br>
-		<table align="center" >
-			<tr style="border-left: 1px solid black;border-right: 1px solid black;">
-				<td style="width: 100px;"><font color="#B3B6B3"><label
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size">사원 휴가 접수</h1>
+	</div>
+	<div style="float: right; ">
+		<table style="border: 1px solid black; width: 100px;">
+   			<tr style="background-color: #B2BEB5;color:black;">
+   				<td>대기중</td>
+   				<td>회색</td>
+   			</tr>
+   			<tr style="background-color: #39FF14;color:black;">
+   				<td>승인</td>
+   				<td>초록색</td>
+   			</tr>
+		</table>
+   </div>
+   <div>
+		<table align="center" style="margin-top: 50px;background-color: #D9EDF7;">
+			<tr style="border: 1px solid black;">
+				<td style="width: 100px;"><font color="#8A7F8D"><label
 						onclick="beforem()" id="before"></label></font></td>
 				<td style="width: 150px; font-size: 15px;" align="center"
 					id="yearmonth" style="font-size: 15px;"></td>
-				<td style="width: 100px;"><font color="#B3B6B3"><label
+				<td style="width: 100px;"><font color="#8A7F8D"><label
 						onclick="nextm()" id="next"></label></font></td>
 			</tr>
 		</table>
 		<table align="center" id="calendar">
 		</table>
-	<!-- ////////// -->
 		<br>
-		<div id="container"></div>
-
+		<div id="container">
+		</div>
+	</div>
+<!-- 	<table> -->
+<!-- 		<tr width="50px" height="40px"> -->
+<!-- 			<td style="background-color:#00FF00"></td> -->
+<!-- 			<td style="background-color:#4FFFB0"></td> -->
+<!-- 			<td style="background-color:#1B4D3E"></td> -->
+<!-- 			<td style="background-color:#3FFF00"></td> -->
+<!-- 			<td style="background-color:#0BDA51"></td> -->
+<!-- 			<td style="background-color:#39FF14"></td> -->
+<!-- 			<td style="background-color:#55DD33"></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr width="50px" height="40px"> -->
+<!-- 			<td style="background-color:#DCDCDC"></td> -->
+<!-- 			<td style="background-color:#E5E4E2"></td> -->
+<!-- 			<td style="background-color:#B2BEB5"></td> -->
+<!-- 			<td style="background-color:#91A3B0"></td> -->
+<!-- 			<td style="background-color:#8A7F8D"></td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -238,14 +279,14 @@ ul {
 		                     }
 		                     //09-24 change
 		                     if(data[k].hap_status=="3"){
-		                    	 cell.style.backgroundColor="#03D62A";
+		                    	 cell.style.backgroundColor="#39FF14";
 		                    	 cell.style.color="black";
 		                    	 cell.style.fontWeight="bolder";
 		                    	 cell.style.textShadow="black 0px 1px";
 		                     }
 		                     if(data[k].hap_status=="1"){
 		                    	 cell.style.color="black";
-		                    	 cell.style.backgroundColor="#C4C5C4";
+		                    	 cell.style.backgroundColor="#B2BEB5";
 		                     }
 		                     if(data[k].hap_status=="4"){
 		                    	 cell.innerHTML = row.remove();
@@ -264,16 +305,16 @@ ul {
 		                           cell.style.width="90px;";
 		                           cell.className="last"
 		                              cell = row.insertCell();
-		                           cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+		                           cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
 		                           cell.clssName="last"
-		                           
+
 		                        }
 		                     } else if (j == cnt) {
 		                    	 cell.innerHTML ="<p style='width:100px;'>"+data[k].m_name+"</p>";
 		                        cell.style.width="90px;";
 		                        cell.clssName="last"
 		                        cell = row.insertCell();
-		                        cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+		                        cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
 		                        cell.clssName="last"
 		                     } else {
 		                        cell.innerHTML = "";
@@ -295,7 +336,7 @@ ul {
 
 	       }
 
-		
+
 		function designThis(cell) {
 			console.log(cell);
 			cell.style.width = "100px";

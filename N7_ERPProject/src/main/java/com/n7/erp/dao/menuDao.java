@@ -37,5 +37,7 @@ public interface menuDao {
 	int depratmentDelete(@Param("au_name")String au_name, @Param("cCode") String cCode);
 	
 	int namecheck(Authority au);
+	@Select("SELECT au_authority FROM AUTHORITY INNER JOIN HR_CARD ON AUTHORITY.AU_NAME = HR_CARD.HC_DEPT WHERE HR_CARD.HC_CCODE = #{cCode}")
+	String checkAuth(String cCode);
 
 }

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>공제사항 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -66,23 +66,28 @@ td{
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
-					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-			<div id="hrMenu"></div>
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">공제 금액 관리</Strong>
+		<h1 class="deptregist_color_size">공제 금액 관리</h1>
 	</div>
 	<table id="deductiontable" width="100%">
 		<tr style="background-color: #F8F7F7; text-align: center;">
-		
+
 		</tr>
 	</table>
 	</div>
@@ -106,7 +111,7 @@ $("#showMenu3").hover(function() {
 })
 
 	$(function(){
-		var str='<tr style="background-color: #F8F7F7; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
+		var str='<tr style="background-color: lightgray; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
 		var deduct=${deduct};
 		console.log(deduct);
 		for(var i=0;i<deduct.length;i++){

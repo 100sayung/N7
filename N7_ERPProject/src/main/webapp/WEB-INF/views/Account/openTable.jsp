@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>매출매입 등록</title>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<!-- <script src="/js/jquery.serializeObject.js"></script> -->
 <style>
 #cal {
 	font-size: 20px;
 	font-family: 굴림;
-	border: 2px border-color:#3333FF;
+	border: 2px border-color:#3D6B9B;
 	float: left;
 }
 
@@ -39,11 +39,11 @@
 	text-align: center;
 }
 #testTable{
-width:1300px;
+width:1380px;
 overflow: auto;
 }
 #ListTable{
-width:1300px;
+width:1380px;
 height: 300px;
 overflow: auto;
 }
@@ -65,7 +65,7 @@ float: left;
 <body>
 	<div
 		style="width: auto; background-color: white-space; color: white; padding: 1%;">
-		<span style="padding-left: 5px"><a href="#" onclick="saleinsert()"><button>매출/매입등록</button></a></span>
+		<!-- <span style="padding-left: 5px"><a href="#" onclick="saleinsert()"><button>매출/매입등록</button></a></span> -->
 		<span style="padding-left: 5px"><a href="#"
 			onclick="window.open('comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
 		<span style="padding-left: 5px"><button id="getshipment">입고/출하조회</button></span>
@@ -77,7 +77,7 @@ float: left;
 
 	</div>
 		<div
-			style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">매출/매입
+			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">매출/매입
 			전표관리</div>
 		<span style="padding-left: 5px"><input id="select" type="text" /></span>
 		<select id="choice" name="s_saleSelect">
@@ -202,6 +202,8 @@ function setChildValue(data) {
 $("#getshipment").click(function(){
 	$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>등록하기</button> 출하<input class='changeship' type='radio' name='changeshipment' value='2'>입고<input class='changeship' type='radio' name='changeshipment' value='1'>");
 	$("#plusorminus").html("");
+	$("#testTable").html("");
+	$("#insert").hide();
 });	
 	
  $(document).on("click",".changeship",function(){
@@ -400,7 +402,7 @@ $("#addList").click(function() {
 				});
 
 
- function saleinsert(){
+/*  function saleinsert(){
 	//$("#comInfo").attr("display","inline-block");
 	//$("#plusorminus").attr("display","inline-block");
 	$("#testTable").html("");
@@ -415,13 +417,13 @@ $("#addList").click(function() {
 		str += "<td><input class='data' type='text' name='s_total' /></td>"
 		str += "<td><input class='data' name='s_memo' /></td></tr></tbody>"
 	$("#testTable").html(str);
-}
+} */
 
 	$("#taxbill").click(function() {
 				var check = '';
 		$("input[name='checknum']:checked").each(function() {
 							check = $(this).attr('value');
-							console.log(check);
+						});
                             if(check!=""){
 							if (check.indexOf("AS")) {
 								window.open('/erp/Account/taxbill?check=' + check,
@@ -434,13 +436,12 @@ $("#addList").click(function() {
                             }else{
                             	alert("체크한 항목이 없습니다");
                             }
-						});
 			});
 	$("#saledetails").click(function() {
 				var check = '';
 		$("input[name='checknum']:checked").each(function() {
 							check = $(this).attr('value');
-							console.log(check);
+						});
                             if(check!=""){
 							if (check.indexOf("P")) {
 								window.open('/erp/Account/saledetails?check=' + check,
@@ -452,7 +453,6 @@ $("#addList").click(function() {
                             }else{
                             	alert("체크한 항목이 없습니다");
                             }
-						});
 			});
 
 	function getList(code) {
@@ -488,6 +488,7 @@ $("#addList").click(function() {
 	$("#getList").click(function() {
 		$("#detailebutton").html("<button id='detaile' onclick='saledetaile()' type='button'>상세정보</button>");
 						$("#comInfo").attr("display","none");
+						$("#insert").hide();
 						$("#plusorminus").html("");
 						$.ajax({
 									url : '/erp/rest/Account/getsaleList',

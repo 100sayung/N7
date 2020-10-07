@@ -42,26 +42,26 @@ public class PurchaseRestController {
 	}
 
 	@GetMapping(value = "/Purchase/pference", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Purchase>> pference() {
+	public Map<String, List<Purchase>> pference(HttpSession session) {
 		System.out.println("들어감?");
 		//System.out.println("pageNum="+pageNum);
-		Map<String, List<Purchase>> pMap= pm.pFrerence();
+		Map<String, List<Purchase>> pMap= pm.pFrerence(session);
 		return pMap;
 	}
 
 	@PostMapping(value = "/Purchase/pfsearch", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Purchase>> pfsearch(String search, String choice) {
+	public Map<String, List<Purchase>> pfsearch(String search, String choice, HttpSession session) {
 		System.out.println("들어가라");
 		System.out.println(search);
 		System.out.println(choice);
-		Map<String, List<Purchase>> pMap= pm.pfsearch(search, choice);
+		Map<String, List<Purchase>> pMap= pm.pfsearch(search, choice, session);
 		return pMap;
 	}
 
 	@PostMapping(value = "/Purchase/pfdelete", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Purchase>> pfdelete(String check_list) {
+	public Map<String, List<Purchase>> pfdelete(String check_list, HttpSession session) {
 		System.out.println("checkList="+check_list);
-		Map<String, List<Purchase>> pMap= pm.pfdelete(check_list);
+		Map<String, List<Purchase>> pMap= pm.pfdelete(check_list, session);
 		return pMap;
 	}
 
@@ -131,24 +131,24 @@ public class PurchaseRestController {
 	}
 
 	@GetMapping(value = "/Purchase/rInfo", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Return>> rInfo() {
-		Map<String, List<Return>> rMap= pm.rInfo();
+	public Map<String, List<Return>> rInfo(HttpSession session) {
+		Map<String, List<Return>> rMap= pm.rInfo(session);
 		System.out.println("들어가");
 		return rMap;
 	}
 
 	@PostMapping(value = "/Purchase/rdelete", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Return>> rdelete(String check_list) {
+	public Map<String, List<Return>> rdelete(String check_list, HttpSession session) {
 		System.out.println("check_list:"+check_list);
-		Map<String, List<Return>> rMap= pm.rDelete(check_list);
+		Map<String, List<Return>> rMap= pm.rDelete(check_list, session);
 		return rMap;
 	}
 
 	@PostMapping(value = "/Purchase/retrunsearch", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Return>> retrunsearch(String search, String choice) {
+	public Map<String, List<Return>> retrunsearch(String search, String choice, HttpSession session) {
 		System.out.println("choice="+choice);
 		System.out.println("search="+search);
-		Map<String, List<Return>> rMap= pm.rSearch(search, choice);
+		Map<String, List<Return>> rMap= pm.rSearch(search, choice, session);
 		return rMap;
 	}
 

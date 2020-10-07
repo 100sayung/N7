@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>부서 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -45,13 +45,15 @@ a {
 	float: left;
 	height: 100%;
 	width: 1000px;
+    position: absolute;
+    transform:translate(250px, 0);
 }
 
 ul {
 	list-style: none;
 }
 #depttable,td{
-	
+
 	margin:auto;
 	text-align:center;
 	border-collapse: collapse;
@@ -60,6 +62,9 @@ ul {
 #dept{
 	padding: 5px 50px;
 }
+#position{
+	padding:5px 0px;
+}
 </style>
 </head>
 <body>
@@ -67,7 +72,7 @@ ul {
 <%
     request.setCharacterEncoding("UTF-8");
 %>
-	
+
 	<div id="header">
 		<div id="logo">
 			<h1>
@@ -77,19 +82,20 @@ ul {
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
+
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
 					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
 					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-			<div id="hrMenu"></div>
 		</ul>
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">부서 등록</Strong>
+		<h1 class="deptregist_color_size">부서 등록</h1>
 	</div>
 	<form action="/erp/hr/deptregistinsert" name="deptregistinsert" method="post" accept-charset="utf-8">
 		<table id="depttable" width="100%">
@@ -107,8 +113,10 @@ ul {
 </body>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
-
 $(document).ready(function(){
+	
+	$("#position").focus();
+	
 	$.ajax({
 		url:"/erp/rest/hr/ourdept",
 		dataType:"json",
@@ -125,7 +133,7 @@ $(document).ready(function(){
 		}, error : function(err){
 			console.log(err);
 		}
-		
+
 	});
 });
 
@@ -145,22 +153,6 @@ $("#showMenu3").hover(function() {
 	$("#smallMenu3").attr("style", "display:none");
 })
 
-
-	$("#showMenu1").hover(function() {
-		$("#smallMenu1").attr("style", "display:inline-block");
-	}, function() {
-		$("#smallMenu1").attr("style", "display:none");
-	})
-	$("#showMenu2").hover(function() {
-		$("#smallMenu2").attr("style", "display:inline-block");
-	}, function() {
-		$("#smallMenu2").attr("style", "display:none");
-	})
-	$("#showMenu3").hover(function() {
-		$("#smallMenu3").attr("style", "display:inline-block");
-	}, function() {
-		$("#smallMenu3").attr("style", "display:none");
-	})
 
 	function modifyDetail(id) {
 		window.open('/erp/hr/hrModifyDetail?id=' + id, '사원 인사카드 등록',

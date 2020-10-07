@@ -72,4 +72,8 @@ public class StockController {
 	public ModelAndView confirmExport(HttpServletRequest request) {
 		return stmm.cofirmExport(request);
 	}
+	@RequestMapping(value = "/searchitemcode", method = RequestMethod.GET)
+	public String searchItemCode() {
+		return "stock/searchitemcode";
+	}
 }

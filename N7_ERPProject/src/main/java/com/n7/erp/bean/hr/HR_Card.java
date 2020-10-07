@@ -16,10 +16,10 @@ public class HR_Card {
 	private String hc_position;
 	private String hc_work;
 	private String hc_status;
-	private String hc_numholi;
+	private String hc_holynum;
 	private String hc_ccode;
 
 
-	//가져올때 이름을 많이 가져와서 추가했음!
+	//媛��졇�삱�븣 �씠由꾩쓣 留롮씠 媛��졇���꽌 異붽��뻽�쓬!
 	private String m_name;
 }

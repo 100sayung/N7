@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>내 출결 보기</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -80,17 +80,15 @@ td{
 		<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
-			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
-			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
-			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
+			<div id="myInfoMenu">
+			</div>
 			<li id="showMenu1">나의 결재함</a></li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>

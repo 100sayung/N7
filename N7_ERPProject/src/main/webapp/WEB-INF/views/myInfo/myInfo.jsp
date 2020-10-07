@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>내 정보 보기</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -60,7 +60,8 @@ ul {
 	width: 600px;
 }
 
-tr {
+table,tr,td {
+	border-radius:5px;
 	border: 1px solid black;
 	border-collapse: collapse;
 }
@@ -91,25 +92,26 @@ tr {
 
 </style>
 </head>
-<body>
+<body onload="build();">
 	<div id="header">
 		<div id="logo">
 			<h1>
 				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
-		<div id="menu">
+			<div id="menu">
 			<ul>
 				<li class="current_page_item"><a href="/erp/myInfo/myInfo"
 					accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 			</ul></ul>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
-			<div id="myInfoMenu"><!-- 
+			<div id="myInfoMenu"><!--
 		 		<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 				<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
 				<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
@@ -130,7 +132,9 @@ tr {
 		</ul>
 	</div>
 	<div id="description" align="center">
-		<h1 align="center" style="color: #3D6B9B">내 정보 보기</h1>
+		<div class="first_div_css">
+			<h1 class="deptregist_color_size">내 정보 보기</h1>
+		</div>
 		<div id="member"></div>
 
 		<br> <br> <br>
@@ -152,7 +156,7 @@ tr {
 <input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
 <input type='submit' value='등록완료'  class = 'infobtn' disabled="disabled" id='registBtn'>
 		</form>
-
+<input type='hidden' id='current'>
 
 
 	</div>
@@ -162,7 +166,7 @@ tr {
 	$("#showMenu1").hover(function() {
 		$("#menu2").attr("style", "display:inline-block");
 	});
-	
+
 	$("#menu2").hover(function() {
 		$("#smenu3").attr("style", "display:inline-block");
 	});
@@ -179,7 +183,7 @@ tr {
 		});
 
 	});
-	
+
 	$("#apupBackpayment").click(function() {
 		$.ajax({
 			url : '/erp/Account/apupBackpayment',
@@ -192,7 +196,7 @@ tr {
 		});
 
 	});
-	
+
 	$("#apupPayment").click(function() {
 		$.ajax({
 			url : '/erp/Account/apupPayment',
@@ -245,19 +249,19 @@ tr {
 										success : function(data) {
 											console.log(data);
 											let info = "";
-											info += '<div style="margin-left:300px;"><div class="dataSpan"><img style="width:250px; height: 300px;" src="/erp/upload/'+data.photo+'"></div>';
-											info += '<div class="dataSpan"><table id="dataTable"><tr  class="infomenu"><td>이름</td></tr>'
+											info += '<div style="margin-left:200px;"><div class="dataSpan"><img style="width:250px; height: 300px;" src="/erp/upload/'+data.photo+'"></div>';
+											info += '<div class="dataSpan"><table id="dataTable" height="300px"><tr  class="infomenu"><td>이름</td></tr>'
 											info += '<tr><td id="m_name">'
 													+ data.name + '</td></tr>';
-											info += '<tr  class="infomenu"><td>생년월일</td></tr>';
+											info += '<tr class="infomenu"><td>생년월일</td></tr>';
 											info += '<tr><td id="m_birth">'
 													+ data.birth + '</td></tr>';
-											info += '<tr  class="infomenu"><td>전화번호</td></tr>';
+											info += '<tr class="infomenu"><td>전화번호</td></tr>';
 											info += '<tr><td id="m_phonenum">'
 													+ data.phonenum
 													+ '</td></tr>';
-											info += '<tr  class="infomenu"><td conlspan="2">주소</td></tr>'
-											info += '<tr style="height:40px;"><td id="m_address" colspan="2">'
+											info += '<tr class="infomenu"><td conlspan="2">주소</td></tr>'
+											info += '<tr><td id="m_address" colspan="2">'
 													+ data.address
 													+ '</td></tr></table></div></div>';
 											$("#member").html(info);
@@ -321,7 +325,7 @@ tr {
 				str += "<td><input type='date' name='hct_date' class='detailInfo'></td>"
 				str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 			} else if ($current == 'Career') {
-				str += "<tr><td><input type='text' name='hcr_cname' class='detailInfo'></td>";
+				str += "<tr><td><input type='text' name='hcr_name' class='detailInfo'></td>";
 				str += "<td><input type='date' name='hcr_startperiod' id='chk"
 						+ (num * 2) + "' class='detailInfo checkDate'><br>";
 				str += "<input type='date' name='hcr_endperiod' id='chk"
@@ -350,6 +354,7 @@ tr {
 						num = tr.childNodes[3].children.hcr_num.value;
 					} else if ($current == "Certification") {
 						num = tr.childNodes[2].children.hct_num.value;
+
 					}
 					$.ajax({
 						url : "/erp/rest/hr/removeinfo",
@@ -372,7 +377,7 @@ tr {
 
 			}
 		}
-		
+
 		function changeMode(){
 			console.log($("#changeBtn").attr('class'));
 			if($("#changeBtn").attr('class')=="infobtn mf"){
@@ -397,7 +402,7 @@ tr {
 				}
 			}
 			$("#changeBtn").toggleClass("mf");
-			
+
 		}
 
 
@@ -407,8 +412,9 @@ tr {
 			onBtn();
 			$("#form").attr("action", formURL + "/newacademic");
 			$("#current").val("Academic");
-			$
-					.ajax({
+			$("#registBtn").attr("disabled", true);
+			$("#registBtn").css('background-color','#d2d2d2');
+			$.ajax({
 						url : "/erp/rest/myinfo/academic",
 						dataType : "json",
 						method : "get",
@@ -448,6 +454,8 @@ tr {
 			onBtn();
 			$("#form").attr("action", formURL + "/newcertification");
 			$("#current").val("Certification");
+			$("#registBtn").attr("disabled", true);
+			$("#registBtn").css('background-color','#d2d2d2');
 			$
 					.ajax({
 						url : "/erp/rest/myinfo/certification",
@@ -487,6 +495,8 @@ tr {
 			onBtn();
 			$("#form").attr("action", formURL + "/newcareer");
 			$("#current").val("Career");
+			$("#registBtn").attr("disabled", true);
+			$("#registBtn").css('background-color','#d2d2d2');
 			$
 					.ajax({
 						url : "/erp/rest/myinfo/career",
@@ -498,7 +508,7 @@ tr {
 							str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
 							str += "<td>회사/프로젝트명</td><td>기간</td><td>직책</td><td colspan='2'>내용</td></tr>";
 							for (let i = 0; i < data.length; i++) {
-								str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_cname' class='detailInfo' value='"+data[i].hcr_cname+"' readonly ></td>"
+								str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_name' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
 								str += "<td><input type='date' name='hcr_startperiod' id='chk"
 										+ (i * 2)
 										+ "'class='detailInfo checkDate' value='"
@@ -646,7 +656,7 @@ tr {
 			});
 
 		});
-		
+
 	</script>
 </body>
 </html>
