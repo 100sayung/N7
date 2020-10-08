@@ -43,7 +43,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
 }
 
 ul {
@@ -65,7 +65,7 @@ table {
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -87,7 +87,7 @@ table {
 	</div>
 	<form action="searchpaymm" method="post" name="payroll" onsubmit="return checkpayinputmodify()">
 	<input type="hidden" value="${card.hc_ccode}" name="HC_CCODE">
-	<table id="payinputmodify" style="text-align: center; width: 1000px; height: 100px;" >
+	<table id="payinputmodify" style="text-align: center; width: 1150px; height: 100px;" >
 		<tr>
 			<td class="font_color_paydetail">직원코드  </td>
 			<td><input style="border: none;" type="text" name="HC_HRCODE" readonly="readonly" value="${card.hc_hrcode}"></td>
@@ -105,7 +105,7 @@ table {
 			<td><input id="HP_PAYDATE" type="month" name="HP_PAYDATE"></td>
 		</tr>
 	</table>
-	<table style="margin-top: 30px; width: 1000px; text-align: center; height: 300px;" >
+	<table style="margin-top: 30px; width: 1150px; text-align: center; height: 300px;" >
 		<tr>
 			<td class="font_color_paydetail">지급내역</td>
 			<td class="font_color_paydetail">지급 액</td>

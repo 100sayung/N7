@@ -101,7 +101,8 @@
 	SET
 		HC_JOINDATE = #{hc_joindate},
 		HC_DEPT = #{hc_dept},
-		HC_POSITION = #{hc_position}
+		HC_POSITION = #{hc_position},
+		HC_HOLYNUM = #{hc_holynum}
 	WHERE
 		HC_ID = #{hc_id} AND HC_CCODE = #{hc_ccode}
 </update>

@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.sales.approvaldetail;
 import com.n7.erp.dao.IHrDao;
@@ -45,7 +46,10 @@ public class MemberMM {
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
 			if (hDao.haveHrCode(mb.getM_id())) {
-				session.setAttribute("hrCode", hDao.getHrCodeFromID(mb.getM_id()));
+				HR_Card hrCard = hDao.getHrCardDetail(mb.getM_id());
+				session.setAttribute("hrCode", hrCard.getHc_hrcode());
+				String Auth = hDao.getAuthority(hrCard.getHc_dept(), hrCard.getHc_ccode());
+				session.setAttribute("auth", Auth);
 				System.out.println(hDao.getHrCodeFromID(mb.getM_id()));
 			}
 		} else {
@@ -139,13 +143,13 @@ public class MemberMM {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 			messageHelper.setFrom("mykyj2000@gmail.com");
 			messageHelper.setTo(userEmail);
-			messageHelper.setSubject("N7 ERP �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�뙃�땲�뙋�삕.");
-			messageHelper.setText("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕 " + authentictionNum + " �뜝�뙃�땲�뙋�삕");
+			messageHelper.setSubject("N7 ERP 인증번호입니다.");
+			messageHelper.setText("인증번호는 " + authentictionNum + " 입니다.");
 			mailSender.send(mimeMessage);
-			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
+			return ResponseEntity.ok(new Gson().toJson("인증번호 전송에 성공하였습니다. "));
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
+			return ResponseEntity.ok(new Gson().toJson("인증번호 전송에 실패하였습니다. 다시 시도 해주세요!"));
 		}
 	}
 
@@ -210,6 +214,7 @@ public class MemberMM {
 		mDao.deleteERPFunction(cCode);
 		mDao.deleteMember(cCode);
 		mDao.deleteCompany(cCode);
+		mDao.deleteAuthority(cCode);
 
 		return new Gson().toJson("�꽦怨�");
 	}

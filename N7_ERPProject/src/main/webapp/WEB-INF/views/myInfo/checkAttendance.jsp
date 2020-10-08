@@ -42,10 +42,11 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 800px;
+	height: 349px;
+	width: 700px;
 	position: absolute;
 	transform:translate(250px, 0);
+	border-bottom: 1px solid black;
 }
 
 ul {
@@ -70,11 +71,10 @@ ul {
 }
 
 #check{
-	width:800px;
+	width:700px;
 	height:100px;
 	text-align: center;
 	align-content: center;
-	border-bottom: 1px solid black;
 }
 #calendar{
 	border:1px solid black;
@@ -82,7 +82,7 @@ ul {
 	width: 450px;
 	height: 350px;
 	position: absolute;
-	transform:translate(1050px, 0);
+	transform:translate(950px, 0);
 }
 
 #menu2 {
@@ -99,7 +99,7 @@ ul {
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -130,7 +130,6 @@ ul {
 	<h1 align="center" id="clock" style="margin-bottom: 30px;"></h1>
 
 	<div style="align:center;" id="currentStatus"></div>
-	<br>
 	<div id='check'>
 	<span id="in" class="attendance">출근 등록</span>
 	<span id="out" class="attendance">퇴근 등록</span>

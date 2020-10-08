@@ -43,7 +43,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
 }
 
 ul {
@@ -67,7 +67,7 @@ table{
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -89,7 +89,7 @@ table{
 	</div>
 	<form action="searchpaymm" method="post" name="payroll">
 	<input type="hidden" value="${card.hc_ccode}" name="HP_CCODE">
-	<table id="payinputmodify" style="text-align: center; width: 1000px;height: 100px;border: 1px solid #D9EDF7" >
+	<table id="payinputmodify" style="text-align: center; width: 1150px;height: 100px;border: 1px solid #D9EDF7" >
 		<tr>
 			<td class="font_color_paydetail">사원코드  </td>
 			<td><input id="hrcode" name="hrcode" style="border: none;" type="text" readonly="readonly" value="${card.hc_hrcode}"></td>
@@ -110,7 +110,9 @@ table{
 	</form>
 	<div id="detailpage" align="center">
 	</div>
-	<input type="button" class="infobtn" onclick="moving()" value="확인">
+	<div align="center" style="margin-top: 20px;">
+		<input type="button" class="infobtn" onclick="moving()" value="확인">
+	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -133,7 +135,7 @@ table{
 					var str='';
 					console.log(data);
 					if(data!="1"){
-						str+="<table style='width:1000px; height:300px; border:1px solid #D9EDF7;'><tr>"
+						str+="<table style='width:1150px; height:300px; border:1px solid #D9EDF7;'><tr>"
 							+"<td class='font_color_paydetail'>지급내역</td>"
 							+"<td class='font_color_paydetail'>지급액</td>"
 							+"<td class='font_color_paydetail'>공제내역</td>"

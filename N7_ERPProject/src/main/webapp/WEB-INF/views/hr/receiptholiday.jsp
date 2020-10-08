@@ -45,7 +45,7 @@ a {
 
 #description {
 	float: left;
-	width:1000px;
+	width:1150px;
 	height: 100%;
 }
 
@@ -90,7 +90,7 @@ body{
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -113,13 +113,13 @@ body{
 	</div>
 	<div style="float: right; ">
 		<table style="border: 1px solid black; width: 100px;">
-   			<tr style="background-color: #B2BEB5;color:black;">
+   			<tr style="background-color: #FFFFFF;color:black;">
    				<td>대기중</td>
-   				<td>회색</td>
+   				<td>흰색</td>
    			</tr>
-   			<tr style="background-color: #39FF14;color:black;">
+   			<tr style="background-color: #D2E9FF;color:black;">
    				<td>승인</td>
-   				<td>초록색</td>
+   				<td>하늘색</td>
    			</tr>
 		</table>
    </div>
@@ -279,14 +279,14 @@ body{
 		                     }
 		                     //09-24 change
 		                     if(data[k].hap_status=="3"){
-		                    	 cell.style.backgroundColor="#39FF14";
+		                    	 cell.style.backgroundColor="#D2E9FF";
 		                    	 cell.style.color="black";
 		                    	 cell.style.fontWeight="bolder";
 		                    	 cell.style.textShadow="black 0px 1px";
 		                     }
 		                     if(data[k].hap_status=="1"){
 		                    	 cell.style.color="black";
-		                    	 cell.style.backgroundColor="#B2BEB5";
+		                    	 cell.style.backgroundColor="#FFFFFF";
 		                     }
 		                     if(data[k].hap_status=="4"){
 		                    	 cell.innerHTML = row.remove();

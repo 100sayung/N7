@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
+import com.n7.erp.bean.ps.Order;
 import com.n7.erp.bean.ps.Purchase;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.ps.approvalLine;
@@ -469,6 +470,66 @@ public class PurchaseMM {
 		}
 		return sMap;
 	}
+
+	public ModelAndView orderinsert(Order od, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		od.setO_ccode(session.getAttribute("cCode").toString());
+		
+		if(od.getO_ccode()!="") {
+			if(pDao.orderInsert(od)) {
+				view="Purchase/orderregistration";
+			}else {
+				view="Purchase/orderregistration";
+			}
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public Map<String, List<Order>> orderInfo(HttpSession session) {
+		Map<String, List<Order>> pMap = null;
+		String cCode = session.getAttribute("cCode").toString();
+
+		List<Order> pList = pDao.orderInfo(cCode);
+		System.out.println("제발...");
+			if (pList != null) {
+					pMap = new HashMap<>();
+					pMap.put("pList", pList);
+					System.out.println("pList=" + pList);
+			}else {
+				pMap= null;
+			}
+		return pMap;
+	}
+
+	public Map<String, List<Order>> orderSearch(String search, String choice, HttpSession session) {
+		Map<String, List<Order>> pMap = null;
+		String cCode= (String)session.getAttribute("cCode");
+		List<Order> pList = pDao.orderSearch(search, choice, cCode);
+		if (pList != null) {
+			pMap = new HashMap<>();
+			pMap.put("pList", pList);
+			System.out.println("pList=" + pList);
+		} else {
+			pMap = null;
+		}
+		return pMap;
+	}
+
+//	public Map<String, List<PurchaseApproval>> orderPinfo(HttpSession session) {
+//		Map<String, List<PurchaseApproval>>pMap= null;
+//		String cCode=(String)session.getAttribute("cCode");
+//		List<PurchaseApproval>pList=pDao.orderPinfo(cCode);
+//		if (pList != null) {
+//			pMap = new HashMap<>();
+//			pMap.put("pList", pList);
+//			System.out.println("pList=" + pList);
+//		}else {
+//			pMap= null;
+//		}
+//		return pMap;
+//	}
 
 
 

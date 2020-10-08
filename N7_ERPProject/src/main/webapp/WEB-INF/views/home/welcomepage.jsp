@@ -50,7 +50,7 @@ margin-left: 30px;
 
 <body>
 
-	<div id="header" class="container" style="text-align: center;">
+	<div id="header" class="container" style="text-align: center; border:1px solid black;">
 		<div id="logo">
 			<h1>
 				<a href="/erp/" style="color: black;">N7 COMPANY</a>
@@ -58,10 +58,17 @@ margin-left: 30px;
 		</div>
 	</div>
 	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div id="container">
 		<img src="http://www.probono.kr/template/BUILDER_core/resource/page_join_img.jpg"></img>
-		<br>
-		<a href="/erp/">홈으로 돌아가기</a>
 	</div>
 
 	

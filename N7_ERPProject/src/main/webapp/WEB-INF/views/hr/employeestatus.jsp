@@ -42,7 +42,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
 }
 
 ul {
@@ -51,7 +51,7 @@ ul {
 
 .menu{
 	font-size:medium;
-	width:250px;
+	width:287.5px;
 }
 
 table,td{
@@ -70,7 +70,7 @@ table,td{
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
