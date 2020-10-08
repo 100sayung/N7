@@ -366,13 +366,10 @@ button {
     </div>
 
     <!-- Login Form -->
-      <input type="text" id="userEmail" class="form-control" name="email" placeholder="email을 입력해주세요" required id="usr">
-      <button type="button" class="fadeIn fourth" id="authenticationBtn"  style="width:150px;">인증 번호 전송</button>
-      <input type="text" id="authenticationNum" class="form-control" name="m_pw" placeholder="인증번호를 입력해주세요!" required id="pwd" >
-      <button class="fadeIn fourth" value="LogIn" style="width:150px;">Login</button>
-      <br>
-      <br>
-      
+      <input type="text" style="width:258px;" id="userEmail" class="form-control" name="email" placeholder="email을 입력해주세요" required id="usr">
+      <button type="button" class="fadeIn fourth" id="authenticationBtn"  style="width:120px;">인증번호 전송</button>
+      <input style="width:258px;" type="text" id="authenticationNum" class="form-control" name="m_pw" placeholder="인증번호를 입력해주세요!" required id="pwd" >
+      <button id="checkAuthenticationNumBtn" class="fadeIn fourth" value="LogIn" style="width:120px;">인증번호 확인</button>
       <br>
       <br>
 
@@ -381,10 +378,9 @@ button {
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <!-- <a class="underlineHover" href="#">Forgot Password?</a> -->
-      <a href="/erp/findidfrm">비밀번호 찾기</a> |
-      <a href="/erp/findpasswordfrm">회원가입</a>
+      <a href="/erp/findpasswordfrm">비밀번호 찾기</a> |
+      <a href="/erp/joinpage">회원가입</a>
     </div>
-    <div style="padding:5px;">회원이 아니신가요? <a href="/erp/joinpage">회원가입</a></div>
   </div>
 </div>
 	<script>
@@ -442,7 +438,7 @@ button {
 			return;
 		}
 		if(authenticationNum == $("#authenticationNum").val()){
-		$(".warnMsg").html("회원 아이디는 "+userId+" 입니다.<br><a href = '/erp/login'>&nbsp;로그인 하러 가기</a>&nbsp;&nbsp;<a href = '/erp/findpasswordfrm'>&nbsp;비밀번호 찾기</a>");
+		$(".warnMsg").html("회원 아이디는 "+userId+" 입니다.<br><a href = '/erp/login'>&nbsp;로그인 하러 가기</a>");
 		$(".warnMsg")[0].style="color:black";
 	}if(authenticationNum != $("#authenticationNum").val()){
 		$(".warnMsg").html("인증번호가 틀립니다.");
