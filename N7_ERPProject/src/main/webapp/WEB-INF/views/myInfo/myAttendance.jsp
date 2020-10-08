@@ -22,6 +22,10 @@ table
 	height: 200px;
 }
 
+#menu2 {
+	font-size: medium;
+	}
+
 #side_menu {
 	height: 100%;
 	width: 250px;
@@ -121,6 +125,80 @@ td{
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
+	$("#showMenu1").hover(function() {
+		$("#menu2").attr("style", "display:inline-block");
+	});
+	
+	$("#menu2").hover(function() {
+		$("#smenu3").attr("style", "display:inline-block");
+	});
+
+	$("#apupFinalpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupFinalpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupBackpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupBackpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#apdownPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apdownPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#acTemporary").click(function() {
+		$.ajax({
+			url:'/erp/Account/acTemporary',
+			success:function(data) {
+				console.log(data);
+				$("#description").html(data);
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+
+	});
+	
 	function checkMyAt(i){
 		$.ajax({
 			url : "/erp/rest/myinfo/myattendance",

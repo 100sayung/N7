@@ -52,6 +52,9 @@ ul {
 .attendance{
 	border: 1px solid black;
 }
+#menu2 {
+	font-size: medium;
+	}
 </style>
 </head>
 <body>
@@ -73,7 +76,7 @@ ul {
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
 			<div id="myInfoMenu">
 			</div>
-			<li id="showMenu1">나의 결재함</a></li>
+			<li id="showMenu1">나의 결재함</li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>
 				<ul id="smenu3" style="display: none;">
@@ -121,6 +124,80 @@ ul {
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
+	   $("#showMenu1").hover(function() {
+			$("#menu2").attr("style", "display:inline-block");
+		});
+		
+		$("#menu2").hover(function() {
+			$("#smenu3").attr("style", "display:inline-block");
+		});
+
+		$("#apupFinalpayment").click(function() {
+			$.ajax({
+				url : '/erp/Account/apupFinalpayment',
+				type : 'get',
+				success : function(data) {
+					$("#description").html(data);
+				},
+				error : function() {
+				}
+			});
+
+		});
+		
+		$("#apupBackpayment").click(function() {
+			$.ajax({
+				url : '/erp/Account/apupBackpayment',
+				type : 'get',
+				success : function(data) {
+					$("#description").html(data);
+				},
+				error : function() {
+				}
+			});
+
+		});
+		
+		$("#apupPayment").click(function() {
+			$.ajax({
+				url : '/erp/Account/apupPayment',
+				type : 'get',
+				success : function(data) {
+					$("#description").html(data);
+				},
+				error : function() {
+				}
+			});
+
+		});
+
+		$("#apdownPayment").click(function() {
+			$.ajax({
+				url : '/erp/Account/apdownPayment',
+				type : 'get',
+				success : function(data) {
+					$("#description").html(data);
+				},
+				error : function() {
+				}
+			});
+
+		});
+
+		$("#acTemporary").click(function() {
+			$.ajax({
+				url:'/erp/Account/acTemporary',
+				success:function(data) {
+					console.log(data);
+					$("#description").html(data);
+				},
+				error : function(err) {
+					console.log(err);
+				}
+			});
+
+		});
+	
 	function setChildValue(data) {
 		console.log(data);
 		if (data.tList1 != "") {
