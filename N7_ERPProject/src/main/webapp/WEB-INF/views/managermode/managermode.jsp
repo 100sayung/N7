@@ -79,10 +79,10 @@ float: right;
                    
 
                     <li>
-                        <a href="#" id="company"><i class="fa fa-table "></i>회사정보</a>
+                        <a id="company"><i class="fa fa-table "></i>회사정보</a>
                     </li>
                     <li>
-                        <a href="#" id="erpmanage"><i class="fa fa-edit "></i>부서관리</a>
+                        <a id="erpmanage"><i class="fa fa-edit "></i>부서관리</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-qrcode "></i></a>

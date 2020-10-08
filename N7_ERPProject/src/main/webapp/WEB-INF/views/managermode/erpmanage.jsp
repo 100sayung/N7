@@ -110,23 +110,30 @@ ul {
 }
 
 #table {
-	margin: 10px 10px 10px 50px;
-	width: 1000px;
+	margin: 10px 10px 0px 0px; 
+	width: 100%;
+/* 	width: 800px; */
 }
 
 #deleteBt {
 	float: right;
 }
 
-button {
-	margin: 2px 2px 2px 2px;
-}
+/* button { */
+/* 	margin: 2px 2px 2px 2px; */
+/* } */
 
 #au {
 	height: 20px;
 	width: auto;
-	background-color: #3D6B9B;
-	color: white;
+	background-color: white;
+	color: #3D6B9B;
+}
+.alert alert-info{
+	margin: 20px;
+}
+#save{
+margin-bottom: 10%;
 }
 </style>
 </head>
@@ -136,17 +143,23 @@ button {
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>부서관리</h2>
+				<div>
+				<label id="au"><input type="radio" class="active" id="insert"
+				value="option" name="option">부서권한등록</label>
+				<label id="au"><input type="radio" class="active" id="delete"
+					value="option" name="option">부서권한삭제</label>
+				</div>
 			</div>
 		</div>
 		<hr>
-		<div id="au">
-			<label><input type="radio" class="active" id="insert"
-				value="option" name="option">부서권한등록</label>
-		</div>
+<!-- 		<div id="au"> -->
+<!-- 				<label id="au"><input type="radio" class="active" id="insert" -->
+<!-- 				value="option" name="option">부서권한등록</label> -->
+<!-- 		</div> -->
 		<div>
 			<div id="insertBox">
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12" style="padding:15px;">
 						<div class="alert alert-info">
 							<strong>ERP 부서 등록 페이지입니다.</strong>
 							<button class="btn btn-success" id="save">저장</button>
@@ -199,12 +212,11 @@ button {
 				</div>
 			</div>
 		</div>
-		<br> <br>
 		<div>
-			<div id="au">
-				<label><input type="radio" class="active" id="delete"
-					value="option" name="option">부서권한삭제</label>
-			</div>
+<!-- 			<div id="au"> -->
+<!-- 				<label><input type="radio" class="active" id="delete" -->
+<!-- 					value="option" name="option">부서권한삭제</label> -->
+<!-- 			</div> -->
 			<div id="deleteBox">
 				<div class="row">
 					<div class="col-lg-12 ">
