@@ -92,7 +92,7 @@ table,tr,td {
 
 </style>
 </head>
-<body onload="build();">
+<body>
 	<div id="header">
 		<div id="logo">
 			<h1>
@@ -163,16 +163,20 @@ table,tr,td {
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
+	var cnt = 0;
 	function checkCurrent(){
 		var $check = $("#current").val();
 		if($check==""){
 			console.log("공백");
 			alert("잘못된 접근입니다. 정보를 입력해주세요.");
 			return false;
-		}else{
-			console.log("공백아님");
-			return true;
 		}
+		if(cnt == 0){
+			console.log(cnt);
+			alert("잘못된 접근입니다. 정보를 입력해주세요.");
+			return false;
+		}
+		return true;
 	}
 	$("#showMenu1").hover(function() {
 		$("#menu2").attr("style", "display:inline-block");
@@ -348,6 +352,7 @@ table,tr,td {
 				str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 				num++;
 			}
+			cnt = cnt+1;
 			$("#infoTable > tbody:last").append(str);
 		}
 
@@ -421,6 +426,7 @@ table,tr,td {
 
 		function AcademicInfo() {
 			onBtn();
+			cnt = 0;
 			$("#form").attr("action", formURL + "/newacademic");
 			$("#current").val("Academic");
 			$("#registBtn").attr("disabled", true);
@@ -463,6 +469,7 @@ table,tr,td {
 
 		function CertificationInfo() {
 			onBtn();
+			cnt = 0;
 			$("#form").attr("action", formURL + "/newcertification");
 			$("#current").val("Certification");
 			$("#registBtn").attr("disabled", true);
@@ -504,6 +511,7 @@ table,tr,td {
 		}
 		function CareerInfo() {
 			onBtn();
+			cnt = 0;
 			$("#form").attr("action", formURL + "/newcareer");
 			$("#current").val("Career");
 			$("#registBtn").attr("disabled", true);
@@ -551,6 +559,7 @@ table,tr,td {
 			$("#form").attr("action", formURL + "/newhrcard");
 			$("#current").val("HRCard");
 			offBtn();
+			cnt = 0;
 			$.ajax({
 						url : "/erp/rest/myinfo/hrcard",
 						dataType : "json",
