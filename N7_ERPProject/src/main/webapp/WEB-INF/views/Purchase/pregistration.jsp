@@ -48,15 +48,15 @@ ${msg}
 				<table style="margin-left: 55px">
                  	 <tr>
                  	 	<th>구매번호</th>
-                    	<th><input type="text" name="p_documentcode" value="P" readonly ></th>
+                    	<th><input type="text" name="p_documentcode" value="P" readonly id="p_documentcode" ></th>
                     	<th>제품번호</th>
-                     	<th><input type="text" name="p_productnum"></th>
+                     	<th><input type="text" name="p_productnum" id="p_productnum"></th>
                      	<th>담당자</th>
-                    	<th><input type="text" name="p_writer"></th>
+                    	<th><input type="text" name="p_writer" id="p_writer"></th>
                     	<th>거래처</th>
-                     	<th><input id="clcode" type="text" name="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+                     	<th><input id="clcode" type="text" name="p_clcode" id="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                      	<th>구매일</th>
-                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
+                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;" id="p_day"></th>
                   	</tr>
             	</table>
 			</div>
@@ -84,12 +84,12 @@ ${msg}
 					<tbody id="tbody">
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
-                     		<td><input type="text" name="p_name"></td>
+                     		<td><input type="text" name="p_name" class="p_name"></td>
                      		<!-- <td><input type="text" name="p_itcode"></td> -->
                      		<td class="it"></td>
-                     		<td><input type="number" min="1" name="p_amount"></td>
+                     		<td><input type="number" min="1" name="p_amount" class="p_amount"></td>
                      		<td><input class="unlit" type="text" name="p_unlit"></td>
-                     		<td><input type="text" name="p_budget"></td>
+                     		<td><input type="text" name="p_budget" class="p_budget"></td>
                     	</tr>
 					</tbody>
 				</table>
@@ -153,7 +153,7 @@ ${msg}
 			}
 			
 		 $('.addList').click(function(){
-			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name"></td><td class="it"></td><td><input type="number" min="1" name="p_amount"></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name" class='p_name'></td><td class="it"></td><td><input type="number" min="1" name="p_amount" class='p_amount'></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
 		
 	var select;
 	$.ajax({
