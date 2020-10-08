@@ -244,6 +244,7 @@ input {
 		}
 
 		$("#j_company").val(comname);
+	};
 		
 	    function setChildValue2(data) {
 	  	   console.log(data)
@@ -254,6 +255,6 @@ input {
 	  	   $("#j_centre").val(bonum);
 	  	};
 
-	};
+	
 </script>
 </html>
