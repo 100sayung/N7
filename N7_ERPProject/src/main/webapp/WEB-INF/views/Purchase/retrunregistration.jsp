@@ -30,7 +30,7 @@ width: 160px;
             <button id="Wearing">입고현황</button>
             <button id="rInfo">반품조회</button>
       <br><br>
-      <div style="width: 1300px; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
+      <div style="width: 1150px; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
                <select id="choice">
                   <option value="r_documentcode">반품번호</option>
                   <option value="r_ieseqnum">입고번호</option>
@@ -40,7 +40,7 @@ width: 160px;
                <input type="text" id="search" name="search" style="height: 18px";>
                <button id="searchbtn">검색</button>
       <form id="o_return">
-         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7; width:1330px;">
+         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7; width:1175px;">
             <div style="margin-left: 55px">
             <table>
                      <tr>
@@ -61,7 +61,7 @@ width: 160px;
          </div>
          <!-- <div style="background-color: #ECEBEA;"> -->
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 1330px; background-color: #ECEBEA;">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; background-color: #ECEBEA;">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">
