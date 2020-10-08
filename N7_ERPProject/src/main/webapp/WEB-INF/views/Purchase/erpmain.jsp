@@ -69,13 +69,28 @@ a{
     </div>
     <center>
     <div id="description">
-
+		
     </div>
     </center>
 </body>
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
+	$(document).ready(function(){
+		 $.ajax({
+			   type:'get',
+			   url:' /erp/Purchase/pregistration',
+			   dataType: 'html',
+			   success: function(data){
+				   $('#description').html(data);
+				   console.log(data);
+				   
+			   },
+			   error: function(err){
+				   console.log(err);
+			   }
+		   });
+	});	
 		
     $("#pregistration").click(function(){
 	   $.ajax({
@@ -85,6 +100,7 @@ a{
 		   success: function(data){
 			   $('#description').html(data);
 			   console.log(data);
+			   
 		   },
 		   error: function(err){
 			   console.log(err);
