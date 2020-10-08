@@ -18,15 +18,15 @@ text-align:center;
         <button type="button" id="businessitemfrm" onclick="window.open('/erp/sales/SalesResult','SalesResult','width=1200,height=1200')">영업 실적조회</button>${msg}
         <br>
         <br>
-        <div style="width:auto; background-color:#3D6B9B;  color:white; padding:1%;">영업활동</div>
+        <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">영업활동</div>
          <select id="choice" style="width:180px;">
                       <option value="ba_ocode">영업코드</option>
                       <option value="ba_hrcode">사원코드</option></select>
           <input type="text" name="search" id="search">
           <button type="button" id="searchh" value="검색">검색</button>
         <form id="businessactivitiesinput">
-        <div border="1" style="height:80px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:180px;">
+        <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+        <table style="margin-left:100px;">
          <thead>
             <tr>
                <th>영업코드</th>
@@ -34,13 +34,13 @@ text-align:center;
                <th>회사코드</th>
                <th><input type="text" name="ba_ccode" value="${cCode}" readonly></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="ba_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+               <th><input type="text" name="ba_clcode" id="clcode">&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>사원코드</th>
                <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th> <%-- value="${hrCode}" readonly --%>
             </tr>
             <tr>
                <th>사업단위</th>
-               <th><select name="ba_unit" style="width:180px;">
+               <th><select name="ba_unit" style="width:150px;">
                    <option value="본사">본사</option>
                    <option value="지사">지사</option></select></th>
                <th>영업기간 시작</th>
@@ -51,7 +51,7 @@ text-align:center;
          </thead>
       </table>
       </div>
-            <div style="background-color:#ECEBEA;">
+            <div style="background-color:#ECEBEA; width:1175px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
               style="margin-left:140px;">
                 <colgroup align="center">
@@ -67,10 +67,10 @@ text-align:center;
                         <th><input type="radio" id="allCheck"></th>
                         <th>날짜</th>
                         <th>내용</th>
-                  <th>예상매출금액</th>
-                  <th>실제매출금액</th>
-                  <th>종료일자</th>
-                  <th>메모</th>
+                        <th>예상매출금액</th>
+                        <th>실제매출금액</th>
+                        <th>종료일자</th>
+                        <th>메모</th>
                   </tr>
                 </thead>
                 <tbody id="tBody">
