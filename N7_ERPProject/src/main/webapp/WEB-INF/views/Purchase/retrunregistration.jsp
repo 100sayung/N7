@@ -17,6 +17,9 @@ text-align: center;
 width: 1140px;
 border: 1px solid silver;
 }
+.select{
+width: 160px;
+}
 </style>
 </head>
 <body>
@@ -94,9 +97,8 @@ border: 1px solid silver;
             </table>
          </div>
          <div style="float: left;">
-            <button type="button" id="save">저장</button>
-            <button type="button" id="rDelete">삭제</button>
-            <button type="button" id="print" onclick="window.print()">인쇄</button>
+            <button type="button" id="save">등록</button>
+            <!-- <button type="button" id="rDelete">삭제</button> -->
             <button type="reset">다시작성</button>
             </div>
          </form>
