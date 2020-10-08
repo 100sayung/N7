@@ -415,10 +415,10 @@ function CareerInfo(){
 						work="퇴사";
 					}
 					let str ="";
-					str += "<table border='1px solid black'><tr>";
+					str += "<table border='1px solid black' style='border-collapse:collapse;'><tr class='infomenu'>";
 					str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
 					str += "<tr><td><input type='text' name='hc_hrcode' value='"+data.hc_hrcode+"' class='detailInfo' readonly></td>"
-					str += "<td><select name='hc_dept' class='detailInfo' onchange='changeDept(this)' id='dept'>"
+					str += "<td><select name='hc_dept' class='detailInfo' onchange='changeDept(this)' id='dept' style='width:150px;height:25px;'>"
 					for(let i = 0 ; i<deptList.deptList.length ; i++){
 						if(data.hc_dept===deptList.deptList[i]){
 							str += "<option value='"+deptList.deptList[i]+"' selected='selected'>"+deptList.deptList[i]+"</option>";
@@ -427,12 +427,12 @@ function CareerInfo(){
 						}
 					}
 					str += "</select></td><td><span id='position'>";
-					str += "<select name='hc_position' class='detailInfo'>";
+					str += "<select name='hc_position' class='detailInfo' style='width:150px;height:25px;'>";
 					str += "<option value='"+data.hc_position+"' selected='selected'>"+data.hc_position+"</select>"
 					str += "</span></td></tr>";
-					str += "<tr><td colspan='3'>입사일</td></tr>";
+					str += "<tr class='infomenu'><td colspan='3'>입사일</td></tr>";
 					str += "<td colspan='3'><input type='date' name='hc_joindate' value='"+data.hc_joindate+"' class='detailInfo' readonly></td>"
-					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
+					str += "<tr class='infomenu'><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
 					str += "<td><input type='text' value='"+status+"' readonly></td>"
 					str += "<td><input type='text' value='"+work+"'readonly></td>"
 					str += "<td><input type='text' name = 'hc_holynum' value='"+data.hc_holynum+"' class='detailInfo' readonly></td></tr></table>";
@@ -443,15 +443,15 @@ function CareerInfo(){
 					console.log(deptList);
 					console.log(err);
 					let str ="";
-					str += "<table border='1px solid black'><tr>";
+					str += "<table border='1px solid black'><tr class='infomenu'>";
 					str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
-					str += "<tr><td><input type='text' name='hc_hrcode' placeholder='---' readonly></td>"
+					str += "<tr class='infomenu'><td><input type='text' name='hc_hrcode' placeholder='---' readonly></td>"
 					str += "<td><select name='hc_dept' class='detailInfo' id='dept' onchange='changeDept(this)'>"
 						for(let i = 0 ; i<deptList.deptList.length ; i++){
 							str += "<option>"+deptList.deptList[i]+"</option>";
 						}
 					str += "</select></td><td><span id='position'></td></tr>";
-					str += "<tr><td colspan='3'>입사일</td></tr>";
+					str += "<tr class='infomenu'><td colspan='3'>입사일</td></tr>";
 					str += "<td colspan='3'><input type='date' name='hc_joindate' class='detailInfo' required></td></tr>"
 					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
 					str += "<td><input type='text' placeholder='---' readonly></td>"
@@ -478,7 +478,7 @@ function changeDept(id){
 		success : function(data){
 			console.log(data);
 			let str = "";
-			str += "<select name='hc_position' class='detailInfo'>";
+			str += "<select name='hc_position' class='detailInfo' style='width:150px;height:25px;'>";
 			for(let i = 0 ; i<data.length ; i++){
 				if(curPosition == data[i]){
 					str += "<option value='"+data[i]+"' selected='selected'>"+data[i]+"</option>";
