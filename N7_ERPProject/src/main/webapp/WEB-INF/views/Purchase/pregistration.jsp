@@ -98,7 +98,7 @@ ${msg}
 				<button type="button" id="Pdelete">삭제</button>
 				<button type="button" id="save">등록</button>
 			</div>
-			<div style="float: right; padding-top: 5px; " >
+			<div style="float: right; padding-top: 5px;" >
 				<button type="button" class="addList">추가</button>
             	<button type="reset" id="reset">다시작성</button>
          	</div>
@@ -230,7 +230,7 @@ ${msg}
 		    			str+="<td>"+data.pList[i].p_productnum+"</td>";
 		    			str+="<td>"+data.pList[i].p_writer+"</td>";
 		    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-		    			str+="<td>"+data.pList[i].p_day+"</td>";
+		    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
     				}
     				$('#list').html(str); 
     				$("#save").attr("style","visibility: hidden");
@@ -275,7 +275,7 @@ ${msg}
 			    			str+="<td>"+data.pList[i].p_productnum+"</td>";
 			    			str+="<td>"+data.pList[i].p_writer+"</td>";
 			    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-			    			str+="<td>"+data.pList[i].p_day+"</td>";
+			    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
 			    		}
 			    			$('#list').html(str); 
 					 }else{
@@ -311,7 +311,7 @@ ${msg}
     					str+="<td>"+data.pList[i].p_productnum+"</td>";
     					str+="<td>"+data.pList[i].p_writer+"</td>";
     					str+="<td>"+data.pList[i].p_clcode+"</td>";
-    					str+="<td>"+data.pList[i].p_day+"</td>";
+    					str+="<td>"+data.pList[i].p_day+"</td><tr>";
     				}
     				$('#list').html(str); 
 				},

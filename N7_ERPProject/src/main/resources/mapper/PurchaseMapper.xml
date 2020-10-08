@@ -158,5 +158,29 @@
 	<select id="getstocklist" parameterType="String" resultType="itemcode">
 		SELECT * FROM S_ITEMCODE WHERE IT_CPCODE=#{cCode}
 	</select>
+	
+	<insert id="orderInsert">
+		INSERT INTO O_ORDER VALUES(O_ORDER_SEQ.NEXTVAL, #{o_code}, 1, #{o_pdocucode})
+	</insert>
+	
+	<select id="orderInfo" resultType="order">
+		SELECT * FROM O_ORDER
+	</select>
+
+	<select id="orderSearch" resultType="order">
+		SELECT * FROM O_ORDER
+		<where>
+			<if test="choice.equals('o_ccode')">
+				O_CCODE = #{search} AND O_CCODE=#{cCode}
+			</if>
+			<if test="choice.equals('o_pdocucode')">
+				O_PDOCUCODE = #{search} AND O_CCODE=#{cCode}
+			</if>
+		</where>
+	</select>
+	
+<!-- 	<select id="orderPinfo" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_CCODE=#{cCode} AND P_STATUS = '3'
+	</select> -->
 
 </mapper>

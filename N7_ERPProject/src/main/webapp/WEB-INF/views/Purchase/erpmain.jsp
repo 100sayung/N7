@@ -22,6 +22,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	font-size: 20px;
 	font-weight: bolder;
 	float: left;
+	border-right: 1px solid #E6E6E6;
 }
 
 #side_menu #menuList{
@@ -50,20 +51,20 @@ a{
 <body>
     <div id="header">
         <div id="logo">
-            <h1><a href="#">N7 ERP SYSTEM</a></h1>
+            <h1><a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a></h1>
     </div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li ><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
     </div>
     <div id="side_menu">
         <ul id="menuList">
-            <li><a href="#" id="pregistration">구매관리</a></li>
-            <li><a href="#" id="rregistration">반품 관리</a></li>
-            <li><a href="#" id="oregistration">발주 관리</a></li>
+            <li><a  id="pregistration">구매관리</a></li>
+            <li><a  id="rregistration">반품 관리</a></li>
+            <li><a  id="oregistration">발주 관리</a></li>
         </ul>
     </div>
     <center>
@@ -108,7 +109,7 @@ a{
    $("#oregistration").click(function(){
 	   $.ajax({
 		   type:'get',
-		   url:' /erp/Purchase/order',
+		   url:' /erp/Purchase/orderregistration',
 		   dataType: 'html',
 		   success: function(data){
 			   $("#description").html(data);
