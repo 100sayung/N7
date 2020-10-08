@@ -74,5 +74,10 @@ public class PurchaseController {
 	public String paDowninfo(Locale locale) {
 		return "Purchase/paDowninfo";
 	}
+	
+	@RequestMapping(value = "Purchase/orderregistration", method = RequestMethod.GET)
+	public String order() {
+		return "Purchase/orderregistration";
+	}
 	 
 }

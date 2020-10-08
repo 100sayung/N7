@@ -8,7 +8,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-
 table, tr, th, td {
 	border: 1px solid silver;
 	text-align: center;
@@ -80,7 +79,7 @@ input {
 				<tr>
 					<th>제목</th>
 					<th><input type="text" id="j_title" name="j_title"
-						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"></th>
+						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;" placeholder="문서제목을 입력해주세요."></th>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -100,7 +99,8 @@ input {
 										<th colspan="2">수주이름</th>
 										<!-- 활동센터 -->
 										<th colspan="2"><input type="text" id="j_centre"
-											name="j_centre" class="txt" style="width: 400px;"></th>
+											name="j_centre" class="txt" style="width: 400px;">
+											<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
 										<th colspan="2">부서명</th>
 										<!-- 귀속부서 -->
 										<th colspan="2" id="hc"></th>
@@ -114,17 +114,19 @@ input {
 										<!-- 관계회사 -->
 										<td colspan="2"><input type="text" id="j_company"
 											name="j_company" class="draft3" style="width: 400px;">
+											<button type="button"
+								onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>
 										</td>
 
 									</tr>
 									<tr>
 										<th colspan="2">차변금액</th>
-										<td colspan="5"><input type="text" id="j_debit"
+										<td colspan="5"><input type="number" id="j_debit"
 											name="j_debit" class="draft" style="width: 900px;"></td>
 									</tr>
 									<tr>
 										<th colspan="2">대변금액</th>
-										<td colspan="5"><input type="text" id="j_credit"
+										<td colspan="5"><input type="number" id="j_credit"
 											name="j_credit" class="draft" style="width: 900px;">
 										</td>
 									</tr>
@@ -147,7 +149,6 @@ input {
 <script>
 	$('#su').click(
 			function() {
-
 				var title = document.getElementById('j_title');
 				var account = document.getElementById('j_account');
 				var group = document.getElementById('j_group');
@@ -189,34 +190,34 @@ input {
 				} else if (debit.value != credit.value) {
 					alert("차변금액과 대변금액이 같지 않습니다.");
 				} else {
-					var obj = $("#form1").serialize();
-					console.log(obj);
 
-					$.ajax({
-						url : '/erp/rest/Account/actempoInsert',
-						type : 'post',
-						data : obj,
-						dateType : "json",
-						success : function(data) {
-							if (data == 1) {
-								console.log(data);
-								$("#form1")[0].reset();
-								alert("결재안 임시저장을 완료하였습니다.");
-							} else {
-								alert("결재안 임시저장이 실패하였습니다.");
-								console.log(data);
+						var obj = $("#form1").serialize();
+						console.log(obj);
+
+						$.ajax({
+							url : '/erp/rest/Account/actempoInsert',
+							type : 'post',
+							data : obj,
+							dateType : "json",
+							success : function(data) {
+								if (data == 1) {
+									console.log(data);
+									$("#form1")[0].reset();
+									alert("결재안 임시저장을 완료하였습니다.");
+								} else {
+									alert("결재안 임시저장이 실패하였습니다.");
+									console.log(data);
+								}
+							},
+							error : function(error) {
+								console.log(error);
+								alert("야 오류얌");
 							}
-						},
-						error : function(error) {
-							console.log(error);
-							alert("야 오류얌");
-						}
-					});
+						});
 				}
 			});
 
-	$(document).ready(
-					function() {
+	$(document).ready(function() {
 						$.ajax({
 									url : '/erp/rest/Account/getAu_name',
 									type : 'get',
@@ -234,5 +235,24 @@ input {
 									}
 								});
 					});
+
+	function setChildValue(data) {
+		console.log(data)
+		for ( var i in data.aList) {
+			var comname = data.aList[i].cl_name;
+
+		}
+		$("#j_company").val(comname);
+	};
+	    function setChildValue2(data) {
+	  	   console.log(data)
+	  	   var bonum="";
+	  	   for(var i in data.sList){
+	  	   bonum=data.sList[i].bo_num;
+	  	   }
+	  	   $("#j_centre").val(bonum);
+	  	};
+
+
 </script>
 </html>

@@ -13,6 +13,7 @@ import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.approvalLine;
+import com.n7.erp.bean.ps.Order;
 import com.n7.erp.bean.ps.Purchase;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.ps.Return;
@@ -84,9 +85,17 @@ public interface PurchaseDao {
 
 	boolean insertIeport(Return rt);
 
-	boolean updateitcode(int tot2, @Param("it_code") String itcode, @Param("cCode") String cCode);
+	boolean updateitcode(@Param("tot2") int tot2, @Param("it_code") String itcode, @Param("cCode") String cCode);
 
 	ItemCode getitcode(@Param("it_code") String itcode, @Param("cCode") String cCode);
+
+	boolean orderInsert(Order od);
+
+	List<Order> orderInfo(String cCode);
+
+	List<Order> orderSearch(@Param("search") String search,@Param("choice") String choice,@Param("cCode") String cCode);
+
+	List<PurchaseApproval> orderPinfo(String cCode);
 
 
 

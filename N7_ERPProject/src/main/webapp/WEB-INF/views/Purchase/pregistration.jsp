@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Purchase Details</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <style type="text/css">
 #center{
 text-align: center;
@@ -28,13 +28,14 @@ ${msg}
 		<br>
 		 <span style="padding-left: 5px";><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" ></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" ></span>
+         <span><a href=# onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')"><button>분류코드 추가</button></a></span>
+         <span><a href=# onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')"><button>품목코드 추가</button></a></span>
          <button type="button"id="stock">재고현황</button>
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
+         <button type="button" id="pDetail">상세보기</button>
      	<br>
      	<br>
-      <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
+      <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
 					<select id="choice">
 						<option value="p_documentcode">구매번호</option>
 						<option value="p_writer">담당자</option>
@@ -43,24 +44,24 @@ ${msg}
 					<input type="text" id="search" name="search" style="height: 18px;">
 					<button id="searchbtn">검색</button>
 		<form id="a">
-         <div border="1" style="width:1330px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-				<table style="margin-left: 55px">
+         <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+				<table style="margin-right: 55px;">
                  	 <tr>
                  	 	<th>구매번호</th>
-                    	<th><input type="text" name="p_documentcode" value="P" readonly></th>
+                    	<th><input type="text" name="p_documentcode" value="P" readonly id="p_documentcode" ></th>
                     	<th>제품번호</th>
-                     	<th><input type="text" name="p_productnum"></th>
+                     	<th><input type="text" name="p_productnum" id="p_productnum"></th>
                      	<th>담당자</th>
-                    	<th><input type="text" name="p_writer"></th>
+                    	<th><input type="text" name="p_writer" id="p_writer"></th>
                     	<th>거래처</th>
-                     	<th><input id="clcode" type="text" name="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+                     	<th><input id="clcode" type="text" name="p_clcode" id="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                      	<th>구매일</th>
-                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
+                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;" id="p_day"></th>
                   	</tr>
             	</table>
 			</div>
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 1330px; background-color: #ECEBEA;"">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; background-color: #ECEBEA;">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">
@@ -81,24 +82,23 @@ ${msg}
 						</tr>
 					</thead>
 					<tbody id="tbody">
-						<tr><button type="button" id="pDetail" style="float: left;">상세보기</button></tr>
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
-                     		<td><input type="text" name="p_name"></td>
+                     		<td><input type="text" name="p_name" class="p_name"></td>
                      		<!-- <td><input type="text" name="p_itcode"></td> -->
                      		<td class="it"></td>
-                     		<td><input type="number" min="1" name="p_amount"></td>
+                     		<td><input type="number" min="1" name="p_amount" class="p_amount"></td>
                      		<td><input class="unlit" type="text" name="p_unlit"></td>
-                     		<td><input type="text" name="p_budget"></td>
+                     		<td><input type="text" name="p_budget" class="p_budget"></td>
                     	</tr>
 					</tbody>
 				</table>
-			<div style="float: left;; padding-top: 5px">
+			<div style="float: left; padding-top: 5px">
 				<button type="button" id="approval">결재요청</button>
 				<button type="button" id="Pdelete">삭제</button>
 				<button type="button" id="save">등록</button>
 			</div>
-			<div style="float: right;; padding-top: 5px">
+			<div style="float: left; padding-top: 5px; margin-left: 1050px;" >
 				<button type="button" class="addList">추가</button>
             	<button type="reset" id="reset">다시작성</button>
          	</div>
@@ -106,6 +106,8 @@ ${msg}
 	</div>
 	
 	  <script type="text/javascript">
+	  
+	  
 	  $(document).on("keyup",".unlit",function(){
 		 var cnt =$(this).parent().prev().children().val();
 		 console.log(cnt);
@@ -211,6 +213,7 @@ ${msg}
             },
             error: function(error){
             	console.log(error);
+            	alert("데이터가 없습니다.");
             }
          });
       });
@@ -230,7 +233,7 @@ ${msg}
 		    			str+="<td>"+data.pList[i].p_productnum+"</td>";
 		    			str+="<td>"+data.pList[i].p_writer+"</td>";
 		    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-		    			str+="<td>"+data.pList[i].p_day+"</td>";
+		    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
     				}
     				$('#list').html(str); 
     				$("#save").attr("style","visibility: hidden");
@@ -275,7 +278,7 @@ ${msg}
 			    			str+="<td>"+data.pList[i].p_productnum+"</td>";
 			    			str+="<td>"+data.pList[i].p_writer+"</td>";
 			    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-			    			str+="<td>"+data.pList[i].p_day+"</td>";
+			    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
 			    		}
 			    			$('#list').html(str); 
 					 }else{
@@ -311,7 +314,7 @@ ${msg}
     					str+="<td>"+data.pList[i].p_productnum+"</td>";
     					str+="<td>"+data.pList[i].p_writer+"</td>";
     					str+="<td>"+data.pList[i].p_clcode+"</td>";
-    					str+="<td>"+data.pList[i].p_day+"</td>";
+    					str+="<td>"+data.pList[i].p_day+"</td><tr>";
     				}
     				$('#list').html(str); 
 				},

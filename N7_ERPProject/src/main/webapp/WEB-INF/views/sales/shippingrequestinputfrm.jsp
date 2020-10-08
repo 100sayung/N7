@@ -28,13 +28,16 @@ border: 1px solid;
     <div id="center">
         <br>
         <button type="button" id="shippingitemfrm">출하등록 현황</button>
-        <input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
+<!--    <input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
         <input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
-        <input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" >
+        <input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" > -->
+        <span><a href="#" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')"><button>분류코드 추가</button></a></span>
+        <span><a href="#" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')"><button>품목코드 추가</button></a></span>
+        <span><a href="#" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')"><button>품목코드 검색</button></a></span>
         <button type="button" id="approvalplan">결재 요청하기</button>
         <br>
         <br>
-        <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">출하의뢰입력</div>
+        <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">출하의뢰입력</div>
           <select id="choice" style="width:180px;">
                       <option value="bs_docunum">출하번호</option>
                       <option value="bs_bonum">수주번호</option>
@@ -43,7 +46,7 @@ border: 1px solid;
         <input type="text" name="search" id="search">
         <button id="searchh">검색</button>
         <form id="shippingrequestinput">
-        <div border="1" style="width:1300px; height:60px; padding-top:25px; background-color:#F8F7F7;">
+        <div border="1" style="width:1175px; height:60px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:250px;">
          <thead>
             <tr>
@@ -52,14 +55,14 @@ border: 1px solid;
                <th>회사코드</th>
                <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>수주번호</th>
-               <th><input id="bonum" type="text" name="bs_bonum"><button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
+               <th><input id="bonum" type="text" name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
             </tr>
          </thead>
       </table>
       </div>
-            <div style="width:1300px; background-color:#ECEBEA;">
+            <div style="width:1175px; background-color:#ECEBEA;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="width:1200px; margin-left:70px;">
+              style="margin-left:0px;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
@@ -82,7 +85,7 @@ border: 1px solid;
                     <tr>
                         <td><input type="radio" name="each_check" class="each"></td>
                         <td><input type="date" name="bs_basedate" required></td>
-                        <td style="width:400px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
+                        <td style="width:200px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                         <td class = "cl"></td>
                         <td class = "pn"></td> <!-- <td><input type="text" name="bs_proname" required></td> -->
                         <td><input type="number" name="bs_unit"  required></td>

@@ -43,7 +43,9 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1150px;
+    position: absolute;
+    transform:translate(250px, 0);
 }
 
 ul {
@@ -60,7 +62,7 @@ ul {
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -75,12 +77,16 @@ ul {
 	<div class="first_div_css">
 		<h1 class="deptregist_color_size">사원 인사 카드</h1>
 	</div>
-	${msg}<br><br>
-	<div class="divcss">사원 인사카드 조회 및 미등록 카드 등록</div>
+	${msg}
+	<div class="divcss"></div>
 	<div id="noHaveHrCard"></div>
-	<input type="text" id="nameSearch" placeholder="이름으로 검색">
+	<div style="height:50px;">
+	<span style="float:right">
+	<input type="text" id="nameSearch" placeholder="이름으로 검색" style="width:200px; height:25px; ">
 	<button onclick="searchFromName()" class='infobtn' id="nameSearching">검색</button>
-
+	</span>
+	</div>
+	
 	<div id="container"></div>
 	<div id="paging">
 
@@ -133,8 +139,8 @@ ul {
 			success : function(data){
 				console.log(data);
 				let str = "";
-			 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center;'>";
-			 	str += "<tr class='infomenu'><td>사진</td><td width='100px'>이름</td><td width='150px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
+			 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center; font-size:15px;'>";
+			 	str += "<tr class='infomenu'><td 'width:150px'>사진</td><td width='100px'>이름</td><td width='100px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
 					str += "<td>"+data[i].m_name+"</td>";
@@ -188,8 +194,8 @@ ul {
 			success : function(data){
 				console.log(data);
 				let str = "";
-			 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center;'>";
-			 	str += "<tr class='infomenu'><td>사진</td><td width='100px'>이름</td><td width='150px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
+			 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center; font-size:15px;'>";
+			 	str += "<tr class='infomenu'><td 'width:150px'>사진</td><td width='100px'>이름</td><td width='100px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
 					str += "<td>"+data[i].m_name+"</td>";
@@ -227,8 +233,8 @@ ul {
 				if(data.length<1){
 					str+="<br><img src ='https://new.acecounter.com/assets/img/img_cst_result3.png'><br>";
 				}else{
-					str = "<table id='table1' border='1' cellspacing='0' style='text-align:center;'>";
-				 	str += "<tr class='infomenu'><td>사진</td><td width='100px'>이름</td><td width='150px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
+				 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center; font-size:15px;'>";
+				 	str += "<tr class='infomenu'><td 'width:150px'>사진</td><td width='100px'>이름</td><td width='100px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
 					for(let i = 0 ; i<data.length ; i++){
 						str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
 						str += "<td>"+data[i].m_name+"</td>";

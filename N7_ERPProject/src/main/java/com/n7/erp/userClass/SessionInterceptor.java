@@ -15,6 +15,12 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
 		if(request.getSession().getAttribute("id")==null) {
 			response.sendRedirect("./"); //home.jsp
 		}
+		System.out.println(request.getServletPath().toString().substring(0, 2));
+		if(request.getServletPath().toString().substring(0, 3).equals("/hr")) {
+			if(request.getSession().getAttribute("auth").toString().equals("0")){
+				response.sendRedirect("/erp/myInfo/myInfo");
+			}
+		}
 		return true;  //controller 진입가능
 	}
 

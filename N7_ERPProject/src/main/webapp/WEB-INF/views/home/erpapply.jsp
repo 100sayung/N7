@@ -28,20 +28,20 @@ Released   : 20130526
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous" />
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" -->
+<!-- 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" -->
+<!-- 	crossorigin="anonymous" /> -->
 <link href="img/favicon.png" rel="icon" />
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="lib/icomoon/icomoon.css" rel="stylesheet" />
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1a9e4h5a1u&callback=initMap"></script>
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous" />
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" -->
+<!-- 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" -->
+<!-- 	crossorigin="anonymous" /> -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
 <!--[if IE 6]>
@@ -83,7 +83,7 @@ body {
 <!-- 			style="width: 100%; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger;">ERP신청</div> -->
 				<div
 					style='width: 100%; height: 60px; text-align: center; background-color: #3D6B9B;'>
-					<h1 style='color: white'>ERP신청</h1>
+					<h1 style='color: white; line-height: 1.7;'>ERP신청</h1>
 	</div>
 	<div class="center">
 		<div id="container" class='input-group'>
@@ -117,7 +117,7 @@ body {
 									style='width: 140%;' />
 							</div></th>
 					</tr>
-					<tr>
+					<tr> 
 						<th colspan='4'><div class='input-group'>
 								<span class='input-group-addon'>&nbsp;&nbsp;&nbsp;&nbsp;업태&nbsp;&nbsp;&nbsp;&nbsp;</span>
 								<input type='text' name='c_kind' required="required"
