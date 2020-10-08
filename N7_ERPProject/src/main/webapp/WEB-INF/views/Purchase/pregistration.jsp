@@ -28,8 +28,8 @@ ${msg}
 		<br>
 		 <span style="padding-left: 5px";><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" ></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" ></span>
+         <span><a href=# onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')"><button>분류코드 추가</button></a></span>
+         <span><a href=# onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')"><button>품목코드 추가</button></a></span>
          <button type="button"id="stock">재고현황</button>
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
          <button type="button" id="pDetail">상세보기</button>
@@ -48,7 +48,7 @@ ${msg}
 				<table style="margin-left: 55px">
                  	 <tr>
                  	 	<th>구매번호</th>
-                    	<th><input type="text" name="p_documentcode" value="P" readonly></th>
+                    	<th><input type="text" name="p_documentcode" value="P" readonly ></th>
                     	<th>제품번호</th>
                      	<th><input type="text" name="p_productnum"></th>
                      	<th>담당자</th>
@@ -93,12 +93,12 @@ ${msg}
                     	</tr>
 					</tbody>
 				</table>
-			<div style="float: left;; padding-top: 5px">
+			<div style="float: left; padding-top: 5px">
 				<button type="button" id="approval">결재요청</button>
 				<button type="button" id="Pdelete">삭제</button>
 				<button type="button" id="save">등록</button>
 			</div>
-			<div style="float: right; padding-top: 5px; " >
+			<div style="float: left; padding-top: 5px; margin-left: 1050px;" >
 				<button type="button" class="addList">추가</button>
             	<button type="reset" id="reset">다시작성</button>
          	</div>
@@ -106,6 +106,8 @@ ${msg}
 	</div>
 	
 	  <script type="text/javascript">
+	  
+	  
 	  $(document).on("keyup",".unlit",function(){
 		 var cnt =$(this).parent().prev().children().val();
 		 console.log(cnt);
@@ -211,6 +213,7 @@ ${msg}
             },
             error: function(error){
             	console.log(error);
+            	alert("데이터가 없습니다.");
             }
          });
       });
@@ -230,7 +233,7 @@ ${msg}
 		    			str+="<td>"+data.pList[i].p_productnum+"</td>";
 		    			str+="<td>"+data.pList[i].p_writer+"</td>";
 		    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-		    			str+="<td>"+data.pList[i].p_day+"</td>";
+		    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
     				}
     				$('#list').html(str); 
     				$("#save").attr("style","visibility: hidden");
@@ -275,7 +278,7 @@ ${msg}
 			    			str+="<td>"+data.pList[i].p_productnum+"</td>";
 			    			str+="<td>"+data.pList[i].p_writer+"</td>";
 			    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-			    			str+="<td>"+data.pList[i].p_day+"</td>";
+			    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
 			    		}
 			    			$('#list').html(str); 
 					 }else{
@@ -311,7 +314,7 @@ ${msg}
     					str+="<td>"+data.pList[i].p_productnum+"</td>";
     					str+="<td>"+data.pList[i].p_writer+"</td>";
     					str+="<td>"+data.pList[i].p_clcode+"</td>";
-    					str+="<td>"+data.pList[i].p_day+"</td>";
+    					str+="<td>"+data.pList[i].p_day+"</td><tr>";
     				}
     				$('#list').html(str); 
 				},

@@ -75,9 +75,9 @@ public class PurchaseController {
 		return "Purchase/paDowninfo";
 	}
 	
-	@RequestMapping(value = "Purchase/order", method = RequestMethod.GET)
+	@RequestMapping(value = "Purchase/orderregistration", method = RequestMethod.GET)
 	public String order() {
-		return "Purchase/order";
+		return "Purchase/orderregistration";
 	}
 	 
 }
