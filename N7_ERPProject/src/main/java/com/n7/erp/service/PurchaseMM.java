@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.Order;
@@ -515,6 +516,20 @@ public class PurchaseMM {
 			System.out.println("pList=" + pList);
 		} else {
 			pMap = null;
+		}
+		return pMap;
+	}
+
+	public Map<String, List<ApprovalDocu>> orderpinfo(HttpSession session) {
+		Map<String, List<ApprovalDocu>> pMap=null;
+		String cCode=(String)session.getAttribute("cCode");
+		List<ApprovalDocu>pList=pDao.orderPinfo(cCode);
+		if(pList!=null) {
+			pMap= new HashMap<>();
+			pMap.put("pList", pList);
+			System.out.println("pList:"+pList);
+		}else {
+			pMap=null;
 		}
 		return pMap;
 	}

@@ -45,7 +45,7 @@ ${msg}
 					<button id="searchbtn">검색</button>
 		<form id="a">
          <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-				<table style="margin-right: 55px;">
+				<table>
                  	 <tr>
                  	 	<th>구매번호</th>
                     	<th><input type="text" name="p_documentcode" value="P" readonly id="p_documentcode" ></th>
@@ -53,6 +53,8 @@ ${msg}
                      	<th><input type="text" name="p_productnum" id="p_productnum"></th>
                      	<th>담당자</th>
                     	<th><input type="text" name="p_writer" id="p_writer"></th>
+                    </tr>
+                    <tr>
                     	<th>거래처</th>
                      	<th><input id="clcode" type="text" name="p_clcode" id="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                      	<th>구매일</th>
@@ -179,6 +181,7 @@ ${msg}
 	}
 		 });	
 	 });
+	 
 	 function thisRowDel(row){
 		   console.log(row);
 		   let tr = row.parentNode.parentNode;
@@ -303,7 +306,10 @@ ${msg}
 					console.log(data);
 					alert("데이터 삭제 완료");
 					var str="";
-     				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
+					if(data.pList==null){
+						alert("이미 결재 요청된 데이터 입니다.");
+					}else{
+	     				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
     				for(var i in data.pList){
     					str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
     					str+="<td>"+data.pList[i].p_documentcode+"</td>";
@@ -313,6 +319,7 @@ ${msg}
     					str+="<td>"+data.pList[i].p_day+"</td><tr>";
     				}
     				$('#list').html(str); 
+					}
 				},
 				error: function(error){
 					console.log(error);
