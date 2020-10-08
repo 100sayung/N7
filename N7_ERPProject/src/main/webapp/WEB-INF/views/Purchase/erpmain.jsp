@@ -63,6 +63,7 @@ a{
         <ul id="menuList">
             <li><a href="#" id="pregistration">구매관리</a></li>
             <li><a href="#" id="rregistration">반품 관리</a></li>
+            <li><a href="#" id="oregistration">발주 관리</a></li>
         </ul>
     </div>
     <center>
@@ -94,6 +95,20 @@ a{
 	   $.ajax({
 		   type:'get',
 		   url:' /erp/Purchase/retrunregistration',
+		   dataType: 'html',
+		   success: function(data){
+			   $("#description").html(data);
+		   },
+		   error: function(err){
+			   console.log(err);
+		   }
+	   });
+   });
+   
+   $("#oregistration").click(function(){
+	   $.ajax({
+		   type:'get',
+		   url:' /erp/Purchase/order',
 		   dataType: 'html',
 		   success: function(data){
 			   $("#description").html(data);
