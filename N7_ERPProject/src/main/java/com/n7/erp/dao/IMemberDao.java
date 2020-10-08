@@ -138,6 +138,6 @@ public interface IMemberDao {
 	
 	approvaldetail getAGcode(@Param("num")String num,@Param("cCode") String cCode);
 	
-	@Select("SELECT F_FUNCTIONS FROM ERP_FUNCTION WHERE F_CCODE = #{cCode} AND F_FUNCTIONS='구매관리' OR F_FUNCTIONS='영업관리' OR F_FUNCTIONS='재고관리' ORDER BY F_FUNCTIONS")
+	@Select("SELECT F_FUNCTIONS FROM ERP_FUNCTION WHERE F_CCODE = #{cCode} AND (F_FUNCTIONS='구매관리' OR F_FUNCTIONS='영업관리' OR F_FUNCTIONS='재고관리') ORDER BY F_FUNCTIONS")
 	List<String> getFunction(String cCode);
 }

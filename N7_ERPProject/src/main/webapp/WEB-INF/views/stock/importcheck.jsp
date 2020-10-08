@@ -120,10 +120,10 @@ width: 300px;
 	<div id="description">
 		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고 수정 및 확정</div>
 		<div id="contain">
-		<c:if test="${importCheckList eq null} ">
-		<h2>입고 내역이 없습니다.</h2>
+		<c:if test="${importCheckList==null}">
+		<h2>발주 내역이 없습니다.</h2>
 		</c:if>
-		<c:if test="${importCheckList ne ''} ">
+		<c:if test="${importCheckList!=null}">
 		${importCheckList}
 		<input type="button" id="btn" value="입고 확정">
 		</c:if>
@@ -132,7 +132,6 @@ width: 300px;
 	</center>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
-	console.log("${importCheckList}")
 	stockSideMenu();
 		$('#btn')
 				.click(
