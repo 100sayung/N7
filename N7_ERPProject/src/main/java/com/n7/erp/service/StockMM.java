@@ -721,7 +721,7 @@ public class StockMM {
 		if (num < it.getIt_stock()) {
 			return ResponseEntity.ok(new Gson().toJson(num));
 		} else {
-			return null;
+			return ResponseEntity.ok(new Gson().toJson(""));
 		}
 	}
 

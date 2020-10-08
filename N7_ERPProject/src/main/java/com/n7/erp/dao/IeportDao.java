@@ -35,7 +35,7 @@ public interface IeportDao {
 	@Select("SELECT * FROM IE WHERE IE_ITCODE = #{it_code} AND IE_CPCODE = #{cCode}")
 	ArrayList<IePort> getByItemDealList(@Param("it_code")String it_code,@Param("cCode") String cCode);
 
-	@Select("SELECT IE_ITCODE , SUM(IE_QTY) IE_QTY FROM IE JOIN IT ON IT_CODE = IE_ITCODE WHERE IT_CCODE = #{it_ccode} AND IE_CPCODE = #{cCode} GROUP BY IE_ITCODE")
+	@Select("SELECT * FROM IE JOIN IT ON IT_CODE = IE_ITCODE WHERE IT_CCODE = #{it_ccode} AND IE_CPCODE = #{cCode}")
 	ArrayList<IePort> getByItemDealListFromItCcode(@Param("it_ccode") String it_ccode, @Param("cCode") String cCode);
 	
 	@Select("SELECT IE_ITCODE , SUM(IE_QTY) IE_QTY FROM IE  WHERE IE_ITCODE = #{it_code} AND IE_CPCODE = #{cCode} GROUP BY IE_ITCODE")
