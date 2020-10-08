@@ -503,28 +503,34 @@ public class HrMM {
 //	}
 
 	public ModelAndView checkMyHrCard(HttpSession session, String address) {
-		if (hDao.haveHrCode(session.getAttribute("id").toString())) {
-			mav.setViewName(address);
-		} else {
-			System.out.println("占쎄땀占쎌젟癰귣�以� 癰귣�沅→묾占�");
+		if(session.getAttribute("hrCode")!=null) {
+			if (hDao.haveHrCode(session.getAttribute("id").toString())) {
+				mav.setViewName(address);
+			} else {
+				mav.setViewName("redirect:/myInfo/myInfo");
+			}
+		}else {
 			mav.setViewName("redirect:/myInfo/myInfo");
 		}
 		return mav;
 	}
 
 	public ModelAndView moveMyPayCheck(HttpSession session) {
-		if(hDao.haveHrCode(session.getAttribute("id").toString())) {
-			String hrCode = session.getAttribute("hrCode").toString();
-			HR_Card check = hDao.selectcheckpay(hrCode);
-			
-			if (check != null) {
-				mav.addObject("paycheck", check);
-				view = "/myInfo/myPaycheck";
-			} else {
+		if(session.getAttribute("hrCode")!=null) {
+			if(hDao.haveHrCode(session.getAttribute("id").toString())) {
+				String hrCode = session.getAttribute("hrCode").toString();
+				HR_Card check = hDao.selectcheckpay(hrCode);
+				if (check != null) {
+					mav.addObject("paycheck", check);
+					view = "/myInfo/myPaycheck";
+				} else {
+					view = "/myInfo/myInfo";
+				}
+			}else {
 				view = "/myInfo/myInfo";
 			}
 		}else {
-			view = "/myInfo/myInfo";
+			view="/myInfo/myInfo";
 		}
 		mav.setViewName(view);
 		return mav;

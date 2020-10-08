@@ -80,16 +80,20 @@ tr{
 
 
 <script>
+var cnt = 0;
 function checkCurrent(){
 	var $check = $("#current").val();
 	if($check==""){
 		console.log("공백");
 		alert("잘못된 접근입니다. 정보를 입력해주세요.");
 		return false;
-	}else{
-		console.log("공백아님");
-		return true;
 	}
+	if(cnt == 0){
+		console.log(cnt);
+		alert("잘못된 접근입니다. 정보를 입력해주세요.");
+		return false;
+	}
+	return true;
 }
 var num;
 var curPosition = "";
@@ -182,13 +186,14 @@ function addRecord(){
 		str += "<td><input type='date' name='hct_date' class='detailInfo'></td>"
 			str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 	}else if($current =='Career'){
-		str += "<tr><td><input type='text' name='hcr_cname' class='detailInfo'></td>";
+		str += "<tr><td><input type='text' name='hcr_name' class='detailInfo'></td>";
 		str += "<td><input type='date' name='hcr_startperiod' id='chk"+(num*2)+"' class='detailInfo checkDate'><br>";
 		str += "<input type='date' name='hcr_endperiod' id='chk"+((num*2)+1)+"' class='detailInfo checkDate' onchange='checkDateValue(chk"+(num*2)+", chk"+((num*2)+1)+")'></td>"
 		str += "<td><input type='text' name='hcr_position' class='detailInfo'></td>";
 		str += "<td><textarea rows='3' cols='20' name='hcr_content' class='detailInfo'></textarea></td>"
 		str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 		num++;
+		cnt++;
 	}
 //		$("#hrDetail > tbody:last").append(str);
 	$("#infoTable > tbody:last").append(str);
@@ -265,6 +270,7 @@ function AcademicInfo(){
 	$("#registBtn").attr("disabled", true);
 	$("#registBtn").css('background-color','#d2d2d2');
 	console.log("aca");
+	cnt =0;
 	$.ajax({
 		url:"/erp/rest/hr/academic",
 		dataType:"json",
@@ -305,6 +311,7 @@ function CertificationInfo(){
 	$("#form").attr("action", formURL + "/newcertification/" + id);
 	$("#current").val("Certification");
 	$("#registBtn").attr("disabled", true);
+	cnt=0;
 	$("#registBtn").css('background-color','#d2d2d2');
 	$.ajax({
 		url:"/erp/rest/hr/certification",
@@ -344,6 +351,7 @@ function CareerInfo(){
 	$("#current").val("Career");
 	$("#registBtn").attr("disabled", true);
 	$("#registBtn").css('background-color','#d2d2d2');
+	cnt = 0;
 	$.ajax({
 		url:"/erp/rest/hr/career",
 		dataType:"json",
@@ -355,7 +363,7 @@ function CareerInfo(){
 			str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
 			str += "<td style='width:140px;'>회사/프로젝트명</td><td style='width:140px;'>기간</td><td style='width:140px;'>직책</td><td style='width:170px;' colspan='2'>내용</td></tr>";
 			for(let i=0; i<data.length ; i++){
-			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_cname' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
+			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_name' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
 			str += "<td><input type='date' name='hcr_startperiod' id='chk"+(i*2)+"'class='detailInfo checkDate' value='"+data[i].hcr_startperiod+"' readonly >부터"
 			str += "<input type='date' name='hcr_endperiod' id='chk"+((i*2)+1)+"' class='detailInfo checkDate' value='"+data[i].hcr_endperiod+"' readonly onchange='checkDateValue(chk"+(i*2)+", chk"+((i*2)+1)+")'>까지</td>"
 			str += "<td><input type='text' name='hcr_position' class='detailInfo' value='"+data[i].hcr_position+"' readonly ></td>";
@@ -374,6 +382,7 @@ function CareerInfo(){
 	$("#current").val("HRCard");
 	$("#registBtn").attr("disabled", true);
 	$("#registBtn").css('background-color','#d2d2d2');
+	cnt = 0;
 	$.ajax({
 		url :"/erp/rest/hr/deptlist",
 		dataType:"json",
