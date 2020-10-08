@@ -56,26 +56,28 @@ tr{
 <meta charset="UTF-8">
 </head>
 <body>
-<div id="member"></div>
+<div id="member" style="margin-top: 100px;"></div>
 
 <br><br><br>
 
 
-<div id="hrmenu">1</div>
+<div id="hrmenu" align="center" width="800px"></div>
 
 <form id="form" method="post" onsubmit="return checkCurrent();">
-<div id="hrDetailInfo">
+<div id="hrDetailInfo" align="center">
 
 <table id="hrDetail" border="1" cellspacing="0">
 </table>
 
-<div id="addRecord">
+<div id="addRecord" align="center">
 </div>
 </div>
-<input type='hidden' value='' id='current'>
-<input type='button' value='추가하기' class = 'infobtn' onclick='addRecord()' id='addRecordBtn'>
-<input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
-<input type='submit' value='등록완료'  class = 'infobtn' disabled="disabled" id='registBtn'>
+<div align="center" style="width: 800px;">
+	<input type='hidden' value='' id='current'>
+	<input type='button' value='추가하기' class = 'infobtn' onclick='addRecord()' id='addRecordBtn'>
+	<input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
+	<input type='submit' value='등록완료'  class = 'infobtn' disabled="disabled" id='registBtn'>
+</div>
 </form>
 
 
@@ -108,8 +110,8 @@ $(document).ready(function(){
 		success : function(data){
 				console.log(data);
 				let info = "";
-				info += '<div class="dataSpan"><img style="width:200px; height: 250px;" src="/erp/upload/'+data.m_photo+'"></div>';
-				info += '<div class="dataSpan"><table id="dataTable"><tr  class="infomenu"><td>이름</td></tr>'
+				info += '<div style="margin-left:100px;" class="dataSpan"><img style="width:200px; height: 250px;" src="/erp/upload/'+data.m_photo+'"></div>';
+				info += '<div class="dataSpan"><table id="dataTable" style="border-collapse:collapse;" border="1px solid black"><tr class="infomenu"><td>이름</td></tr>'
 				info += '<tr><td id="m_name">'+data.m_name+'</td></tr>';
 				info += '<tr  class="infomenu"><td>생년월일</td></tr>';
 				info += '<tr><td id="m_birth">'+data.m_birth+'</td></tr>';
@@ -368,7 +370,7 @@ function CareerInfo(){
 			str += "<input type='date' name='hcr_endperiod' id='chk"+((i*2)+1)+"' class='detailInfo checkDate' value='"+data[i].hcr_endperiod+"' readonly onchange='checkDateValue(chk"+(i*2)+", chk"+((i*2)+1)+")'>까지</td>"
 			str += "<td><input type='text' name='hcr_position' class='detailInfo' value='"+data[i].hcr_position+"' readonly ></td>";
 			str += "<td><textarea rows='3' cols='20' name='hcr_content' class='detailInfo' value='"+data[i].hcr_content+"'></textarea>";
-			str += "<input type='hidden' name='hcr_num' value='"+data[i].hcr_num+"'></td></tr>'";
+			str += "<input type='hidden' name='hcr_num' value='"+data[i].hcr_num+"'></td></tr>";
 			}
 			str+="</table>";
 			$("#hrDetailInfo").html(str);
