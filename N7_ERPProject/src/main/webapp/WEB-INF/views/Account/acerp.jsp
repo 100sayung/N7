@@ -20,11 +20,11 @@
             font-weight: bolder;
             float: left;
         }
-        #side_menu #menuList{
+        #side_menu,#menuList{
             list-style: none;
             margin-top: 150px;
         }
-        #side_menu #menuList li{
+        #side_menu,#menuList,li{
             margin: 20px;
         }
         a{
