@@ -121,7 +121,7 @@ width: 300px;
 		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고 수정 및 확정</div>
 		<div id="contain">
 		<c:if test="${importCheckList eq null} ">
-		<h2>입/출고 내역이 없습니다.</h2>
+		<h2>입고 내역이 없습니다.</h2>
 		</c:if>
 		<c:if test="${importCheckList ne ''} ">
 		${importCheckList}

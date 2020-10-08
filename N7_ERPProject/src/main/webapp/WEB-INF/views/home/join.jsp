@@ -395,8 +395,7 @@ button {
 	function sum() {
 	console.log(checkid, checkccode); 
 	if (checkid && checkccode) {
-	$("#addr").val( $('#roadAddrPart1').val() + $('#addrDetail').val() +
-	$('#roadAddrPart2').val()); return true; 
+	$("#addr").val( $('#roadAddrPart1').val()); return true; 
 	} else {
 		alert("회사코드 혹은 아이디 중복을 확인해주세요."); 
 	return false; 
