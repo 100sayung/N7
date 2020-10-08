@@ -112,7 +112,7 @@ body{
 			<td class="font_color_paydetail">사원코드  </td>
 			<td>${paycheck.hc_hrcode}</td>
 			<td class="font_color_paydetail">이름  </td>
-			<td>${paycheck.m_name}</td>
+			<td width="265px">${paycheck.m_name}</td>
 			<td class="font_color_paydetail">입사일  </td>
 			<td>${paycheck.hc_joindate}</td>
 		</tr>
