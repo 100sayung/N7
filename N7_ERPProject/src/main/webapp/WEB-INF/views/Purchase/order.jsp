@@ -26,16 +26,10 @@ width: 160px;
 ${msg}
 	<div id="center">
 		<br>
-		 <span style="padding-left: 5px";><a href="#"
-         onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" ></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" ></span>
-         <button type="button"id="stock">재고현황</button>
-         <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
-         <button type="button" id="pDetail">상세보기</button>
+         <button type="button" id="Pinfo" style="padding-left: 5px;">발주조회</button>
      	<br>
      	<br>
-      <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
+      <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">발주관리</div>
 					<select id="choice">
 						<option value="p_documentcode">구매번호</option>
 						<option value="p_writer">담당자</option>
@@ -45,21 +39,6 @@ ${msg}
 					<button id="searchbtn">검색</button>
 		<form id="a">
          <div border="1" style="width:1330px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-				<table style="margin-left: 55px">
-                 	 <tr>
-                 	 	<th>구매번호</th>
-                    	<th><input type="text" name="p_documentcode" value="P" readonly></th>
-                    	<th>제품번호</th>
-                     	<th><input type="text" name="p_productnum"></th>
-                     	<th>담당자</th>
-                    	<th><input type="text" name="p_writer"></th>
-                    	<th>거래처</th>
-                     	<th><input id="clcode" type="text" name="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
-                     	<th>구매일</th>
-                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
-                  	</tr>
-            	</table>
-			</div>
             <table summary="Code page support in different versions of MS Windows."
                rules="groups" frame="hsides" border="1"  id="list" style="width: 1330px; background-color: #ECEBEA;">
                <colgroup align="center">
@@ -74,34 +53,22 @@ ${msg}
                   <tr>
 						<tr>
 							<th><input type="checkbox" id="allCheck"></th>
-                     		<th>상품명</th>
-                     		<th>상품코드</th>
-                     		<th>수량</th>
-                     		<th>단가</th>
-                     		<th>합계</th>
+                     		<th>발주번호</th>
+                     		<th>구매번호</th>
 						</tr>
 					</thead>
 					<tbody id="tbody">
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
-                     		<td><input type="text" name="p_name"></td>
-                     		<!-- <td><input type="text" name="p_itcode"></td> -->
+                     		<td><input type="text" name="o_code" placeholder="자동생성"></td>
                      		<td class="it"></td>
-                     		<td><input type="number" min="1" name="p_amount"></td>
-                     		<td><input class="unlit" type="text" name="p_unlit"></td>
-                     		<td><input type="text" name="p_budget"></td>
                     	</tr>
 					</tbody>
 				</table>
-			<div style="float: left;; padding-top: 5px">
-				<button type="button" id="approval">결재요청</button>
-				<button type="button" id="Pdelete">삭제</button>
+			</div>
+			<div style="padding-top: 10px">
 				<button type="button" id="save">등록</button>
 			</div>
-			<div style="float: right; padding-top: 5px; " >
-				<button type="button" class="addList">추가</button>
-            	<button type="reset" id="reset">다시작성</button>
-         	</div>
          </form>
 	</div>
 	

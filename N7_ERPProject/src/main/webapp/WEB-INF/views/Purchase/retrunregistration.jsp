@@ -24,13 +24,13 @@ width: 160px;
 </head>
 <body>
 	<div id="aaa">
-       <div style="width: auto; background-color: white; padding: 1%;">
+	<br>
         	<span style="padding-left: 5px";><a href="#"
          	onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
             <button id="Wearing">입고현황</button>
             <button id="rInfo">반품조회</button>
-         </div>
-      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
+      <br><br>
+      <div style="width: 1300px; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
                <select id="choice">
                   <option value="r_documentcode">반품번호</option>
                   <option value="r_ieseqnum">입고번호</option>
@@ -40,7 +40,7 @@ width: 160px;
                <input type="text" id="search" name="search" style="height: 18px";>
                <button id="searchbtn">검색</button>
       <form id="o_return">
-         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7;">
+         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7; width:1330px;">
             <div style="margin-left: 55px">
             <table>
                      <tr>
@@ -59,9 +59,9 @@ width: 160px;
                </table>
             </div>
          </div>
-         <div style="background-color: #ECEBEA;">
+         <!-- <div style="background-color: #ECEBEA;"> -->
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 100%;">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1330px; background-color: #ECEBEA;">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">
@@ -96,7 +96,7 @@ width: 160px;
                </tbody>
             </table>
          </div>
-         <div style="float: left;">
+         <div style="float: left; padding-top: 5px;">
             <button type="button" id="save">등록</button>
             <!-- <button type="button" id="rDelete">삭제</button> -->
             <button type="reset">다시작성</button>
