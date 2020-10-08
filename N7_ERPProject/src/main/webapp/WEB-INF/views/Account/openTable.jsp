@@ -26,12 +26,12 @@
 }
 
 .data {
-	width: 168px;
+	width: 120px;
 }
 
 #main2 {
 	position: absolute;
-	left: 30%;
+	left: 24%;
 }
 
 .data2 {
@@ -39,11 +39,11 @@
 	text-align: center;
 }
 #testTable{
-width:1380px;
+width:1150px;
 overflow: auto;
 }
 #ListTable{
-width:1380px;
+width:1150px;
 height: 300px;
 overflow: auto;
 }
@@ -67,7 +67,7 @@ float: left;
 		style="width: auto; background-color: white-space; color: white; padding: 1%;">
 		<!-- <span style="padding-left: 5px"><a href="#" onclick="saleinsert()"><button>매출/매입등록</button></a></span> -->
 		<span style="padding-left: 5px"><a href="#"
-			onclick="window.open('comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
+			onclick="window.open('comPany','comlist','width=1400,height=600')"><button>거래처등록</button></a></span>
 		<span style="padding-left: 5px"><button id="getshipment">입고/출하조회</button></span>
 		<span style="padding-left: 5px"><button id="getList">매출/매입데이터조회</button></span>
 		<span style="padding-left: 5px"><button id="taxbill">세금계산서인쇄</button></span>
@@ -79,7 +79,7 @@ float: left;
 		<div
 			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">매출/매입
 			전표관리</div>
-		<span style="padding-left: 5px"><input id="select" type="text" /></span>
+		<span style="padding-left: 5px"><input id="select" type="text" />
 		<select id="choice" name="s_saleSelect">
 			<option value="num">전표번호</option>
 			<option value="company">거래처명</option>
@@ -87,9 +87,8 @@ float: left;
 		</select>
 		<button id="search2" type="button">검색</button>
 		매출<input onclick="getList('AS')" type='radio' name="sale" value='AS'>
-		매입<input onclick="getList('AP')" type='radio' name="sale" value='AP'>
+		매입<input onclick="getList('AP')" type='radio' name="sale" value='AP'></span>
 
-		<!-- <form action="rest/saleinsert" method="post"> -->
 		<form id="saleInfo">
 		<div id="comInfo"
 			style="height: 80px; padding-top: 15px; background-color: #F8F7F7;">
@@ -327,6 +326,7 @@ function shipmentDetaile(){
 };
 
 function saleInsertInfo(){
+	
        var obj = $("#saleInfo").serialize();
        $.ajax({
     	  url:'/erp/rest/Account/saleinsert',
@@ -427,11 +427,11 @@ $("#addList").click(function() {
                             if(check!=""){
 							if (check.indexOf("AS")) {
 								window.open('/erp/Account/taxbill?check=' + check,
-										'taxbillAS', 'width=1400,height=700');
-
+										'taxbillAS', 'width=1600,height=700');
+s
 							} else {
 								window.open('/erp/Account/taxbill?check=' + check,
-										'taxbillAP', 'width=1400,height=700');
+										'taxbillAP', 'width=1600,height=700');
 							}
                             }else{
                             	alert("체크한 항목이 없습니다");
@@ -445,7 +445,7 @@ $("#addList").click(function() {
                             if(check!=""){
 							if (check.indexOf("P")) {
 								window.open('/erp/Account/saledetails?check=' + check,
-										'saledetails', 'width=1400,height=700');
+										'saledetails', 'width=1300,height=700');
 
 							} else {
 								alert("매입은 거래명세표를 발급할 수 없습니다")
@@ -497,22 +497,15 @@ $("#addList").click(function() {
 									success : function(data) {
 										console.log(data)
 										var str = '';
-										str += "<tr id='colume'><td>체크</td><td>전표번호</td><td>유형</td><td>거래처명</td><td>사업자번호</td><td>입력날짜</td><td>입력자</td></tr>"
+										str += "<tr id='colume'><td>체크</td><td>전표번호</td><td>유형</td><td>거래처명</td><td>사업자번호</td><td>입력날짜</td><td>입력자</td></tr>";
 										for ( var i in data.sList1) {
-											str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList1[i].s_num+"' readonly></td>"
-											str += "<td><input class='data2' type='text' name='s_num' value="+data.sList1[i].s_num+" readonly></td>"
-											str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList1[i].s_kind+" readonly></td>"
-											//str += "<td><input class='data2' type='text' name='s_pkind' value="+data.sList[i].s_pkind+"></td>"
-											//str += "<td><input class='data2' type='text' name='s_cnt' value="+data.sList[i].s_cnt+"></td>"
-											//str += "<td><input class='data2' type='text' name='s_price' value="+data.sList[i].s_price+"></td>"
-											//str += "<td><input class='data2' type='text' name='s_price2' value="+data.sList[i].s_price2+"></td>"
-											//str += "<td><input class='data2' type='text' name='s_tax' value="+data.sList[i].s_tax+"></td>"
-											str += "<td><input class='data2' type='text' name='s_company' value="+data.sList1[i].s_company+" readonly></td>"
-											//str += "<td><input class='data2' type='text' name='s_total' value="+data.sList[i].s_total+"></td>"
-											str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList1[i].s_comnum+" readonly></td>"
-											str += "<td><input class='data2' type='text' name='s_date' value="+data.sList1[i].s_date+" readonly></td>"
-											str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList1[i].s_employee+" readonly></td>"
-											//str += "<td><input class='data2' type='text' name='s_memo' value="+data.sList[i].s_memo+"></td></tr>";
+											str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList1[i].s_num+"' readonly></td>";
+											str += "<td><input class='data2' type='text' name='s_num' value="+data.sList1[i].s_num+" readonly></td>";
+											str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList1[i].s_kind+" readonly></td>";
+											str += "<td><input class='data2' type='text' name='s_company' value="+data.sList1[i].s_company+" readonly></td>";
+											str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList1[i].s_comnum+" readonly></td>";
+											str += "<td><input class='data2' type='text' name='s_date' value="+data.sList1[i].s_date+" readonly></td>";
+											str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList1[i].s_employee+" readonly></td>";
 										}
 										$("#testTable").html(str);
 									},

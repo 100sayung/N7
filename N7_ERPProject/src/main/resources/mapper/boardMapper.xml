@@ -33,18 +33,6 @@
          </where>
    </select>
    
-   <select id="getSearchCount" resultType="int">
-         SELECT COUNT(*) FROM CONSULTING_BOARD
-         <where> 
-            <if test="choice.equals('CB_TITLE')">
-                CB_TITLE LIKE '%'|| #{keyword} ||'%'
-            </if>
-            <if test="choice.equals('CB_WRITER')">
-                CB_WRITER LIKE '%'|| #{keyword} ||'%'
-            </if>
-         </where>
-   </select>
-   
    <update id="insertReply" parameterType="string">
    UPDATE CONSULTING_BOARD SET CB_REPLY = #{reply} WHERE CB_NUM=#{num}
    </update>

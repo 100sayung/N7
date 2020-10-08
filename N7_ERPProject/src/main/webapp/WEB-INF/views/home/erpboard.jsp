@@ -154,18 +154,18 @@ padding-bottom: 20px;
 			type: 'post',
 			data: "choice="+choice+"&keyword="+keyword,
 			dataType: 'json',
-			success: function(data){
+			success: function(data){ 
 				$(".List").html("");
 				console.log(data);
 				 var str="";
 				 str+="<tr style='background-color: #3D6B9B; width: 350px; color:white;'><th scope='row'style='width: 100px;'>번호</th><th scope='row' style='width: 800px;'>제목</th><th scope='row' style='width: 200px;'>작성자</th></tr>";
 				 if(data.bList!=""){
-					 for(var i=0; i<data.bList.length-1; i++){
+					 for(var i=0; i<data.bList.length; i++){
 						 str+="<tr><td>"+data.bList[i].cb_num+"</td>";
 						 str+="<td><a style='text-decoration: none;' href='/erp/home/boardContents?CB_NUM="+data.bList[i].cb_num+"'>"+data.bList[i].cb_title+"</a></td>";
 						 str+="<td>"+data.bList[i].cb_writer+"</td></tr>";
 						}
-					 pageNum+=data.bList[data.bList.length-1].cb_count;
+					 pageNum=data.bList.length;
 					 console.log(pageNum);
 					 
 						$(".List").html(str);
@@ -239,7 +239,13 @@ padding-bottom: 20px;
 					                                           
 					    }
 				 }else{
+					 
 					alert("데이터가 없습니다.");
+					console.log(data);
+					 var str="";
+					 str+="<tr style='background-color: #3D6B9B; width: 350px; color:white;'><th scope='row'style='width: 100px;'>번호</th><th scope='row' style='width: 800px;'>제목</th><th scope='row' style='width: 200px;'>작성자</th></tr>";
+					 $(".List").html(str);
+					 $("#paging").html("");
 				 }
 			 },
 			error: function(err){

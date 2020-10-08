@@ -138,12 +138,12 @@ font-size: 20px;
 
 					<tr>
 				<th colspan="2"><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;&nbsp;주소&nbsp;&nbsp;&nbsp;</span>
-                <input type='text' name='cl_addr' class='form-control' style="width:540px;"></div></th>
+                <input type='text' name='cl_addr' class='form-control' style="width:502px;"></div></th>
 						
 					</tr>
 					<tr>
 				<th><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;&nbsp;업태&nbsp;&nbsp;&nbsp;</span>
-                <input type='text' name='cl_kind' class='form-control' style="width:230px;"></div></th>
+                <input type='text' name='cl_kind' class='form-control' style="width:210px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;종목&nbsp;&nbsp;</span>
                 <input type='text' name='cl_kind2' class='form-control'></div></th>
 					
@@ -159,12 +159,12 @@ font-size: 20px;
 				<th><div class='input-group'><span class='input-group-addon'>&nbsp;계좌번호&nbsp;</span>
                 <input type='text' name='cl_banknum' class='form-control'></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>종사업장번호</span>
-                <input type='text' name='cl_comnum2' class='form-control' style="width:200px;"></div></th>
+                <input type='text' name='cl_comnum2' class='form-control' style="width:180px;"></div></th>
 					</tr>
 
 					<tr>
 				<th colspan="2"><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;&nbsp;메모&nbsp;&nbsp;&nbsp;</span>
-                <textarea name='cl_memo' rows="3" cols="" class='form-control' style="width:539px;"></textarea></div></th>
+                <textarea name='cl_memo' rows="3" cols="" class='form-control' style="width:507px;"></textarea></div></th>
                 
 						<!-- <th class="th1">메모</th>
 						<td><textarea name="cl_memo"

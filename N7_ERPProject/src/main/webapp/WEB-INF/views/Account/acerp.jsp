@@ -33,7 +33,7 @@
        #description{
     float:left;
     height:100%;
-    width:80%;
+    width:1150px;
     position: absolute;
     transform:translate(300px, 0);   
 }
@@ -66,6 +66,21 @@
 </body>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
+
+
+$(document).ready(function(){
+	$.ajax({
+		url:'/erp/Account/openTable',
+		type:'get',
+		success:function(data){
+			$("#description").html(data);
+		},
+		error:function(){
+
+		}
+	});
+
+});
 
 $("#acountting").click(function(){
 	$.ajax({
