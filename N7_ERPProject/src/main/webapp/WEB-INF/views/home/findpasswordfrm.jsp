@@ -96,7 +96,7 @@ input[type="text"] {
 				<li><a href="/erp/introducecompany">회사 소개</a></li>
 				<li><a href="/erp/erpboard">상담 게시판</a></li>
 				<li><a href="/erp/erpapply">ERP 신청</a></li>
-				<li><a href="/erp/join">JOIN</a></li>
+				<li><a href="/erp/joinpage">JOIN</a></li>
 				<c:if test="${id!=null}">
 					<li><form action="logout" method="post">
 							<input type="submit" value="LOGOUT">

@@ -139,13 +139,13 @@ public class MemberMM {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 			messageHelper.setFrom("mykyj2000@gmail.com");
 			messageHelper.setTo(userEmail);
-			messageHelper.setSubject("N7 ERP �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�뙃�땲�뙋�삕.");
-			messageHelper.setText("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕 " + authentictionNum + " �뜝�뙃�땲�뙋�삕");
+			messageHelper.setSubject("N7 ERP 인증번호입니다.");
+			messageHelper.setText("인증번호는 " + authentictionNum + " 입니다.");
 			mailSender.send(mimeMessage);
-			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
+			return ResponseEntity.ok(new Gson().toJson("인증번호 전송에 성공하였습니다. "));
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
+			return ResponseEntity.ok(new Gson().toJson("인증번호 전송에 실패하였습니다. 다시 시도 해주세요!"));
 		}
 	}
 
