@@ -163,7 +163,7 @@ button {
                          </p>
                         </div>
                     <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;" required></div> <!-- oninput="dupleID()" -->
-                          &nbsp;&nbsp;<input type="button" value="중복체크" onclick="dupleID()">
+                         &nbsp;&nbsp;<input type="button" value="중복체크" onclick="dupleID()">
                         <br><div id="dupleID"></div>
                     </div>
 
@@ -213,6 +213,7 @@ button {
                             </span>
                         </div>
                       <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                      &nbsp;&nbsp;<button type="button" onclick="" style="width: 100px; height: 40px; background-color:#3D6B9B; ">이메일 인증</button>
                     </div>
 
                     <!-- 주소 -->
