@@ -35,7 +35,7 @@ width:1000px;
 	<table id="comInfo" class="table table-striped table-bordered table-hover" style="text-align: center;">
 
 		<tr>
-			<td colspan="6" style="height: 50px;">거 래 명 세 표</td>
+			<td colspan="6" style="height: 50px;"><h1>거 래 명 세 표</h1></td>
 		</tr>
 		<tr>
 			<td id="date" rowspan="3" style="width: 350px;"></td>

@@ -235,16 +235,15 @@ input {
 									}
 								});
 					});
-	
+
 	function setChildValue(data) {
 		console.log(data)
 		for ( var i in data.aList) {
 			var comname = data.aList[i].cl_name;
 
 		}
-
 		$("#j_company").val(comname);
-		
+	};
 	    function setChildValue2(data) {
 	  	   console.log(data)
 	  	   var bonum="";
@@ -254,6 +253,6 @@ input {
 	  	   $("#j_centre").val(bonum);
 	  	};
 
-	};
+
 </script>
 </html>

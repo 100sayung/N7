@@ -299,7 +299,12 @@ $("#approval").click(function(){
 									}else{
 										window.open('/erp/Account/acApproval?check='+check,'acApproval','width=1400,height=700');
 									}
+								},
+								error:function(error){
+									
+								}
 								});
+						}
 					});
 
 	$("#search2")
@@ -362,7 +367,7 @@ $("#approval").click(function(){
 				});
 	};
 
-	function shipmentDetaile() {
+	/* function shipmentDetaile() {
 		var arr = new Array();
 		var id = new Array();
 		var cnt = $("input[name='checknum']:checked").length;
@@ -384,7 +389,7 @@ s
 						}
 					});
 				}
-			});
+			}); */
 
 	$("#addList")
 			.click(
@@ -421,8 +426,7 @@ s
 	 $("#testTable").html(str);
 	 } */
 
-	$("#taxbill").click(
-			function() {
+	$("#saledetails").click(function() {
 				var check = '';
 		$("input[name='checknum']:checked").each(function() {
 							check = $(this).attr('value');
@@ -440,6 +444,26 @@ s
 				}
 			});
 
+	 $("#taxbill").click(function() {
+			var check = '';
+	$("input[name='checknum']:checked").each(function() {
+						check = $(this).attr('value');
+						console.log(check);
+                     if(check!=""){
+						if (check.indexOf("AS")) {
+							window.open('/erp/Account/taxbill?check=' + check,
+									'taxbillAS', 'width=1600,height=700');
+
+						} else {
+							window.open('/erp/Account/taxbill?check=' + check,
+									'taxbillAP', 'width=1600,height=700');
+						}
+                     }else{
+                     	alert("체크한 항목이 없습니다");
+                     }
+					});
+		});
+	 
 	function getList(code) {
 		$("#comInfo").attr("display", "none");
 		$("#plusorminus").attr("display", "none");

@@ -36,7 +36,7 @@
     height:100%;
     width:1150px;
     position: absolute;
-    transform:translate(300px, 0);   
+    transform:translate(300px, 0);
 }
 
     </style>
@@ -49,8 +49,9 @@
 		<div id="menu">
 			<ul>
 				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
+				</ul>
+				<ul id="mainmenu"></ul>
 		</div>
     </div>
     <div id="side_menu">
@@ -96,6 +97,7 @@ $("#acountting").click(function(){
 	});
 
 });
+
 $("#acWriting").click(function(){
 	$.ajax({
 		url:'/erp/Account/acWritefrm',
@@ -104,11 +106,12 @@ $("#acWriting").click(function(){
 			$("#description").html(data);
 		},
 		error:function(){
-			
+
 		}
 	});
-	
+
 });
+
 $("#analysis").click(function(){
 	$.ajax({
 		url:'/erp/Account/analysis',
@@ -117,10 +120,10 @@ $("#analysis").click(function(){
 			$("#description").html(data);
 		},
 		error:function(){
-			
+
 		}
 	});
-	
+
 });
 </script>
 </html>

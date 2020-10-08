@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Purchase Details</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <style type="text/css">
 #center{
 text-align: center;
@@ -35,7 +35,7 @@ ${msg}
          <button type="button" id="pDetail">상세보기</button>
      	<br>
      	<br>
-      <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
+      <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
 					<select id="choice">
 						<option value="p_documentcode">구매번호</option>
 						<option value="p_writer">담당자</option>
@@ -44,24 +44,24 @@ ${msg}
 					<input type="text" id="search" name="search" style="height: 18px;">
 					<button id="searchbtn">검색</button>
 		<form id="a">
-         <div border="1" style="width:1330px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-				<table style="margin-left: 55px">
+         <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+				<table style="margin-right: 55px;">
                  	 <tr>
                  	 	<th>구매번호</th>
-                    	<th><input type="text" name="p_documentcode" value="P" readonly ></th>
+                    	<th><input type="text" name="p_documentcode" value="P" readonly id="p_documentcode" ></th>
                     	<th>제품번호</th>
-                     	<th><input type="text" name="p_productnum"></th>
+                     	<th><input type="text" name="p_productnum" id="p_productnum"></th>
                      	<th>담당자</th>
-                    	<th><input type="text" name="p_writer"></th>
+                    	<th><input type="text" name="p_writer" id="p_writer"></th>
                     	<th>거래처</th>
-                     	<th><input id="clcode" type="text" name="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+                     	<th><input id="clcode" type="text" name="p_clcode" id="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                      	<th>구매일</th>
-                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
+                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;" id="p_day"></th>
                   	</tr>
             	</table>
 			</div>
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 1330px; background-color: #ECEBEA;">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; background-color: #ECEBEA;">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">
@@ -84,12 +84,12 @@ ${msg}
 					<tbody id="tbody">
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
-                     		<td><input type="text" name="p_name"></td>
+                     		<td><input type="text" name="p_name" class="p_name"></td>
                      		<!-- <td><input type="text" name="p_itcode"></td> -->
                      		<td class="it"></td>
-                     		<td><input type="number" min="1" name="p_amount"></td>
+                     		<td><input type="number" min="1" name="p_amount" class="p_amount"></td>
                      		<td><input class="unlit" type="text" name="p_unlit"></td>
-                     		<td><input type="text" name="p_budget"></td>
+                     		<td><input type="text" name="p_budget" class="p_budget"></td>
                     	</tr>
 					</tbody>
 				</table>
