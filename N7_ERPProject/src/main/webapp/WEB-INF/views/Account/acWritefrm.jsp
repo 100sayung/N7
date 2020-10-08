@@ -99,7 +99,8 @@ input {
 										<th colspan="2">수주이름</th>
 										<!-- 활동센터 -->
 										<th colspan="2"><input type="text" id="j_centre"
-											name="j_centre" class="txt" style="width: 400px;"></th>
+											name="j_centre" class="txt" style="width: 400px;">
+											<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
 										<th colspan="2">부서명</th>
 										<!-- 귀속부서 -->
 										<th colspan="2" id="hc"></th>
@@ -113,6 +114,8 @@ input {
 										<!-- 관계회사 -->
 										<td colspan="2"><input type="text" id="j_company"
 											name="j_company" class="draft3" style="width: 400px;">
+											<button type="button"
+								onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>
 										</td>
 
 									</tr>
@@ -214,11 +217,8 @@ input {
 				}
 			});
 
-	$(document)
-			.ready(
-					function() {
-						$
-								.ajax({
+	$(document).ready(function() {
+						$.ajax({
 									url : '/erp/rest/Account/getAu_name',
 									type : 'get',
 									data : 'json',
@@ -235,5 +235,24 @@ input {
 									}
 								});
 					});
+	
+	function setChildValue(data) {
+		console.log(data)
+		for ( var i in data.aList) {
+			var comname = data.aList[i].cl_name;
+
+		}
+		$("#j_company").val(comname);
+	};
+	    function setChildValue2(data) {
+	  	   console.log(data)
+	  	   var bonum="";
+	  	   for(var i in data.sList){
+	  	   bonum=data.sList[i].bo_num;
+	  	   }
+	  	   $("#j_centre").val(bonum);
+	  	};
+
+	
 </script>
 </html>
