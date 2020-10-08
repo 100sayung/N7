@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Purchase Details</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 <style type="text/css">
 #center{
 text-align: center;
@@ -153,7 +153,7 @@ ${msg}
 			}
 			
 		 $('.addList').click(function(){
-			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name" class='p_name'></td><td class="it"></td><td><input type="number" min="1" name="p_amount" class='p_amount'></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name"></td><td class="it"></td><td><input type="number" min="1" name="p_amount"></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
 		
 	var select;
 	$.ajax({

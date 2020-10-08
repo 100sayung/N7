@@ -64,8 +64,9 @@ ul {
       <div id="menu">
 			<ul>
 				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
+				</ul>
+				<ul id="mainmenu"></ul>
       </div>
    </div>
    <div id="side_menu">
@@ -231,31 +232,6 @@ ul {
     });
 
 
-    var select;
-      $.ajax({
-            url:"/erp/stock/getitemcode",
-            dataType:"json",
-            type:"post",
-            success:function(data){
-               select = makeSelectBox(data);
-            },
-            error:function(err){
-               console.log(err);
-            }
-         });
-
-     function makeSelectBox(arr){
-          var arrStr = "<select name = 'bs_itcode'>"
-          if(arr.length==0){
-             arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
-          }else{
-             for(var i = 0;i<arr.length;i++){
-                arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
-             }
-          }
-          arrStr+="</select>";
-          return arrStr;
-       }
 
    </script>
 </html>
