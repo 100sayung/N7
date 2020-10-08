@@ -113,11 +113,11 @@ body{
    <table style="border: 1px solid black; ">
    		<tr style="background-color: #FFFFFF">
    			<td>대기중</td>
-   			<td>회색</td>
+   			<td>흰색</td>
    		</tr>
    		<tr style="background-color: #D2E9FF">
    			<td>승인</td>
-   			<td>초록색</td>
+   			<td>하늘색</td>
    		</tr>
    </table>
    </div>
