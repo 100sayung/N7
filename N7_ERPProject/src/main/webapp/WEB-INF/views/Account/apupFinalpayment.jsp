@@ -7,34 +7,33 @@
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
 <!-- FONTAWESOME STYLES-->
-<!--<link href="/erp/assets/css/font-awesome.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/font-awesome.css" rel="stylesheet">
 <!-- CUSTOM STYLES-->
-<!--<link href="/erp/assets/css/custom.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/custom.css" rel="stylesheet">
 <!-- GOOGLE FONTS-->
-<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans"
-	rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans"
+	rel="stylesheet" type="text/css">
 <!-- /. WRAPPER  -->
-<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME -->
 <!-- JQUERY SCRIPTS -->
-<!--<script src="/erp/assets/js/jquery-1.10.2.js"></script> -->
+<script src="/erp/assets/js/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<!--<script src="/erp/assets/js/bootstrap.min.js"></script> -->
+<script src="/erp/assets/js/bootstrap.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<!-- <script src="/erp/assets/js/custom.js"></script>-->
+<script src="/erp/assets/js/custom.js"></script>
 
 <title>Insert title here</title>
 <style>
-button{
-font-size: larger;
-padding: 10px;
+a{
+color:#222222;
+/* font-weight: bold; */
 }
+
 table, tr, td {
 	border: 1px solid black;
 	text-align: center;
@@ -42,7 +41,7 @@ table, tr, td {
 
 td {
 	padding: 5px;
-	font-size: large;
+	font-size: medium;
 /* 	width: 58px; */
 	height: 10px;
 }
@@ -61,14 +60,11 @@ td {
 #center {
 	text-align: center;
 }
-
-
-
 </style>
 </head>
 <body>
 		 <div
-         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger;">결재완료 결재함</div>
+         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%;  font-size: larger; font-weight: bold;">결재완료 결재함</div>
 	<table id="table" class="table table-hover">
 		<tr id="m">
 			<td>check</td>

@@ -84,6 +84,10 @@ ul {
 	position: absolute;
 	transform:translate(1050px, 0);
 }
+
+#menu2 {
+	font-size: medium;
+	}
 </style>
 </head>
 <body onload="build();">
@@ -116,6 +120,7 @@ ul {
 				<li id="apdownPayment">내가 받은 결재함</li>
 				<li id="acTemporary">임시저장 결재함</li>
 			</ul>
+		</ul>
 	</div>
 	<div id="description">
 	<div class="first_div_css">
@@ -154,6 +159,81 @@ ul {
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script>
+$("#showMenu1").hover(function() {
+	$("#menu2").attr("style", "display:inline-block");
+});
+
+$("#menu2").hover(function() {
+	$("#smenu3").attr("style", "display:inline-block");
+});
+
+$("#apupFinalpayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apupFinalpayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#apupBackpayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apupBackpayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#apupPayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apupPayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#apdownPayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apdownPayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#acTemporary").click(function() {
+	$.ajax({
+		url:'/erp/Account/acTemporary',
+		success:function(data) {
+			console.log(data);
+			$("#description").html(data);
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+
+});
+
+
 	var status = "";
 	var load = function(){
 		$.ajax({

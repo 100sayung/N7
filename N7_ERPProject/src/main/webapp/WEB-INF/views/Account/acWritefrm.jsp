@@ -8,9 +8,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-html, body {
-	text-align: center;
-}
 
 table, tr, th, td {
 	border: 1px solid silver;
@@ -21,10 +18,6 @@ table, tr, th, td {
 	height: auto;
 }
 
-/* input{ */
-/* 	border: 1px white; */
-/* 	text-align: left; */
-/* } */
 .txt {
 	width: 200px;
 	height: 20px;
