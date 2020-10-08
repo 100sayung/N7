@@ -1,12 +1,10 @@
 package com.n7.erp.dao;
-
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
 import com.n7.erp.bean.B_shipment;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
@@ -16,7 +14,7 @@ public interface ItemCodeDao {
 	@Select("SELECT * FROM IT WHERE IT_CPCODE = #{cCode}")
 	public List<ItemCode> getItemCode(String cCode);
 
-	@Insert("INSERT INTO IT VALUES(#{it_code},#{it_cpcode},#{it_ccode},#{it_pname},#{it_size},#{it_unit},#{it_pstock},0)")
+	@Insert("INSERT INTO IT VALUES(#{it_code},#{it_cpcode},#{it_ccode},#{it_pname},#{it_size},#{it_unit},0)")
 	public boolean itemCodeCofirm(ItemCode it);
 
 	@Update("UPDATE IT SET IT_PNAME=#{it_pname},IT_SIZE=#{it_size},IT_UNIT=#{it_unit},IT_PSTOCK=#{it_pstock} WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{it_cpcode}")
@@ -42,5 +40,8 @@ public interface ItemCodeDao {
 
 	@Select("Select IT_STOCK FROM IT WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{it_cpcode}")
 	public int getStock(ItemCode it);
+
+	@Select("SELECT * FROM IT WHERE IT_CPCODE = #{cCode} AND IT_CODE LIKE #{it_code}")
+	public List<ItemCode> getIfInfo(@Param("cCode")String cCode,@Param("it_code") String it_code);
 
 }

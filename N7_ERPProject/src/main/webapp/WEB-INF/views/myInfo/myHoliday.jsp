@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>내 휴가 보기</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -42,8 +42,10 @@ a {
 
 #description {
    float: left;
-   height: 100%;
-   
+   height: 500px;
+   width:1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -52,16 +54,22 @@ ul {
 .attendance{
    border: 1px solid black;
 }
-table{
-   text-align: center;
-}
+
 table, th, td{
-   border-bottom : 1px solid balck;
-   border-top : 1px solid black;
-   border-collapse: collapse;
+	text-align:center;
+	border-bottom : 1px solid balck;
+	border-top : 1px solid black;
+	border-collapse: collapse;
 }
 #calendar td{
    width:30px;
+}
+#menu2 {
+	font-size: medium;
+	}
+
+body{
+	color:black;
 }
 </style>
 </head>
@@ -69,50 +77,56 @@ table, th, td{
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
-			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
-			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
-			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
-			<li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
+			<div id="myInfoMenu">
+			</div>
+			<li id="showMenu1">나의 결재함</a></li>
+			<ul id="menu2" style="display: none;">
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+				</ul>
+				<li id="apdownPayment">내가 받은 결재함</li>
+				<li id="acTemporary">임시저장 결재함</li>
+			</ul>
 		</ul>
 	</div>
    <div id="description">
-   <div class="divcss">내 휴가 보기</div>
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size">내 휴가 보기</h1>
+	</div>
    <div style="float: right;">
    <table style="border: 1px solid black; ">
-   		<tr>
+   		<tr style="background-color: #FFFFFF">
    			<td>대기중</td>
-   			<td>회색</td>
+   			<td>흰색</td>
    		</tr>
-   		<tr>
+   		<tr style="background-color: #D2E9FF">
    			<td>승인</td>
-   			<td>초록색</td>
-   		</tr>
-   		<tr>
-   			<td>거절</td>
-   			<td>삭제됨</td>
+   			<td>하늘색</td>
    		</tr>
    </table>
    </div>
-      <table align="center" style="margin-top: 50px;">
-         <tr>
-            <td style="width : 100px;"><font color="#B3B6B3"><label
+      <table align="center" style="margin-top: 50px;background-color: #D9EDF7;">
+         <tr style="border: 1px solid black;">
+            <td style="width : 100px;"><font color="#8A7F8D"><label
                   onclick="beforem()" id="before"></label></font></td>
             <td style="width : 150px; font-size: 15px;" align="center" id="yearmonth" style="font-size: 15px;"></td>
-            <td style="width : 100px;"><font color="#B3B6B3"><label
+            <td style="width : 100px;"><font color="#8A7F8D"><label
                   onclick="nextm()" id="next"></label></font></td>
          </tr>
       </table>
@@ -124,6 +138,80 @@ table, th, td{
    </div>
    <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
    <script>
+   $("#showMenu1").hover(function() {
+		$("#menu2").attr("style", "display:inline-block");
+	});
+	
+	$("#menu2").hover(function() {
+		$("#smenu3").attr("style", "display:inline-block");
+	});
+
+	$("#apupFinalpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupFinalpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupBackpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupBackpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#apdownPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apdownPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#acTemporary").click(function() {
+		$.ajax({
+			url:'/erp/Account/acTemporary',
+			success:function(data) {
+				console.log(data);
+				$("#description").html(data);
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+
+	});
+   
       var str = "";
       $(document).ready(function() {
       })
@@ -170,13 +258,13 @@ table, th, td{
          }
 
            // 남은 테이블 줄 삭제
-           while (tbcal.rows.length > 0) 
+           while (tbcal.rows.length > 0)
            {
                tbcal.deleteRow(tbcal.rows.length - 1);
            }
 
          var row = null;
-         row = tbcal.insertRow();   
+         row = tbcal.insertRow();
          var cnt = 0;
          // 달력 출력
          for (i = 1; i <= lastDate.getDate(); i++) // 1일부터 마지막 일까지
@@ -243,14 +331,14 @@ table, th, td{
                         day = "0" + day;
                      }
                      //09-24 change
+                   	 cell.style.padding="10px 0px";
                      if(data[k].hap_status=="3"){
-                    	 cell.style.backgroundColor="#03D62A";
+                    	 cell.style.backgroundColor="#D2E9FF";
                     	 cell.style.color="black";
                     	 cell.style.fontWeight="bolder";
-                    	 cell.style.textShadow="black 0px 1px";
                      }else if(data[k].hap_status=="1"){
                     	 cell.style.color="black";
-                    	 cell.style.backgroundColor="#C4C5C4";
+                    	 cell.style.backgroundColor="#FFFFFF";
                      }
                      ///////
                      let date = "" + year + month + day;
@@ -259,23 +347,23 @@ table, th, td{
                      } else if (endday == date) {
                         cell.innerHTML = "-->";
                      } else if (startday < date && date < endday) {
-                        if(j!=cnt){
+                        if(j!=cnt){	
                            cell.innerHTML = "---";
                         }else{
                            cell.innerHTML = data[k].m_name;
-                           cell.style.width="90px;";
+                           cell.style.width="90px";
                            cell.className="last"
                               cell = row.insertCell();
-                           cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+                           cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
                            cell.clssName="last"
-                           
+
                         }
                      } else if (j == cnt) {
                         cell.innerHTML = data[k].m_name;
-                        cell.style.width="90px;";
+                        cell.style.width="90px";
                         cell.clssName="last"
                         cell = row.insertCell();
-                        cell.innerHTML = "<input type='button' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
+                        cell.innerHTML = "<input type='button' class='infobtn' value='상세정보' id='"+data[k].hap_docunum+"' onclick='showDetail(\""+data[k].hap_docunum+"\")'>"
                         cell.clssName="last"
                      } else {
                         cell.innerHTML = "";
@@ -291,12 +379,12 @@ table, th, td{
             }
          });
       }
-      
+
       function designThis(cell){
          console.log(cell);
          cell.style.width = "100px";
       }
-      
+
       function showDetail(docunum){
          console.log(docunum);
          window.open('/erp/hr/holidaydetail?docunum=' + docunum, '휴가상세정보', 'width=1400, heigth=700');

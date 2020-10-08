@@ -4,21 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
+import com.n7.erp.bean.ps.Order;
 import com.n7.erp.bean.ps.Purchase;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.ps.Return;
@@ -64,7 +61,7 @@ public class PurchaseRestController {
 		Map<String, List<Purchase>> pMap= pm.pfdelete(check_list, session);
 		return pMap;
 	}
-
+	
 	 //결재
 	@PostMapping(value = "/Purchase/addApproval",produces="application/json;charset=utf-8" )
 	public  Map<String, List<approvalLine>> addApprovale(String CNT, String ARR) {
@@ -158,13 +155,43 @@ public class PurchaseRestController {
 		Map<String, List<IePort>> sMap= pm.stocklist(session);
 		return sMap;
 	}
-
+	
+	//재고현황
 	@GetMapping(value = "/Purchase/getstocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<ItemCode>> getstocklist(HttpSession session) {
 		Map<String, List<ItemCode>> sMap= pm.getstocklist(session);
 		return sMap;
 	}
+	
+	//발주
+	@PostMapping(value = "/Purchase/orderinsert", produces= "application/json;charest=utf-8" )
+	public ModelAndView orderinsert(Order od, HttpSession session) {
+		mav= pm.orderinsert(od, session);
+		return mav;
+	}
+	
+	@GetMapping(value = "/Purchase/orderInfo", produces= "application/json;charest=utf-8" )
+	public Map<String, List<Order>> orderInfo(HttpSession session) {
+		System.out.println("들어감?");
+		Map<String, List<Order>> pMap= pm.orderInfo(session);
+		return pMap;
+	}
+	
+	@PostMapping(value = "/Purchase/orderSearch", produces= "application/json;charest=utf-8" )
+	public Map<String, List<Order>> orderSearch(String search, String choice, HttpSession session) {
+		System.out.println("들어가라");
+		System.out.println(search);
+		System.out.println(choice);
+		Map<String, List<Order>> pMap= pm.orderSearch(search, choice, session);
+		return pMap;
+	}
 
+//	@GetMapping(value = "/Purchase/orderPinfo", produces= "application/json;charest=utf-8" )
+//	public Map<String, List<PurchaseApproval>> orderPinfo(HttpSession session) {
+//		System.out.println("들어감?");
+//		Map<String, List<PurchaseApproval>> pMap= pm.orderPinfo(session);
+//		return pMap;
+//	}
 
 
 

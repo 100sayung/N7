@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>내 출결 보기</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -21,6 +21,10 @@ table
 	width: 100%;
 	height: 200px;
 }
+
+#menu2 {
+	font-size: medium;
+	}
 
 #side_menu {
 	height: 100%;
@@ -70,24 +74,32 @@ td{
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myinfo/checkattendance">출/퇴근 등록</a></li>
 			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
-			<li><a href="/erp/myinfo/myPaycheck">급여명세서 보기</li>
-			<li><a href="/erp/myinfo/myattendance">내 출결 보기</li>
-			<li><a href="/erp/myinfo/myholiday">내 휴가 보기</li>
-			<li><a href="/erp/myinfo/applyholiday">휴가신청</a></li>
-			<li><a href="/erp/myinfo/mydocument">나의 결재함</a></li>
+			<div id="myInfoMenu">
+			</div>
+			<li id="showMenu1">나의 결재함</a></li>
+			<ul id="menu2" style="display: none;">
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+				</ul>
+				<li id="apdownPayment">내가 받은 결재함</li>
+				<li id="acTemporary">임시저장 결재함</li>
+			</ul>
 		</ul>
 	</div>
 
@@ -113,6 +125,80 @@ td{
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
+	$("#showMenu1").hover(function() {
+		$("#menu2").attr("style", "display:inline-block");
+	});
+	
+	$("#menu2").hover(function() {
+		$("#smenu3").attr("style", "display:inline-block");
+	});
+
+	$("#apupFinalpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupFinalpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupBackpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupBackpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#apdownPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apdownPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#acTemporary").click(function() {
+		$.ajax({
+			url:'/erp/Account/acTemporary',
+			success:function(data) {
+				console.log(data);
+				$("#description").html(data);
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+
+	});
+	
 	function checkMyAt(i){
 		$.ajax({
 			url : "/erp/rest/myinfo/myattendance",

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>영업활동 조회</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
@@ -15,18 +15,18 @@ text-align:center;
 <body>
       <div id="center">
       <br>
-        <button type="button" id="businessitemfrm">영업 실적조회</button>${msg}
+        <button type="button" id="businessitemfrm" onclick="window.open('/erp/sales/SalesResult','SalesResult','width=1200,height=1200')">영업 실적조회</button>${msg}
         <br>
         <br>
-        <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">영업활동</div>
+        <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">영업활동</div>
          <select id="choice" style="width:180px;">
                       <option value="ba_ocode">영업코드</option>
                       <option value="ba_hrcode">사원코드</option></select>
-          <input type="text" name="search" id="search">    
-          <button type="button" id="searchh" value="검색">검색</button>   
+          <input type="text" name="search" id="search">
+          <button type="button" id="searchh" value="검색">검색</button>
         <form id="businessactivitiesinput">
-        <div border="1" style="height:80px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:180px;">
+        <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+        <table style="margin-left:100px;">
          <thead>
             <tr>
                <th>영업코드</th>
@@ -34,13 +34,15 @@ text-align:center;
                <th>회사코드</th>
                <th><input type="text" name="ba_ccode" value="${cCode}" readonly></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="ba_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+               <th><input type="text" name="ba_clcode" id="clcode">&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>사원코드</th>
-               <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th>
+               <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th> <%-- value="${hrCode}" readonly --%>
             </tr>
             <tr>
                <th>사업단위</th>
-               <th><input type="text" name="ba_unit"></th>
+               <th><select name="ba_unit" style="width:150px;">
+                   <option value="본사">본사</option>
+                   <option value="지사">지사</option></select></th>
                <th>영업기간 시작</th>
                <th><input type="date" name="ba_startperiod" min="2000-01-01" max="2030-12-31" style="width:140px;"></th>
                <th>영업기간 끝</th>
@@ -48,8 +50,8 @@ text-align:center;
             </tr>
          </thead>
       </table>
-      </div> 
-            <div style="background-color:#ECEBEA;">
+      </div>
+            <div style="background-color:#ECEBEA; width:1175px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
               style="margin-left:140px;">
                 <colgroup align="center">
@@ -65,66 +67,67 @@ text-align:center;
                         <th><input type="radio" id="allCheck"></th>
                         <th>날짜</th>
                         <th>내용</th>
-                  <th>예상매출금액</th>
-                  <th>실제매출금액</th>
-                  <th>종료일자</th>
-                  <th>메모</th>
+                        <th>예상매출금액</th>
+                        <th>실제매출금액</th>
+                        <th>종료일자</th>
+                        <th>메모</th>
                   </tr>
                 </thead>
                 <tbody id="tBody">
                     <tr>
-                        <td><input type="radio" class="each"></td>          
+                        <td><input type="radio" class="each"></td>
                         <td><input type="date" name="ba_date" id="add"></td>
                         <td><input type="text" name="ba_content"  required></td>
                         <td><input type="number" name="ba_estimatedsalesamount" required></td>
-                        <td><input type="number" name="ba_actualsalesamount"></td>                
+                        <td><input type="number" name="ba_actualsalesamount"></td>
                         <td><input type="text" name="ba_enddate" required></td>
-                        <td><input type="text" name="ba_memo" required></td>    
+                        <td><input type="text" name="ba_memo" required></td>
                     </tr>
                 </tbody>
             </table>
-            </div>  
+            </div>
         </form>
         <br>
-        <br>
-            <button type="button" id="addList" value="추가">추가</button>
-            <button type="button" id="deleteCheck" value="삭제">삭제</button>
+            <!-- <button type="button" id="deleteCheck" value="삭제">삭제</button> -->
             <button type="button" id="sub" value="저장">저장</button>
       </div>
      <br>
     <br>
     <br>
 
-    
-    <script type="text/javascript">     
-    
+
+    <script type="text/javascript">
+
     function setChildValue(data) {
   	   console.log(data)
-  	   for(var i in data.aList){ 
+  	   for(var i in data.aList){
   	   var clcode=data.aList[i].cl_code;
-  	      
+
   	   }
-  	   
+
   	   $("#clcode").val(clcode);
   	};
-        //추가삭제
-        $(document).ready(function(){
-              $('.addList').click(function(){
-                 $('#tBody').append('<tr><td><input type="radio" name="each_check" class="each"></td><td><input type="text" name="ba_date" class="input-text"></td><td><input type="text" name="ba_content" class="input-text" ></td><td><input type="number" name="ba_estimatedsalesamount" class="input-text" ></td><td><input type="number" name="ba_actualsalesamount" class="input-text" ></td><td><input type="text" name="ba_enddate" class="input-text" ></td><td><input type="text" name="ba_memo" class="input-text" ></td><td><input type="button" value="삭제" id="deleteCheck" onclick="javascript:thisRowDel(this);"></td></tr>');
-              });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-          }); 
-           function thisRowDel(row){
-                console.log(row);
-                let tr = row.parentNode.parentNode;
-                tr.parentNode.removeChild(tr);
-         }   
-        
-        
-      $('#businessitemfrm').click(function(){
-           
-              window.open('/erp/sales/SalesResult','영업실적조회','width=1350,height=600');
-        });
-        
+
+
+/*       $('#businessitemfrm').click(function(){
+           var str="";
+
+           $.ajax({
+              url:'/erp/rest/sales/businessitem',
+              type: 'get',
+              dataType: "json",
+              success:function(data){
+                 console.log(data);
+
+                 for(var i in data.bList){
+                    str+="<tr><td><input type='radio' name='checknum' value="+data.bList[i].ba_ocode+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_date+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_content+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_estimatedsalesamount+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_actualsalesamount+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
+                    str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td></tr>"; */
+
        $('#sub').click(function(){
            var obj= $('#businessactivitiesinput').serialize();
 
@@ -141,12 +144,12 @@ text-align:center;
                  }
               });
                $('input').val("");
-           });           
-        
+           });
+
        $('#searchh').click(function(){
          var choice=$('#choice').val();
          var search=$('#search').val();
-         
+
          $.ajax({
             type : 'post',
              url : '/erp/rest/sales/businessactivitiessearch',
@@ -154,7 +157,7 @@ text-align:center;
              dataType: "json",
              success : function(data){
                 console.log(data);
-                
+
                 var str="";
                 if(data.bList!=""){
                  for(var i in data.bList){
@@ -173,23 +176,23 @@ text-align:center;
              },
              error : function(error){
                 console.log(error);
-             } 
+             }
          });
        });
-       
+
        $('#deleteCheck').click(function(){
           var check="";
           $("input[name=each_check]:checked").each(function(){
              check = $(this).attr("value");
              console.log(check);
           });
-          
+
           $.ajax({
                 type : 'post',
                 url : '/erp/rest/sales/businessactivitiesdelete',
                 data: {check:check},
                 dataType: "json",
-                success : function(data) {                   
+                success : function(data) {
                    console.log(data);
                    var str="";
                    for(var i in data.sList){
@@ -208,7 +211,7 @@ text-align:center;
                    console.log(error);
                 }
              });
-          }); 
+          });
 
 </script>
 </body>

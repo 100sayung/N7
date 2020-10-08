@@ -4,8 +4,7 @@
 <html>
 <head>
 <script src=/erp/js/menu.js></script>
-<script
-src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Document</title>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
@@ -22,6 +21,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	font-size: 20px;
 	font-weight: bolder;
 	float: left;
+	border-right: 1px solid #E6E6E6;
 }
 
 #side_menu #menuList{
@@ -40,9 +40,9 @@ a{
 #description{
     float:left;
     height:100%;
-    width:80%;
+    width: 1150px;
     position: absolute;
-    transform:translate(300px, 0);   
+    transform:translate(300px, 0);
 }
 
 </style>
@@ -50,18 +50,21 @@ a{
 <body>
     <div id="header">
         <div id="logo">
-            <h1><a href="#">N7 ERP SYSTEM</a></h1>
+            <h1><a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a></h1>
     </div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<li ><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
+				</ul>
+				<ul id="mainmenu"></ul>
 		</div>
     </div>
     <div id="side_menu">
         <ul id="menuList">
-            <li><a href="#" id="pregistration">구매관리</a></li>
-            <li><a href="#" id="rregistration">반품 관리</a></li>
+            <li><a  id="pregistration">구매관리</a></li>
+            <li><a  id="rregistration">반품 관리</a></li>
+            <li><a  id="oregistration">발주 관리</a></li>
         </ul>
     </div>
     <center>
@@ -73,7 +76,22 @@ a{
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
-		
+	$(document).ready(function(){
+		 $.ajax({
+			   type:'get',
+			   url:' /erp/Purchase/pregistration',
+			   dataType: 'html',
+			   success: function(data){
+				   $('#description').html(data);
+				   console.log(data);
+
+			   },
+			   error: function(err){
+				   console.log(err);
+			   }
+		   });
+	});
+
     $("#pregistration").click(function(){
 	   $.ajax({
 		   type:'get',
@@ -82,17 +100,32 @@ a{
 		   success: function(data){
 			   $('#description').html(data);
 			   console.log(data);
+
 		   },
 		   error: function(err){
 			   console.log(err);
 		   }
 	   });
-   }); 
-   
+   });
+
    $("#rregistration").click(function(){
 	   $.ajax({
 		   type:'get',
 		   url:' /erp/Purchase/retrunregistration',
+		   dataType: 'html',
+		   success: function(data){
+			   $("#description").html(data);
+		   },
+		   error: function(err){
+			   console.log(err);
+		   }
+	   });
+   });
+
+   $("#oregistration").click(function(){
+	   $.ajax({
+		   type:'get',
+		   url:' /erp/Purchase/orderregistration',
 		   dataType: 'html',
 		   success: function(data){
 			   $("#description").html(data);

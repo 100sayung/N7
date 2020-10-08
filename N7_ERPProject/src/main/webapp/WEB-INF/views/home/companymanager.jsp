@@ -53,7 +53,12 @@ margin-left: 200px;
 
 #description{
 	position:relative;
-}</style>
+}
+td{
+	padding-top:6px;
+	padding-bottom: 6px;
+}
+</style>
 </head>
 
 
@@ -74,7 +79,7 @@ margin-left: 200px;
 	</div>
 	<div id="description" class="out" style="height: 700px;">
 	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>회사관리</h1></div>
-	<div class="center" style="height:500px; width:700px; text-align:center;">
+	<div class="center" style="height:500px; width:1000px; text-align:center;">
 	
 	<div id="container"></div>
 	<div id="paging"></div>

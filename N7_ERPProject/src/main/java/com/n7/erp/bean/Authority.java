@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @Data
 public class Authority{
 	
-	public String au_comname;		//회사이름
+	public String au_comname;		//회사코드
 	public String au_name;			//부서이름
 	public String au_authority;		//권한
 	

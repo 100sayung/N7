@@ -59,7 +59,7 @@ public interface IHrDao {
 	@Select("SELECT COUNT(*) FROM HR_CAREER WHERE Hcr_HRCODE = #{hrcode} AND HCR_CCODE = #{cCode}")
 	Integer selectCareer(HashMap<String, String> crMap);
 
-	@Select("SELECT COUNT(*) FROM HR_CERTIFICATION WHERE Hct_HRCODE = #{hrcode} AND HCT_CCODE = #{ccode}")
+	@Select("SELECT COUNT(*) FROM HR_CERTIFICATION WHERE Hct_HRCODE = #{hrcode} AND HCT_CCODE = #{cCode}")
 	Integer selectCertification(HashMap<String, String> ctfMap);
 
 	@Insert("INSERT INTO HR_CARD VALUES(#{hc_hrcode}||HR_CARD_SEQ.NEXTVAL, #{hc_ccode}, #{hc_id}, #{hc_dept}, #{hc_position}, #{hc_joindate}, DEFAULT, DEFAULT, DEFAULT)")
@@ -91,7 +91,7 @@ public interface IHrDao {
 	@Insert("UPDATE HR_CARD SET HC_STATUS = #{type} WHERE HC_CCODE = #{cCode} AND HC_HRCODE = #{hrCode}")
 	void logStatusToHrCard(HashMap<String, String> logAtMap);
 
-	@Insert("INSERT INTO HR_APPLYHOLIDAY VALUES(#{hap_docunum}||HR_APPLYHOLIDAY_SEQ.currval, #{hap_ccode}, #{hap_hrcode}, #{hap_docuname},"
+	@Insert("INSERT INTO HR_APPLYHOLIDAY VALUES(#{hap_docunum}||LPAD(HR_APPLYHOLIDAY_SEQ.currval,9,0), #{hap_ccode}, #{hap_hrcode}, #{hap_docuname},"
 			+ "#{hap_fromapprover}, #{hap_toapprover}, DEFAULT, #{hap_type}, #{hap_reason}, #{hap_startday}, #{hap_endday}, DEFAULT)")
 	void registHoliday(ApplyHoliday apholi);
 
@@ -127,7 +127,7 @@ public interface IHrDao {
 	boolean checkMemberHrCardCnt(String cCode);
 
 
-	@Select("SELECT * FROM MEMBER WHERE M_CCODE = #{cCode} AND M_NAME = #{name}")
+	@Select("SELECT * FROM MEMBER WHERE M_CCODE = #{cCode} AND M_NAME LIKE '%'||#{name}||'%'")
 	ArrayList<Member> getSearchFromName(HashMap<String, String> hMap);
 
 	ArrayList<HR_Card> getHrCodeFromStatus(HashMap<String, String> hMap);
@@ -188,4 +188,12 @@ public interface IHrDao {
 
 	int countWages(String cCode);
 	List<ViewPay> selectWages(PagingVO vo);
+	@Select("SELECT HR_CARD.HC_DEPT, HR_CARD.HC_POSITION, HR_CARD.HC_HRCODE, HR_CARD.HC_WORK, MEMBER.M_NAME, HR_CARD.HC_WORK "
+			+ "FROM HR_CARD INNER JOIN MEMBER ON HR_CARD.HC_ID = MEMBER.M_ID WHERE HC_CCODE = #{cCode} AND M_NAME LIKE '%'||#{name}||'%'"
+			+"ORDER BY MEMBER.M_NAME ASC")
+	ArrayList<HR_Card> SearchingRetireName(HashMap<String, String> hMap);
+	void updateLeftHoliday(HashMap<String, String> hMap);
+
+	@Select("SELECT AU_AUTHORITY FROM AUTHORITY WHERE AU_COMNAME = #{cCode} AND AU_NAME = #{dept}")
+	String getAuthority(@Param("dept")String dept, @Param("cCode")String cCode);
 }

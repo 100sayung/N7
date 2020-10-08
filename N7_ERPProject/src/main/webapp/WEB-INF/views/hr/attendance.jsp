@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 출결 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -49,14 +49,14 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1060px;
+	width: 1150px;
 }
 
 ul {
 	list-style: none;
 }
 .attendance{
-	
+
 	border: 1px solid black;
 }
 input{
@@ -68,46 +68,34 @@ input{
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
-					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
-					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 조회</a></li>
-					<li><a href="/erp/hr/attendance">사원 출결 조회</a></li>
-					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
-					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
 
-	<div class="div_css">사원 출결 조회</div>
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size">사원 출결 관리</h1>
+	</div>
 								<!-- 09-24 style change -->
-    <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin: 0px 20px;">
+    <table align="center" id="calendar" style="width: 500px;height: 400px;float: left; margin-right: 20px;">
         <tr>
             <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
             <td colspan="5" align="center" id="yearmonth"></td>
@@ -123,7 +111,7 @@ input{
             <td align="center"><font color=#7ED5E4>토</font></td>
         </tr>
     </table>
-    <div id="at"></div>
+    <div id="at" style="height: 400px;overflow: auto;"></div>
 	</div>
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
@@ -139,7 +127,7 @@ input{
 			success : function(data){
 				console.log(data);
 				//09-24 table change
-				let str = "<div style='height:400px;overflow-x:hidden;float:right;position:static;'><table style='width:500px;overflow-y:scroll;'>";
+				let str = "<div style='height:400px;float:right;position:static;'><table style='width:500px;overflow-y:scroll;'>";
     			for(let i = 0 ; i<data.length ; i++){
 					let type = "";
        				let time = data[i].ha_time.substr(16, 8);
@@ -155,9 +143,9 @@ input{
     				console.log(date);
     				console.log(timenumber);
 					str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
-					str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
-					str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
-					
+					str +="<td><button type='button' class='infobtn' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
+					str +="<button type='button' class='infobtn' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+
 				}
 				str += "</table></div>";
 				$("#at").html(str);
@@ -166,7 +154,7 @@ input{
 			}
 		});
 	}
-	
+
 	function attendanceUpdate(row, hrcode, time){
 
 			let tr=row.parentNode.parentNode;
@@ -183,7 +171,7 @@ input{
 				$("#"+number).prop("type", "time");
 				$("#"+number).css("border", "1px solid black");
 			}else{
-	 			if(confirm("정말 수정하겠습니까?")){			
+	 			if(confirm("정말 수정하겠습니까?")){
 					$.ajax({
 					url:'/erp/rest/hr/attendanceUpdate',
 					type:'get',
@@ -206,8 +194,8 @@ input{
 		    				console.log(date);
 		    				console.log(timenumber);
 							str += "<tr style='width:500px; height:50px;'><td>"+data[i].m_name+"</td><td class='"+timenumber+"'><input id="+timenumber+" type='text' value='" + time + "' style='border:0px solid; text-align:center;' readonly='true'></td><td>" + type + "</td>";
-							str +="<td><button type='button' onclick='javascript:attendanceUpdate(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>수정</button>";
-							str +="<button type='button' onclick='javascript:attendanceDelete(this,"+data[i].ha_hrcode+",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
+							str +="<td><button type='button' class='infobtn' onclick='javascript:attendanceUpdate(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>수정</button>";
+							str +="<button type='button' class='infobtn' onclick='javascript:attendanceDelete(this,\""+data[i].ha_hrcode+"\",\""+data[i].ha_time+"\");'>삭제</button></td></tr>";
 						}
 						str += "</table></div>";
 						$("#at").html(str);
@@ -226,13 +214,13 @@ input{
 		}
 
 	}
-	
-	
+
+
 	//사원  출퇴근 삭제
 	function attendanceDelete(row,hrcode,time){
 		if(confirm("정말 삭제하겠습니까?")){
 			let tr = row.parentNode.parentNode;
-			tr.parentNode.removeChild(tr);		
+			tr.parentNode.removeChild(tr);
 	 		$.ajax({
 				url:"/erp/rest/hr/attendanceDelete",
 				type:'get',
@@ -249,7 +237,7 @@ input{
 			alert("취소되었습니다.");
 		}
 	}
-	
+
 	$("#showMenu1").hover(function() {
 		$("#smallMenu1").attr("style", "display:inline-block");
 	}, function() {

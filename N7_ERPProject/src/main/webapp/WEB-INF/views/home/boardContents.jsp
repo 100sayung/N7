@@ -29,7 +29,7 @@ font-family: inherit;
 font-weight: 500;
 color: inherit;
 text-transform: uppercase;
-display: block;    
+display: block;
 text-align: center;
 }
 table#table {
@@ -84,7 +84,7 @@ margin-top: 200px;
 		</div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
-	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP상담게시판</h1></div>
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
 	<div class="center">
         <div id="container">
 		<h2>상세보기</h2>
@@ -151,9 +151,9 @@ $("#commit").click(function(){
 		error:function(error){
 			console.log(error);
 		}
-		
+
 	});
-	
+
 });
 
 $("#delete").click(function(){
@@ -171,12 +171,12 @@ $("#delete").click(function(){
 			}else{
 				alert("비번이 맞지 않습니다.");
 			}
-			
+
 		},
 		error:function(error){
 			console.log(error);
 		}
-		
+
 	});
 });
 
@@ -195,12 +195,12 @@ $("#admindelete").click(function(){
 			}else{
 				alert("비번이 맞지 않습니다.");
 			}
-			
+
 		},
 		error:function(error){
 			console.log(error);
 		}
-		
+
 	});
 });
 

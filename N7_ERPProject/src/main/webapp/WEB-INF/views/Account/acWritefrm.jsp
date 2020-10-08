@@ -8,10 +8,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-html, body {
-	text-align: center;
-}
-
 table, tr, th, td {
 	border: 1px solid silver;
 	text-align: center;
@@ -21,10 +17,6 @@ table, tr, th, td {
 	height: auto;
 }
 
-/* input{ */
-/* 	border: 1px white; */
-/* 	text-align: left; */
-/* } */
 .txt {
 	width: 200px;
 	height: 20px;
@@ -42,7 +34,6 @@ table, tr, th, td {
 	height: 20px;
 	border-style: none;
 	text-align: center;
-	"
 }
 
 .draft2 {
@@ -88,8 +79,7 @@ input {
 				<tr>
 					<th>제목</th>
 					<th><input type="text" id="j_title" name="j_title"
-						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"
-						placeholder="분개전표 제목을 입력해주세요."></th>
+						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;" placeholder="문서제목을 입력해주세요."></th>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -103,18 +93,17 @@ input {
 											name="j_account" class="txt" style="width: 400px;"></th>
 										<th colspan="2">문서번호</th>
 										<td colspan="2" style="width: 400px;">문서번호는 자동으로 입력됩니다.</td>
-										<!-- 										<td>결재상태</td> -->
 
 									</tr>
 									<tr>
 										<th colspan="2">수주이름</th>
 										<!-- 활동센터 -->
 										<th colspan="2"><input type="text" id="j_centre"
-											name="j_centre" class="txt" style="width: 400px;"></th>
+											name="j_centre" class="txt" style="width: 400px;">
+											<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
 										<th colspan="2">부서명</th>
 										<!-- 귀속부서 -->
-										<th colspan="2"><input type="text" id="j_section"
-											name="j_section" class="txt" style="width: 400px;"></th>
+										<th colspan="2" id="hc"></th>
 									</tr>
 									<tr>
 										<th colspan="2">비용구분</th>
@@ -125,17 +114,19 @@ input {
 										<!-- 관계회사 -->
 										<td colspan="2"><input type="text" id="j_company"
 											name="j_company" class="draft3" style="width: 400px;">
+											<button type="button"
+								onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>
 										</td>
 
 									</tr>
 									<tr>
 										<th colspan="2">차변금액</th>
-										<td colspan="5"><input type="text" id="j_debit"
+										<td colspan="5"><input type="number" id="j_debit"
 											name="j_debit" class="draft" style="width: 900px;"></td>
 									</tr>
 									<tr>
 										<th colspan="2">대변금액</th>
-										<td colspan="5"><input type="text" id="j_credit"
+										<td colspan="5"><input type="number" id="j_credit"
 											name="j_credit" class="draft" style="width: 900px;">
 										</td>
 									</tr>
@@ -158,11 +149,6 @@ input {
 <script>
 	$('#su').click(
 			function() {
-				var num = /^[0-9]+$/; //숫자
-// 				var eng = /[a-zA-Z]/; //문자
-// 				var spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
-// 				var kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-
 				var title = document.getElementById('j_title');
 				var account = document.getElementById('j_account');
 				var group = document.getElementById('j_group');
@@ -204,13 +190,6 @@ input {
 				} else if (debit.value != credit.value) {
 					alert("차변금액과 대변금액이 같지 않습니다.");
 				} else {
-// 					if (num.test(debit)) 
-// 							&& !(eng.test(debit))
-// 							&& !(spc.test(debit)) && !(kor.test(debit))
-// 							||(num.test(credit)) && !(eng.test(credit))
-// 							&& !(spc.test(credit)) && !(kor.test(credit))
-							 { //차변대변금액
-// 						return true
 
 						var obj = $("#form1").serialize();
 						console.log(obj);
@@ -234,14 +213,46 @@ input {
 								console.log(error);
 								alert("야 오류얌");
 							}
-
-						})
-// 					} else {
-// 						alert("차변금액과 대변금액은 숫자만 입력 가능합니다.");
-// 						return false
-					}
+						});
 				}
-
 			});
+
+	$(document).ready(function() {
+						$.ajax({
+									url : '/erp/rest/Account/getAu_name',
+									type : 'get',
+									data : 'json',
+									success : function(data) {
+										console.log(data);
+										var str = "";
+										for ( var i in data.aList) {
+											str += "<input type='text' class='txt' id='j_section' style='width: 400px; color:gray;' readonly name='j_section' value='"+data.aList[i].hc_dept+"'>";
+										}
+										$("#hc").html(str);
+									},
+									error : function(error) {
+										console.log(error);
+									}
+								});
+					});
+
+	function setChildValue(data) {
+		console.log(data)
+		for ( var i in data.aList) {
+			var comname = data.aList[i].cl_name;
+
+		}
+		$("#j_company").val(comname);
+	};
+	    function setChildValue2(data) {
+	  	   console.log(data)
+	  	   var bonum="";
+	  	   for(var i in data.sList){
+	  	   bonum=data.sList[i].bo_num;
+	  	   }
+	  	   $("#j_centre").val(bonum);
+	  	};
+
+
 </script>
 </html>

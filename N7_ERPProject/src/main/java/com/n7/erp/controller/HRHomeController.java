@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,18 +63,17 @@ public class HRHomeController {
 		return "redirect:/hr/hrModifyDetail?id="+id;
 	}
 
-	@GetMapping(value={"/hr/movehrcardpage", "/hr/hr"})
+	@GetMapping(value="/hr/movehrcardpage")
 	public ModelAndView moveHrCard(HttpSession session) {
 		mav = hm.hrCard(session);
 		return mav;
 	}
-
 	@GetMapping(value = "/hr/attendance")
 	public ModelAndView moveAttendance(HttpSession session) {
 		mav = hm.checkMemberHrCard(session, "/hr/attendance");
 		return mav;
 	}
-	@GetMapping(value = "/hr/employeestatus")
+	@GetMapping(value = {"/hr/employeestatus", "/hr/hr"})
 	public ModelAndView moveEmployeeStatus(HttpSession session) {
 		mav = hm.checkMemberHrCard(session, "/hr/employeestatus");
 		return mav;
@@ -93,14 +94,14 @@ public class HRHomeController {
 	public ModelAndView moveDeduct(HttpSession session) {
 		mav = dm.moveDeduct(session.getAttribute("cCode").toString());
 
+		if(hm.checkAuth(session.getAttribute("auth").toString())) {
+			mav.setViewName("/myInfo/myInfo");
+		}
 		return mav;
 	}
 
 	@RequestMapping(value = "/hr/searchpaymm", method = {RequestMethod.GET , RequestMethod.POST})
 	public ModelAndView moveSearchPay(ViewPay pay,HttpSession session) {
-		System.out.println("findhrcode="+pay.getHC_HRCODE());
-		System.out.println("findccode="+pay.getHC_CCODE());
-		System.out.println("findpaydate="+pay.getHP_PAYDATE());
 		if(pay.getHP_PAYDATE()==""||pay.getHP_PAYDATE()==null) {
 			if(pay.getHC_HRCODE()==null) {
 				mav = dm.searchpay(session.getAttribute("cCode").toString());
@@ -115,10 +116,14 @@ public class HRHomeController {
 		return mav;
 	}
 
+	@Transactional
 	@RequestMapping(value = "/hr/deptpay", method = RequestMethod.GET)
 	public ModelAndView moveDeptPay(HttpSession session) {
 		mav = dm.deptpayselect(session.getAttribute("cCode").toString());
 		mav = dm.distictdp(session.getAttribute("cCode").toString());
+		if(hm.checkAuth(session.getAttribute("auth").toString())) {
+			mav.setViewName("/myInfo/myInfo");
+		}
 		return mav;
 	}
 
@@ -179,9 +184,12 @@ public class HRHomeController {
 		return "/hr/searchpaymm";
 	}
 	@RequestMapping(value = "/hr/payinputmodify", method = RequestMethod.GET)
-	public ModelAndView detail() {
+	public ModelAndView detail(HttpSession session) {
 		String view="/hr/payinputmodify";
 		mav.setViewName(view);
+		if(hm.checkAuth(session.getAttribute("auth").toString())) {
+			mav.setViewName("/myInfo/myInfo");
+		}
 		return mav;
 	}
 	@RequestMapping(value = "/hr/paydetail", method = RequestMethod.GET)
@@ -202,7 +210,7 @@ public class HRHomeController {
 	}
 	@GetMapping(value="/hr/holidayap")
 	public ModelAndView holidayAp(HttpSession session) {
-		mav=am.approvalLine(session);
+		mav=hm.approvalLine(session);
 		return mav;
 	}
 
@@ -228,4 +236,10 @@ public class HRHomeController {
 		mav = hm.getReceipHoliDay(docunum, session);
 		return mav;
 	}
+	@RequestMapping(value = "hr/approvalLine", method = RequestMethod.GET)
+	public ModelAndView approvalLine(HttpSession session) {
+		mav = am.approvalLine(session);
+		return mav;
+	}
+
 }

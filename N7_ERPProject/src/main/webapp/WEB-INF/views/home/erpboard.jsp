@@ -24,7 +24,7 @@
 .List {
 border-collapse: collapse;
 border-top: 3px solid #168;
-}  
+}
 .List th {
 color: #168;
 background: #f0f6f9;
@@ -48,8 +48,8 @@ text-align: center;
 display: block;
 text-align: center;
 margin-top: 15px;
-margin-left: 10px; 
-padding-bottom: 12px; 
+margin-left: 10px;
+padding-bottom: 12px;
 }
  #bbb{
 float: right;
@@ -74,7 +74,7 @@ padding-bottom: 20px;
 		</div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
-	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1 style='color:white'>ERP상담게시판</h1></div>
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
 	<div class="center">
         <div id="container">
 	<form action="erpboard">
@@ -88,9 +88,10 @@ padding-bottom: 20px;
 			</tr>
 		</table>
 	</div>
-   <div id="bbb"><a href="/erp/home/writeFrm" style="text-decoration: none;"><button type="button">글쓰기</button></a></div> 
+   <div id="bbb"><a href="/erp/home/writeFrm" style="text-decoration: none;"><button type="button">글쓰기</button></a></div>
 	</form>
-	<div id="paging">${paging}</div>
+	<div align="cneter" id="paging">${paging}</div>
+
  	<div id="ccc">
 		<select id="choice" style="height: 24px;">
 			<option value="CB_TITLE">제목</option>
@@ -98,18 +99,15 @@ padding-bottom: 20px;
 		</select>
 		<input type="text" id="keyword" name="search" style="height:18px;" />
 		<button type="button" id="searchbtn">검색</button>
-	</div> 
-	</div>
-	</div>
 	</div>
 </body>
 <script>
 		var bList=${bList};
-		
+
 	$(document).ready(function(){
 		var str="";
 		for(var i=0; i<bList.length; i++){
-	
+
 		var type=bList[i].cb_type;
 			str+="<tr><td>"+bList[i].cb_num+"</td>";
 			if(type=="a"){
@@ -117,14 +115,14 @@ padding-bottom: 20px;
 			}else{
 			str+="<td><a style='text-decoration: none;' href='#' onclick='secret(\""+bList[i].cb_num+"\",\""+bList[i].cb_password+"\")'>비밀글입니다</a></td>";
 			}
-			
+
 			str+="<td>"+bList[i].cb_writer+"</td></tr>";
 		}
 		$(".List").append(str);
 		console.log(bList);
 	});
-	
-	
+
+
 	function secret(num,password){
 		var id="${id}";
 		if(id=="admin"){
@@ -138,23 +136,23 @@ padding-bottom: 20px;
         }
 		}
 	};
-	
+
 	$("#searchbtn").click(function(){
         var pageNum=0;
 		var choice= $("#choice").val();
 		var keyword= $("#keyword").val();
 		console.log(choice);
 		console.log(keyword);
-		
+
 		if(keyword==""){
 			alert("검색어를 입력해 주세요");
 		}else{
 		$.ajax({
-			url: '/erp/rest/home/boardSearch',
-			type: 'post',
+			url: "/erp/rest/home/boardSearch",
+			type: "post",
 			data: "choice="+choice+"&keyword="+keyword,
 			dataType: 'json',
-			success: function(data){ 
+			success: function(data){
 				$(".List").html("");
 				console.log(data);
 				 var str="";
@@ -167,79 +165,79 @@ padding-bottom: 20px;
 						}
 					 pageNum=data.bList.length;
 					 console.log(pageNum);
-					 
+
 						$(".List").html(str);
-						var totalData = pageNum;   
+						var totalData = pageNum;
 						var pageCount=0;
-					    var dataPerPage = 10;    
+					    var dataPerPage = 10;
 					    if(pageNum<10){
-					       pageCount = 1;        
-					    	
+					       pageCount = 1;
+
 					    }else{
-					    	
-					       pageCount = 5;       
+
+					       pageCount = 5;
 					    }
-					    
-					           
+
+
 					        paging(totalData, dataPerPage, pageCount, 1);
-					  
-					    
+
+
 					    function paging(totalData, dataPerPage, pageCount, currentPage){
-					        
+
 					        console.log("currentPage : " + currentPage);
-					        
-					        var totalPage = Math.ceil(totalData/dataPerPage);    
-					        var pageGroup = Math.ceil(currentPage/pageCount);   
-					        
+
+					        var totalPage = Math.ceil(totalData/dataPerPage);
+					        var pageGroup = Math.ceil(currentPage/pageCount);
+
 					        console.log("pageGroup : " + pageGroup);
-					        
-					        var last = pageGroup * pageCount;    
+
+					        var last = pageGroup * pageCount;
 					        if(last > totalPage)
 					            last = totalPage;
-					        var first = last - (pageCount-1);  
+					        var first = last - (pageCount-1);
 					        var next = last+1;
 					        var prev = first-1;
-					        
+
 					        console.log("last : " + last);
 					        console.log("first : " + first);
 					        console.log("next : " + next);
 					        console.log("prev : " + prev);
-					 
+
 					        var $pingingView = $("#paging");
-					        
+
 					        var html = "";
-					        
+
 					        if(prev > 0)
 					            html += "<a href=# id='prev'><</a> ";
-					        
+
 					        for(var i=first; i <= last; i++){
 					            html += "<a href='#' id=" + i + ">[" + i + "]</a> ";
 					        }
-					        
+
 					        if(last < totalPage)
 					            html += "<a href=# id='next'>></a>";
-					        
-					        $("#paging").html(html);   
+
+					        $("#paging").html(html);
 					        $("#paging a").css("color", "black");
-					        $("#paging a#" + currentPage).css({"text-decoration":"none", 
-					                                           "color":"red", 
-					                                           "font-weight":"bold"});  
-					                                           
+					        $("#paging a#" + currentPage).css({"text-decoration":"none",
+					                                           "color":"red",
+					                                           "font-weight":"bold"});
+
 					        $("#paging a").click(function(){
-					            
+
 					            var $item = $(this);
 					            var $id = $item.attr("id");
 					            var selectedPage = $item.text();
-					            
+
 					            if($id == "next")    selectedPage = next;
 					            if($id == "prev")    selectedPage = prev;
-					            
+
 					            paging(totalData, dataPerPage, pageCount, selectedPage);
 					        });
-					                                           
+
 					    }
 				 }else{
-					 
+
 					alert("데이터가 없습니다.");
 					console.log(data);
 					 var str="";
@@ -254,9 +252,6 @@ padding-bottom: 20px;
 		});
 		}
 	});
-	
 
-    
-    
 </script>
 </html>

@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>영업 메뉴창</title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
    media="all" />
 <style>
+
 #header {
    width: 100%;
    height: 200px;
@@ -38,7 +39,7 @@ a {
 }
 
 #body{
-    position: relative; 
+    position: relative;
 }
 
 #description{
@@ -46,45 +47,61 @@ a {
     height:100%;
     width:80%;
     position: absolute;
-    transform:translate(300px, 0);   
+    transform:translate(300px, 0);
 }
 
 ul {
    list-style: none;
-}
+} 
 </style>
 </head>
 <body>
+
    <div id="header">
       <div id="logo">
          <h1>
-            <a href="#">N7 ERP SYSTEM</a>
+            <a href="/erp/myInfo/myInfo"">N7 ERP SYSTEM</a>
          </h1>
       </div>
       <div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 				</ul>
 				<ul id="mainmenu"></ul>
       </div>
    </div>
    <div id="side_menu">
       <ul id="menuList">
-         <li><a href="#" id="showMenu1">수주등록</a></li>
-         <li><a href="#" id="showMenu2">출하의뢰입력</a></li>
-         <li><a href="#" id="showMenu3">미수금등록</a></li>
-         <li><a href="#" id="showMenu4">영업활동 조회</a></li>
-         <li><a href="#" id="showMenu5">내 결재함</a></li>
+         <li><a id="showMenu1">수주등록</a></li>
+         <li><a id="showMenu2">출하의뢰입력</a></li>
+         <li><a id="showMenu3">미수금등록</a></li>
+         <li><a id="showMenu4">영업활동 조회</a></li>
       </ul>
    </div>
-   <center>
    <div id="description">
-    
-   </div>
-   </center>
+ 	
+ 	</div>
    </body>
+   
    <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
    <script>
+
+   $(document).ready(function(){
+	     $.ajax({
+	          type : 'get',
+	          url : '/erp/sales/orderregistrationfrm',
+	          dataType : 'html',
+	          success : function(data) {
+	             $('#description').html(data);
+	          },
+	          error: function(error){
+	             console.log(error);
+	          }
+	       });
+	    });
+
+   
    
    $('#showMenu1').click(function() {
 
@@ -100,9 +117,10 @@ ul {
           }
        });
     });
-   
+
+
    $('#showMenu2').click(function() {
-       
+
        $.ajax({
           type : 'get',
           url : '/erp/sales/shippingrequestinputfrm',
@@ -115,32 +133,9 @@ ul {
              console.log(error);
           }
        });
-    }); 
-    
-    
-/*   $('#showMenu2').click(function() {
-    var str="";
-    
-    $.ajax({
-       type : 'get',
-       url:'rest/orderitem'
-       dataType : "json",
-       success : function(data) {
-          console.log(data);
-          
-          for(var i in data.sList){
-             str+="<tr><td><input type='text' name='checknum' value="+data.sList[i].pro_order_num+"></td>";
-             str+="<td><input type='text' name='pro_name' value="+data.sList[i].pro_name+"</td>";
-             
-          }
-          $('#tBody').html(str);
-       },
-       error: function(error){
-          console.log(error);
-       }
     });
- });  */
-   
+
+
    $('#showMenu3').on('click', function() {
 
        $.ajax({
@@ -156,7 +151,7 @@ ul {
           }
        });
     });
-   
+
    $('#showMenu4').on('click', function() {
        $.ajax({
           type : 'get',
@@ -171,57 +166,8 @@ ul {
           }
        });
     });
-   
-/*    $('#showMenu5').on('click', function(e) {
-       e.preventDefault();
 
-        var check='';
-       $("input[name=each_check]:checked").each(function(){
-          check= $(this).attr("value");
-          
-          console.log(check);
-          if(check!=""){
-      
-       $.ajax({
-          type : 'get',
-          url :  'salesapprovaldetail',
-          dataType : 'html',
-          success : function(data) {
-             console.log(data);
-             $('#description').html(data);
-          },
-          error: function(error){
-             console.log(error);
-          }
-        });
-    }); */
-    
-    
-    var select;
-      $.ajax({
-            url:"/erp/stock/getitemcode",
-            dataType:"json",
-            type:"post",
-            success:function(data){
-               select = makeSelectBox(data);
-            },
-            error:function(err){
-               console.log(err);
-            }
-         });
-      
-     function makeSelectBox(arr){
-          var arrStr = "<select name = 'bs_itcode'>"
-          if(arr.length==0){
-             arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
-          }else{
-             for(var i = 0;i<arr.length;i++){
-                arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
-             }
-          }
-          arrStr+="</select>";
-          return arrStr;
-       } 
-     
+
+
    </script>
 </html>

@@ -17,7 +17,8 @@
 	opacity: 70%;
 	color:white;
 	font-weight: bold;
-	font-size:13px;
+	font-size:15px;
+	height:32px;
 }
 
 .admin{
@@ -33,12 +34,21 @@
 	font-weight: bold;
 	font-size:14px;
 }
-.div_css{
-	background-color: #FFB2D9;
-	text-align:center;
-	font-size: 30px;
-	font-weight:bold;
-}
+
 .border_delete_btn{
 	border: 0px solid;
+}
+.first_div_css{
+	margin-bottom:20px;
+	padding:10px 0px;
+	background-color: #3D6B9B;
+	text-align: center;
+}
+.deptregist_color_size{
+	color:white;
+}
+.font_color_paydetail{
+	width:100px;
+	border:2px solid #D9EDF7;
+	background-color: #lightgray;
 }

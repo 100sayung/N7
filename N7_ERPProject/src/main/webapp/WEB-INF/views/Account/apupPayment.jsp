@@ -7,42 +7,49 @@
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
 <!-- FONTAWESOME STYLES-->
-<!--<link href="/erp/assets/css/font-awesome.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/font-awesome.css" rel="stylesheet">
 <!-- CUSTOM STYLES-->
-<!--<link href="/erp/assets/css/custom.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/custom.css" rel="stylesheet">
 <!-- GOOGLE FONTS-->
-<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans"
-	rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans"
+	rel="stylesheet" type="text/css">
 <!-- /. WRAPPER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 <!-- JQUERY SCRIPTS -->
-<!--<script src="/erp/assets/js/jquery-1.10.2.js"></script> -->
+<script src="/erp/assets/js/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<!--<script src="/erp/assets/js/bootstrap.min.js"></script> -->
+<script src="/erp/assets/js/bootstrap.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<!-- <script src="/erp/assets/js/custom.js"></script>-->
+<script src="/erp/assets/js/custom.js"></script>
 
-<title>Insert title here</title>
+<title>진행중 결재함</title>
 <style>
+
 table, tr, td {
 	border: 1px solid black;
 	text-align: center;
+/* 	height: auto; */
+}
+
+a{
+color:#222222;
+font-weight: bold;
 }
 
 td {
 	padding: 5px;
-	font-size: large;
+	font-size: medium; 
 /* 	width: 58px; */
 	height: 10px;
 }
 
-#table {
-	width: 1200px;
+#t{
+	width: 1150px;
 	height: auto;
 	text-align: center;
 /* 	margin-left: 80px; */
@@ -56,20 +63,25 @@ td {
 	text-align: center;
 }
 
-
-
+/* button{ */
+/* padding: 10px; */
+/* } */
+ul {
+   list-style: none;
+}
 </style>
 </head>
 <body>
-	<!-- 	<h1>acPend.jsp(임시저장)</h1> -->
-	<table id="table">
+	 <div
+         style="width: 1150px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger; font-weight: bold; text-align: center;">진행중 결재함</div>
+	<table id="t" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
 			<td id="ap_docunum">문서번호</td>
 			<td id="ap_ccode">회사코드</td>
 			<td id="ap_docuname">결재문서이름</td>
-			<td id="ap_fromapprover">결재올린사람</td>
-			<td id="ap_toapprover ">결재받는사람</td>
+			<td id="ap_fromapprover">발신인</td>
+			<td id="ap_toapprover ">수신인</td>
 			<td id="ap_date">올린시간</td>
 			<td id="ap_statu">결재상태</td>
 		</tr>
@@ -130,18 +142,18 @@ td {
 					method : "get",
 					success : function(data) {
 						let str = "";
-						for (let i = 0; i < data.length; i++) {
+						for (let i = 0; i < data.pList.length; i++) {
 							str += "<table>"
-							str += "<tr>"
-							str += "<td><input type='radio' name='checknum' class='check' value='"+data[i].ap_docunum+"'></td>";
-							str += "<td>" + data[i].ap_docunum + "</td>";
-							str += "<td>" + data[i].ap_ccode + "</td>";
-							str += "<td>" + data[i].ap_docuname + "</td>";
-							str += "<td>" + data[i].ap_fromapprover + "</td>";
-							str += "<td>" + data[i].ap_toapprover + "</td>";
-							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>결재중</td>";
-							str += "</tr>"
+								str += "<tr>"
+								str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>";
+								str += "<td>" + data.pList[i].ap_docunum + "</td>";
+								str += "<td>" + data.pList[i].ap_ccode + "</td>";
+								str += "<td>" + data.pList[i].ap_docuname + "</td>";
+								str += "<td>" + data.nList[i].ap_fromname + "</td>";
+								str += "<td>" + data.nList[i].ap_toname + "</td>";
+								str += "<td>" + data.pList[i].ap_date + "</td>";
+								str += "<td>" + '결재중' + "</td>";
+								str += "</tr>"
 						}
 						str += "</table>";
 						$("#Info").html(str);

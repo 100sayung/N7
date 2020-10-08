@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>사원 휴 -퇴직 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -42,11 +42,19 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1150px;
 }
 
 ul {
 	list-style: none;
+}
+body{
+	font-size:medium;
+	color:black;
+	font-weight: bold;
+}
+input,select{
+	font-size: medium;
 }
 </style>
 </head>
@@ -54,50 +62,52 @@ ul {
 	<div id="header">
 		<div id="logo">
 			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
 			</h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu">
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li id="showMenu1">인사 관리
-				<ul id="smallMenu1" style="display: none;">
-					<li><a href="/erp/hr/deptregistpage">부서등록</a></li>
-					<li><a href="/erp/hr/movehrcardpage">인사카드</a></li>
-				</ul>
-			</li>
-
-			<li id="showMenu2">근태 관리
-				<ul id="smallMenu2" style="display: none;">
-					<li><a href="/erp/hr/receiptholiday">휴가 접수</a></li>
-					<li><a href="/erp/hr/attendance">사원 출결 관리</a></li>
-					<li><a href="/erp/hr/employeestatus">근무 조회</a></li>
-					<li><a href="/erp/hr/retiremm">휴/퇴직 관리</a></li>
-				</ul>
-			</li>
-			<li id="showMenu3">급여 관리
-				<ul id="smallMenu3" style="display: none;">
-					<li><a href="/erp/hr/deptpay">부서/직급별 급여</a></li>
-					<li><a href="/erp/hr/deduct">공제사항 관리</a></li>
-					<li><a href="/erp/hr/searchpaymm">급여 관리</a></li>
-				</ul>
-			</li>
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
 		</ul>
 	</div>
 	<div id="description">
-	<div class="divcss">사원 휴 - 퇴직 관리</div>
-		<input type="text" id="nameSearch"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
-		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a> 
-		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a> 
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size">사원 휴 - 퇴직 관리</h1>
+	</div>
+	<div style="float: right;">
+		<input type="text" id="nameSearch" placeholder="이름으로 입력" style="padding: 5px 10px;"> <button onclick="searchFromName()" class="infobtn" id="nameSearching">검색</button>
+	</div>
+	<div>
+		<a href="javascript:CheckRetired(0)"><button class='infobtn'>재직중</button></a>
+		<a href="javascript:CheckRetired(1)"><button class='infobtn'>휴직중</button></a>
 		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
-		<div id="container" style="overflow:auto; width:750px; height:600px;">
+		<div>
+			<table style="width: 100%;border-collapse: collapse;text-align: center;border: #D9EDF7"border="1">
+				<tr style="background-color: #B2BEB5">
+					<td width="150px">이름</td>
+					<td width="300px">부서</td>
+					<td width="300px">직책</td>
+					<td width="250px" colspan="2"></td>
+				</tr>
+			</table>
+		</div>
+		<div id="container" style="overflow:auto; width:1150px; height:600px;" align="center">
 			<input type="hidden" value="" id="status">
 		</div>
+	</div>
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -107,8 +117,8 @@ ul {
 
 	//검색 조건 끝
 	CheckRetired(0);
-	
-	
+
+
 	function CheckRetired(status){
 		$.ajax({
 			url:"/erp/rest/hr/checkretired",
@@ -117,13 +127,13 @@ ul {
 			data : {status : status},
 			success : function(data){
 				let str = "";
-				str += "<table style='border:1px solid black;'>";
+				str += "<table style='border:1px solid #D9EDF7; width:1150px;text-align:center;'>";
 				console.log(data);
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr>"
-					str += "<td><input type='hidden' class='border_delete_btn' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
-					str += "<td><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
-					str += "<td><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
+					str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
+					str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
+					str += "<td width-'300px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
 					str+="<td><select name='hc_work'>";
 					if(status == 1){
 						str+="<option value = '1' selected = 'selected'> 휴직 </option>";
@@ -138,7 +148,7 @@ ul {
 						str+="<option value = '2'> 퇴사 </option>";
 						str+="<option value = '0' selected = 'selected'> 재직 </option>";
 					}
-					str += "</select></td><td><input type='button' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
+					str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
 				}
 				str+="</table>"
 				$("#container").html(str);
@@ -181,12 +191,41 @@ ul {
 		$name = $("#nameSearch").val();
 		console.log($name);
 		$.ajax({
-			url:"/erp/rest/hr/searchfromname",
+			url:"/erp/rest/hr/searchingretirename",
 			data:{name:$name},
-			dataType:"text",
-			method:"get",
+			dataType:"json",
+			method:"post",
 			success : function(data){
-				console.log(data);
+				let str = "";
+				if(data.length!=0){
+					str += "<table style='border:1px solid #D9EDF7; width:1150px;text-align:center;'>";
+					console.log(data);
+					for(let i = 0 ; i<data.length ; i++){
+						str += "<tr>"
+						str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
+						str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
+						str += "<td width='400px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
+						str+="<td><select name='hc_work'>";
+						if(data[i].hc_work == 1){
+							str+="<option value = '1' selected = 'selected'> 휴직 </option>";
+							str+="<option value = '2'> 퇴사 </option>";
+							str+="<option value = '0'> 재직 </option>";
+						}else if(data[i].hc_work == 2){
+							str+="<option value = '1'> 휴직 </option>";
+							str+="<option value = '2' selected = 'selected'> 퇴사 </option>";
+							str+="<option value = '0'> 재직 </option>";
+						}else if(data[i].hc_work == 0){
+							str+="<option value = '1'> 휴직 </option>";
+							str+="<option value = '2'> 퇴사 </option>";
+							str+="<option value = '0' selected = 'selected'> 재직 </option>";
+						}
+						str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
+					}
+					str+="</table>";
+				}else if(data.length==0){
+					str+="<img width='300px' height='200px' src='https://blogpfthumb-phinf.pstatic.net/MjAyMDEwMDhfMzAw/MDAxNjAyMTIyNTMxOTM1.cPqAMKgvroqiVofLJzASQOwt3BOrq1zpalCLu6vch0Ig.PdHZwEQaxFiD4lK9kgW7NoywjrEk9yuyLZWozxx7_xkg.GIF.tkdgus5512/no_article.gif?type=w161'>";
+				}
+				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);
 			}

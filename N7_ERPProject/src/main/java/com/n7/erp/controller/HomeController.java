@@ -1,5 +1,8 @@
 package com.n7.erp.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +27,6 @@ import com.n7.erp.service.ConsultingBoardMM;
 import com.n7.erp.service.MemberMM;
 import com.n7.erp.userClass.PagingVO;
 
-
 @Controller
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -42,14 +44,14 @@ public class HomeController {
 	public String home() {
 		return "/home/home";
 	}
-	
-	//遺��꽌 愿�由� �럹�씠吏�
+
+	// 遺��꽌 愿�由� �럹�씠吏�
 	@RequestMapping(value = "/managermode/erpmanage", method = RequestMethod.GET)
 	public String erpmanage() {
-		
+
 		return "/managermode/erpmanage";
 	}
-	
+
 	@RequestMapping(value = "/managermode/managermode", method = RequestMethod.GET)
 	public String managermode() {
 
@@ -67,12 +69,25 @@ public class HomeController {
 		return "/home/introducecompany";
 	}
 
+	@RequestMapping(value = "/jusopopup", method = RequestMethod.GET)
+	public String jusoPopUp() {
+		return "/home/jusopopup";
+	}
+
 	@RequestMapping(value = "/home/erpboard", method = RequestMethod.GET)
 	public ModelAndView erpBoard(Integer pageNum) {
-	mav=cbm.moveBoardList(pageNum);
-	return mav;
+		mav = cbm.moveBoardList(pageNum);
+		return mav;
 	}
-	
+
+	/*
+	 * @RequestMapping(value = "/home/boardSearch", method = RequestMethod.POST)
+	 * public Map<String, List<ConsultingBoard>> boardSearch(String choice, String
+	 * keyword, Integer pageNum) { Map<String,
+	 * List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword, pageNum); return
+	 * bMap; }
+	 */
+
 	@RequestMapping(value = "/home/comInfo", method = RequestMethod.GET)
 	public String comInfo() {
 		return "/home/comInfo";
@@ -97,11 +112,12 @@ public class HomeController {
 	public String join() {
 		return "/home/join";
 	}
-	@GetMapping(value="/welcome")
+
+	@GetMapping(value = "/welcome")
 	public String welcome() {
-		System.out.println("ㅇㅇ");
 		return "/home/welcomepage";
 	}
+
 	@RequestMapping(value = "/erpapply", method = RequestMethod.GET)
 	public String erpApply() {
 		return "/home/erpapply";
@@ -109,21 +125,23 @@ public class HomeController {
 
 	@GetMapping(value = "/adminpage")
 	public String moveAdminPage(HttpSession session) {
-		if(mm.checkGrade(session).equals("2")) {
+		if (mm.checkGrade(session).equals("2")) {
 			return "/home/adminpage";
 		}
 		return "redirect:/";
 	}
+
 	@GetMapping(value = "/companymanager")
 	public String moveCompanyManager(HttpSession session) {
-		if(mm.checkGrade(session).equals("2")) {
+		if (mm.checkGrade(session).equals("2")) {
 			return "/home/companymanager";
 		}
 		return "redirect:/";
 	}
+
 	@GetMapping(value = "/membermanager")
 	public String moveMemberManager(HttpSession session) {
-		if(mm.checkGrade(session).equals("2")) {
+		if (mm.checkGrade(session).equals("2")) {
 			return "/home/membermanager";
 		}
 		return "redirect:/";
@@ -153,7 +171,7 @@ public class HomeController {
 
 	@PostMapping(value = "/newerp")
 	public String registNewERP(Company com) {
-		cm.registNewERP(com); //�뜝�룞�삕�뜝�룞�삕�뜝占� temp�뜝�룞�삕�뜝�룞�삕 �뜝��怨ㅼ삕�뜝�룞�삕.
+		cm.registNewERP(com);
 		return "/home/home";
 	}
 
@@ -173,20 +191,19 @@ public class HomeController {
 		mav = mm.moveMyInfo(session);
 		return mav;
 	}
-	//野껊슣�뻻疫뀐옙 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
+
+	// 野껊슣�뻻疫뀐옙 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
 	@RequestMapping(value = "/home/writeFrm", method = RequestMethod.GET)
 	public String write() {
-	   return "/home/writeFrm";
+		return "/home/writeFrm";
 	}
 
-	
-	
 	@RequestMapping(value = "/home/boardContents", method = RequestMethod.GET)
-	 public ModelAndView boardContents(int CB_NUM) {
-		System.out.println("CB_NUM="+CB_NUM);
-		mav=cbm.boardContents(CB_NUM);
+	public ModelAndView boardContents(int CB_NUM) {
+		System.out.println("CB_NUM=" + CB_NUM);
+		mav = cbm.boardContents(CB_NUM);
 		return mav;
-   }
+	}
 
 	@RequestMapping(value = "/home/findid", method = RequestMethod.POST)
 	public ResponseEntity<String> findID(String userEmail) {
@@ -194,8 +211,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/home/sendauthenticationnum", method = RequestMethod.POST)
-	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authenticationNum) {
-		return mm.sendAuthenticationNum(userEmail, authenticationNum);
+	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authenticationNum,String type) {
+		return mm.sendAuthenticationNum(userEmail, authenticationNum,type);
 	}
 
 	@RequestMapping(value = "/home/findpassword", method = RequestMethod.POST)
@@ -213,8 +230,10 @@ public class HomeController {
 	public ResponseEntity<String> modifyPassword(String userPassword, String userId) {
 		return mm.modifyPassword(userPassword, userId);
 	}
-	
-	
-	
-	
+
+	@RequestMapping(value = "/home/jusopopup", method = RequestMethod.GET)
+	public String jusoPopUp(String userPassword, String userId) {
+		return "home/jusopopup";
+	}
+
 }

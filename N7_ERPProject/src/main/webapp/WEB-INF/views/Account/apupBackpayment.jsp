@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,21 +11,26 @@
 
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" -->
+<!-- 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" -->
+<!-- 	crossorigin="anonymous"> -->
+
 <!-- FONTAWESOME STYLES-->
-<!--<link href="/erp/assets/css/font-awesome.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/font-awesome.css" rel="stylesheet">
 <!-- CUSTOM STYLES-->
-<!--<link href="/erp/assets/css/custom.css" rel="stylesheet"> -->
+<link href="/erp/assets/css/custom.css" rel="stylesheet">
 <!-- GOOGLE FONTS-->
 <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet" type="text/css"> -->
 <!-- /. WRAPPER  -->
-<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME -->
 <!-- JQUERY SCRIPTS -->
-<!--<script src="/erp/assets/js/jquery-1.10.2.js"></script> -->
+<script src="/erp/assets/js/jquery-1.10.2.js"></script>
 <!-- BOOTSTRAP SCRIPTS -->
-<!--<script src="/erp/assets/js/bootstrap.min.js"></script> -->
+<script src="/erp/assets/js/bootstrap.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
-<!-- <script src="/erp/assets/js/custom.js"></script>-->
+<script src="/erp/assets/js/custom.js"></script>
 
 <title>Insert title here</title>
 <style>
@@ -34,18 +39,22 @@ table, tr, td {
 	text-align: center;
 }
 
+a {
+	color: #222222;
+}
+
 td {
 	padding: 5px;
-	font-size: large;
-/* 	width: 58px; */
+	font-size: medium;
+	/* 	width: 58px; */
 	height: 10px;
 }
 
 #table {
-	width: 1200px;
+	width: 1150px;
 	height: auto;
 	text-align: center;
-/* 	margin-left: 80px; */
+	/* 	margin-left: 80px; */
 }
 
 #m {
@@ -55,21 +64,20 @@ td {
 #center {
 	text-align: center;
 }
-
-
-
 </style>
 </head>
 <body>
-	<!-- 	<h1>acPend.jsp(임시저장)</h1> -->
-	<table id="table">
+	<div
+		style="width: 1150px; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger; font-weight: bold;">반려
+		결재함</div>
+	<table id="table" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
 			<td id="ap_docunum">문서번호</td>
 			<td id="ap_ccode">회사코드</td>
 			<td id="ap_docuname">결재문서이름</td>
-			<td id="ap_fromapprover">결재올린사람</td>
-			<td id="ap_toapprover ">결재받는사람</td>
+			<td id="ap_fromapprover">발신인</td>
+			<td id="ap_toapprover ">수신인</td>
 			<td id="ap_date">올린시간</td>
 			<td id="ap_statu">결재상태</td>
 		</tr>
@@ -119,7 +127,8 @@ td {
 	}
 
 	function apupPaymentList(nowPage) {
-		$.ajax({
+		$
+				.ajax({
 					url : "/erp/rest/Account/apupPaymentList4",
 					dataType : "json",
 					data : {
@@ -129,17 +138,17 @@ td {
 					method : "get",
 					success : function(data) {
 						let str = "";
-						for (let i = 0; i < data.length; i++) {
+						for (let i = 0; i < data.pList.length; i++) {
 							str += "<table>"
 							str += "<tr>"
-							str += "<td><input type='radio' name='checknum' class='check' value='"+data[i].ap_docunum+"'></td>";
-							str += "<td>" + data[i].ap_docunum + "</td>";
-							str += "<td>" + data[i].ap_ccode + "</td>";
-							str += "<td>" + data[i].ap_docuname + "</td>";
-							str += "<td>" + data[i].ap_fromapprover + "</td>";
-							str += "<td>" + data[i].ap_toapprover + "</td>";
-							str += "<td>" + data[i].ap_date + "</td>";
-							str += "<td>반려</td>";
+							str += "<td><input type='radio' name='checknum' class='check' value='"+data.pList[i].ap_docunum+"'></td>";
+							str += "<td>" + data.pList[i].ap_docunum + "</td>";
+							str += "<td>" + data.pList[i].ap_ccode + "</td>";
+							str += "<td>" + data.pList[i].ap_docuname + "</td>";
+							str += "<td>" + data.nList[i].ap_fromname + "</td>";
+							str += "<td>" + data.nList[i].ap_toname + "</td>";
+							str += "<td>" + data.pList[i].ap_date + "</td>";
+							str += "<td>" + '반려' + "</td>";
 							str += "</tr>"
 						}
 						str += "</table>";
@@ -153,45 +162,57 @@ td {
 
 	apupPaymentList(1);
 	pageNumber(1);
-
 </script>
 <script>
-$("#approval").click(
-		function() {
-			var check = '';
-			$("input[name='checknum']:checked").each(
-		               function() {
-		                  check = $(this).attr('value');
+	$("#approval").click(
+			function() {
+				var check = '';
+				$("input[name='checknum']:checked")
+						.each(
+								function() {
+									check = $(this).attr('value');
 
+									if (check.indexOf("AC") != -1) {
+										window.open(
+												'/erp/rest/Account/apRequest?j_docunum='
+														+ check, 'apRequest',
+												'width=1500, height=600');
+									} else if (check.indexOf("P") != -1) { //예은
+										window.open(
+												'/erp/rest/Purchase/pRequest?p_documentcode='
+														+ check, 'pRequest',
+												'width=1500, height=600');
+									} else if (check.indexOf("G") != -1) { //수진
+										window.open(
+												'/erp/rest/sales/sRequest?bs_docunum='
+														+ check, 'sRequest',
+												'width=1500, height=600');
+									} else if (check.indexOf("H") != -1) { //인사
+										console.log(check);
+										window.open(
+												'/erp/hr/holidaydetail?docunum='
+														+ check, '휴가상세정보',
+												'width=1400, heigth=700');
+									} else if (check.indexOf("AP") != -1) { //영민
+										console.log(check);
+										window.open(
+												'/erp/Account/apSalesnum?s_num='
+														+ check, 'apSalesinfo',
+												'width=1400, heigth=700');
+									} else if (check.indexOf("AS") != -1) { //영민
+										console.log(check);
+										window.open(
+												'/erp/Account/apSalesnum?s_num='
+														+ check, 'asSalesinfo',
+												'width=1400, heigth=700');
+									} else {
+										window.open(
+												'/erp/rest/myinfo/mydocument',
+												'mydocument',
+												'width=1500, height=600');
+									}
 
-		                  if(check.indexOf("AC") != -1){
-		                     window.open(
-		                        '/erp/rest/Account/apRequest?j_docunum='
-		                              + check, 'apRequest',
-		                        'width=1500, height=600');
-		                  }else if(check.indexOf("P") != -1){ //예은
-		                     window.open(
-		                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
-		                        'width=1500, height=600');
-	                      }else if(check.indexOf("G") != -1){ //수진
-	                         window.open(
-	                           '/erp/rest/sales/sRequest?bs_docunum='+ check, 'sRequest',
-	                           'width=1500, height=600');
-		                  }else if(check.indexOf("H") != -1){ //인사
-		                	  console.log(check);
-		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
-		                  }else if(check.indexOf("AP") != -1){ //영민
-		                	  console.log(check);
-		                      window.open('/erp/Account/apSalesnum?s_num=' + check, 'apSalesinfo', 'width=1400, heigth=700');
-		                  }else if(check.indexOf("AS") != -1){ //영민
-		                	  console.log(check);
-		                      window.open('/erp/Account/apSalesnum?s_num=' + check, 'asSalesinfo', 'width=1400, heigth=700');
-		                  }else{
-		                	  window.open(
-		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
-		                  }
-
-		               });
-		      });
+								});
+			});
 </script>
 </html>

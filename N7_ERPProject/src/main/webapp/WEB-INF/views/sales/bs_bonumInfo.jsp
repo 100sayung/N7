@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>거래처사용</title>
+<title>수주번호 검색창</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- <script src="js/jquery.serializeObject.js"></script> -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

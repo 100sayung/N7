@@ -23,7 +23,7 @@ public class ConsultingBoardMM {
 
 	@Autowired
 	private IConsultingBoardDao CBdao;
-	
+
 	ModelAndView mav = new ModelAndView();
 
 	//게시판 이동시 목록 출력
@@ -47,12 +47,12 @@ public class ConsultingBoardMM {
 		mav.setViewName(view);
 		return mav;
 	}
-	
+
 	private String getPaging(Integer pageNum) {
 		int maxNum = CBdao.getBoarCount();
 		int listCount=10;
 		int pageCount=5;
-		String boardName="/erp/erpboard";
+		String boardName="/erp/home/erpboard";
 		Paging paging= new Paging(maxNum, pageNum, listCount, pageCount, boardName);
 		return paging.makeHtmlPaging();
 	}
@@ -62,30 +62,31 @@ public class ConsultingBoardMM {
 		mav= new ModelAndView();
 		String value= null;
 		boolean result= CBdao.boardWrite(board);
-		
+
 		if(result) {
 				value="1";
 			}else {
 				value="2";
 			}
-		
+
 		return value;
 	}
-	
+
 	public ModelAndView boardContents(int CB_NUM) {
 		mav= new ModelAndView();
 		String view= null;
 		int num = CB_NUM;
 		ConsultingBoard board= CBdao.getContents(num);
 		System.out.println("들어감?");
-		
+
 		System.out.println("board="+board);
 		mav.addObject("board", board);
 		view="/home/boardContents";
 		mav.setViewName(view);
-		
+
 		return mav;
 	}
+
 	  public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
 	      Map<String, List<ConsultingBoard>>bMap = null;
 	      List<ConsultingBoard> bList =CBdao.boardSearch(choice, keyword);
@@ -97,6 +98,8 @@ public class ConsultingBoardMM {
 	      }
 	      return bMap;
 	   }
+
+
 //	//게시글 수정 목록 출력
 //	public String boardmodifyajax(Integer num) {
 //		System.out.println("수정페이지 서비스 번호 값="+num);
@@ -157,7 +160,7 @@ public class ConsultingBoardMM {
 			}else {
 				value="2";
 			}
-		
+
 		return value;
 	}
 

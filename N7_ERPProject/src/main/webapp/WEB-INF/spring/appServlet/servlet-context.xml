@@ -54,6 +54,7 @@
 			<exclude-mapping path="/erpboard" />
 			<exclude-mapping path="/findidfrm" />
 			<exclude-mapping path="/findpasswordfrm" />
+			<exclude-mapping path="/jusopopup" />
 			<beans:bean class="com.n7.erp.userClass.SessionInterceptor" />
 		</interceptor>
 	</interceptors>

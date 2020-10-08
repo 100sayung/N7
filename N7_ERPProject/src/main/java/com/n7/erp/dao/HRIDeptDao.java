@@ -24,7 +24,7 @@ public interface HRIDeptDao {
 
 	@Select("SELECT * FROM HR_DEPT WHERE HDP_CCODE = #{cCode}")
 	ArrayList<Department> deptpayselect(String cCode);
-	
+
 	@Update("UPDATE HR_DEPT SET HDP_PAY=#{pay} WHERE HDP_NUM=#{dept} AND HDP_CCODE = #{cCode}")
 	boolean deptpayupdate(HashMap<String, String> hMap);
 
@@ -87,7 +87,7 @@ public interface HRIDeptDao {
 
 	String findpay(ViewPay pay);
 
-	@Insert("INSERT INTO HR_PAYROLL VALUES(#{HP_PAYDATE},#{HC_CCODE},#{HC_HRCODE},#{HP_TAX},#{HP_INCEN},#{HP_INSURANCE},#{HP_REALMONEY})")
+	@Insert("INSERT INTO HR_PAYROLL VALUES(#{HP_PAYDATE},#{HC_CCODE},#{HC_HRCODE},#{HP_TAX},#{HP_INCEN},#{HP_INSURANCE},#{HP_REALMONEY}, #{HP_MONTHLYBONUS})")
 	boolean insertpay(ViewPay pay);
 
 	boolean updatepay(ViewPay pay);
@@ -96,11 +96,11 @@ public interface HRIDeptDao {
 	Payroll findmonth(HashMap<String, String> hMap);
 
 	ArrayList<ViewPay> checkingidname(String checkpayid);
-	
+
 	//09-25 append
 	@Select("SELECT HDP_POSITION FROM HR_DEPT WHERE HDP_DEPT=#{dept} AND HDP_CCODE=#{cCode}")
 	ArrayList<Department> deptsearchposition(HashMap<String, String> hMap);
-	
+
 	@Select("SELECT COUNT(*) FROM HR_DEPT WHERE HDP_DEPT=#{au_name} AND HDP_CCODE = #{cCode}")
 	int checkDept(@Param("au_name")String au_name, @Param("cCode") String cCode);
 
@@ -108,4 +108,11 @@ public interface HRIDeptDao {
 	void insertTax(String ct_code);
 	@Insert("INSERT INTO HR_DEDUCTION VALUES('보험', '0', #{ct_code})")
 	void insertInsurance(String ct_code);
+	@Select("SELECT HDP_POSITION FROM HR_DEPT WHERE HDP_CCODE=#{hdp_ccode} AND HDP_DEPT=#{HDP_dept} AND HDP_POSITION=#{HDP_position}")
+	String checkingDept(Department dept);
+
+	@Select("SELECT HC_HOLYNUM FROM HR_CARD WHERE HC_CCODE = #{HC_CCODE} AND HC_HRCODE = #{HC_HRCODE}")
+	String leftHoliday(ViewPay pay);
+	@Update("UPDATE HR_CARD SET HC_HOLYNUM = '0' WHERE HC_CCODE = #{HC_CCODE} AND HC_HRCODE = #{HC_HRCODE}")
+	void updateHolyday(ViewPay pay);
 }

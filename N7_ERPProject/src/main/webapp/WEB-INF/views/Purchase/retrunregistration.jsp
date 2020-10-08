@@ -17,17 +17,20 @@ text-align: center;
 width: 1140px;
 border: 1px solid silver;
 }
+.select{
+width: 160px;
+}
 </style>
 </head>
 <body>
 	<div id="aaa">
-       <div style="width: auto; background-color: white; padding: 1%;">
+	<br>
         	<span style="padding-left: 5px";><a href="#"
          	onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
             <button id="Wearing">입고현황</button>
             <button id="rInfo">반품조회</button>
-         </div>
-      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
+      <br><br>
+      <div style="width: 1150px; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
                <select id="choice">
                   <option value="r_documentcode">반품번호</option>
                   <option value="r_ieseqnum">입고번호</option>
@@ -37,7 +40,7 @@ border: 1px solid silver;
                <input type="text" id="search" name="search" style="height: 18px";>
                <button id="searchbtn">검색</button>
       <form id="o_return">
-         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7;">
+         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7; width:1175px;">
             <div style="margin-left: 55px">
             <table>
                      <tr>
@@ -56,9 +59,9 @@ border: 1px solid silver;
                </table>
             </div>
          </div>
-         <div style="background-color: #ECEBEA;">
+         <!-- <div style="background-color: #ECEBEA;"> -->
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 100%;">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; background-color: #ECEBEA;">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">
@@ -93,10 +96,9 @@ border: 1px solid silver;
                </tbody>
             </table>
          </div>
-         <div style="float: left;">
-            <button type="button" id="save">저장</button>
-            <button type="button" id="rDelete">삭제</button>
-            <button type="button" id="print" onclick="window.print()">인쇄</button>
+         <div style="float: left; padding-top: 5px;">
+            <button type="button" id="save">등록</button>
+            <!-- <button type="button" id="rDelete">삭제</button> -->
             <button type="reset">다시작성</button>
             </div>
          </form>

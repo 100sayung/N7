@@ -18,6 +18,7 @@
 <link href="/erp/assets/css/custom.css" rel="stylesheet" />
 <!-- GOOGLE FONTS-->
 <link href="http://fonts.googleapis.com/css?family=Open+Sans"
+<title>게시판 글쓰기</title>
 	rel="stylesheet" type="text/css" />
 <!-- /. WRAPPER  -->
 <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
@@ -28,10 +29,18 @@
 <!-- CUSTOM SCRIPTS -->
 <script src="/erp/assets/js/custom.js"></script>
 
-
-
-
 <style type="text/css">
+h1{
+font-size: 36px;
+margin-top: 15px;
+margin-bottom: 10px;
+font-family: inherit;
+font-weight: 500;
+color: inherit;
+text-transform: uppercase;
+display: block;
+}
+
 #container {
 	margin-top: 5%;
 	margin-left: 27%;
@@ -118,7 +127,7 @@
 <script>
 $("#submit").click(function(){
 	var obj = $("#boardData").serialize();
-	
+
 	 $.ajax({
 		url:'/erp/rest/home/writeBoard',
 		type:'post',
@@ -132,11 +141,11 @@ $("#submit").click(function(){
 			}else{
 				alert("등록실패");
 			}
-			
+
 		},
 		error:function(error){
 			console.log(error);
-		}		
+		}
 	 });
 
 });

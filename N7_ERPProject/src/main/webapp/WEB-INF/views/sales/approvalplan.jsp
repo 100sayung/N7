@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>출하 결재 요청창</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
 html,body{
@@ -57,7 +57,7 @@ resize: none;
       <input type="button" id="submit" value="제출하기"> 
    </div>
    
-   <div style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">기안문 작성</div>
+   <div style="width: auto; background-color:#3D6B9B; color: white; padding: 1%;">기안문 작성</div>
    <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
          <table id="table">
             <tr>

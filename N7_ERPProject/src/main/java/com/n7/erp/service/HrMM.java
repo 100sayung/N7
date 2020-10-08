@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.omg.CosNaming.NameHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -18,6 +19,7 @@ import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Authority;
 import com.n7.erp.bean.Company;
 import com.n7.erp.bean.Member;
+import com.n7.erp.bean.ac.approvalLine;
 import com.n7.erp.bean.entity.NameHoliday;
 import com.n7.erp.bean.entity.NameHrCode;
 import com.n7.erp.bean.hr.Academic;
@@ -28,6 +30,7 @@ import com.n7.erp.bean.hr.Certification;
 import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.hr.Payroll;
 import com.n7.erp.bean.hr.ViewPay;
+import com.n7.erp.dao.AccountDao;
 import com.n7.erp.dao.HRIDeptDao;
 import com.n7.erp.dao.IBaiscDao;
 import com.n7.erp.dao.IHrDao;
@@ -47,6 +50,8 @@ public class HrMM {
 	private HRIDeptDao dDao;
 	@Autowired
 	private IBaiscDao bDao;
+	@Autowired
+	private AccountDao aDao;
 
 	String view = "";
 
@@ -123,17 +128,17 @@ public class HrMM {
 		crMap.put("hrcode", hc_hrcode);
 		crMap.put("cCode", cCode);
 		Integer cnt = hDao.selectCareer(crMap);
-		for (int i = 0; i < request.getParameterValues("hcr_cname").length; i++) {
+		for (int i = 0; i < request.getParameterValues("hcr_name").length; i++) {
 			Career cr = new Career();
 			cr.setHcr_ccode(cCode);
-			cr.setHcr_name(request.getParameterValues("hcr_cname")[i]);
+			cr.setHcr_name(request.getParameterValues("hcr_name")[i]);
 			cr.setHcr_content(request.getParameterValues("hcr_content")[i]);
 			cr.setHcr_startperiod(request.getParameterValues("hcr_startperiod")[i]);
 			cr.setHcr_endperiod(request.getParameterValues("hcr_endperiod")[i]);
 			cr.setHcr_position(request.getParameterValues("hcr_position")[i]);
 			cr.setHcr_hrcode(hc_hrcode);
 			if (i < cnt) {
-				cr.setHcr_num(request.getParameterValues("hra_num")[i]);
+				cr.setHcr_num(request.getParameterValues("hcr_num")[i]);
 				hDao.updateCareer(cr);
 			} else {
 				hDao.registCareer(cr);
@@ -192,7 +197,7 @@ public class HrMM {
 	public ModelAndView hrCard(HttpSession session) {
 		String m_ccode = session.getAttribute("cCode").toString();
 		mav.setViewName("/hr/hrCard");
-		if (checkMemberHrCardCnt(m_ccode)) {
+		if (!checkMemberHrCardCnt(m_ccode)) {
 			mav.addObject("msg", "인사카드를 등록해주세요.");
 		}
 
@@ -221,12 +226,12 @@ public class HrMM {
 		return type;
 	}
 
+	@Transactional
 	public ModelAndView applyHoliday(ApplyHoliday apholi, HttpSession session) {
 		String id = session.getAttribute("id").toString();
 		String cCode = session.getAttribute("cCode").toString();
 		String hrCode = hDao.getHrCodeFromID(id);
 
-		// �뇦猿됲�ｏ옙�궨占쎈닱筌뤾쑨�맋�뜝�럥�렧�뜝�럥六쇽옙寃ュ뜝�룞�삕�땻占� �뜝�럥苡삣슖�댙�삕
 		ApprovalDocu docu = new ApprovalDocu();
 		docu.setAp_ccode(cCode).setAp_docuname(apholi.getHap_docuname()).setAp_docunum("H");
 		docu.setAp_fromapprover(hrCode).setAp_toapprover(apholi.getHap_toapprover());
@@ -498,25 +503,34 @@ public class HrMM {
 //	}
 
 	public ModelAndView checkMyHrCard(HttpSession session, String address) {
-		if (hDao.haveHrCode(session.getAttribute("id").toString())) {
-			mav.setViewName(address);
-		} else {
-			System.out.println("占쎄땀占쎌젟癰귣�以� 癰귣�沅→묾占�");
+		if(session.getAttribute("hrCode")!=null) {
+			if (hDao.haveHrCode(session.getAttribute("id").toString())) {
+				mav.setViewName(address);
+			} else {
+				mav.setViewName("redirect:/myInfo/myInfo");
+			}
+		}else {
 			mav.setViewName("redirect:/myInfo/myInfo");
 		}
 		return mav;
 	}
 
-	// �뜝�럡�� �뼨��留⑵굢占� 嶺뚮ㅏ援욆땻占썲뜝�럡�맋 �뜝�럩逾졾뜝�럥吏�
 	public ModelAndView moveMyPayCheck(HttpSession session) {
-		String hrCode = session.getAttribute("hrCode").toString();
-		HR_Card check = hDao.selectcheckpay(hrCode);
-		System.out.println("�뤆�룆占썬굦逾� �뜝�럡�룎�뜝�럩湲�=" + check);
-		if (check != null) {
-			mav.addObject("paycheck", check);
-			view = "/myInfo/myPaycheck";
-		} else {
-			view = "/myInfo/myInfo";
+		if(session.getAttribute("hrCode")!=null) {
+			if(hDao.haveHrCode(session.getAttribute("id").toString())) {
+				String hrCode = session.getAttribute("hrCode").toString();
+				HR_Card check = hDao.selectcheckpay(hrCode);
+				if (check != null) {
+					mav.addObject("paycheck", check);
+					view = "/myInfo/myPaycheck";
+				} else {
+					view = "/myInfo/myInfo";
+				}
+			}else {
+				view = "/myInfo/myInfo";
+			}
+		}else {
+			view="/myInfo/myInfo";
 		}
 		mav.setViewName(view);
 		return mav;
@@ -527,7 +541,6 @@ public class HrMM {
 		hMap.put("hrCode", hrCode);
 		hMap.put("month", month);
 		Payroll pay = hDao.getMyPaySelect(hMap);
-		System.out.println("�뼨轅몃궚�젆源띿삕占쎄텛 pay=" + pay);
 		if (pay != null) {
 			Gson gson = new Gson();
 			String json = gson.toJson(pay);
@@ -542,29 +555,29 @@ public class HrMM {
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		hMap.put("docunum", docunum);
 		ApplyHoliday apholi = hDao.getDetailHoliday(hMap);
-		//09-24 change
 		String fromapprover=hDao.getFromApprover(apholi.getHap_fromapprover());
 		String toapprover=hDao.getToApprover(apholi.getHap_toapprover());
 		mav.addObject("fromapprover", fromapprover);
 		mav.addObject("toapprover", toapprover);
-		//
 		mav.addObject("apholi", apholi);
 		mav.addObject("hrCode", hrCode);
 		mav.setViewName("/hr/holidayDetail");
 		return mav;
 	}
 
-	public void registHolidayStatus(HttpSession session, String docunum, String yesno) {
-		System.out.println(docunum);
-		System.out.println(yesno);
+	@Transactional
+	public void registHolidayStatus(HttpSession session, String docunum, String yesno, String term, String hrcode) {
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		hMap.put("docunum", docunum);
+		hMap.put("term", term);
+		hMap.put("hrCode", hrcode);
 		if (yesno.equals("ok")) {
 			hMap.put("status", "3");
 			System.out.println(hMap);
 			hDao.registHolidayStatus(hMap);
 			hDao.registDocuStatsu(hMap);
+			hDao.updateLeftHoliday(hMap);
 		} else if (yesno.equals("no")) {
 			hMap.put("status", "4");
 			System.out.println(hMap);
@@ -578,12 +591,13 @@ public class HrMM {
 
 		String cCode = session.getAttribute("cCode").toString();
 
-		name = "%" + name + "%";
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("cCode", cCode);
 		hMap.put("name", name);
 		ArrayList<Member> memberList = new ArrayList<>();
 		memberList = hDao.getSearchFromName(hMap);
+		System.out.println(name);
+		System.out.println("memberList="+memberList);
 		ArrayList<HR_Card> hrCardList = new ArrayList<HR_Card>();
 		for (int i = 0; i < memberList.size(); i++) {
 			HR_Card hCard = new HR_Card();
@@ -591,6 +605,7 @@ public class HrMM {
 			hCard.setM_name(memberList.get(i).getM_name());
 			hrCardList.add(hCard);
 		}
+		System.out.println("hrCardList="+hrCardList);
 		String list = new Gson().toJson(hrCardList);
 		return list;
 	}
@@ -679,8 +694,6 @@ public class HrMM {
 		String front=time.substring(0, 16);
 		String back=time.substring(24,44);
 		String combine=front.concat(textTime.concat(back));
-		System.out.println(combine);
-		System.out.println(cCode);
 		HashMap<String, String> hMap=new HashMap<String, String>();
 		hMap.put("cCode", cCode);
 		hMap.put("hrcode", hrcode);
@@ -697,7 +710,7 @@ public class HrMM {
 		return result;
 	}
 
-	
+
 	public int countEmployeeStatus(HttpSession session, String status) {
 		String cCode = session.getAttribute("cCode").toString();
 		return hDao.countEmployeeStatus(cCode, status);
@@ -729,6 +742,46 @@ public class HrMM {
 		mav.addObject("hrCode", hrCode);
 		mav.setViewName("/hr/receipholidayDetail");
 		return mav;
+	}
+
+	public String SearchingRetireName(HttpSession session, String name) {
+		String cCode=session.getAttribute("cCode").toString();
+		HashMap<String, String> hMap=new HashMap<String, String>();
+		hMap.put("cCode", cCode);
+		hMap.put("name", name);
+		System.out.println(name);
+		if(name!=null) {
+			ArrayList<HR_Card> CardList=hDao.SearchingRetireName(hMap);
+			System.out.println("??="+CardList);
+			String result=new Gson().toJson(CardList);
+			return result;
+		}
+		return null;
+	}
+	public ModelAndView approvalLine(HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
+		String view = null;
+		mav = new ModelAndView();
+		List<approvalLine> aList = null;
+		aList = aDao.approvalLine(cCode);
+		if (aList.size() != 0) {
+			mav.addObject("aList", new Gson().toJson(aList));
+			view = "hr/hrApprovalLine";
+		} else {
+			mav.addObject("msg", "주소록에 정보가 없습니다");
+			view = "hr/hrApprovalLine";
+		}
+
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public boolean checkAuth(String auth) {
+		if(auth.equals("1")) {
+			return false;
+		}else {
+			return true;			
+		}
 	}
 
 

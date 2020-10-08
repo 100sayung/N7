@@ -59,10 +59,10 @@ public class SalesHomeController {
          return "/sales/businessactivitiesfrm";
    }
    
-   @RequestMapping(value = "/sales/businessactivitiesdetail", method = RequestMethod.GET)
-      public String businessactivitiesdetail() {
-         return "/sales/businessactivitiesdetail";
-   }
+//   @RequestMapping(value = "/sales/businessactivitiesdetail", method = RequestMethod.GET)
+//      public String businessactivitiesdetail() {
+//         return "/sales/businessactivitiesdetail";
+//   }
    
    @RequestMapping(value = "/sales/approvalplan", method = RequestMethod.GET)
       public ModelAndView approvalplan(String check, HttpSession session) {
@@ -97,27 +97,10 @@ public class SalesHomeController {
       return "/sales/bs_bonumInfo";
    }
    
-   
-   
-//   @RequestMapping(value = "/introducecompany", method = RequestMethod.GET)
-//   public String introduceCompany() {
-//      return "introducecompany";
-//   }
-//   @RequestMapping(value = "/erpboard", method = RequestMethod.GET)
-//   public String erpBoard() {
-//      return "erpboard";
-//   }
-//   @RequestMapping(value = "/login", method = RequestMethod.GET)
-//   public String login() {
-//      return "login";
-//   }
-//   @RequestMapping(value = "/join", method = RequestMethod.GET)
-//   public String join() {
-//      return "join";
-//   }
-//   @RequestMapping(value = "/erpapply", method = RequestMethod.GET)
-//   public String erpApply() {
-//      return "erpapply";
-//   }
-//   
+//   @RequestMapping(value = "/sales/businessperformance", method = RequestMethod.GET)
+//   public ModelAndView businessperformance(HttpSession session) {
+//      mav=sm.businessperformance(session);
+//      return mav;
+//}
+    
 }
