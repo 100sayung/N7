@@ -299,7 +299,6 @@ public class MemberMM {
 
 	public ResponseEntity<String> getFunction(String cCode) {
 		List<String> fList = mDao.getFunction(cCode);
-		System.out.println(cCode);
 		return ResponseEntity.ok(new Gson().toJson(makeFunction(fList)));
 	}
 
