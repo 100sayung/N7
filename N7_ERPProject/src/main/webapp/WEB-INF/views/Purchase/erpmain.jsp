@@ -4,8 +4,7 @@
 <html>
 <head>
 <script src=/erp/js/menu.js></script>
-<script
-src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Document</title>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
@@ -25,12 +24,12 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	border-right: 1px solid #E6E6E6;
 }
 
-#side_menu #menuList{
+#side_menu,#menuList{
 	list-style: none;
  	margin-top: 150px;
 }
 
-#side_menu #menuList li{
+#side_menu,#menuList,li{
  	margin: 20px;
 }
 
@@ -41,7 +40,7 @@ a{
 #description{
     float:left;
     height:100%;
-    width:80%;
+    width: 1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -56,8 +55,9 @@ a{
 		<div id="menu">
 			<ul>
 				<li ><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
+				</ul>
+				<ul id="mainmenu"></ul>
 		</div>
     </div>
     <div id="side_menu">
