@@ -163,8 +163,8 @@ button {
                          </p>
                         </div>
                     <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;" required></div> <!-- oninput="dupleID()" -->
-                         &nbsp;&nbsp;<input type="button" value="중복체크" onclick="dupleID()">
-                        <br><div id="dupleID"></div>
+                         &nbsp;&nbsp;<button type="button" onclick="dupleID()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">중복체크</button>
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="dupleID"></div>
                     </div>
 
                     <!-- passward -->
@@ -200,7 +200,7 @@ button {
                           <br>
                           <br>
                     <div><input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required></div>
-                        &nbsp;&nbsp;<input type="button" value="코드확인" onclick="dupleCCode()">
+                        &nbsp;&nbsp;<button type="button" onclick="dupleCCode()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">코드확인</button>
                         <br><span id="dupleCCode"></span>
                     </div>
 
