@@ -51,7 +51,7 @@ td {
 }
 
 #table {
-	width: 1200px;
+	width: 1150px;
 	height: auto;
 	text-align: center;
 	/* 	margin-left: 80px; */
@@ -68,7 +68,7 @@ td {
 </head>
 <body>
 	<div
-		style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger; font-weight: bold;">반려
+		style="width: 1150px; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger; font-weight: bold;">반려
 		결재함</div>
 	<table id="table" class="table table-hover">
 		<tr id="m">
