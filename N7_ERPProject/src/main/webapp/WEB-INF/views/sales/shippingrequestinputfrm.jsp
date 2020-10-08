@@ -55,7 +55,7 @@ border: 1px solid;
                <th>회사코드</th>
                <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>수주번호</th>
-               <th><input id="bonum" type="text" name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
+               <th><input id="bonum" type="text" name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=700,height=700')">검색</button></th>
             </tr>
          </thead>
       </table>
