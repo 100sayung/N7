@@ -8,7 +8,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-
 table, tr, th, td {
 	border: 1px solid silver;
 	text-align: center;
@@ -119,12 +118,12 @@ input {
 									</tr>
 									<tr>
 										<th colspan="2">차변금액</th>
-										<td colspan="5"><input type="text" id="j_debit"
+										<td colspan="5"><input type="number" id="j_debit"
 											name="j_debit" class="draft" style="width: 900px;"></td>
 									</tr>
 									<tr>
 										<th colspan="2">대변금액</th>
-										<td colspan="5"><input type="text" id="j_credit"
+										<td colspan="5"><input type="number" id="j_credit"
 											name="j_credit" class="draft" style="width: 900px;">
 										</td>
 									</tr>
@@ -147,7 +146,6 @@ input {
 <script>
 	$('#su').click(
 			function() {
-
 				var title = document.getElementById('j_title');
 				var account = document.getElementById('j_account');
 				var group = document.getElementById('j_group');
@@ -189,35 +187,38 @@ input {
 				} else if (debit.value != credit.value) {
 					alert("차변금액과 대변금액이 같지 않습니다.");
 				} else {
-					var obj = $("#form1").serialize();
-					console.log(obj);
 
-					$.ajax({
-						url : '/erp/rest/Account/actempoInsert',
-						type : 'post',
-						data : obj,
-						dateType : "json",
-						success : function(data) {
-							if (data == 1) {
-								console.log(data);
-								$("#form1")[0].reset();
-								alert("결재안 임시저장을 완료하였습니다.");
-							} else {
-								alert("결재안 임시저장이 실패하였습니다.");
-								console.log(data);
+						var obj = $("#form1").serialize();
+						console.log(obj);
+
+						$.ajax({
+							url : '/erp/rest/Account/actempoInsert',
+							type : 'post',
+							data : obj,
+							dateType : "json",
+							success : function(data) {
+								if (data == 1) {
+									console.log(data);
+									$("#form1")[0].reset();
+									alert("결재안 임시저장을 완료하였습니다.");
+								} else {
+									alert("결재안 임시저장이 실패하였습니다.");
+									console.log(data);
+								}
+							},
+							error : function(error) {
+								console.log(error);
+								alert("야 오류얌");
 							}
-						},
-						error : function(error) {
-							console.log(error);
-							alert("야 오류얌");
-						}
-					});
+						});
 				}
 			});
 
-	$(document).ready(
+	$(document)
+			.ready(
 					function() {
-						$.ajax({
+						$
+								.ajax({
 									url : '/erp/rest/Account/getAu_name',
 									type : 'get',
 									data : 'json',
