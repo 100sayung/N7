@@ -38,8 +38,10 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1200px;
+    height:100%;
+    width:80%;
+    position: absolute;
+    transform:translate(300px, 0);
 }
 
 ul {
@@ -78,6 +80,20 @@ span {
 input[type='text'], input[type='number'] {
 	width: 70px;
 }
+#description *{
+font-size: 20px;
+font-weight: bolder;
+}
+input[type="button"]{
+font-size: 20px;
+font-weight: bolder;
+}
+body{
+position: relative;
+}
+td{
+width: 300px;
+}
 </style>
 </head>
 <body>
@@ -97,27 +113,23 @@ input[type='text'], input[type='number'] {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/setcategory">분류명 작성</a></li>
-			<li><a href="/erp/stock/setitemcode">품목 코드 작성</a></li>
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
-
+<center>
 	<div id="description">
 	<form id="form" action="/erp/stock/confirmimport" method="post"> 
-		<button type="button" id="account">거래처 등록</button>
-		<button type="button" id="addTable">거래처 추가</button>
+		<input type="button" id="account" value="거래처 등록">
+		<input type="button" onclick="window.open('/erp/home/comInfo','PopupWin','width=500,height=600')" value="거래처 검색">
+		<input type="button" id="addTable" value="테이블 추가">
+		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
+		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
+		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" >
 		<div id="contain">
 			<div class='div'>
-			<button type="button" onclick="addRow(this)">행 추가</button>
-			<button type="button" onclick="deleteTable(this)">테이블 삭제</button>
+			  <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고</div>
+			<div style="background-color:#F8F7F7;">
+			<input type="button" onclick="addRow(this)" value="행 추가">
+			<input type="button" onclick="deleteTable(this)" value="테이블 삭제">
 				<table>
 					<caption id="tbCation0" class="clcode"></caption>
 					<tr>
@@ -137,15 +149,18 @@ input[type='text'], input[type='number'] {
 						<td class="ie_clcode"><input type="hidden" name="ie_clcode"></td>
 					</tr>
 				</table>
+				</div>
 			</div>
 		</div>
-		<button type="button" id="deleteBtn">삭제</button>
-		<button type="button" onclick="addClcode()">등록</button>
+		<input type="button" id="deleteBtn" value="삭제">
+		<input type="button" onclick="addClcode()" value="등록">
 		</form>
 	</div>
+	</center>
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
+	stockSideMenu();
 		var clArr;
 		var itArr;
 		var a = 1;
@@ -189,13 +204,13 @@ input[type='text'], input[type='number'] {
 		$('#addTable')
 				.click(
 						function() {
-							var str = '<div class="div"><button type="button" onclick="addRow(this)">행 추가</button>	<button type="button" onclick="deleteTable(this)">테이블 삭제</button><table><caption>'
+							var str = '<div class="div"><div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고</div><div style="background-color:#F8F7F7;"><input type="button" onclick="addRow(this)" value="행 추가"><input type="button" onclick="deleteTable(this)" value="테이블 삭제"><table><caption>'
 									+ clArr
 									+ '</caption><tr><td>제품 코드</td><td>수량</td><td>단가</td><td>총액</td>	<td>삭제</td>	<td></td></tr>'
 									+'<tr><td>'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
 									+'<td><input type="number" onkeyup="multiplePrice(this)" onchange="multiplePrice(this)" required="required"></td>'
 									+'<td class="ie_price"><input type="number" name="ie_price" required="required"></td>'
-									+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr></table></div>';
+									+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr></table></div></div>';
 							$('#contain').append(str);
 						});
 		function makeSelect(data) {
@@ -232,7 +247,7 @@ input[type='text'], input[type='number'] {
 			}
 		});
 		function deleteTable(id) {
-			$(id).parent().remove();
+			$(id).parent().parent().remove();
 		}
 		function addRow(id) {
 			var str = '<tr><td>'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'

@@ -73,7 +73,9 @@ span {
 	border:1px solid #D9EDF7;
 }
 #id_back{
-	background-color: #F8F7F7;
+	font-weight:bold;
+	font-size:medium;
+	background-color: lightgray;
 }
 </style>
 </head>
@@ -104,10 +106,10 @@ span {
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 급여 관리</Strong>
+		<h1 class="deptregist_color_size">사원 급여 관리</h1>
 	</div>
 	<div align="right" >
-		<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색" autocomplete="off">
+		<input type="text" id="findcheckpayid" placeholder="아이디 이름 검색" autocomplete="off" style="padding: 5px 5px;font-size: medium;">
 		<input type="button" id="checkpayid" onclick="checkpayid()" value="검색" class="infobtn">
 	</div>
 	<div id="container">

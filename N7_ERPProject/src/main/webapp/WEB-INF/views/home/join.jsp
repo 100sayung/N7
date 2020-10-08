@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <meta name="keywords" content="" />
@@ -19,11 +20,9 @@
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <style>
 /*
 *
@@ -133,7 +132,7 @@ button {
             <a href="#" class="navbar-brand">
                 <img src="https://res.cloudinary.com/mhmd/image/upload/v1571398888/Group_1514_tjekh3_zkts1c.svg" alt="logo" width="150">
             </a> -->
-			<h3><a href="/erp/" style="color: black;">N7 ERP SYSTEM</a></h3>
+			<h3><a href="/erp/" style="color: black;  text-decoration: none;">N7 ERP SYSTEM</a></h3>
 		</div>
         </div>
     </nav>
@@ -141,7 +140,7 @@ button {
 
 
 <div class="container">
-    <div class="row py-5 mt-4 align-items-center" style="height:800px;">
+    <div class="row py-5 mt-4 align-items-center" style="height:300px;">
         <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
             <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
             <h1>Create an Account</h1>
@@ -153,52 +152,54 @@ button {
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-            <form action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
-                <div class="row">
+            <form id="form" name="form" action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
+                <div class="row" style="margin-right:-25px;">
 
                     <!-- id -->
                     <div class="input-group col-lg-10 mb-4">
-<!--                         <div class="input-group-prepend">
+                        <div class="input-group-prepend">
                          <p class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                          </p>
-                        </div> -->
-                    <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;"></div> <!-- oninput="dupleID()" -->
+                        </div>
+                    <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;" required></div> <!-- oninput="dupleID()" -->
                           &nbsp;&nbsp;<input type="button" value="중복체크" onclick="dupleID()">
                         <br><div id="dupleID"></div>
                     </div>
 
                     <!-- passward -->
                     <div class="input-group col-lg-10 mb-4">
-<!--                         <div class="input-group-prepend">
+                        <div class="input-group-prepend">
                              <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-user text-muted"></i>
+                                <i class='fas fa-lock' style="font-size:15px color:gray;"></i>
                             </span>
-                        </div> -->
-                         <input type="password" style="width:300px;" class="form-control bg-white border-left-0 border-md" placeholder="password를 입력해주세요" required id="pw" name="m_pw" />
+                        </div>
+                    <input type="password" style="width:300px;" class="form-control bg-white border-left-0 border-md" placeholder="password를 입력해주세요" required id="pw" name="m_pw" required/>
                     </div>
 
                     <!-- name -->
                     <div class="input-group col-lg-12 mb-4">
-<!--                         <div class="input-group-prepend">
+                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-envelope text-muted"></i>
                             </span>
-                        </div> -->
-                        <input id="name" style="width:300px;" type="text" name="m_name" placeholder="이름을 입력해주세요" class="form-control bg-white border-left-0 border-md">
+                        </div>
+                        <input id="name" style="width:200px;" type="text" name="m_name" placeholder="이름을 입력해주세요" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
                     <!-- companycode -->
                     <div class="input-group col-lg-12 mb-4">
-<!--                         <div class="input-group-prepend">
+                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-phone-square text-muted"></i>
+                                <i class='fas fa-address-card' style='font-size:15px'></i>
                             </span>
-                        </div>     -->
+                        </div>                         
+
+
                      <!-- <font style="color:gray;">회사코드가 없으신분은</font><font style="font-weight : bold;">N7</font><font style="color:gray;">을 입력해주세요.</font><br/> -->
                           <br>
                           <br>
-                    <div><input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3"></div>
+                    <div><input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required></div>
                         &nbsp;&nbsp;<input type="button" value="코드확인" onclick="dupleCCode()">
                         <br><span id="dupleCCode"></span>
                     </div>
@@ -206,66 +207,73 @@ button {
 
                     <!--email-->
                     <div class="input-group col-lg-12 mb-4">
-<!--                         <div class="input-group-prepend">
+                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class='fas fa-envelope-open' style='font-size:15px'></i>
                             </span>
-                        </div> -->
-                      <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3">
+                        </div>
+                      <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
                     <!-- 주소 -->
                     <div class="input-group col-lg-12 mb-4">
-<!--                         <div class="input-group-prepend">
+                        <div class="input-group-prepend">
                             <p class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class='fas fa-home' style='font-size:15px'></i>
                             </p>
-                        </div> -->
-					    <input type="text" style="width:300px;" id="addr1" name="addr1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" /><br>
-                        &nbsp;&nbsp;<button type="button" id="postcodify_search_button" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
-                    </div>
 
-                    <div class="input-group col-lg-12 mb-4">
-					    <input id="addr2" type="text" name="addr2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
-					    <input type="text" name="addr3" id="addr3" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" />
+                        </div> 
+					    <input type="text" style="width:300px;" id="roadAddrPart1" name="roadAddrPart1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" / required><br>
+                        &nbsp;&nbsp;<button type="button" onclick="goPopup()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
+                   </div>
+                    
+                     <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <p class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class=''></i>
+                            </p>
+                        </div> 
+
+					    <input type="text" name="addrDetail" id="addrDetail" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" / required>
+					    <input id="roadAddrPart2" type="text" name="roadAddrPart2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
                     </div>
 
 
                     <!-- 주민번호 -->
                     <div class="input-group col-lg-6 mb-4">
-<!--                         <div class="input-group-prepend">
+                        <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-black-tie text-muted"></i>
+                                <i class='fas fa-address-card' style='font-size:15px'></i>
                             </span>
-                        </div> -->
-                        <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3">
+                        </div> 
+                        <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
                     <!-- phone-->
                     <div class="input-group col-lg-6 mb-4">
-<!--                         <div class="input-group-prepend">
+                        <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class="fa fa-phone-square text-muted"></i>
                             </span>
-                        </div> -->
-                      <input type="text" name="m_phonenum" placeholder="핸드폰 번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3">
+                        </div> 
+                      <input type="text" name="m_phonenum" placeholder="핸드폰 번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
                    <!--file-->
                     <div class="input-group col-lg-6 mb-4">
-<!--                         <div class="input-group-prepend">
+                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-lock text-muted"></i>
+                                <i class='fas fa-images' style='font-size:15px'></i>
                             </span>
-                        </div> -->
-                      <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3">
+                        </div>
+                      <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
 
                     <!-- join -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
                         <input type="hidden" name="m_address" id="addr"></input>
-<!--                         <a href="#" class="btn btn-primary btn-block py-2">
+<!--                          <a href="#" class="btn btn-primary btn-block py-2">
                             <span class="font-weight-bold">Create your account</span>
                         </a> -->
                         <button class="btn btn-primary btn-block py-2" type="submit">Create your account</button>
@@ -291,6 +299,20 @@ button {
 
 
 	<script>
+	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+		document.form.roadAddrPart1.value = roadAddrPart1;
+		document.form.roadAddrPart2.value = roadAddrPart2;
+		document.form.addrDetail.value = addrDetail;
+		
+}
+	function goPopup(){
+		// IE에서 opener관련 오류가 발생하는 경우, window에 이름을 명시해줍니다.
+		window.name="jusoPopup";
+		
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("/erp/home/jusopopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	}
 	// For Demo Purpose [Changing input group text on focus]
 	$(function () {
 	    $('input, select').on('focus', function () {
@@ -304,89 +326,81 @@ button {
 
 		var checkid;
 		var checkccode
+		$("#searchAddr").click(function () {
+			// IE에서 opener관련 오류가 발생하는 경우, window에 이름을 명시해줍니다.
+			window.name = "jusoPopup";
 
-		function dupleID() {
-			var $id = $("#id").val()
-			if ($id == null || $id == '') {
-				$("#dupleID").html(
-						"<font style='color:red;'>ID를 입력해주세요.</font>");
+			// 주소검색을 수행할 팝업 페이지를 호출합니다.
+			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+			var pop = window.open("/erp/jusopopup", "pop",
+					"width=570,height=420, scrollbars=yes, resizable=yes");
+		})
+
+		function jusoCallBack(roadAddrPart1, addrDetail,
+				roadAddrPart2) {
+			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+			document.form.roadAddrPart1.value = roadAddrPart1;
+			document.form.roadAddrPart2.value = roadAddrPart2;
+			document.form.addrDetail.value = addrDetail;
+
+		}
+	function dupleID() { 
+		var $id = $("#id").val() 
+		if ($id == null || $id =='') { 
+			$("#dupleID").html( "<font style='color:red;'>ID를 입력해주세요.</font>"); 
 			} else {
-
-				console.log($id)
-				$
-						.ajax({
-							url : "/erp/rest/home/dupleid",
-							data : {
-								m_id : $id
-							},
-							dataType : "text",
-							method : "get",
-							async : false,
-							success : function(data) {
-								console.log(data)
-								if (data == 1) {
-									checkid = false;
-									$("#dupleID")
-											.html(
-													"<font style='color:red;'>아이디가 중복됩니다.</font>");
-								} else {
-									checkid = true;
-									$("#dupleID").html("<font style='color:blue;'>가능한 아이디입니다.</font>");
-								}
-							},
-							error : function(err) {
-								console.log(err);
-							}
-						});
-			}
-		}
-
-		function dupleCCode() {
-			var $cCode = $("#cCode").val();
-			console.log($cCode);
-			$
-					.ajax({
-						url : "/erp/rest/home/dupleccode",
-						data : {
-							m_ccode : $cCode
-						},
-						dataType : "text",
-						method : "get",
-						async : false,
-						success : function(data) {
-							console.log(data)
-							if (data == 1) {
-								checkccode = true;
-								$("#dupleCCode").html("<font style='color:blue;'>해당 회사코드가 존재합니다.</font>");
-							} else {
-								checkccode = false;
-								$("#dupleCCode")
-										.html(
-												"<font style='color:red;'>해당 회사코드가 존재하지 않습니다.</font>");
-							}
-						},
-						error : function(err) {
-							console.log(err);
-						}
-					})
-		}
-
-		$(function() {
-			$("#postcodify_search_button").postcodifyPopUp();
-		});
-
-		function sum() {
-			console.log(checkid, checkccode);
-			if (checkid && checkccode) {
-				$("#addr").val(
-						$('#addr1').val() + $('#addr2').val()
-								+ $('#addr3').val());
-				return true;
-			} else {
-				alert("회사코드 혹은 아이디 중복을 확인해주세요.");
-				return false;
-			}
-		}
+	console.log($id) 
+	$ .ajax({ url : "/erp/rest/home/dupleid", 
+		data : {m_id : $id }, 
+		dataType : "text", 
+		method : "get", 
+		async : false, 
+		success	: function(data) { 
+			console.log(data) 
+			if (data == 1) { 
+				checkid = false;
+	$("#dupleID") .html( "<font style='color:red;'>아이디가 중복됩니다.</font>"); 
+	} else { 
+		checkid = true;
+		$("#dupleID").html("<font style='color:blue;'>가능한 아이디입니다.</font>"); } 
+	}, 
+	error :	function(err) { 
+		console.log(err); 
+		} 
+	}); 
+	}
+	}
+	function dupleCCode() { 
+		var	$cCode = $("#cCode").val(); 
+		console.log($cCode); 
+		$ .ajax({ url :	"/erp/rest/home/dupleccode", 
+			data : { m_ccode : $cCode }, 
+			dataType :	"text", 
+			method : "get", 
+			async : false, 
+			success : function(data) {
+	console.log(data) 
+	if (data == 1) { 
+		checkccode = true;
+	$("#dupleCCode").html("<font style='color:blue;'>해당 회사코드가 존재합니다.</font>"); 
+	} else {
+		checkccode	= false;
+		$("#dupleCCode") .html( "<font style='color:red;'>해당 회사코드가 존재하지 않습니다.</font>"); 
+		} 
+	}, 
+	error :	function(err) { 
+		console.log(err); } }) } 
+	
+	function sum() {
+	console.log(checkid, checkccode); 
+	if (checkid && checkccode) {
+	$("#addr").val( $('#roadAddrPart1').val() + $('#addrDetail').val() +
+	$('#roadAddrPart2').val()); return true; 
+	} else {
+		alert("회사코드 혹은 아이디 중복을 확인해주세요."); 
+	return false; 
+	} 
+	}
 	</script>
 </body>
 </html>

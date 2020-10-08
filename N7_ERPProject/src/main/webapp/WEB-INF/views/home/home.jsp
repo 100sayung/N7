@@ -78,7 +78,7 @@ font-size: 30px;
 				<li><form action="logout" method="post"><button>LOGOUT</button></li>
 				</c:when>
 				<c:when test="${id!=null and id ne 'manager'}">
-				<li class="current_page_item"><a href="#" onClick='window.open("/erp/main", "ERP START", "width=1600, height=900, status=no, toolbar=no, menubar=no, scrollbar = no, resizable=yes"); return false;'>ERP시작</a></li>
+				<li class="current_page_item"><a href="#" onClick='window.open("/erp/main", "ERP START", "width=1700, height=955, status=no, toolbar=no, menubar=no, scrollbar = no, resizable=no"); return false;'>ERP시작</a></li>
 				<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
 				</c:when>
 				</c:choose> 
@@ -100,7 +100,7 @@ font-size: 30px;
       <div class="carousel-inner" role="listbox">
 
         <div class="item active">
-          <img src="img/mainerp3.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
+          <img src="img/mainerp5.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
           <!-- <div class="carousel-caption">
             <h2>기술</h2>
             <p>혁신적인 기술로 시장을 선도하는 기업</p>

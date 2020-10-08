@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>인사카드</title>
+<title>사원 인사 카드</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -73,7 +73,7 @@ ul {
 	</div>
 	<div id="description" align="center">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">사원 인사 카드</Strong>
+		<h1 class="deptregist_color_size">사원 인사 카드</h1>
 	</div>
 	${msg}<br><br>
 	<div class="divcss">사원 인사카드 조회 및 미등록 카드 등록</div>
@@ -188,8 +188,8 @@ ul {
 			success : function(data){
 				console.log(data);
 				let str = "";
-			 	str = "<table id='table1' border='1' cellspacing='0'>";
-			 	str += "<tr class='infomenu'><td>사진</td><td>이름</td><td>생년월일</td><td>이메일</td><td>수정</td></tr>";
+			 	str = "<table id='table1' border='1' cellspacing='0' style='text-align:center;'>";
+			 	str += "<tr class='infomenu'><td>사진</td><td width='100px'>이름</td><td width='150px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
 					str += "<td>"+data[i].m_name+"</td>";
@@ -227,8 +227,8 @@ ul {
 				if(data.length<1){
 					str+="<br><img src ='https://new.acecounter.com/assets/img/img_cst_result3.png'><br>";
 				}else{
-					str = "<table id='table1' border='1' cellspacing='0'>";
-				 	str += "<tr class='infomenu'><td>사진</td><td>이름</td><td>생년월일</td><td>이메일</td><td>수정</td></tr>";
+					str = "<table id='table1' border='1' cellspacing='0' style='text-align:center;'>";
+				 	str += "<tr class='infomenu'><td>사진</td><td width='100px'>이름</td><td width='150px'>생년월일</td><td width='200px'>이메일</td><td>수정</td></tr>";
 					for(let i = 0 ; i<data.length ; i++){
 						str += "<td><img style='width:120px; height:90px;' src = '/erp/upload/"+data[i].m_photo+"'></td>";
 						str += "<td>"+data[i].m_name+"</td>";

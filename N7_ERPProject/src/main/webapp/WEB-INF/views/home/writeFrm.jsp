@@ -9,10 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<link href="/erp/css/default.css" rel="stylesheet" type="text/css"
-	media="all" />
-
+<title>게시판 글쓰기</title>
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -41,7 +38,7 @@ font-family: inherit;
 font-weight: 500;
 color: inherit;
 text-transform: uppercase;
-display: block;    
+display: block;
 }
 
 #container {
@@ -53,7 +50,6 @@ display: block;
 #footer {
 	float: right;
 }
-
 </style>
 </head>
 <body>
@@ -63,8 +59,9 @@ display: block;
 				<a href="/erp/" style="color: black;">N7 COMPANY</a>
 			</h1>
 		</div>
-		
-
+		<div id="menu"></div>
+	</div>
+	<div id="description" class="out" style="height: 700px;">
 		<div
 			style='width: 100%; height: 50px; text-align: center; background-color: #3D6B9B;'>
 			<h1 style='color: white'>ERP상담게시판</h1>
@@ -126,12 +123,11 @@ display: block;
 			</div>
 		</div>
 	</div>
-
 </body>
 <script>
 $("#submit").click(function(){
 	var obj = $("#boardData").serialize();
-	
+
 	 $.ajax({
 		url:'/erp/rest/home/writeBoard',
 		type:'post',
@@ -141,15 +137,15 @@ $("#submit").click(function(){
 			console.log(data);
 			if(data==1){
 				alert("등록완료");
-				location.href="/erp/home/erpboard"
+				location.href="/erp/home/erpboard";
 			}else{
 				alert("등록실패");
 			}
-			
+
 		},
 		error:function(error){
 			console.log(error);
-		}		
+		}
 	 });
 
 });

@@ -88,11 +88,7 @@ padding-bottom: 20px;
 			</tr>
 		</table>
 	</div>
-
-
-
-   <div id="bbb"><a href="/erp/home/writeFrm" style="text-decoration: none;"><button type="button">글쓰기</button></a></div> 
-
+   <div id="bbb"><a href="/erp/home/writeFrm" style="text-decoration: none;"><button type="button">글쓰기</button></a></div>
 	</form>
 	<div align="cneter" id="paging">${paging}</div>
 
@@ -107,20 +103,18 @@ padding-bottom: 20px;
 </body>
 <script>
 		var bList=${bList};
-		
+
 	$(document).ready(function(){
 		var str="";
 		for(var i=0; i<bList.length; i++){
-	
+
 		var type=bList[i].cb_type;
 			str+="<tr><td>"+bList[i].cb_num+"</td>";
-
 			if(type=="a"){
 			str+="<td><a style='text-decoration: none;' href='/erp/home/boardContents?CB_NUM="+bList[i].cb_num +"'>"+bList[i].cb_title+"</a></td>";
 			}else{
 			str+="<td><a style='text-decoration: none;' href='#' onclick='secret(\""+bList[i].cb_num+"\",\""+bList[i].cb_password+"\")'>비밀글입니다</a></td>";
 			}
-			
 
 			str+="<td>"+bList[i].cb_writer+"</td></tr>";
 		}
@@ -129,9 +123,6 @@ padding-bottom: 20px;
 	});
 
 
-
-	
-	
 	function secret(num,password){
 		var id="${id}";
 		if(id=="admin"){
@@ -145,7 +136,6 @@ padding-bottom: 20px;
         }
 		}
 	};
-	
 
 	$("#searchbtn").click(function(){
         var pageNum=0;

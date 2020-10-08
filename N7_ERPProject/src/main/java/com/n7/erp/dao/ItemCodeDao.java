@@ -1,12 +1,10 @@
 package com.n7.erp.dao;
-
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
 import com.n7.erp.bean.B_shipment;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
@@ -42,5 +40,8 @@ public interface ItemCodeDao {
 
 	@Select("Select IT_STOCK FROM IT WHERE IT_CODE = #{it_code} AND IT_CPCODE = #{it_cpcode}")
 	public int getStock(ItemCode it);
+
+	@Select("SELECT * FROM IT WHERE IT_CPCODE = #{cCode} AND IT_CODE LIKE #{it_code}")
+	public List<ItemCode> getIfInfo(@Param("cCode")String cCode,@Param("it_code") String it_code);
 
 }

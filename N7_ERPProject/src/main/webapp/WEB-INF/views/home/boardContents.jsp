@@ -29,7 +29,7 @@ font-family: inherit;
 font-weight: 500;
 color: inherit;
 text-transform: uppercase;
-display: block;    
+display: block;
 text-align: center;
 }
 table#table {
@@ -115,7 +115,6 @@ margin-top: 200px;
 			<c:when test="${id eq 'admin'}">
 			<tr>
 			<td colspan="2"><textarea rows="10" cols="90" id="reply" style="resize: none;"></textarea><br><button id="commit">댓글등록</button></td>
-
 			</tr>
 			</c:when>
 			</c:choose>
@@ -152,9 +151,9 @@ $("#commit").click(function(){
 		error:function(error){
 			console.log(error);
 		}
-		
+
 	});
-	
+
 });
 
 $("#delete").click(function(){
@@ -172,12 +171,12 @@ $("#delete").click(function(){
 			}else{
 				alert("비번이 맞지 않습니다.");
 			}
-			
+
 		},
 		error:function(error){
 			console.log(error);
 		}
-		
+
 	});
 });
 
@@ -196,12 +195,12 @@ $("#admindelete").click(function(){
 			}else{
 				alert("비번이 맞지 않습니다.");
 			}
-			
+
 		},
 		error:function(error){
 			console.log(error);
 		}
-		
+
 	});
 });
 

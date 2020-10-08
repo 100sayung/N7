@@ -59,15 +59,17 @@ public class ConsultingBoardMM {
 
 
 	public String writeBoard(ConsultingBoard board, HttpSession session) {
+		mav= new ModelAndView();
 		String value= null;
 		boolean result= CBdao.boardWrite(board);
+
 		if(result) {
 				value="1";
 			}else {
 				value="2";
 			}
-		return value;
 
+		return value;
 	}
 
 	public ModelAndView boardContents(int CB_NUM) {
@@ -75,7 +77,6 @@ public class ConsultingBoardMM {
 		String view= null;
 		int num = CB_NUM;
 		ConsultingBoard board= CBdao.getContents(num);
-
 		System.out.println("들어감?");
 
 		System.out.println("board="+board);
@@ -162,7 +163,7 @@ public class ConsultingBoardMM {
 			}else {
 				value="2";
 			}
-		
+
 		return value;
 	}
 
