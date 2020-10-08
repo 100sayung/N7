@@ -48,7 +48,7 @@ ${msg}
 				<table style="margin-left: 55px">
                  	 <tr>
                  	 	<th>구매번호</th>
-                    	<th><input type="text" name="p_documentcode" value="P" readonly></th>
+                    	<th><input type="text" name="p_documentcode" value="P" readonly ></th>
                     	<th>제품번호</th>
                      	<th><input type="text" name="p_productnum"></th>
                      	<th>담당자</th>
@@ -93,7 +93,7 @@ ${msg}
                     	</tr>
 					</tbody>
 				</table>
-			<div style="float: left;; padding-top: 5px">
+			<div style="float: left; padding-top: 5px">
 				<button type="button" id="approval">결재요청</button>
 				<button type="button" id="Pdelete">삭제</button>
 				<button type="button" id="save">등록</button>
@@ -106,6 +106,8 @@ ${msg}
 	</div>
 	
 	  <script type="text/javascript">
+	  
+	  
 	  $(document).on("keyup",".unlit",function(){
 		 var cnt =$(this).parent().prev().children().val();
 		 console.log(cnt);
@@ -211,6 +213,7 @@ ${msg}
             },
             error: function(error){
             	console.log(error);
+            	alert("데이터가 없습니다.");
             }
          });
       });
