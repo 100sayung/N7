@@ -79,7 +79,7 @@ input {
 				<tr>
 					<th>제목</th>
 					<th><input type="text" id="j_title" name="j_title"
-						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;"></th>
+						style="background-color: #F8F7F7; border: 1px #F8F7F7; width: 1020px; text-align: center;" placeholder="문서제목을 입력해주세요."></th>
 				</tr>
 				<tr>
 					<th>내용</th>

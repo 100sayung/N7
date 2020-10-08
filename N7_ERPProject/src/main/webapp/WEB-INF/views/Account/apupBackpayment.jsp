@@ -41,7 +41,6 @@ table, tr, td {
 
 a {
 	color: #222222;
-	font-weight: bold;
 }
 
 td {

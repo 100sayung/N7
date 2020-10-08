@@ -31,7 +31,6 @@
 <style>
 a{
 color:#222222;
-/* font-weight: bold; */
 }
 
 table, tr, td {
