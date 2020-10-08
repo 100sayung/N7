@@ -319,7 +319,8 @@ button {
 				dataType : "json",
 				data : {
 					userEmail : $("#m_email").val(),
-					authenticationNum : Number(authenticationNum)
+					authenticationNum : Number(authenticationNum),
+					type:'join'
 				},
 				success : function(result) {
 					alert(result)

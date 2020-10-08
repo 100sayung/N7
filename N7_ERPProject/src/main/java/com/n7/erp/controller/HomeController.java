@@ -209,8 +209,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/home/sendauthenticationnum", method = RequestMethod.POST)
-	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authenticationNum) {
-		return mm.sendAuthenticationNum(userEmail, authenticationNum);
+	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authenticationNum,String type) {
+		return mm.sendAuthenticationNum(userEmail, authenticationNum,type);
 	}
 
 	@RequestMapping(value = "/home/findpassword", method = RequestMethod.POST)
