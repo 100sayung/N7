@@ -96,12 +96,9 @@ ${msg}
 			<div style="float: left; padding-top: 5px">
 				<button type="button" id="approval">결재요청</button>
 				<button type="button" id="Pdelete">삭제</button>
+				<button type="button" class="addList">추가</button>
 				<button type="button" id="save">등록</button>
 			</div>
-			<div style="float: left; padding-top: 5px; margin-left: 1050px;" >
-				<button type="button" class="addList">추가</button>
-            	<button type="reset" id="reset">다시작성</button>
-         	</div>
          </form>
 	</div>
 	
@@ -238,7 +235,6 @@ ${msg}
     				$('#list').html(str); 
     				$("#save").attr("style","visibility: hidden");
     				$(".addList").attr("style","visibility: hidden");
-    				$("#reset").attr("style","visibility: hidden");
     			},
     			error: function(error){
     				console.log(error);
@@ -354,6 +350,11 @@ ${msg}
 				  	str+="<td>"+data.sList[i].it_size+"</td><tr>";
 				  }
 				  $('#list').html(str);
+  				  $("#save").attr("style","visibility: hidden");
+				  $(".addList").attr("style","visibility: hidden");
+				  $("#approval").attr("style","visibility: hidden");
+				  $("#Pdelete").attr("style","visibility: hidden");
+				  
 			  },
 			  error: function(err){
 				  console.log(err);
