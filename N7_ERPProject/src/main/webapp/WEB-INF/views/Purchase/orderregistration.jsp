@@ -114,31 +114,31 @@ ${msg}
     		});
       });
        
+
        $('#Pinfo').click(function(){
-   		$.ajax({
-   			url: '/erp/rest/Purchase/pference',
-   			type: 'get',
-   			dataType: 'json',
-   			success: function(data){
-   				//console.log(data);
-    				var str="";
-    				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
-   				for(var i in data.pList){
-   	    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
-		    			str+="<td>"+data.pList[i].p_documentcode+"</td>";
-		    			str+="<td>"+data.pList[i].p_productnum+"</td>";
-		    			str+="<td>"+data.pList[i].p_writer+"</td>";
-		    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-		    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
-   				}
-   				$('#list').html(str); 
-   				$("#save").attr("style","visibility: hidden");
-   			},
-   			error: function(error){
-   				console.log(error);
-   			}
-   		});
-     });
+      		$.ajax({
+      			url: '/erp/rest/Purchase/orderpinfo',
+      			type: 'get',
+      			dataType: 'json',
+      			success: function(data){
+      				console.log(data);
+      				 var str="";
+    				str+="<tr class='tr'><th><span>선택</span></th><th>회사코드</th><th>제품번호</th><th>날짜</th></tr>";
+    				for(var i in data.pList){
+    					str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].ap_docunum+" name='each_check' class='each_check'></td>";
+    					str+="<td>"+data.pList[i].ap_ccode+"</td>";
+    					str+="<td>"+data.pList[i].ap_docunum+"</td>";
+    					str+="<td>"+data.pList[i].ap_date+"</td></tr>";
+    				}
+       				$('#list').html(str);  
+      				$("#save").attr("style","visibility: hidden");
+      			},
+      			error: function(error){
+      				console.log(error);
+      			}
+      		});
+        });
+
        
        $('#searchbtn').click(function(){
 			 var choice = $('#choice').val();
