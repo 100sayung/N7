@@ -115,7 +115,6 @@ public class HomeController {
 
 	@GetMapping(value = "/welcome")
 	public String welcome() {
-		System.out.println("ㅇㅇ");
 		return "/home/welcomepage";
 	}
 
