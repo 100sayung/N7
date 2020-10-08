@@ -92,7 +92,7 @@ position: relative;
 td{
 width: 300px;
 }
-#description *{
+#description, #description *{
 font-size:20px;
 font-weight: bolder;
 }
@@ -121,10 +121,10 @@ font-weight: bolder;
 <center>
 	<div id="description">
 		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">출고 확정</div>
-		<c:if test="${exportStockCheck eq ''}">
+		<c:if test="${exportStockCheck == null}">
 		출고 내역이 없습니다.
 		</c:if>
-		<c:if test="${exportStockCheck ne ''}">
+		<c:if test="${exportStockCheck !=null}">
 		${exportStockCheck}
 		<input type="button" id="btn" value="출고 확정"></button>
 		</c:if>

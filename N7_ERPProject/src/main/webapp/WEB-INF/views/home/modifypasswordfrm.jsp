@@ -366,8 +366,8 @@ button {
     </div>
 
     <!-- Login Form -->
-      <input type="text" style="width:385px;" id="userPassword" class="form-control" placeholder="새로운 비밀번호를 입력해주세요" required id="usr">
-      <input type="text" style="width:385px;" id="checkPassword" class="form-control" placeholder="비밀번호를 다시 입력해주세요" required id="usr">
+      <input type="password" style="width:385px;" id="userPassword" class="form-control" placeholder="새로운 비밀번호를 입력해주세요" required id="usr">
+      <input type="password" style="width:385px;" id="checkPassword" class="form-control" placeholder="비밀번호를 다시 입력해주세요" required id="usr">
       <button type="button" class="fadeIn fourth" id="modifyPasswordBtn"  style="width:120px;">비밀번호 수정</button>
       <br>
       <br>

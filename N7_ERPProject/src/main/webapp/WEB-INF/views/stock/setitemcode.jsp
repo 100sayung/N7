@@ -159,10 +159,47 @@ text-align: center;
 	});
 	
 	function  itemCode(url,data) {
+		if(url=="/erp/stock/getitemcode"){
+			$.ajax({
+				url:url,
+				data:data,
+				type:"get",
+				contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+				dataType:"json",
+				success:function(result){
+					if(result.length!=0){
+						$("#modify").attr("style","display:inline-block")
+					}
+					var msg = '';
+					msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><div class = "span">재고</div><br>';
+					for(var i = 0 ; i < result.length;i++){
+						var frm = document.createElement("form"); 
+						frm.id = 'frm'+(i+1);
+						var str = '';
+						str += '<input class="it_code"  name="it_code" type="text" value="'
+							+ result[i].it_code
+							+ '" readonly>'
+							+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
+							+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
+							+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
+							+'<input class="it_pstock" name="it_pstock" type="number" value="'+result[i].it_pstock+'" readonly>'
+							+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
+							+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
+							console.dir(frm);
+							frm.innerHTML = str
+							msg+=frm.outerHTML+'<br>';
+					}
+					$('#smalldescription').html(msg);
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		}else{
 		$.ajax({
 			url:url,
 			data:data,
-			type:"get",
+			type:"post",
 			contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 			dataType:"json",
 			success:function(result){
@@ -170,7 +207,7 @@ text-align: center;
 					$("#modify").attr("style","display:inline-block")
 				}
 				var msg = '';
-				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><div class = "span">적정재고량</div><br>';
+				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><div class = "span">재고</div><br>';
 				for(var i = 0 ; i < result.length;i++){
 					var frm = document.createElement("form"); 
 					frm.id = 'frm'+(i+1);
@@ -194,6 +231,7 @@ text-align: center;
 				console.log(err);
 			}
 		});
+		}
 		
 	}
 	//분류명, 품목번호 출력
