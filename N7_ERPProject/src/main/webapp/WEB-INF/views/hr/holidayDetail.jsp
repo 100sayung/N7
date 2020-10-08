@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>휴가 상세</title>
+<title>내 휴가 상세 보기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
 html, body {
@@ -35,10 +35,10 @@ html, body {
 
 .draft {
    width: 500px;
-   height: 20px;
    border-style: none;
    text-align: center;
-   "
+   font-size: medium;
+   font-weight: bold;
 }
 
 .draft2 {
@@ -59,9 +59,9 @@ html, body {
 </style>
 </head>
 <body>
-      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">휴가신청안</div>
+      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;font-size: large;font-weight: bold;">휴가신청안</div>
       <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
-         <table id="table">
+         <table id="table" style="border-collapse: collapse;">
             <tr>
                <th>제목</th>
                <th colspan="4">${apholi.hap_docuname }
@@ -70,16 +70,16 @@ html, body {
             <tr>
                <th>--</th>
          		<th>신청인</th>
-         		<th>${fromapprover }</th>
+         		<th>${fromapprover}</th>
         		 <th>결재자</th>
-         		<th>${toapprover }</th>
+         		<th>${toapprover}</th>
             </tr>
             <tr>
                <th>내용</th>
                <td colspan="4">
                   <div style="border: 1px solid #EAEAEA; background-color: white;">
                      <div>
-                        <table>
+                        <table style="border-collapse: collapse;">
                            <tr>
                               <th colspan="2">문서번호</th>
                               <th colspan="6"><input type="text" name="p_documentcode"
@@ -107,7 +107,7 @@ html, body {
                </td>
             </tr>
          </table>
-     
+
    <c:if test="${apholi.hap_toapprover==hrCode}">
       <c:if test="${apholi.hap_status eq 1}">
          <input type='hidden' value='${apholi.hap_docunum}' name='docunum' id="docunum">
@@ -116,16 +116,17 @@ html, body {
       </c:if>
    </c:if>
        </div>
-   
+
    <script>
-   
+   	var term = "";
+
       $(document).ready(function(){
-         console.log("123");
-         console.log("${apholi.hap_fromapprover}");
-         console.log("${apholi.hap_toapprover}");
-         console.log("${hrCode}");
+ 		 var startDay = new Date("${apholi.hap_startday}");
+ 		 var endDay = new Date("${apholi.hap_endday}");
+ 		 term = endDay - startDay;
+ 		 term = (term/86400000)+1;
       });
-      
+
       $("button").click(function(){
          console.log(this.id);
          if(confirm("정말 확인하시겠습니까?")){
@@ -134,22 +135,23 @@ html, body {
             alert("취소되었습니다.");
          }
       });
-      
+
       function regist(yesno){
          $.ajax({
             url:"/erp/rest/hr/holidaystatus",
             dataType:"text",
-            data:{yesno : yesno, docunum : $("#docunum").val()},
+            data:{yesno : yesno, docunum : $("#docunum").val(), term : term, hrcode : "${apholi.hap_fromapprover}"},
             method:"post",
             success : function(data){
                window.open("about:blank", "_self").close();
             }, error : function(err){
+            	alert("알수없는 이유로 취소되었습니다.");
                console.log(err);
             }
          });
       }
-      
-            
+
+
    </script>
 </body>
 </html>

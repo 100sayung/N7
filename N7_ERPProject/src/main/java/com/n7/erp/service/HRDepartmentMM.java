@@ -232,13 +232,15 @@ public class HRDepartmentMM {
 		String code = card.getHc_ccode();
 		String hrcode = card.getHc_hrcode();
 		String name = Ddao.findname(hc);
+		String holynum = card.getHc_holynum();
 		ArrayList<Deduct> deduct = Ddao.deduct(code);
 		Payroll incentive = Ddao.findincentive(hrcode);
 		mav.addObject("incentive", incentive);
 		mav.addObject("name", name);
 		mav.addObject("deduct", deduct);
 		mav.addObject("pay", pay);
-		mav.addObject("card", card);
+		mav.addObject("card", card); 
+		mav.addObject("holynum", holynum);
 		return mav;
 	}
 	
@@ -248,6 +250,15 @@ public class HRDepartmentMM {
 		String selectpay = Ddao.findpay(pay);
 		if (selectpay == null) {
 			if (Ddao.insertpay(pay)) {
+	//			int bonus = Integer.parseInt(pay.getHP_MONTHLYBONUS());
+	//			int realMoney = Integer.parseInt(pay.getHP_REALMONEY());
+	//			int tax = Integer.parseInt(pay.getHP_TAX());
+	//			int insurance = Integer.parseInt(pay.getHP_INSURANCE());
+	//			int incen = Integer.parseInt(pay.getHP_INCEN());
+	//			int originPay = realMoney + tax + insurance - incen - bonus;
+	//			int leftHoliday = Integer.parseInt(Ddao.leftHoliday(pay));
+	//			String holiday = String.valueOf((bonus*200/8/originPay));
+				Ddao.updateHolyday(pay);
 				view = "/hr/searchpaymm";
 			} else {
 				view = "/hr/payinputmodify";
@@ -280,7 +291,7 @@ public class HRDepartmentMM {
 		StringBuilder sb=new StringBuilder();
 		if(checkpayid!=null) {
 			ArrayList<ViewPay> ViewList=Ddao.checkingidname(checkpayid);
-				sb.append("<tr><td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan='2'></td></tr>");
+				sb.append("<table id='wages'><tr id='id_back'><td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan='2'></td></tr>");
 			for(int i=0;i<ViewList.size();i++) {
 				int result=ViewList.get(i).getHDP_PAY()-ViewList.get(i).getHDD_AMOUNT();
 				sb.append("<tr id='\""+ViewList.get(i).getHC_ID()+"\"'>");
@@ -292,7 +303,7 @@ public class HRDepartmentMM {
 				sb.append("<td>"+ViewList.get(i).getHDD_AMOUNT()+"</td>");
 				sb.append("<td>"+result+"</td>");
 				sb.append("<td><button type='button' class='infobtn' onclick='clickwages(\""+ViewList.get(i).getHC_ID()+"\")'>입력수정</button></td>");
-				sb.append("<td><button type='button' class='infobtn' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>삭제</button></td></tr>");
+				sb.append("<td><button type='button' class='infobtn' onclick='wages(\""+ViewList.get(i).getHC_ID()+"\")'>상세보기</button></td></tr></table>");
 			}
 			Gson gson=new Gson();
 			String total=gson.toJson(sb.toString());

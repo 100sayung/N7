@@ -8,13 +8,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+   rel="stylesheet" type="text/css">
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
@@ -321,7 +321,7 @@ button {
 }
 
 .warnMsg {
-	color: red;
+   color: red;
 }
 
 #idserach {

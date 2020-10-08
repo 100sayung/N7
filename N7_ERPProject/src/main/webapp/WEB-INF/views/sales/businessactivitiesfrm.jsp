@@ -18,7 +18,7 @@ text-align:center;
         <button type="button" id="businessitemfrm" onclick="window.open('/erp/sales/SalesResult','SalesResult','width=1200,height=1200')">영업 실적조회</button>${msg}
         <br>
         <br>
-        <div style="width:auto; background-color:#FFB2D9;  color:white; padding:1%;">영업활동</div>
+        <div style="width:auto; background-color:#3D6B9B;  color:white; padding:1%;">영업활동</div>
          <select id="choice" style="width:180px;">
                       <option value="ba_ocode">영업코드</option>
                       <option value="ba_hrcode">사원코드</option></select>
@@ -36,7 +36,7 @@ text-align:center;
                <th>거래처회사코드</th>
                <th><input type="text" name="ba_clcode" id="clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>사원코드</th>
-               <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th>
+               <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th> <%-- value="${hrCode}" readonly --%>
             </tr>
             <tr>
                <th>사업단위</th>

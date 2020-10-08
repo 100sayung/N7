@@ -4,19 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.Purchase;
@@ -64,7 +60,7 @@ public class PurchaseRestController {
 		Map<String, List<Purchase>> pMap= pm.pfdelete(check_list, session);
 		return pMap;
 	}
-
+	
 	 //결재
 	@PostMapping(value = "/Purchase/addApproval",produces="application/json;charset=utf-8" )
 	public  Map<String, List<approvalLine>> addApprovale(String CNT, String ARR) {
@@ -158,7 +154,8 @@ public class PurchaseRestController {
 		Map<String, List<IePort>> sMap= pm.stocklist(session);
 		return sMap;
 	}
-
+	
+	//재고현황
 	@GetMapping(value = "/Purchase/getstocklist", produces= "application/json;charest=utf-8" )
 	public Map<String, List<ItemCode>> getstocklist(HttpSession session) {
 		Map<String, List<ItemCode>> sMap= pm.getstocklist(session);

@@ -11,9 +11,9 @@
          WHERE RN>=#{pageNum}*10-9
       ]]>
    </select>
-   
+
     <insert id="boardWrite" parameterType="board">
-         INSERT INTO CONSULTING_BOARD
+         INSERT INTO CONSULTING_BOARD (CB_NUM,CB_TYPE,CB_WRITER,CB_PASSWORD,CB_TITLE,CB_CONTENTS)
         VALUES(BR_NUM_SEQ.NEXTVAL, #{cb_type}, #{cb_writer}, #{cb_password}, #{cb_title}, #{cb_contents})
    </insert>
 
@@ -23,7 +23,7 @@
 
    <select id="boardSearch" resultType="board">
          SELECT * FROM CONSULTING_BOARD
-         <where> 
+         <where>
             <if test="choice.equals('CB_TITLE')">
                 CB_TITLE LIKE '%'|| #{keyword} ||'%'
             </if>
@@ -34,7 +34,7 @@
    </select>
    <select id="getSearchCount" resultType="int">
          SELECT COUNT(*) FROM CONSULTING_BOARD
-         <where> 
+         <where>
             <if test="choice.equals('CB_TITLE')">
                 CB_TITLE LIKE '%'|| #{keyword} ||'%'
             </if>
@@ -44,7 +44,13 @@
          </where>
    </select>
 
+   <update id="insertReply" parameterType="string">
+   UPDATE CONSULTING_BOARD SET CB_REPLY = #{reply} WHERE CB_NUM=#{num}
+   </update>
 
+   <delete id="delectBoard" parameterType="string">
+   DELETE FROM CONSULTING_BOARD WHERE CB_NUM = #{num} AND CB_PASSWORD=#{password}
+   </delete>
 <!--    <insert id="writeBoard" parameterType="board">
       INSERT INTO CONSULTING_BOARD
       VALUES(BR_NUM_SEQ.NEXTVAL,#{CB_TYPE},#{CB_WRITER},#{CB_PASSWORD},#{CB_TITLE},#{CB_CONTENTS})

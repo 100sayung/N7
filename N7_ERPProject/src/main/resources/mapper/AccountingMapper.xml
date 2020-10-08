@@ -6,12 +6,12 @@
 
 <insert id="saleinsert" parameterType="saleInfo">
 	INSERT INTO AC_SALESTATEMENT
-	VALUES(#{s_num}||LPAD(AC_REALSALESTATEMENT_SEQ.NEXTVAL,6,0),#{s_ccode},#{s_kind},#{s_comnum},DEFAULT,#{s_employee},#{s_clcode},#{s_company})
+	VALUES(#{s_num}||LPAD(AC_REALSALESTATEMENT_SEQ.NEXTVAL,8,0),#{s_ccode},#{s_kind},#{s_comnum},DEFAULT,#{s_employee},#{s_clcode},#{s_company})
 	</insert>
 	
 <insert id="saleinsert2" parameterType="String">
 	INSERT INTO AC_SALESTATEMENTLIST
-	VALUES(#{s_num}||LPAD(AC_REALSALESTATEMENT_SEQ.CURRVAL,6,0),#{s_ccode},#{s_cnt},#{s_pkind},#{s_tax},#{s_price},#{s_price2},
+	VALUES(#{s_num}||LPAD(AC_REALSALESTATEMENT_SEQ.CURRVAL,8,0),#{s_ccode},#{s_cnt},#{s_pkind},#{s_tax},#{s_price},#{s_price2},
 	#{s_memo},#{s_total})
 	</insert>
 

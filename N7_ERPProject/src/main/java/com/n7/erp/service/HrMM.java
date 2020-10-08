@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.omg.CosNaming.NameHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -225,6 +226,7 @@ public class HrMM {
 		return type;
 	}
 
+	@Transactional
 	public ModelAndView applyHoliday(ApplyHoliday apholi, HttpSession session) {
 		String id = session.getAttribute("id").toString();
 		String cCode = session.getAttribute("cCode").toString();
@@ -552,17 +554,19 @@ public class HrMM {
 		return mav;
 	}
 
-	public void registHolidayStatus(HttpSession session, String docunum, String yesno) {
-		System.out.println(docunum);
-		System.out.println(yesno);
+	@Transactional
+	public void registHolidayStatus(HttpSession session, String docunum, String yesno, String term, String hrcode) {
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		hMap.put("docunum", docunum);
+		hMap.put("term", term);
+		hMap.put("hrCode", hrcode);
 		if (yesno.equals("ok")) {
 			hMap.put("status", "3");
 			System.out.println(hMap);
 			hDao.registHolidayStatus(hMap);
 			hDao.registDocuStatsu(hMap);
+			hDao.updateLeftHoliday(hMap);
 		} else if (yesno.equals("no")) {
 			hMap.put("status", "4");
 			System.out.println(hMap);
@@ -576,12 +580,13 @@ public class HrMM {
 
 		String cCode = session.getAttribute("cCode").toString();
 
-		name = "%" + name + "%";
 		HashMap<String, String> hMap = new HashMap<String, String>();
 		hMap.put("cCode", cCode);
 		hMap.put("name", name);
 		ArrayList<Member> memberList = new ArrayList<>();
 		memberList = hDao.getSearchFromName(hMap);
+		System.out.println(name);
+		System.out.println("memberList="+memberList);
 		ArrayList<HR_Card> hrCardList = new ArrayList<HR_Card>();
 		for (int i = 0; i < memberList.size(); i++) {
 			HR_Card hCard = new HR_Card();
@@ -589,6 +594,7 @@ public class HrMM {
 			hCard.setM_name(memberList.get(i).getM_name());
 			hrCardList.add(hCard);
 		}
+		System.out.println("hrCardList="+hrCardList);
 		String list = new Gson().toJson(hrCardList);
 		return list;
 	}
@@ -693,7 +699,7 @@ public class HrMM {
 		return result;
 	}
 
-	
+
 	public int countEmployeeStatus(HttpSession session, String status) {
 		String cCode = session.getAttribute("cCode").toString();
 		return hDao.countEmployeeStatus(cCode, status);
@@ -727,6 +733,20 @@ public class HrMM {
 		return mav;
 	}
 
+	public String SearchingRetireName(HttpSession session, String name) {
+		String cCode=session.getAttribute("cCode").toString();
+		HashMap<String, String> hMap=new HashMap<String, String>();
+		hMap.put("cCode", cCode);
+		hMap.put("name", name);
+		System.out.println(name);
+		if(name!=null) {
+			ArrayList<HR_Card> CardList=hDao.SearchingRetireName(hMap);
+			System.out.println("??="+CardList);
+			String result=new Gson().toJson(CardList);
+			return result;
+		}
+		return null;
+	}
 	public ModelAndView approvalLine(HttpSession session) {
 		String cCode = session.getAttribute("cCode").toString();
 		String view = null;

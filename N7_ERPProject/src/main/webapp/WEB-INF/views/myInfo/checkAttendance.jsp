@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>출결등록</title>
+<title>출 /퇴근 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -44,6 +44,8 @@ a {
 	float: left;
 	height: 100%;
 	width: 800px;
+	position: absolute;
+	transform:translate(250px, 0);
 }
 
 ul {
@@ -57,7 +59,7 @@ ul {
 }
 
 .emphasis{
-	background:#FFB2D9;
+	background:#3D6B9B;
 	font-size: 30px;
 	font-weight: bold;
 	color:white;
@@ -69,7 +71,7 @@ ul {
 
 #check{
 	width:800px;
-	height:150px;
+	height:100px;
 	text-align: center;
 	align-content: center;
 	border-bottom: 1px solid black;
@@ -79,7 +81,13 @@ ul {
 	text-align:center;
 	width: 450px;
 	height: 350px;
+	position: absolute;
+	transform:translate(1050px, 0);
 }
+
+#menu2 {
+	font-size: medium;
+	}
 </style>
 </head>
 <body onload="build();">
@@ -112,13 +120,14 @@ ul {
 				<li id="apdownPayment">내가 받은 결재함</li>
 				<li id="acTemporary">임시저장 결재함</li>
 			</ul>
+		</ul>
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">출 / 퇴근 등록</Strong>
+		<h1 class="deptregist_color_size">출 / 퇴근 등록</h1>
 	</div>
 	<h1 align="center">(☞ﾟヮﾟ)☞현재시각☜(ﾟヮﾟ☜)</h1>
-	<h1 align="center" id="clock"></h1><br><br>
+	<h1 align="center" id="clock" style="margin-bottom: 30px;"></h1>
 
 	<div style="align:center;" id="currentStatus"></div>
 	<br>
@@ -129,7 +138,7 @@ ul {
 	</div>
 
 
-    <table align="center" id="calendar" style="margin-left: 1050px;position: absolute;">
+    <table align="center" id="calendar">
         <tr>
             <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
             <td colspan="5" align="center" id="yearmonth"></td>
@@ -150,6 +159,81 @@ ul {
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script>
+$("#showMenu1").hover(function() {
+	$("#menu2").attr("style", "display:inline-block");
+});
+
+$("#menu2").hover(function() {
+	$("#smenu3").attr("style", "display:inline-block");
+});
+
+$("#apupFinalpayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apupFinalpayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#apupBackpayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apupBackpayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#apupPayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apupPayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#apdownPayment").click(function() {
+	$.ajax({
+		url : '/erp/Account/apdownPayment',
+		type : 'get',
+		success : function(data) {
+			$("#description").html(data);
+		},
+		error : function() {
+		}
+	});
+
+});
+
+$("#acTemporary").click(function() {
+	$.ajax({
+		url:'/erp/Account/acTemporary',
+		success:function(data) {
+			console.log(data);
+			$("#description").html(data);
+		},
+		error : function(err) {
+			console.log(err);
+		}
+	});
+
+});
+
+
 	var status = "";
 	var load = function(){
 		$.ajax({

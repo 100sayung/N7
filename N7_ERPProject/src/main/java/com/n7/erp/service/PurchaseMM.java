@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.Purchase;
@@ -109,6 +107,7 @@ public class PurchaseMM {
 		}
 		return pMap;
 	}
+	
 
 	public ModelAndView pDetail(String check, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
@@ -470,5 +469,7 @@ public class PurchaseMM {
 		}
 		return sMap;
 	}
+
+
 
 }

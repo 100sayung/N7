@@ -45,7 +45,7 @@ width:1400px;
         <input type="text" name="search" id="search">
         <button id="searchh">검색</button>
         <form id="orderregistrationinput">
-        <div border="1" style="width:1300px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+        <div border="1" style="width:1325px; height:80px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:250px;">
          <thead>
             <tr>
@@ -69,9 +69,9 @@ width:1400px;
          </thead>
       </table>
       </div>
-            <div style="background-color:#ECEBEA;">
+            <div style="background-color:#ECEBEA; width:1325px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="width:1200px;  margin-left:50px; border-color:gray;">
+              style="width:900px;  margin-left:70px; border-color:gray;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">

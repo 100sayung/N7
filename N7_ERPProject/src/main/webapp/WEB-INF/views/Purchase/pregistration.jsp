@@ -7,7 +7,7 @@
 <title>Purchase Details</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">
-#aaa{
+#center{
 text-align: center;
 }
 input{
@@ -17,20 +17,24 @@ text-align: center;
 width: 1140px; 
 border: 1px solid silver;
 }
+.select{
+width: 160px;
+}
 </style>
 </head>
 <body>
 ${msg}
-	<div id="aaa">
-       <div style="width: auto; background-color: white; padding: 1%;">
+	<div id="center">
+		<br>
 		 <span style="padding-left: 5px";><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-		 <!-- <span><a href="#" onclick="window.open('/erp/stock/getimportlist','stock','width=1200, height=620, top=80 left=200')"><button>재고현황</button></a></span> -->
+         <span><input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" ></span>
+         <span><input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" ></span>
          <button type="button"id="stock">재고현황</button>
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
-		<button type="button" id="pDetail">상세보기</button>
-      	</div>
-      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">구매관리</div>
+     	<br>
+     	<br>
+      <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
 					<select id="choice">
 						<option value="p_documentcode">구매번호</option>
 						<option value="p_writer">담당자</option>
@@ -39,9 +43,8 @@ ${msg}
 					<input type="text" id="search" name="search" style="height: 18px;">
 					<button id="searchbtn">검색</button>
 		<form id="a">
-         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7;">
-            <div style="margin-left: 55px">
-				<table>
+         <div border="1" style="width:1330px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+				<table style="margin-left: 55px">
                  	 <tr>
                  	 	<th>구매번호</th>
                     	<th><input type="text" name="p_documentcode" value="P" readonly></th>
@@ -55,11 +58,9 @@ ${msg}
                      	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;"></th>
                   	</tr>
             	</table>
-				</div>
 			</div>
-         <div style="background-color: #ECEBEA;">
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 100%;">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1330px; background-color: #ECEBEA;"">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">
@@ -80,6 +81,7 @@ ${msg}
 						</tr>
 					</thead>
 					<tbody id="tbody">
+						<tr><button type="button" id="pDetail" style="float: left;">상세보기</button></tr>
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
                      		<td><input type="text" name="p_name"></td>
@@ -91,16 +93,14 @@ ${msg}
                     	</tr>
 					</tbody>
 				</table>
-			</div>
 			<div style="float: left;; padding-top: 5px">
+				<button type="button" id="approval">결재요청</button>
+				<button type="button" id="Pdelete">삭제</button>
 				<button type="button" id="save">등록</button>
-				<button type="button" id="approval">결재</button>
 			</div>
 			<div style="float: right;; padding-top: 5px">
-				<button type="button" id="Pdelete">삭제</button>
 				<button type="button" class="addList">추가</button>
-            	<button type="reset">다시작성</button>
-				<button type="button" id="print" onclick="window.print()">인쇄</button>
+            	<button type="reset" id="reset">다시작성</button>
          	</div>
          </form>
 	</div>
@@ -225,14 +225,17 @@ ${msg}
      				var str="";
      				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
     				for(var i in data.pList){
-    					str+="<tr class='tr'><td><input type='radio' value='"+data.pList[i].p_documentcode+"' name='each_check' class='each_check'></td>";
-    					str+="<td>"+data.pList[i].p_documentcode+"</td>";
-    					str+="<td>"+data.pList[i].p_productnum+"</td>";
-    					str+="<td>"+data.pList[i].p_writer+"</td>";
-    					str+="<td>"+data.pList[i].p_clcode+"</td>";
-    					str+="<td>"+data.pList[i].p_day+"</td></tr>";
+    	    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
+		    			str+="<td>"+data.pList[i].p_documentcode+"</td>";
+		    			str+="<td>"+data.pList[i].p_productnum+"</td>";
+		    			str+="<td>"+data.pList[i].p_writer+"</td>";
+		    			str+="<td>"+data.pList[i].p_clcode+"</td>";
+		    			str+="<td>"+data.pList[i].p_day+"</td>";
     				}
     				$('#list').html(str); 
+    				$("#save").attr("style","visibility: hidden");
+    				$(".addList").attr("style","visibility: hidden");
+    				$("#reset").attr("style","visibility: hidden");
     			},
     			error: function(error){
     				console.log(error);
@@ -247,7 +250,7 @@ ${msg}
                console.log(check);
                
                if(check!=""){
-               	window.open("/erp/Purchase/purchasedetail?check="+check,"purchasedetail", "width=700, height=460, top=80 left=350");
+               	window.open("/erp/Purchase/purchasedetail?check="+check,"purchasedetail", "width=1000, height=500, top=80 left=350");
                }
             });
  		});
@@ -319,17 +322,17 @@ ${msg}
 		}); 
 	});
 		
-      $('#approval').click(function(){
-    	 console.log("들어가라");
-    	 $("input[name=each_check]:checked").each(function(){
-    		 var check= $(this).attr("value");
-    		 console.log(check);
-    		 
-    		 if(check!=""){
-    			 window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=620, top=80 left=200");
-             }
-    	 });
-      });
+		$('#approval').click(function(){
+		    console.log("들어가라");
+		    $("input[name=each_check]:checked").each(function(){
+		    	var check= $(this).attr("value");
+		        	console.log(check);
+		    		 
+		        if(check!=""){
+		    		window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=620, top=80 left=200");
+		        }
+		    });
+		});
       
       $("#stock").click(function(){
 		  $.ajax({
@@ -354,7 +357,7 @@ ${msg}
 			  }
 		  })
   	})
-     
+  	
    </script>
 </body>
 </html>

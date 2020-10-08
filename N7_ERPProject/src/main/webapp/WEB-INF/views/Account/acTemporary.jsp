@@ -8,7 +8,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 <!-- FONTAWESOME STYLES-->
 <link href="/erp/assets/css/font-awesome.css" rel="stylesheet">
 <!-- CUSTOM STYLES-->
@@ -26,9 +26,9 @@
 <script src="/erp/assets/js/custom.js"></script>
 <title>Insert title here</title>
 <style>
-button{
-font-size: larger;
-padding: 3px 8px 3px 8px;
+a{
+color:#222222;
+font-weight: bold;
 }
 
 table, tr, td {
@@ -38,7 +38,7 @@ table, tr, td {
 
 td {
 	padding: 5px;
-	font-size: large;
+	font-size: medium;
 /* 	width: 58px; */
 	height: 10px;
 }
@@ -53,14 +53,13 @@ td {
 }
 
 #center{
-
 text-align: center;
 }
 </style>
 </head>
 <body>
 	 <div
-         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger;">임시저장 결재함</div>
+         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger; font-weight: bold;">임시저장 결재함</div>
 	<table id="table" class="table table-hover">
 		<tr id="m">
 			<td>check</td>

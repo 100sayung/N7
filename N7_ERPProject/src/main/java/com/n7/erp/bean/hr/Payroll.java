@@ -17,4 +17,5 @@ public class Payroll {
 	private String HP_INSURANCE;
 	private String HP_REALMONEY;
 	private String HDP_PAY;
+	private String HP_MONTHLYBONUS;
 }
