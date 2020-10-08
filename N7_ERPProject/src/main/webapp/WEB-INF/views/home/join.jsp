@@ -212,8 +212,16 @@ button {
                                 <i class='fas fa-envelope-open' style='font-size:15px'></i>
                             </span>
                         </div>
-                      <input type="email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
-                      &nbsp;&nbsp;<button type="button" onclick="" style="width: 100px; height: 40px; background-color:#3D6B9B; ">이메일 인증</button>
+                      <input type="email" id="m_email" style="width:300px;" name="m_email" placeholder="이메일을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                      &nbsp;&nbsp;<button type="button" id="authenticationBtn" style="width: 100px; height: 40px; background-color:#3D6B9B; ">번호 전송</button>
+                    </div>
+                    <div class="input-group col-lg-12 mb-4">
+                         <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            </span>
+                        </div>
+                      <input type="text" style="width:300px;" id="authenticationNum" placeholder="인증번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                      &nbsp;&nbsp;<button type="button" id="checkAuthenticationNumBtn" style="width: 100px; height: 40px; background-color:#3D6B9B; ">번호 확인</button>
                     </div>
 
                     <!-- 주소 -->
@@ -300,6 +308,48 @@ button {
 
 
 	<script>
+	var authenticationNum;
+	var userId;
+	var a = false;
+	$("#authenticationBtn").click(function(){
+			authenticationNum = Math.floor(Math.random() * 8889 + 1111);
+			$.ajax({
+				url : "/erp/home/sendauthenticationnum",
+				type : "post",
+				dataType : "json",
+				data : {
+					userEmail : $("#m_email").val(),
+					authenticationNum : Number(authenticationNum)
+				},
+				success : function(result) {
+					alert(result)
+					return;
+				},
+				error : function(err) {
+				}
+			})
+			});
+	
+	$("#checkAuthenticationNumBtn").click(function() {
+		if ($("#userEmail").val() == "") {
+			$(".warnMsg").html("email을 입력해주세요!");
+			a = false;
+			return;
+		}
+		if ($("#authenticationNum").val() == "") {
+			$(".warnMsg").html("인증번호를 입력해주세요!");
+			a = false;
+			return;
+		}
+		if (authenticationNum == $("#authenticationNum").val()) {
+			a = true;
+			alert("인증되었습니다.")
+		}
+		if (authenticationNum != $("#authenticationNum").val()) {
+			alert("인증번호가 틀립니다.")
+			a = false;
+		}
+	});
 	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 		document.form.roadAddrPart1.value = roadAddrPart1;
 		document.form.roadAddrPart2.value = roadAddrPart2;
@@ -393,6 +443,10 @@ button {
 		console.log(err); } }) } 
 	
 	function sum() {
+		if(!a){
+			alert("이메일을 인증해 주세요!")
+			return false;
+		}
 	console.log(checkid, checkccode); 
 	if (checkid && checkccode) {
 	$("#addr").val( $('#roadAddrPart1').val()); return true; 
