@@ -1,6 +1,7 @@
 package com.n7.erp.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
@@ -134,4 +135,7 @@ public interface IMemberDao {
 	PurchaseApproval getAPcode(@Param("num")String num,@Param("cCode") String cCode);
 	
 	approvaldetail getAGcode(@Param("num")String num,@Param("cCode") String cCode);
+	
+	@Select("SELECT F_FUNCTIONS FROM ERP_FUNCTION WHERE F_CCODE = #{cCode} AND F_FUNCTIONS='구매관리' OR F_FUNCTIONS='영업관리' OR F_FUNCTIONS='재고관리' ORDER BY F_FUNCTIONS")
+	List<String> getFunction(String cCode);
 }

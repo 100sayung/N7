@@ -80,34 +80,6 @@ text-align: center;
 </style>
 </head>
 <body>
-	<div id="header">
-		<div id="logo">
-			<h1>
-				<a href="#">N7 ERP SYSTEM</a>
-			</h1>
-		</div>
-		<div id="menu">
-			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<ul id="mainmenu"></ul>
-				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
-		</div>
-	</div>
-	<div id="side_menu">
-		<ul id="menuList">
-			<li><a href="/erp/stock/setcategory">분류명 작성</a></li>
-			<li><a href="/erp/stock/setitemcode">품목 코드 작성</a></li>
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
-		</ul>
-	</div>
-
 	<div id="description">
 		<h3>품목번호 작성</h3>
 		<form id="frm">
@@ -146,14 +118,14 @@ text-align: center;
 				<td style="border: 0px;"><input id="it_pstock" name="it_pstock" type="number" value="0"></td>
 			<tr>
 			<tr>
-				<td colspan="2" style="border: 0px;"><button type="button"
-						id="btn">확정</button></td> <!--itemcode cofirm btn #btn -->
+				<td colspan="2" style="border: 0px;"><input type="button"
+						id="btn" value="확정"></td> <!--itemcode cofirm btn #btn -->
 			</tr>
 		</table>
 		</form>
 		<span id='msg'></span><br><br>
 		<h3>분류명 내역</h3>
-		<button type="button" id="modify">수정</button><!--itemcode modify btn #modify -->
+		<input type="button" style="display:none" id="modify" value="수정"><!--itemcode modify btn #modify -->
 	<div id="smalldescription">
 	</div>
 	</div>
@@ -190,10 +162,13 @@ text-align: center;
 		$.ajax({
 			url:url,
 			data:data,
-			type:"POST",
+			type:"get",
 			contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 			dataType:"json",
 			success:function(result){
+				if(result.length!=0){
+					$("#modify").attr("style","display:inline-block")
+				}
 				var msg = '';
 				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><div class = "span">적정재고량</div><br>';
 				for(var i = 0 ; i < result.length;i++){
@@ -207,8 +182,8 @@ text-align: center;
 						+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 						+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
 						+'<input class="it_pstock" name="it_pstock" type="number" value="'+result[i].it_pstock+'" readonly>'
-						+'<button type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')">확정</button>'
-						+ '<button type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')">삭제</button>';
+						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
+						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
 						console.dir(frm);
 						frm.innerHTML = str
 						msg+=frm.outerHTML+'<br>';

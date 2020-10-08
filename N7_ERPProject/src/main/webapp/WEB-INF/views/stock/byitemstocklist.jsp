@@ -38,8 +38,10 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1200px;
+    height:100%;
+    width:80%;
+    position: absolute;
+    transform:translate(300px, 0);
 }
 
 ul {
@@ -78,6 +80,28 @@ span {
 input[type='text'], input[type='number'] {
 	width: 70px;
 }
+#description *{
+font-size: 20px;
+font-weight: bolder;
+}
+input[type="button"]{
+font-size: 20px;
+font-weight: bolder;
+}
+body{
+position: relative;
+}
+td{
+width: 300px;
+}
+select{
+width: 200px;
+height: 50px;
+}
+option{
+width: 200px;
+height: 50px;
+}
 </style>
 </head>
 <body>
@@ -96,19 +120,9 @@ input[type='text'], input[type='number'] {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/stock/setcategory">분류명 작성</a></li>
-			<li><a href="/erp/stock/setitemcode">품목 코드 작성</a></li>
-			<li><a href="/erp/stock/importlist">입/출고 내역</a></li>
-			<li><a href="/erp/stock/importcheck">입고 수정 및 확정</a></li>
-			<li><a href="/erp/stock/byitemdeallist">품목별 거래현황</a></li>
-			<li><a href="/erp/stock/byitemstocklist">품목별 자재현황</a></li>
-			<li><a href="/erp/stock/monthpayment">월수불실적</a></li>
-			<li><a href="/erp/stock/exportstockcheck">출고 양식</a></li>
-			<li><a href="/erp/stock/addimportlist">입고 확정</a></li>
-			<li><a href="/erp/stock/addexportlist">출고 확정</a></li>
 		</ul>
 	</div>
-
+<center>
 	<div id="description">
 	<div id="getCt_code">
 	</div>
@@ -117,8 +131,10 @@ input[type='text'], input[type='number'] {
 		<div id="contain">
 		</div>
 	</div>
+	</center>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
+	stockSideMenu();
 	$.ajax({
 		url:"/erp/stock/getcategory",
 		type:"post",
@@ -133,10 +149,10 @@ input[type='text'], input[type='number'] {
 				return;
 			}
 			console.log(result)
-			var str='<table><tr><td>분류 : </td><td><select id="selectit_ccode" onchange="getItemCodeFromItemCCode()"><option></option>';
+			var str='<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 자재 현황</div><div style="background-color:#F8F7F7;"><table><tr><td>분류 : </td><td><select id="selectit_ccode" onchange="getItemCodeFromItemCCode()"><option></option>';
 			for(var i = 0;i<result.length;i++){
 				str+='<option data-value="'+result[i].ct_code+'">'+result[i].ct_name+'</option>'
-			}str+='</select></td></tr></table>'
+			}str+='</select></td></tr></table></div>'
 			$('#getCt_code').html(str);
 			
 		},
@@ -155,10 +171,10 @@ input[type='text'], input[type='number'] {
 					dataType:"json",
 					success:function(result){
 					console.log(result);
-					var str="<table><tr><td>품목 : </td><td><select id='selectit_code' onchange='JsonParseObject({it_code:\"\"})'><option></option>";
+					var str="<div style='background-color:#F8F7F7;'><table><tr><td>품목 : </td><td><select id='selectit_code' onchange='JsonParseObject({it_code:\"\"})'><option></option>";
 					for(var i = 0;i<result.length;i++){
 						str+='<option data-value="'+result[i].it_code+'">'+result[i].it_pname+":"+result[i].it_size+"("+result[i].it_unit+")"+'</option>'
-					}str+='</select></td></tr></table>'
+					}str+='</select></td></tr></table></div>'
 					$('#getItemCodeFromItemCcode').html(str);
 					},
 					error:function(err){
@@ -186,8 +202,8 @@ input[type='text'], input[type='number'] {
 			dataType:"json",
 			success:function(result){
 				console.log(result)
-				var str = '<table><tr><td>품목코드</td><td>현재고</td></tr>';
-				str+='<tr><td>'+result.ie_itcode+'</td><td>'+result.ie_qty+'</td></tr></table>'
+				var str = '<div style="background-color:#F8F7F7;"><table><tr><td>품목코드</td><td>현재고</td></tr>';
+				str+='<tr><td>'+result.ie_itcode+'</td><td>'+result.ie_qty+'</td></tr></table></div>'
 				$('#contain').html(str)
 			},
 			error:function(err){

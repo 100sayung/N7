@@ -140,7 +140,10 @@ public class StockMM {
 
 		mav = new ModelAndView();
 		List<Purchase> ipList = ieDao.importCheckList(session.getAttribute("cCode").toString());
-		mav.addObject("importCheckList", makeImportCheckHtml(ipList));
+		System.out.println(ipList.size());
+		if (ipList.size() != 0) {
+			mav.addObject("importCheckList", makeImportCheckHtml(ipList));
+		}
 		System.out.println("importCheckList=" + makeImportCheckHtml(ipList));
 		mav.setViewName("stock/importcheck");
 		return mav;
@@ -151,8 +154,9 @@ public class StockMM {
 		for (int i = 0; i < ipList.size(); i++) {
 			if ((ipList.size() - 1) != i && i >= 1) {
 				if (!(ipList.get(i).getP_clcode().equals(ipList.get(i - 1).getP_clcode()))) {
-					sb.append(
-							"<form id = 'frm" + i + "'><table><caption>" + ipList.get(i).getP_clcode() + "</caption>");
+					sb.append("<form id = 'frm" + i
+							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+							+ ipList.get(i).getP_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
 							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
@@ -175,12 +179,14 @@ public class StockMM {
 				sb.append("<td><input type='text' name = 'ie_etc'>");
 				sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getO_code() + "'></td>");
 				if (!(ipList.get(i).getP_clcode().equals(ipList.get(i + 1).getP_clcode()))) {
-					sb.append("</tr></table></form>");
+					sb.append("</tr></table></div></form>");
 				} else {
 					sb.append("</tr>");
 				}
 			} else if (i == 0) {
-				sb.append("<form id = 'frm" + i + "'><table><caption>" + ipList.get(i).getP_clcode() + "</caption>");
+				sb.append("<form id = 'frm" + i
+						+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+						+ ipList.get(i).getP_clcode() + "</caption>");
 				sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 				sb.append(
 						"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
@@ -203,7 +209,7 @@ public class StockMM {
 					sb.append("<td><input type='text' name = 'ie_etc'>");
 					sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getO_code() + "'></td>");
 					if (!(ipList.get(i).getP_clcode().equals(ipList.get(i + 1).getP_clcode()))) {
-						sb.append("</tr></table></form>");
+						sb.append("</tr></table></div></form>");
 					} else {
 						sb.append("</tr>");
 					}
@@ -229,8 +235,9 @@ public class StockMM {
 				}
 			} else {
 				if (!(ipList.get(i).getP_clcode().equals(ipList.get(i - 1).getP_clcode()))) {
-					sb.append(
-							"<form id = 'frm" + i + "'><table><caption>" + ipList.get(i).getP_clcode() + "</caption>");
+					sb.append("<form id = 'frm" + i
+							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+							+ ipList.get(i).getP_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
 							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
@@ -252,7 +259,7 @@ public class StockMM {
 						+ (ipList.get(i).getP_unlit() * ipList.get(i).getP_amount()) + "' readonly></td>");
 				sb.append("<td><input type='text' name = 'ie_etc'>");
 				sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getO_code() + "'></td>");
-				sb.append("</tr></table></form>");
+				sb.append("</tr></table></div></form>");
 			}
 		}
 		return sb.toString();
@@ -264,7 +271,7 @@ public class StockMM {
 		ipList = ipList.replace("},", "} ");
 		String[] arr = ipList.split(" ");
 		List<IePort> imList = new ArrayList<IePort>();
-		boolean a = false, b = false;
+		boolean a = false, b = false, c = false;
 		for (int i = 0; i < arr.length; i++) {
 			imList.add(new Gson().fromJson(arr[i], IePort.class));
 		}
@@ -275,6 +282,9 @@ public class StockMM {
 			ip.setIe_hrcode(session.getAttribute("hrCode").toString());
 			a = pDao.updatePurchase(imList.get(i));
 			b = ieDao.insertImport(imList.get(i));
+			int num = ieDao.getStock(ip);
+			ip.setIe_qty(num + ip.getIe_qty());
+			c = ieDao.updateItemCode(ip);
 		}
 		if (a && b) {
 			List<Purchase> pList = ieDao.importCheckList(session.getAttribute("cCode").toString());
@@ -520,7 +530,9 @@ public class StockMM {
 					.setIt_pstock(it.getIt_pstock()).setIt_size(it.getIt_size()).setIt_unit(it.getIt_unit())
 					.setBs_ccode(session.getAttribute("cCode").toString());
 		}
-		mav.addObject("exportStockCheck", makeExportCheckHtml(ipList));
+		if (ipList.size() != 0) {
+			mav.addObject("exportStockCheck", makeExportCheckHtml(ipList));
+		}
 		mav.setViewName("stock/exportstockcheck");
 		return mav;
 	}
@@ -530,8 +542,9 @@ public class StockMM {
 		for (int i = 0; i < ipList.size(); i++) {
 			if ((ipList.size() - 1) != i && i >= 1) {
 				if (!(ipList.get(i).getBs_clcode().equals(ipList.get(i - 1).getBs_clcode()))) {
-					sb.append(
-							"<form id = 'frm" + i + "'><table><caption>" + ipList.get(i).getBs_clcode() + "</caption>");
+					sb.append("<form id = 'frm" + i
+							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고</div><div style='background-color:#F8F7F7;'><table><caption>"
+							+ ipList.get(i).getBs_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
 							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
@@ -549,12 +562,14 @@ public class StockMM {
 						+ (ipList.get(i).getBs_quantity() * ipList.get(i).getBs_unit()) + "' readonly></td>");
 				sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getBs_docunum() + "'></td>");
 				if (!(ipList.get(i).getBs_clcode().equals(ipList.get(i + 1).getBs_clcode()))) {
-					sb.append("</tr></table></form>");
+					sb.append("</tr></table></div></form>");
 				} else {
 					sb.append("</tr>");
 				}
 			} else if (i == 0) {
-				sb.append("<form id = 'frm" + i + "'><table><caption>" + ipList.get(i).getBs_clcode() + "</caption>");
+				sb.append("<form id = 'frm" + i
+						+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고</div><div style='background-color:#F8F7F7;'><table><caption>"
+						+ ipList.get(i).getBs_clcode() + "</caption>");
 				sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 				sb.append(
 						"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
@@ -574,7 +589,7 @@ public class StockMM {
 					sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getBs_docunum()
 							+ "'></td>");
 					if (!(ipList.get(i).getBs_clcode().equals(ipList.get(i + 1).getBs_clcode()))) {
-						sb.append("</tr></table></form>");
+						sb.append("</tr></table></div></form>");
 					} else {
 						sb.append("</tr>");
 					}
@@ -597,8 +612,9 @@ public class StockMM {
 				}
 			} else {
 				if (!(ipList.get(i).getBs_clcode().equals(ipList.get(i - 1).getBs_clcode()))) {
-					sb.append(
-							"<form id = 'frm" + i + "'><table><caption>" + ipList.get(i).getBs_clcode() + "</caption>");
+					sb.append("<form id = 'frm" + i
+							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고</div><div style='background-color:#F8F7F7;'><table><caption>"
+							+ ipList.get(i).getBs_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
 							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
@@ -615,7 +631,7 @@ public class StockMM {
 				sb.append("<td><input name='ie_price' type='number' value='"
 						+ +(ipList.get(i).getBs_quantity() * ipList.get(i).getBs_unit()) + "' readonly>");
 				sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getBs_docunum() + "'></td>");
-				sb.append("</tr></table></form>");
+				sb.append("</tr></table></div></form>");
 			}
 		}
 		return sb.toString();
@@ -626,7 +642,7 @@ public class StockMM {
 		ipList = ipList.replace("},", "} ");
 		String[] arr = ipList.split(" ");
 		List<IePort> imList = new ArrayList<IePort>();
-		boolean a = false, b = false;
+		boolean a = false, b = false, c = false;
 		for (int i = 0; i < arr.length; i++) {
 			imList.add(new Gson().fromJson(arr[i], IePort.class));
 		}
@@ -637,6 +653,9 @@ public class StockMM {
 			ip.setIe_hrcode(session.getAttribute("hrCode").toString());
 			a = ieDao.updateBshipment(ip);
 			b = ieDao.insertExport(ip);
+			int num = ieDao.getStock(ip);
+			ip.setIe_qty(num - ip.getIe_qty());
+			c = ieDao.updateItemCode(ip);
 		}
 		if (a && b) {
 			List<B_shipment> bsList = ieDao.exportCheckList(session.getAttribute("cCode").toString());
@@ -659,12 +678,18 @@ public class StockMM {
 	@Transactional
 	public ModelAndView cofirmImport(HttpServletRequest request) {
 		mav = new ModelAndView();
-		for(int i = 0 ; i < request.getParameterValues("ie_itcode").length;i++) {
+		for (int i = 0; i < request.getParameterValues("ie_itcode").length; i++) {
 			IePort ie = new IePort();
-			ie.setIe_clcode(request.getParameterValues("ie_clcode")[i]).setIe_cpcode(request.getSession().getAttribute("cCode").toString()).setIe_hrcode(request.getSession().getAttribute("hrCode").toString()).setIe_price(Integer.parseInt(request.getParameterValues("ie_price")[i])).setIe_qty(Integer.parseInt(request.getParameterValues("ie_qty")[i])).setIe_itcode(request.getParameterValues("ie_itcode")[i]);
+			ie.setIe_clcode(request.getParameterValues("ie_clcode")[i])
+					.setIe_cpcode(request.getSession().getAttribute("cCode").toString())
+					.setIe_hrcode(request.getSession().getAttribute("hrCode").toString())
+					.setIe_price(Integer.parseInt(request.getParameterValues("ie_price")[i]))
+					.setIe_qty(Integer.parseInt(request.getParameterValues("ie_qty")[i]))
+					.setIe_itcode(request.getParameterValues("ie_itcode")[i]);
 			ieDao.insertImport(ie);
 			int num = itDao.getItqty(ie);
-			itDao.updateItqty((num+ie.getIe_qty()),request.getSession().getAttribute("cCode").toString(),ie.getIe_itcode());
+			itDao.updateItqty((num + ie.getIe_qty()), request.getSession().getAttribute("cCode").toString(),
+					ie.getIe_itcode());
 		}
 		mav.setViewName("stock/addimportlist");
 		return mav;
@@ -672,12 +697,18 @@ public class StockMM {
 
 	public ModelAndView cofirmExport(HttpServletRequest request) {
 		mav = new ModelAndView();
-		for(int i = 0 ; i < request.getParameterValues("ie_itcode").length;i++) {
+		for (int i = 0; i < request.getParameterValues("ie_itcode").length; i++) {
 			IePort ie = new IePort();
-			ie.setIe_clcode(request.getParameterValues("ie_clcode")[i]).setIe_cpcode(request.getSession().getAttribute("cCode").toString()).setIe_hrcode(request.getSession().getAttribute("hrCode").toString()).setIe_price(Integer.parseInt(request.getParameterValues("ie_price")[i])).setIe_qty(Integer.parseInt(request.getParameterValues("ie_qty")[i])).setIe_itcode(request.getParameterValues("ie_itcode")[i]);
+			ie.setIe_clcode(request.getParameterValues("ie_clcode")[i])
+					.setIe_cpcode(request.getSession().getAttribute("cCode").toString())
+					.setIe_hrcode(request.getSession().getAttribute("hrCode").toString())
+					.setIe_price(Integer.parseInt(request.getParameterValues("ie_price")[i]))
+					.setIe_qty(Integer.parseInt(request.getParameterValues("ie_qty")[i]))
+					.setIe_itcode(request.getParameterValues("ie_itcode")[i]);
 			ieDao.insertExport(ie);
 			int num = itDao.getItqty(ie);
-			itDao.updateItqty((num-ie.getIe_qty()),request.getSession().getAttribute("cCode").toString(),ie.getIe_itcode());
+			itDao.updateItqty((num - ie.getIe_qty()), request.getSession().getAttribute("cCode").toString(),
+					ie.getIe_itcode());
 		}
 		mav.setViewName("stock/addexportlist");
 		return mav;
@@ -686,13 +717,21 @@ public class StockMM {
 	public ResponseEntity<String> getStock(ItemCode it, HttpSession session) {
 		it.setIt_cpcode(session.getAttribute("cCode").toString());
 		int num = itDao.getStock(it);
-		System.out.println(num<it.getIt_stock());
-		if(num<it.getIt_stock()) {
+		System.out.println(num < it.getIt_stock());
+		if (num < it.getIt_stock()) {
 			return ResponseEntity.ok(new Gson().toJson(num));
-		}else {
+		} else {
 			return null;
 		}
 	}
-	
-	
+
+	public ResponseEntity<String> searchItCode(ItemCode it, HttpSession session) {
+		if (it.getIt_code() == null) {
+			return ResponseEntity.ok(new Gson().toJson(itDao.getItemCode(session.getAttribute("cCode").toString())));
+		} else {
+			it.setIt_code("%"+it.getIt_code()+"%");
+			return ResponseEntity.ok(new Gson().toJson(itDao.getIfInfo(session.getAttribute("cCode").toString(), it.getIt_code())));
+		}
+	}
+
 }

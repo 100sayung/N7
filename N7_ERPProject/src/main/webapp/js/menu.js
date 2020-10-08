@@ -45,8 +45,22 @@
 			}else if(menu=="구매관리"){
 			$("#"+menu).attr("href","/erp/Purchase/erpmain");
 			}else if(menu=="재고관리"){
-			$("#"+menu).attr("href","/erp/stock/setcategory");
+			$("#"+menu).attr("href","/erp/stock/importcheck");
 			}else if(menu=="회계관리"){
 			$("#"+menu).attr("href","/erp/Account/acerp");
 			}
+	}
+	function stockSideMenu(){
+		$.ajax({
+			url:"/erp/rest/home/getfunction",
+			type:"get",
+			dataType:"json",
+			success:function(result){
+				console.log(result)
+				$("#menuList").html(result);
+			},
+			error:function(err){
+				
+			}
+		});
 	}
