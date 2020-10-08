@@ -62,7 +62,7 @@ border: 1px solid;
       </div>
             <div style="width:1175px; background-color:#ECEBEA;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="margin-left:100px;">
+              style="margin-left:0px;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
