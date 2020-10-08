@@ -28,8 +28,8 @@ ${msg}
 		<br>
 		 <span style="padding-left: 5px";><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" ></span>
-         <span><input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" ></span>
+         <span><a href=# onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')"><button>분류코드 추가</button></a></span>
+         <span><a href=# onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')"><button>품목코드 추가</button></a></span>
          <button type="button"id="stock">재고현황</button>
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
          <button type="button" id="pDetail">상세보기</button>
@@ -98,7 +98,7 @@ ${msg}
 				<button type="button" id="Pdelete">삭제</button>
 				<button type="button" id="save">등록</button>
 			</div>
-			<div style="float: right; padding-top: 5px;" >
+			<div style="float: left; padding-top: 5px; margin-left: 1050px;" >
 				<button type="button" class="addList">추가</button>
             	<button type="reset" id="reset">다시작성</button>
          	</div>

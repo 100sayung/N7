@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.n7.erp.dao.PurchaseDao">
+	<!-- 구매 -->
 	<insert id="pcommom" parameterType="Purchase">
 		INSERT INTO O_PURCHASECOMMOM VALUES(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.NEXTVAL,9,0), #{p_ccode}, #{p_productnum}, #{p_day}, #{p_clcode}, #{p_writer})
 	</insert>
@@ -54,6 +55,7 @@
 		SELECT * FROM O_PURCHASELIST WHERE P_DOCUMENTCODE= #{check} AND P_CCODE=#{cCode}
 	</select>
 
+	<!-- 결재라인 -->
     <select id="approvalLine" parameterType="String" resultType="pALine">
   		 SELECT * FROM MLIST
    </select>
@@ -73,7 +75,8 @@
 	<select id="getMyInfo" parameterType="String" resultType="pALine">
    		SELECT * FROM MLIST  WHERE HC_HRCODE=#{code}
    </select>
-   	
+ 
+ 	<!-- 결재 -->  	
 	<insert id="Approval" parameterType="pApproval">
 		INSERT INTO APPROVALDOCU VALUES(#{p_documentcode}, #{p_ccode}, #{p_title}, #{p_apcode1}, #{p_apcode2}, DEFAULT, '1')
 	</insert>
@@ -85,7 +88,28 @@
 	<insert id="pApproval2" parameterType="pApproval">
 		INSERT INTO O_PURCHASEPROGRAM VALUES(#{p_documentcode}, #{p_ccode}, #{p_name}, #{p_itcode}, #{p_unlit}, #{p_amount},#{p_budget})
 	</insert>
+	
+	<select id="pRequest" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
 
+	<select id="pListRequest" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
+
+	<select id="getApprovalInfo" parameterType="String" resultType="pALine">
+		SELECT * FROM MLIST WHERE HC_HRCODE= #{code}
+	</select>
+
+	<select id="pRequest2" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
+
+	<select id="pListRequest2" resultType="pApproval">
+		SELECT * FROM O_PURCHASEPROGRAM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
+	</select>
+
+	<!-- 반품 -->
 	<insert id="rRegistration" parameterType="Return">
 		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,9,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
 	</insert>
@@ -129,26 +153,6 @@
 		</where>
 	</select>
 
-	<select id="pRequest" resultType="pApproval">
-		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
-	</select>
-
-	<select id="pListRequest" resultType="pApproval">
-		SELECT * FROM O_PURCHASEPROGRAM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
-	</select>
-
-	<select id="getApprovalInfo" parameterType="String" resultType="pALine">
-		SELECT * FROM MLIST WHERE HC_HRCODE= #{code}
-	</select>
-
-	<select id="pRequest2" resultType="pApproval">
-		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
-	</select>
-
-	<select id="pListRequest2" resultType="pApproval">
-		SELECT * FROM O_PURCHASEPROGRAM WHERE P_DOCUMENTCODE =#{p_documentcode} AND P_CCODE= #{cCode}
-	</select>
-
 	<!-- 입고현황 -->
 	<select id="stocklist" parameterType="String" resultType="ieport">
 		SELECT * FROM S_IEPORT WHERE IE_CPCODE=#{cCode} AND IE_STATUS = '1'
@@ -159,8 +163,9 @@
 		SELECT * FROM S_ITEMCODE WHERE IT_CPCODE=#{cCode}
 	</select>
 	
+	<!-- 발주 -->
 	<insert id="orderInsert">
-		INSERT INTO O_ORDER VALUES(O_ORDER_SEQ.NEXTVAL, #{o_code}, 1, #{o_pdocucode})
+		INSERT INTO O_ORDER VALUES(O_ORDER_SEQ.NEXTVAL, #{o_ccode}, 1, #{o_pdocucode})
 	</insert>
 	
 	<select id="orderInfo" resultType="order">

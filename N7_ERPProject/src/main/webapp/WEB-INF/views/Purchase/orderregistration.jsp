@@ -106,6 +106,7 @@ ${msg}
 		    			str+="<td>"+data.pList[i].o_pdocucode+"</td><tr>";
     				}
     				$('#list').html(str); 
+    				$("#save").attr("style","visibility: hidden");
     			},
     			error: function(err){
     				console.log(err);
@@ -131,6 +132,7 @@ ${msg}
 		    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
    				}
    				$('#list').html(str); 
+   				$("#save").attr("style","visibility: hidden");
    			},
    			error: function(error){
    				console.log(error);
