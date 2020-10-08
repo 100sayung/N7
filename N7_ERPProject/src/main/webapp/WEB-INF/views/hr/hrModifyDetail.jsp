@@ -384,7 +384,7 @@ function CareerInfo(){
 	$("#current").val("HRCard");
 	$("#registBtn").attr("disabled", true);
 	$("#registBtn").css('background-color','#d2d2d2');
-	cnt = 0;
+	cnt = 1;
 	$.ajax({
 		url :"/erp/rest/hr/deptlist",
 		dataType:"json",
