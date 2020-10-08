@@ -103,7 +103,10 @@ ul {
 				<td>부서 </td>
 				<td><span id="positionS"></span></td>
 				<td>직책 </td>
-				<td><input type="text" name="HDP_position" id="position"></td>
+				<td colspan="2"><input type="text" name="HDP_position" id="position"></td>
+			</tr>
+			<tr></tr><tr></tr>
+				<td></td><td></td><td></td><td></td>
 				<td><button class="infobtn">등록</button></td>
 			</tr>
 		</table>
