@@ -49,7 +49,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1060px;
+	width: 1150px;
 }
 
 ul {

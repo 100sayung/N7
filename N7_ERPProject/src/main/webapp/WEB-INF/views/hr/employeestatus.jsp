@@ -42,7 +42,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
 }
 
 ul {
@@ -51,7 +51,7 @@ ul {
 
 .menu{
 	font-size:medium;
-	width:250px;
+	width:287.5px;
 }
 
 table,td{
