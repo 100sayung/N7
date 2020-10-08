@@ -42,7 +42,8 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
+	border-bottom: 1px solid black;
 }
 
 ul {

@@ -43,7 +43,7 @@ a {
 #description {
    float: left;
    height: 500px;
-   width:1000px;
+   width:1150px;
    position: absolute;
    transform:translate(250px, 0);
 }

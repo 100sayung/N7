@@ -42,7 +42,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
 }
 
 ul {
@@ -135,9 +135,9 @@ $("#showMenu3").hover(function() {
 		console.log(dept.length);
 		for(var i=0;i<dept.length;i++){
 			console.log(dept[i].HDP_num+dept[i].HDP_pay);
-			$("#id").append("<tr align='center'><td width='150px'>"+dept[i].HDP_dept+"</td>"
-			+"<td width='150px'>"+dept[i].HDP_position+"</td>"
-			+"<td id='"+dept[i].HDP_num+"' width='150px'>"+dept[i].HDP_pay+"</td>"
+			$("#id").append("<tr align='center'><td width='200px'>"+dept[i].HDP_dept+"</td>"
+			+"<td width='200px'>"+dept[i].HDP_position+"</td>"
+			+"<td id='"+dept[i].HDP_num+"' width='200px'>"+dept[i].HDP_pay+"</td>"
 			+"<td><input id='modifypay_"+dept[i].HDP_num+"'></td>"
 			+"<td><button type='button' class='infobtn' id='"+dept[i].HDP_num+dept[i].HDP_pay+"'  onclick='dify("+dept[i].HDP_num+")'>수정</button></td>"
 			+"<td><button type='button' class='infobtn' onclick='erase("+dept[i].HDP_num+")'>삭제</button></td></tr>");
@@ -244,9 +244,9 @@ $("#showMenu3").hover(function() {
 			success:function(data){
 				var str='<tr align="center" style="background-color: lightgray;color : black;"><td>부서</td><td>직급</td><td>금액</td><td>수정 금액</td><td colspan="2"></td></tr>';
 				for(var i=0;i<data.length;i++){
-					str+="<tr align='center'><td width='150px'>"+data[i].HDP_dept+"</td>"
-					+"<td width='150px'>"+data[i].HDP_position+"</td>"
-					+"<td id='"+data[i].HDP_num+"' width='150px'>"+data[i].HDP_pay+"</td>"
+					str+="<tr align='center'><td width='200px'>"+data[i].HDP_dept+"</td>"
+					+"<td width='200px'>"+data[i].HDP_position+"</td>"
+					+"<td id='"+data[i].HDP_num+"' width='200px'>"+data[i].HDP_pay+"</td>"
 					+"<td><input id	='modifypay_"+data[i].HDP_num+"'></td>"
 					+"<td><button type='button' class='infobtn' id='"+data[i].HDP_num+data[i].HDP_pay+"' onclick='dify("+data[i].HDP_num+")' class='mopay'>수정</button></td>"
 					+"<td><button type='button' class='infobtn' onclick='erase("+data[i].HDP_num+")' class='mopay'>삭제</button></td></tr>";
