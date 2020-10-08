@@ -24,12 +24,12 @@
 	border-right: 1px solid #E6E6E6;
 }
 
-#side_menu,#menuList{
+#side_menu #menuList{
 	list-style: none;
  	margin-top: 150px;
 }
 
-#side_menu,#menuList,li{
+#side_menu #menuList li{
  	margin: 20px;
 }
 
