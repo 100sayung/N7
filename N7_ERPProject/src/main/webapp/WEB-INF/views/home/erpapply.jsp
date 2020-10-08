@@ -117,7 +117,7 @@ body {
 									style='width: 140%;' />
 							</div></th>
 					</tr>
-					<tr>
+					<tr> 
 						<th colspan='4'><div class='input-group'>
 								<span class='input-group-addon'>&nbsp;&nbsp;&nbsp;&nbsp;업태&nbsp;&nbsp;&nbsp;&nbsp;</span>
 								<input type='text' name='c_kind' required="required"
