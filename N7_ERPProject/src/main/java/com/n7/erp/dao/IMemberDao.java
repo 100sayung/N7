@@ -111,6 +111,8 @@ public interface IMemberDao {
 	void deleteERPFunction(String cCode);
 	@Delete("DELETE FROM COMPANY WHERE C_CODE = #{cCode}")
 	void deleteCompany(String cCode);
+	@Delete("DELETE FROM AUTHORITY WHERE AU_COMNAME = #{cCode}")
+	void deleteAuthority(String cCode);
 	
 	@Select("SELECT M_GRADE FROM MEMBER WHERE M_ID = #{id}")
 	String checkGrade(String id);
