@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 import com.n7.erp.dao.AccountDao;
 import com.n7.erp.userClass.PagingVO;
@@ -27,6 +28,7 @@ import com.n7.erp.bean.ac.myCompany;
 import com.n7.erp.bean.ac.shipment;
 import com.n7.erp.bean.ac.approvalLine;
 
+@Transactional
 @Component
 public class AccountMM {
 

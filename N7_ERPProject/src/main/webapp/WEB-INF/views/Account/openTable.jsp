@@ -326,8 +326,8 @@ function shipmentDetaile(){
 };
 
 function saleInsertInfo(){
-	
        var obj = $("#saleInfo").serialize();
+		   
        $.ajax({
     	  url:'/erp/rest/Account/saleinsert',
     	  type:'post',
@@ -350,10 +350,12 @@ function saleInsertInfo(){
     	  },
     	  error:function(error){
     		  console.log(error);
-    		  alert("데이터 입력실패");
+    		  alert("빈공간을 채워주세요");
     	  }
 
        });
+	   
+	   
 
 };
 
