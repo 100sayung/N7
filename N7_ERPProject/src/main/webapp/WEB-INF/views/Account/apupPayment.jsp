@@ -33,7 +33,7 @@
 table, tr, td {
 	border: 1px solid black;
 	text-align: center;
-	height: auto;
+/* 	height: auto; */
 }
 
 a{
@@ -73,7 +73,7 @@ ul {
 </head>
 <body>
 	 <div
-         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger; font-weight: bold;">진행중 결재함</div>
+         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; font-size: larger; font-weight: bold; text-align: center;">진행중 결재함</div>
 	<table id="t" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
