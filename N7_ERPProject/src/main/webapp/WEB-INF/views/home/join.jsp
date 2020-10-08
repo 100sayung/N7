@@ -223,7 +223,7 @@ button {
                             </p>
 
                         </div> 
-					    <input type="text" style="width:300px;" id="roadAddrPart1" name="roadAddrPart1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" / required><br>
+					    <input type="text" style="width:300px;" id="roadAddrPart1" name="roadAddrPart1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" required><br>
                         &nbsp;&nbsp;<button type="button" onclick="goPopup()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
                    </div>
                     
