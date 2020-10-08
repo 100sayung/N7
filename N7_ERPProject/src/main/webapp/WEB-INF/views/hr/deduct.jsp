@@ -83,7 +83,7 @@ td{
 	</div>
 	<div id="description">
 	<div class="first_div_css">
-		<Strong class="deptregist_color_size">공제 금액 관리</Strong>
+		<h1 class="deptregist_color_size">공제 금액 관리</h1>
 	</div>
 	<table id="deductiontable" width="100%">
 		<tr style="background-color: #F8F7F7; text-align: center;">
@@ -111,7 +111,7 @@ $("#showMenu3").hover(function() {
 })
 
 	$(function(){
-		var str='<tr style="background-color: #F8F7F7; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
+		var str='<tr style="background-color: lightgray; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
 		var deduct=${deduct};
 		console.log(deduct);
 		for(var i=0;i<deduct.length;i++){

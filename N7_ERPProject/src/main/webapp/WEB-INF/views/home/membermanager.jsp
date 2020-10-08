@@ -53,7 +53,12 @@ margin-left: 200px;
 
 #description{
 	position:relative;
-}</style>
+}
+td{
+	padding-top:6px;
+	padding-bottom: 6px;
+}
+</style>
 </head>
 
 <body>

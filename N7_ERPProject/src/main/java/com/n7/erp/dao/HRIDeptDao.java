@@ -87,7 +87,7 @@ public interface HRIDeptDao {
 
 	String findpay(ViewPay pay);
 
-	@Insert("INSERT INTO HR_PAYROLL VALUES(#{HP_PAYDATE},#{HC_CCODE},#{HC_HRCODE},#{HP_TAX},#{HP_INCEN},#{HP_INSURANCE},#{HP_REALMONEY})")
+	@Insert("INSERT INTO HR_PAYROLL VALUES(#{HP_PAYDATE},#{HC_CCODE},#{HC_HRCODE},#{HP_TAX},#{HP_INCEN},#{HP_INSURANCE},#{HP_REALMONEY}, #{HP_MONTHLYBONUS})")
 	boolean insertpay(ViewPay pay);
 
 	boolean updatepay(ViewPay pay);
@@ -110,4 +110,9 @@ public interface HRIDeptDao {
 	void insertInsurance(String ct_code);
 	@Select("SELECT HDP_POSITION FROM HR_DEPT WHERE HDP_CCODE=#{hdp_ccode} AND HDP_DEPT=#{HDP_dept} AND HDP_POSITION=#{HDP_position}")
 	String checkingDept(Department dept);
+
+	@Select("SELECT HC_HOLYNUM FROM HR_CARD WHERE HC_CCODE = #{HC_CCODE} AND HC_HRCODE = #{HC_HRCODE}")
+	String leftHoliday(ViewPay pay);
+	@Update("UPDATE HR_CARD SET HC_HOLYNUM = '0' WHERE HC_CCODE = #{HC_CCODE} AND HC_HRCODE = #{HC_HRCODE}")
+	void updateHolyday(ViewPay pay);
 }

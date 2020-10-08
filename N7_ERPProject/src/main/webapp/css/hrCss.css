@@ -38,13 +38,13 @@
 	border: 0px solid;
 }
 .first_div_css{
+	margin-bottom:20px;
+	padding:10px 0px;
 	background-color: #3D6B9B;
 	text-align: center;
 }
 .deptregist_color_size{
-	height:100px;
 	color:white;
-	font-size: 20px;
 }
 .font_color_paydetail{
 	width:100px;

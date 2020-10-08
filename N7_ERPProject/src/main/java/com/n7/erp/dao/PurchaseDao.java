@@ -84,9 +84,10 @@ public interface PurchaseDao {
 
 	boolean insertIeport(Return rt);
 
-	boolean updateitcode(@Param("tot2") int tot2, @Param("it_code") String itcode, @Param("cCode") String cCode);
+	boolean updateitcode(int tot2, @Param("it_code") String itcode, @Param("cCode") String cCode);
 
 	ItemCode getitcode(@Param("it_code") String itcode, @Param("cCode") String cCode);
+
 
 
 

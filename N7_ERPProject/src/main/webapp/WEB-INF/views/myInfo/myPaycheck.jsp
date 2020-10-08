@@ -18,6 +18,10 @@
 	height: 200px;
 }
 
+#menu2 {
+	font-size: medium;
+	}
+
 #side_menu {
 	height: 100%;
 	width: 250px;
@@ -101,7 +105,7 @@ body{
 	</div>
 	<div id="description">
 		<div class="first_div_css">
-			<Strong class="deptregist_color_size">내 급여 명세서 보기</Strong>
+			<h1 class="deptregist_color_size">내 급여 명세서 보기</h1>
 		</div>
 	<table style="border: 2px solid #D9EDF7; width: 1000px; height: 100px; text-align: center;">
 		<tr>
@@ -121,12 +125,86 @@ body{
 			<td><input type="month" id="month" name="month"></td>
 		</tr>
 	</table>
-	<div id="paycheckpage">
+	<div id="paycheckpage" align="center">
 
 	</div>
 	</div>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
+	$("#showMenu1").hover(function() {
+		$("#menu2").attr("style", "display:inline-block");
+	});
+	
+	$("#menu2").hover(function() {
+		$("#smenu3").attr("style", "display:inline-block");
+	});
+
+	$("#apupFinalpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupFinalpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupBackpayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupBackpayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+	
+	$("#apupPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apupPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#apdownPayment").click(function() {
+		$.ajax({
+			url : '/erp/Account/apdownPayment',
+			type : 'get',
+			success : function(data) {
+				$("#description").html(data);
+			},
+			error : function() {
+			}
+		});
+
+	});
+
+	$("#acTemporary").click(function() {
+		$.ajax({
+			url:'/erp/Account/acTemporary',
+			success:function(data) {
+				console.log(data);
+				$("#description").html(data);
+			},
+			error : function(err) {
+				console.log(err);
+			}
+		});
+
+	});
+	
 		$("#month").change(function(){
 			var month=$("#month").val();
 			console.log(month);
@@ -141,7 +219,6 @@ body{
 					console.log(data);
 					var provide=Number(data.HDP_PAY)+Number(data.HP_INCEN);
 					var ince=Number(data.HP_INSURANCE)+Number(data.HP_TAX);
-					var receive=provide-ince;
 					var str='';
 						str+="<table style='border:2px solid #D9EDF7;width:1000px;height:300px; text-align: center;'><tr>"
 							+"<td class='font_color_paydetail'>지급내역</td>"
@@ -156,17 +233,17 @@ body{
 							+"<td class='leftmoney'>"+data.HP_INCEN+"</td>"
 							+"<td class='font_color_paydetail'>소득세</td>"
 							+"<td class='leftmoney'>"+data.HP_TAX+"</td></tr>"
-							+"<tr><td class='font_color_paydetail'>휴가비</td>"
-							+"<td></td>"
+							+"<tr><td class='font_color_paydetail'>월차수당</td>"
+							+"<td class='leftmoney'>"+data.HP_MONTHLYBONUS+"</td>"
 							+"<td class='font_color_paydetail'>공제액계</td>"
 							+"<td class='leftmoney'>"+ince+"</td></tr>"
 							+"<tr><td class='font_color_paydetail'>급여 계</td>"
 							+"<td class='leftmoney'>"+provide+"</td>"
 							+"<td class='font_color_paydetail'>실지급액</td>"
-							+"<td class='leftmoney'>"+receive+"</td></tr>"
+							+"<td class='leftmoney'>"+data.HP_REALMONEY+"</td></tr>"
 					$("#paycheckpage").html(str);
 					}else if(data=="1"){
-						$("#paycheckpage").html("<h1 align='center'>선택한 날짜에는 받은 급여가 없습니다.</h1>");
+						$("#paycheckpage").html("<img src='http://mjscholarship.com/k1/board/images/no_article.gif' width='500px' height='350px'>");
 					}
 				},
 				errorr:function(err){

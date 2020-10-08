@@ -23,5 +23,5 @@ public class ViewPay {
 	private String HP_INCEN;
 	private String HP_INSURANCE;
 	private String HP_REALMONEY;
-	
+	private String HP_MONTHLYBONUS;
 }
