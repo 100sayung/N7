@@ -137,13 +137,8 @@ public class MemberMM {
 		return ResponseEntity.ok(new Gson().toJson(mb));
 	}
 
-	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authentictionNum, String type) {
+	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authentictionNum) {
 		try {
-			if(type!=null){
-				if(mDao.findId(userEmail)!=null){
-					return ResponseEntity.ok(new Gson().toJson("이메일이 중복되었습니다."));
-				}
-			}
 			MimeMessage mimeMessage = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 			messageHelper.setFrom("mykyj2000@gmail.com");
