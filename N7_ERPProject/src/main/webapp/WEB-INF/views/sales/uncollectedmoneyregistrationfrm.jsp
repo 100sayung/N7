@@ -45,7 +45,7 @@ text-align:center;
          </thead>
       </table>
       </div>
-            <div style="background-color:#ECEBEA; width:1200px;">
+            <div style="background-color:#ECEBEA; width:1300px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
                style="width:1200px; margin-left:100px;">
                 <colgroup align="center">
