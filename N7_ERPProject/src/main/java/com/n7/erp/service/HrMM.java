@@ -513,12 +513,17 @@ public class HrMM {
 	}
 
 	public ModelAndView moveMyPayCheck(HttpSession session) {
-		String hrCode = session.getAttribute("hrCode").toString();
-		HR_Card check = hDao.selectcheckpay(hrCode);
-		if (check != null) {
-			mav.addObject("paycheck", check);
-			view = "/myInfo/myPaycheck";
-		} else {
+		if(hDao.haveHrCode(session.getAttribute("id").toString())) {
+			String hrCode = session.getAttribute("hrCode").toString();
+			HR_Card check = hDao.selectcheckpay(hrCode);
+			
+			if (check != null) {
+				mav.addObject("paycheck", check);
+				view = "/myInfo/myPaycheck";
+			} else {
+				view = "/myInfo/myInfo";
+			}
+		}else {
 			view = "/myInfo/myInfo";
 		}
 		mav.setViewName(view);

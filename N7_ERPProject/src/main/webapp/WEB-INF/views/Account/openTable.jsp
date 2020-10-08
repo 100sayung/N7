@@ -202,7 +202,6 @@ overflow: auto;
 		$("#comnum").val(comnum);
 	};
 
-});
 
 
 

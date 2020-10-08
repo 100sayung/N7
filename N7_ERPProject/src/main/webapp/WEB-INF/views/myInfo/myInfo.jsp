@@ -144,7 +144,7 @@ table,tr,td {
 
 		<div id="hrmenu"></div>
 
-		<form id="form" method="post">
+		<form id="form" method="post" onsubmit="return checkCurrent();">
 			<div id="hrDetailInfo">
 
 				<table id="hrDetail" border="1" cellspacing="0">
@@ -163,6 +163,17 @@ table,tr,td {
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
+	function checkCurrent(){
+		var $check = $("#current").val();
+		if($check==""){
+			console.log("공백");
+			alert("잘못된 접근입니다. 정보를 입력해주세요.");
+			return false;
+		}else{
+			console.log("공백아님");
+			return true;
+		}
+	}
 	$("#showMenu1").hover(function() {
 		$("#menu2").attr("style", "display:inline-block");
 	});

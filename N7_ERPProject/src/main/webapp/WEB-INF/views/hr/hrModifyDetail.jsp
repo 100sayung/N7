@@ -63,7 +63,7 @@ tr{
 
 <div id="hrmenu">1</div>
 
-<form id="form" method="post">
+<form id="form" method="post" onsubmit="return checkCurrent();">
 <div id="hrDetailInfo">
 
 <table id="hrDetail" border="1" cellspacing="0">
@@ -80,6 +80,17 @@ tr{
 
 
 <script>
+function checkCurrent(){
+	var $check = $("#current").val();
+	if($check==""){
+		console.log("공백");
+		alert("잘못된 접근입니다. 정보를 입력해주세요.");
+		return false;
+	}else{
+		console.log("공백아님");
+		return true;
+	}
+}
 var num;
 var curPosition = "";
 var id = location.search.substr(4);
