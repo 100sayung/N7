@@ -95,7 +95,7 @@ public interface PurchaseDao {
 
 	List<Order> orderSearch(@Param("search") String search,@Param("choice") String choice,@Param("cCode") String cCode);
 
-	List<PurchaseApproval> orderPinfo(String cCode);
+	List<ApprovalDocu> orderPinfo(String cCode);
 
 
 

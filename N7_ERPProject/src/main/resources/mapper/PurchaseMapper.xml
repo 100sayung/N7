@@ -184,6 +184,10 @@
 		</where>
 	</select>
 	
+	<select id="orderPinfo" resultType="approvaldocu">
+		SELECT * FROM APPROVALDOCU WHERE AP_DOCUNUM LIKE 'P%' AND AP_CCODE =#{cCode} AND AP_STATUS='3'
+	</select>
+	
 <!-- 	<select id="orderPinfo" resultType="pApproval">
 		SELECT * FROM O_PURCHASEPROGRAMCOMMOM WHERE P_CCODE=#{cCode} AND P_STATUS = '3'
 	</select> -->

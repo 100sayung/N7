@@ -312,6 +312,19 @@ ul {
 </body>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 <script>
+$(document).ready(function(){
+	$.ajax({
+		url:'/erp/Account/openTable',
+		type:'get',
+		success:function(data){
+			$("#description").html(data);
+		},
+		error:function(){
+
+		}
+	});
+
+});
 
 
 $(document).ready(function(){

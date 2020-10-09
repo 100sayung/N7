@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.Order;
@@ -186,12 +187,12 @@ public class PurchaseRestController {
 		return pMap;
 	}
 
-//	@GetMapping(value = "/Purchase/orderPinfo", produces= "application/json;charest=utf-8" )
-//	public Map<String, List<PurchaseApproval>> orderPinfo(HttpSession session) {
-//		System.out.println("들어감?");
-//		Map<String, List<PurchaseApproval>> pMap= pm.orderPinfo(session);
-//		return pMap;
-//	}
+	@GetMapping(value = "/Purchase/orderpinfo", produces= "application/json;charest=utf-8" )
+	public Map<String, List<ApprovalDocu>> orderpinfo(HttpSession session) {
+		System.out.println("들어감?");
+		Map<String, List<ApprovalDocu>> pMap= pm.orderpinfo(session);
+		return pMap;
+	}
 
 
 

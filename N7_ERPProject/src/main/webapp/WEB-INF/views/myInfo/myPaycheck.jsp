@@ -47,7 +47,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
     position: absolute;
     transform:translate(250px, 0);
 }
@@ -107,7 +107,7 @@ body{
 		<div class="first_div_css">
 			<h1 class="deptregist_color_size">내 급여 명세서 보기</h1>
 		</div>
-	<table style="border: 2px solid #D9EDF7; width: 1000px; height: 100px; text-align: center;">
+	<table style="border: 2px solid #D9EDF7; width: 1150px; height: 100px; text-align: center;">
 		<tr>
 			<td class="font_color_paydetail">사원코드  </td>
 			<td>${paycheck.hc_hrcode}</td>
@@ -220,7 +220,7 @@ body{
 					var provide=Number(data.HDP_PAY)+Number(data.HP_INCEN);
 					var ince=Number(data.HP_INSURANCE)+Number(data.HP_TAX);
 					var str='';
-						str+="<table style='border:2px solid #D9EDF7;width:1000px;height:300px; text-align: center;'><tr>"
+						str+="<table style='border:2px solid #D9EDF7;width:1150px;height:300px; text-align: center;'><tr>"
 							+"<td class='font_color_paydetail'>지급내역</td>"
 							+"<td class='font_color_paydetail'>지급액</td>"
 							+"<td class='font_color_paydetail'>공제내역</td>"
