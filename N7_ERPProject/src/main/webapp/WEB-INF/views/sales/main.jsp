@@ -10,6 +10,7 @@
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
    media="all" />
 <style>
+
 #header {
    width: 100%;
    height: 200px;
@@ -51,10 +52,11 @@ a {
 
 ul {
    list-style: none;
-}
+} 
 </style>
 </head>
 <body>
+
    <div id="header">
       <div id="logo">
          <h1>
