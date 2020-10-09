@@ -84,7 +84,7 @@ margin-top: 200px;
 		</div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
-	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
+	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/home/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
 	<div class="center">
         <div id="container">
 		<h2>상세보기</h2>

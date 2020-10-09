@@ -64,7 +64,7 @@ display: block;
 	<div id="description" class="out" style="height: 700px;">
 		<div
 			style='width: 100%; height: 50px; text-align: center; background-color: #3D6B9B;'>
-			<h1 style='color: white'>ERP상담게시판</h1>
+			<h1><a href="/erp/home/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1>
 		</div>
 		<div id="container" style="text-align: center;">
 			<form id="boardData">
@@ -118,7 +118,7 @@ display: block;
 
 				<button type="button" id="submit">등록</button>
 				<button type="reset">다시쓰기</button>
-				<a href="/erp/erpboard" style="text-decoration: none;"><button
+				<a href="/erp/home/erpboard" style="text-decoration: none;"><button
 						type="button">뒤로</button></a>
 			</div>
 		</div>

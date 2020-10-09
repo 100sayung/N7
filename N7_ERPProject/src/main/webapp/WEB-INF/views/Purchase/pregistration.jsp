@@ -35,8 +35,8 @@ ${msg}
          <button type="button" id="pDetail">상세보기</button>
      	<br>
      	<br>
-      <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
-					<select id="choice">
+      <div style="width:1150px; background-color:#3D6B9B; color:white; padding:1%;">구매관리</div>
+					<select id="choice" style="height: 23px;">
 						<option value="p_documentcode">구매번호</option>
 						<option value="p_writer">담당자</option>
 						<option value="p_day">구매일</option>
@@ -44,8 +44,8 @@ ${msg}
 					<input type="text" id="search" name="search" style="height: 18px;">
 					<button id="searchbtn">검색</button>
 		<form id="a">
-         <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-				<table>
+         <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7; text-align: center;">
+				<table style="margin-left:250px;">
                  	 <tr>
                  	 	<th>구매번호</th>
                     	<th><input type="text" name="p_documentcode" value="P" readonly id="p_documentcode" ></th>
@@ -105,7 +105,6 @@ ${msg}
 	</div>
 	
 	  <script type="text/javascript">
-	  
 	  
 	  $(document).on("keyup",".unlit",function(){
 		 var cnt =$(this).parent().prev().children().val();
@@ -213,7 +212,7 @@ ${msg}
             },
             error: function(error){
             	console.log(error);
-            	alert("데이터가 없습니다.");
+            	alert("등록에 실패하였습니다.");
             }
          });
       });
@@ -252,7 +251,7 @@ ${msg}
                console.log(check);
                
                if(check!=""){
-               	window.open("/erp/Purchase/purchasedetail?check="+check,"purchasedetail", "width=1000, height=500, top=80 left=350");
+               	window.open("/erp/Purchase/purchasedetail?check="+check,"purchasedetail", "width=1050, height=500, top=75, left=300");
                }
             });
  		});
@@ -291,24 +290,22 @@ ${msg}
       	});
       
 		$('#Pdelete').click(function(){
-			 var check_list = [];
-			//전체 체크라는 체크박스 제외 반복문
 			$("input[name=each_check]:checked").each(function(){
-				var cid =$(this).val();
-				console.log(check_list); 
+				var check= $(this).attr("value");
+				console.log(check); 
 			
 			$.ajax({
 				url: '/erp/rest/Purchase/pfdelete',
 				type: 'post',
-				data: {check_list:cid},
+				data: {check:check},
 				dataType: 'json',
 				success: function(data){
 					console.log(data);
-					alert("데이터 삭제 완료");
 					var str="";
 					if(data.pList==null){
 						alert("이미 결재 요청된 데이터 입니다.");
 					}else{
+						alert("데이터가 삭제되었습니다.");
 	     				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
     				for(var i in data.pList){
     					str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
@@ -328,15 +325,28 @@ ${msg}
 		}); 
 	});
 		
-		$('#approval').click(function(){
-		    console.log("들어가라");
-		    $("input[name=each_check]:checked").each(function(){
-		    	var check= $(this).attr("value");
-		        	console.log(check);
-		    		 
-		        if(check!=""){
-		    		window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=620, top=80 left=200");
-		        }
+	$('#approval').click(function(){
+		  $("input[name=each_check]:checked").each(function(){
+		    var check= $(this).attr("value");
+		        console.log(check);
+		        	
+		        $.ajax({
+		        	url: '/erp/rest/Purchase/approvalcheck',
+		        	type: 'post',
+		        	data: {check:check},
+		        	dataType: 'json',
+		        	success: function(data){
+		        		//console.log(data);
+		        		if(data.pList==null){
+		        			alert("이미 결재요청되었습니다.");
+		        		}else{
+		        		    window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=620, top=80 left=200");
+		        		}
+		        	},
+		        	error: function(err){
+		        		console.log(err);
+		        	}
+		        })		    		
 		    });
 		});
       

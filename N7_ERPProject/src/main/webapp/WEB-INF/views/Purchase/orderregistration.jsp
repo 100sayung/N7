@@ -59,7 +59,7 @@ ${msg}
 					<tbody id="tbody">
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
-                     		<td><input type="text" name="o_code" placeholder="자동생성"></td>
+                     		<td><input type="text" name="o_code" placeholder="자동생성" readonly></td>
                      		<td><input type="text" name="o_pdocucode"></td>
                     	</tr>
 					</tbody>
@@ -101,8 +101,8 @@ ${msg}
     				var str="";
     				str+="<tr class='tr'><th><span>선택</span></th><th>발주번호</th><th>구매번호</th></tr>";
     				for(var i in data.pList){
-    	    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].o_ccode+" name='each_check' class='each_check'></td>";
-		    			str+="<td>"+data.pList[i].o_ccode+"</td>";
+    	    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].o_code+" name='each_check' class='each_check'></td>";
+		    			str+="<td>"+data.pList[i].o_code+"</td>";
 		    			str+="<td>"+data.pList[i].o_pdocucode+"</td><tr>";
     				}
     				$('#list').html(str); 
