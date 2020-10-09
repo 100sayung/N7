@@ -79,7 +79,7 @@ font-size: 30px;
 				</c:when>
 				<c:when test="${id!=null and id ne 'manager'}">
 				<li class="current_page_item"><a href="#" onClick='window.open("/erp/main", "ERP START", "width=1700, height=955, status=no, toolbar=no, menubar=no, scrollbar = no, resizable=no"); return false;'>ERP시작</a></li>
-				<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
+				<li><a href="/erp/logout">LOGOUT</a></li>
 				</c:when>
 				</c:choose> 
          </ul>
