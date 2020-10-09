@@ -7,6 +7,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/css/default.css" rel="stylesheet" type="text/css"
+	media="all" />
 <title>사원 인사 카드 수정 및 입력</title>
 <style>
 .modifyMode{
@@ -15,8 +17,8 @@
 .registMode{
 }
 img{
-width: 200px;
-height: 200px;
+width: 199px;
+height: 199px;
 }
 span{
 	float: left;
@@ -44,7 +46,7 @@ tr{
 }
 #hrmenu{
 	float:none;
-	width:800px;
+	width:670px;
 }
 #member{
 	height:300px;
@@ -56,30 +58,52 @@ tr{
 <meta charset="UTF-8">
 </head>
 <body>
-<div id="member" style="margin-top: 100px;"></div>
 
-<br><br><br>
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size" id="title">사원 인사 카드</h1>
+	</div>
+
+<table >
+<tr >
+<td>
+<div id="member"></div>
+</td>
+</tr>
 
 
-<div id="hrmenu" align="center" width="800px"></div>
+<tr  >
+<td>
+<div id="hrmenu" width="670px" style="padding-left: 60px;"></div>
+</td>
+</tr>
 
+
+<tr>
+<td>
 <form id="form" method="post" onsubmit="return checkCurrent();">
 <div id="hrDetailInfo" align="center">
-
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Mass-Effect-N7-sign.png" style="opacity: 10%; width:650px;">
 <table id="hrDetail" border="1" cellspacing="0">
 </table>
-
 <div id="addRecord" align="center">
 </div>
 </div>
-<div align="center" style="width: 800px;">
+</td>
+</tr>
+
+
+<tr>
+<td>
+<div align="right" style="width: 670px; padding-right:60px;">
 	<input type='hidden' value='' id='current'>
 	<input type='button' value='추가하기' class = 'infobtn' onclick='addRecord()' id='addRecordBtn'>
 	<input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
 	<input type='submit' value='등록완료'  class = 'infobtn' disabled="disabled" id='registBtn'>
 </div>
 </form>
-
+</td>
+</tr>
+</table>
 
 <script>
 var cnt = 0;
@@ -110,7 +134,7 @@ $(document).ready(function(){
 		success : function(data){
 				console.log(data);
 				let info = "";
-				info += '<div style="margin-left:100px;" class="dataSpan"><img style="width:200px; height: 250px;" src="/erp/upload/'+data.m_photo+'"></div>';
+				info += '<div style="margin-left:60px;" class="dataSpan"><img style="width:199px; height: 250px;" src="/erp/upload/'+data.m_photo+'"></div>';
 				info += '<div class="dataSpan"><table id="dataTable" style="border-collapse:collapse;" border="1px solid black"><tr class="infomenu"><td>이름</td></tr>'
 				info += '<tr><td id="m_name">'+data.m_name+'</td></tr>';
 				info += '<tr  class="infomenu"><td>생년월일</td></tr>';
@@ -120,6 +144,10 @@ $(document).ready(function(){
 				info += '<tr  class="infomenu"><td conlspan="2">주소</td></tr>'
 				info += '<tr style="height:80px;"><td id="m_address" colspan="2">'+data.m_address+'</td></tr></table></div>';
 				$("#member").html(info);
+				
+				let title = "";
+				title += data.m_name + "님의 인사카드";
+				$("#title").html(title);
 		},error : function(err){
 		}
 	});
@@ -178,21 +206,21 @@ function addRecord(){
 	var $current = $("#current").val();
 	console.log(num);
 	if($current == 'Academic'){
-		str += "<tr id='test'><td><input type='text' name='hac_school' class='detailInfo'></td>";
-		str += "<td><input type='text' name='hac_major' class='detailInfo'></td>";
+		str += "<tr id='test'><td><input type='text' name='hac_school' class='detailInfo' style='width:190px;'></td>";
+		str += "<td><input type='text' name='hac_major' class='detailInfo' style='width:190px;'></td>";
 		str += "<td><input type='date' name='hac_year' class='detailInfo'></td>";
 		str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 	}else if($current =='Certification'){
-		str += "<tr><td><input type='text' name='hct_name' class='detailInfo'></td>";
-		str += "<td><input type='text' name='hct_agency' class='detailInfo'></td>";
+		str += "<tr><td><input type='text' name='hct_name' class='detailInfo' style='width:190px;'></td>";
+		str += "<td><input type='text' name='hct_agency' class='detailInfo' style='width:190px;'></td>";
 		str += "<td><input type='date' name='hct_date' class='detailInfo'></td>"
 			str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 	}else if($current =='Career'){
-		str += "<tr><td><input type='text' name='hcr_name' class='detailInfo'></td>";
-		str += "<td><input type='date' name='hcr_startperiod' id='chk"+(num*2)+"' class='detailInfo checkDate'><br>";
-		str += "<input type='date' name='hcr_endperiod' id='chk"+((num*2)+1)+"' class='detailInfo checkDate' onchange='checkDateValue(chk"+(num*2)+", chk"+((num*2)+1)+")'></td>"
-		str += "<td><input type='text' name='hcr_position' class='detailInfo'></td>";
-		str += "<td><textarea rows='3' cols='20' name='hcr_content' class='detailInfo'></textarea></td>"
+		str += "<tr><td><input type='text' name='hcr_name' class='detailInfo' style='width:130px; height:50px;'></td>";
+		str += "<td><input type='date' name='hcr_startperiod' id='chk"+(num*2)+"' class='detailInfo checkDate' style='width:130px;'><br>";
+		str += "<input type='date' name='hcr_endperiod' id='chk"+((num*2)+1)+"' class='detailInfo checkDate' onchange='checkDateValue(chk"+(num*2)+", chk"+((num*2)+1)+")' style='width:130px;'></td>"
+		str += "<td><input type='text' name='hcr_position' class='detailInfo' style='width:130px; height:50px;'></td>";
+		str += "<td><textarea rows='3' cols='20' name='hcr_content' class='detailInfo'style='width:125px; height:50px;'></textarea></td>"
 		str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 		num++;
 		cnt++;
@@ -286,12 +314,12 @@ function AcademicInfo(){
 				}
 			let str ="";
 			str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
-			str += "<td style='width:170px;'>학교/학위</td><td style='width:170px;'>전공</td><td style='width:140px;' colspan='2'>날짜</td></tr>";
+			str += "<td style='width:199px;'>학교/학위</td><td style='width:199px;'>전공</td><td style='width:199px;' colspan='2'>날짜</td></tr>";
 			console.log(data);
 			for(let i = 0 ; i <data.length ; i++){
-			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hac_school' class='detailInfo' value='"+data[i].hac_school+"' readonly></td>"
-			str += "<td><input type='text' name='hac_major' class='detailInfo' value='"+data[i].hac_major+"' readonly></td>";
-			str += "<td><input type='date' name='hac_year' class='detailInfo' value='"+data[i].hac_year+"' readonly>";
+			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hac_school' class='detailInfo' style='width:190px;' value='"+data[i].hac_school+"' readonly></td>"
+			str += "<td><input type='text' name='hac_major' style='width:190px;' class='detailInfo' value='"+data[i].hac_major+"' readonly></td>";
+			str += "<td><input type='date' name='hac_year' style='width:190px;' class='detailInfo' value='"+data[i].hac_year+"' readonly>";
 			str += "<input type='hidden' name='hac_num' value='"+data[i].hac_num+"'></td></tr>";
 			}
 			str += "</table>";
@@ -328,12 +356,12 @@ function CertificationInfo(){
 			}
 			let str ="";
 			str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
-			str += "<td style='width:170px;'>자격증</td><td style='width:170px;'>발급처</td><td style='width:140px;' colspan='2'>발급일</td></tr>";
+			str += "<td style='width:199px;'>자격증</td><td style='width:199px;'>발급처</td><td style='width:199px;' colspan='2'>발급일</td></tr>";
 			for(let i = 0 ; i <data.length ; i++){
-			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hct_name' class='detailInfo' value='"+data[i].hct_name+"' readonly ></td>"
-			str += "<td><input type='text' name='hct_agency' class='detailInfo' value='"+data[i].hct_agency+"' readonly ></td>";
-			str += "<td><input type='date' name='hct_date' class='detailInfo' value='"+data[i].hct_date+"' readonly></td>";
-			str += "<input type='hidden' name='hct_num' value='"+data[i].hct_num+"'></td></tr>";
+			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hct_name' class='detailInfo' style='width:190px;' value='"+data[i].hct_name+"' readonly ></td>"
+			str += "<td><input type='text' name='hct_agency' style='width:190px;' class='detailInfo' value='"+data[i].hct_agency+"' readonly ></td>";
+			str += "<td><input type='date' name='hct_date' style='width:190px;' class='detailInfo' value='"+data[i].hct_date+"' readonly></td>";
+			str += "<input type='hidden' name='hct_num' style='width:190px;' value='"+data[i].hct_num+"'></td></tr>";
 			}str += "</table>";
 			$("#hrDetailInfo").html(str);
 		},error : function(err){
@@ -365,11 +393,11 @@ function CareerInfo(){
 			str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
 			str += "<td style='width:140px;'>회사/프로젝트명</td><td style='width:140px;'>기간</td><td style='width:140px;'>직책</td><td style='width:170px;' colspan='2'>내용</td></tr>";
 			for(let i=0; i<data.length ; i++){
-			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_name' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
-			str += "<td><input type='date' name='hcr_startperiod' id='chk"+(i*2)+"'class='detailInfo checkDate' value='"+data[i].hcr_startperiod+"' readonly >부터"
-			str += "<input type='date' name='hcr_endperiod' id='chk"+((i*2)+1)+"' class='detailInfo checkDate' value='"+data[i].hcr_endperiod+"' readonly onchange='checkDateValue(chk"+(i*2)+", chk"+((i*2)+1)+")'>까지</td>"
-			str += "<td><input type='text' name='hcr_position' class='detailInfo' value='"+data[i].hcr_position+"' readonly ></td>";
-			str += "<td><textarea rows='3' cols='20' name='hcr_content' class='detailInfo' value='"+data[i].hcr_content+"'></textarea>";
+			str += "<tr class='origin' id='origin_"+i+"'><td><input type='text' name='hcr_name' style='width:130px; height:50px;' class='detailInfo' value='"+data[i].hcr_name+"' readonly ></td>"
+			str += "<td><input type='date' style='width:130px;' name='hcr_startperiod' id='chk"+(i*2)+"'class='detailInfo checkDate' value='"+data[i].hcr_startperiod+"' readonly >";
+			str += "<input type='date' style='width:130px;' name='hcr_endperiod' id='chk"+((i*2)+1)+"' class='detailInfo checkDate' value='"+data[i].hcr_endperiod+"' readonly onchange='checkDateValue(chk"+(i*2)+", chk"+((i*2)+1)+")'>까지</td>"
+			str += "<td><input type='text' style='width:130px; height:50px;' name='hcr_position' class='detailInfo' value='"+data[i].hcr_position+"' readonly ></td>";
+			str += "<td><textarea rows='3' cols='20' style='width:150px; height:50px;' name='hcr_content' class='detailInfo' value='"+data[i].hcr_content+"'></textarea>";
 			str += "<input type='hidden' name='hcr_num' value='"+data[i].hcr_num+"'></td></tr>";
 			}
 			str+="</table>";
@@ -418,9 +446,9 @@ function CareerInfo(){
 					}
 					let str ="";
 					str += "<table border='1px solid black' style='border-collapse:collapse;'><tr class='infomenu'>";
-					str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
-					str += "<tr><td><input type='text' name='hc_hrcode' value='"+data.hc_hrcode+"' class='detailInfo' readonly></td>"
-					str += "<td><select name='hc_dept' class='detailInfo' onchange='changeDept(this)' id='dept' style='width:150px;height:25px;'>"
+					str += "<td style='width:199px;'>사원코드</td><td style='width:199px;'>부서</td><td style='width:199px;'>직책</td></tr>";
+					str += "<tr><td><input type='text' name='hc_hrcode' value='"+data.hc_hrcode+"' class='detailInfo' style='width:190px;' readonly></td>"
+					str += "<td><select name='hc_dept' class='detailInfo' onchange='changeDept(this)' id='dept' style='width:190px;height:25px;'>"
 					for(let i = 0 ; i<deptList.deptList.length ; i++){
 						if(data.hc_dept===deptList.deptList[i]){
 							str += "<option value='"+deptList.deptList[i]+"' selected='selected'>"+deptList.deptList[i]+"</option>";
@@ -429,15 +457,15 @@ function CareerInfo(){
 						}
 					}
 					str += "</select></td><td><span id='position'>";
-					str += "<select name='hc_position' class='detailInfo' style='width:150px;height:25px;'>";
+					str += "<select name='hc_position' class='detailInfo' style='width:190px;height:25px;'>";
 					str += "<option value='"+data.hc_position+"' selected='selected'>"+data.hc_position+"</select>"
 					str += "</span></td></tr>";
-					str += "<tr class='infomenu'><td colspan='3'>입사일</td></tr>";
-					str += "<td colspan='3'><input type='date' name='hc_joindate' value='"+data.hc_joindate+"' class='detailInfo' readonly></td>"
+					str += "<tr class='infomenu'><td colspan='2'>입사일</td><td></td></tr>";
+					str += "<td colspan='2'><input type='date' name='hc_joindate' value='"+data.hc_joindate+"' class='detailInfo' readonly></td><td></td>"
 					str += "<tr class='infomenu'><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
-					str += "<td><input type='text' value='"+status+"' readonly></td>"
-					str += "<td><input type='text' value='"+work+"'readonly></td>"
-					str += "<td><input type='text' name = 'hc_holynum' value='"+data.hc_holynum+"' class='detailInfo' readonly></td></tr></table>";
+					str += "<td><input type='text' value='"+status+"' style='width:190px;' readonly></td>"
+					str += "<td><input type='text' value='"+work+"' style='width:190px;' readonly></td>"
+					str += "<td><input type='text' name = 'hc_holynum' value='"+data.hc_holynum+"' style='width:190px;' class='detailInfo' readonly></td></tr></table>";
 					console.log(data.hc_joindate);
 					$("#hrDetailInfo").html(str);
 					curPosition = data.hc_position;
@@ -447,8 +475,8 @@ function CareerInfo(){
 					let str ="";
 					str += "<table border='1px solid black'><tr class='infomenu'>";
 					str += "<td>사원코드</td><td>부서</td><td>직책</td></tr>";
-					str += "<tr class='infomenu'><td><input type='text' name='hc_hrcode' placeholder='---' readonly></td>"
-					str += "<td><select name='hc_dept' class='detailInfo' id='dept' onchange='changeDept(this)'>"
+					str += "<tr class='infomenu'><td><input type='text' name='hc_hrcode' style='width:190px;' placeholder='---' readonly></td>"
+					str += "<td><select name='hc_dept' class='detailInfo' id='dept' style='width:190px;height:25px;' onchange='changeDept(this)'>"
 						for(let i = 0 ; i<deptList.deptList.length ; i++){
 							str += "<option>"+deptList.deptList[i]+"</option>";
 						}
@@ -456,9 +484,9 @@ function CareerInfo(){
 					str += "<tr class='infomenu'><td colspan='3'>입사일</td></tr>";
 					str += "<td colspan='3'><input type='date' name='hc_joindate' class='detailInfo' required></td></tr>"
 					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
-					str += "<td><input type='text' placeholder='---' readonly></td>"
-					str += "<td><input type='text' placeholder='---' readonly></td>"
-					str += "<td><input type='text' placeholder='---' readonly></td></tr></table>";
+					str += "<td><input type='text' placeholder='---' style='width:190px;' readonly></td>"
+					str += "<td><input type='text' placeholder='---' style='width:190px;' readonly></td>"
+					str += "<td><input type='text' placeholder='---' style='width:190px;' readonly></td></tr></table>";
 					$("#hrDetailInfo").html(str);
 					changeDept(document.getElementById("dept"));
 				}

@@ -175,7 +175,7 @@ public class HomeController {
 		return "/home/home";
 	}
 
-	@PostMapping(value = "/logout")
+	@GetMapping(value = "/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
@@ -192,7 +192,6 @@ public class HomeController {
 		return mav;
 	}
 
-	// 野껊슣�뻻疫뀐옙 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
 	@RequestMapping(value = "/home/writeFrm", method = RequestMethod.GET)
 	public String write() {
 		return "/home/writeFrm";
