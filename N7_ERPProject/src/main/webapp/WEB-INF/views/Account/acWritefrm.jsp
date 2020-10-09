@@ -65,6 +65,11 @@ input {
 #su {
 	text-align: center;
 }
+
+*font{
+    font-family: initial;
+}
+
 </style>
 
 </head>
