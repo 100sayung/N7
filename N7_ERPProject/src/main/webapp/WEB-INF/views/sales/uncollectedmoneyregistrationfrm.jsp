@@ -89,6 +89,7 @@ text-align:center;
 
     <script type="text/javascript">
 
+
     $(document).ready(function(){
         var select;
         $.ajax({
@@ -110,6 +111,7 @@ text-align:center;
   	   var clcode=data.aList[i].cl_code;
 
   	   }
+  	  $("#clcode").val(clcode);
     };
 
        function makeSelectBox(arr){

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ import com.n7.erp.bean.sales.approvalLine;
 import com.n7.erp.dao.IeportDao;
 import com.n7.erp.dao.SalesDao;
 
+@Transactional
 @Component
 public class Salesmm {
    @Autowired

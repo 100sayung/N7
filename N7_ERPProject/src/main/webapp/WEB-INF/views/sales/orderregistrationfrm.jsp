@@ -31,13 +31,13 @@ width:1400px;
 </style>
 <body>
     <div id="center">
-    <div style="width:auto; background-color:white; color:white; padding:1%; text-align:center;">
+    <div style="width:1150px; padding:1%; text-align:center;">
            <button type="button" id="orderitemfrm">수주품목 현황</button>
            <span style="padding-left: 5px"><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
         </div>
         <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">수주관리 양식</div>
-              <select id="choice" style="width:180px;">
+              <select id="choice" style="width:150px;">
                       <option value="bo_num">수주번호</option>
                       <option value="bo_clcode">거래처회사코드</option>
                       <option value="bo_ccode">회사코드</option>
@@ -45,8 +45,8 @@ width:1400px;
         <input type="text" name="search" id="search">
         <button id="searchh">검색</button>
         <form id="orderregistrationinput">
-        <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:250px;">
+        <div border="1" style="width:1150px; height:120px; padding-top:25px; background-color:#F8F7F7;">
+        <table style="margin-left:150px;">
          <thead>
             <tr>
                <th>수주번호</th>
@@ -69,9 +69,9 @@ width:1400px;
          </thead>
       </table>
       </div>
-            <div style="background-color:#ECEBEA; width:1175px;">
+            <div style="background-color:#ECEBEA; width:1150px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="width:900px;  margin-left:10px; border-color:gray;">
+              style="width:700px;  margin-left:10px; border-color:gray;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
@@ -99,9 +99,9 @@ width:1400px;
                         <td><input type="text" name="bo_pronum" id="add"  required></td>
                         <td><input type="date" name="bo_orderdate" min="2000-01-01" max="2030-12-31" style="width:180px;"></td>
                         <td><input type="date" name="bo_duedate" min="2000-01-01" max="2030-12-31" style="width:180px;"></td>
-                        <td><input type="number" name="bo_proquantity"  required></td>
-                        <td><input type="number" name="bo_prosalesamount"  required></td>
-                        <td><input type="number" name="bo_orderbudget" required></td>
+                        <td><input type="number" min="1" name="bo_proquantity" class="bo_proquantity"  required></td>
+                        <td><input class="bo_prosalesamount" type="number" name="bo_prosalesamount"  required></td>
+                        <td><input type="number" name="bo_orderbudget" class="bo_orderbudget" required></td>
                     </tr>
                 </tbody>
             </table>
@@ -115,6 +115,78 @@ width:1400px;
          </div>
 
     <script type="text/javascript">
+    
+	  $(document).on("keyup",".bo_prosalesamount",function(){
+			 var cnt =$(this).parent().prev().children().val();
+			 console.log(cnt);
+			 var prosalesamount = $(this).val();
+			 var orderbudget=cnt*prosalesamount;
+			 $(this).parent().next().children().val(orderbudget);
+		  });
+    
+        $('#subb').click(function(){
+/*  				var clcode = document.getElementById('bo_clcode');
+				var unit = document.getElementById('bo_unit');
+				var manager = document.getElementById('bo_manager');
+				var pronum = document.getElementById('bo_pronum');
+				var orderdate = document.getElementById('bo_orderdate');
+				var duedate = document.getElementById('bo_duedate');
+				var proquantity = document.getElementById('bo_proquantity');
+				var prosalesamount = document.getElementById('bo_prosalesamount');
+				var orderbudget = document.getElementById('bo_orderbudget');
+
+				if(bo_clcode.value == '' || bo_clcode.value == null
+						&& bo_unit.value == '' || bo_unit.value == null
+						&& bo_manager.value == '' || bo_manager.value == null
+						&& bo_pronum.value == '' || bo_pronum.value == null
+						&& bo_orderdate.value == '' || bo_orderdate.value == null
+						&& bo_duedate.value == '' || bo_duedate.value == null
+						&& bo_proquantity.value == '' || bo_proquantity.value == null
+						&& bo_prosalesamount.value == '' || bo_prosalesamount.value == null
+						&& bo_orderbudget.value == '' || bo_orderbudget.value == null) {
+					alert("전부 입력해주세요");
+				} else if (bo_clcode.value == '' || bo_clcode.value == null) {
+					alert("거래처회사코드를 입력해주세요");
+				} else if (bo_unit.value == '' || bo_unit.value == null) {
+					alert("사업단위를 입력해주세요");
+				} else if (bo_manager.value == '' || bo_manager.value == null) {
+					alert("담당자를 입력해주세요");
+				} else if (bo_pronum.value == '' || bo_pronum.value == null) {
+					alert("프로젝트명을 입력해주세요");
+				} else if (bo_orderdate.value == '' || bo_orderdate.value == null) {
+					alert("프로젝트 기간 시작하는 날짜를 입력해주세요");
+				} else if (bo_duedate.value == '' || bo_duedate.value == null) {
+					alert("프로젝트 기간 끝나는 날짜를 입력해주세요");
+				} else if (bo_proquantity.value == '' || bo_proquantity.value == null) {
+					alert("수량을 입력해주세요");
+				} else if (bo_prosalesamount.value == '' || bo_prosalesamount.value == null) {
+					alert("판매금액을 입력해주세요");
+				} else if (bo_orderbudget.value == '' || bo_orderbudget.value == null) {
+					alert("수주예산을 입력해주세요");
+				} else { */	 
+					
+	
+           var obj= $('#orderregistrationinput').serialize();
+           console.log(obj);
+
+           $.ajax({
+                 url : '/erp/rest/sales/orderregistrationinput',
+                 type : 'post',
+                 data:obj,
+                 success : function(data) {
+                    console.log(data);
+                    alert("수주등록이 완료되었습니다.");
+                 },
+                 error : function(error) {
+                    console.log(error);
+                    alert("수주등록에 실패하였습니다.");
+                 }
+              });
+/*  				} 
+           $('input').val(""); */
+           });
+        
+        
     function setChildValue(data) {
     	   console.log(data)
     	   for(var i in data.aList){
@@ -145,7 +217,8 @@ width:1400px;
     	      });
     	   });
 
-
+        
+        
         $('#orderitemfrm').click(function(){
            var str="";
 
@@ -173,26 +246,6 @@ width:1400px;
               }
            })
         });
-
-
-        $('#subb').click(function(){
-           var obj= $('#orderregistrationinput').serialize();
-
-           $.ajax({
-                 type : 'post',
-                 url : '/erp/rest/sales/orderregistrationinput',
-                 data:obj,
-                 success : function(data) {
-                    console.log(data);
-                    alert("수주등록이 완료되었습니다.");
-                 },
-                 error : function(error) {
-                    console.log(error);
-                    alert("수주등록에 실패하였습니다.");
-                 }
-              });
-           $('input').val("");
-           });
 
 
          $('#searchh').click(function(){
