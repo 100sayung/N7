@@ -69,14 +69,14 @@ padding-bottom: 20px;
 	<div id="header" class="container" style="text-align: center;">
 		<div id="logo">
 			<h1>
-				<a href="/erp/" style="color: black; font-weight: 400; font-size: 46px; margin-left: 30px;">N7 COMPANY</a>
+				<a href="/erp/" style="color: black; font-weight: 500; font-size: 46px; margin-left: 30px;">N7 COMPANY</a>
 			</h1>
 		</div>
 		<div id="menu"></div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
 	<div style='width: 100%; height: 60px; text-align:center; background-color: #3D6B9B;'>
-		<a href="/erp/home/erpboard" style='color: white; line-height: 1.9; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>ERP상담게시판</a>
+		<a href="/erp/home/erpboard" style='color: white; line-height: 2.0; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>ERP상담게시판</a>
 	</div>
 	<div class="center">
 	<form action="erpboard">
@@ -93,7 +93,6 @@ padding-bottom: 20px;
    <div id="bbb"><a href="/erp/home/writeFrm" style="text-decoration: none;"><button type="button" id="writebtn">글쓰기</button></a></div>
 	</form>
 	<div align="cneter" id="paging">${paging}</div>
-
  	<div id="ccc">
 		<select id="choice" style="height: 25px;">
 			<option value="CB_TITLE">제목</option>
@@ -212,10 +211,10 @@ padding-bottom: 20px;
 					        var html = "";
 
 					        if(prev > 0)
-					            html += "<a href=# id='prev'><</a> ";
+					            html += "<a style='text-decoration: none;' href=# id='prev'><</a> ";
 
 					        for(var i=first; i <= last; i++){
-					            html += "<a href='#' id=" + i + ">[ " + i + " 	]</a> ";
+					            html += "<a style='text-decoration: none;' href='#' id=" + i + ">[ " + i + " ]</a> ";
 					        }
 
 					        if(last < totalPage)

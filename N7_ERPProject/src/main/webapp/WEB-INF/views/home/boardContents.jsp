@@ -1,32 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
-	media="all" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
-		<link href="img/favicon.png" rel="icon" />
+   media="all" />
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+      <link href="img/favicon.png" rel="icon" />
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
 <title>게시판 상세보기</title>
 
-
 <style>
 h2{
-font-size: 36px;
-margin-top: -70px;
+font-size: 26px;
+margin-top: -100px;
 margin-bottom: 10px;
 margin-left: auto;
 font-family: inherit;
-font-weight: 500;
+font-weight: 400;
 color: inherit;
 text-transform: uppercase;
 display: block;
@@ -41,7 +40,7 @@ border-top: 1px solid #ccc;
 border-left: 1px solid #ccc;
 margin : 20px 10px;
 text-align: center;
-/* margin-left: 400px; */
+margin-left: -10px; 
 margin-top: 20px;
 }
 table#table th {
@@ -66,9 +65,8 @@ border-bottom: 1px solid #ccc;
 float: left;
 margin-left: 315px;
 }
-
-#container{
-margin-top: 200px;
+#container2{
+margin-top: 15px;
 }
 
 </style>
@@ -77,16 +75,17 @@ margin-top: 200px;
 	<div id="header" class="container" style="text-align: center;">
 		<div id="logo">
 			<h1>
-				<a href="/erp/" style="color: black;">N7 COMPANY</a>
+				<a href="/erp/" style="color: black; font-weight: 500; font-size: 46px; margin-left: 30px;">N7 COMPANY</a>
 			</h1>
 		</div>
-		<div id="menu">
-		</div>
+		<div id="menu"></div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
-	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/home/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
+	<div style='width: 100%; height: 60px; text-align:center; background-color: #3D6B9B;'>
+		<a href="/erp/home/erpboard" style='color: white; line-height: 2.0; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>ERP상담게시판</a>
+	</div>
 	<div class="center">
-        <div id="container">
+        <div id="container2">
 		<h2>상세보기</h2>
 		<table id="table" style="width:600px;">
 			<tr>
@@ -109,7 +108,7 @@ margin-top: 200px;
 			<th>댓글</th><td id="response">${board.cb_reply}</td>
 			</tr>
 			<tr>
-			<th>비밀번호</th><td><input type="text" id="password" placeholder="삭제하실려면 입력하세요"/></td>
+			<th>비밀번호</th><td><input type="password" id="password" placeholder="삭제 시  입력해 주세요." style="text-align:center; height: 30px;"/></td>
 			</tr>
 			<c:choose>
 			<c:when test="${id eq 'admin'}">
@@ -120,7 +119,7 @@ margin-top: 200px;
 			</c:choose>
 		</table>
 		</div>
-		<a href="/erp/home/erpboard" style="text-decoration: none;"><button id="aaa">뒤로</button></a>
+		<a href="/erp/home/erpboard" style="text-decoration: none;"><button id="aaa">뒤로</button></a>&nbsp;
 		<c:choose>
 			<c:when test="${id==null}">
 		  <button type="button" id="delete">삭제</button>

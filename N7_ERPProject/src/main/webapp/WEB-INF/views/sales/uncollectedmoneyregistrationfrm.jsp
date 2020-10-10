@@ -71,9 +71,9 @@ text-align:center;
                         <td><input type="radio" class="each_check"></td>
                         <td><input type="text" name="bs_date" placeholder="자동생성" readonly></td>
                         <td class="pn"></td>
-                        <td><input type="number" name="bs_unit"  required></td>
-                        <td><input type="number" name="bs_quantity"  required></td>
-                        <td><input type="number" name="bs_price" required></td>
+                        <td><input type="number" name="bs_unit" class="bs_unit" required></td>
+                        <td><input type="number" min="1" name="bs_quantity" class="bs_quantity" required></td>
+                        <td><input type="number" name="bs_price" class="bs_price" required></td>
                     </tr>
                 </tbody>
             </table>
@@ -88,6 +88,14 @@ text-align:center;
     <br>
 
     <script type="text/javascript">
+    $(document).on("keyup",".bs_quantity",function(){
+        var cnt =$(this).parent().prev().children().val();
+        console.log(cnt);
+        var unit = $(this).val();
+        var price=cnt*unit;
+        $(this).parent().next().children().val(price);
+     });
+    
 
     $(document).ready(function(){
         var select;
