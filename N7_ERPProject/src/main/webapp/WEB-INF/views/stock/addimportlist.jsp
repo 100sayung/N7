@@ -14,7 +14,9 @@
 	width: 100%;
 	height: 200px;
 }
-
+select{
+width: 200px;
+}
 #side_menu {
 	height: 100%;
 	width: 250px;
@@ -78,7 +80,7 @@ span {
 }
 
 input[type='text'], input[type='number'] {
-	width: 70px;
+	width: 200px;
 }
 #description *{
 font-size: 20px;
@@ -105,7 +107,7 @@ width: 300px;
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo"
+				<li><a href="/erp/myInfo/myInfo"
 					accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
@@ -118,8 +120,8 @@ width: 300px;
 <center>
 	<div id="description">
 	<form id="form" action="/erp/stock/confirmimport" method="post"> 
+<input type="button" onclick="window.open('/erp/home/comInfo','PopupWin','width=500,height=600')" value="거래처 검색">
 		<input type="button" id="account" value="거래처 등록">
-		<input type="button" onclick="window.open('/erp/home/comInfo','PopupWin','width=500,height=600')" value="거래처 검색">
 		<input type="button" id="addTable" value="테이블 추가">
 		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
@@ -141,10 +143,10 @@ width: 300px;
 						<td></td>
 					</tr>
 					<tr>
-						<td id='itemcode'></td>
-						<td class='ie_qty'><input type='number' name='ie_qty' required="required"></td>
-						<td><input type="number" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
-						<td class='ie_price'><input type='number' name='ie_price' required="required"></td>
+						<td class="itemcode" id='itemcode'></td>
+						<td class='ie_qty'><input min="0" type='number' name='ie_qty' required="required"></td>
+						<td><input type="number" min="0" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
+						<td class='ie_price'><input min="0" type='number' name='ie_price' required="required"></td>
 						<td><input class='deleteBox' type="checkbox"></td>
 						<td class="ie_clcode"><input type="hidden" name="ie_clcode"></td>
 					</tr>
@@ -160,7 +162,7 @@ width: 300px;
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
-	stockSideMenu();
+		stockSideMenu();
 		var clArr;
 		var itArr;
 		var a = 1;
@@ -205,13 +207,13 @@ width: 300px;
 				.click(
 						function() {
 							var str = '<div class="div"><div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고</div><div style="background-color:#F8F7F7;"><input type="button" onclick="addRow(this)" value="행 추가"><input type="button" onclick="deleteTable(this)" value="테이블 삭제"><table><caption>'
-									+ clArr
-									+ '</caption><tr><td>제품 코드</td><td>수량</td><td>단가</td><td>총액</td>	<td>삭제</td>	<td></td></tr>'
-									+'<tr><td>'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
-									+'<td><input type="number" onkeyup="multiplePrice(this)" onchange="multiplePrice(this)" required="required"></td>'
-									+'<td class="ie_price"><input type="number" name="ie_price" required="required"></td>'
-									+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr></table></div></div>';
-							$('#contain').append(str);
+								+ clArr
+								+ '</caption><tr><td>제품 코드</td><td>수량</td><td>단가</td><td>총액</td>	<td>삭제</td>	<td></td></tr>'
+								+'<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
+								+'<td><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
+								+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
+								+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr></table></div></div>';
+						$('#contain').append(str);
 						});
 		function makeSelect(data) {
 			var str = '<select><option></option>';
@@ -222,7 +224,7 @@ width: 300px;
 			return str;
 		};
 		function makeItSelect(data) {
-			var str = '<select name = "ie_itcode"><option></option>';
+			var str = '<select  name = "ie_itcode"><option></option>';
 			for (var i = 0; i < data.length; i++) {
 				str += '<option value="'+data[i].it_code+'">' + data[i].it_code
 						+ '</option>';
@@ -250,35 +252,36 @@ width: 300px;
 			$(id).parent().parent().remove();
 		}
 		function addRow(id) {
-			var str = '<tr><td>'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
-				+'<td><input type="number" onkeyup="multiplePrice(this)" onchange="multiplePrice(this)" required="required"></td>'
-				+'<td class="ie_price"><input type="number" name="ie_price" required="required"></td>'
+			var str = '<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
+				+'<td><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
+				+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
 				+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr>';
 				$(id).siblings("table").append(str);
 		}
 		
 		function addClcode(){
-			
+			console.log( $($('.itemcode')[0]))
 			for(var i = 0; i < $('.div').length;i++){
-				if( $($('.div')[i]).children("table").children("caption").children().val()==''){
+				if( $($('.div')[i]).children("div").children("table").children("caption").children().val()==''){
 					alert("거래처를 선택해주세요");
 					return;
 				}
 			}
 			for(var i = 0; i < $('.itemcode').length;i++){
-				if( $($('.itemcode')[i]).children("table").children("caption").children().val()==''){
+				if( $($('.itemcode')[i]).children("select").val()==''){
 					alert("품목코드를 선택해주세요");
 					return;
 				}
 			}
 			for(var i = 0 ;i<$('.div').length;i++){
-				var clcode = $($('.div')[i]).children("table").children("caption").children().val();
-				for(var j = 0 ;j < $($('.div')[i]).children("table").children("tbody").children().children(".ie_clcode").children().length;j++){
-					$($('.div')[i]).children("table").children("tbody").children().children(".ie_clcode").children()[j].value = clcode;
+				var clcode = $($('.div')[i]).children("div").children("table").children("caption").children().val();
+				for(var j = 0 ;j < $($('.div')[i]).children("div").children("table").children("tbody").children().children(".ie_clcode").children().length;j++){
+					$($('.div')[i]).children("div").children("table").children("tbody").children().children(".ie_clcode").children()[j].value = clcode;
 				}
 			}
 			document.getElementById("form").submit();
 		}
+		
 	</script>
 </body>
 </html>
