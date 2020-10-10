@@ -136,22 +136,22 @@ table,tr,td {
 			<h1 class="deptregist_color_size">내 정보 보기</h1>
 		</div>
 		
-		<table style="width:950px;" style="border:0px;">
+		<table style="width:950px; border: 3px solid white;">
 		
 		
-		<tr style="border: 0px;"><td>
+		<tr style="border: 3px solid white;"><td>
 		<div id="member"></div>
 		</td></tr>
 
-		<tr style="border: 0px;"><td>
+		<tr style="border: 3px solid white;"><td>
 		<div id="hrmenu"></div>
 		</td></tr>
 		
-		<tr style="border: 0px;"><td>
+		<tr style="border: 3px solid white;"><td>
 		<form id="form" method="post" onsubmit="return checkCurrent();">
 			<div id="hrDetailInfo">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Mass-Effect-N7-sign.png" style="opacity: 10%; width:650px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Mass-Effect-N7-sign.png" style="opacity: 10%; width:850px;height:270px;">
 				<table id="hrDetail" border="1" cellspacing="0">
 				</table>
 
@@ -159,7 +159,7 @@ table,tr,td {
 			</div>
 		</td></tr>
 		
-		<tr style="border: 0px white solid;"><td>
+		<tr style="border: 3px solid white;"><td>
 <div align="right" style="width: 850px;">
 <input type='button' value='추가하기' class = 'infobtn' onclick='addRecord()' id='addRecordBtn'>
 <input type='button' value='수정/등록모드'  class = 'infobtn' onclick='changeMode()' id='changeBtn' style='width:150px;'>
@@ -308,7 +308,7 @@ table,tr,td {
 										contentType : 'application/json',
 										success : function(data) {
 											let str = "";
-											str += '<tr><td><a href="javascript:InCompanyInfo()"><button class = "infobtn" >사내정보</button></a></td>';
+											str += '<tr style="border:1px solid white;"><td><a href="javascript:InCompanyInfo()"><button class = "infobtn" >사내정보</button></a></td>';
 											if (data) {
 												str += '<td><a href="javascript:AcademicInfo()"> <button class = "infobtn">학력</button></a></td>';
 												str += '<td><a href="javascript:CareerInfo() "> <button class = "infobtn">이력</button> </a></td>';
@@ -376,6 +376,8 @@ table,tr,td {
 			tr.parentNode.removeChild(tr);
 			var $current = $("#current").val();
 			var num;
+			cnt--;
+			console.log(cnt);
 			if (tr.className == "origin") {
 				if (confirm("정말 삭제하시겠습니까?")) {
 					if ($current == "Academic") {
@@ -449,6 +451,7 @@ table,tr,td {
 						url : "/erp/rest/myinfo/academic",
 						dataType : "json",
 						method : "get",
+						async:false,
 						contentType : 'application/json',
 						success : function(data) {
 							if (data.length == undefined) {
@@ -465,6 +468,7 @@ table,tr,td {
 								str += "<td><input type='date' name='hac_year' style='width:273px;' class='detailInfo' value='"+data[i].hac_year+"' readonly>";
 								str += "<input type='hidden' name='hac_num' value='"+data[i].hac_num+"'></td></tr>";
 							}
+							cnt = data.length;
 							str += "</table>";
 							$("#hrDetailInfo").html(str);
 						},
@@ -493,6 +497,7 @@ table,tr,td {
 						url : "/erp/rest/myinfo/certification",
 						dataType : "json",
 						method : "get",
+						async:false,
 						success : function(data) {
 							if (data.length == undefined) {
 								var arr = [ data ]
@@ -508,6 +513,7 @@ table,tr,td {
 								str += "<td><input type='date' name='hct_date' class='detailInfo' style='width:273px;' value='"+data[i].hct_date+"' readonly>";
 								str += "<input type='hidden' name='hct_num' value='"+data[i].hct_num+"'></td></tr>";
 							}
+							cnt = data.length;
 							str += "</table>";
 							$("#hrDetailInfo").html(str);
 						},
@@ -535,6 +541,7 @@ table,tr,td {
 						url : "/erp/rest/myinfo/career",
 						dataType : "json",
 						method : "get",
+						async:false,
 						success : function(data) {
 							console.log("안됨?");
 							let str = "";
@@ -562,6 +569,7 @@ table,tr,td {
 							}
 							str += "</table>";
 							$("#hrDetailInfo").html(str);
+							cnt = data.length;
 							num = data.length;
 						},
 						error : function(err) {
@@ -573,7 +581,7 @@ table,tr,td {
 			$("#form").attr("action", formURL + "/newhrcard");
 			$("#current").val("HRCard");
 			offBtn();
-			cnt = 0;
+			cnt = 1;
 			$.ajax({
 						url : "/erp/rest/myinfo/hrcard",
 						dataType : "json",
@@ -591,11 +599,11 @@ table,tr,td {
 								status = "휴가";
 							}
 							if (data.hc_work == 1) {
-								work = "재직";
-							} else if (data.hc_work == 2) {
 								work = "휴직";
-							} else {
+							} else if (data.hc_work == 2) {
 								work = "퇴사";
+							} else {
+								work = "재직";
 							}
 							let str = "";
 							str += "<table border='1px solid black' class='myInfo_table_css'><tr class='infomenu'>";
@@ -605,7 +613,7 @@ table,tr,td {
 							str += "<td><input type='text' name='hc_position' value='"+data.hc_position+"' readonly style='width:273px;'></td>";
 							str += "</tr><td colspan='3' class='infomenu'>입사일</td></tr>";
 							str += "<td colspan='3'><input type='date' name='hc_joindate' value='"+data.hc_joindate+"' class='detailInfo' readonly></td>"
-							str += "<tr class='infomenu'><td>현재 상태</td><td>재/휴직 상태</td><td>사용한 월차</td></tr>";
+							str += "<tr class='infomenu'><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
 							str += "<td><input type='text' value='"+status+"' readonly style='width:273px;'></td>"
 							str += "<td><input type='text' value='"+work+"'readonly style='width:273px;'></td>"
 							str += "<td><input type='text' value='"+data.hc_holynum+"' readonly style='width:273px;'></td></tr></table>";
@@ -621,7 +629,7 @@ table,tr,td {
 							str += "<td><input type='text' name='hc_position' value='"+data.hc_position+"' readonly style='width:273px;'></td>";
 							str += "</tr><td colspan='3'>입사일</td></tr>";
 							str += "<td colspan='3'><input type='date' name='hc_joindate' readonly></td></tr>"
-							str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>사용한 월차</td></tr>";
+							str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
 							str += "<td><input type='text' placeholder='---' readonly style='width:273px;'></td>"
 							str += "<td><input type='text' placeholder='---' readonly style='width:273px;'></td>"
 							str += "<td><input type='text' placeholder='---' readonly style='width:273px;'></td></tr></table>";

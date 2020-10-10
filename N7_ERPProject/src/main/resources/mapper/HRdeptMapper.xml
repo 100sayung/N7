@@ -27,7 +27,7 @@
 		WHERE 
 			HR_DEPT.HDP_AUTH = #{authority} AND 
 			HR_CARD.HC_DEPT = #{myDept} AND
-			HR_CARD.HC_CCODE = #{cCode}
+			HR_CARD.HC_CCODE = #{cCode} AND HC_WORK != '2'
 	</select>
 	<select id="detailpay" parameterType="String"
 		resultType="HR_Card">
@@ -52,9 +52,13 @@
 		WHERE HP_PAYDATE=#{HP_PAYDATE} AND HP_HRCODE=#{HC_HRCODE}
 	</update>
 	<select id="checkingidname" parameterType="String" resultType="Viewpay">
-		SELECT * FROM HR_CD_D 
-		WHERE HC_ID LIKE '%'||#{checkpayid}||'%' 
-		OR M_NAME LIKE '%'||#{checkpayid}||'%' 
-		OR HC_ID LIKE '%'||#{checkpayid}||'%' AND M_NAME LIKE '%'||#{checkpayid}||'%' ORDER BY HC_DEPT DESC
+		SELECT HR_CD_D.HC_ID, HR_CD_D.HC_DEPT, HR_CD_D.HC_POSITION, HR_CD_D.HDP_PAY, HR_CD_D.HC_CCODE, 
+			   HR_CD_D.HC_HRCODE, HR_CD_D.HDP_AUTH, HR_CD_D.HDD_AMOUNT, HR_CD_D.M_NAME, HR_CD_D.HC_HOLYNUM 
+		FROM HR_CD_D INNER JOIN HR_CARD ON HR_CD_D.HC_ID = HR_CARD.HC_ID
+		WHERE 
+			(HR_CD_D.HC_ID LIKE '%'||#{checkpayid}||'%' OR HR_CD_D.M_NAME LIKE '%'||#{checkpayid}||'%' 
+			OR HR_CD_D.HC_ID LIKE '%'||#{checkpayid}||'%' AND HR_CD_D.M_NAME LIKE '%'||#{checkpayid}||'%')
+			AND HR_CARD.HC_WORK != '2'
+		ORDER BY HC_DEPT DESC
 	</select>
 </mapper>

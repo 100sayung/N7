@@ -197,6 +197,14 @@ font-size: 30px;
 	<div id="desc"></div> --%>
 	<script>
 
+	  $(function(){
+		  console.log("${msg}");
+	      var responseMessage = "<c:out value="${msg}" />";
+	      if (responseMessage != ""){
+         	 alert("퇴사 상태의 계정은 이용하실 수 없습니다.");
+ 	     }
+	  });
+	  
 	$(document).ready(function(){
 		if('${id}'!=""){
 			$.ajax({

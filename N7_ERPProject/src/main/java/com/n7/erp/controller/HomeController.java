@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.n7.erp.bean.Company;
 import com.n7.erp.bean.ConsultingBoard;
@@ -158,8 +159,8 @@ public class HomeController {
 	}
 
 	@PostMapping(value = "/access")
-	public ModelAndView access(Member mb, HttpSession session) {
-		mav = mm.access(mb, session);
+	public ModelAndView access(Member mb, HttpSession session, RedirectAttributes rttr) {
+		mav = mm.access(mb, session, rttr);
 		return mav;
 	}
 

@@ -223,8 +223,8 @@ function addRecord(){
 		str += "<td><textarea rows='3' cols='20' name='hcr_content' class='detailInfo'style='width:125px; height:50px;'></textarea></td>"
 		str += "<td><input type='button' value='삭제' onclick='javascript:thisRowDel(this);'></td></tr>";
 		num++;
-		cnt++;
 	}
+		cnt++;
 //		$("#hrDetail > tbody:last").append(str);
 	$("#infoTable > tbody:last").append(str);
 }
@@ -234,6 +234,7 @@ function thisRowDel(row){
 	tr.parentNode.removeChild(tr);
 	var $current = $("#current").val();
 	var num;
+	cnt--;
 	if(tr.className=="origin"){
 		if(confirm("정말 삭제하시겠습니까?")){
 			if($current=="Academic"){
@@ -307,6 +308,7 @@ function AcademicInfo(){
 		data:{m_id : id},
 		method:"get",
 		contentType: 'application/json',
+		async:false,
 		success : function(data){
 			if(data.length==undefined){
 				var arr = [data]
@@ -323,6 +325,7 @@ function AcademicInfo(){
 			str += "<input type='hidden' name='hac_num' value='"+data[i].hac_num+"'></td></tr>";
 			}
 			str += "</table>";
+			cnt = data.length;
 			$("#hrDetailInfo").html(str);
 		},error : function(err){
 			/* let str ="";
@@ -347,6 +350,7 @@ function CertificationInfo(){
 		url:"/erp/rest/hr/certification",
 		dataType:"json",
 		method:"get",
+		async:false,
 		data:{m_id : id},
 		success : function(data){
 			if(data.length==undefined){
@@ -354,6 +358,7 @@ function CertificationInfo(){
 			console.log(arr);
 			data = arr;
 			}
+			cnt = data.length;
 			let str ="";
 			str += "<table border='1px solid black' id='infoTable' border='1' cellspacing='0'><tr class='infomenu'>";
 			str += "<td style='width:199px;'>자격증</td><td style='width:199px;'>발급처</td><td style='width:199px;' colspan='2'>발급일</td></tr>";
@@ -364,6 +369,7 @@ function CertificationInfo(){
 			str += "<input type='hidden' name='hct_num' style='width:190px;' value='"+data[i].hct_num+"'></td></tr>";
 			}str += "</table>";
 			$("#hrDetailInfo").html(str);
+			
 		},error : function(err){
 			/* let str ="";
 			str += "<table border='1px solid black'><tr>";
@@ -384,6 +390,7 @@ function CareerInfo(){
 	cnt = 0;
 	$.ajax({
 		url:"/erp/rest/hr/career",
+		async:false,
 		dataType:"json",
 		method:"get",
 		data:{m_id : id},
@@ -397,12 +404,13 @@ function CareerInfo(){
 			str += "<td><input type='date' style='width:130px;' name='hcr_startperiod' id='chk"+(i*2)+"'class='detailInfo checkDate' value='"+data[i].hcr_startperiod+"' readonly >";
 			str += "<input type='date' style='width:130px;' name='hcr_endperiod' id='chk"+((i*2)+1)+"' class='detailInfo checkDate' value='"+data[i].hcr_endperiod+"' readonly onchange='checkDateValue(chk"+(i*2)+", chk"+((i*2)+1)+")'>까지</td>"
 			str += "<td><input type='text' style='width:130px; height:50px;' name='hcr_position' class='detailInfo' value='"+data[i].hcr_position+"' readonly ></td>";
-			str += "<td><textarea rows='3' cols='20' style='width:150px; height:50px;' name='hcr_content' class='detailInfo' value='"+data[i].hcr_content+"'></textarea>";
+			str += "<td><textarea rows='3' cols='20' style='width:125px; height:50px;' name='hcr_content' class='detailInfo' value='"+data[i].hcr_content+"'></textarea>";
 			str += "<input type='hidden' name='hcr_num' value='"+data[i].hcr_num+"'></td></tr>";
 			}
 			str+="</table>";
 			$("#hrDetailInfo").html(str);
 			num=data.length;
+			cnt = data.length;
 		},error : function(err){
 			console.log(err);
 		}
@@ -438,11 +446,11 @@ function CareerInfo(){
 						status="휴가";
 					}
 					if(data.hc_work==1){
-						work="재직";
-					}else if(data.hc_work==2){
 						work="휴직";
-					}else{
+					}else if(data.hc_work==2){
 						work="퇴사";
+					}else{
+						work="재직";
 					}
 					let str ="";
 					str += "<table border='1px solid black' style='border-collapse:collapse;'><tr class='infomenu'>";
