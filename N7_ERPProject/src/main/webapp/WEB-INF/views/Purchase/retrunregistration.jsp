@@ -17,6 +17,11 @@ text-align: center;
 width: 1140px;
 border: 1px solid silver;
 }
+.tr, .th, .td{
+border: 1px solid;
+border-collapse:collapse;
+border-spacing:0;
+}
 .select{
 width: 160px;
 height: 24px;
@@ -162,20 +167,20 @@ height: 23px;
 			  success: function(data){
 				  console.log(data);
 				  var str="";
-				  str+="<tr><th><span>선택</span></th><th>반품번호</th><th>입고번호</th><th>상품명</th><th>상품코드</th><th>담당자</th><th>거래처</th><th>반품일</th><th>수량</th><th>단가</th><th>합계</th><th>적요</th></tr>";
+				  str+="<tr class='tr'><td class='td'>선택</td><td class='td'>반품번호</td><td class='td'>입고번호</td><td class='td'>상품명</td><td class='td'>상품코드</td><td class='td'>담당자</td><td class='td'>거래처</td><td class='td'>반품일</td><td class='td'>수량</td><td class='td'>단가</td><td class='td'>합계</td><td class='td'>적요</td></tr>";
 			 	  for(var i in data.rList){
-			 		 str+="<tr class='tr'><td><input type='radio' value='"+data.rList[i].r_documentcode+"' name='each_check' class='each_check'></td>";
-	  				 str+="<td>"+data.rList[i].r_documentcode+"</td>"
-		  				 str+="<td>"+data.rList[i].r_ieseqnum+"</td>";
-		  				 str+="<td>"+data.rList[i].r_name+"</td>";
-		  				 str+="<td>"+data.rList[i].r_itcode+"</td>";
-		  				 str+="<td>"+data.rList[i].r_writer+"</td>";
-		  				 str+="<td>"+data.rList[i].r_clcode+"</td>";
-		  				 str+="<td>"+data.rList[i].r_date+"</td>";
-		  				 str+="<td>"+data.rList[i].r_amount+"</td>";
-		  				 str+="<td>"+data.rList[i].r_unlit+"</td>";
-		  				 str+="<td>"+data.rList[i].r_budget+"</td>";
-		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
+			 		 str+="<tr class='tr'><td class='td'><input type='radio' value='"+data.rList[i].r_documentcode+"' name='each_check' class='each_check'></td>";
+	  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_documentcode+"' readonly></td>"
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_ieseqnum+"' readonly></td>";
+		  				 str+="<td class='td'><input tpye='text' value='"+data.rList[i].r_name+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_itcode+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_writer+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_clcode+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_date+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_amount+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_unlit+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_budget+"' readonly></td>";
+		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_reason+"' readonly></td></tr>";
 			 	  }
 			 	  $('#list').html(str);
 			  },
@@ -185,45 +190,6 @@ height: 23px;
 		  })
 	  })
 	  
- 	  $('#rDelete').click(function(){
-  	  		 var check_list=[];
-  	  		 $("input[name=each_check]:checked").each(function(){
-  	  			 var cid= $(this).val();
-  	  			 console.log(check_list);
-  	  			  
-  	  			 $.ajax({
-  	  				 url: '/erp/rest/Purchase/rdelete',
-  	  				 type: 'post',
-  	  				 data: {check_list:cid},
-  	  				 dataType: 'json',
-  	  				 success: function(data){
-  	  				  console.log(data);
-  					  var str="";
-  					  str+="<tr><th><span>선택</span></th><th>반품번호</th><th>입고번호</th><th>상품명</th><th>상품코드</th><th>담당자</th><th>거래처</th><th>반품일</th><th>수량</th><th>단가</th><th>합계</th><th>적요</th></tr>";
-  				 	  for(var i in data.rList){
-  				 		 str+="<tr class='tr'><td><input type='radio' value='"+data.rList[i].r_documentcode+"' name='each_check' class='each_check'></td>";
-		  				 str+="<td>"+data.rList[i].r_documentcode+"</td>"
-  		  				 str+="<td>"+data.rList[i].r_ieseqnum+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_name+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_itcode+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_writer+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_clcode+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_date+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_amount+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_unlit+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_budget+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
-  				 	  }
-  				 	  $('#list').html(str);
-  				 	  
-  	  				  },
-  	  				  error: function(error){
-  	  					  consoel.log(error);
-  	  				  }
-  	  			  })
-  	  		  })
-  	  	  })  
-  	  
 	 	$('#searchbtn').click(function(){
 			var choice= $('#choice').val();
 			var search= $('#search').val();
@@ -237,20 +203,20 @@ height: 23px;
 				  success: function(data){
   	  				  console.log(data);
   					  var str="";
-  					  str+="<tr><th><span>선택</span></th><th>반품번호</th><th>입고번호</th><th>상품명</th><th>상품코드</th><th>담당자</th><th>거래처</th><th>반품일</th><th>수량</th><th>단가</th><th>합계</th><th>적요</th></tr>";
+  					  str+="<tr class='tr'><td class='td'>선택</td><td class='td'>반품번호</td><td class='td'>입고번호</td><td class='td'>상품명</td><td class='td'>상품코드</td><td class='td'>담당자</td><td class='td'>거래처</td><td class='td'>반품일</td><td class='td'>수량</td><td class='td'>단가</td><td class='td'>합계</td><td class='td'>적요</td></tr>";
   				 	  for(var i in data.rList){
-  				 		 str+="<tr class='tr'><td><input type='radio' value='"+data.rList[i].r_documentcode+"' name='each_check' class='each_check'></td>";
-  		  				 str+="<td>"+data.rList[i].r_documentcode+"</td>"
-  		  				 str+="<td>"+data.rList[i].r_ieseqnum+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_name+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_itcode+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_writer+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_clcode+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_date+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_amount+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_unlit+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_budget+"</td>";
-  		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
+  				 		 str+="<tr class='tr'><td class='td'><input type='radio' value='"+data.rList[i].r_documentcode+"' name='each_check' class='each_check'></td>";
+  		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_documentcode+"' readonly></td>"
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_ieseqnum+"' readonly></td>";
+  			  				 str+="<td class='td'><input tpye='text' value='"+data.rList[i].r_name+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_itcode+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_writer+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_clcode+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_date+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_amount+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_unlit+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_budget+"' readonly></td>";
+  			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_reason+"' readonly></td></tr>";
   				 	  }
   				 	  $('#list').html(str);
   				 	  
@@ -269,14 +235,14 @@ height: 23px;
 				  success: function(data){
 					  console.log(data);
 					  var str="";
-					  str+="<tr style='text-align: center;'><th>입고번호</th><th>품목코드</th><th>거래처</th><th>날짜</th><th>수량</th><th>가격</th></tr>";
+					  str+="<tr class='tr' style='text-align: center;'><td class='td'>입고번호</td><td class='td'>품목코드</td><td class='td'>거래처</td><td class='td'>날짜</td><td class='td'>수량</td><td class='td'>가격</td></tr>";
 					  for(var i in data.sList){
-					  	str+="<tr style='text-align: center;'><td>"+data.sList[i].ie_seqnum+"</td>";
-						str+="<td>"+data.sList[i].ie_itcode+"</td>";
-						str+="<td>"+data.sList[i].ie_clcode+"</td>";
-					  	str+="<td>"+data.sList[i].ie_date+"</td>";
-					  	str+="<td>"+data.sList[i].ie_qty+"</td>";
-					  	str+="<td>"+data.sList[i].ie_price+"</td><tr>";
+					  	str+="<tr class='tr' style='text-align: center;'><td class='td'>"+data.sList[i].ie_seqnum+"</td>";
+						str+="<td class='td'><input type='text' value='"+data.sList[i].ie_itcode+"' readonly></td>";
+						str+="<td class='td'><input type='text' value='"+data.sList[i].ie_clcode+"'readonly></td>";
+					  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_date+"' readonly></td>";
+					  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_qty+"' readonly></td>";
+					  	str+="<td class='td'><input tpye='text' value='"+data.sList[i].ie_price+"' readonly></td><tr>";
 					  }
 					  $('#list').html(str);
 				  },
@@ -380,6 +346,45 @@ height: 23px;
 	    		 }
 	    	 })
 	     }
+	     
+/* 		  $('#rDelete').click(function(){
+	  	  		 var check_list=[];
+	  	  		 $("input[name=each_check]:checked").each(function(){
+	  	  			 var cid= $(this).val();
+	  	  			 console.log(check_list);
+	  	  			  
+	  	  			 $.ajax({
+	  	  				 url: '/erp/rest/Purchase/rdelete',
+	  	  				 type: 'post',
+	  	  				 data: {check_list:cid},
+	  	  				 dataType: 'json',
+	  	  				 success: function(data){
+	  	  				  console.log(data);
+	  					  var str="";
+	  					  str+="<tr class='tr'><th><span>선택</span></th><th>반품번호</th><th>입고번호</th><th>상품명</th><th>상품코드</th><th>담당자</th><th>거래처</th><th>반품일</th><th>수량</th><th>단가</th><th>합계</th><th>적요</th></tr>";
+	  				 	  for(var i in data.rList){
+	  				 		 str+="<tr class='tr'><td><input type='radio' value='"+data.rList[i].r_documentcode+"' name='each_check' class='each_check'></td>";
+			  				 str+="<td>"+data.rList[i].r_documentcode+"</td>"
+	  		  				 str+="<td>"+data.rList[i].r_ieseqnum+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_name+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_itcode+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_writer+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_clcode+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_date+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_amount+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_unlit+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_budget+"</td>";
+	  		  				 str+="<td>"+data.rList[i].r_reason+"</td></tr>";
+	  				 	  }
+	  				 	  $('#list').html(str);
+	  				 	  
+	  	  				  },
+	  	  				  error: function(error){
+	  	  					  consoel.log(error);
+	  	  				  }
+	  	  			  })
+	  	  		  })
+	  	  	  })   */
   	
   	
 </script>

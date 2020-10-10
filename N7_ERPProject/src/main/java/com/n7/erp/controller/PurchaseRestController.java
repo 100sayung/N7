@@ -141,12 +141,12 @@ public class PurchaseRestController {
 		return rMap;
 	}
 
-	@PostMapping(value = "/Purchase/rdelete", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Return>> rdelete(String check_list, HttpSession session) {
-		System.out.println("check_list:"+check_list);
-		Map<String, List<Return>> rMap= pm.rDelete(check_list, session);
-		return rMap;
-	}
+//	@PostMapping(value = "/Purchase/rdelete", produces= "application/json;charest=utf-8" )
+//	public Map<String, List<Return>> rdelete(String check_list, HttpSession session) {
+//		System.out.println("check_list:"+check_list);
+//		Map<String, List<Return>> rMap= pm.rDelete(check_list, session);
+//		return rMap;
+//	}
 
 	@PostMapping(value = "/Purchase/retrunsearch", produces= "application/json;charest=utf-8" )
 	public Map<String, List<Return>> retrunsearch(String search, String choice, HttpSession session) {

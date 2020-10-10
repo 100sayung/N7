@@ -20,13 +20,13 @@
 		SELECT * FROM O_PURCHASECOMMOM
 		<where>
 			<if test="choice.equals('p_documentcode')">
-				P_DOCUMENTCODE = #{search} AND P_CCODE=#{cCode}
+				P_DOCUMENTCODE LIKE '%' || #{search} || '%' AND P_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('p_writer')">
-				P_WRITER = #{search} AND P_CCODE=#{cCode}
+				P_WRITER LKIE '%' || #{search} || '%' AND P_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('p_day')">
-				P_DAY = #{search} AND P_CCODE=#{cCode}
+				P_DAY LIKE '%' || #{search} || '%' AND P_CCODE=#{cCode}
 			</if>
 		</where>
 	</select>
@@ -135,24 +135,24 @@
 		SELECT * FROM O_RETURN WHERE R_CCODE=#{cCode}
 	</select>
 
-  	<delete id="rDelete" parameterType="Return">
+<!--   	<delete id="rDelete" parameterType="Return">
 		DELETE FROM O_RETURN  WHERE R_DOCUMENTCODE= #{check_list} AND R_CCODE=#{cCode}
-	</delete>
+	</delete> -->
 
 	<select id="rSearch" resultType="Return">
 		SELECT * FROM O_RETURN
 		<where>
 			<if test="choice.equals('r_documentcode')">
-				R_DOCUMENTCODE = #{search} AND R_CCODE=#{cCode}
+				R_DOCUMENTCODE LIKE '%' || #{search} || '%' AND R_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('r_ieseqnum')">
-				R_IESEQNUM = #{search} AND R_CCODE=#{cCode}
+				R_IESEQNUM LIKE '%' || #{search} || '%' AND R_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('r_writer')">
-				R_WRITER = #{search} AND R_CCODE=#{cCode}
+				R_WRITER LIKE '%' || #{search} || '%' AND R_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('r_day')">
-				R_DAY = #{search} AND R_CCODE=#{cCode}
+				R_DAY LIKE '%' || #{search} || '%' AND R_CCODE=#{cCode}
 			</if>
 		</where>
 	</select>
@@ -180,10 +180,10 @@
 		SELECT * FROM O_ORDER
 		<where>
 			<if test="choice.equals('o_ccode')">
-				O_CCODE = #{search} AND O_CCODE=#{cCode}
+				O_CCODE LIKE '%' || #{search} || '%' AND O_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('o_pdocucode')">
-				O_PDOCUCODE = #{search} AND O_CCODE=#{cCode}
+				O_PDOCUCODE LIKE '%' || #{search} || '%' AND O_CCODE=#{cCode}
 			</if>
 		</where>
 	</select>

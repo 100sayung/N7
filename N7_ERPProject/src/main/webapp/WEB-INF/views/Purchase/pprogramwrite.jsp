@@ -18,7 +18,6 @@ border: 1px solid silver;
 text-align: center;
 margin-left: auto;
 margin-right: auto;
-border-collapse: collapse;
 }
 .txt{
 width: 200px;

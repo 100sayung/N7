@@ -376,22 +376,22 @@ public class PurchaseMM {
 		return rMap;
 	}
 
-	public Map<String, List<Return>> rDelete(String check_list, HttpSession session) {
-		Map<String, List<Return>> rMap=null;
-		System.out.println(check_list);
-		String cCode=session.getAttribute("cCode").toString();
-
-		if(pDao.rDelete(check_list,cCode)) {
-			List<Return>rList=pDao.rInfo(cCode);
-			rMap= new HashMap<>();
-			rMap.put("rList", rList);
-			System.out.println("지워짐");
-		}else {
-			System.out.println("안지워짐");
-			rMap=null;
-		}
-		return rMap;
-	}
+//	public Map<String, List<Return>> rDelete(String check_list, HttpSession session) {
+//		Map<String, List<Return>> rMap=null;
+//		System.out.println(check_list);
+//		String cCode=session.getAttribute("cCode").toString();
+//
+//		if(pDao.rDelete(check_list,cCode)) {
+//			List<Return>rList=pDao.rInfo(cCode);
+//			rMap= new HashMap<>();
+//			rMap.put("rList", rList);
+//			System.out.println("지워짐");
+//		}else {
+//			System.out.println("안지워짐");
+//			rMap=null;
+//		}
+//		return rMap;
+//	}
 
 	public Map<String, List<Return>> rSearch(String search, String choice, HttpSession session) {
 		Map<String, List<Return>> rMap= null;

@@ -385,34 +385,34 @@ ${msg}
 		    });
 		});
       
-      $("#stock").click(function(){
+    $("#stock").click(function(){
 		  $.ajax({
 			  url:"/erp/rest/Purchase/getstocklist",
 			  type: "get",
 			  dataType: "json",
 			  success: function(data){
-				  //console.log(data);
+				  console.log(data);
 				  var str="";
 				  str+="<tr class='tr' style='text-align: center;'><td class='td'>품목코드</td><td class='td'>상품명</td><td class='td'>재고량</td><td class='td'>단위</td><td class='td'>크기</td></tr>";
 				  for(var i in data.sList){
-				  	str+="<tr class='tr' style='text-align: center;'><td class='td'><input type='text' value='"+data.sList[i].it_code+"' readonly></td>";
+				  	str+="<tr class='tr' style='text-align: center;'><td class='td'><input type='text' value='"+data.sList[i].it_code+"'readonly></td>";
 					str+="<td class='td'><input type='text' value='"+data.sList[i].it_pname+"' readonly></td>";
 				  	str+="<td class='td'><input type='text' value='"+data.sList[i].it_stock+"' readonly></td>";
-				  	str+="<td class='td'><input tpye='text' value='"+data.sList[i].it_unit+"' readonly></td>";
-				  	str+="<td class='td'><input type='text' value'"+data.sList[i].it_size+"' readonly></td><tr>";
+				  	str+="<td class='td'><input type='text' value='"+data.sList[i].it_unit+"' readonly></td>";
+				  	str+="<td class='td'><input type='text' value='"+data.sList[i].it_size+"' readonly></td><tr>";
 				  }
 				  $('#list').html(str);
-  				  $("#save").attr("style","visibility: hidden");
-				  $(".addList").attr("style","visibility: hidden");
-				  $("#pDetail").attr("style","visibility: hidden");
-				  $("#Pdelete").attr("style","visibility: hidden");
-				  
+	              $("#save").attr("style","visibility: hidden");
+	              $(".addList").attr("style","visibility: hidden");
+	              $("#pDetail").attr("style","visibility: hidden");
+	              $("#Pdelete").attr("style","visibility: hidden");
+
 			  },
 			  error: function(err){
 				  console.log(err);
 			  }
 		  })
-  	})
+	})
   	
    </script>
 </body>

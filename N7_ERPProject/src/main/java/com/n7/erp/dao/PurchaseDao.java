@@ -75,7 +75,7 @@ public interface PurchaseDao {
 
 	List<Return> rInfo(String cCode);
 
-	boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
+	//boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
 
 	List<Return> rSearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode);
 

@@ -20,6 +20,11 @@ border: 1px solid silver;
 th{
 font-weight: 500;
 }
+.tr,.td{
+border: 1px solid;
+border-collapse:collapse;
+border-spacing:0;
+}
 .input{
 height: 21px;
 width: 190px;
@@ -110,11 +115,11 @@ ${msg}
     			success: function(data){
     				console.log(data);
     				var str="";
-    				str+="<tr class='tr'><th><span>선택</span></th><th>발주번호</th><th>구매번호</th></tr>";
+    				str+="<tr class='tr'><td class='td'>선택</th><td class='td'>발주번호</td><td class='td'>구매번호</td></tr>";
     				for(var i in data.pList){
-    	    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].o_code+" name='each_check' class='each_check'></td>";
-		    			str+="<td>"+data.pList[i].o_code+"</td>";
-		    			str+="<td>"+data.pList[i].o_pdocucode+"</td><tr>";
+    	    			str+="<tr class='tr'><td class='td'><input type='radio' value="+data.pList[i].o_code+" name='each_check' class='each_check'></td>";
+		    			str+="<td class='td'><input class='input' type='text' value='"+data.pList[i].o_code+"' readonly></td>";
+		    			str+="<td class='td'><input class='input' type='text' value='"+data.pList[i].o_pdocucode+"' readonly></td><tr>";
     				}
     				$('#list').html(str); 
     				$("#save").attr("style","visibility: hidden");
@@ -134,12 +139,12 @@ ${msg}
       			success: function(data){
       				console.log(data);
       				 var str="";
-    				str+="<tr class='tr'><th><span>선택</span></th><th>회사코드</th><th>제품번호</th><th>날짜</th></tr>";
+    				str+="<tr class='tr'><td class='td'>선택</td><td class='td'>회사코드</td><td class='td'>제품번호</td><td class='td'>날짜</td></tr>";
     				for(var i in data.pList){
-    					str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].ap_docunum+" name='each_check' class='each_check'></td>";
-    					str+="<td>"+data.pList[i].ap_ccode+"</td>";
-    					str+="<td>"+data.pList[i].ap_docunum+"</td>";
-    					str+="<td>"+data.pList[i].ap_date+"</td></tr>";
+    					str+="<tr class='tr'><td class='td'><input type='radio' value="+data.pList[i].ap_docunum+" name='each_check' class='each_check'></td>";
+    					str+="<td class='td'><input type='text' class='input' value='"+data.pList[i].ap_ccode+"' readonly></td>";
+    					str+="<td class='td'><input type='text' class='input' value='"+data.pList[i].ap_docunum+"' readonly></td>";
+    					str+="<td class='td'><input type='text' class='input' value='"+data.pList[i].ap_date+"' readonly></td></tr>";
     				}
        				$('#list').html(str);  
       				$("#save").attr("style","visibility: hidden");
