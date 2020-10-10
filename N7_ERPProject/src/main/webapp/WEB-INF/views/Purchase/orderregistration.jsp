@@ -83,11 +83,6 @@ ${msg}
 	  <script type="text/javascript">
 
 	  $('#save').click(function(){
-		 var pcode= document.getElementById("pcode");
-		 
-		 if(pcode.value=="" || pcode.value==null){
-			alert("구매번호를 입력해주세요.");
-		 }else {
 			 var obj = $("#a").serialize();
 	         console.log(obj);
 	         $.ajax({

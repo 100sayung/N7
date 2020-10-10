@@ -140,23 +140,24 @@ height: 23px;
 	}); 
     
 	  $('#save').click(function(){
-	         var obj = $("#o_return").serialize();
-	         console.log(obj);
-	         $.ajax({
-	            url: "/erp/rest/Purchase/rRegistration",
-	            type: "post",
-	            data: obj,
-	            success: function(data){
-	               //consloe.log(data);
-	            $("input").val("");
-	            $("select").val("");
-	            alert("등록이 완료되었습니다.");
-	            },
-	            error: function(error){
-	            	console.log(error);
-	            	alert("등록이 실패하였습니다.");
-	            }
-	         });
+			  var obj = $("#o_return").serialize();
+		         console.log(obj);
+		         $.ajax({
+		            url: "/erp/rest/Purchase/rRegistration",
+		            type: "post",
+		            data: obj,
+		            success: function(data){
+		               //consloe.log(data);
+		            $("input").val("");
+		            $("select").val("");
+		            alert("등록이 완료되었습니다.");
+		            },
+		            error: function(error){
+		            	console.log(error);
+		            	alert("등록이 실패하였습니다.");
+		            }
+		         });
+		  	  }
 	      });
 	  
 	  $('#rInfo').click(function(){
@@ -266,7 +267,7 @@ height: 23px;
 			}
 		})
 		function makeSelectBox(arr){
-			var arrStr="<select class='select' name='p_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+			var arrStr="<select id='itcode' class='select' name='p_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 			if(arr.length==0){
 				arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
 			}else{
@@ -292,7 +293,7 @@ height: 23px;
 		         }
 		     });
 	     function makeSelectBox2(arr){
-	         var arrStr = "<select class='select2' name = 'r_ieseqnum' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+	         var arrStr = "<select id='ieseq' class='select2' name = 'r_ieseqnum' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 	         if(arr.length==0){
 	            arrStr+="<option>입고내역이 없습니다.</option>";
 	         }else{
@@ -318,7 +319,7 @@ height: 23px;
 	           }
 	        });
 	     function makeSelectBox3(arr){
-	         var arrStr = "<select class='select' name='r_name' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+	         var arrStr = "<select class='select' id='name' name='r_name' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 	         if(arr.length==0){
 	            arrStr+="<option>상품이 존재하지 않습니다. </option>";
 	         }else{

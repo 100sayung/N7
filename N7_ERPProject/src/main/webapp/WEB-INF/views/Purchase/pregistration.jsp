@@ -203,54 +203,25 @@ ${msg}
 			});
 		}); 
 
-	  $('#save').click(function(){
-		 var code= document.getElementById("p_productnum");
-		 var p_clcode= document.getElementById("clcode");
-		 var writer= document.getElementById("p_writer");
-		 var day= document.getElementById("p_day");
-		 var name= document.getElementsByClassName("p_name");
-		 var amount= document.getElementsByClassName("amount");
-		 var unlit= document.getElementsByClassName("p_unlit");
-		 //var itemcode= ;
-		 
-		 if(code.value==""||code.value==null && p_clcode.value==""||p_clcode.value==null && writer.value==""||writer.value==null && day.value==""||day.value==null
-				 && name.value==""||name.value==null && amount.value==""||amount==null && unlit.value==""||unlit.value==null){
-			 alert("전부 입력해주세요.");
-		 }else if(code.value==""||code.value==null){
-			 alert("제품번호를 입력해주세요.");
-		 }else if(p_clcode.value==""||p_clcode.value==null){
-			 alert("거래처를 입력해주세요.");
-		 }else if(writer.value==""||writer.value==null){
-			 alert("담당자를 입력해주세요.");
-		 }else if(day.value==""||day.value==null){
-			 alert("구매일을 입력해주세요.");
-		 }else if(name.value==""||name.value==null){
-			 alert("상품명을 입력해주세요.");
-		 }else if(amount.value==""||amount==null){
-			 alert("수량을 입력해주세요.");
-		 }else if(unlit.value==""||unlit.value==null){
-			 alert("단가(원)를 입력해주세요.");
-		/*  }else if($("[name=p_itcode]>option:selected").val()=='0'){
-			 alert("상품코드를 선택해주세요."); */
-		 }else{
-			 var obj = $("#purchase").serialize();
-	         console.log(obj);
-	         $.ajax({
-	            url: '/erp/rest/Purchrase/pregistration',
-	            type: 'post',
-	            data: obj,
-	            success: function(data){
-	               //consloe.log(data);
-	            $('input').val("");
-	            $("select").val("");
-	            alert("등록이 완료되었습니다.");
-	            },
-	            error: function(error){
-	            	console.log(error);
-	            }
-	         });
-		 }
-      });
+      $("#save").click(function(){
+ 			 var obj = $("#purchase").serialize();
+ 	         console.log(obj);
+ 	         $.ajax({
+ 	            url: '/erp/rest/Purchrase/pregistration',
+ 	            type: 'post',
+ 	            data: obj,
+ 	            success: function(data){
+ 	               //consloe.log(data);
+ 	            $('input').val("");
+ 	            $("select").val("");
+ 	            alert("등록이 완료되었습니다.");
+ 	            },
+ 	            error: function(error){
+ 	            	console.log(error);
+ 	            }
+ 	         });
+ 		 }
+       });
       
        $('#Pinfo').click(function(){
     		$.ajax({
