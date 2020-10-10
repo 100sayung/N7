@@ -98,7 +98,7 @@ ul {
 	</div>
 	<div id="container" style="overflow:auto; height: 500px;">
 	<table id="id" align="center" width="100%" style="text-align: center;">
-		<tr style="background-color: lightgray;color : black;">
+		<tr class="infomenu">
 			<td>부서</td>
 			<td>직급</td>
 			<td>금액</td>
@@ -242,7 +242,7 @@ $("#showMenu3").hover(function() {
 			data:{disdept:disdept,disposition:disposition},
 			dataType:'json',
 			success:function(data){
-				var str='<tr align="center" style="background-color: lightgray;color : black;"><td>부서</td><td>직급</td><td>금액</td><td>수정 금액</td><td colspan="2"></td></tr>';
+				var str='<tr align="center" class="infomenu"><td>부서</td><td>직급</td><td>금액</td><td>수정 금액</td><td colspan="2"></td></tr>';
 				for(var i=0;i<data.length;i++){
 					str+="<tr align='center'><td width='200px'>"+data[i].HDP_dept+"</td>"
 					+"<td width='200px'>"+data[i].HDP_position+"</td>"

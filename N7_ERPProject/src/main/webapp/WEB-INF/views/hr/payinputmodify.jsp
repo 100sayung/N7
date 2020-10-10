@@ -53,7 +53,10 @@ table {
 	border: 1px solid #D9EDF7;
 	border-collapse: collapse;
 }
-
+.dat{
+	border:2px solid #D9EDF7;
+	background-color: #ECEBEA;
+}
 </style>
 </head>
 <body>
@@ -87,60 +90,60 @@ table {
 	</div>
 	<form action="searchpaymm" method="post" name="payroll" onsubmit="return checkpayinputmodify()">
 	<input type="hidden" value="${card.hc_ccode}" name="HC_CCODE">
-	<table id="payinputmodify" style="text-align: center; width: 1150px; height: 100px;" >
+	<table id="payinputmodify" style="text-align: center; width: 1150px; height: 100px;background-color: #F8F7F7;" >
 		<tr>
-			<td class="font_color_paydetail">직원코드  </td>
-			<td><input style="border: none;" type="text" name="HC_HRCODE" readonly="readonly" value="${card.hc_hrcode}"></td>
-			<td class="font_color_paydetail">이름  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${name}"></td>
-			<td class="font_color_paydetail">입사일  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
+			<td class="dat">직원코드  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" name="HC_HRCODE" readonly="readonly" value="${card.hc_hrcode}"></td>
+			<td class="dat">이름  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${name}"></td>
+			<td class="dat">입사일  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">부서  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
-			<td class="font_color_paydetail">직급  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
-			<td class="font_color_paydetail">급여일  </td>
+			<td class="dat">부서  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
+			<td class="dat">직급  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_position}"></td>
+			<td class="dat">급여일  </td>
 			<td><input id="HP_PAYDATE" type="month" name="HP_PAYDATE"></td>
 		</tr>
 	</table>
-	<table style="margin-top: 30px; width: 1150px; text-align: center; height: 300px;" >
+	<table style="margin-top: 30px; width: 1150px; text-align: center; height: 300px;background-color: #F8F7F7;" >
 		<tr>
-			<td class="font_color_paydetail">지급내역</td>
-			<td class="font_color_paydetail">지급 액</td>
-			<td class="font_color_paydetail">공제내역</td>
-			<td class="font_color_paydetail">공제액</td>
+			<td class="dat">지급내역</td>
+			<td class="dat">지급 액</td>
+			<td class="dat">공제내역</td>
+			<td class="dat">공제액</td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">기본급</td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${pay.HDP_PAY}"></td>
-			<td class="font_color_paydetail">${deduct[0].HDD_NAME}</td>
+			<td class="dat">기본급</td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${pay.HDP_PAY}"></td>
+			<td class="dat">${deduct[0].HDD_NAME}</td>
 			<td><input id="insurance" autocomplete="off" type="text" name="HP_INSURANCE" required="required"
 						 value="${deduct[0].HDD_AMOUNT}" min="0"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">인센티브</td>
+			<td class="dat">인센티브</td>
 			<td><input id="incen" autocomplete="off" type="text" required="required" value="0"
 					 name="HP_INCEN" min="0"></td>
-			<td class="font_color_paydetail">${deduct[1].HDD_NAME}</td>
+			<td class="dat">${deduct[1].HDD_NAME}</td>
 			<td><input id="tax" autocomplete="off" type="text" name="HP_TAX" required="required"
 			 value="${deduct[1].HDD_AMOUNT}" min="0"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">연차수당</td>
+			<td class="dat">연차수당</td>
 			<td id="monthlybonustd">
 			<input type="checkbox" id="checkbonus"> 연차수당 지급
 			<input type="hidden" id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;" type="text" readonly="readonly" value="0">
 			</td>
-			<td class="font_color_paydetail">공제액계</td>
-			<td><input id="deductsum" style="border: none;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}"></td>
+			<td class="dat">공제액계</td>
+			<td><input id="deductsum" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">지급액 계</td>
-			<td><input id="provide" style="border: none;" type="text" readonly="readonly" value="0"></td>
-			<td class="font_color_paydetail">실수령액</td>
-			<td><input id="receive" style="border: none;" type="text" readonly="readonly" value="0" name="HP_REALMONEY"></td>
+			<td class="dat">지급액 계</td>
+			<td><input id="provide" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="0"></td>
+			<td class="dat">실수령액</td>
+			<td><input id="receive" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="0" name="HP_REALMONEY"></td>
 		</tr>
 	</table>
 		<div align="center" style="margin-top: 30px;">
@@ -170,7 +173,7 @@ table {
 					input = input*${holynum};
 					console.log(input);
 					let str = "";
-					str = '<input id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;" type="text" readonly="readonly" value="'+input+'">';
+					str = '<input id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="'+input+'">';
 					console.log("확인");
 					$("#monthlybonustd").html(str);
 					let provide = $("#provide").val();

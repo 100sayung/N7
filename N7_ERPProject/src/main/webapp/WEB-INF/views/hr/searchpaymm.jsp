@@ -72,11 +72,7 @@ span {
 	border-collapse: collapse;
 	border:1px solid #D9EDF7;
 }
-#id_back{
-	font-weight:bold;
-	font-size:medium;
-	background-color: lightgray;
-}
+
 </style>
 </head>
 <body onload="build();">
@@ -197,7 +193,7 @@ span {
 				var str='';
 				var da=data.toString();
 				str +='<table id="wages" style="text-align: center; width: 100%;">';
-				str += '<tr id="id_back">';
+				str += '<tr class="infomenu">';
 				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan="2"></td></tr>';
 				for(var i=0;i<data.length;i++){
 					var result=data[i].HDP_PAY-data[i].HDD_AMOUNT;
