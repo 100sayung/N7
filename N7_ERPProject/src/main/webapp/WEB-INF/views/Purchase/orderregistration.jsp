@@ -9,6 +9,7 @@
 <style type="text/css">
 #center{
 text-align: center;
+width:1300px;
 }
 input{
 text-align: center;
@@ -30,7 +31,7 @@ ${msg}
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
      	<br>
      	<br>
-      <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">발주관리</div>
+      <div style="width:1280px; background-color:#3D6B9B;  color:white; padding:1%;">발주관리</div>
 					<select id="choice">
 						<option value="o_ccode">발주번호</option>
 						<option value="o_pdocucode">구매번호</option>
@@ -38,9 +39,9 @@ ${msg}
 					<input type="text" id="search" name="search" style="height: 18px;">
 					<button id="searchbtn">검색</button>
 		<form id="a">
-         <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+         <div border="1" style="width:1280px; height:80px; padding-top:25px; background-color:#F8F7F7;">
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; height: 70px; background-color: #ECEBEA;">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1280px; height: 70px; background-color: #ECEBEA;">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">

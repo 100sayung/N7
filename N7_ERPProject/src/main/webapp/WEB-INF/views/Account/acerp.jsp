@@ -268,9 +268,9 @@ ul {
             </div>
 
             <ul class="list-unstyled components">
-                <p>영업관리</p>
+                <p>회계관리</p>
                 <li class="active">
-            <li><a id="acountting">매출/매입전표 <br>작성</a></li>
+            <li><a id="acountting">매출/매입전표 작성</a></li>
             <li><a id="acWriting">분개전표입력</a></li>
             <li><a id="analysis">매출/매입분석</a></li>
 
@@ -382,5 +382,17 @@ $("#analysis").click(function(){
 	});
 
 });
+
+$(document).ready(function () {
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+}); 
 </script>
 </html>

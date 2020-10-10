@@ -93,10 +93,10 @@ input {
 							<div>
 								<table>
 									<tr>
-										<th colspan="2">계정과목</th>
+										<th colspan="2" style="width:100px;">계정과목</th>
 										<th colspan="2"><input type="text" id="j_account"
 											name="j_account" class="txt" style="width: 400px;"></th>
-										<th colspan="2">문서번호</th>
+										<th colspan="2" style="width:100px;">문서번호</th>
 										<td colspan="2" style="width: 400px;">문서번호는 자동으로 입력됩니다.</td>
 
 									</tr>
@@ -104,7 +104,7 @@ input {
 										<th colspan="2">수주이름</th>
 										<!-- 활동센터 -->
 										<th colspan="2"><input type="text" id="j_centre"
-											name="j_centre" class="txt" style="width: 400px;">
+											name="j_centre" class="txt" style="width: 350px;">
 											<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
 										<th colspan="2">부서명</th>
 										<!-- 귀속부서 -->
@@ -118,7 +118,7 @@ input {
 										<th colspan="2">거래처명</th>
 										<!-- 관계회사 -->
 										<td colspan="2"><input type="text" id="j_company"
-											name="j_company" class="draft3" style="width: 400px;">
+											name="j_company" class="draft3" style="width: 350px;">
 											<button type="button"
 								onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>
 										</td>

@@ -10,23 +10,23 @@
 <style>
 #center{
 text-align:center;
+width:1300px;
 }
 </style>
 <body>
       <div id="center">
-      <br>
+       <div style="width:1280px; padding:1%; text-align:center;">
         <button type="button" id="businessitemfrm" onclick="window.open('/erp/sales/SalesResult','SalesResult','width=1200,height=1200')">영업 실적조회</button>${msg}
-        <br>
-        <br>
-        <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">영업활동</div>
+        </div>
+        <div style="width:1280px; background-color:#3D6B9B;  color:white; padding:1%;">영업활동</div>
          <select id="choice" style="width:180px;">
                       <option value="ba_ocode">영업코드</option>
                       <option value="ba_hrcode">사원코드</option></select>
           <input type="text" name="search" id="search">
           <button type="button" id="searchh" value="검색">검색</button>
         <form id="businessactivitiesinput">
-        <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:100px;">
+        <div border="1" style="width:1280px; height:120px; padding-top:25px; background-color:#F8F7F7;">
+        <table style="margin-left:40px;">
          <thead>
             <tr>
                <th>영업코드</th>
@@ -51,7 +51,7 @@ text-align:center;
          </thead>
       </table>
       </div>
-            <div style="background-color:#ECEBEA; width:1175px;">
+            <div style="background-color:#ECEBEA; width:1280px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
               style="margin-left:140px;">
                 <colgroup align="center">

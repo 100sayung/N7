@@ -9,6 +9,7 @@
 <style type="text/css">
 #center{
 text-align: center;
+width:1300px;
 }
 input{
 text-align: center;
@@ -20,6 +21,7 @@ border: 1px solid silver;
 .select{
 width: 160px;
 }
+
 </style>
 </head>
 <body>
@@ -35,7 +37,7 @@ ${msg}
          <button type="button" id="pDetail">상세보기</button>
      	<br>
      	<br>
-      <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
+      <div style="width:1280px; background-color:#3D6B9B;  color:white; padding:1%;">구매관리</div>
 					<select id="choice">
 						<option value="p_documentcode">구매번호</option>
 						<option value="p_writer">담당자</option>
@@ -45,8 +47,8 @@ ${msg}
 					<button id="searchbtn">검색</button>
 		<form id="a">
 
-         <div border="1" style="width:1300px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-				<table style="margin-right: 55px;">
+         <div border="1" style="width:1280px; height:100px; padding-top:25px; background-color:#F8F7F7;">
+				<table style="margin-left:200px;">
                  	 <tr>
                  	 	<th>구매번호</th>
                     	<th><input type="text" name="p_documentcode" value="P" readonly id="p_documentcode" ></th>
@@ -64,7 +66,7 @@ ${msg}
             	</table>
 			</div>
             <table summary="Code page support in different versions of MS Windows."
-               rules="groups" frame="hsides" border="1"  id="list" style="width: 1300px; background-color: #ECEBEA;">
+               rules="groups" frame="hsides" border="1"  id="list" style="width: 1280px; background-color: #ECEBEA;">
                <colgroup align="center">
                </colgroup>
                <colgroup align="left">
