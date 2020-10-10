@@ -62,9 +62,9 @@ a{
     </div>
     <div id="side_menu">
         <ul id="menuList">
-            <li><a  id="pregistration">구매관리</a></li>
-            <li><a  id="rregistration">반품 관리</a></li>
-            <li><a  id="oregistration">발주 관리</a></li>
+            <li><a id="pregistration">구매관리</a></li>
+            <li><a id="rregistration">반품 관리</a></li>
+            <li><a id="oregistration">발주 관리</a></li>
         </ul>
     </div>
     <center>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Purchase Details</title>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <style type="text/css">
 #center{
 text-align: center;
@@ -14,11 +14,17 @@ input{
 text-align: center;
 }
 #list{
-width: 1140px; 
+width: 1140px;
 border: 1px solid silver;
+}
+.tr, .th, .td{
+border: 1px solid;
+border-collapse:collapse;
+border-spacing:0;
 }
 .select{
 width: 160px;
+height: 24px;
 }
 </style>
 </head>
@@ -26,13 +32,13 @@ width: 160px;
 ${msg}
 	<div id="center">
 		<br>
-		 <span style="padding-left: 5px";><a href="#"
+		 <span style="padding-left: 5px"><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
-         <span><a href=# onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')"><button>분류코드 추가</button></a></span>
-         <span><a href=# onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')"><button>품목코드 추가</button></a></span>
+         <span><a href=# onclick="window.open('/erp/stock/setcategory','PopupWin','width=550,height=600')"><button>분류코드 추가</button></a></span>
+         <span><a href=# onclick="window.open('/erp/stock/setitemcode','PopupWin','width=980,height=600')"><button>품목코드 추가</button></a></span>
          <button type="button"id="stock">재고현황</button>
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
-         <button type="button" id="pDetail">상세보기</button>
+         <button type="button" id="approval">결재요청</button>
      	<br>
      	<br>
       <div style="width:1150px; background-color:#3D6B9B; color:white; padding:1%;">구매관리</div>
@@ -43,22 +49,22 @@ ${msg}
 					</select>
 					<input type="text" id="search" name="search" style="height: 18px;">
 					<button id="searchbtn">검색</button>
-		<form id="a">
+		<form id="purchase">
          <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7; text-align: center;">
-				<table style="margin-left:250px;">
+				<table style="margin-left:188px; text-align: center;">
                  	 <tr>
-                 	 	<th>구매번호</th>
-                    	<th><input type="text" name="p_documentcode" value="P" readonly id="p_documentcode" ></th>
-                    	<th>제품번호</th>
-                     	<th><input type="text" name="p_productnum" id="p_productnum"></th>
-                     	<th>담당자</th>
-                    	<th><input type="text" name="p_writer" id="p_writer"></th>
+                 	 	<td>구매번호&emsp;</td>
+                    	<td><input type="text" name="p_documentcode" placeholder="자동생성" readonly>&emsp;</td>
+                    	<td>제품번호&emsp;</td>
+                     	<td><input type="text" name="p_productnum" id="p_productnum">&emsp;</td>
+                     	<td>거래처&nbsp;</td>
+                     	<td><input id="clcode" type="text" name="p_clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                     </tr>
                     <tr>
-                    	<th>거래처</th>
-                     	<th><input id="clcode" type="text" name="p_clcode" id="p_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
-                     	<th>구매일</th>
-                     	<th><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 161px;" id="p_day"></th>
+                    	<td>담당자</td>
+                    	<td><input type="text" name="p_writer" id="p_writer">&emsp;</td>
+                     	<td>구매일</td>
+                     	<td><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 159px;" id="p_day">&emsp;</td>
                   	</tr>
             	</table>
 			</div>
@@ -75,12 +81,12 @@ ${msg}
                <thead valign="top">
                   <tr>
 						<tr>
-							<th><input type="checkbox" id="allCheck"></th>
-                     		<th>상품명</th>
-                     		<th>상품코드</th>
-                     		<th>수량</th>
-                     		<th>단가</th>
-                     		<th>합계</th>
+							<td><input type="checkbox" id="allCheck"></td>
+                     		<td>상품명</td>
+                     		<td>상품코드</td>
+                     		<td>수량</td>
+                     		<td>단가(원)</td>
+                     		<td>합계(원)</td>
 						</tr>
 					</thead>
 					<tbody id="tbody">
@@ -95,11 +101,11 @@ ${msg}
                     	</tr>
 					</tbody>
 				</table>
-			<div style="float: left; padding-top: 5px">
-				<button type="button" id="approval">결재요청</button>
+			<div style="float: left; padding-top: 10px">
+				<button type="button" id="pDetail">상세보기</button>
 				<button type="button" id="Pdelete">삭제</button>
-				<button type="button" class="addList">추가</button>
 				<button type="button" id="save">등록</button>
+				<button type="button" class="addList">추가</button>
 			</div>
          </form>
 	</div>
@@ -138,7 +144,7 @@ ${msg}
 				}
 			})
 			function makeSelectBox(arr){
-				var arrStr="<select class='select' name='p_itcode'><option></option>";
+				var arrStr="<select class='select' name='p_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 				if(arr.length==0){
 					arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
 				}else{
@@ -151,33 +157,33 @@ ${msg}
 			}
 			
 		 $('.addList').click(function(){
-			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name"></td><td class="it"></td><td><input type="number" min="1" name="p_amount"></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
+			 $('#tbody').append('<tr><td><input type="checkbox" name="each_check" class="each"></td><td><input type="text" name="p_name" class="p_name"></td><td class="it"></td><td><input type="number" min="1" name="p_amount" class="p_amount"></td><td><input class="unlit" type="text" name="p_unlit"></td><td><input type="text" name="p_budget" class="p_budget"></td><td><input type="button" value="삭제" onclick="javascript:thisRowDel(this);"></td></tr>');
 		
-	var select;
-	$.ajax({
-		url: "/erp/stock/getitemcode",
-		type: "get",
-		dataType: "json",
-		success: function(data){
-			select=makeSelectBox(data);
-			$(".it").html(select);
-		},
-		error: function(err){
-			console.log(err);
-		}
-	})
-	function makeSelectBox(arr){
-		var arrStr="<select class='select' name='p_itcode'><option></option>";
-		if(arr.length==0){
-			arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
-		}else{
-			for(var i=0; i<arr.length; i++){
-				arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+		var select;
+		$.ajax({
+			url: "/erp/stock/getitemcode",
+			type: "get",
+			dataType: "json",
+			success: function(data){
+				select=makeSelectBox(data);
+				$(".it").html(select);
+			},
+			error: function(err){
+				console.log(err);
 			}
-		}
-		arrStr+="</select>";
-		return arrStr;
-	}
+		})
+		function makeSelectBox(arr){
+			var arrStr="<select class='select' name='p_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+			if(arr.length==0){
+				arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
+			}else{
+				for(var i=0; i<arr.length; i++){
+					arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+				}
+			}
+			arrStr+="</select>";
+			return arrStr;
+			}
 		 });	
 	 });
 	 
@@ -198,23 +204,52 @@ ${msg}
 		}); 
 
 	  $('#save').click(function(){
-         var obj = $("#a").serialize();
-         console.log(obj);
-         $.ajax({
-            url: '/erp/rest/Purchrase/pregistration',
-            type: 'post',
-            data: obj,
-            success: function(data){
-               //consloe.log(data);
-            $('input').val("");
-            $("select").val("");
-            alert("등록이 완료되었습니다.");
-            },
-            error: function(error){
-            	console.log(error);
-            	alert("등록에 실패하였습니다.");
-            }
-         });
+		 var code= document.getElementById("p_productnum");
+		 var p_clcode= document.getElementById("clcode");
+		 var writer= document.getElementById("p_writer");
+		 var day= document.getElementById("p_day");
+		 var name= document.getElementsByClassName("p_name");
+		 var amount= document.getElementsByClassName("amount");
+		 var unlit= document.getElementsByClassName("p_unlit");
+		 //var itemcode= ;
+		 
+		 if(code.value==""||code.value==null && p_clcode.value==""||p_clcode.value==null && writer.value==""||writer.value==null && day.value==""||day.value==null
+				 && name.value==""||name.value==null && amount.value==""||amount==null && unlit.value==""||unlit.value==null){
+			 alert("전부 입력해주세요.");
+		 }else if(code.value==""||code.value==null){
+			 alert("제품번호를 입력해주세요.");
+		 }else if(p_clcode.value==""||p_clcode.value==null){
+			 alert("거래처를 입력해주세요.");
+		 }else if(writer.value==""||writer.value==null){
+			 alert("담당자를 입력해주세요.");
+		 }else if(day.value==""||day.value==null){
+			 alert("구매일을 입력해주세요.");
+		 }else if(name.value==""||name.value==null){
+			 alert("상품명을 입력해주세요.");
+		 }else if(amount.value==""||amount==null){
+			 alert("수량을 입력해주세요.");
+		 }else if(unlit.value==""||unlit.value==null){
+			 alert("단가(원)를 입력해주세요.");
+		/*  }else if($("[name=p_itcode]>option:selected").val()=='0'){
+			 alert("상품코드를 선택해주세요."); */
+		 }else{
+			 var obj = $("#purchase").serialize();
+	         console.log(obj);
+	         $.ajax({
+	            url: '/erp/rest/Purchrase/pregistration',
+	            type: 'post',
+	            data: obj,
+	            success: function(data){
+	               //consloe.log(data);
+	            $('input').val("");
+	            $("select").val("");
+	            alert("등록이 완료되었습니다.");
+	            },
+	            error: function(error){
+	            	console.log(error);
+	            }
+	         });
+		 }
       });
       
        $('#Pinfo').click(function(){
@@ -225,14 +260,14 @@ ${msg}
     			success: function(data){
     				//console.log(data);
      				var str="";
-     				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
+     				str+="<tr class='tr'><td class='td'>선택</td><td class='td'>구매번호</td><td class='td'>제품번호</td><td>담당자</td><td class='td'>거래처</td><td class='td'>구매일</td></tr>";
     				for(var i in data.pList){
-    	    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
-		    			str+="<td>"+data.pList[i].p_documentcode+"</td>";
-		    			str+="<td>"+data.pList[i].p_productnum+"</td>";
-		    			str+="<td>"+data.pList[i].p_writer+"</td>";
-		    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-		    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
+    	    			str+="<tr class='tr'><td class='td'><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_documentcode+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_productnum+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_writer+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_clcode+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_day+"' readonly></td><tr>";
     				}
     				$('#list').html(str); 
     				$("#save").attr("style","visibility: hidden");
@@ -268,15 +303,15 @@ ${msg}
 				 dataType: 'json',
 				 success: function(data){
 					 var str="";
-					 str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
+	     				str+="<tr class='tr'><td class='td'>선택</td><td class='td'>구매번호</td><td class='td'>제품번호</td><td>담당자</td><td class='td'>거래처</td><td class='td'>구매일</td></tr>";
 					 if(data.pList!=""){
 						 for(var i in data.pList){
-			    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
-			    			str+="<td>"+data.pList[i].p_documentcode+"</td>";
-			    			str+="<td>"+data.pList[i].p_productnum+"</td>";
-			    			str+="<td>"+data.pList[i].p_writer+"</td>";
-			    			str+="<td>"+data.pList[i].p_clcode+"</td>";
-			    			str+="<td>"+data.pList[i].p_day+"</td><tr>";
+							 str+="<tr class='tr'><td class='td'><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
+				    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_documentcode+"' readonly></td>";
+				    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_productnum+"' readonly></td>";
+				    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_writer+"' readonly></td>";
+				    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_clcode+"' readonly></td>";
+				    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_day+"' readonly></td><tr>";
 			    		}
 			    			$('#list').html(str); 
 					 }else{
@@ -300,20 +335,20 @@ ${msg}
 				data: {check:check},
 				dataType: 'json',
 				success: function(data){
-					console.log(data);
+					//console.log(data);
 					var str="";
 					if(data.pList==null){
 						alert("이미 결재 요청된 데이터 입니다.");
 					}else{
 						alert("데이터가 삭제되었습니다.");
-	     				str+="<tr class='tr'><th><span>선택</span></th><th>구매번호</th><th>제품번호</th><th>담당자</th><th>거래처</th><th>구매일</th></tr>";
+						str+="<tr class='tr'><td class='td'>선택</td><td class='td'>구매번호</td><td class='td'>제품번호</td><td>담당자</td><td class='td'>거래처</td><td class='td'>구매일</td></tr>";
     				for(var i in data.pList){
-    					str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
-    					str+="<td>"+data.pList[i].p_documentcode+"</td>";
-    					str+="<td>"+data.pList[i].p_productnum+"</td>";
-    					str+="<td>"+data.pList[i].p_writer+"</td>";
-    					str+="<td>"+data.pList[i].p_clcode+"</td>";
-    					str+="<td>"+data.pList[i].p_day+"</td><tr>";
+    					str+="<tr class='tr'><td class='td'><input type='radio' value="+data.pList[i].p_documentcode+" name='each_check' class='each_check'></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_documentcode+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_productnum+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_writer+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_clcode+"' readonly></td>";
+		    			str+="<td class='td'><input type='text' value='"+data.pList[i].p_day+"' readonly></td><tr>";
     				}
     				$('#list').html(str); 
 					}
@@ -356,20 +391,20 @@ ${msg}
 			  type: "get",
 			  dataType: "json",
 			  success: function(data){
-				  console.log(data);
+				  //console.log(data);
 				  var str="";
-				  str+="<tr style='text-align: center;'><th>품목코드</th><th>상품명</th><th>재고량</th><th>단위</th><th>크기</th></tr>";
+				  str+="<tr class='tr' style='text-align: center;'><td class='td'>품목코드</td><td class='td'>상품명</td><td class='td'>재고량</td><td class='td'>단위</td><td class='td'>크기</td></tr>";
 				  for(var i in data.sList){
-				  	str+="<tr style='text-align: center;'><td>"+data.sList[i].it_code+"</td>";
-					str+="<td>"+data.sList[i].it_pname+"</td>";
-				  	str+="<td>"+data.sList[i].it_stock+"</td>";
-				  	str+="<td>"+data.sList[i].it_unit+"</td>";
-				  	str+="<td>"+data.sList[i].it_size+"</td><tr>";
+				  	str+="<tr class='tr' style='text-align: center;'><td class='td'><input type='text' value='"+data.sList[i].it_code+"' readonly></td>";
+					str+="<td class='td'><input type='text' value='"+data.sList[i].it_pname+"' readonly></td>";
+				  	str+="<td class='td'><input type='text' value='"+data.sList[i].it_stock+"' readonly></td>";
+				  	str+="<td class='td'><input tpye='text' value='"+data.sList[i].it_unit+"' readonly></td>";
+				  	str+="<td class='td'><input type='text' value'"+data.sList[i].it_size+"' readonly></td><tr>";
 				  }
 				  $('#list').html(str);
   				  $("#save").attr("style","visibility: hidden");
 				  $(".addList").attr("style","visibility: hidden");
-				  $("#approval").attr("style","visibility: hidden");
+				  $("#pDetail").attr("style","visibility: hidden");
 				  $("#Pdelete").attr("style","visibility: hidden");
 				  
 			  },

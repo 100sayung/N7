@@ -37,6 +37,9 @@ public class PurchaseMM {
 		boolean a = false;
 		boolean b = false;
 		String view = null;
+		
+		ps.setP_documentcode("P");
+		
 		if(ps.getP_ccode()!="") {
 			a= pDao.pcommom(ps);
 			String [] p_name = request.getParameterValues("p_name");
@@ -53,11 +56,11 @@ public class PurchaseMM {
 				b= pDao.pregistration(ps);
 			}
 			if(a&&b) {
+				mav.addObject("msg", "데이터 입력이 완료되었습니다.");
 				view = "/Purchase/pregistration";
-				mav.addObject("msg", "데이터입력완료");
 			} else {
+				mav.addObject("msg", "데이터 입력이 실패하였습니다.");
 				view = "/Purhcase/pregistration";
-				mav.addObject("msg", "데이터입력 실패");
 			}
 		}
 		mav.setViewName(view);
@@ -168,8 +171,8 @@ public class PurchaseMM {
 		return mav;
 	}
 
-    //결재라인
-   public Map<String, List<com.n7.erp.bean.ps.approvalLine>> searchName(String name) {
+	//결재라인
+	public Map<String, List<com.n7.erp.bean.ps.approvalLine>> searchName(String name) {
          Map<String, List<approvalLine>> sMap= null;
          List<approvalLine> aList=null;
          if(name!=null) {
@@ -332,6 +335,7 @@ public class PurchaseMM {
 		rt.setR_ccode(session.getAttribute("cCode").toString());
 		String hr_code= session.getAttribute("hrCode").toString();
 		rt.setR_hrcode(hr_code);
+		rt.setR_documentcode("R");
 
 		int cnt= 0;
 		int cnt2=0;

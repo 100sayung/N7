@@ -17,8 +17,12 @@ text-align: center;
 width: 1140px; 
 border: 1px solid silver;
 }
-.select{
-width: 160px;
+th{
+font-weight: 500;
+}
+.input{
+height: 21px;
+width: 190px;
 }
 </style>
 </head>
@@ -31,7 +35,7 @@ ${msg}
      	<br>
      	<br>
       <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">발주관리</div>
-					<select id="choice">
+					<select id="choice" style="height: 23px;">
 						<option value="o_ccode">발주번호</option>
 						<option value="o_pdocucode">구매번호</option>
 					</select>
@@ -50,7 +54,7 @@ ${msg}
                <colgroup span="3" align="center">
                </colgroup>
                <thead valign="top">
-						<tr style="height: 30px;">
+						<tr style="height:30px;">
 							<th><input type="checkbox" id="allCheck"></th>
                      		<th>발주번호</th>
                      		<th>구매번호</th>
@@ -59,8 +63,8 @@ ${msg}
 					<tbody id="tbody">
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
-                     		<td><input type="text" name="o_code" placeholder="자동생성" readonly></td>
-                     		<td><input type="text" name="o_pdocucode"></td>
+                     		<td><input type="text" name="o_code" placeholder="자동생성" id="code" class="input" readonly></td>
+                     	    <td><input type="text" name="o_pdocucode" id="pcode" class="input"></td>
                     	</tr>
 					</tbody>
 				</table>
@@ -74,21 +78,28 @@ ${msg}
 	  <script type="text/javascript">
 
 	  $('#save').click(function(){
-         var obj = $("#a").serialize();
-         console.log(obj);
-         $.ajax({
-            url: "/erp/rest/Purchase/orderinsert",
-            type: "post",
-            data: obj,
-            success: function(data){
-               //consloe.log(data);
-            $('input').val("");
-            alert("등록이 완료되었습니다.");
-            },
-            error: function(error){
-            	console.log(error);
-            }
-         });
+		 var pcode= document.getElementById("pcode");
+		 
+		 if(pcode.value=="" || pcode.value==null){
+			alert("구매번호를 입력해주세요.");
+		 }else {
+			 var obj = $("#a").serialize();
+	         console.log(obj);
+	         $.ajax({
+	            url: "/erp/rest/Purchase/orderinsert",
+	            type: "post",
+	            data: obj,
+	            success: function(data){
+	               //consloe.log(data);
+	            $('input').val("");
+	            alert("등록이 완료되었습니다.");
+	            },
+	            error: function(error){
+	            	console.log(error);
+	            	alert("데이터가 없습니다.");
+	            }
+	         });    
+		   }
       });
       
        $('#Oinfo').click(function(){

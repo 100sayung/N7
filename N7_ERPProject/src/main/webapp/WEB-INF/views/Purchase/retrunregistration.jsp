@@ -19,47 +19,51 @@ border: 1px solid silver;
 }
 .select{
 width: 160px;
+height: 24px;
+}
+.select2{
+width: 165px;
+height: 23px;
 }
 </style>
 </head>
 <body>
 	<div id="aaa">
 	<br>
-        	<span style="padding-left: 5px";><a href="#"
-         	onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
             <button id="Wearing">입고현황</button>
             <button id="rInfo">반품조회</button>
       <br><br>
       <div style="width: 1150px; background-color: #3D6B9B; color: white; padding: 1%;">반품관리</div>
-               <select id="choice">
+               <select id="choice" style="height: 23px;">
                   <option value="r_documentcode">반품번호</option>
                   <option value="r_ieseqnum">입고번호</option>
                   <option value="r_writer">담당자</option>
                   <option value="r_date">반품일</option>
                </select>
-               <input type="text" id="search" name="search" style="height: 18px";>
+               <input type="text" id="search" name="search" style="height: 18px">
                <button id="searchbtn">검색</button>
       <form id="o_return">
-         <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7; width:1175px;">
-            <div style="margin-left: 55px">
-            <table>
+      <div style="height: 80px; padding-top: 25px; background-color: #F8F7F7; width:1175px;">
+            <div>
+           <table style="margin-left:188px; text-align: center;">
                      <tr>
-                       <th>반품번호</th>
-                       <td><input type="text" name="r_documentcode" value="R" readonly></td>
-                       <th>입고번호</th>
-                       <!-- <td><input type="text" name="r_ieseqnum"></td> -->
+                       <td>반품번호&emsp;</td>
+                       <td><input type="text" name="r_documentcode" placeholder="자동생성" readonly>&emsp;</td>
+                       <td>입고번호&emsp;</td>
                        <td id="ie"></td>
-                       <th>담당자</th>
-                       <td><input type="text" name="r_writer"></td>
-                      <th>거래처</th>
-                     	<th><input id="clcode" type="text" name="r_clcode"><button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
-                       <th>반품일</th>
-                       <td><input type="date" name="r_date" min="2000-01-01" max="2030-12-31" style="width: 161px;"></td>
+                       <td>거래처&nbsp;</td>
+                       <td><input id="clcode" type="text" name="r_clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
+                      </tr>
+                      
+                      <tr>
+                       <td>담당자</td>
+                       <td><input type="text" name="r_writer" id="writer">&emsp;</td>                 
+                       <td>반품일</td>
+                       <td><input type="date" name="r_date" min="2000-01-01" max="2030-12-31" style="width: 159px;">&emsp;</td>
                      </tr>
                </table>
             </div>
          </div>
-         <!-- <div style="background-color: #ECEBEA;"> -->
             <table summary="Code page support in different versions of MS Windows."
                rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; background-color: #ECEBEA;">
                <colgroup align="center">
@@ -73,12 +77,12 @@ width: 160px;
                <thead valign="top">
                   <tr>
                      <th><input type="checkbox" id="allCheck"></th>
-                           <th>상품명</th>
-                           <th>상품코드</th>
-                           <th>수량</th>
-                           <th>단가</th>
-                           <th>합계</th>
-                           <th>적요</th>
+                           <td>상품명</td>
+                           <td>상품코드</td>
+                           <td>수량</td>
+                           <td>단가(원)</td>
+                           <td>합계(원)</td>
+                           <td>적요</td>
                   </tr>
                </thead>
                <tbody id="tbody">
@@ -88,21 +92,20 @@ width: 160px;
                           <!--  <td><input type="text" name="r_name"></td> -->
                           <!--  <td><input type="text" name="r_itcode" ></td> -->
                            <td id="it"></td>
-                           <td><input onclick="chageItcode(this)" type="number" min="1" name="r_amount"></td>
-                           <td><input type="text" name="r_unlit" class="unlit"></td>
-                           <td><input type="text" name="r_budget"></td>
-                           <td><input type="text" name="r_reason"></td>
+                           <td><input id="amount" onclick="chageItcode(this)" type="number" min="1" name="r_amount"></td>
+                           <td><input id="r_unlit" type="text" name="r_unlit" class="unlit"></td>
+                           <td><input id="budget" type="text" name="r_budget"></td>
+                           <td><input id="reason" type="text" name="r_reason"></td>
                        </tr>
                </tbody>
             </table>
          </div>
-         <div style="float: left; padding-top: 5px;">
+         <div style="padding-top: 10px">
             <button type="button" id="save">등록</button>
             <!-- <button type="button" id="rDelete">삭제</button> -->
-            <button type="reset">다시작성</button>
             </div>
-         </form>
-	</div>
+      </form>
+         
 <script type="text/javascript">
 	$(document).on("keyup",".unlit",function(){
 	 	var cnt =$(this).parent().prev().children().val();
@@ -111,6 +114,7 @@ width: 160px;
 	 	var budget=cnt*unlit;
 		 $(this).parent().next().children().val(budget);
  	});
+	
 
 	  function setChildValue(data) {
 		   console.log(data)
@@ -282,32 +286,31 @@ width: 160px;
 		 	 })
   		})
   	
-  		 var select;
-    	 $.ajax({
-    	       url:"/erp/stock/getitemcode",
-           dataType:"json",
-           type:"get",
-           success:function(data){
-              select = makeSelectBox(data);
-              
-              $("#it").html(select);
-           },
-           error:function(err){
-              console.log(err);
-           }
-        });
-	     function makeSelectBox(arr){
-	         var arrStr = "<select class='select' name = 'r_itcode'><option></option>"
-	         if(arr.length==0){
-	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
-	         }else{
-	            for(var i = 0; i<arr.length;i++){
-	               arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>"; 
-	            }
-	         }
-	         arrStr+="</select>";
-	         return arrStr;
-	      }
+		var select;
+			$.ajax({
+			url: "/erp/stock/getitemcode",
+			type: "get",
+			dataType: "json",
+			success: function(data){
+				select=makeSelectBox(data);
+				$("#it").html(select);
+			},
+			error: function(err){
+				console.log(err);
+			}
+		})
+		function makeSelectBox(arr){
+			var arrStr="<select class='select' name='p_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+			if(arr.length==0){
+				arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
+			}else{
+				for(var i=0; i<arr.length; i++){
+					arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
+				}
+			}
+			arrStr+="</select>";
+			return arrStr;
+		}
   	
 		 var select2;
 		     $.ajax({
@@ -315,23 +318,23 @@ width: 160px;
 		         dataType: "json",
 		         type: "post",
 		         success:function(data){
-		              select = makeSelectBox2(data);
-		              $("#ie").html(select);
+		              select2 = makeSelectBox2(data);
+		              $("#ie").html(select2);
 		         },
 		         error:function(err){
 		             console.log(err);
 		         }
 		     });
 	     function makeSelectBox2(arr){
-	         var arrStr = "<select class='select' name = 'r_ieseqnum'><option></option>"
+	         var arrStr = "<select class='select2' name = 'r_ieseqnum' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 	         if(arr.length==0){
-	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+	            arrStr+="<option>입고내역이 없습니다.</option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
 	               arrStr+="<option value='"+arr[i].ie_seqnum+"'>"+arr[i].ie_seqnum+"</option>"; 
 	            }
 	         }
-	         arrStr+="</select>";
+	         arrStr+="</select>&emsp;";
 	         return arrStr;
 	      }
 	     
@@ -341,17 +344,17 @@ width: 160px;
 	           dataType:"json",
 	           type:"get",
 	           success:function(data){
-	              select = makeSelectBox3(data);
-	              $("#name").html(select);
+	              select3 = makeSelectBox3(data);
+	              $("#name").html(select3);
 	           },
 	           error:function(err){
 	              console.log(err);
 	           }
 	        });
 	     function makeSelectBox3(arr){
-	         var arrStr = "<select class='select' name = 'r_name'><option></option>"
+	         var arrStr = "<select class='select' name='r_name' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 	         if(arr.length==0){
-	            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+	            arrStr+="<option>상품이 존재하지 않습니다. </option>";
 	         }else{
 	            for(var i = 0; i<arr.length;i++){
 	               arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>"; 

@@ -100,6 +100,9 @@ padding-bottom: 20px;
 		<input type="text" id="keyword" name="search" style="height:18px;" />
 		<button type="button" id="searchbtn">검색</button>
 	</div>
+	</div>
+	</div>
+	</div>
 </body>
 <script>
 		var bList=${bList};
