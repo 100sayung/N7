@@ -453,6 +453,27 @@ body{
 				}
 			});
 		});
+<<<<<<< HEAD
+=======
+		
+		var moneyCheck = function(money){
+			var length = money.length; //7
+			
+			var div = Math.floor(length/3); //2 
+			var mod = length%3; //1
+			var num = "";
+			num += money.substr(0, mod) + "";
+			for(let i = 0 ; i < div ; i++){
+				if(mod==0&&i==0){
+					num += money.substr((mod+(i*3)), 3);
+				}else{
+					num += "," + money.substr((mod+(i*3)), 3);
+				}
+			}
+			console.log(num);
+			return num;
+		}
+>>>>>>> master
 	</script>
 </body>
 </html>

@@ -104,7 +104,11 @@ input {
 										<th colspan="2">수주이름</th>
 										<!-- 활동센터 -->
 										<th colspan="2"><input type="text" id="j_centre"
+<<<<<<< HEAD
 											name="j_centre" class="txt" style="width: 350px;">
+=======
+											name="j_centre" class="txt" style="width: 400px;" readonly="readonly">
+>>>>>>> master
 											<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
 										<th colspan="2">부서명</th>
 										<!-- 귀속부서 -->
@@ -118,7 +122,11 @@ input {
 										<th colspan="2">거래처명</th>
 										<!-- 관계회사 -->
 										<td colspan="2"><input type="text" id="j_company"
+<<<<<<< HEAD
 											name="j_company" class="draft3" style="width: 350px;">
+=======
+											name="j_company" class="draft3" style="width: 400px;" readonly>
+>>>>>>> master
 											<button type="button"
 								onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>
 										</td>

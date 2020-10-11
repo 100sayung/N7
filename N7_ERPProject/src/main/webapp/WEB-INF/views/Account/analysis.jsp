@@ -171,7 +171,8 @@ $(document).ready(function(){
     						cnt.push(Math.abs(data.sList2[j].s_cnt));
     						pkind.push(data.sList2[j].s_pkind);
     						total+=Number(data.sList2[j].s_total);
-    						price+=Number(data.sList2[j].s_price);
+    						console.log(total);
+    						price+=Number(data.sList2[j].s_price2);
     						tax+=Number(data.sList2[j].s_tax);
     					}
     				}
@@ -228,7 +229,7 @@ $(document).ready(function(){
 	    						cnt.push(Math.abs(data.sList2[j].s_cnt));
 	    						pkind.push(data.sList2[j].s_pkind);
 	    						total+=Number(data.sList2[j].s_total);
-	    						price+=Number(data.sList2[j].s_price);
+	    						price+=Number(data.sList2[j].s_price2);
 	    						tax+=Number(data.sList2[j].s_tax);
 	    					}
 	    				}
@@ -317,7 +318,7 @@ $(document).ready(function(){
     						cnt.push(Math.abs(data.sList2[j].s_cnt));
     						pkind.push(data.sList2[j].s_pkind);
     						total+=Number(data.sList2[j].s_total);
-    						price+=Number(data.sList2[j].s_price);
+    						price+=Number(data.sList2[j].s_price2);
     						tax+=Number(data.sList2[j].s_tax);
     					}
     				}
@@ -374,7 +375,7 @@ $(document).ready(function(){
 	    						cnt.push(Math.abs(data.sList2[j].s_cnt));
 	    						pkind.push(data.sList2[j].s_pkind);
 	    						total+=Number(data.sList2[j].s_total);
-	    						price+=Number(data.sList2[j].s_price);
+	    						price+=Number(data.sList2[j].s_price2);
 	    						tax+=Number(data.sList2[j].s_tax);
 	    					}
 	    				}
