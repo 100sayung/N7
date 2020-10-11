@@ -19,7 +19,7 @@
 	</select>
 	
 	<update id="approvalagree" parameterType="String">
-	UPDATE APPROVALDOCU SET AP_STATUS = '2' AND AP_TOAPPROVEL=#{apcode} WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
+	UPDATE APPROVALDOCU SET AP_STATUS = '2' , AP_TOAPPROVER=#{apcode} WHERE AP_DOCUNUM =#{num} AND AP_CCODE = #{cCode}
 	</update>
 	
 	<update id="approvalagree2" parameterType="String">

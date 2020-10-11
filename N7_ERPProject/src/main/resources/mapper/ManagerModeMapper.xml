@@ -48,7 +48,6 @@ WHERE AU_COMNAME = #{cCode} AND AU_NAME = #{au_name}
 <select id="namecheck" resultType="int">
 SELECT COUNT(*) 
 FROM AUTHORITY 
-<!-- WHERE AU_NAME = #{au_name} AND AU_COMNAME = #{au_comname} -->
 WHERE AU_NAME LIKE '%'||#{au_name}||'%'  AND AU_COMNAME = #{au_comname}
 </select>
 

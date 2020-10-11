@@ -81,7 +81,7 @@ ul {
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 
@@ -103,7 +103,10 @@ ul {
 				<td>부서 </td>
 				<td><span id="positionS"></span></td>
 				<td>직책 </td>
-				<td><input type="text" name="HDP_position" id="position"></td>
+				<td colspan="2"><input type="text" name="HDP_position" id="position"></td>
+			</tr>
+			<tr></tr><tr></tr>
+				<td></td><td></td><td></td><td></td>
 				<td><button class="infobtn">등록</button></td>
 			</tr>
 		</table>

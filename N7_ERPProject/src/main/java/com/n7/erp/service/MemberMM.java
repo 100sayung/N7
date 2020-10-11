@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.sales.approvaldetail;
 import com.n7.erp.dao.IHrDao;
@@ -45,7 +46,10 @@ public class MemberMM {
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
 			if (hDao.haveHrCode(mb.getM_id())) {
-				session.setAttribute("hrCode", hDao.getHrCodeFromID(mb.getM_id()));
+				HR_Card hrCard = hDao.getHrCardDetail(mb.getM_id());
+				session.setAttribute("hrCode", hrCard.getHc_hrcode());
+				String Auth = hDao.getAuthority(hrCard.getHc_dept(), hrCard.getHc_ccode());
+				session.setAttribute("auth", Auth);
 				System.out.println(hDao.getHrCodeFromID(mb.getM_id()));
 			}
 		} else {
@@ -215,6 +219,7 @@ public class MemberMM {
 		mDao.deleteERPFunction(cCode);
 		mDao.deleteMember(cCode);
 		mDao.deleteCompany(cCode);
+		mDao.deleteAuthority(cCode);
 
 		return new Gson().toJson("�꽦怨�");
 	}

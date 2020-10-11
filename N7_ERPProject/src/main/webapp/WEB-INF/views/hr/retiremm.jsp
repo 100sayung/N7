@@ -42,7 +42,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
 }
 
 ul {
@@ -67,7 +67,7 @@ input,select{
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -104,7 +104,7 @@ input,select{
 				</tr>
 			</table>
 		</div>
-		<div id="container" style="overflow:auto; width:1000px; height:600px;">
+		<div id="container" style="overflow:auto; width:1150px; height:600px;" align="center">
 			<input type="hidden" value="" id="status">
 		</div>
 	</div>
@@ -127,7 +127,7 @@ input,select{
 			data : {status : status},
 			success : function(data){
 				let str = "";
-				str += "<table style='border:1px solid #D9EDF7; width:1000px;text-align:center;'>";
+				str += "<table style='border:1px solid #D9EDF7; width:1150px;text-align:center;'>";
 				console.log(data);
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr>"
@@ -197,30 +197,34 @@ input,select{
 			method:"post",
 			success : function(data){
 				let str = "";
-				str += "<table style='border:1px solid #D9EDF7; width:1000px;text-align:center;'>";
-				console.log(data);
-				for(let i = 0 ; i<data.length ; i++){
-					str += "<tr>"
-					str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
-					str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
-					str += "<td width='300px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
-					str+="<td><select name='hc_work'>";
-					if(data[i].hc_work == 1){
-						str+="<option value = '1' selected = 'selected'> 휴직 </option>";
-						str+="<option value = '2'> 퇴사 </option>";
-						str+="<option value = '0'> 재직 </option>";
-					}else if(data[i].hc_work == 2){
-						str+="<option value = '1'> 휴직 </option>";
-						str+="<option value = '2' selected = 'selected'> 퇴사 </option>";
-						str+="<option value = '0'> 재직 </option>";
-					}else if(data[i].hc_work == 0){
-						str+="<option value = '1'> 휴직 </option>";
-						str+="<option value = '2'> 퇴사 </option>";
-						str+="<option value = '0' selected = 'selected'> 재직 </option>";
+				if(data.length!=0){
+					str += "<table style='border:1px solid #D9EDF7; width:1150px;text-align:center;'>";
+					console.log(data);
+					for(let i = 0 ; i<data.length ; i++){
+						str += "<tr>"
+						str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
+						str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
+						str += "<td width='400px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
+						str+="<td><select name='hc_work'>";
+						if(data[i].hc_work == 1){
+							str+="<option value = '1' selected = 'selected'> 휴직 </option>";
+							str+="<option value = '2'> 퇴사 </option>";
+							str+="<option value = '0'> 재직 </option>";
+						}else if(data[i].hc_work == 2){
+							str+="<option value = '1'> 휴직 </option>";
+							str+="<option value = '2' selected = 'selected'> 퇴사 </option>";
+							str+="<option value = '0'> 재직 </option>";
+						}else if(data[i].hc_work == 0){
+							str+="<option value = '1'> 휴직 </option>";
+							str+="<option value = '2'> 퇴사 </option>";
+							str+="<option value = '0' selected = 'selected'> 재직 </option>";
+						}
+						str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
 					}
-					str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
+					str+="</table>";
+				}else if(data.length==0){
+					str+="<img width='300px' height='200px' src='https://blogpfthumb-phinf.pstatic.net/MjAyMDEwMDhfMzAw/MDAxNjAyMTIyNTMxOTM1.cPqAMKgvroqiVofLJzASQOwt3BOrq1zpalCLu6vch0Ig.PdHZwEQaxFiD4lK9kgW7NoywjrEk9yuyLZWozxx7_xkg.GIF.tkdgus5512/no_article.gif?type=w161'>";
 				}
-				str+="</table>"
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);

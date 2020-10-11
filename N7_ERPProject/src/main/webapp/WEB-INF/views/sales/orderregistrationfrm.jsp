@@ -31,12 +31,12 @@ width:1400px;
 </style>
 <body>
     <div id="center">
-    <div style="width:auto; background-color:white; color:white; padding:1%;">
+    <div style="width:auto; background-color:white; color:white; padding:1%; text-align:center;">
            <button type="button" id="orderitemfrm">수주품목 현황</button>
            <span style="padding-left: 5px"><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
         </div>
-        <div style="width:1300px; background-color:#3D6B9B;  color:white; padding:1%;">수주관리 양식</div>
+        <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">수주관리 양식</div>
               <select id="choice" style="width:180px;">
                       <option value="bo_num">수주번호</option>
                       <option value="bo_clcode">거래처회사코드</option>
@@ -45,7 +45,7 @@ width:1400px;
         <input type="text" name="search" id="search">
         <button id="searchh">검색</button>
         <form id="orderregistrationinput">
-        <div border="1" style="width:1325px; height:80px; padding-top:25px; background-color:#F8F7F7;">
+        <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
         <table style="margin-left:250px;">
          <thead>
             <tr>
@@ -58,7 +58,7 @@ width:1400px;
             </tr>
             <tr>
                <th>사업단위</th>
-               <th><select name="bo_unit" style="width:180px;">
+               <th><select name="bo_unit" style="width:150px;">
                    <option value="본사">본사</option>
                    <option value="지사">지사</option></select></th>
                <th>담당자</th>
@@ -69,9 +69,9 @@ width:1400px;
          </thead>
       </table>
       </div>
-            <div style="background-color:#ECEBEA; width:1325px;">
+            <div style="background-color:#ECEBEA; width:1175px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="width:900px;  margin-left:70px; border-color:gray;">
+              style="width:900px;  margin-left:10px; border-color:gray;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">

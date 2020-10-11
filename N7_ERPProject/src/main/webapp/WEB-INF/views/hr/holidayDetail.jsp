@@ -59,7 +59,7 @@ html, body {
 </style>
 </head>
 <body>
-      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;font-size: large;font-weight: bold;">휴가신청안</div>
+      <h1 style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;font-size: large;font-weight: bold;">휴가신청안</h1>
       <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
          <table id="table" style="border-collapse: collapse;">
             <tr>

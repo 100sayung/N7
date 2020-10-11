@@ -193,4 +193,7 @@ public interface IHrDao {
 			+"ORDER BY MEMBER.M_NAME ASC")
 	ArrayList<HR_Card> SearchingRetireName(HashMap<String, String> hMap);
 	void updateLeftHoliday(HashMap<String, String> hMap);
+
+	@Select("SELECT AU_AUTHORITY FROM AUTHORITY WHERE AU_COMNAME = #{cCode} AND AU_NAME = #{dept}")
+	String getAuthority(@Param("dept")String dept, @Param("cCode")String cCode);
 }

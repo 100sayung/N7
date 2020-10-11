@@ -43,7 +43,7 @@ a {
 #description {
    float: left;
    height: 500px;
-   width:1000px;
+   width:1150px;
    position: absolute;
    transform:translate(250px, 0);
 }
@@ -82,7 +82,7 @@ body{
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -113,11 +113,11 @@ body{
    <table style="border: 1px solid black; ">
    		<tr style="background-color: #FFFFFF">
    			<td>대기중</td>
-   			<td>회색</td>
+   			<td>흰색</td>
    		</tr>
    		<tr style="background-color: #D2E9FF">
    			<td>승인</td>
-   			<td>초록색</td>
+   			<td>하늘색</td>
    		</tr>
    </table>
    </div>

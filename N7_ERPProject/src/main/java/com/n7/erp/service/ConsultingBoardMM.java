@@ -89,10 +89,7 @@ public class ConsultingBoardMM {
 
 	  public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
 	      Map<String, List<ConsultingBoard>>bMap = null;
-	      ConsultingBoard cb = new ConsultingBoard();
 	      List<ConsultingBoard> bList =CBdao.boardSearch(choice, keyword);
-	      cb.setCb_count(CBdao.getSearchCount(choice,keyword));
-	      bList.add(cb);
 	      if(bList!=null) {
 	         bMap=new HashMap<>();
 	         bMap.put("bList", bList);

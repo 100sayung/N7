@@ -39,7 +39,7 @@ td {
 }
 
 #table {
-	width: 1200px;
+	width: 1150px;
 	height: auto;
 }
 
@@ -60,7 +60,7 @@ font-weight: bold;
 </head>
 <body>
  <div
-         style="width: 1200px; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger; font-weight: bold;">받은 결재함</div>
+         style="width: 1150px; background-color: #3D6B9B; color: white; padding: 1%; text-align: center; font-size: larger; font-weight: bold;">받은 결재함</div>
 	<table id="table" class="table table-hover">
 		<tr id="m">
 			<td>check</td>
