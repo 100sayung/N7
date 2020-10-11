@@ -256,6 +256,7 @@ body{
 		
 		var moneyCheck = function(money){
 			var length = money.length; //7
+			
 			var div = Math.floor(length/3); //2 
 			var mod = length%3; //1
 			var num = "";
