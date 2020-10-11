@@ -506,7 +506,7 @@ ul {
 
 
 		function modifyDetail(id){
-			window.open('/erp/hr/hrModifyDetail?id='+id, '사원 인사카드 등록', 'width=700, height=800')
+			window.open('/erp/hr/hrModifyDetail?id='+id, '사원 인사카드 등록', 'width=740, height=800')
 		}
 		window.onbeforeunload = function(){
 			window.reload();

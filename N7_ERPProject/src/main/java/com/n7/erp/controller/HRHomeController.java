@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,6 +94,9 @@ public class HRHomeController {
 	public ModelAndView moveDeduct(HttpSession session) {
 		mav = dm.moveDeduct(session.getAttribute("cCode").toString());
 
+		if(hm.checkAuth(session.getAttribute("auth").toString())) {
+			mav.setViewName("/myInfo/myInfo");
+		}
 		return mav;
 	}
 
@@ -112,10 +116,14 @@ public class HRHomeController {
 		return mav;
 	}
 
+	@Transactional
 	@RequestMapping(value = "/hr/deptpay", method = RequestMethod.GET)
 	public ModelAndView moveDeptPay(HttpSession session) {
 		mav = dm.deptpayselect(session.getAttribute("cCode").toString());
 		mav = dm.distictdp(session.getAttribute("cCode").toString());
+		if(hm.checkAuth(session.getAttribute("auth").toString())) {
+			mav.setViewName("/myInfo/myInfo");
+		}
 		return mav;
 	}
 
@@ -176,9 +184,12 @@ public class HRHomeController {
 		return "/hr/searchpaymm";
 	}
 	@RequestMapping(value = "/hr/payinputmodify", method = RequestMethod.GET)
-	public ModelAndView detail() {
+	public ModelAndView detail(HttpSession session) {
 		String view="/hr/payinputmodify";
 		mav.setViewName(view);
+		if(hm.checkAuth(session.getAttribute("auth").toString())) {
+			mav.setViewName("/myInfo/myInfo");
+		}
 		return mav;
 	}
 	@RequestMapping(value = "/hr/paydetail", method = RequestMethod.GET)

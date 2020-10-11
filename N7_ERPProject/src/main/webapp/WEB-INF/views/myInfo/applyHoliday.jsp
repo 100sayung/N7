@@ -223,6 +223,7 @@ a {
 	float: left;
 	height: 100%;
 	width: 800px;
+<<<<<<< HEAD
 } */
 
 #description{
@@ -231,6 +232,10 @@ a {
     width:80%;
     position: absolute;
     transform:translate(220px, 150px);
+=======
+   position: absolute;
+   transform:translate(250px, 0);
+>>>>>>> master
 }
 
 
@@ -243,9 +248,15 @@ ul {
 #menu2 {
 	font-size: medium;
 	}
+	
+	
+.center{
+	margin-left: 10%;
+}
 </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -268,8 +279,36 @@ ul {
 					</ul>
 					<li id="apdownPayment">내가 받은 결재함</li>
 					<li id="acTemporary">임시저장 결재함</li>
+=======
+	<div id="header">
+		<div id="logo">
+			<h1>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
+			</h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
+		</div>
+	</div>
+	<div id="side_menu">
+		<ul id="menuList">
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
+			<div id="myInfoMenu">
+			</div>
+			<li id="showMenu1">나의 결재함</li>
+			<ul id="menu2" style="display: none;">
+				<li>내가 올린 결재함</li>
+				<ul id="smenu3" style="display: none;">
+				<li id="apupPayment">진행중</li>
+				<li id="apupBackpayment">반려</li>
+				<li id="apupFinalpayment">결재완료</li>
+>>>>>>> master
 				</ul>
 			</ul>
+<<<<<<< HEAD
         </nav>
 
         <!-- Page Content  -->
@@ -293,6 +332,18 @@ ul {
                         </div>
 	<div id="description">
 	<button id="approval" class="goodbtn">결재자등록</button>
+=======
+		</ul>
+	</div>
+	<div id="description" class="out">
+	
+		<div class="first_div_css">
+			<h1 class="deptregist_color_size">휴가 신청</h1>
+		</div>
+		
+	<div class="center">
+	<button id="approval" class="goodbtn" type="button">결재자등록</button>
+>>>>>>> master
 	<form action="/erp/hr/applyholiday" method="post" onsubmit="return checkHoliday();">
 	<table style='text-align: center;'>
 	<tr><td class='infomenu'>결재자</td><td><div id='line'></div></td></tr>
@@ -322,7 +373,7 @@ ul {
 	<input type="submit" class='infobtn' value="제출">
 	</form>
 	</div>
-
+</div>
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -434,7 +485,7 @@ ul {
 		var term = endDay - startDay;
 		term = (term/86400000)+1;
 		if($("#type").val()=="year"){
-			if(holidaycnt>=term){
+			if(holidaycnt.hc_holynum>=term){
 				return true;
 			}else{
 				alert("남은휴가보다 더 많은 일수를 신청하셨습니다.");

@@ -33,9 +33,9 @@ public interface PurchaseDao {
 
 	List<Purchase> pfSearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode);
 
-	boolean pfDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
+	boolean pfDelete(@Param("check") String check, @Param("cCode") String cCode);
 
-	boolean pcDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
+	boolean pcDelete(@Param("check") String check, @Param("cCode") String cCode);
 
 	List<Purchase> pDetail(@Param("check") String check, @Param("cCode") String cCode);
 
@@ -75,7 +75,7 @@ public interface PurchaseDao {
 
 	List<Return> rInfo(String cCode);
 
-	boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
+	//boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
 
 	List<Return> rSearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode);
 
@@ -96,6 +96,8 @@ public interface PurchaseDao {
 	List<Order> orderSearch(@Param("search") String search,@Param("choice") String choice,@Param("cCode") String cCode);
 
 	List<ApprovalDocu> orderPinfo(String cCode);
+
+	int compareCode(@Param("check") String check,@Param("cCode") String cCode);
 
 
 

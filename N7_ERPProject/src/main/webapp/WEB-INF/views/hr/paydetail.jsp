@@ -220,6 +220,7 @@ a {
 	float: left;
 	height: 100%;
 	width: 1150px;
+<<<<<<< HEAD
 } */
 
 #description{
@@ -228,6 +229,10 @@ a {
     width:80%;
     position: absolute;
     transform:translate(0, 70px);
+=======
+	position: absolute;
+   transform:translate(250px, 0);
+>>>>>>> master
 }
 
 
@@ -240,6 +245,10 @@ ul {
 }
 table{
 	border-collapse: collapse;
+}
+.dat{
+	border:2px solid #D9EDF7;
+	background-color: #ECEBEA;
 }
 </style>
 </head>
@@ -287,21 +296,21 @@ table{
 	</div>
 	<form action="searchpaymm" method="post" name="payroll">
 	<input type="hidden" value="${card.hc_ccode}" name="HP_CCODE">
-	<table id="payinputmodify" style="text-align: center; width: 1150px;height: 100px;border: 1px solid #D9EDF7" >
+	<table id="payinputmodify" style="text-align: center; width: 1150px;height: 100px;border: 2px solid #D9EDF7;background-color: #F8F7F7;" >
 		<tr>
-			<td class="font_color_paydetail">사원코드  </td>
-			<td><input id="hrcode" name="hrcode" style="border: none;" type="text" readonly="readonly" value="${card.hc_hrcode}"></td>
-			<td class="font_color_paydetail">이름  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${name}"></td>
-			<td class="font_color_paydetail">입사일  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
+			<td class="dat">사원코드  </td>
+			<td><input id="hrcode" name="hrcode" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_hrcode}"></td>
+			<td class="dat">이름  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${name}"></td>
+			<td class="dat">입사일  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">부서  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
-			<td class="font_color_paydetail">직급  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
-			<td class="font_color_paydetail">급여일  </td>
+			<td class="dat">부서  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
+			<td class="dat">직급  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_position}"></td>
+			<td class="dat">급여일  </td>
 			<td><input type="month" id="month" name="month"></td>
 		</tr>
 	</table>
@@ -332,6 +341,21 @@ table{
 			location.href="/erp/hr/searchpaymm";
 		}
 
+		var moneyCheck = function(money){
+			var length = money.length; //7
+			var div = Math.floor(length/3); //2 
+			var mod = length%3; //1
+			var num = "";
+			num += money.substr(0, mod) + "";
+			for(let i = 0 ; i < div ; i++){
+				if(mod==0&&i==0){
+					num += money.substr((mod+(i*3)), 3);
+				}else{
+					num += "," + money.substr((mod+(i*3)), 3);
+				}
+			}
+			return num;
+		}
 		//달력이 변경되면 정보 출력
 		$("#month").change(function(){
 			var month=$(this).val();
@@ -347,27 +371,27 @@ table{
 					var str='';
 					console.log(data);
 					if(data!="1"){
-						str+="<table style='width:1150px; height:300px; border:1px solid #D9EDF7;'><tr>"
-							+"<td class='font_color_paydetail'>지급내역</td>"
-							+"<td class='font_color_paydetail'>지급액</td>"
-							+"<td class='font_color_paydetail'>공제내역</td>"
-							+"<td class='font_color_paydetail'>공제액</td></tr>"
-							+"<tr><td class='font_color_paydetail'>기본급</td>"
-							+"<td>"+data.HDP_PAY+"</td>"
-							+"<td class='font_color_paydetail'>보험</td>"
-							+"<td>"+data.HP_INSURANCE+"</td></tr>"
-							+"<tr><td class='font_color_paydetail'>인센티브</td>"
-							+"<td>"+data.HP_INCEN+"</td>"
-							+"<td class='font_color_paydetail'>소득세</td>"
-							+"<td>"+data.HP_TAX+"</td></tr>"
-							+"<tr><td class='font_color_paydetail'>월차수당</td>"
-							+"<td>"+data.HP_MONTHLYBONUS+"</td>"
-							+"<td class='font_color_paydetail'>공제액계</td>"
-							+"<td>"+ince+"</td></tr>"
-							+"<td class='font_color_paydetail'>급여 계</td>"
-							+"<td>"+provide+"</td>"
-							+"<td class='font_color_paydetail'>실지급액</td>"
-							+"<td>"+data.HP_REALMONEY+"</td></tr></table>"
+						str+="<table style='width:1150px; height:300px;text-align:center;border:2px solid #D9EDF7;'><tr>"
+							+"<td  class='dat'>지급내역</td>"
+							+"<td  class='dat'>지급액</td>"
+							+"<td  class='dat'>공제내역</td>"
+							+"<td  class='dat'>공제액</td></tr>"
+							+"<tr><td  class='dat'>기본급</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HDP_PAY.toString())+"</td>"
+							+"<td  class='dat'>보험</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_INSURANCE.toString())+"</td></tr>"
+							+"<tr><td  class='dat'>인센티브</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_INCEN.toString())+"</td>"
+							+"<td  class='dat'>소득세</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_TAX.toString())+"</td></tr>"
+							+"<tr><td  class='dat'>월차수당</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_MONTHLYBONUS.toString())+"</td>"
+							+"<td  class='dat'>공제액계</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(ince.toString())+"</td></tr>"
+							+"<td  class='dat'>급여 계</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(provide.toString())+"</td>"
+							+"<td  class='dat'>실지급액</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_REALMONEY.toString())+"</td></tr></table>"
 					}else if(data=="1"){
 						str+="<img src='http://mjscholarship.com/k1/board/images/no_article.gif' width='500px' height='350px'>";
 					}

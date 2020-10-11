@@ -26,6 +26,7 @@
         <!-- jQuery Custom Scroller CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <style>
+<<<<<<< HEAD
     /*
     DEMO STYLE
 */
@@ -249,6 +250,35 @@ a {
     float:left;
     height:300%;
     width:80%;
+=======
+        #header{
+            width: 100%;
+            height: 200px;
+        }
+        #side_menu{
+            height: 100%;
+            width: 250px;
+            font-size: 20px;
+            font-weight: bolder;
+            float: left;
+            border-right: 1px solid #E6E6E6;
+        }
+        #side_menu #menuList{
+            list-style: none;
+            margin-top: 150px;
+        }
+        #side_menu #menuList li{
+            margin: 20px;
+        }
+        a{
+            text-decoration: none;
+        }
+       #description{
+    float:left;
+    height:100%;
+/* 	width:80%; */
+	width:1150px;
+>>>>>>> master
     position: absolute;
     transform:translate(0, 70px);
 }
@@ -326,21 +356,6 @@ $(document).ready(function(){
 
 });
 
-
-$(document).ready(function(){
-	$.ajax({
-		url:'/erp/Account/openTable',
-		type:'get',
-		success:function(data){
-			$("#description").html(data);
-		},
-		error:function(){
-
-		}
-	});
-
-});
-
 $("#acountting").click(function(){
 	$.ajax({
 		url:'/erp/Account/openTable',
@@ -354,7 +369,6 @@ $("#acountting").click(function(){
 	});
 
 });
-
 $("#acWriting").click(function(){
 	$.ajax({
 		url:'/erp/Account/acWritefrm',
@@ -368,7 +382,6 @@ $("#acWriting").click(function(){
 	});
 
 });
-
 $("#analysis").click(function(){
 	$.ajax({
 		url:'/erp/Account/analysis',
