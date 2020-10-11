@@ -27,7 +27,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">  
         <!-- jQuery Custom Scroller CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-	
+        <link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
+
 <style>
 /*
     DEMO STYLE
@@ -226,10 +227,10 @@ a {
 
 #description{
     float:left;
-    height:300%;
+    height:350%;
     width:80%;
     position: absolute;
-    transform:translate(0, 70px);
+    transform:translate(220px, 150px);
 }
 
 
@@ -276,10 +277,10 @@ ul {
 
            <!--  <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
 <!--                 <div class="container-fluid"> -->
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+<!--                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                         <span>Toggle Sidebar</span>
-                    </button>
+                    </button> -->
                         <ul class="nav navbar-nav ml-auto" id="menu">
                             <li class="nav-item active">
                                <a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a>
@@ -289,6 +290,7 @@ ul {
                             </li>
                             <li id="mainmenu"></li>
                         </ul>
+                        </div>
 	<div id="description">
 	<button id="approval" class="goodbtn">결재자등록</button>
 	<form action="/erp/hr/applyholiday" method="post" onsubmit="return checkHoliday();">
@@ -324,18 +326,7 @@ ul {
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
-	   $(document).ready(function () {
-	       $("#sidebar").mCustomScrollbar({
-	           theme: "minimal"
-	       });
 
-	       $('#sidebarCollapse').on('click', function () {
-	           $('#sidebar, #content').toggleClass('active');
-	           $('.collapse.in').toggleClass('in');
-	           $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-	       });
-	   }); 
-	
 	   $("#showMenu1").hover(function() {
 			$("#menu2").attr("style", "display:inline-block");
 		});
