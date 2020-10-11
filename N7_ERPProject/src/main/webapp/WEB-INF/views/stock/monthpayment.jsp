@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>N7 ERP - 월수불실적</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -107,7 +107,7 @@ width: 300px;
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>

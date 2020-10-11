@@ -45,7 +45,7 @@
 			}else if(menu=="구매관리"){
 			$("#"+menu).attr("href","/erp/Purchase/erpmain");
 			}else if(menu=="재고관리"){
-			$("#"+menu).attr("href","/erp/stock/importcheck");
+			$("#"+menu).attr("href","/erp/stock/basicstock");
 			}else if(menu=="회계관리"){
 			$("#"+menu).attr("href","/erp/Account/acerp");
 			}

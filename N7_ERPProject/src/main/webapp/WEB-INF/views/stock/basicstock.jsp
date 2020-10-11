@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>N7 ERP - 입고 등록</title>
+<title>N7 ERP - 기초재고 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -119,21 +119,16 @@ width: 300px;
 	</div>
 <center>
 	<div id="description">
-	<form id="form" action="/erp/stock/confirmimport" method="post"> 
-<input type="button" onclick="window.open('/erp/home/comInfo','PopupWin','width=500,height=600')" value="거래처 검색">
-		<input type="button" id="account" value="거래처 등록">
-		<input type="button" id="addTable" value="테이블 추가">
+	<form id="form" action="/erp/stock/confirmbasicstock" method="post"> 
 		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" >
 		<div id="contain">
 			<div class='div'>
-			  <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고</div>
+			  <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">기초재고 등록</div>
 			<div style="background-color:#F8F7F7;">
 			<input type="button" onclick="addRow(this)" value="행 추가">
-			<input type="button" onclick="deleteTable(this)" value="테이블 삭제">
 				<table>
-					<caption id="tbCation0" class="clcode"></caption>
 					<tr>
 						<td>제품 코드</td>
 						<td>수량</td>
@@ -163,10 +158,8 @@ width: 300px;
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
 		stockSideMenu();
-		var clArr;
 		var itArr;
 		var a = 1;
-		getClcode();
 		getItemCode();
 		function getItemCode() {
 			$.ajax({
@@ -189,40 +182,9 @@ width: 300px;
 					window.open('/erp/Account/comPany', 'comlist',
 							'width=1350,height=500')
 				})
-		function getClcode() {
-			$.ajax({
-				url : "/erp/stock/getclcode",
-				dataType : "json",
-				type : "get",
-				success : function(result) {
-					clArr = makeSelect(result);
-					$('#tbCation0').html(clArr);
-				},
-				error : function(err) {
-					console.log(err)
-				}
-			})
-		}
-		$('#addTable')
-				.click(
-						function() {
-							var str = '<div class="div"><div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고</div><div style="background-color:#F8F7F7;"><input type="button" onclick="addRow(this)" value="행 추가"><input type="button" onclick="deleteTable(this)" value="테이블 삭제"><table><caption>'
-								+ clArr
-								+ '</caption><tr><td>제품 코드</td><td>수량</td><td>단가</td><td>총액</td>	<td>삭제</td>	<td></td></tr>'
-								+'<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
-								+'<td><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
-								+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
-								+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr></table></div></div>';
-						$('#contain').append(str);
-						});
-		function makeSelect(data) {
-			var str = '<select><option></option>';
-			for (var i = 0; i < data.length; i++) {
-				str += '<option>' + data[i] + '</option>';
-			}
-			str += '</select>';
-			return str;
-		};
+		
+		
+		
 		function makeItSelect(data) {
 			var str = '<select  name = "ie_itcode"><option></option>';
 			for (var i = 0; i < data.length; i++) {
@@ -260,23 +222,10 @@ width: 300px;
 		}
 		
 		function addClcode(){
-			console.log( $($('.itemcode')[0]))
-			for(var i = 0; i < $('.div').length;i++){
-				if( $($('.div')[i]).children("div").children("table").children("caption").children().val()==''){
-					alert("거래처를 선택해주세요");
-					return;
-				}
-			}
 			for(var i = 0; i < $('.itemcode').length;i++){
 				if( $($('.itemcode')[i]).children("select").val()==''){
 					alert("품목코드를 선택해주세요");
 					return;
-				}
-			}
-			for(var i = 0 ;i<$('.div').length;i++){
-				var clcode = $($('.div')[i]).children("div").children("table").children("caption").children().val();
-				for(var j = 0 ;j < $($('.div')[i]).children("div").children("table").children("tbody").children().children(".ie_clcode").children().length;j++){
-					$($('.div')[i]).children("div").children("table").children("tbody").children().children(".ie_clcode").children()[j].value = clcode;
 				}
 			}
 			document.getElementById("form").submit();
