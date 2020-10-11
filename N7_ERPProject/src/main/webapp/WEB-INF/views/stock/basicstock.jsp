@@ -119,7 +119,7 @@ width: 300px;
 	</div>
 <center>
 	<div id="description">
-	<form id="form" action="/erp/stock/basicstock" method="post"> 
+	<form id="form" action="/erp/stock/confirmbasicstock" method="post"> 
 		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" >
@@ -183,26 +183,8 @@ width: 300px;
 							'width=1350,height=500')
 				})
 		
-		$('#addTable')
-				.click(
-						function() {
-							var str = '<div class="div"><div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고</div><div style="background-color:#F8F7F7;"><input type="button" onclick="addRow(this)" value="행 추가"><input type="button" onclick="deleteTable(this)" value="테이블 삭제"><table><caption>'
-								+ clArr
-								+ '</caption><tr><td>제품 코드</td><td>수량</td><td>단가</td><td>총액</td>	<td>삭제</td>	<td></td></tr>'
-								+'<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
-								+'<td><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
-								+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
-								+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr></table></div></div>';
-						$('#contain').append(str);
-						});
-		function makeSelect(data) {
-			var str = '<select><option></option>';
-			for (var i = 0; i < data.length; i++) {
-				str += '<option>' + data[i] + '</option>';
-			}
-			str += '</select>';
-			return str;
-		};
+		
+		
 		function makeItSelect(data) {
 			var str = '<select  name = "ie_itcode"><option></option>';
 			for (var i = 0; i < data.length; i++) {
