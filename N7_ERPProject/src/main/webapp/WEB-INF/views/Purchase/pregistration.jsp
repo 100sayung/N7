@@ -220,7 +220,6 @@ ${msg}
  	            	console.log(error);
  	            }
  	         });
- 		 }
        });
       
        $('#Pinfo').click(function(){

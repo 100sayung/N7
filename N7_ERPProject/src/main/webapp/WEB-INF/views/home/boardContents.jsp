@@ -21,7 +21,7 @@
 <style>
 h2{
 font-size: 26px;
-margin-top: -100px;
+margin-top:15px;
 margin-bottom: 10px;
 margin-left: auto;
 font-family: inherit;

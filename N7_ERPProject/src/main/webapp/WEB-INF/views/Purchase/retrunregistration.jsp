@@ -157,7 +157,6 @@ height: 23px;
 		            	alert("등록이 실패하였습니다.");
 		            }
 		         });
-		  	  }
 	      });
 	  
 	  $('#rInfo').click(function(){
