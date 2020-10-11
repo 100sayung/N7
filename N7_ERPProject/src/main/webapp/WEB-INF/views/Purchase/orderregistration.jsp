@@ -17,8 +17,17 @@ text-align: center;
 width: 1140px; 
 border: 1px solid silver;
 }
-.select{
-width: 160px;
+th{
+font-weight: 500;
+}
+.tr,.td{
+border: 1px solid;
+border-collapse:collapse;
+border-spacing:0;
+}
+.input{
+height: 21px;
+width: 190px;
 }
 </style>
 </head>
@@ -31,7 +40,7 @@ ${msg}
      	<br>
      	<br>
       <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">발주관리</div>
-					<select id="choice">
+					<select id="choice" style="height: 23px;">
 						<option value="o_ccode">발주번호</option>
 						<option value="o_pdocucode">구매번호</option>
 					</select>
@@ -50,7 +59,7 @@ ${msg}
                <colgroup span="3" align="center">
                </colgroup>
                <thead valign="top">
-						<tr style="height: 30px;">
+						<tr style="height:30px;">
 							<th><input type="checkbox" id="allCheck"></th>
                      		<th>발주번호</th>
                      		<th>구매번호</th>
@@ -59,8 +68,8 @@ ${msg}
 					<tbody id="tbody">
 						<tr>
 							<td><input type="checkbox" name="each_check" class="each"></td>
-                     		<td><input type="text" name="o_code" placeholder="자동생성"></td>
-                     		<td><input type="text" name="o_pdocucode"></td>
+                     		<td><input type="text" name="o_code" placeholder="자동생성" id="code" class="input" readonly></td>
+                     	    <td><input type="text" name="o_pdocucode" id="pcode" class="input"></td>
                     	</tr>
 					</tbody>
 				</table>
@@ -74,21 +83,22 @@ ${msg}
 	  <script type="text/javascript">
 
 	  $('#save').click(function(){
-         var obj = $("#a").serialize();
-         console.log(obj);
-         $.ajax({
-            url: "/erp/rest/Purchase/orderinsert",
-            type: "post",
-            data: obj,
-            success: function(data){
-               //consloe.log(data);
-            $('input').val("");
-            alert("등록이 완료되었습니다.");
-            },
-            error: function(error){
-            	console.log(error);
-            }
-         });
+			 var obj = $("#a").serialize();
+	         console.log(obj);
+	         $.ajax({
+	            url: "/erp/rest/Purchase/orderinsert",
+	            type: "post",
+	            data: obj,
+	            success: function(data){
+	               //consloe.log(data);
+	            $('input').val("");
+	            alert("등록이 완료되었습니다.");
+	            },
+	            error: function(error){
+	            	console.log(error);
+	            	alert("데이터가 없습니다.");
+	            }
+	         });    
       });
       
        $('#Oinfo').click(function(){
@@ -99,11 +109,11 @@ ${msg}
     			success: function(data){
     				console.log(data);
     				var str="";
-    				str+="<tr class='tr'><th><span>선택</span></th><th>발주번호</th><th>구매번호</th></tr>";
+    				str+="<tr class='tr'><td class='td'>선택</th><td class='td'>발주번호</td><td class='td'>구매번호</td></tr>";
     				for(var i in data.pList){
-    	    			str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].o_ccode+" name='each_check' class='each_check'></td>";
-		    			str+="<td>"+data.pList[i].o_ccode+"</td>";
-		    			str+="<td>"+data.pList[i].o_pdocucode+"</td><tr>";
+    	    			str+="<tr class='tr'><td class='td'><input type='radio' value="+data.pList[i].o_code+" name='each_check' class='each_check'></td>";
+		    			str+="<td class='td'><input class='input' type='text' value='"+data.pList[i].o_code+"' readonly></td>";
+		    			str+="<td class='td'><input class='input' type='text' value='"+data.pList[i].o_pdocucode+"' readonly></td><tr>";
     				}
     				$('#list').html(str); 
     				$("#save").attr("style","visibility: hidden");
@@ -123,12 +133,12 @@ ${msg}
       			success: function(data){
       				console.log(data);
       				 var str="";
-    				str+="<tr class='tr'><th><span>선택</span></th><th>회사코드</th><th>제품번호</th><th>날짜</th></tr>";
+    				str+="<tr class='tr'><td class='td'>선택</td><td class='td'>회사코드</td><td class='td'>제품번호</td><td class='td'>날짜</td></tr>";
     				for(var i in data.pList){
-    					str+="<tr class='tr'><td><input type='radio' value="+data.pList[i].ap_docunum+" name='each_check' class='each_check'></td>";
-    					str+="<td>"+data.pList[i].ap_ccode+"</td>";
-    					str+="<td>"+data.pList[i].ap_docunum+"</td>";
-    					str+="<td>"+data.pList[i].ap_date+"</td></tr>";
+    					str+="<tr class='tr'><td class='td'><input type='radio' value="+data.pList[i].ap_docunum+" name='each_check' class='each_check'></td>";
+    					str+="<td class='td'><input type='text' class='input' value='"+data.pList[i].ap_ccode+"' readonly></td>";
+    					str+="<td class='td'><input type='text' class='input' value='"+data.pList[i].ap_docunum+"' readonly></td>";
+    					str+="<td class='td'><input type='text' class='input' value='"+data.pList[i].ap_date+"' readonly></td></tr>";
     				}
        				$('#list').html(str);  
       				$("#save").attr("style","visibility: hidden");
