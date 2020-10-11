@@ -248,7 +248,6 @@ function shipmentDetaile(){
 };
 
 function saleInsertInfo(){
-
        var obj = $("#saleInfo").serialize();
 
        $.ajax({
