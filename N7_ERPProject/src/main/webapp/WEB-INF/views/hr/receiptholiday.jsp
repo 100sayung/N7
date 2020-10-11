@@ -47,6 +47,8 @@ a {
 	float: left;
 	width:1150px;
 	height: 100%;
+ position: absolute;
+   transform:translate(250px, 0);
 }
 
 table {
