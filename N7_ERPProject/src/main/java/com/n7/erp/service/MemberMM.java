@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.ac.ApprovalDocument;
-import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.sales.approvaldetail;
 import com.n7.erp.dao.IHrDao;
