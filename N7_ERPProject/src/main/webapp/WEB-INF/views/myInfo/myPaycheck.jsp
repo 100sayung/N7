@@ -313,7 +313,7 @@ body{
 			<td class="font_color_paydetail">사원코드  </td>
 			<td>${paycheck.hc_hrcode}</td>
 			<td class="font_color_paydetail">이름  </td>
-			<td width="265px">${paycheck.m_name}</td>
+			<td>${paycheck.m_name}</td>
 			<td class="font_color_paydetail">입사일  </td>
 			<td>${paycheck.hc_joindate}</td>
 		</tr>
@@ -418,8 +418,8 @@ body{
 				success:function(data){
 					if(data!="1"){
 					console.log(data);
-					var provide=(Number(data.HDP_PAY)+Number(data.HP_INCEN)).toString();
-					var ince=(Number(data.HP_INSURANCE)+Number(data.HP_TAX)).toString();
+					var provide=Number(data.HDP_PAY)+Number(data.HP_INCEN);
+					var ince=Number(data.HP_INSURANCE)+Number(data.HP_TAX);
 					var str='';
 						str+="<table style='border:2px solid #D9EDF7;width:1150px;height:300px; text-align: center;'><tr>"
 							+"<td class='font_color_paydetail'>지급내역</td>"
@@ -427,23 +427,22 @@ body{
 							+"<td class='font_color_paydetail'>공제내역</td>"
 							+"<td class='font_color_paydetail'>공제액</td></tr>"
 							+"<tr><td class='font_color_paydetail'>기본급</td>"
-							+"<td class='leftmoney'>"+moneyCheck(data.HDP_PAY)+"</td>"
+							+"<td class='leftmoney'>"+data.HDP_PAY+"</td>"
 							+"<td class='font_color_paydetail'>보험</td>"
-							+"<td class='leftmoney'>"+moneyCheck(data.HP_INSURANCE)+"</td></tr>"
+							+"<td class='leftmoney'>"+data.HP_INSURANCE+"</td></tr>"
 							+"<tr><td class='font_color_paydetail'>인센티브</td>"
-							+"<td class='leftmoney'>"+moneyCheck(data.HP_INCEN)+"</td>"
+							+"<td class='leftmoney'>"+data.HP_INCEN+"</td>"
 							+"<td class='font_color_paydetail'>소득세</td>"
-							+"<td class='leftmoney'>"+moneyCheck(data.HP_TAX)+"</td></tr>"
+							+"<td class='leftmoney'>"+data.HP_TAX+"</td></tr>"
 							+"<tr><td class='font_color_paydetail'>월차수당</td>"
-							+"<td class='leftmoney'>"+moneyCheck(data.HP_MONTHLYBONUS)+"</td>"
+							+"<td class='leftmoney'>"+data.HP_MONTHLYBONUS+"</td>"
 							+"<td class='font_color_paydetail'>공제액계</td>"
-							+"<td class='leftmoney'>"+moneyCheck(ince)+"</td></tr>"
+							+"<td class='leftmoney'>"+ince+"</td></tr>"
 							+"<tr><td class='font_color_paydetail'>급여 계</td>"
-							+"<td class='leftmoney'>"+moneyCheck(provide)+"</td>"
+							+"<td class='leftmoney'>"+provide+"</td>"
 							+"<td class='font_color_paydetail'>실지급액</td>"
-							+"<td class='leftmoney'>"+moneyCheck(data.HP_REALMONEY)+"</td></tr>"
-							$("#paycheckpage").html(str);
-							
+							+"<td class='leftmoney'>"+data.HP_REALMONEY+"</td></tr>"
+					$("#paycheckpage").html(str);
 					}else if(data=="1"){
 						$("#paycheckpage").html("<img src='http://mjscholarship.com/k1/board/images/no_article.gif' width='500px' height='350px'>");
 					}
@@ -454,23 +453,6 @@ body{
 				}
 			});
 		});
-		
-		var moneyCheck = function(money){
-			var length = money.length; //7
-			var div = Math.floor(length/3); //2 
-			var mod = length%3; //1
-			var num = "";
-			num += money.substr(0, mod) + "";
-			for(let i = 0 ; i < div ; i++){
-				if(mod==0&&i==0){
-					num += money.substr((mod+(i*3)), 3);
-				}else{
-					num += "," + money.substr((mod+(i*3)), 3);
-				}
-			}
-			console.log(num);
-			return num;
-		}
 	</script>
 </body>
 </html>

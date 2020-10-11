@@ -300,12 +300,13 @@ ul {
 				<td>부서 </td>
 				<td><span id="positionS"></span></td>
 				<td>직책 </td>
-				<td><input type="text" name="HDP_position" id="position"></td>
+				<td colspan="2"><input type="text" name="HDP_position" id="position"></td>
 			</tr>
-		</table><br>
-		<div align="right" style="width: 100%; padding-right:5%;">
-		<button class="infobtn">등록</button>
-		</div>
+			<tr></tr><tr></tr>
+				<td></td><td></td><td></td><td></td>
+				<td><button class="infobtn">등록</button></td>
+			</tr>
+		</table>
 	</form>
 <!-- 	<button type="button" id="deptbutton">+부서등록추가</button> -->
 	</div>

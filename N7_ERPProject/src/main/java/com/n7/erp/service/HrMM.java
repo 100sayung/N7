@@ -776,13 +776,5 @@ public class HrMM {
 		return mav;
 	}
 
-	public boolean checkAuth(String auth) {
-		if(auth.equals("1")) {
-			return false;
-		}else {
-			return true;			
-		}
-	}
-
 
 }

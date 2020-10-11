@@ -293,7 +293,6 @@ td{
 </body>
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script>
-<<<<<<< HEAD
 $(document).ready(function () {
     $("#sidebar").mCustomScrollbar({
         theme: "minimal"
@@ -307,23 +306,6 @@ $(document).ready(function () {
 }); 
 
 
-=======
-var moneyCheck = function(money){
-	var length = money.length; //7
-	var div = Math.floor(length/3); //2 
-	var mod = length%3; //1
-	var num = "";
-	num += money.substr(0, mod) + "";
-	for(let i = 0 ; i < div ; i++){
-		if(mod==0&&i==0){
-			num += money.substr((mod+(i*3)), 3);
-		}else{
-			num += "," + money.substr((mod+(i*3)), 3);
-		}
-	}
-	return num;
-}
->>>>>>> master
 $("#showMenu1").hover(function() {
 	$("#smallMenu1").attr("style", "display:inline-block");
 }, function() {
@@ -341,12 +323,12 @@ $("#showMenu3").hover(function() {
 })
 
 	$(function(){
-		var str='<tr class="infomenu" style="text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
+		var str='<tr style="background-color: lightgray; text-align: center;"><td width="150px">공제 명</td><td width="150px">현재 공제금액</td><td width="150px">수정 금액</td><td width="150px"></td></tr>';
 		var deduct=${deduct};
 		console.log(deduct);
 		for(var i=0;i<deduct.length;i++){
 			str+="<tr align='center'><td>"+deduct[i].HDD_NAME+"</td>"
-				 +"<td id='123"+deduct[i].HDD_NAME+"'>"+moneyCheck(deduct[i].HDD_AMOUNT.toString())+"</td>"
+				 +"<td id='123"+deduct[i].HDD_NAME+"'>"+deduct[i].HDD_AMOUNT+"</td>"
 				 +"<td><input type='text' id='deduct_"+deduct[i].HDD_NAME+"'></td>"
 				 +"<td><button type='button' onclick='modifydeduction(\""+deduct[i].HDD_NAME+"\")'>수정</button></td></tr>";
 		}
@@ -365,7 +347,7 @@ $("#showMenu3").hover(function() {
 			method : 'post',
 			data : {deduct : deduct,denum : denum},
 			success : function(data) {
-				$("#123"+deduct).html(moneyCheck(data.toString()));
+				$("#123"+deduct).html(data);
 				$("#deduct_"+deduct).val('');
 				console.log(data);
 			},

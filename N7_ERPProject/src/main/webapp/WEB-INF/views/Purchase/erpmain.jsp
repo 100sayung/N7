@@ -105,7 +105,6 @@
     padding: 10px;
 }
 
-<<<<<<< HEAD
 #sidebar ul li a {
     padding: 10px;
     /* font-size: 1.1em; */
@@ -119,15 +118,6 @@
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
-=======
-#side_menu #menuList{
-	list-style: none;
- 	margin-top: 150px;
-}
-
-#side_menu #menuList li{
- 	margin: 20px;
->>>>>>> master
 }
 
 
@@ -261,7 +251,6 @@ ul {
 </style>
 </head>
 <body>
-<<<<<<< HEAD
  <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
@@ -289,29 +278,6 @@ ul {
                 <li><a id="oregistration">발주관리</a></li>
             </ul>
         </nav>
-=======
-    <div id="header">
-        <div id="logo">
-            <h1><a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a></h1>
-    </div>
-		<div id="menu">
-			<ul>
-				<li ><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
-				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
-				</ul>
-				<ul id="mainmenu"></ul>
-		</div>
-    </div>
-    <div id="side_menu">
-        <ul id="menuList">
-            <li><a id="pregistration">구매관리</a></li>
-            <li><a id="rregistration">반품 관리</a></li>
-            <li><a id="oregistration">발주 관리</a></li>
-        </ul>
-    </div>
-    <center>
-    <div id="description">
->>>>>>> master
 
         <!-- Page Content  -->
         <div id="content" style="float:left;">

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.n7.erp.bean.Company;
 import com.n7.erp.bean.ConsultingBoard;
@@ -159,8 +158,8 @@ public class HomeController {
 	}
 
 	@PostMapping(value = "/access")
-	public ModelAndView access(Member mb, HttpSession session, RedirectAttributes rttr) {
-		mav = mm.access(mb, session, rttr);
+	public ModelAndView access(Member mb, HttpSession session) {
+		mav = mm.access(mb, session);
 		return mav;
 	}
 
@@ -176,7 +175,7 @@ public class HomeController {
 		return "/home/home";
 	}
 
-	@GetMapping(value = "/logout")
+	@PostMapping(value = "/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
@@ -193,6 +192,7 @@ public class HomeController {
 		return mav;
 	}
 
+	// 野껊슣�뻻疫뀐옙 占쎈읂占쎌뵠筌욑옙嚥∽옙 占쎌뵠占쎈짗
 	@RequestMapping(value = "/home/writeFrm", method = RequestMethod.GET)
 	public String write() {
 		return "/home/writeFrm";

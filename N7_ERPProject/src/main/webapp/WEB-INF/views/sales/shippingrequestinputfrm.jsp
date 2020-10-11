@@ -109,7 +109,6 @@ border: 1px solid;
     </div>
 
     <script type="text/javascript">
-<<<<<<< HEAD
     
 	  $(document).on("keyup",".bs_quantity",function(){
 			 var cnt =$(this).parent().prev().children().val();
@@ -118,15 +117,6 @@ border: 1px solid;
 			 var price=cnt*unit;
 			 $(this).parent().next().children().val(price);
 		  });
-=======
-    $(document).on("keyup",".bs_quantity",function(){
-        var cnt =$(this).parent().prev().children().val();
-        console.log(cnt);
-        var unit = $(this).val();
-        var price=cnt*unit;
-        $(this).parent().next().children().val(price);
-     });
->>>>>>> master
     
     function setChildValue(data) {
  	   console.log(data)

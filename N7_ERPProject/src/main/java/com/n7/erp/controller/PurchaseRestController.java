@@ -57,13 +57,13 @@ public class PurchaseRestController {
 	}
 
 	@PostMapping(value = "/Purchase/pfdelete", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Purchase>> pfdelete(String check, HttpSession session) {
-		System.out.println("check="+check);
-		Map<String, List<Purchase>> pMap= pm.pfdelete(check, session);
+	public Map<String, List<Purchase>> pfdelete(String check_list, HttpSession session) {
+		System.out.println("checkList="+check_list);
+		Map<String, List<Purchase>> pMap= pm.pfdelete(check_list, session);
 		return pMap;
 	}
 	
-	//결재
+	 //결재
 	@PostMapping(value = "/Purchase/addApproval",produces="application/json;charset=utf-8" )
 	public  Map<String, List<approvalLine>> addApprovale(String CNT, String ARR) {
 		int cnt = Integer.parseInt(CNT);
@@ -90,20 +90,14 @@ public class PurchaseRestController {
 		mav= pm.purchaseApproval(request, pa, session);
 		return mav;
 	}
-	
-	@PostMapping(value = "/Purchase/approvalcheck", produces= "application/json;charest=utf-8" )
-	public Map<String, List<Purchase>> approvalcheck(String check, HttpSession session) {
-		Map<String, List<Purchase>> pMap= pm.approvalcheck(check, session);
-		return pMap;
-	}
 
-	// 내가올린 결재안 상세보기
 	@GetMapping(value = "/Purchase/getMyInfo",produces="application/json;charset=utf-8" )
 	public  Map<String, List<approvalLine>> getMyInfo(HttpSession session) {
 	     Map<String, List<approvalLine>> mMap=pm.getMyInfo(session);
 	     return mMap;
 	}
-	
+
+	// 내가올린 결재안 상세보기
 	 @GetMapping(value = "/Purchase/pRequest", produces = "application/json;charset=utf-8")
 	 public ModelAndView pRequest(String p_documentcode, HttpSession session) {
 		mav = pm.pRequest(p_documentcode, session);
@@ -141,12 +135,12 @@ public class PurchaseRestController {
 		return rMap;
 	}
 
-//	@PostMapping(value = "/Purchase/rdelete", produces= "application/json;charest=utf-8" )
-//	public Map<String, List<Return>> rdelete(String check_list, HttpSession session) {
-//		System.out.println("check_list:"+check_list);
-//		Map<String, List<Return>> rMap= pm.rDelete(check_list, session);
-//		return rMap;
-//	}
+	@PostMapping(value = "/Purchase/rdelete", produces= "application/json;charest=utf-8" )
+	public Map<String, List<Return>> rdelete(String check_list, HttpSession session) {
+		System.out.println("check_list:"+check_list);
+		Map<String, List<Return>> rMap= pm.rDelete(check_list, session);
+		return rMap;
+	}
 
 	@PostMapping(value = "/Purchase/retrunsearch", produces= "application/json;charest=utf-8" )
 	public Map<String, List<Return>> retrunsearch(String search, String choice, HttpSession session) {
@@ -199,6 +193,7 @@ public class PurchaseRestController {
 		Map<String, List<ApprovalDocu>> pMap= pm.orderpinfo(session);
 		return pMap;
 	}
-	
+
+
 
 }
