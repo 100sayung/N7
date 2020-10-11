@@ -44,7 +44,9 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 80%;
+   width:1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {

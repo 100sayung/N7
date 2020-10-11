@@ -128,6 +128,22 @@ $("#showMenu3").hover(function() {
 })
 
 
+	var moneyCheck = function(money){
+		var length = money.length; //7
+		var div = Math.floor(length/3); //2 
+		var mod = length%3; //1
+		var num = "";
+		num += money.substr(0, mod) + "";
+		for(let i = 0 ; i < div ; i++){
+			if(mod==0&&i==0){
+				num += money.substr((mod+(i*3)), 3);
+			}else{
+				num += "," + money.substr((mod+(i*3)), 3);
+			}
+		}
+		return num;
+	}
+	
 	//현재 부서와 직급 갯수 대로 반복 출력
 	$(function() {
 		var dept = ${dept};
@@ -137,7 +153,7 @@ $("#showMenu3").hover(function() {
 			console.log(dept[i].HDP_num+dept[i].HDP_pay);
 			$("#id").append("<tr align='center'><td width='200px'>"+dept[i].HDP_dept+"</td>"
 			+"<td width='200px'>"+dept[i].HDP_position+"</td>"
-			+"<td id='"+dept[i].HDP_num+"' width='200px'>"+dept[i].HDP_pay+"</td>"
+			+"<td id='"+dept[i].HDP_num+"' width='200px'>"+moneyCheck(dept[i].HDP_pay.toString())+"</td>"
 			+"<td><input id='modifypay_"+dept[i].HDP_num+"'></td>"
 			+"<td><button type='button' class='infobtn' id='"+dept[i].HDP_num+dept[i].HDP_pay+"'  onclick='dify("+dept[i].HDP_num+")'>수정</button></td>"
 			+"<td><button type='button' class='infobtn' onclick='erase("+dept[i].HDP_num+")'>삭제</button></td></tr>");
@@ -246,7 +262,7 @@ $("#showMenu3").hover(function() {
 				for(var i=0;i<data.length;i++){
 					str+="<tr align='center'><td width='200px'>"+data[i].HDP_dept+"</td>"
 					+"<td width='200px'>"+data[i].HDP_position+"</td>"
-					+"<td id='"+data[i].HDP_num+"' width='200px'>"+data[i].HDP_pay+"</td>"
+					+"<td id='"+data[i].HDP_num+"' width='200px'>"+moneyCheck(data[i].HDP_pay.toString())+"</td>"
 					+"<td><input id	='modifypay_"+data[i].HDP_num+"'></td>"
 					+"<td><button type='button' class='infobtn' id='"+data[i].HDP_num+data[i].HDP_pay+"' onclick='dify("+data[i].HDP_num+")' class='mopay'>수정</button></td>"
 					+"<td><button type='button' class='infobtn' onclick='erase("+data[i].HDP_num+")' class='mopay'>삭제</button></td></tr>";

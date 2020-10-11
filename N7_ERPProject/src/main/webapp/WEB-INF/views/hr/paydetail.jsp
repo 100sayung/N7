@@ -126,6 +126,21 @@ table{
 			location.href="/erp/hr/searchpaymm";
 		}
 
+		var moneyCheck = function(money){
+			var length = money.length; //7
+			var div = Math.floor(length/3); //2 
+			var mod = length%3; //1
+			var num = "";
+			num += money.substr(0, mod) + "";
+			for(let i = 0 ; i < div ; i++){
+				if(mod==0&&i==0){
+					num += money.substr((mod+(i*3)), 3);
+				}else{
+					num += "," + money.substr((mod+(i*3)), 3);
+				}
+			}
+			return num;
+		}
 		//달력이 변경되면 정보 출력
 		$("#month").change(function(){
 			var month=$(this).val();
@@ -147,21 +162,21 @@ table{
 							+"<td  class='dat'>공제내역</td>"
 							+"<td  class='dat'>공제액</td></tr>"
 							+"<tr><td  class='dat'>기본급</td>"
-							+"<td style='background-color:F8F7F7;'>"+data.HDP_PAY+"</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HDP_PAY.toString())+"</td>"
 							+"<td  class='dat'>보험</td>"
-							+"<td style='background-color:F8F7F7;'>"+data.HP_INSURANCE+"</td></tr>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_INSURANCE.toString())+"</td></tr>"
 							+"<tr><td  class='dat'>인센티브</td>"
-							+"<td style='background-color:F8F7F7;'>"+data.HP_INCEN+"</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_INCEN.toString())+"</td>"
 							+"<td  class='dat'>소득세</td>"
-							+"<td style='background-color:F8F7F7;'>"+data.HP_TAX+"</td></tr>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_TAX.toString())+"</td></tr>"
 							+"<tr><td  class='dat'>월차수당</td>"
-							+"<td style='background-color:F8F7F7;'>"+data.HP_MONTHLYBONUS+"</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_MONTHLYBONUS.toString())+"</td>"
 							+"<td  class='dat'>공제액계</td>"
-							+"<td style='background-color:F8F7F7;'>"+ince+"</td></tr>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(ince.toString())+"</td></tr>"
 							+"<td  class='dat'>급여 계</td>"
-							+"<td style='background-color:F8F7F7;'>"+provide+"</td>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(provide.toString())+"</td>"
 							+"<td  class='dat'>실지급액</td>"
-							+"<td style='background-color:F8F7F7;'>"+data.HP_REALMONEY+"</td></tr></table>"
+							+"<td style='background-color:F8F7F7;'>"+moneyCheck(data.HP_REALMONEY.toString())+"</td></tr></table>"
 					}else if(data=="1"){
 						str+="<img src='http://mjscholarship.com/k1/board/images/no_article.gif' width='500px' height='350px'>";
 					}
