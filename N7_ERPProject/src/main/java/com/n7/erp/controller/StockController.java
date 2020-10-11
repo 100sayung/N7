@@ -80,7 +80,7 @@ public class StockController {
 	public String basicStock() {
 		return "stock/basicstock";
 	}
-	@RequestMapping(value = "/confirmbasicstock", method = RequestMethod.GET)
+	@RequestMapping(value = "/confirmbasicstock", method = RequestMethod.POST)
 	public ModelAndView confirmBasicStock(HttpServletRequest request) {
 		return stmm.confirmBasicStock(request);
 	}
