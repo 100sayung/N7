@@ -108,7 +108,7 @@ margin-top: 15px;
 			<th>댓글</th><td id="response">${board.cb_reply}</td>
 			</tr>
 			<tr>
-			<th>비밀번호</th><td><input type="password" id="password" placeholder="삭제 시  입력해 주세요." style="text-align:center; height: 30px;"/></td>
+			<th>비밀번호</th><td><input type="password" id="password" placeholder="삭제 시  입력해 주세요." style="text-align:center; height: 30px; border: 1px silver white;"/></td>
 			</tr>
 			<c:choose>
 			<c:when test="${id eq 'admin'}">
