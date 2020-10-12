@@ -202,7 +202,42 @@ overflow: auto;
 		$("#comnum").val(comnum);
 	};
 
-
+	$("#getshipment").click(function(){
+		$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>출고상세보기</button>")
+		$("#plusorminus").html("");
+		$.ajax({
+			url:'/erp/rest/Account/getshipment',
+			type:'get',
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				
+				$("#testTable").html("");
+				var str='';
+					str += "<thead><tr><td>체크</td><td>품목</td><td>거래처명</td><td>거래처코드</td><td>합계(원)</td></tr></thead>";
+				for(var i in data.sList){
+				var price=0;
+				var qty=0;
+				price= Number(data.sList[i].ie_price);
+				qty = Math.abs(Number(data.sList[i].ie_qty));
+				var price2= (price/qty);
+				console.log(price2);
+				console.log(price);
+				console.log(qty);
+					str += "<tbody id='tBody'><tr><td><input type='checkbox' class='check' name='checknum' value="+data.sList[i].ie_seqnum+"></td>";
+					str += "<td><input class='data' type='text' name='s_pkind' value="+data.sList[i].it_pname+"></td>";
+					str += "<td><input class='data' type='text' name='cl_name' value="+data.sList[i].cl_name+"></td>";
+					str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].cl_code+"></td>";
+					str += "<td><input class='data' type='text' name='s_total'value="+data.sList[i].ie_price+"></td></tr></tbody>";
+				$("#testTable").html(str);
+				}
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+		
+	});
 
 
 function saledetaile() {
