@@ -227,7 +227,7 @@ public class MemberMM {
 		mDao.deleteMember(cCode);
 		mDao.deleteCompany(cCode);
 
-		return new Gson().toJson("�꽦怨�");
+		return new Gson().toJson("성공");
 	}
 
 	public String checkGrade(HttpSession session) {
