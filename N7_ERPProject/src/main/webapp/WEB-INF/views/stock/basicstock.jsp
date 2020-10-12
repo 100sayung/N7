@@ -135,7 +135,6 @@ width: 300px;
 						<td>단가</td>
 						<td>총액</td>
 						<td>삭제</td>
-						<td></td>
 					</tr>
 					<tr>
 						<td class="itemcode" id='itemcode'></td>
@@ -143,7 +142,6 @@ width: 300px;
 						<td class="ie_unit"><input type="number" min="0" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
 						<td class='ie_price'><input min="0" type='number' name='ie_price' required="required"></td>
 						<td><input class='deleteBox' type="checkbox"></td>
-						<td class="ie_clcode"><input type="hidden" name="ie_clcode"></td>
 					</tr>
 				</table>
 				</div>
@@ -223,7 +221,7 @@ width: 300px;
 			var str = '<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input onkeyup="multiPrice(this)" min="0" onchange="multiPrice(this)" type="number" name="ie_qty" required="required"></td>'
 				+'<td class="ie_unit"><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
 				+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
-				+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr>';
+				+'<td><input class="deleteBox" type="checkbox"></td></tr>';
 				$(id).siblings("table").append(str);
 		}
 		

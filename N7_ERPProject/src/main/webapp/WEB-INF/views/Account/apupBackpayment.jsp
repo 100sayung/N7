@@ -175,19 +175,19 @@ td {
 										window.open(
 												'/erp/rest/Account/apRequest?j_docunum='
 														+ check, 'apRequest',
-												'width=1400, height=700');
+										  'width=1500, height=650');
 									} else if (check.indexOf("AP") != -1) { //영민
 										console.log(check);
 										window.open(
 												'/erp/Account/apSalesnum?s_num='
 														+ check, 'apSalesinfo',
-												'width=1400, heigth=700');
+										'width=1400, height=400');
 									} else if (check.indexOf("AS") != -1) { //영민
 										console.log(check);
 										window.open(
 												'/erp/Account/apSalesnum?s_num='
 														+ check, 'asSalesinfo',
-												'width=1400, heigth=300');
+										'width=1400, height=400');
 									} else if (check.indexOf("P") != -1) { //예은
 										window.open(
 												'/erp/rest/Purchase/pRequest?p_documentcode='
