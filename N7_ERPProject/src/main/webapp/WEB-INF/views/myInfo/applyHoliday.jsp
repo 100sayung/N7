@@ -43,7 +43,9 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -55,6 +57,11 @@ ul {
 #menu2 {
 	font-size: medium;
 	}
+	
+	
+.center{
+	margin-left: 10%;
+}
 </style>
 </head>
 <body>
@@ -89,7 +96,13 @@ ul {
 			</ul>
 		</ul>
 	</div>
-	<div id="description">
+	<div id="description" class="out">
+	
+		<div class="first_div_css">
+			<h1 class="deptregist_color_size">휴가 신청</h1>
+		</div>
+		
+	<div class="center">
 	<button id="approval" class="goodbtn" type="button">결재자등록</button>
 	<form action="/erp/hr/applyholiday" method="post" onsubmit="return checkHoliday();">
 	<table style='text-align: center;'>
@@ -120,7 +133,7 @@ ul {
 	<input type="submit" class='infobtn' value="제출">
 	</form>
 	</div>
-
+</div>
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>

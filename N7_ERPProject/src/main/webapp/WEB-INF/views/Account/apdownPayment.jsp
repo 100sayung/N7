@@ -34,7 +34,7 @@ table, tr, td {
 td {
 	padding: 5px;
 	font-size: medium;
-	width: 58px;
+/* 	width: 58px; */
 	height: 10px;
 }
 

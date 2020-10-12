@@ -44,6 +44,8 @@ a {
 	float: left;
 	height: 100%;
 	width: 1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -53,7 +55,10 @@ table {
 	border: 1px solid #D9EDF7;
 	border-collapse: collapse;
 }
-
+.dat{
+	border:2px solid #D9EDF7;
+	background-color: #ECEBEA;
+}
 </style>
 </head>
 <body>
@@ -87,60 +92,60 @@ table {
 	</div>
 	<form action="searchpaymm" method="post" name="payroll" onsubmit="return checkpayinputmodify()">
 	<input type="hidden" value="${card.hc_ccode}" name="HC_CCODE">
-	<table id="payinputmodify" style="text-align: center; width: 1150px; height: 100px;" >
+	<table id="payinputmodify" style="text-align: center; width: 1150px; height: 100px;background-color: #F8F7F7;" >
 		<tr>
-			<td class="font_color_paydetail">직원코드  </td>
-			<td><input style="border: none;" type="text" name="HC_HRCODE" readonly="readonly" value="${card.hc_hrcode}"></td>
-			<td class="font_color_paydetail">이름  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${name}"></td>
-			<td class="font_color_paydetail">입사일  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
+			<td class="dat">직원코드  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" name="HC_HRCODE" readonly="readonly" value="${card.hc_hrcode}"></td>
+			<td class="dat">이름  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${name}"></td>
+			<td class="dat">입사일  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">부서  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
-			<td class="font_color_paydetail">직급  </td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${card.hc_position}"></td>
-			<td class="font_color_paydetail">급여일  </td>
+			<td class="dat">부서  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_dept}"></td>
+			<td class="dat">직급  </td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_position}"></td>
+			<td class="dat">급여일  </td>
 			<td><input id="HP_PAYDATE" type="month" name="HP_PAYDATE"></td>
 		</tr>
 	</table>
-	<table style="margin-top: 30px; width: 1150px; text-align: center; height: 300px;" >
+	<table style="margin-top: 30px; width: 1150px; text-align: center; height: 300px;background-color: #F8F7F7;" >
 		<tr>
-			<td class="font_color_paydetail">지급내역</td>
-			<td class="font_color_paydetail">지급 액</td>
-			<td class="font_color_paydetail">공제내역</td>
-			<td class="font_color_paydetail">공제액</td>
+			<td class="dat">지급내역</td>
+			<td class="dat">지급 액</td>
+			<td class="dat">공제내역</td>
+			<td class="dat">공제액</td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">기본급</td>
-			<td><input style="border: none;" type="text" readonly="readonly" value="${pay.HDP_PAY}"></td>
-			<td class="font_color_paydetail">${deduct[0].HDD_NAME}</td>
+			<td class="dat">기본급</td>
+			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${pay.HDP_PAY}"></td>
+			<td class="dat">${deduct[0].HDD_NAME}</td>
 			<td><input id="insurance" autocomplete="off" type="text" name="HP_INSURANCE" required="required"
 						 value="${deduct[0].HDD_AMOUNT}" min="0"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">인센티브</td>
+			<td class="dat">인센티브</td>
 			<td><input id="incen" autocomplete="off" type="text" required="required" value="0"
 					 name="HP_INCEN" min="0"></td>
-			<td class="font_color_paydetail">${deduct[1].HDD_NAME}</td>
+			<td class="dat">${deduct[1].HDD_NAME}</td>
 			<td><input id="tax" autocomplete="off" type="text" name="HP_TAX" required="required"
 			 value="${deduct[1].HDD_AMOUNT}" min="0"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">연차수당</td>
+			<td class="dat">연차수당</td>
 			<td id="monthlybonustd">
 			<input type="checkbox" id="checkbonus"> 연차수당 지급
 			<input type="hidden" id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;" type="text" readonly="readonly" value="0">
 			</td>
-			<td class="font_color_paydetail">공제액계</td>
-			<td><input id="deductsum" style="border: none;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}"></td>
+			<td class="dat">공제액계</td>
+			<td><input id="deductsum" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${pay.HDD_AMOUNT}"></td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">지급액 계</td>
-			<td><input id="provide" style="border: none;" type="text" readonly="readonly" value="0"></td>
-			<td class="font_color_paydetail">실수령액</td>
-			<td><input id="receive" style="border: none;" type="text" readonly="readonly" value="0" name="HP_REALMONEY"></td>
+			<td class="dat">지급액 계</td>
+			<td><input id="provide" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="0"></td>
+			<td class="dat">실수령액</td>
+			<td><input id="receive" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="0" name="HP_REALMONEY"></td>
 		</tr>
 	</table>
 		<div align="center" style="margin-top: 30px;">
@@ -151,6 +156,23 @@ table {
 	</div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
+	var moneyCheck = function(money){
+		money = money.toString();
+		var length = money.length; //7
+		var div = Math.floor(length/3); //2 
+		var mod = length%3; //1
+		var num = "";
+		num += money.substr(0, mod) + "";
+		for(let i = 0 ; i < div ; i++){
+			if(mod==0&&i==0){
+				num += money.substr((mod+(i*3)), 3);
+			}else{
+				num += "," + money.substr((mod+(i*3)), 3);
+			}
+		}
+		return num;
+	}
+	
 		//input창 클릭스 해당 창 문자 전체 선택
 		$("#incen").click(function(){
 			$(this).select();
@@ -161,65 +183,82 @@ table {
 		$("#tax").click(function(){
 			$(this).select();
 		});
-		$("#checkbonus").click(function(){
-			console.log("왜 안 돼?");
+		$("#checkbonus").click(function(){	
 			if($("#checkbonus").is(":checked")){
 				if(confirm("연차수당을 지급하시겠습니까?")){
 					var input = (${pay.HDP_PAY}/200 *8)
-					console.log(input);
 					input = input*${holynum};
-					console.log(input);
 					let str = "";
-					str = '<input id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;" type="text" readonly="readonly" value="'+input+'">';
+					str = '<input id="monthlybonus" name="HP_MONTHLYBONUS" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="'+moneyCheck(input)+'">';
 					console.log("확인");
 					$("#monthlybonustd").html(str);
-					let provide = $("#provide").val();
-					provide = (provide*1) + (input*1);
-					$("#provide").val(provide);
-					var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val())+($("#monthlybonus").val()*1);
-					$("#receive").val(power);
+					let provided = provide;
+					provided = (provided*1) + (input*1);
+					monthlybonuss = (input*1);
+					$("#provide").val(moneyCheck(provided));
+					provide = provided;
+		//			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val())+($("#monthlybonus").val()*1);
+					var power = provided - deductsum;
+					$("#receive").val(moneyCheck(power));
+					receive = power;
 				}else{
 					alert("취소되었습니다.");
 				}
 			}
 		});
 		//금액 실시간 변경 
+		var provide;
+		var receive;
+		var deductsum;
+		var monthlybonuss = 0;
 		
 		$("#incen").change(function(){
 			console.log($("#incen").val());
-			var total=Number($(this).val())+${pay.HDP_PAY}+($("#monthlybonus").val()*1);
-			$("#provide").val(total);
+			var total=Number($(this).val())+${pay.HDP_PAY}+monthlybonuss;
+			$("#provide").val(moneyCheck(total));
+			provide = total;
 
-			var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val())+($("#monthlybonus").val()*1);
-			$("#receive").val(power);
+			var power=provide-deductsum;
+			$("#receive").val(moneyCheck(power));
+			receive = power;
 		});
 		$("#insurance").change(function(){
 			var sum=Number($(this).val())+Number($("#tax").val());
 			console.log(sum);
-			$("#deductsum").val(sum);
+			$("#deductsum").val(moneyCheck(sum));
+			deductsum = sum;
 
-			var power=$("#provide").val()-Number($("#tax").val())-Number($("#insurance").val());
-			$("#receive").val(power);
+	//		var power=$("#provide").val()-Number($("#tax").val())-Number($("#insurance").val());
+			var power = provide - sum;
+			$("#receive").val(moneyCheck(power));
+			receive = power;
 		});
 		$("#tax").change(function(){
 			var sul=Number($(this).val())+Number($("#insurance").val());
 			console.log(sul);
-			$("#deductsum").val(sul);
+			$("#deductsum").val(moneyCheck(sul));
+			deductsum = sul;
 
-			var power=$("#provide").val()-Number($("#tax").val())-Number($("#insurance").val());
-			$("#receive").val(power);
+		//	var power=$("#provide").val()-Number($("#tax").val())-Number($("#insurance").val());
+			var power = provide - sul;
+			$("#receive").val(moneyCheck(power));
+			receive = power;
 		});
 		//맨처음 화면 나올때 총 수령액
 		$(document).ready(function(){
-			$("#provide").val("${pay.HDP_PAY}"*1);
+			$("#provide").val(moneyCheck("${pay.HDP_PAY}"*1));
+			provide = "${pay.HDP_PAY}"*1;
 			var sul=Number($(this).val())+Number($("#insurance").val())+Number($("#tax").val());
 			console.log(sul);
-			$("#deductsum").val(sul);
+			$("#deductsum").val(moneyCheck(sul));
+			deductsum = sul;
 
 	//		var power=Number($("#incen").val())+${pay.HDP_PAY}-Number($("#tax").val())-Number($("#insurance").val());
-			var power = $("#provide").val()-$("#deductsum").val();
-			$("#receive").val(power);
+	//		var power = $("#provide").val()-$("#deductsum").val();
+			var power = provide - sul;
+			$("#receive").val(moneyCheck(power));
 			console.log(power);
+			receive = power;
 		});
 
 		$("#showMenu1").hover(function() {

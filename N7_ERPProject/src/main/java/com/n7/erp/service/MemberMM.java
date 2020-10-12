@@ -14,11 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.sales.approvaldetail;
 import com.n7.erp.dao.IHrDao;
@@ -38,14 +40,23 @@ public class MemberMM {
 	@Autowired
 	JavaMailSender mailSender;
 
-	public ModelAndView access(Member mb, HttpSession session) {
+	public ModelAndView access(Member mb, HttpSession session, RedirectAttributes rttr) {
 		System.out.println(mb.getM_id());
 		if (mDao.access(mb)) {
 			view = "redirect:/";
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
 			if (hDao.haveHrCode(mb.getM_id())) {
-				session.setAttribute("hrCode", hDao.getHrCodeFromID(mb.getM_id()));
+				HR_Card hrCard = hDao.getHrCardDetail(mb.getM_id());
+				if(hrCard.getHc_work().equals("2")) {
+					session.invalidate();
+					rttr.addFlashAttribute("msg", "2");
+					mav.setViewName("redirect:/");
+					return mav;
+				}
+				session.setAttribute("hrCode", hrCard.getHc_hrcode());
+				String Auth = hDao.getAuthority(hrCard.getHc_dept(), hrCard.getHc_ccode());
+				session.setAttribute("auth", Auth);
 				System.out.println(hDao.getHrCodeFromID(mb.getM_id()));
 			}
 		} else {
@@ -324,7 +335,7 @@ public class MemberMM {
 			sb.append("<li><a href='/erp/stock/addimportlist'>입고 확정</a></li>");
 			sb.append("<li><a href='/erp/stock/addexportlist'>출고 확정</a></li>");
 		}
-		
+
 		return sb.toString();
 	}
 

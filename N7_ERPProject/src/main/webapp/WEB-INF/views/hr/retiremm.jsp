@@ -43,6 +43,8 @@ a {
 	float: left;
 	height: 100%;
 	width: 1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -96,7 +98,7 @@ input,select{
 		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
 		<div>
 			<table style="width: 100%;border-collapse: collapse;text-align: center;border: #D9EDF7"border="1">
-				<tr style="background-color: #B2BEB5">
+				<tr class="infomenu">
 					<td width="150px">이름</td>
 					<td width="300px">부서</td>
 					<td width="300px">직책</td>

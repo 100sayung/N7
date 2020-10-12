@@ -55,7 +55,7 @@ border: 1px solid;
                <th>회사코드</th>
                <th><input type="text" name="bs_ccode" value="${cCode}"></th>
                <th>수주번호</th>
-               <th><input id="bonum" type="text" name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=550,height=700')">검색</button></th>
+               <th><input id="bonum" type="text" name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=700,height=700')">검색</button></th>
             </tr>
          </thead>
       </table>
@@ -85,12 +85,12 @@ border: 1px solid;
                     <tr>
                         <td><input type="radio" name="each_check" class="each"></td>
                         <td><input type="date" name="bs_basedate" required></td>
-                        <td style="width:200px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
+                        <td style="width:250px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                         <td class = "cl"></td>
                         <td class = "pn"></td> <!-- <td><input type="text" name="bs_proname" required></td> -->
-                        <td><input type="number" name="bs_unit"  required></td>
-                        <td><input onclick="changeItcode(this)" type="number" name="bs_quantity" required></td>
-                        <td><input type="number" name="bs_price" required></td>
+                        <td><input type="number" name="bs_unit" class="bs_unit" required></td>
+                        <td><input onclick="changeItcode(this)" min="1" type="number" name="bs_quantity" class="bs_quantity" required></td>
+                        <td><input type="number" name="bs_price" class="bs_price" required></td>
                     </tr>
                 </tbody>
             </table>
@@ -111,6 +111,14 @@ border: 1px solid;
     </div>
 
     <script type="text/javascript">
+    $(document).on("keyup",".bs_quantity",function(){
+        var cnt =$(this).parent().prev().children().val();
+        console.log(cnt);
+        var unit = $(this).val();
+        var price=cnt*unit;
+        $(this).parent().next().children().val(price);
+     });
+    
     function setChildValue(data) {
  	   console.log(data)
  	   for(var i in data.aList){

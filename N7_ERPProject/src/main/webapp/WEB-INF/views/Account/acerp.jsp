@@ -21,11 +21,11 @@
             float: left;
             border-right: 1px solid #E6E6E6;
         }
-        #side_menu, #menuList{
+        #side_menu #menuList{
             list-style: none;
             margin-top: 150px;
         }
-        #side_menu, #menuList, li{
+        #side_menu #menuList li{
             margin: 20px;
         }
         a{
@@ -34,7 +34,8 @@
        #description{
     float:left;
     height:100%;
-    width:1150px;
+/* 	width:80%; */
+	width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -82,21 +83,6 @@ $(document).ready(function(){
 
 });
 
-
-$(document).ready(function(){
-	$.ajax({
-		url:'/erp/Account/openTable',
-		type:'get',
-		success:function(data){
-			$("#description").html(data);
-		},
-		error:function(){
-
-		}
-	});
-
-});
-
 $("#acountting").click(function(){
 	$.ajax({
 		url:'/erp/Account/openTable',
@@ -110,7 +96,6 @@ $("#acountting").click(function(){
 	});
 
 });
-
 $("#acWriting").click(function(){
 	$.ajax({
 		url:'/erp/Account/acWritefrm',
@@ -124,7 +109,6 @@ $("#acWriting").click(function(){
 	});
 
 });
-
 $("#analysis").click(function(){
 	$.ajax({
 		url:'/erp/Account/analysis',

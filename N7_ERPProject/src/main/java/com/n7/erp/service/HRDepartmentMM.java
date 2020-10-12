@@ -246,8 +246,16 @@ public class HRDepartmentMM {
 	
 	@Transactional
 	public ModelAndView payroll(ViewPay pay) {
-		String view = null;
+		String view = "";
 		String selectpay = Ddao.findpay(pay);
+		String[] re=pay.getHP_REALMONEY().split(",");
+		String realmoney="";
+		for(int i=0;i<re.length;i++) {
+			realmoney+= re[i];
+		}
+		pay.setHP_REALMONEY(realmoney);
+		System.out.println(re.toString());
+		System.out.println(pay.getHP_REALMONEY());
 		if (selectpay == null) {
 			if (Ddao.insertpay(pay)) {
 	//			int bonus = Integer.parseInt(pay.getHP_MONTHLYBONUS());
@@ -287,11 +295,14 @@ public class HRDepartmentMM {
 		return null;
 	}
 
-	public String findcheckpayid(String checkpayid) {
+	public String findcheckpayid(String checkpayid, String cCode) {
+		HashMap<String, String> hMap=new HashMap<String, String>();
+		hMap.put("cCode",cCode);
+		hMap.put("checkpayid",checkpayid);
 		StringBuilder sb=new StringBuilder();
 		if(checkpayid!=null) {
-			ArrayList<ViewPay> ViewList=Ddao.checkingidname(checkpayid);
-				sb.append("<table id='wages'><tr id='id_back'><td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan='2'></td></tr>");
+			ArrayList<ViewPay> ViewList=Ddao.checkingidname(hMap);
+				sb.append("<table id='wages'><tr class='infomenu'><td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan='2'></td></tr>");
 			for(int i=0;i<ViewList.size();i++) {
 				int result=ViewList.get(i).getHDP_PAY()-ViewList.get(i).getHDD_AMOUNT();
 				sb.append("<tr id='\""+ViewList.get(i).getHC_ID()+"\"'>");

@@ -24,12 +24,12 @@
 	border-right: 1px solid #E6E6E6;
 }
 
-#side_menu,#menuList{
+#side_menu #menuList{
 	list-style: none;
  	margin-top: 150px;
 }
 
-#side_menu,#menuList,li{
+#side_menu #menuList li{
  	margin: 20px;
 }
 
@@ -62,9 +62,9 @@ a{
     </div>
     <div id="side_menu">
         <ul id="menuList">
-            <li><a  id="pregistration">구매관리</a></li>
-            <li><a  id="rregistration">반품 관리</a></li>
-            <li><a  id="oregistration">발주 관리</a></li>
+            <li><a id="pregistration">구매관리</a></li>
+            <li><a id="rregistration">반품 관리</a></li>
+            <li><a id="oregistration">발주 관리</a></li>
         </ul>
     </div>
     <center>

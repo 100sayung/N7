@@ -79,7 +79,7 @@ font-size: 30px;
 				</c:when>
 				<c:when test="${id!=null and id ne 'manager'}">
 				<li class="current_page_item"><a href="#" onClick='window.open("/erp/main", "ERP START", "width=1700, height=955, status=no, toolbar=no, menubar=no, scrollbar = no, resizable=no"); return false;'>ERP시작</a></li>
-				<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
+				<li><a href="/erp/logout">LOGOUT</a></li>
 				</c:when>
 				</c:choose> 
          </ul>
@@ -197,6 +197,14 @@ font-size: 30px;
 	<div id="desc"></div> --%>
 	<script>
 
+	  $(function(){
+		  console.log("${msg}");
+	      var responseMessage = "<c:out value="${msg}" />";
+	      if (responseMessage != ""){
+         	 alert("퇴사 상태의 계정은 이용하실 수 없습니다.");
+ 	     }
+	  });
+	  
 	$(document).ready(function(){
 		if('${id}'!=""){
 			$.ajax({
