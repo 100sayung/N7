@@ -147,7 +147,7 @@ width:1400px;
 
 
         $('#orderitemfrm').click(function(){
-           var str="";
+           var str="";           
 
            $.ajax({
               url:'/erp/rest/sales/orderitem',
@@ -275,7 +275,17 @@ width:1400px;
 				$("#subb").attr("style","visibility: hidden");
 		});
 
+ 		
+/*  		$(document).ready(function() {
+ 			var str = "       str         ";
+ 			str = str.trim();
 
+ 			String.prototype.trim = function(){
+ 				  return this.replace(/(^\s*)|(\s*$)/gi, "");
+ 				}
+ 		}); */
+
+ 			
 </script>
 </body>
 </html>
