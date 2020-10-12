@@ -11,9 +11,15 @@
 #center{
 text-align:center;
 }
+input{
+text-align: center;
+}
 .select{
 width: 140px;
 height: 22px;
+}
+.txt{
+width: 154px;
 }
 /* html, body {
 text-align:center;
@@ -51,14 +57,14 @@ border: 1px solid;
         <button id="searchh">검색</button>
         <form id="shippingrequestinput">
         <div border="1" style="width:1175px; height:60px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:250px;">
+        <table style="margin-left:165px;">
          <thead>
             <tr>
-               <th>출하번호</th>
-               <th><input type="text" name="bs_docunum" placeholder="자동생성" readonly></th>
-               <th>회사코드</th>
-               <th><input type="text" name="bs_ccode" value="${cCode}" readonly></th>
-               <th>수주번호</th>
+               <th>출하번호&nbsp;</th>
+               <th><input type="text" name="bs_docunum" placeholder="자동생성" readonly>&emsp;</th>
+               <th>회사코드&nbsp;</th>
+               <th><input type="text" name="bs_ccode" value="${cCode}" readonly>&emsp;</th>
+               <th>수주번호&nbsp;</th>
                <th><input id="bonum" type="text" readonly name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=700,height=700')" >검색</button></th>
             </tr>
          </thead>
@@ -100,7 +106,7 @@ border: 1px solid;
             </table>
             </div>
             <br>
-            <div>
+            <div style="margin-right: 180px;">
               <!-- <button type="button" class="addList" value="추가">추가</button> -->
               <button type="button" id="deleteCheck" value="삭제">삭제</button>
               <button type="button" id="sub">저장</button>
@@ -156,13 +162,13 @@ border: 1px solid;
          //거래처랑 제품명도!
          for(var i in data.sList){
             str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_docunum+"></td>";
-            str+="<td><input type='text' value="+data.sList[i].bs_bonum+"></td>";
-            str+="<td><input type='text' value="+data.sList[i].bs_clcode+"></td>";
-            str+="<td><input type='text' value="+data.sList[i].bs_itcode+"></td>";
-            str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-            str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-            str+="<td><input onclick='changeItcode(this)' type='number' value="+data.sList[i].bs_quantity+"></td>";
-            str+="<td><input type='number' value="+data.sList[i].bs_price+"></td></tr>";
+            str+="<td><input class='txt' type='text' value='"+data.sList[i].bs_bonum+"'></td>";
+            str+="<td><input class='txt' type='text' value='"+data.sList[i].bs_clcode+"'></td>";
+            str+="<td><input class='txt' type='text' value='"+data.sList[i].bs_itcode+"'></td>";
+            str+="<td><input class='txt' type='text' value='"+data.sList[i].bs_proname+"'></td>";
+            str+="<td><input class='txt' type='number' value='"+data.sList[i].bs_unit+"'></td>";
+            str+="<td><input class='txt' onclick='changeItcode(this)' type='number' value='"+data.sList[i].bs_quantity+"'></td>";
+            str+="<td><input class='txt' type='number' value='"+data.sList[i].bs_price+"'></td></tr>";
          }
             $('#tBody').html(str);
       },
@@ -308,14 +314,14 @@ border: 1px solid;
                      var str="";
                       if(data.sList!=""){
                      for(var i in data.sList){
-                        str+="<tr class='tr'><td><input type='radio' name='each_check' value="+data.sList[i].bs_docunum+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bs_docunum+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bs_clcode+"></td>";
+                        str+="<tr class='tr'><td><input type='radio' name='each_check' value='"+data.sList[i].bs_docunum+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bs_docunum+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bs_clcode+"'></td>";
                         str+="<td>"+select+"</td>";
-                        str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bs_proname+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bs_unit+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bs_quantity+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bs_price+"'></td>";
                         }
                          $('#tBody').html(str);
                       }else{
@@ -350,14 +356,14 @@ border: 1px solid;
                         str+="<tr><th><input type='radio' id='allCheck'></th><th>수주번호</th><th>거래처회사코드</th><th>품목코드</th><th>제품명</th><th>판매단가</th><th>수량</th><th>판매금액</th></tr>";
 
                      for(var i in data.sList){
-                        str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_docunum+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bs_bonum+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bs_clcode+"></td>";
+                        str+="<tr><td><input type='radio' name='each_check' value='"+data.sList[i].bs_docunum+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bs_bonum+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bs_clcode+"'></td>";
                         str+="<td>"+select+"</td>";
-                        str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bs_proname+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bs_unit+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bs_quantity+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bs_price+"'></td>";
                       }
                          $('#tBody').html(str);
                       }
