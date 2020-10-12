@@ -139,8 +139,8 @@ width: 300px;
 					</tr>
 					<tr>
 						<td class="itemcode" id='itemcode'></td>
-						<td class='ie_qty'><input min="0" type='number' name='ie_qty' required="required"></td>
-						<td><input type="number" min="0" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
+						<td class='ie_qty'><input min="0" onkeyup="multiPrice(this)" onchange='multiPrice(this)' type='number' name='ie_qty' required="required"></td>
+						<td class="ie_unit"><input type="number" min="0" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
 						<td class='ie_price'><input min="0" type='number' name='ie_price' required="required"></td>
 						<td><input class='deleteBox' type="checkbox"></td>
 						<td class="ie_clcode"><input type="hidden" name="ie_clcode"></td>
@@ -200,6 +200,12 @@ width: 300px;
 			$(id).parent().siblings('.ie_price').children().val(Number(ie_price)*Number(ie_qty));
 			
 		}
+		function multiPrice(id) {
+			var ie_qty = id.value;
+			var ie_price = $(id).parent().siblings('.ie_unit ').children().val();
+			$(id).parent().siblings('.ie_price').children().val(Number(ie_price)*Number(ie_qty));
+			
+		}
 		$('#deleteBtn').click(function(){
 			console.log($('.deleteBox')[0].checked)
 			for(var i = 0 ; i < $('.deleteBox').length;i++){
@@ -214,8 +220,8 @@ width: 300px;
 			$(id).parent().parent().remove();
 		}
 		function addRow(id) {
-			var str = '<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
-				+'<td><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
+			var str = '<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input onkeyup="multiPrice(this)" min="0" onchange="multiPrice(this)" type="number" name="ie_qty" required="required"></td>'
+				+'<td class="ie_unit"><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
 				+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
 				+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr>';
 				$(id).siblings("table").append(str);
