@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+	<link rel="shortcut icon" href="/erp/img/favicon.ico"/>
 <title>N7 ERP - 기초재고 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
