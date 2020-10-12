@@ -155,20 +155,32 @@ button {
             <form id="form" name="form" action="join" method="post" enctype="multipart/form-data" onsubmit="return sum();">
                 <div class="row" style="margin-right:-25px;">
 
-                    <!-- id -->
-                    <div class="input-group col-lg-10 mb-4">
+      <!--               id
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                          <p class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted"></i>
                          </p>
                         </div>
-                    <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;" required></div> <!-- oninput="dupleID()" -->
+                    <div><input id="id" type="text" name="m_id" placeholder="ID를 입력해주세요" class="form-control bg-white border-left-0 border-md" style="width:300px;" required></div> oninput="dupleID()"
                          &nbsp;&nbsp;<button type="button" onclick="dupleID()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">중복체크</button>
                         <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="dupleID"></div>
+                    </div> -->
+                    
+                     <div class="input-group col-lg-12 mb-4">
+                         <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted" style='font-size:15px'></i>
+                            </span>
+                        </div>
+                      <input id="id" type="text" name="m_id" style="width:300px;" name="m_ccode" placeholder="ID를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                       &nbsp;&nbsp;<button type="button" onclick="dupleID()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">중복체크</button>
+                      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="dupleID"></div>
                     </div>
+                    
 
                     <!-- passward -->
-                    <div class="input-group col-lg-10 mb-4">
+                    <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
                              <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class='fas fa-lock' style="font-size:15px color:gray;"></i>
@@ -181,13 +193,13 @@ button {
                     <div class="input-group col-lg-12 mb-4">
                          <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class="fa fa-envelope text-muted"></i>
+                                <i class='fas fa-pencil-alt' style="font-size:15px"></i>
                             </span>
                         </div>
                         <input id="name" style="width:200px;" type="text" name="m_name" placeholder="이름을 입력해주세요" class="form-control bg-white border-left-0 border-md" required>
                     </div>
 
-                    <!-- companycode -->
+<!--                     companycode
                     <div class="input-group col-lg-12 mb-4">
                          <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
@@ -196,12 +208,23 @@ button {
                         </div>                         
 
 
-                     <!-- <font style="color:gray;">회사코드가 없으신분은</font><font style="font-weight : bold;">N7</font><font style="color:gray;">을 입력해주세요.</font><br/> -->
+                     <font style="color:gray;">회사코드가 없으신분은</font><font style="font-weight : bold;">N7</font><font style="color:gray;">을 입력해주세요.</font><br/>
                           <br>
                           <br>
-                    <div><input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required></div>
+                    <div><input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" required></div>
                         &nbsp;&nbsp;<button type="button" onclick="dupleCCode()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">코드확인</button>
                         <br><span id="dupleCCode"></span>
+                    </div> -->
+                    
+                     <div class="input-group col-lg-12 mb-4">
+                         <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class='fas fa-address-card' style='font-size:15px'></i>
+                            </span>
+                        </div>
+                      <input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                      &nbsp;&nbsp;<button type="button" onclick="dupleCCode()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">코드확인</button>
+                      <br><span id="dupleCCode"></span>
                     </div>
 
 
@@ -243,23 +266,24 @@ button {
                             </p>
                         </div> 
 
-					    <input type="text" name="addrDetail" id="addrDetail" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" / required>
+					    <input type="text" name="addrDetail" id="addrDetail" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" required>
 					    <input id="roadAddrPart2" type="text" name="roadAddrPart2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
                     </div>
+                    
 
 
                     <!-- 주민번호 -->
-                    <div class="input-group col-lg-6 mb-4">
+             	<div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class='fas fa-address-card' style='font-size:15px'></i>
                             </span>
                         </div> 
                         <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3" required>
-                    </div>
-
+                    </div> 
+                    
                     <!-- phone-->
-                    <div class="input-group col-lg-6 mb-4">
+                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-phone-square text-muted"></i>
@@ -269,7 +293,7 @@ button {
                     </div>
 
                    <!--file-->
-                    <div class="input-group col-lg-6 mb-4">
+                    <div class="input-group col-lg-12 mb-4">
                          <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class='fas fa-images' style='font-size:15px'></i>
