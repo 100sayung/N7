@@ -37,13 +37,13 @@ text-align: center;
                <th>회사코드</th>
                <th><input type="text" name="ba_ccode" value="${cCode}" readonly></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="ba_clcode" id="clcode" readonly>&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>&nbsp;</th>
+               <th><input type="text" name="ba_clcode" id="clcode" readonly>&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>&nbsp;&nbsp;</th>
                <th>사원코드</th>
                <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th> <%-- value="${hrCode}" readonly --%>
             </tr>
             <tr>
                <th>사업단위</th>
-               <th><select name="ba_unit" style="width:150px;">
+               <th><select name="ba_unit" style="width:150px; height:23px;">
                    <option value="본사">본사</option>
                    <option value="지사">지사</option></select></th>
                <th>영업기간 시작</th>

@@ -15,6 +15,9 @@ width:1300px;
 .txt{
 width: 154px;
 }
+.num{
+width: 125px;
+}
 input{
 text-align: center;
 }
@@ -67,7 +70,7 @@ border: 1px solid ;
             </tr>
             <tr>
                <th>사업단위&emsp;</th>
-               <th><select name="bo_unit" style="width:150px; margin-right: 15px;">
+               <th><select name="bo_unit" style="width:150px; margin-right: 15px; height: 23px;">
                    <option value="본사">본사</option>
                    <option value="지사">지사</option></select>&emsp;</th>
                <th>담당자</th>
@@ -168,12 +171,12 @@ border: 1px solid ;
                  for(var i in data.sList){
                     str+="<tr><td><input type='radio' name='each_check' value='"+data.sList[i].bo_num+"'></td>";
                     str+="<td><input class='txt' type='text' readonly value='"+data.sList[i].bo_num+"'></td>";
-                    str+="<td><input class='txt' type='text' readonly value='"+data.sList[i].bo_pronum+"'></td>";
+                    str+="<td><input class='pro' type='text' style='width: 242px' readonly value='"+data.sList[i].bo_pronum+"'></td>";
                     str+="<td><input class='txt' type='text' readonly value='"+data.sList[i].bo_orderdate+"'></td>";
                     str+="<td><input class='txt' type='text' readonly value='"+data.sList[i].bo_duedate+"'></td>";
-                    str+="<td><input class='txt' type='text' readonly value='"+data.sList[i].bo_proquantity+"'></td>";
-                    str+="<td><input class='txt' type='text' readonly value='"+data.sList[i].bo_prosalesamount+"'></td>";
-                    str+="<td><input class='txt' type='text' readonly value='"+data.sList[i].bo_orderbudget+"'></td>";
+                    str+="<td><input class='num' type='text' readonly value='"+data.sList[i].bo_proquantity+"'></td>";
+                    str+="<td><input class='num' type='text' readonly value='"+data.sList[i].bo_prosalesamount+"'></td>";
+                    str+="<td><input class='num' type='text' readonly value='"+data.sList[i].bo_orderbudget+"'></td>";
                  }
                     $('#tBody').html(str);
               },
