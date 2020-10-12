@@ -89,8 +89,8 @@ overflow: auto;
 			<option value="employee">입력자</option>
 		</select>
 		<button id="search2" type="button">검색</button>
-		매출<input onclick="getList('AS')" type='radio' name="sale" value='AS'>
-		매입<input onclick="getList('AP')" type='radio' name="sale" value='AP'></span>
+		<label>매출<input onclick="getList('AS')" type='radio' name="sale" value='AS'></label>
+		<label>매입<input onclick="getList('AP')" type='radio' name="sale" value='AP'></label></span>
 
 		<form id="saleInfo">
 		<div id="comInfo"

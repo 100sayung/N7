@@ -198,7 +198,7 @@ $("#approval").click(
 	                           'width=1500, height=600');
 		                  }else if(check.indexOf("H") != -1){ //인사
 		                	  console.log(check);
-		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
+		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1500, heigth=700');
 		                  }else{
 		                	  window.open(
 		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
