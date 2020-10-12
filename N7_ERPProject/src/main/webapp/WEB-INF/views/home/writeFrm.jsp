@@ -54,6 +54,10 @@ width: 800px;
 #footer {
 margin-right: 20%;
 } 
+body{
+text-align:center;
+position: relative;
+}
 </style>
 </head>
 <body>
