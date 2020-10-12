@@ -184,10 +184,10 @@ $("#approval").click(
 		                        'width=1500, height=650');
 		                  }else if(check.indexOf("AP") != -1){ //영민
 		                	  console.log(check);
-		                      window.open('/erp/rest/Account/apUpSalesnum?s_num=' + check, 'apUpSalesinfo', 'width=1400, heigth=300');
+		                      window.open('/erp/rest/Account/apUpSalesnum?s_num=' + check, 'apUpSalesinfo', 'width=1400, heigth=700');
 		                  }else if(check.indexOf("AS") != -1){ //영민
 		                	  console.log(check);
-		                      window.open('/erp/rest/Account/asUpSalesnum?s_num=' + check, 'asUpSalesinfo', 'width=1400, heigth=300');
+		                      window.open('/erp/rest/Account/asUpSalesnum?s_num=' + check, 'asUpSalesinfo', 'width=1400, heigth=700');
 		                  }else if(check.indexOf("P") != -1){ //예은
 		                     window.open(
 		                        '/erp/rest/Purchase/pRequest?p_documentcode='+ check, 'pRequest',
