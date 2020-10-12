@@ -52,8 +52,6 @@ a {
 	float: left;
 	height: 100%;
 	width: 800px;
-	 position: absolute;
-   transform:translate(250px, 0);
 }
 
 ul {
@@ -69,9 +67,6 @@ table{
 }
 td{
 	width:200px;
-}
-#calendar{
-	
 }
 </style>
 </head>
