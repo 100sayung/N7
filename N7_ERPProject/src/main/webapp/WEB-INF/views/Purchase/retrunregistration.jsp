@@ -204,7 +204,7 @@ height: 23px;
   	  				  console.log(data);
   					  var str="";
   					  str+="<tr class='tr'><td class='td'>선택</td><td class='td'>반품번호</td><td class='td'>입고번호</td><td class='td'>상품명</td><td class='td'>상품코드</td><td class='td'>담당자</td><td class='td'>거래처</td><td class='td'>반품일</td><td class='td'>수량</td><td class='td'>단가</td><td class='td'>합계</td><td class='td'>적요</td></tr>";
-  				 	  for(var i in data.rList){
+  					  for(var i in data.rList){
   				 		 str+="<tr class='tr'><td class='td'><input type='radio' value='"+data.rList[i].r_documentcode+"' name='each_check' class='each_check'></td>";
   		  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_documentcode+"' readonly></td>"
   			  				 str+="<td class='td'><input type='text' value='"+data.rList[i].r_ieseqnum+"' readonly></td>";
@@ -235,14 +235,23 @@ height: 23px;
 				  success: function(data){
 					  console.log(data);
 					  var str="";
-					  str+="<tr class='tr' style='text-align: center;'><td class='td'>입고번호</td><td class='td'>품목코드</td><td class='td'>거래처</td><td class='td'>날짜</td><td class='td'>수량</td><td class='td'>가격</td></tr>";
+					  str+="<tr class='tr' style='text-align: center;'><td class='td'>입고번호</td><td class='td'>품목코드</td><td class='td' id='r_clcode'>거래처</td><td class='td'>날짜</td><td class='td'>수량</td><td class='td'>가격</td></tr>";
 					  for(var i in data.sList){
-					  	str+="<tr class='tr' style='text-align: center;'><td class='td'>"+data.sList[i].ie_seqnum+"</td>";
-						str+="<td class='td'><input type='text' value='"+data.sList[i].ie_itcode+"' readonly></td>";
-						str+="<td class='td'><input type='text' value='"+data.sList[i].ie_clcode+"'readonly></td>";
-					  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_date+"' readonly></td>";
-					  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_qty+"' readonly></td>";
-					  	str+="<td class='td'><input tpye='text' value='"+data.sList[i].ie_price+"' readonly></td><tr>";
+						  if(data.sList[i].ie_clcode==null){
+								str+="<tr class='tr' style='text-align: center;'><td class='td'>"+data.sList[i].ie_seqnum+"</td>";
+								str+="<td class='td'><input type='text' value='"+data.sList[i].ie_itcode+"' readonly></td>";
+								str+="<td class='td'><input type='text' readonly></td>";
+							  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_date+"' readonly></td>";
+							  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_qty+"' readonly></td>";
+							  	str+="<td class='td'><input tpye='text' value='"+data.sList[i].ie_price+"' readonly></td><tr>";
+						  }else{
+							  	str+="<tr class='tr' style='text-align: center;'><td class='td'>"+data.sList[i].ie_seqnum+"</td>";
+								str+="<td class='td'><input type='text' value='"+data.sList[i].ie_itcode+"' readonly></td>";
+								str+="<td class='td'><input type='text' value='"+data.sList[i].ie_clcode+"'readonly></td>";
+							  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_date+"' readonly></td>";
+							  	str+="<td class='td'><input type='text' value='"+data.sList[i].ie_qty+"' readonly></td>";
+							  	str+="<td class='td'><input tpye='text' value='"+data.sList[i].ie_price+"' readonly></td><tr>";
+						  }
 					  }
 					  $('#list').html(str);
 				  },

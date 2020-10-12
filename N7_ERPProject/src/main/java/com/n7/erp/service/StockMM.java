@@ -124,7 +124,7 @@ public class StockMM {
 				: it_ccode + "-" + formData.getFirst("it_code");
 		it.setIt_code(it_code);
 		return it.setIt_pname(formData.getFirst("it_pname"))
-				.setIt_pstock(Integer.parseInt(formData.getFirst("it_pstock"))).setIt_size(formData.getFirst("it_size"))
+				.setIt_size(formData.getFirst("it_size"))
 				.setIt_unit(formData.getFirst("it_unit"));
 	}
 
@@ -527,7 +527,7 @@ public class StockMM {
 		for (int i = 0; i < ipList.size(); i++) {
 			ItemCode it = itDao.getPname(session.getAttribute("cCode").toString(), ipList.get(i).getBs_itcode());
 			ipList.get(i).setIt_ccode(it.getIt_ccode()).setIt_code(it.getIt_code()).setIt_pname(it.getIt_pname())
-					.setIt_pstock(it.getIt_pstock()).setIt_size(it.getIt_size()).setIt_unit(it.getIt_unit())
+					.setIt_size(it.getIt_size()).setIt_unit(it.getIt_unit())
 					.setBs_ccode(session.getAttribute("cCode").toString());
 		}
 		if (ipList.size() != 0) {
@@ -664,7 +664,7 @@ public class StockMM {
 				bs.setBs_ccode(session.getAttribute("cCode").toString());
 				ItemCode it = itDao.getPnnnname(bs);
 				bsList.get(i).setIt_ccode(it.getIt_ccode()).setIt_code(it.getIt_code()).setIt_pname(it.getIt_pname())
-						.setIt_pstock(it.getIt_pstock()).setIt_size(it.getIt_size()).setIt_unit(it.getIt_unit());
+						.setIt_size(it.getIt_size()).setIt_unit(it.getIt_unit());
 			}
 			return ResponseEntity.ok(new Gson().toJson(makeExportCheckHtml(bsList)));
 		}
