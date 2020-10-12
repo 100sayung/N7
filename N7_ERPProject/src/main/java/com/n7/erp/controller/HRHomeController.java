@@ -239,7 +239,7 @@ public class HRHomeController {
 	}
 	@RequestMapping(value = "hr/approvalLine", method = RequestMethod.GET)
 	public ModelAndView approvalLine(HttpSession session) {
-		mav = am.approvalLine(session);
+		mav = hm.approvalLine(session);
 		return mav;
 	}
 

@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+	<link rel="shortcut icon" href="/erp/img/favicon.ico"/>
 <title>N7 ERP - 기초재고 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -135,7 +136,6 @@ width: 300px;
 						<td>단가</td>
 						<td>총액</td>
 						<td>삭제</td>
-						<td></td>
 					</tr>
 					<tr>
 						<td class="itemcode" id='itemcode'></td>
@@ -143,7 +143,6 @@ width: 300px;
 						<td class="ie_unit"><input type="number" min="0" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
 						<td class='ie_price'><input min="0" type='number' name='ie_price' required="required"></td>
 						<td><input class='deleteBox' type="checkbox"></td>
-						<td class="ie_clcode"><input type="hidden" name="ie_clcode"></td>
 					</tr>
 				</table>
 				</div>
@@ -223,7 +222,7 @@ width: 300px;
 			var str = '<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input onkeyup="multiPrice(this)" min="0" onchange="multiPrice(this)" type="number" name="ie_qty" required="required"></td>'
 				+'<td class="ie_unit"><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
 				+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
-				+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr>';
+				+'<td><input class="deleteBox" type="checkbox"></td></tr>';
 				$(id).siblings("table").append(str);
 		}
 		

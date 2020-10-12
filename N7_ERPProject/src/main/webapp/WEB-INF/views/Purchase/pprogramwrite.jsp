@@ -121,9 +121,9 @@ text-align: center;
 	            console.log(data);
 	            var str = "";
 	            for ( var i in data.sList) {
-	                 str +="<input type='text' name='p_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
+	                 str +="<input type='text' name='p_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true' readonly>";
 	               str +=data.sList[i].hc_position+"/";
-	               str +="<input style='width:50px;' type='text' name='p_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+	               str +="<input style='width:50px;' type='text' name='p_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"' readonly>&nbsp;&nbsp;||&nbsp;&nbsp;";
 	            }
 	            console.log(str)
 	            $("#line").html(str);

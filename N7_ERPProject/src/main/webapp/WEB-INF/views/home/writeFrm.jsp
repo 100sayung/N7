@@ -123,11 +123,9 @@ position: relative;
 	</div>
 </body>
 <script>
-CKEDITOR.replace('contents');
 $("#submit").click(function(){
 	   var obj = $("#boardData").serialize();
-
-	    $.ajax({
+	   $.ajax({
 	      url:'/erp/rest/home/writeBoard',
 	      type:'post',
 	      data:obj,

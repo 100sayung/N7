@@ -34,7 +34,7 @@ text-align:center;
                <th>회사코드</th>
                <th><input type="text" name="ba_ccode" value="${cCode}" readonly></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="ba_clcode" id="clcode">&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+               <th><input type="text" name="ba_clcode" id="clcode" readonly>&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
                <th>사원코드</th>
                <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th> <%-- value="${hrCode}" readonly --%>
             </tr>
