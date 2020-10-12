@@ -13,6 +13,7 @@
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/erp/ckeditor/ckeditor.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
 <link href="img/favicon.png" rel="icon" />
@@ -47,7 +48,7 @@ display: block;
 }
 #container2 {
 margin-top: 50px;
-margin-left: 24%;
+margin-left: 30%;
 width: 800px;
 } 
 #footer {
@@ -96,7 +97,7 @@ width: 800px;
                   <td>
                      <div class='input-group'>
                         <span class='input-group-addon' style="width: 81px;">제목</span> 
-                        <input type='text' name='cb_title' class='form-control' style="width: 720px;" placeholder="내용을 입력해주세요." />
+                        <input type='text' name='cb_title' class='form-control' style="width: 562px;" placeholder="내용을 입력해주세요." />
                      </div>
                   </td>
                </tr>
@@ -104,7 +105,7 @@ width: 800px;
                   <th>
                      <div class='input-group'>
                         <span class='input-group-addon' style="width: 81px;">내용</span>
-                        <textarea rows="15" cols="95" id="write" name="cb_contents" class="form-control" required="required" placeholder="내용을 입력해주세요."></textarea>
+                        <textarea rows="15" cols="105" id="contents" name="cb_contents" class="form-control" required="required" placeholder="내용을 입력해주세요."></textarea>
                      </div>
                   </th>
                </tr>
@@ -122,6 +123,7 @@ width: 800px;
 	</div>
 </body>
 <script>
+CKEDITOR.replace('contents');
 $("#submit").click(function(){
 	   var obj = $("#boardData").serialize();
 
