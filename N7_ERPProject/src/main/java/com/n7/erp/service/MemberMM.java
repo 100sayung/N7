@@ -46,8 +46,9 @@ public class MemberMM {
 			view = "redirect:/";
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
-			if (hDao.haveHrCode(mb.getM_id())) {
+			if (hDao.haveHrCode2(mb.getM_id())) {
 				HR_Card hrCard = hDao.getHrCardDetail(mb.getM_id());
+				System.out.println(hrCard.getHc_work());
 				if(hrCard.getHc_work().equals("2")) {
 					session.invalidate();
 					rttr.addFlashAttribute("msg", "2");
