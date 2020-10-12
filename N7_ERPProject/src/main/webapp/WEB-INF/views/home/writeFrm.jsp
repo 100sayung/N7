@@ -52,9 +52,11 @@ margin-left: 30%;
 width: 800px;
 } 
 #footer {
-   float: right;
-   padding: 1em;
-   margin-right: -15px;
+margin-right: 20%;
+} 
+body{
+text-align:center;
+position: relative;
 }
 </style>
 </head>
@@ -69,28 +71,26 @@ width: 800px;
    </div>
 	<div id="description" class="out" style="height: 700px;">
 	<div style='width: 100%; height: 60px; text-align:center; background-color: #3D6B9B;'>
-		<a href="/erp/home/erpboard" style='color: white; line-height: 2.0; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>ERP상담게시판</a>
+		<a href="/erp/home/erpboard" style='color: white; line-height: 2.0; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>ERP 상담게시판 글쓰기</a>
 	</div>
       <div id="container2" style="text-align: center;">
 	<form id="boardData">
-		<h1 id="h1">글쓰기</h1>
 		<table>
                <tr>
                   <td colspan="2">
-                  	<input type="radio" class="writeclass" id="check1" checked="checked" name="cb_type" value="a" />&nbsp;공개글&nbsp;
-                    <input type="radio" class="writeclass" id="check2" name="cb_type" value="b" />&nbsp;비밀글<br><br>
+                  	<label><input type="radio" class="writeclass" id="check1" checked="checked" name="cb_type" value="a" />&nbsp;공개글&nbsp;</label>
+                    <label><input type="radio" class="writeclass" id="check2" name="cb_type" value="b" />&nbsp;비밀글</label><br><br>
                   </td>
                </tr>
                <tr>
                   <td>
                      <div class='input-group'>
                         <span class='input-group-addon' style="width: 81px;">작성자</span>
-                        <input type="text" name="cb_writer" class="form-control" placeholder="작성자" required="required" />
-                     </div>
-                     <div class='input-group'>
+                        <input type="text" name="cb_writer" class="form-control" placeholder="작성자" required="required" style="width:240px;"/>
                         <span class='input-group-addon' style="width: 81px;">비밀번호</span> 
-                        <input type="password" name="cb_password" class="form-control" placeholder="비밀번호" required="required" />
+                        <input type="password" name="cb_password" class="form-control" placeholder="비밀번호" required="required" style="width:240px;" />
                      </div>
+<!--                      <div class='input-group'></div> -->
                   </td>
                </tr>
                <tr>
