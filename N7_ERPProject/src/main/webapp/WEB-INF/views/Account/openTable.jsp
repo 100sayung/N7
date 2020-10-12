@@ -203,11 +203,13 @@ overflow: auto;
 	};
 
 	$("#getshipment").click(function(){
-		$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>출고상세보기</button>출하<input type='radio' name='num' onclick=changenum(1)>입고<input type='radio' name='num' onclick=changenum(2)>");
+		$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>출고상세보기</button> 출고<input type='radio' class='num' name='num' onclick='changenum(1)'>입고<input type='radio' class='num' name='num' onclick='changenum(2)'>");
 		$("#plusorminus").html("");
 	});
-	function changenum(num){
-		
+	
+		//$(document).on("change",".num",function(){
+			function changenum(num){
+			
 		$.ajax({
 			url:'/erp/rest/Account/getshipment',
 			type:'post',
@@ -231,7 +233,7 @@ overflow: auto;
 					str += "<tbody id='tBody'><tr><td><input type='checkbox' class='check' name='checknum' value="+data.sList[i].ie_seqnum+"></td>";
 					str += "<td><input class='data' type='text' name='s_pkind' value="+data.sList[i].it_pname+"></td>";
 					str += "<td><input class='data' type='text' name='cl_name' value="+data.sList[i].cl_name+"></td>";
-					str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].cl_code+"></td>";
+					str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].ie_clcode+"></td>";
 					str += "<td><input class='data' type='text' name='s_total'value="+data.sList[i].ie_price+"></td></tr></tbody>";
 				$("#testTable").html(str);
 				}
@@ -240,7 +242,7 @@ overflow: auto;
 				console.log(error);
 			}
 		});
-	};
+		};
 		
 	
 
