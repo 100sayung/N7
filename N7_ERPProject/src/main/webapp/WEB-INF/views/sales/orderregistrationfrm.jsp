@@ -220,14 +220,14 @@ border: 1px solid ;
                     var str="";
                      if(data.sList!=""){
                     for(var i in data.sList){
-                        str+="<tr class='tr'><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bo_proquantity+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bo_prosalesamount+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bo_orderbudget+"></td>";
+                        str+="<tr class='tr'><td><input type='radio' name='each_check' value='"+data.sList[i].bo_num+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_num+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_pronum+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_orderdate+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_duedate+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bo_proquantity+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bo_prosalesamount+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bo_orderbudget+"'></td>";
                        }
                         $('#tBody').html(str);
                      }else{
@@ -261,14 +261,14 @@ border: 1px solid ;
                     }else{
 
                     for(var i in data.sList){
-                        str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
-                        str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bo_proquantity+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bo_prosalesamount+"></td>";
-                        str+="<td><input type='number' value="+data.sList[i].bo_orderbudget+"></td>";
+                        str+="<tr><td><input type='radio' name='each_check' value='"+data.sList[i].bo_num+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_num+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_pronum+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_orderdate+"'></td>";
+                        str+="<td><input type='text' value='"+data.sList[i].bo_duedate+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bo_proquantity+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bo_prosalesamount+"'></td>";
+                        str+="<td><input type='number' value='"+data.sList[i].bo_orderbudget+"'></td>";
                      }
                         $('#tBody').html(str);
                     }
