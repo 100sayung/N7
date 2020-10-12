@@ -387,7 +387,7 @@ body{
 
       function showDetail(docunum){
          console.log(docunum);
-         window.open('/erp/hr/holidaydetail?docunum=' + docunum, '휴가상세정보', 'width=1400, heigth=700');
+         window.open('/erp/hr/holidaydetail?docunum=' + docunum, '휴가상세정보', 'width=750, height=600');
 
       }
 
