@@ -89,10 +89,10 @@ body{
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
 			<div id="myInfoMenu">
 			</div>
-			<li id="showMenu1">나의 결재함</a></li>
+			<li id="showMenu1">나의 결재함</li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>
 				<ul id="smenu3" style="display: none;">

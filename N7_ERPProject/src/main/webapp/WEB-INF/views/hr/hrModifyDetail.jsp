@@ -108,6 +108,7 @@ tr{
 <script>
 var cnt = 0;
 function checkCurrent(){
+	console.log($("#checkmonth").val());
 	var $check = $("#current").val();
 	if($check==""){
 		console.log("공백");
@@ -119,7 +120,12 @@ function checkCurrent(){
 		alert("잘못된 접근입니다. 정보를 입력해주세요.");
 		return false;
 	}
+	if($("#checkmonth").val()==""){
+		alert("입사일을 안고르셨습니다 선택해주세요.");
+		return false;
+	}
 	return true;
+	
 }
 var num;
 var curPosition = "";
@@ -469,7 +475,7 @@ function CareerInfo(){
 					str += "<option value='"+data.hc_position+"' selected='selected'>"+data.hc_position+"</select>"
 					str += "</span></td></tr>";
 					str += "<tr class='infomenu'><td colspan='2'>입사일</td><td></td></tr>";
-					str += "<td colspan='2'><input type='date' name='hc_joindate' value='"+data.hc_joindate+"' class='detailInfo' readonly></td><td></td>"
+					str += "<td colspan='2'><input type='date' id='checkmonth' name='hc_joindate' value='"+data.hc_joindate+"' class='detailInfo' readonly></td><td></td>"
 					str += "<tr class='infomenu'><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
 					str += "<td><input type='text' value='"+status+"' style='width:190px;' readonly></td>"
 					str += "<td><input type='text' value='"+work+"' style='width:190px;' readonly></td>"
@@ -490,7 +496,7 @@ function CareerInfo(){
 						}
 					str += "</select></td><td><span id='position'></td></tr>";
 					str += "<tr class='infomenu'><td colspan='3'>입사일</td></tr>";
-					str += "<td colspan='3'><input type='date' name='hc_joindate' class='detailInfo' required></td></tr>"
+					str += "<td colspan='3'><input id='checkmonth' type='date' name='hc_joindate' class='detailInfo' required></td></tr>"
 					str += "<tr><td>현재 상태</td><td>재/휴직 상태</td><td>남은 연차</td></tr>";
 					str += "<td><input type='text' placeholder='---' style='width:190px;' readonly></td>"
 					str += "<td><input type='text' placeholder='---' style='width:190px;' readonly></td>"

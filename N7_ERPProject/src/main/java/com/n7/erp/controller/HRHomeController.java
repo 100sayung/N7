@@ -220,8 +220,9 @@ public class HRHomeController {
 		return mav;
 	}
 	@RequestMapping(value = "/hr/findcheckpayid", method = RequestMethod.POST)
-	public @ResponseBody String findcheckpayid(String checkpayid) {
-		String result=dm.findcheckpayid(checkpayid);
+	public @ResponseBody String findcheckpayid(String checkpayid,HttpSession session) {
+		String cCode=session.getAttribute("cCode").toString();
+		String result=dm.findcheckpayid(checkpayid,cCode);
 		return result;
 	}
 	@RequestMapping(value = "/hr/deptsearchposition", method = RequestMethod.GET)
