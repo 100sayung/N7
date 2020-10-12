@@ -13,7 +13,7 @@
 	</insert>
 
 	<select id="pFrerence" resultType="Purchase">
-		SELECT * FROM O_PURCHASECOMMOM
+		SELECT * FROM O_PURCHASECOMMOM WHERE P_CCODE= #{cCode}
 	</select>
 
 	<select id="pfSearch" parameterType="String" resultType="Purchase">
@@ -173,7 +173,7 @@
 	</insert>
 	
 	<select id="orderInfo" resultType="order">
-		SELECT * FROM O_ORDER
+		SELECT * FROM O_ORDER WHERE  O_CCODE = #{cCode}
 	</select>
 
 	<select id="orderSearch" resultType="order">

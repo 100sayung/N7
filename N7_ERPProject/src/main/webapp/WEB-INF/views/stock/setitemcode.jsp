@@ -146,8 +146,8 @@ text-align: center;
 		var data = $('#frm').serialize();
 		console.log(data);
 		itemCode('/erp/stock/itemcodeconfirm',data);
-		$('input[id]').val("");
-		$('#it_pstock').val(0);
+		$('input[type="text"]').val("");
+		$('input[type="number"]').val("");
 	});
 	
 	function  itemCode(url,data) {
@@ -163,7 +163,7 @@ text-align: center;
 						$("#modify").attr("style","display:inline-block")
 					}
 					var msg = '';
-					msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><div class = "span">재고</div><br>';
+					msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><br>';
 					for(var i = 0 ; i < result.length;i++){
 						var frm = document.createElement("form"); 
 						frm.id = 'frm'+(i+1);
@@ -174,7 +174,6 @@ text-align: center;
 							+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
 							+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 							+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
-							+'<input class="it_pstock" name="it_pstock" type="number" value="'+result[i].it_pstock+'" readonly>'
 							+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
 							+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
 							console.dir(frm);
@@ -199,7 +198,7 @@ text-align: center;
 					$("#modify").attr("style","display:inline-block")
 				}
 				var msg = '';
-				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><div class = "span">재고</div><br>';
+				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><br>';
 				for(var i = 0 ; i < result.length;i++){
 					var frm = document.createElement("form"); 
 					frm.id = 'frm'+(i+1);
@@ -210,7 +209,6 @@ text-align: center;
 						+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
 						+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 						+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
-						+'<input class="it_pstock" name="it_pstock" type="number" value="'+result[i].it_pstock+'" readonly>'
 						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
 						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
 						console.dir(frm);

@@ -226,6 +226,12 @@ font-weight: bold;
 			                              '/erp/rest/Account/apRequest2?j_docunum='+ check,
 			                              '/erp/rest/Account/apRequest2',
 			                              'width=1500, height=600');
+			                  }else if(check.indexOf("AP") != -1){ //영민
+			                	  console.log(check);
+			                      window.open('/erp/rest/Account/apDownSalesnum?s_num=' + check, 'apDownSalesinfo', 'width=1400, heigth=700');
+			                  }else if(check.indexOf("AS") != -1){ //영민
+			                	  console.log(check);
+			                      window.open('/erp/rest/Account/asDownSalesnum?s_num=' + check, 'asDownSalesinfo', 'width=1400, heigth=700');
 				                  }else if(check.indexOf("P") != -1){ //예은
 				                     window.open(
 				                        '/erp/rest/Purchase/pRequest2?p_documentcode='+ check, '/erp/rest/Purchase/pRequest2',
@@ -238,12 +244,7 @@ font-weight: bold;
 				                  }else if(check.indexOf("H") != -1){ //인사
 				                	  console.log(check);
 				                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
-				                  }else if(check.indexOf("AP") != -1){ //영민
-					                	  console.log(check);
-					                      window.open('/erp/rest/Account/apDownSalesnum?s_num=' + check, 'apDownSalesinfo', 'width=1400, heigth=700');
-					                  }else if(check.indexOf("AS") != -1){ //영민
-					                	  console.log(check);
-					                      window.open('/erp/rest/Account/asDownSalesnum?s_num=' + check, 'asDownSalesinfo', 'width=1400, heigth=700');
+				                  
 					                  }else{
 					                      window.open(
 				                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
