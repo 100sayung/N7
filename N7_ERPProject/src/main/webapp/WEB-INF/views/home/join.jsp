@@ -168,15 +168,15 @@ button {
                     </div> -->
                     
                      <div class="input-group col-lg-12 mb-4">
-                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                           <div class="input-group-prepend">
+                             <span class="input-group-text bg-white px-4 border-md border-right-0">
                                 <i class="fa fa-user text-muted" style='font-size:15px'></i>
                             </span>
                         </div>
-                      <input id="id" type="text" name="m_id" style="width:300px;" name="m_ccode" placeholder="ID를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
-                       &nbsp;&nbsp;<button type="button" onclick="dupleID()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">중복체크</button>
-                      <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="dupleID"></div>
-                    </div>
+                       <input id="id" type="text" name="m_id" style="width:300px;" placeholder="ID를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                      &nbsp;&nbsp;<button type="button" onclick="dupleID()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">중복체크</button>
+                      <br><span id="dupleID"></span>
+                    </div> 
                     
 
                     <!-- passward -->
