@@ -275,7 +275,7 @@ button {
                                 <i class='fas fa-images' style='font-size:15px'></i>
                             </span>
                         </div>
-                      <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3" required>
+                       <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3" required>
                     </div>
 
 
