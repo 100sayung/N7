@@ -362,8 +362,6 @@ width:100px;
 <div id="as">
 			<div id="salesResult" style="width: 800px;%; height:575px;"></div>
 			<table class="table"  style="width:150px;">
-			<tr><td class="column">이름</td></tr>
-			<tr><td class="value" id="hrcode"></td></tr>
 				<tr>
 					<td class="year">
 					년
@@ -372,6 +370,8 @@ width:100px;
 			
 					</td>
 				</tr>
+			<tr><td class="column">이름</td></tr>
+			<tr><td class="value" id="hrcode"></td></tr>
 				<tr><td>총 영업예산</td></tr>
 				<tr><td id="total"></td></tr>
 				<tr><td>총 영업매출</td></tr>
