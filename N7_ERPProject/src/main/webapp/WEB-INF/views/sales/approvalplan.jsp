@@ -80,32 +80,32 @@ resize: none;
                               <th colspan="6">출하 요청서</th>
                               <th><input type="radio" name="bs_credit" value="외상">&nbsp;외상
                                   <input type="radio" name="bs_credit" value="완납">&nbsp;완납 </th>
-                              <th><input type="text" name="bs_docunum" value="${sb.bs_docunum}" placeholder="출하번호" class="txt"></th>
+                              <th><input type="text" name="bs_docunum" value="${sb.bs_docunum}" placeholder="출하번호" readonly class="txt"></th>
                            </tr>
                            <tr>
 <!--                       <th colspan="3">상신자</th>
                               <th colspan="1"><input type="text"> --></th> <!-- name="bs_approver1" --> <!--bo_num-->
                               <th colspan="4">거래처 회사코드</th>
-                              <th colspan="4"><input type="text" name="bs_clcode" value="${sb.bs_clcode}" class="txt"></th>
+                              <th colspan="4"><input type="text" name="bs_clcode" value="${sb.bs_clcode}" readonly class="txt"></th>
                            </tr>
                            <tr>
                               <th rowspan="15" colspan="2">조회</th>   
                            </tr>
                            <tr>
                               <td>회사코드</td>
-                              <td colspan="6"><input type="text" name="bs_ccode" value="${sb.bs_ccode}" class="draft"></td>
+                              <td colspan="6"><input type="text" name="bs_ccode" value="${sb.bs_ccode}" readonly class="draft"></td>
                            </tr>
                            <tr>
                               <td>수주번호</td>
-                              <td colspan="6"><input type="text" name="bs_bonum" value="${sb.bs_bonum}" class="draft"></td>
+                              <td colspan="6"><input type="text" name="bs_bonum" value="${sb.bs_bonum}" readonly class="draft"></td>
                            </tr>
                            <tr>
                               <td>품목코드</td>
-                              <td colspan="6"><input type="text" name="bs_itcode" value="${sb.bs_itcode}" class="draft"></td>
+                              <td colspan="6"><input type="text" name="bs_itcode" value="${sb.bs_itcode}" readonly class="draft"></td>
                            </tr>
                            <tr>
                               <td>제품명</td>
-                              <td colspan="6"><input type="text" name="bs_proname" value="${sb.bs_proname}" class="draft"></td>
+                              <td colspan="6"><input type="text" name="bs_proname" value="${sb.bs_proname}" readonly class="draft"></td>
                            </tr>
 <%--                        <tr>
                               <td>출하의뢰일</td>
@@ -113,15 +113,15 @@ resize: none;
                            </tr>  --%>
                            <tr>
                               <td>예상납기일</td>
-                              <td colspan="6"><input type="text" name="bs_basedate" value="${sb.bs_basedate}" class="draft"></td>
+                              <td colspan="6"><input type="text" name="bs_basedate" value="${sb.bs_basedate}" readonly class="draft"></td>
                            </tr>
                            <tr>
                               <td>판매단가</td>
-                              <td><input type="text" name="bs_unit" value="${sb.bs_unit}" class="draft3" ></td>
+                              <td><input type="text" name="bs_unit" value="${sb.bs_unit}" readonly class="draft3" ></td>
                               <td>수량</td>
-                              <td><input type="text" name="bs_quantity" value="${sb.bs_quantity}" class="draft3"></td>
+                              <td><input type="text" name="bs_quantity" value="${sb.bs_quantity}" readonly class="draft3"></td>
                               <td>판매금액</td>
-                              <td ><input type="text" name="bs_price" value="${sb.bs_price}" class="draft3"></td>
+                              <td ><input type="text" name="bs_price" value="${sb.bs_price}" readonly class="draft3"></td>
                            </tr>
                            <tr>
                               <th>기타</th>
@@ -145,9 +145,9 @@ resize: none;
             console.log(data);
             var str = "";
             for ( var i in data.sList) {
-                 str +="<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
+                 str +="<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true' readonly>";
                str +=data.sList[i].hc_position+"/";
-               str +="<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+               str +="<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"' readonly>&nbsp;&nbsp;||&nbsp;&nbsp;";
             }
             console.log(str)
             $("#line").html(str);

@@ -345,7 +345,7 @@ ${msg}
 		        		if(data.pList==null){
 		        			alert("이미 결재요청되었습니다.");
 		        		}else{
-		        		    window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=620, top=80 left=200");
+		        		    window.open("/erp/Purchase/pprogramwrite?check="+check,"pprogramwrite", "width=1200, height=650, top=75 left=200");
 		        		}
 		        	},
 		        	error: function(err){

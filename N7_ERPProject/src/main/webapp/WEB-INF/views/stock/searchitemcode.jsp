@@ -37,7 +37,7 @@ width: 300px;
 </style>
 </head>
 <body>
-<input type="text" onkeyup="searchItemCode(this)">
+<input type="text"  placeholder="품목코드를 검색해주세요." onkeyup="searchItemCode(this)">
 <div id="description">
 
 </div>

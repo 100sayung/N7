@@ -12,6 +12,18 @@
 text-align:center;
 width:1300px;
 }
+.txt{
+width: 154px;
+}
+input{
+text-align: center;
+}
+#item{
+text-align:center;
+width:1400px;
+}
+
+
 /* html, body {
 text-align:center;
    height: 100%;
@@ -23,10 +35,7 @@ text-align: center;
 width: 150px;
 border: 1px solid ;
 } */
-#item{
-text-align:center;
-width:1400px;
-}
+
 
 </style>
 <body>
@@ -49,29 +58,29 @@ width:1400px;
         <table style="margin-left:250px;">
          <thead>
             <tr>
-               <th>수주번호</th>
-               <th><input type="number" name="bo_num" placeholder="자동생성" readonly></th>
-               <th>거래처회사코드</th>
-               <th><input id="clcode" type="text" name="bo_clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
-               <th>회사코드</th>
-               <th><input type="text" name="bo_ccode" value="${cCode}"></th>
+               <td>수주번호&emsp;</td>
+               <th><input type="number" name="bo_num" placeholder="자동생성" readonly>&emsp;</th>
+               <td>회사코드&emsp;</td>
+               <th><input type="text" name="bo_ccode" value="${cCode}" readonly></th>
+               <td>거래처회사코드&emsp;</td>
+               <th><input id="clcode" type="text" name="bo_clcode" readonly>&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>&emsp;</th>
             </tr>
             <tr>
-               <th>사업단위</th>
+               <td>사업단위&emsp;</td>
                <th><select name="bo_unit" style="width:150px;">
                    <option value="본사">본사</option>
-                   <option value="지사">지사</option></select></th>
-               <th>담당자</th>
+                   <option value="지사">지사</option></select>&emsp;</th>
+               <td>담당자</td>
                <th><input type="text" name="bo_manager"></th>
-               <th>부서</th>
-               <th id="dept"></th>
+               <td>부서</td>
+               <th id="dept">&emsp;</th>
             </tr>
          </thead>
       </table>
       </div>
             <div style="background-color:#ECEBEA; width:1175px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="width:900px;  margin-left:10px; border-color:gray;">
+              style="width:500px;   border-color:gray;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
@@ -97,8 +106,8 @@ width:1400px;
                         <td><input type="radio" name="each_check" class="each"></td>
                         <td><input type="text" name="bo_num" placeholder="자동생성" readonly></td>
                         <td><input type="text" name="bo_pronum" id="add"  required></td>
-                        <td><input type="date" name="bo_orderdate" min="2000-01-01" max="2030-12-31" style="width:180px;"></td>
-                        <td><input type="date" name="bo_duedate" min="2000-01-01" max="2030-12-31" style="width:180px;"></td>
+                        <td><input type="date" name="bo_orderdate" min="2000-01-01" max="2030-12-31" style="width:148px;"></td>
+                        <td><input type="date" name="bo_duedate" min="2000-01-01" max="2030-12-31" style="width:148px;"></td>
                         <td><input type="number" name="bo_proquantity"  required></td>
                         <td><input type="number" name="bo_prosalesamount"  required></td>
                         <td><input type="number" name="bo_orderbudget" required></td>
@@ -158,13 +167,13 @@ width:1400px;
 
                  for(var i in data.sList){
                     str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
-                    str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
-                    str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
-                    str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
-                    str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
-                    str+="<td><input type='number' value="+data.sList[i].bo_proquantity+"></td>";
-                    str+="<td><input type='number' value="+data.sList[i].bo_prosalesamount+"></td>";
-                    str+="<td><input type='number' value="+data.sList[i].bo_orderbudget+"></td>";
+                    str+="<td><input class='txt' type='text' readonly value="+data.sList[i].bo_num+"></td>";
+                    str+="<td><input class='txt' type='text' readonly value="+data.sList[i].bo_pronum+"></td>";
+                    str+="<td><input class='txt' type='text' readonly value="+data.sList[i].bo_orderdate+"></td>";
+                    str+="<td><input class='txt' type='text' readonly value="+data.sList[i].bo_duedate+"></td>";
+                    str+="<td><input class='txt' type='text' readonly value="+data.sList[i].bo_proquantity+"></td>";
+                    str+="<td><input class='txt' type='text' readonly value="+data.sList[i].bo_prosalesamount+"></td>";
+                    str+="<td><input class='txt' type='text' readonly value="+data.sList[i].bo_orderbudget+"></td>";
                  }
                     $('#tBody').html(str);
               },

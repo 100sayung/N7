@@ -11,6 +11,10 @@
 #center{
 text-align:center;
 }
+.select{
+width: 140px;
+height: 22px;
+}
 /* html, body {
 text-align:center;
    height: 100%;
@@ -53,9 +57,9 @@ border: 1px solid;
                <th>출하번호</th>
                <th><input type="text" name="bs_docunum" placeholder="자동생성" readonly></th>
                <th>회사코드</th>
-               <th><input type="text" name="bs_ccode" value="${cCode}"></th>
+               <th><input type="text" name="bs_ccode" value="${cCode}" readonly></th>
                <th>수주번호</th>
-               <th><input id="bonum" type="text" name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=700,height=700')">검색</button></th>
+               <th><input id="bonum" type="text" readonly name="bs_bonum">&nbsp;<button type="button" onclick="window.open('/erp/sales/bs_bonumInfo','bs_bonumInfo','width=700,height=700')" >검색</button></th>
             </tr>
          </thead>
       </table>
@@ -84,8 +88,8 @@ border: 1px solid;
                    </tr>
                     <tr>
                         <td><input type="radio" name="each_check" class="each"></td>
-                        <td><input type="date" name="bs_basedate" required></td>
-                        <td style="width:250px;"><input type="text" name="bs_clcode" required id="clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
+                        <td><input type="date"  name="bs_basedate" required></td>
+                        <td><input type="text" name="bs_clcode" required id="clcode" readonly>&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                         <td class = "cl"></td>
                         <td class = "pn"></td> <!-- <td><input type="text" name="bs_proname" required></td> -->
                         <td><input type="number" name="bs_unit" class="bs_unit" required></td>
@@ -200,7 +204,7 @@ border: 1px solid;
 
 
          function makeSelectBox(arr){
-             var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
+             var arrStr = "<select class='select' name = 'bs_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
              if(arr.length==0){
                 arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
              }else{
@@ -218,7 +222,7 @@ border: 1px solid;
          };
 
          function makeSelectBox2(arr){
-             var arrStr = "<select class='select' name = 'bs_proname'><option></option>"
+             var arrStr = "<select class='select' name = 'bs_proname' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
              if(arr.length==0){
                 arrStr+="<option>품목명을 먼저 작성해주세요 </option>";
              }else{
@@ -255,6 +259,7 @@ border: 1px solid;
              }
           });
          $('input').val("");
+         $("select").val("");
        });
 
 
@@ -274,7 +279,7 @@ border: 1px solid;
                 		if(data.sList==null){
                 			alert("이미 결재요청되었습니다.");
                 		}else{
-                 window.open("/erp/sales/approvalplan?check="+check,'approvalplan','width=1200,height=700');
+                 window.open("/erp/sales/approvalplan?check="+check,'approvalplan','width=1200, height=670, top=60 left=200');
                 		}
                 	},
                 	error:function(error){
