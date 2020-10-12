@@ -97,11 +97,11 @@ table{
 	<input type="hidden" value="${card.hc_ccode}" name="HP_CCODE">
 	<table id="payinputmodify" style="text-align: center; width: 1150px;height: 100px;border: 2px solid #D9EDF7;background-color: #F8F7F7;" >
 		<tr>
-			<td class="dat">사원코드  </td>
+			<td class="dat" width="150px">사원코드  </td>
 			<td><input id="hrcode" name="hrcode" style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_hrcode}"></td>
-			<td class="dat">이름  </td>
+			<td class="dat" width="150px">이름  </td>
 			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${name}"></td>
-			<td class="dat">입사일  </td>
+			<td class="dat" width="150px">입사일  </td>
 			<td><input style="border: none;background-color: #F8F7F7;" type="text" readonly="readonly" value="${card.hc_joindate}"></td>
 		</tr>
 		<tr>
@@ -156,7 +156,7 @@ table{
 					var str='';
 					console.log(data);
 					if(data!="1"){
-						str+="<table style='width:1150px; height:300px;text-align:center;border:2px solid #D9EDF7;'><tr>"
+						str+="<table style='width:1150px; height:300px;text-align:center;border:2px solid #D9EDF7;background-color: #F8F7F7;'><tr>"
 							+"<td  class='dat'>지급내역</td>"
 							+"<td  class='dat'>지급액</td>"
 							+"<td  class='dat'>공제내역</td>"

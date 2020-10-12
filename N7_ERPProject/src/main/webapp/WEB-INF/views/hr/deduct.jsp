@@ -44,6 +44,8 @@ a {
 	height: 100%;
 	width: 1150px;
 	border-bottom: 1px solid black;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {

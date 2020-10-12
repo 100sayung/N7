@@ -69,6 +69,10 @@ body{
 #month{
 	font-size: 15px;
 }
+.dat{
+	border:2px solid #D9EDF7;
+	background-color: #ECEBEA;
+}
 </style>
 </head>
 <body onload="build();">
@@ -107,21 +111,21 @@ body{
 		<div class="first_div_css">
 			<h1 class="deptregist_color_size">내 급여 명세서 보기</h1>
 		</div>
-	<table style="border: 2px solid #D9EDF7; width: 1150px; height: 100px; text-align: center;">
+	<table style="border: 2px solid #D9EDF7; width: 1150px; height: 100px; text-align: center;background-color: #F8F7F7;">
 		<tr>
-			<td class="font_color_paydetail">사원코드  </td>
+			<td class="dat">사원코드  </td>
 			<td>${paycheck.hc_hrcode}</td>
-			<td class="font_color_paydetail">이름  </td>
+			<td class="dat">이름  </td>
 			<td width="265px">${paycheck.m_name}</td>
-			<td class="font_color_paydetail">입사일  </td>
+			<td class="dat">입사일  </td>
 			<td>${paycheck.hc_joindate}</td>
 		</tr>
 		<tr>
-			<td class="font_color_paydetail">부서  </td>
+			<td class="dat">부서  </td>
 			<td>${paycheck.hc_dept}</td>
-			<td class="font_color_paydetail">직급  </td>
+			<td class="dat">직급  </td>
 			<td>${paycheck.hc_position}</td>
-			<td class="font_color_paydetail">급여일</td>
+			<td class="dat">급여일</td>
 			<td><input type="month" id="month" name="month"></td>
 		</tr>
 	</table>
@@ -220,26 +224,26 @@ body{
 					var provide=(Number(data.HDP_PAY)+Number(data.HP_INCEN)).toString();
 					var ince=(Number(data.HP_INSURANCE)+Number(data.HP_TAX)).toString();
 					var str='';
-						str+="<table style='border:2px solid #D9EDF7;width:1150px;height:300px; text-align: center;'><tr>"
-							+"<td class='font_color_paydetail'>지급내역</td>"
-							+"<td class='font_color_paydetail'>지급액</td>"
-							+"<td class='font_color_paydetail'>공제내역</td>"
-							+"<td class='font_color_paydetail'>공제액</td></tr>"
-							+"<tr><td class='font_color_paydetail'>기본급</td>"
+						str+="<table style='border:2px solid #D9EDF7;width:1150px;height:300px; text-align: center;background-color: #F8F7F7;'><tr>"
+							+"<td class='dat'>지급내역</td>"
+							+"<td class='dat'>지급액</td>"
+							+"<td class='dat'>공제내역</td>"
+							+"<td class='dat'>공제액</td></tr>"
+							+"<tr><td class='dat'>기본급</td>"
 							+"<td class='leftmoney'>"+moneyCheck(data.HDP_PAY)+"</td>"
-							+"<td class='font_color_paydetail'>보험</td>"
+							+"<td class='dat'>보험</td>"
 							+"<td class='leftmoney'>"+moneyCheck(data.HP_INSURANCE)+"</td></tr>"
-							+"<tr><td class='font_color_paydetail'>인센티브</td>"
+							+"<tr><td class='dat'>인센티브</td>"
 							+"<td class='leftmoney'>"+moneyCheck(data.HP_INCEN)+"</td>"
-							+"<td class='font_color_paydetail'>소득세</td>"
+							+"<td class='dat'>소득세</td>"
 							+"<td class='leftmoney'>"+moneyCheck(data.HP_TAX)+"</td></tr>"
-							+"<tr><td class='font_color_paydetail'>월차수당</td>"
+							+"<tr><td class='dat'>월차수당</td>"
 							+"<td class='leftmoney'>"+moneyCheck(data.HP_MONTHLYBONUS)+"</td>"
-							+"<td class='font_color_paydetail'>공제액계</td>"
+							+"<td class='dat'>공제액계</td>"
 							+"<td class='leftmoney'>"+moneyCheck(ince)+"</td></tr>"
-							+"<tr><td class='font_color_paydetail'>급여 계</td>"
+							+"<tr><td class='dat'>급여 계</td>"
 							+"<td class='leftmoney'>"+moneyCheck(provide)+"</td>"
-							+"<td class='font_color_paydetail'>실지급액</td>"
+							+"<td class='dat'>실지급액</td>"
 							+"<td class='leftmoney'>"+moneyCheck(data.HP_REALMONEY)+"</td></tr>"
 							$("#paycheckpage").html(str);
 							
