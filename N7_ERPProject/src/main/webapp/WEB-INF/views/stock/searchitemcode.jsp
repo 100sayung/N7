@@ -6,6 +6,7 @@
 <title>N7 ERP - 품목코드 검색</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="/erp/img/favicon.png" rel="icon" />
 	<style>
 
 #description {

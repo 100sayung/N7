@@ -11,6 +11,7 @@
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
