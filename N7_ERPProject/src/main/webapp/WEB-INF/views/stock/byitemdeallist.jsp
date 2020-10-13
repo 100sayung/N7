@@ -141,11 +141,11 @@ height: 50px;
 		dataType:"json",
 		success:function(result){
 			if (result==null) {
-				$('#description').html('분류명이 존재하지 않습니다.먼저 작성해주세요.')
+				$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><table><tr><td>거래내역이 없습니다.</td></tr></table>')
 				return;
 			}
 			if(result.length==0){
-				$('#description').html('분류명이 존재하지 않습니다.먼저 작성해주세요.')
+				$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><table><tr><td>거래내역이 없습니다.</td></tr></table>')
 				return;
 			}
 			console.log(result)

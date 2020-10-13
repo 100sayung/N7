@@ -114,6 +114,7 @@ position: relative;
 		<ul id="menuList">
 		</ul>
 	</div>
+	<center>
 	<div id='description'>
 	<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입/출고 내역</div>
 		입고 내역<input class='checkNum' type="radio" name='ie_status' value="1">출고
@@ -126,6 +127,7 @@ position: relative;
 			<div id="contain"></div>
 		</center>
 	</div>
+	</center>
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
