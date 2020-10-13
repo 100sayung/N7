@@ -70,6 +70,7 @@ height: 23px;
                </table>
             </div>
          </div>
+         <div style="width: 1175px; overflow: auto;">
             <table summary="Code page support in different versions of MS Windows."
                rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; background-color: #ECEBEA;">
                <colgroup align="center">
@@ -105,6 +106,7 @@ height: 23px;
                        </tr>
                </tbody>
             </table>
+         </div>
          </div>
          <div style="padding-top: 10px">
             <button type="button" id="save">등록</button>
@@ -276,7 +278,7 @@ height: 23px;
 			}
 		})
 		function makeSelectBox(arr){
-			var arrStr="<select id='itcode' class='select' name='p_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+			var arrStr="<select id='itcode' class='select' name='r_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 			if(arr.length==0){
 				arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
 			}else{

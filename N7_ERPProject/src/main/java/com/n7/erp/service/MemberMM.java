@@ -286,28 +286,35 @@ public class MemberMM {
 		boolean result2 = false;
 		if (status.equals("1")) {
 			result = mDao.approvalagree(num, apcode, cCode);
-		} else {
-			result2 = mDao.approvalagree2(num, cCode);
-		}
-		if (result || result2) {
-			value = "1";
-		} else {
-			value = "2";
-		}
-		return value;
-	}
+	      } else if(status.equals("2")&&num.contains("G")){
+	          mDao.salesupdate(num, cCode);
+	          result2 = mDao.approvalagree2(num, cCode);
+	       }else if(status.equals("2")){
+	          result2 = mDao.approvalagree2(num, cCode);
+	          
+	       }
+	       if (result || result2) {
+	          value = "1";
+	       } else {
+	          value = "2";
+	       }
+	       return value;
+	    }
 
 	public String arbitrarily(String num, HttpSession session) {
 		String value = "";
 		String cCode = session.getAttribute("cCode").toString();
-		boolean result = mDao.arbitrarily(num, cCode);
-		if (result) {
-			value = "1";
-		} else {
-			value = "2";
-		}
-		return value;
-	}
+	      if(num.contains("G")){
+	          mDao.salesupdate(num, cCode);
+	       }
+	       boolean result = mDao.arbitrarily(num, cCode);
+	       if (result) {
+	          value = "1";
+	       } else {
+	          value = "2";
+	       }
+	       return value;
+	    }
 
 	public ResponseEntity<String> getFunction(String cCode) {
 		List<String> fList = mDao.getFunction(cCode);

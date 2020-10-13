@@ -117,7 +117,7 @@ html, body {
          </table>
        </div>
      </form>
-         <button type="button" id="submit">제출하기</button>
+         <button type="button" id="submit">결재하기</button>
          <button type="button" id="arbitrarily">전결하기</button>
          <button type="button" id="turnback">반려하기</button>
 		</div>
