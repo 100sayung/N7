@@ -186,7 +186,7 @@ $("#approval").click(
 	                           '/erp/rest/sales/sRequest?bs_docunum='+ check, 'sRequest', 'width=1500, height=600');
 		                  }else if(check.indexOf("H") != -1){ //인사
 		                	  console.log(check);
-		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=1400, heigth=700');
+		                      window.open('/erp/hr/holidaydetail?docunum=' + check, '휴가상세정보', 'width=750, height=600');
 		                  }else{
 		                	  window.open(
 		                        '/erp/rest/myinfo/mydocument', 'mydocument', 'width=1500, height=600');
