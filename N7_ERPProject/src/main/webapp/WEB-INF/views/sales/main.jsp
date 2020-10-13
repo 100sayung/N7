@@ -11,12 +11,10 @@
    media="all" />
    <link href="/erp/img/favicon.png" rel="icon" />
 <style>
-
 #header {
    width: 100%;
    height: 200px;
 }
-
 #side_menu {
    height: 100%;
    width: 250px;
@@ -25,7 +23,6 @@
    float: left;
    border-right:1px solid #E6E6E6;
 }
-
 #side_menu #menuList {
    list-style: none;
    margin-top: 150px;
@@ -53,7 +50,7 @@ a {
 
 ul {
    list-style: none;
-} 
+}
 </style>
 </head>
 <body>
