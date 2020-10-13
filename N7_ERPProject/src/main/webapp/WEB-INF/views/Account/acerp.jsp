@@ -5,9 +5,10 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
-    <title>회계MAIN</title>
+    <title>회계관리</title>
     <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link href="/erp/img/favicon.png" rel="icon" />
     <style>
         #header{
             width: 100%;

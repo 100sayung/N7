@@ -171,7 +171,7 @@ public class HrMM {
 		}
 	}
 
-	public void registHRCard(HR_Card hrCard, String id, String cCode) {
+	public void registHRCard(HR_Card hrCard, String id, String cCode, HttpSession session) {
 		System.out.println(id);
 		hrCard.setHc_id(id);
 		hrCard.setHc_ccode(cCode);
@@ -181,6 +181,8 @@ public class HrMM {
 			hDao.updateHRCard(hrCard);
 		} else {
 			hDao.registHRCard(hrCard);
+			hrCard = hDao.selectHrCode(id);
+			session.setAttribute("hrCode", hrCard.getHc_hrcode());
 		}
 	}
 

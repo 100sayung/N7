@@ -196,4 +196,9 @@ public interface IHrDao {
 
 	@Select("SELECT AU_AUTHORITY FROM AUTHORITY WHERE AU_COMNAME = #{cCode} AND AU_NAME = #{dept}")
 	String getAuthority(@Param("dept")String dept, @Param("cCode")String cCode);
-}
+
+
+	@Select("SELECT * FROM HR_CARD WHERE HC_ID = #{hc_id} AND HC_WORK != '2'")
+	HR_Card selectHrCode(String id);
+
+

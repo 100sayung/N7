@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>매출/매입결제양식</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 html,body{
 text-align: center;

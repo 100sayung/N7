@@ -9,6 +9,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css"
+	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -38,8 +43,8 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1500px;
+	height: 600px;
+	width: 500px;
 }
 
 ul {
@@ -80,7 +85,11 @@ text-align: center;
 </style>
 </head>
 <body>
-	<div id="description">
+	<div id="description" class="out">
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size" id="title">품목코드 추가</h1>
+	</div>
+	<div class="center">
 		<h3>품목번호 작성</h3>
 		<form id="frm">
 		<table style="border: 0px;">
@@ -119,7 +128,7 @@ text-align: center;
 		<input type="button" style="display:none" id="modify" value="수정"><!--itemcode modify btn #modify -->
 	<div id="smalldescription">
 	</div>
-	</div>
+	</div></div>
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -149,7 +158,7 @@ text-align: center;
 		$('input[type="text"]').val("");
 		$('input[type="number"]').val("");
 	});
-	
+
 	function  itemCode(url,data) {
 		if(url=="/erp/stock/getitemcode"){
 			$.ajax({
@@ -165,7 +174,7 @@ text-align: center;
 					var msg = '';
 					msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><br>';
 					for(var i = 0 ; i < result.length;i++){
-						var frm = document.createElement("form"); 
+						var frm = document.createElement("form");
 						frm.id = 'frm'+(i+1);
 						var str = '';
 						str += '<input class="it_code"  name="it_code" type="text" value="'
@@ -200,7 +209,7 @@ text-align: center;
 				var msg = '';
 				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><br>';
 				for(var i = 0 ; i < result.length;i++){
-					var frm = document.createElement("form"); 
+					var frm = document.createElement("form");
 					frm.id = 'frm'+(i+1);
 					var str = '';
 					str += '<input class="it_code"  name="it_code" type="text" value="'
@@ -222,7 +231,7 @@ text-align: center;
 			}
 		});
 		}
-		
+
 	}
 	//분류명, 품목번호 출력
 	function getCategory(){
@@ -239,7 +248,7 @@ text-align: center;
 				$('#getCategory').html(str);
 			},
 			error:function(err){
-				
+
 			}
 		});
 	}
@@ -260,7 +269,7 @@ text-align: center;
 		$('input[class]').attr("readonly",false);
 		$('input[class="it_code"]').attr("readonly",true);
 	});
-	
+
 	</script>
 </body>
 </html>

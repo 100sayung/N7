@@ -8,6 +8,7 @@
 <title>사원 휴 -퇴직 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="/erp/img/favicon.png" rel="icon" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />

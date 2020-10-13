@@ -5,6 +5,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <!-- BOOTSTRAP STYLES-->
     <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
      <!-- FONTAWESOME STYLES-->

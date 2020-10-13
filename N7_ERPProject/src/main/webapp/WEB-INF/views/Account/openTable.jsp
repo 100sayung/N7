@@ -202,6 +202,48 @@ overflow: auto;
 		$("#comnum").val(comnum);
 	};
 
+	$("#getshipment").click(function(){
+		$("#detailebutton").html("<button id='shipment' onclick='shipmentDetaile()' type='button'>출고상세보기</button> 출고<input type='radio' class='num' name='num' onclick='changenum(1)'>입고<input type='radio' class='num' name='num' onclick='changenum(2)'>");
+		$("#plusorminus").html("");
+	});
+	
+		//$(document).on("change",".num",function(){
+			function changenum(num){
+			
+		$.ajax({
+			url:'/erp/rest/Account/getshipment',
+			type:'post',
+			data:{num:num},
+			datatype:'json',
+			success:function(data){
+				console.log(data);
+				
+				$("#testTable").html("");
+				var str='';
+					str += "<thead><tr><td>체크</td><td>품목</td><td>거래처명</td><td>거래처코드</td><td>합계(원)</td></tr></thead>";
+				for(var i in data.sList){
+				var price=0;
+				var qty=0;
+				price= Number(data.sList[i].ie_price);
+				qty = Math.abs(Number(data.sList[i].ie_qty));
+				var price2= (price/qty);
+				console.log(price2);
+				console.log(price);
+				console.log(qty);
+					str += "<tbody id='tBody'><tr><td><input type='checkbox' class='check' name='checknum' value="+data.sList[i].ie_seqnum+" readonly></td>";
+					str += "<td><input class='data' type='text' name='s_pkind' value="+data.sList[i].it_pname+" readonly></td>";
+					str += "<td><input class='data' type='text' name='cl_name' value="+data.sList[i].cl_name+" readonly></td>";
+					str += "<td><input class='data' type='text' name='s_comnum' value="+data.sList[i].ie_clcode+" readonly></td>";
+					str += "<td><input class='data' type='text' name='s_total'value="+data.sList[i].ie_price+" readonly></td></tr></tbody>";
+				$("#testTable").html(str);
+				}
+			},
+			error:function(error){
+				console.log(error);
+			}
+		});
+		};
+		
 
 
 
@@ -326,13 +368,13 @@ $("#approval").click(function(){
 											var str = '';
 											str += "<tr id='colume'><td>체크</td><td>전표번호</td><td>유형</td><td>거래처명</td><td>사업자번호</td><td>입력날짜</td><td>입력자</td></tr>"
 											for ( var i in data.sList) {
-												str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList[i].s_num+"'></td>";
-												str += "<td><input class='data2' type='text' name='s_num' value="+data.sList[i].s_num+"></td>";
-												str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList[i].s_kind+"></td>";
-												str += "<td><input class='data2' type='text' name='s_company' value="+data.sList[i].s_company+"></td>";
-												str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList[i].s_comnum+"></td>";
-												str += "<td><input class='data2' type='text' name='s_date' value="+data.sList[i].s_date+"></td>";
-												str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+"></td></tr>";
+												str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList[i].s_num+"' readonly></td>";
+												str += "<td><input class='data2' type='text' name='s_num' value="+data.sList[i].s_num+" readonly></td>";
+												str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList[i].s_kind+" readonly></td>";
+												str += "<td><input class='data2' type='text' name='s_company' value="+data.sList[i].s_company+" readonly></td>";
+												str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList[i].s_comnum+" readonly></td>";
+												str += "<td><input class='data2' type='text' name='s_date' value="+data.sList[i].s_date+" readonly></td>";
+												str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+" readonly></td></tr>";
 											}
 											$("#testTable").html(str);
 										} else {
@@ -481,13 +523,13 @@ s
 						var str = '';
 						str += "<tr id='colume'><td>체크</td><td>전표번호</td><td>유형</td><td>거래처명</td><td>사업자번호</td><td>입력날짜</td><td>입력자</td></tr>"
 						for ( var i in data.sList) {
-							str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList[i].s_num+"'></td>";
-							str += "<td><input class='data2' type='text' name='s_num' value="+data.sList[i].s_num+"></td>";
-							str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList[i].s_kind+"></td>";
-							str += "<td><input class='data2' type='text' name='s_company' value="+data.sList[i].s_company+"></td>";
-							str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList[i].s_comnum+"></td>";
-							str += "<td><input class='data2' type='text' name='s_date' value="+data.sList[i].s_date+"></td>";
-							str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+"></td></tr>";
+							str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList[i].s_num+"' readonly></td>";
+							str += "<td><input class='data2' type='text' name='s_num' value="+data.sList[i].s_num+" readonly></td>";
+							str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList[i].s_kind+" readonly></td>";
+							str += "<td><input class='data2' type='text' name='s_company' value="+data.sList[i].s_company+" readonly></td>";
+							str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList[i].s_comnum+" readonly></td>";
+							str += "<td><input class='data2' type='text' name='s_date' value="+data.sList[i].s_date+" readonly></td>";
+							str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+" readonly></td></tr>";
 						}
 						$("#testTable").html(str);
 					},
@@ -570,13 +612,13 @@ s
 												var str = '';
 												str += "<tr id='colume'><td>체크</td><td>전표번호</td><td>유형</td><td>거래처명</td><td>사업자번호</td><td>입력날짜</td><td>입력자</td></tr>"
 												for ( var i in data.sList) {
-													str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList[i].s_num+"'></td>";
-													str += "<td><input class='data2' type='text' name='s_num' value="+data.sList[i].s_num+"></td>";
-													str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList[i].s_kind+"></td>";
-													str += "<td><input class='data2' type='text' name='s_company' value="+data.sList[i].s_company+"></td>";
-													str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList[i].s_comnum+"></td>";
-													str += "<td><input class='data2' type='text' name='s_date' value="+data.sList[i].s_date+"></td>";
-													str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+"></td></tr>";
+													str += "<tr><td><input name='checknum' type='radio' class='check' value='"+data.sList[i].s_num+"' readonly></td>";
+													str += "<td><input class='data2' type='text' name='s_num' value="+data.sList[i].s_num+" readonly></td>";
+													str += "<td><input class='data2' type='text' name='s_kind' value="+data.sList[i].s_kind+" readonly></td>";
+													str += "<td><input class='data2' type='text' name='s_company' value="+data.sList[i].s_company+" readonly></td>";
+													str += "<td><input class='data2' type='text' name='s_comnum' value="+data.sList[i].s_comnum+" readonly></td>";
+													str += "<td><input class='data2' type='text' name='s_date' value="+data.sList[i].s_date+" readonly></td>";
+													str += "<td><input class='data2' type='text' name='s_employee' value="+data.sList[i].s_employee+" readonly></td></tr>";
 												}
 												$("#testTable").html(str);
 											}
