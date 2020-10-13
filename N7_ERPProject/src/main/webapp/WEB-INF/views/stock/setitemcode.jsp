@@ -9,6 +9,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -38,8 +41,8 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1500px;
+	height: 600px;
+	width: 500px;
 }
 
 ul {
@@ -90,29 +93,23 @@ text-align: center;
 			<tr>
 				<td style="border: 0px;">분류명</td>
 				<td style="border: 0px;" id="getCategory"></td>
-			</tr>
-			<tr>
 				<td style="border: 0px;">품목코드</td>
 				<td style="border: 0px;"><input id="it_code" name="it_code" type="text"
 					maxlength="4" required="required"></td>
-			<tr>
+			</tr>
 			<tr>
 				<td style="border: 0px;">상품명</td>
 				<td style="border: 0px;"><input id="it_pname" name="it_pname" type="text"
 					required="required"></td>
-			<tr>
-			<tr>
 				<td style="border: 0px;">규격명</td>
 				<td style="border: 0px;"><input id="it_size" name="it_size" type="text"
 					required="required"></td>
-			<tr>
+			</tr>
 			<tr>
 				<td style="border: 0px;">단위</td>
 				<td style="border: 0px;"><input id="it_unit" name="it_unit" type="text"
 					maxlength="6" required="required"></td>
-			</tr>
-			<tr>
-				<td colspan="2" style="border: 0px;"><input type="button"
+				<td colspan="2" style="border: 0px;" align="right" style="padding-right:10%;"><input type="button"
 						id="btn" value="확정"></td> <!--itemcode cofirm btn #btn -->
 			</tr>
 			</table>
@@ -151,6 +148,7 @@ text-align: center;
 		itemCode('/erp/stock/itemcodeconfirm',data);
 		$('input[type="text"]').val("");
 		$('input[type="number"]').val("");
+		$('select').children()[0].selected = true;
 	});
 
 	function  itemCode(url,data) {
@@ -175,9 +173,9 @@ text-align: center;
 							+ result[i].it_code
 							+ '" readonly>'
 							+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
+							+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
 							+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 							+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
-							+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
 							+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
 							console.dir(frm);
 							frm.innerHTML = str
@@ -210,10 +208,10 @@ text-align: center;
 						+ result[i].it_code
 						+ '" readonly>'
 						+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
+						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/><br>'
 						+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 						+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
-						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
-						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
+						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/><br><hr size="5" width="100px;	">';
 						console.dir(frm);
 						frm.innerHTML = str
 						msg+=frm.outerHTML+'<br>';

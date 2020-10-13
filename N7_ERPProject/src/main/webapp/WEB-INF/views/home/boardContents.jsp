@@ -82,11 +82,10 @@ margin-top: 15px;
 	</div>
 	<div id="description" class="out" style="height: 700px;">
 	<div style='width: 100%; height: 60px; text-align:center; background-color: #3D6B9B;'>
-		<a href="/erp/home/erpboard" style='color: white; line-height: 2.0; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>ERP상담게시판</a>
+		<a href="/erp/home/erpboard" style='color: white; line-height: 2.0; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>상세보기</a>
 	</div>
 	<div class="center">
         <div id="container2">
-		<h2>상세보기</h2>
 		<table id="table" style="width:600px;">
 			<tr>
 				<th scope="row">글 번호</th>
@@ -108,7 +107,7 @@ margin-top: 15px;
 			<th>댓글</th><td id="response">${board.cb_reply}</td>
 			</tr>
 			<tr>
-			<th>비밀번호</th><td><input type="password" id="password" placeholder="삭제 시  입력해 주세요." style="text-align:center; height: 30px;"/></td>
+			<th>비밀번호</th><td><input type="password" id="password" placeholder="삭제 시  입력해 주세요." style="text-align:center; height: 30px; border: 1px solid white;"/></td>
 			</tr>
 			<c:choose>
 			<c:when test="${id eq 'admin'}">

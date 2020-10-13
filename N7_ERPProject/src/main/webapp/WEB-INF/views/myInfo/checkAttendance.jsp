@@ -12,6 +12,7 @@
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -103,10 +104,10 @@ ul {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
 			<div id="myInfoMenu">
 			</div>
-			<li id="showMenu1">나의 결재함</a></li>
+			<li id="showMenu1">나의 결재함</li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>
 				<ul id="smenu3" style="display: none;">
@@ -124,7 +125,7 @@ ul {
 		<h1 class="deptregist_color_size">출 / 퇴근 등록</h1>
 	</div>
 	<div style="float:left; width:690px;">
-	<h1 align="center">(☞ﾟヮﾟ)☞현재시각☜(ﾟヮﾟ☜)</h1>
+	<h1 align="center">현재시각</h1>
 	<h1 align="center" id="clock" style="margin-bottom: 30px;"></h1>
 
 	<div style="align:center;" id="currentStatus"></div>

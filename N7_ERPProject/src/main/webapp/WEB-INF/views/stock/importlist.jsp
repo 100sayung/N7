@@ -9,6 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -47,39 +48,40 @@ a {
 ul {
 	list-style: none;
 }
+
 td, th, table {
-   border: 1px solid white;
+	border: 1px solid white;
 }
 
 td, th {
-   width: 200px;
-   height: 30px;
+	width: 200px;
+	height: 30px;
 }
 
 tr {
-   text-align: center;
+	text-align: center;
 }
 
 button {
-   width: 100px;
-   height: 30px;
-   background-color: #FFB2D9;
-   border: 0px;
-   border-radius: 8px;
-   font-weight: bolder;
-   font-size: 14px;
-   color: white;
+	width: 100px;
+	height: 30px;
+	background-color: #FFB2D9;
+	border: 0px;
+	border-radius: 8px;
+	font-weight: bolder;
+	font-size: 14px;
+	color: white;
 }
 
 span {
-   text-align: center;
-   color: red;
+	text-align: center;
+	color: red;
 }
 
 .span {
-   float: left;
-   width: 176px;
-   text-align: center;
+	float: left;
+	width: 176px;
+	text-align: center;
 }
 #description *{
 font-size: 20px;
@@ -92,7 +94,6 @@ font-weight: bolder;
 body{
 position: relative;
 }
-
 </style>
 </head>
 <body>

@@ -12,6 +12,7 @@
    media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
    media="all" />
+   <link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
    width: 100%;
@@ -89,10 +90,10 @@ body{
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
 			<div id="myInfoMenu">
 			</div>
-			<li id="showMenu1">나의 결재함</a></li>
+			<li id="showMenu1">나의 결재함</li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>
 				<ul id="smenu3" style="display: none;">
@@ -387,7 +388,7 @@ body{
 
       function showDetail(docunum){
          console.log(docunum);
-         window.open('/erp/hr/holidaydetail?docunum=' + docunum, '휴가상세정보', 'width=1400, heigth=700');
+         window.open('/erp/hr/holidaydetail?docunum=' + docunum, '휴가상세정보', 'width=750, height=600');
 
       }
 
