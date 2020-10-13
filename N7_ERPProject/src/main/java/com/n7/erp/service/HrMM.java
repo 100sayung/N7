@@ -79,6 +79,7 @@ public class HrMM {
 		hMap.put("cCode", cCode);
 		hMap.put("column", "hcr");
 		List<Career> crList = hDao.getCareerInfo(hMap);
+		System.out.println("???="+crList);
 		return crList;
 	}
 
