@@ -124,7 +124,7 @@ font-weight: bolder;
 		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">출고 확정</div>
 		<c:if test="${exportStockCheck == null}">
 		<div style="background-color:#F8F7F7;">
-		출고 내역이 없습니다.
+		출하 내역이 없습니다.
 		</div>
 		</c:if>
 		<c:if test="${exportStockCheck !=null}">
@@ -158,7 +158,7 @@ font-weight: bolder;
 												obj += "\"" + strArr[j] + "\":";
 											} else {
 												obj += "\"" + strArr[j] + "\""
-												if (j == (11 * num) + num3) {
+												if (j == (9 * num) + num3) {
 													obj += "}{"
 													num++;
 													num3++;
@@ -187,7 +187,7 @@ font-weight: bolder;
 
 							let stringifiedIpList = JSON.stringify(ipList);
 							console.log("arr", ipList);
-							$
+						 $
 									.ajax({
 										url : "/erp/stock/confirmexportcheck",
 										data : stringifiedIpList,
@@ -197,14 +197,16 @@ font-weight: bolder;
 										dataType : "json",
 										success : function(result) {
 											console.log(result)
-											if(result.responseText!=undefined)
+											$("#description").html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고 확정</div>"+result)
+											if(result.responseText!=undefined){
 											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고 확정</div><div style='background-color:#F8F7F7;'>"+result.responseText+"<input type='button' id='btn' value='출고 확정'></button></div>")
-										},
+												}
+											},
 										error : function(err) {
 											console.log(err)
 											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고 확정</div><div style='background-color:#F8F7F7;'>"+err.responseText+"<input type='button' id='btn' value='출고 확정'></button></div>")
 										}
-									})
+									}) 
 
 						});
 
