@@ -39,7 +39,7 @@ a {
 #description {
 	float: left;
     height:100%;
-    width:80%;
+width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -141,11 +141,11 @@ height: 50px;
 		dataType:"json",
 		success:function(result){
 			if (result==null) {
-				$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><table><tr><td>거래내역이 없습니다.</td></tr></table>')
+				$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><div style="background-color:#F8F7F7;"><table><tr><td>거래내역이 없습니다.</td></tr></table></div>')
 				return;
 			}
 			if(result.length==0){
-				$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><table><tr><td>거래내역이 없습니다.</td></tr></table>')
+				$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><div style="background-color:#F8F7F7;"><table><tr><td>거래내역이 없습니다.</td></tr></table></div>')
 				return;
 			}
 			console.log(result)
@@ -171,6 +171,14 @@ height: 50px;
 					dataType:"json",
 					success:function(result){
 					console.log(result);
+					if (result==null) {
+						$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><div style="background-color:#F8F7F7;"><table><tr><td>거래내역이 없습니다.</td></tr></table></div>')
+						return;
+					}
+					if(result.length==0){
+						$('#description').html(' <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">품목별 거래현황</div><div style="background-color:#F8F7F7;"><table><tr><td>거래내역이 없습니다.</td></tr></table></div>')
+						return;
+					}
 					var str="<div style='background-color:#F8F7F7;'><table><tr><td>품목 : </td><td><select id='selectit_code' onchange='JsonParseObject({it_code:\"\"})'><option></option>";
 					for(var i = 0;i<result.length;i++){
 						str+='<option data-value="'+result[i].it_code+'">'+result[i].it_pname+":"+result[i].it_size+"("+result[i].it_unit+")"+'</option>'

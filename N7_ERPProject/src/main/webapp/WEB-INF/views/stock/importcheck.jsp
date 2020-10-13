@@ -40,7 +40,7 @@ a {
 #description {
 	float: left;
     height:100%;
-    width:80%;
+    width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -121,10 +121,14 @@ width: 300px;
 		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고 수정 및 확정</div>
 		<div id="contain">
 		<c:if test="${importCheckList==null}">
+		<div style="background-color:#F8F7F7;">
 		<h2>발주 내역이 없습니다.</h2>
+		</div>
 		</c:if>
 		<c:if test="${importCheckList!=null}">
+		<div style="background-color:#F8F7F7;">
 		${importCheckList}
+		</div>
 		<input type="button" id="btn" value="입고 확정">
 		</c:if>
 		</div>
@@ -193,15 +197,15 @@ width: 300px;
 										dataType : "json",
 										success : function(result) {
 											if(result.length==0){
-												$("#description").html("<h3>입고 수정 및 확정</h3>입고 내역이 없습니다.");
+												$("#description").html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고 수정 및 확정</div><div style='background-color:#F8F7F7;'>발주 내역이 없습니다.</div>");
 												return;
 											}
 											console.log(result)
-											$('#description').html("<h3>입고 수정 및 확정</h3>"+result.responseText+"<button type='button' id='btn'>입고 확정</button>")
+											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고 수정 및 확정</div><div style='background-color:#F8F7F7;'>"+result.responseText+"<button type='button' id='btn'>입고 확정</button></div>")
 										},
 										error : function(err) {
 											console.log(err)
-											$('#description').html("<h3>입고 수정 및 확정</h3>"+err.responseText+"<input type='button' id='btn' value='입고 확정'>")
+											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고 수정 및 확정</div><div style='background-color:#F8F7F7;'>"+err.responseText+"<input type='button' id='btn' value='입고 확정'></div>")
 										}
 									})
 
