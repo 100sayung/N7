@@ -288,7 +288,7 @@ public class StockMM {
 		}
 		if (a && b) {
 			List<Purchase> pList = ieDao.importCheckList(session.getAttribute("cCode").toString());
-			return ResponseEntity.ok(makeImportCheckHtml(pList));
+			return ResponseEntity.ok(new Gson().toJson(makeImportCheckHtml(pList)));
 		}
 		return ResponseEntity.ok(new Gson().toJson("입고 확정에 실패하였습니다."));
 	}
@@ -345,6 +345,7 @@ public class StockMM {
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		List<IePort> ieList = ieDao.getMonthPayment(hMap);
 		List<IePort> ieList2 = ieDao.getByItemStockListAll(date1, session.getAttribute("cCode").toString());
+		System.out.println(new Gson().toJson(makeHtml(ieList, ieList2)));
 		return ResponseEntity.ok(makeHtml(ieList, ieList2));
 	}
 
@@ -496,6 +497,23 @@ public class StockMM {
 							}
 							i += 2;
 						}
+					}else{
+						sb.append("<tr><td>"+ieList.get(i).getIe_itcode()+"</td>");
+						if (ieList2.size() < a + 1 || ieList2.size() == 0) {
+							sb.append("<td>0</td>");
+						} else {
+							sb.append("<td>" + ieList2.get(a).getIe_qty() + "</td>");
+						}
+						sb.append("<td>" + ieList.get(i).getIe_qty() + "</td>");
+						sb.append("<td>0</td>");
+						sb.append("<td>0</td>");
+						if (ieList2.size() < a + 1 || ieList2.size() == 0) {
+							sb.append("<td>" + ieList.get(i).getIe_qty() + "</td></tr>");
+						} else {
+							sb.append("<td>" + (ieList2.get(a).getIe_qty() + ieList.get(i).getIe_qty()) + "</td></tr>");
+							a++;
+						}
+						i++;
 					}
 				} else if (i == ieList.size() - 1) {
 					sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");

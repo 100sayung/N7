@@ -65,7 +65,7 @@ public interface IeportDao {
 	@Select("SELECT IT_STOCK FROM S_ITEMCODE WHERE IT_CPCODE = #{ie_cpcode} AND IT_CODE = #{ie_itcode} ")
 	int getStock(IePort ie);
 
-	@Update("UPDATE SET IT_STOCK = #{ie_qty} WHERE IT_CPCODE = #{ie_cpcode} AND IT_CODE = #{ie_itcode}")
+	@Update("UPDATE it SET IT_STOCK = #{ie_qty} WHERE IT_CPCODE = #{ie_cpcode} AND IT_CODE = #{ie_itcode}")
 	boolean updateItemCode(IePort ie);
 
 
