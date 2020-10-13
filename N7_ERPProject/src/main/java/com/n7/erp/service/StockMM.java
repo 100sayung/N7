@@ -155,7 +155,7 @@ public class StockMM {
 			if ((ipList.size() - 1) != i && i >= 1) {
 				if (!(ipList.get(i).getP_clcode().equals(ipList.get(i - 1).getP_clcode()))) {
 					sb.append("<form id = 'frm" + i
-							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+							+ "'><div style='background-color:#F8F7F7;'><table><caption>"
 							+ ipList.get(i).getP_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
@@ -185,7 +185,7 @@ public class StockMM {
 				}
 			} else if (i == 0) {
 				sb.append("<form id = 'frm" + i
-						+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+						+ "'><div style='background-color:#F8F7F7;'><table><caption>"
 						+ ipList.get(i).getP_clcode() + "</caption>");
 				sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 				sb.append(
@@ -236,7 +236,7 @@ public class StockMM {
 			} else {
 				if (!(ipList.get(i).getP_clcode().equals(ipList.get(i - 1).getP_clcode()))) {
 					sb.append("<form id = 'frm" + i
-							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+							+ "'><div style='background-color:#F8F7F7;'><table><caption>"
 							+ ipList.get(i).getP_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
