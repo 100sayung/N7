@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Purchase Details</title>
+<title>구매관리</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <style type="text/css">
 #center{
@@ -211,7 +211,6 @@ ${msg}
  	            type: 'post',
  	            data: obj,
  	            success: function(data){
- 	               //consloe.log(data);
  	            $('input').val("");
  	            $("select").val("");
  	            alert("등록이 완료되었습니다.");
@@ -228,7 +227,6 @@ ${msg}
     			type: 'get',
     			dataType: 'json',
     			success: function(data){
-    				//console.log(data);
      				var str="";
      				str+="<tr class='tr'><td class='td'>선택</td><td class='td'>구매번호</td><td class='td'>제품번호</td><td>담당자</td><td class='td'>거래처</td><td class='td'>구매일</td></tr>";
     				for(var i in data.pList){
@@ -253,7 +251,6 @@ ${msg}
  		  console.log("여기들어와?");
            $("input[name=each_check]:checked").each(function(){
                var check = $(this).attr("value");
-               console.log(check);
                
                if(check!=""){
                	window.open("/erp/Purchase/purchasedetail?check="+check,"purchasedetail", "width=1050, height=500, top=75, left=300");
@@ -305,7 +302,6 @@ ${msg}
 				data: {check:check},
 				dataType: 'json',
 				success: function(data){
-					//console.log(data);
 					var str="";
 					if(data.pList==null){
 						alert("이미 결재 요청된 데이터 입니다.");
@@ -341,7 +337,6 @@ ${msg}
 		        	data: {check:check},
 		        	dataType: 'json',
 		        	success: function(data){
-		        		//console.log(data);
 		        		if(data.pList==null){
 		        			alert("이미 결재요청되었습니다.");
 		        		}else{
@@ -361,7 +356,6 @@ ${msg}
 			  type: "get",
 			  dataType: "json",
 			  success: function(data){
-				  console.log(data);
 				  var str="";
 				  str+="<tr class='tr' style='text-align: center;'><td class='td'>품목코드</td><td class='td'>상품명</td><td class='td'>재고량</td><td class='td'>단위</td><td class='td'>크기</td></tr>";
 				  for(var i in data.sList){
@@ -374,8 +368,8 @@ ${msg}
 				  $('#list').html(str);
 	              $("#save").attr("style","visibility: hidden");
 	              $(".addList").attr("style","visibility: hidden");
-	              $("#pDetail").attr("style","visibility: hidden");
-	              $("#Pdelete").attr("style","visibility: hidden");
+	              //$("#pDetail").attr("style","visibility: hidden");
+	             // $("#Pdelete").attr("style","visibility: hidden");
 
 			  },
 			  error: function(err){

@@ -83,7 +83,6 @@ a{
 			   dataType: 'html',
 			   success: function(data){
 				   $('#description').html(data);
-				   console.log(data);
 
 			   },
 			   error: function(err){
@@ -99,7 +98,6 @@ a{
 		   dataType: 'html',
 		   success: function(data){
 			   $('#description').html(data);
-			   console.log(data);
 
 		   },
 		   error: function(err){
