@@ -75,7 +75,6 @@ button {
 
 span {
 	text-align: center;
-	color: red;
 }
 
 .span {

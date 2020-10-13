@@ -122,7 +122,7 @@ width: 300px;
 	<div id="description">
 	<form id="form" action="/erp/stock/confirmbasicstock" method="post"> 
 		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=550,height=600')" value="분류코드 추가" >
-		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
+		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=565,height=600')" value="품목코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=1550,height=400')" value="품목코드 검색" >
 		<div id="contain">
 			<div class='div'>

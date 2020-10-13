@@ -87,9 +87,9 @@ text-align: center;
 		<h1 class="deptregist_color_size" id="title">품목코드 추가</h1>
 	</div>
 	<div id="description" align="center">
+		<div style="background-color:#F8F7F7;">
 		<form id="frm">
 		<table style="border: 1px; ">
-			<th colspan="4">품목번호작성</th>
 			<tr>
 				<td style="border: 0px;">분류명</td>
 				<td style="border: 0px;" id="getCategory"></td>
@@ -112,16 +112,14 @@ text-align: center;
 				<td colspan="2" style="border: 0px;" align="right" style="padding-right:10%;"><input type="button"
 						id="btn" value="확정"></td> <!--itemcode cofirm btn #btn -->
 			</tr>
+			</table>
 		</form>
-		<tr></tr><tr>
 		<span id='msg'></span>
-		<th colspan="4">품목코드 내역</th></tr>
-		<td></td><td></td><td></td><td align="right">
+		<div class="first_div_css" style="width:500px;"><h3 class="deptregist_color_size" id="title">품목코드 내역</h3></div>
 		<input type="button" style="display:none" id="modify" value="수정"><!--itemcode modify btn #modify -->
-		</td>
-		</table>
 	<div id="smalldescription">
 	</div></div>
+			</div>
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
