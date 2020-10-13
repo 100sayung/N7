@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class SessionInterceptor extends HandlerInterceptorAdapter{
+public class SessionInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -14,11 +14,10 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
 		System.out.println("preHandler call");
 		if(request.getSession().getAttribute("id")==null) {
 			response.sendRedirect("./"); //home.jsp
-			return true;  //controller 진입가능
 		}else if(request.getSession().getAttribute("hrCode")==null) {
 			response.sendRedirect("/erp/hr/movehrcardpage"); //home.jsp
 		}
-		return true;
+		return true;  //controller 진입가능
 	}
 
 	@Override
@@ -28,5 +27,5 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
 		System.out.println("postHandle call");
 		super.postHandle(request, response, handler, modelAndView);
 	}
-	
+
 }
