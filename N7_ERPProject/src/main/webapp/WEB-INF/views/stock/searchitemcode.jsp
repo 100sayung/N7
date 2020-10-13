@@ -9,6 +9,9 @@
 	<link href="/erp/img/favicon.png" rel="icon" />
 	<!-- BOOTSTRAP SCRIPTS -->
 <script src="/erp/assets/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<style>
 
 #description {
@@ -31,9 +34,7 @@ tr {
 body{
 font-size: 20px;
 font-weight: bolder;
-}
-body{
-position: relative;
+position: relative; 
 }
 td{
 width: 300px;
@@ -45,7 +46,7 @@ border: 1px solid black;
 </head>
 <body>
 <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%; text-align: center;">품목코드 검색</div>
-<br><input type="text" style="text-align: center; margin-left: 25%;"  placeholder="품목코드를 검색해주세요." onkeyup="searchItemCode(this)">
+<br><div class="form-group"><input type="text" class="form-control" style="text-align: center; float: left;"  placeholder="품목코드를 검색해주세요." onkeyup="searchItemCode(this)"></div>
 <br>
 <div id="description"></div>
 <script>
