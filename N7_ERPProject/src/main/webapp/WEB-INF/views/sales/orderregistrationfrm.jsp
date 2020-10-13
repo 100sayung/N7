@@ -21,10 +21,6 @@ width: 125px;
 input{
 text-align: center;
 }
-#item{
-text-align:center;
-width:1400px;
-}
 
 
 /* html, body {
@@ -83,7 +79,7 @@ border: 1px solid ;
       </div>
             <div style="background-color:#ECEBEA; width:1175px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="width:500px;   border-color:gray;">
+              style="width:100px;   border-color:gray;">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
