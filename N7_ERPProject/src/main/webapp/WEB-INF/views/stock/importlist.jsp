@@ -38,9 +38,9 @@ a {
 }
 
 #description {
-float: left;
+	float: left;
     height:100%;
-    width:80%;
+    width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -115,8 +115,10 @@ position: relative;
 		<ul id="menuList">
 		</ul>
 	</div>
+	<center>
 	<div id='description'>
 	<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입/출고 내역</div>
+		<div style="background-color:#F8F7F7;">
 		입고 내역<input class='checkNum' type="radio" name='ie_status' value="1">출고
 		내역<input class="checkNum" type="radio" name="ie_status" value="2"><br>
 		시작일 : <input class='checkDate' id='date0' type="date" name='ie_date'><br>
@@ -126,7 +128,9 @@ position: relative;
 		<center>
 			<div id="contain"></div>
 		</center>
+			</div>
 	</div>
+	</center>
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -153,7 +157,7 @@ position: relative;
 								$('#contain').html('입/출고 내역이 없습니다.')
 								return;
 							}
-							var str = '  <div style="background-color:#F8F7F7;"><table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
+							var str = '  <table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
 							for (var i = 0; i < result.length; i++) {
 								str += '<tr><td>' + result[i].ie_itcode
 										+ '</td>';
@@ -179,7 +183,7 @@ position: relative;
 								str += '<td>' + Math.abs(result[i].ie_price)
 										+ '</td></tr>'
 							}
-							str += '</table></div>';
+							str += '</table>';
 							$('#contain').html(str);
 						},
 						error : function(err) {

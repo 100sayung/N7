@@ -41,7 +41,7 @@ a {
 #description {
 	float: left;
     height:100%;
-    width:80%;
+    width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -123,10 +123,14 @@ font-weight: bolder;
 	<div id="description">
 		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">출고 확정</div>
 		<c:if test="${exportStockCheck == null}">
+		<div style="background-color:#F8F7F7;">
 		출고 내역이 없습니다.
+		</div>
 		</c:if>
 		<c:if test="${exportStockCheck !=null}">
+		<div style="background-color:#F8F7F7;">
 		${exportStockCheck}
+		</div>
 		<input type="button" id="btn" value="출고 확정"></button>
 		</c:if>
 	</div>
@@ -194,11 +198,11 @@ font-weight: bolder;
 										success : function(result) {
 											console.log(result)
 											if(result.responseText!=undefined)
-											$('#description').html("<h3>출고 내역 및 수정</h3>"+result.responseText+"<input type='button' id='btn' value='출고 확정'></button>")
+											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고 확정</div><div style='background-color:#F8F7F7;'>"+result.responseText+"<input type='button' id='btn' value='출고 확정'></button></div>")
 										},
 										error : function(err) {
 											console.log(err)
-											$('#description').html("<h3>출고 내역 및 수정</h3>"+err.responseText+"<input type='button' id='btn' value='출고 확정'></button>")
+											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고 확정</div><div style='background-color:#F8F7F7;'>"+err.responseText+"<input type='button' id='btn' value='출고 확정'></button></div>")
 										}
 									})
 
