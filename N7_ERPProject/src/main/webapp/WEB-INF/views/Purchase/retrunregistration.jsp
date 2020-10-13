@@ -15,7 +15,7 @@ input{
 text-align: center;
 }
 #list{
-width: 1140px;
+width: 1100px;
 border: 1px solid silver;
 }
 .tr, .th, .td{
@@ -70,6 +70,7 @@ height: 23px;
                </table>
             </div>
          </div>
+         <div style="width: 1175px; overflow: auto;">
             <table summary="Code page support in different versions of MS Windows."
                rules="groups" frame="hsides" border="1"  id="list" style="width: 1175px; background-color: #ECEBEA;">
                <colgroup align="center">
@@ -98,13 +99,14 @@ height: 23px;
                           <!--  <td><input type="text" name="r_name"></td> -->
                           <!--  <td><input type="text" name="r_itcode" ></td> -->
                            <td id="it"></td>
-                           <td><input id="amount" onclick="chageItcode(this)" type="number" min="1" name="r_amount"></td>
+                           <td><input id="amount"  type="number" min="1" name="r_amount"></td>
                            <td><input id="r_unlit" type="text" name="r_unlit" class="unlit"></td>
                            <td><input id="budget" type="text" name="r_budget"></td>
                            <td><input id="reason" type="text" name="r_reason"></td>
                        </tr>
                </tbody>
             </table>
+            </div>
          </div>
          <div style="padding-top: 10px">
             <button type="button" id="save">등록</button>
@@ -276,7 +278,7 @@ height: 23px;
 			}
 		})
 		function makeSelectBox(arr){
-			var arrStr="<select id='itcode' class='select' name='p_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+			var arrStr="<select id='itcode' class='select' name='r_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
 			if(arr.length==0){
 				arrStr+="<option>품목코드를 먼저 작성해주세요</option>";
 			}else{

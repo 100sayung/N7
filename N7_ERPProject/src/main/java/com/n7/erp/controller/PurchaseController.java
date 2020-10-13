@@ -2,6 +2,7 @@ package com.n7.erp.controller;
 
 import java.util.Locale;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -49,7 +50,7 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value = "Purchase/approvalLine", method = RequestMethod.GET)
-	public ModelAndView approvalLine() {
+	public ModelAndView approvalLine(HttpSession session) {
 		mav=pm.approvalLine();
 		return mav;
 	}

@@ -150,7 +150,7 @@ text-align: center;
     	$('#tbody').html(str);
     	
     	$("#approvalLine").click(function() {
-    	      window.open('/erp/Purchase/approvalLine', 'approvalLine', 'width=1400,height=700');
+    	      window.open('/erp/Account/approvalLine', 'approvalLine', 'width=1400,height=700');
     	   });
     		
     	function setChildValue(data) {
