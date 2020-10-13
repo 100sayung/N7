@@ -53,17 +53,17 @@ ${msg}
          <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7; text-align: center;">
 				<table style="margin-left:188px; text-align: center;">
                  	 <tr>
-                 	 	<td>구매번호&emsp;</td>
+                 	 	<th>구매번호&emsp;</th>
                     	<td><input type="text" name="p_documentcode" placeholder="자동생성" readonly>&emsp;</td>
-                    	<td>제품번호&emsp;</td>
+                    	<th>제품번호&emsp;</th>
                      	<td><input type="text" name="p_productnum" id="p_productnum">&emsp;</td>
-                     	<td>거래처&nbsp;</td>
+                     	<th>거래처&nbsp;</th>
                      	<td><input id="clcode" type="text" name="p_clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                     </tr>
                     <tr>
-                    	<td>담당자</td>
+                    	<th>담당자</th>
                     	<td><input type="text" name="p_writer" id="p_writer">&emsp;</td>
-                     	<td>구매일</td>
+                     	<th>구매일</th>
                      	<td><input type="date" name="p_day" min="2000-01-01" max="2030-12-31" style="width: 159px;" id="p_day">&emsp;</td>
                   	</tr>
             	</table>
@@ -82,11 +82,11 @@ ${msg}
                   <tr>
 						<tr>
 							<td><input type="checkbox" id="allCheck"></td>
-                     		<td>상품명</td>
-                     		<td>상품코드</td>
-                     		<td>수량</td>
-                     		<td>단가(원)</td>
-                     		<td>합계(원)</td>
+                     		<th>상품명</th>
+                     		<th>상품코드</th>
+                     		<th>수량</th>
+                     		<th>단가(원)</th>
+                     		<th>합계(원)</th>
 						</tr>
 					</thead>
 					<tbody id="tbody">

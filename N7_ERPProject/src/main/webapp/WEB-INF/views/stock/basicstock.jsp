@@ -9,6 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -122,7 +123,7 @@ width: 300px;
 	<form id="form" action="/erp/stock/confirmbasicstock" method="post"> 
 		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
-		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" >
+		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=400')" value="품목코드 검색" >
 		<div id="contain">
 			<div class='div'>
 			  <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">기초재고 등록</div>

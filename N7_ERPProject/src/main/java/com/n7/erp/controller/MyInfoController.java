@@ -82,9 +82,9 @@ public class MyInfoController {
 		return "myInfo/myInfo";
 	}
 	//새로운 인사카드 등록
-	@PostMapping(value="/myinfo/newhrcard")
+	@PostMapping(value="/myinfo/newhrcard")	
 	public String registHRCard(HR_Card hrCard, HttpSession session) {
-		hm.registHRCard(hrCard, session.getAttribute("id").toString(), session.getAttribute("cCode").toString());
+		hm.registHRCard(hrCard, session.getAttribute("id").toString(), session.getAttribute("cCode").toString(), session);
 		return "myInfo/myInfo";
 	}
 	

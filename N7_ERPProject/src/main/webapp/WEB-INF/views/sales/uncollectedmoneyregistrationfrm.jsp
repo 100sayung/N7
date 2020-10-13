@@ -11,6 +11,13 @@
 #center{
 text-align:center;
 }
+.select{
+width: 140px;
+height: 22px;
+}
+input{
+text-align: center;
+}
 </style>
 <body>
     <div id="center">
@@ -30,24 +37,24 @@ text-align:center;
         <button id="searchh">검색</button>
         <form id="uncollectedmoneyinput">
         <div border="1" style="width:1175px; height:60px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:150px;">
+        <table style="margin-left:80px;">
          <thead>
             <tr>
-               <th>회사코드</th>
-               <th><input type="text" name="bs_ccode" value="${cCode}" readonly></th>
-               <th>거래처회사코드</th>
-               <th><input type="text" name="bs_clcode" id="clcode" readonly>&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
-               <th>제품코드</th>
+               <th>회사코드&nbsp;</th>
+               <th><input type="text" name="bs_ccode" value="${cCode}" readonly>&emsp;</th>
+               <th>거래처회사코드&nbsp;</th>
+               <th><input type="text" name="bs_clcode" id="clcode" readonly>&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>&emsp;</th>
+               <th>제품코드&nbsp;</th>
                <th class = "cl"></th>
-               <th>등록자</th>
-               <th><input type="text" name="bu_person"></th>
+               <th>등록자&nbsp;</th>
+               <th><input type="text" name="bu_person">&emsp;</th>
             </tr>
          </thead>
       </table>
       </div>
             <div style="background-color:#ECEBEA; width:1175px;">
             <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-               style="width:900px;  margin-left:135px;">
+               style="width:100%">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
@@ -79,7 +86,7 @@ text-align:center;
             </table>
             </div>
             <br>
-            <div>
+            <div style="margin-right: 250px;">
             <button type="button" id="sub" value="저장">저장</button>
             </div>
         </form>
@@ -122,7 +129,7 @@ text-align:center;
   };
 
      function makeSelectBox(arr){
-         var arrStr = "<select class='select' name = 'bs_itcode'><option></option>"
+         var arrStr = "<select class='select' name = 'bs_itcode' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
          if(arr.length==0){
             arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
          }else{
@@ -130,7 +137,7 @@ text-align:center;
                arrStr+="<option value='"+arr[i].it_code+"'>"+arr[i].it_code+"</option>";
             }
          }
-         arrStr+="</select>";
+         arrStr+="</select>&emsp;";
          return arrStr;
       }
        function thisRowDel(row){
@@ -141,19 +148,37 @@ text-align:center;
 
 
      $(document).ready(function(){
-        var select2;
-        $.ajax({
-              url:"/erp/stock/getitemcode",
-              dataType:'json',
-              success:function(data){
-                 select = makeSelectBox2(data);
-                 $(".pn").html(select);
-              },
-              error:function(err){
-                 console.log(err);
-              }
-           });
-        });
+         var select2;
+         $.ajax({
+               url:"/erp/stock/getitemcode",
+               dataType:'json',
+               success:function(data){
+                  select = makeSelectBox2(data);
+                  $(".pn").html(select);
+               },
+               error:function(err){
+                  console.log(err);
+               }
+            });
+         });
+     function makeSelectBox2(arr){
+         var arrStr = "<select class='select' name = 'bs_proname' style='vertical-alian: middle; text-align-last: center;'><option disabled selected value>==선택하세요==</option>";
+         if(arr.length==0){
+            arrStr+="<option>품목코드를 먼저 작성해주세요 </option>";
+         }else{
+            for(var i = 0; i<arr.length;i++){
+               arrStr+="<option value='"+arr[i].it_pname+"'>"+arr[i].it_pname+"</option>";
+            }
+         }
+         arrStr+="</select>&emsp;";
+         return arrStr;
+      }
+       function thisRowDel(row){
+            console.log(row);
+            let tr = row.parentNode.parentNode;
+            tr.parentNode.removeChild(tr);
+     };
+     
 
 
    $('#uncollectedmoneyitemfrm').click(function(){
@@ -167,20 +192,20 @@ text-align:center;
            console.log(data);
 
            for(var i in data.sList){//개별 미수금 등록한 거
-               str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_ccode+"></td>";
-               str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>"; //내가 입력한 출하의뢰일
-               str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+               str+="<tr><td><input type='radio' name='each_check' value='"+data.sList[i].bs_ccode+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_date+"'></td>"; //내가 입력한 출하의뢰일
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_proname+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_unit+"'></td>";
+               str+="<td><input type='text' readonly  value='"+data.sList[i].bs_quantity+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_price+"'></td>";
            }
             for(var i in data.sList2){ //결재창에서 끌고 온거
-               str+="<tr><td><input type='radio' name='each_check' value="+data.sList2[i].bs_docunum+"></td>";
-               str+="<td><input type='text' value="+data.sList2[i].bs_basedate+"></td>"; //예상 납기일
-               str+="<td><input type='text' value="+data.sList2[i].bs_proname+"></td>";
-               str+="<td><input type='number' value="+data.sList2[i].bs_unit+"></td>";
-               str+="<td><input type='number' value="+data.sList2[i].bs_quantity+"></td>";
-               str+="<td><input type='number' value="+data.sList2[i].bs_price+"></td>";
+               str+="<tr><td><input type='radio' name='each_check' value='"+data.sList2[i].bs_docunum+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList2[i].bs_basedate+"'></td>"; //예상 납기일
+               str+="<td><input type='text' readonly value='"+data.sList2[i].bs_proname+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList2[i].bs_unit+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList2[i].bs_quantity+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList2[i].bs_price+"'></td>";
             }
              $('#tBody').html(str);
 
@@ -227,11 +252,11 @@ text-align:center;
                  if(data.sList!=""){
                 for(var i in data.sList){
                    str+="<tr class='tr'><td><input type='radio' name='each_check' value="+data.sList[i].bs_clcode+"></td>";
-                   str+="<td><input type='text' value="+data.sList[i].bs_date+"></td>";
-                   str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-                   str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-                   str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-                   str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+                   str+="<td><input type='text' readonly value='"+data.sList[i].bs_date+"'></td>";
+                   str+="<td><input type='text' readonly value='"+data.sList[i].bs_proname+"'></td>";
+                   str+="<td><input type='text' readonly value='"+data.sList[i].bs_unit+"'></td>";
+                   str+="<td><input type='text' readonly value='"+data.sList[i].bs_quantity+"'></td>";
+                   str+="<td><input type='text'  readonly value='"+data.sList[i].bs_price+"'></td>";
                    }
                     $('#tBody').html(str);
                  }else{
@@ -265,13 +290,13 @@ text-align:center;
 
                  for(var i in data.sList){
                      str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bo_num+"></td>";
-                     str+="<td><input type='text' value="+data.sList[i].bo_num+"></td>";
-                     str+="<td><input type='text' value="+data.sList[i].bo_pronum+"></td>";
-                     str+="<td><input type='text' value="+data.sList[i].bo_orderdate+"></td>";
-                     str+="<td><input type='text' value="+data.sList[i].bo_duedate+"></td>";
-                     str+="<td><input type='number' value="+data.sList[i].bo_proquantity+"></td>";
-                     str+="<td><input type='number' value="+data.sList[i].bo_prosalesamount+"></td>";
-                     str+="<td><input type='number' value="+data.sList[i].bo_orderbudget+"></td>";
+                     str+="<td><input type='text' readonly value='"+data.sList[i].bo_num+"'></td>";
+                     str+="<td><input type='text' readonly value='"+data.sList[i].bo_pronum+"'></td>";
+                     str+="<td><input type='text' readonly value='"+data.sList[i].bo_orderdate+"'></td>";
+                     str+="<td><input type='text' readonly value='"+data.sList[i].bo_duedate+"'></td>";
+                     str+="<td><input type='text' readonly value='"+data.sList[i].bo_proquantity+"'></td>";
+                     str+="<td><input type='text' readonly value='"+data.sList[i].bo_prosalesamount+"'></td>";
+                     str+="<td><input type='text' readonly value='"+data.sList[i].bo_orderbudget+"'></td>";
                   }
                      $('#tBody').html(str);
                  }
@@ -306,11 +331,11 @@ text-align:center;
 
             for(var i in data.sList){
                str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
-               str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
-               str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_basedate+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_proname+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_unit+"'></td>";
+               str+="<td><input type='text'  readonly value='"+data.sList[i].bs_quantity+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_price+"'></td>";
             }
 
                $('#tBody').html(str);
@@ -337,12 +362,12 @@ text-align:center;
            var str="";
 
            for(var i in data.sList){
-              str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
-               str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
-               str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+              str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"'></td>";
+               str+="<td><input type='text'  readonly value='"+data.sList[i].bs_basedate+"'></td>";
+               str+="<td><input type='text'  readonly value='"+data.sList[i].bs_proname+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_unit+"'></td>";
+               str+="<td><input type='text'  readonly value='"+data.sList[i].bs_quantity+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_price+"'></td>";
            }
               $('#tBody').html(str);
 
@@ -366,11 +391,11 @@ text-align:center;
 
             for(var i in data.sList){
                str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_credit+"></td>";
-               str+="<td><input type='text' value="+data.sList[i].bs_basedate+"></td>";
-               str+="<td><input type='text' value="+data.sList[i].bs_proname+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_unit+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_quantity+"></td>";
-               str+="<td><input type='number' value="+data.sList[i].bs_price+"></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_basedate+"'></td>";
+               str+="<td><input type='text'  readonly  value='"+data.sList[i].bs_proname+"'></td>";
+               str+="<td><input type='text' readonly  value='"+data.sList[i].bs_unit+"'></td>";
+               str+="<td><input type='text'  readonly value='"+data.sList[i].bs_quantity+"'></td>";
+               str+="<td><input type='text' readonly value='"+data.sList[i].bs_price+"'></td>";
             }
                $('#tBody').html(str);
 
