@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>거래처사용</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <!-- <script src="js/jquery.serializeObject.js"></script> -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- BOOTSTRAP STYLES-->

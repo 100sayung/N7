@@ -16,7 +16,6 @@
 <script type="text/javascript" src="/erp/ckeditor/ckeditor.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
-<link href="img/favicon.png" rel="icon" />
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- BOOTSTRAP STYLES-->
@@ -35,6 +34,7 @@
 <script src="/erp/assets/js/bootstrap.min.js"></script>
 <!-- CUSTOM SCRIPTS -->
 <script src="/erp/assets/js/custom.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 #h1{
 font-size: 30px;

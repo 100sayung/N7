@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/erp/img/favicon.png" rel="icon" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

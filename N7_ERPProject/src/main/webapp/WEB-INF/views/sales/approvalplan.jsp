@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>출하 결재 요청창</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 html,body{
 text-align: center;

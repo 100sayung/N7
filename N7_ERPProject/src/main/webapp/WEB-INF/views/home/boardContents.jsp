@@ -8,13 +8,13 @@
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<link href="/erp/img/favicon.png" rel="icon" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
    media="all" />
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
-      <link href="img/favicon.png" rel="icon" />
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
 <title>게시판 상세보기</title>
 
