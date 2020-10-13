@@ -9,6 +9,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+	media="all" />
+<link href="/erp/css/location.css" rel="stylesheet" type="text/css"
+	media="all" />
 <style>
 #header {
 	width: 100%;
@@ -38,8 +42,8 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1500px;
+	height: 600px;
+	width: 500px;
 }
 
 ul {
@@ -80,7 +84,11 @@ text-align: center;
 </style>
 </head>
 <body>
-	<div id="description">
+	<div id="description" class="out">
+	<div class="first_div_css">
+		<h1 class="deptregist_color_size" id="title">품목코드 추가</h1>
+	</div>
+	<div class="center">
 		<h3>품목번호 작성</h3>
 		<form id="frm">
 		<table style="border: 0px;">
@@ -119,7 +127,7 @@ text-align: center;
 		<input type="button" style="display:none" id="modify" value="수정"><!--itemcode modify btn #modify -->
 	<div id="smalldescription">
 	</div>
-	</div>
+	</div></div>
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
