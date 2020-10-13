@@ -371,7 +371,6 @@ public class StockMM {
 					if (ieList.get(i).getIe_itcode().equals(ieList.get(i + 1).getIe_itcode())) {
 						if (ieList.get(i + 1).getIe_status().equals("2")) {
 							if (ieList.get(i + 1).getIe_itcode().equals(ieList.get(i + 2).getIe_itcode())) {
-								if (ieList.get(i + 2).getIe_status().equals("3")) {
 									sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");
 									if (ieList2.size() < a + 1 || ieList2.size() == 0) {
 										sb.append("<td>0</td>");
@@ -394,7 +393,6 @@ public class StockMM {
 										a++;
 									}
 									i += 3;
-								}
 							} else {
 								sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");
 								if (ieList2.size() < a + 1 || ieList2.size() == 0) {
