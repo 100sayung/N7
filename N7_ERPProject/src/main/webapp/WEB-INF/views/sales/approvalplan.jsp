@@ -125,7 +125,7 @@ resize: none;
                            </tr>
                            <tr>
                               <th>기타</th>
-                              <th colspan="8"><textarea rows="13" cols="125" name="bs_ect"></textarea></th>
+                              <th colspan="8"><textarea id="checkect" rows="13" cols="125" name="bs_ect"></textarea></th>
                            </tr>
                         </table>
                      </td>
@@ -221,29 +221,30 @@ resize: none;
       
       //결재 제출하기
       $("#submit").click(function(){
-         var obj=$("#approvalinput").serialize();
-         
-/*          var check="";
-         $("input[name=each_check]:checked").each(function(){
-            check = $(this).attr("value"); */
-            
-        $.ajax({
-          url:'/erp/rest/sales/approvalinput',
-          type: 'post',
-          data: obj,
-          //dataType: 'json',
-          success:function(data){
-              alert("기안문 제출이 완료되었습니다.");           
-              console.log(data);                
-                
-              window.close();   
-          },
-          error:function(error){
-             console.log(error);
-          }         
-        });  
-      });
-      
-   </script>
+    	    var checkect= document.getElementById("checkect");
+ 	    	 if(checkect.value=="" || checkect.value==null){
+			   alert("기타를 입력해주세요.");
+		    }else{
+
+				var obj = $("#approvalinput").serialize();
+
+						$.ajax({
+							url : '/erp/rest/sales/approvalinput',
+							type : 'post',
+							data : obj,
+							//dataType: 'json',
+							success : function(data) {
+								alert("기안문 제출이 완료되었습니다.");
+								console.log(data);
+
+								window.close();
+							},
+							error : function(error) {
+								console.log(error);
+							}
+						});
+					}
+				});
+</script>
 </body>
 </html>
