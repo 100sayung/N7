@@ -117,7 +117,43 @@ button {
 	border-radius: 8%;
 }
 
+.file_input label {
+    position:relative;
+    border-radius: 8px;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:100px;
+    height:40px; 
+    background:#3D6B9B;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+#file_route {
+    vertical-align:middle;
+    display:inline-block;
+	width:370px;
+    height:35px;
+    line-height:28px;
+    font-size:20px;
+    padding:0;
+    border:0;
+    
+}
 
+#file{
+font-family:sans-serif;
+font-weight:bold;
+}
+출처: https://uidevelop.tistory.com/29 [UI Develop]
 </style>
 </head>
 
@@ -253,7 +289,7 @@ button {
                             </p>
 
                         </div>
-					    <input type="text" style="width:300px;" id="roadAddrPart1" name="roadAddrPart1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" required><br>
+					    <input type="text" style="width:300px;" id="roadAddrPart1" name="roadAddrPart1" class="form-control postcodify_address bg-white border-md border-left-0 pl-3" value="" /><br>
                         &nbsp;&nbsp;<button type="button" onclick="goPopup()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
                    </div>
                     
@@ -264,7 +300,7 @@ button {
                                 <i class='fas fa-address-card' style='font-size:15px'></i>
                             </span>
                         </div>
-                        <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3" required>
+                        <input type="text" name="m_birth" placeholder="주민번호 앞 6자리를 입력해주세요" maxlength="6" class="form-control bg-white border-md border-left-0 pl-3"/>
                     </div>
 
                     <!-- phone-->
@@ -274,17 +310,23 @@ button {
                                 <i class="fa fa-phone-square text-muted"></i>
                             </span>
                         </div>
-                      <input type="text" name="m_phonenum" placeholder="핸드폰 번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                      <input  type="text" name="m_phonenum" placeholder="핸드폰 번호를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" />
                     </div>
 
                    <!--file-->
-                    <div class="input-group col-lg-12 mb-4">
-                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                     <div class="input-group col-lg-12 mb-4">
+                            <span class="input-group-text bg-white px-4 border-md" style="margin-right: 10px;">
                                 <i class='fas fa-images' style='font-size:15px'></i>
+    <input type="text" readonly="readonly" title="File Route" id="file_route" />
                             </span>
-                        </div>
-                      <input type="file" name="m_photo" class="form-control bg-white border-md border-left-0 pl-3" required>
+                    <div class="file_input" style="margin-top: 10px;" >
+    <label style="padding-top: 5px; font-size: medium;">
+        <span id="file">파일첨부</span>
+        <input type="file" name="m_photo" onchange="javascript:document.getElementById('file_route').value=this.value" />
+    </label>
+</div>
+
+
                     </div>
 
 
