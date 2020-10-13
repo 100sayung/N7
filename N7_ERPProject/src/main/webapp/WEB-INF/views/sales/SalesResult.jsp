@@ -7,45 +7,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
+	<link href="/erp/img/favicon.png" rel="icon" />
 <title>영업실적조회</title>
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
+
 
 
 <style>
 
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-
-@font-face {
-  font-family: Lato-Regular;
-  src: url('../fonts/Lato/Lato-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Lato-Bold;
-  src: url('../fonts/Lato/Lato-Bold.ttf'); 
-}
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -116,12 +84,6 @@ iframe {
 	border: none !important;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ Scroll bar ]*/
-/* .js-pscroll {
-  position: relative;
-  overflow: hidden;
-} */
 
 .table100 .ps__rail-y {
   width: 9px;
@@ -162,36 +124,6 @@ iframe {
 } 
 
 
-/*//////////////////////////////////////////////////////////////////
-[ Table ]*/
-
-/* .limiter {
-  width: 1366px;
-  margin: 0 auto;
-}
-
-.container-table100 {
-  width: 100%;
-  min-height: 100vh;
-  background: #fff;
-
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 33px 30px;
-}
-
-.wrap-table100 {
-  width: 1170px;
-} */
-
-/*//////////////////////////////////////////////////////////////////
-[ Table ]*/
 .table100 {
   background-color: #fff;
 }
@@ -401,6 +333,7 @@ $(document).ready(function(){
 			
 			var date2=Array.from(new Set(date));
 			var month2=Array.from(new Set(month));
+			var hrcode2=Array.from(new Set(hrcode));
 				console.log(month2);
 			
 			str+="<select id='change'>";
@@ -414,8 +347,9 @@ $(document).ready(function(){
 			
 			str2+="<select id='name'>";
 			str2+="<option>--</option>";
-			for(var i=0; i<hrcode.length; i++){
-				str2+="<option  value="+hrcode[i]+">"+hrcode[i]+"</option>";
+			for(var i=0; i<hrcode2.length; i++){
+				str2+="<option  value="+hrcode2[i]+">"+hrcode2[i]+"</option>";
+				console.log(hrcode2);
 			}
 			str2+="</select>";
 			$("#hrcode").html(str2);

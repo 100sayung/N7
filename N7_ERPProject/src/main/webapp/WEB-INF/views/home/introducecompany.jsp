@@ -11,7 +11,7 @@
  <meta content="" name="descriptison">
   <meta content="" name="keywords">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-<link href="/erp/assets2/img/favicon.png" rel="icon">
+<link href="/erp/img/favicon.png" rel="icon" />
   <link href="/erp/assets2/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->

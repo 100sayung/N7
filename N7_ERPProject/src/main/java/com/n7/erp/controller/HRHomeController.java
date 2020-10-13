@@ -59,7 +59,7 @@ public class HRHomeController {
 	}
 	@PostMapping(value="/hr/newhrcard/{id}")
 	public String registHRCard(HR_Card hrCard, @PathVariable("id") String id, HttpSession session) {
-		hm.registHRCard(hrCard, id, session.getAttribute("cCode").toString());
+		hm.registHRCard(hrCard, id, session.getAttribute("cCode").toString(),session);
 		return "redirect:/hr/hrModifyDetail?id="+id;
 	}
 
