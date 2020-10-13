@@ -18,6 +18,7 @@ html, body {
    margin-right: auto;
    width: auto;
    height: auto;
+   border-collapse: collapse;
 }
 
 .txt {
@@ -59,7 +60,7 @@ html, body {
 </head>
 <body>
 <form id="fo">
-      <div style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">기안문  상세보기</div>
+      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">기안문  상세보기</div>
       <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
          <table id="table">
             <tr>

@@ -733,4 +733,22 @@ public class StockMM {
 		}
 	}
 
+	public ModelAndView confirmBasicStock(HttpServletRequest request) {
+		mav = new ModelAndView();
+		for (int i = 0; i < request.getParameterValues("ie_itcode").length; i++) {
+			IePort ie = new IePort();
+			ie.setIe_cpcode(request.getSession().getAttribute("cCode").toString())
+					.setIe_hrcode(request.getSession().getAttribute("hrCode").toString())
+					.setIe_price(Integer.parseInt(request.getParameterValues("ie_price")[i]))
+					.setIe_qty(Integer.parseInt(request.getParameterValues("ie_qty")[i]))
+					.setIe_itcode(request.getParameterValues("ie_itcode")[i]);
+			ieDao.insertImport(ie);
+			int num = itDao.getItqty(ie);
+			itDao.updateItqty((num + ie.getIe_qty()), request.getSession().getAttribute("cCode").toString(),
+					ie.getIe_itcode());
+		}
+		mav.setViewName("stock/basicstock");
+		return mav;
+	}
+
 }

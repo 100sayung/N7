@@ -5,188 +5,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>사원 근무 조회</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
-
-   
-         <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-         <!-- Our Custom CSS -->
-        <!-- <link rel="stylesheet" href="style2.css"> -->
-        <!-- Scrollbar Custom CSS  -->
-        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <!-- Bootstrap Js CDN -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">  
-        <!-- jQuery Custom Scroller CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
 <style>
-/*
-    DEMO STYLE
-*/
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
-  body {
-   /*  font-family: 'Poppins', sans-serif; */
-     background: #fafafa; 
-}
-
-/* p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
-}  */
-
- a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-} 
-
-.navbar {
-    padding: 15px 10px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 40px;
-}
-
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
-} 
-
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}  
-
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-#sidebar {
-    width: 200px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.3s;
-}
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
-}
-
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    /* font-size: 1.1em; */
-    display: block;
-}
-#sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
-}
-
-
-a[data-toggle="collapse"] {
-   position: relative;
-}
-
-a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'Glyphicons Halflings';
-    /* font-size: 0.6em; */
-}
-a[aria-expanded="true"]::before {
-    content: '\e260';
-}
-
-
-ul ul a {
-    /* font-size: 0.9em !important; */
-    padding-left: 30px !important;
-    background: #6d7fcc;
-}
-
-ul.CTAs {
-    padding: 20px;
-}
-
-ul.CTAs a {
-    text-align: center;
-    /* font-size: 0.9em !important; */
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-a.download {
-    background: #fff;
-    color: #7386D5;
-}
-a.article, a.article:hover {
-    background: #6d7fcc !important;
-    color: #fff !important;
-}
-
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
- #content {
-    width: calc(100% - 180px);
-    padding: 40px;
-    min-height: 100vh;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
- #content.active {
-    width: 100%;
-} 
-
-
-
 #header {
 	width: 100%;
 	height: 200px;
@@ -214,20 +39,13 @@ a {
 	text-decoration: none;
 }
 
-/* #description {
+#description {
 	float: left;
 	height: 100%;
 	width: 1150px;
-} */
-
-#description{
-    float:left;
-    height:300%;
-    width:80%;
-    position: absolute;
-    transform:translate(0, 70px);
+   position: absolute;
+   transform:translate(250px, 0);
 }
-
 
 ul {
 	list-style: none;
@@ -246,44 +64,30 @@ table,td{
 </style>
 </head>
 <body>
-  <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3><a href="/erp/myInfo/myInfo"">N7 ERP SYSTEM</a></h3>
-            </div>
-
-            <ul class="list-unstyled components">
-                <p>인사관리</p>
-                <li class="active">
-               <li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
-               <li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
-               <li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
-               <li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
-               <li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
-               <li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
-               <li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
-            </ul>
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content" style="float:left;">
-
-           <!--  <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
-<!--                 <div class="container-fluid"> -->
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
-                    </button>
-                        <ul class="nav navbar-nav ml-auto" id="menu">
-                            <li class="nav-item active">
-                               <a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/erp/hr/movehrcardpage">사내정보</a>
-                            </li>
-                            <li id="mainmenu"></li>
-                        </ul>
+	<div id="header">
+		<div id="logo">
+			<h1>
+				<a href="/erp/myInfo/myInfo">N7 ERP SYSTEM</a>
+			</h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<ul id="mainmenu"></ul>
+				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
+		</div>
+	</div>
+	<div id="side_menu">
+		<ul id="menuList">
+					<li><a href='/erp/hr/receiptholiday'>휴가 접수</a></li>
+					<li><a href='/erp/hr/attendance'>사원 출결 관리</a></li>
+					<li><a href='/erp/hr/employeestatus'>근무 조회</a></li>
+					<li><a href='/erp/hr/retiremm'>휴/퇴직 관리</a></li>
+					<li><a href='/erp/hr/deptpay'>부서/직책 관리</a></li>
+					<li><a href='/erp/hr/deduct'>공제사항 관리</a></li>
+					<li><a href='/erp/hr/searchpaymm'>급여 관리</a></li>
+		</ul>
+	</div>
 <div>
 <div id="description">
 	<div class="first_div_css">
@@ -304,18 +108,6 @@ table,td{
 </div>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
-	
-	   $(document).ready(function () {
-	       $("#sidebar").mCustomScrollbar({
-	           theme: "minimal"
-	       });
-
-	       $('#sidebarCollapse').on('click', function () {
-	           $('#sidebar, #content').toggleClass('active');
-	           $('.collapse.in').toggleClass('in');
-	           $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-	       });
-	   }); 
 
 	var currPage = 1;
 	function pageNumber(j, status){
@@ -356,7 +148,7 @@ table,td{
 				let str = "<table>";
 				str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td class='menu'>상태</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
-					str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
+					str += "<tr heiht='30px;'><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
 					if(data[i].hc_status == 1){
 						str += "<font style='color:blue;'>출근</font>";
 					}else{
@@ -443,7 +235,7 @@ table,td{
 		let str = "<table>";
 		str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td class='menu'>상태</td></tr>";
 		for(let i = 0 ; i<data.length ; i++){
-			str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
+			str += "<tr heiht='30px;'><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
 			if(data[i].hc_status == 1){
 				str += "<font style='color:blue;'>출근</font>";
 			}else{

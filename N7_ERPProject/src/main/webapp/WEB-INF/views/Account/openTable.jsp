@@ -65,7 +65,8 @@ overflow: auto;
 </style>
 </head>
 <body>
-	<div style="width: 1300px; background-color: white-space; padding: 1%;">
+	<div
+		style="width: auto; background-color: white-space; color: white; padding: 1%;">
 		<!-- <span style="padding-left: 5px"><a href="#" onclick="saleinsert()"><button>매출/매입등록</button></a></span> -->
 		<span style="padding-left: 5px"><a href="#"
 			onclick="window.open('comPany','comlist','width=1400,height=600')"><button>거래처등록</button></a></span>
@@ -78,7 +79,9 @@ overflow: auto;
 				id="delete">삭제</button></span>
 
 	</div>
-		<div style="width: 1280px; background-color: #3D6B9B; color: white; padding: 1%;">매출/매입 전표관리</div>
+		<div
+			style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">매출/매입
+			전표관리</div>
 		<span style="padding-left: 5px"><input id="select" type="text" />
 		<select id="choice" name="s_saleSelect">
 			<option value="num">전표번호</option>
@@ -91,7 +94,7 @@ overflow: auto;
 
 		<form id="saleInfo">
 		<div id="comInfo"
-			style="width:1280px; height: 80px; padding-top: 15px; background-color: #F8F7F7;">
+			style="height: 80px; padding-top: 15px; background-color: #F8F7F7;">
 			<table id="main2">
 				<thead>
 					<tr>
@@ -127,14 +130,14 @@ overflow: auto;
 		</div>
 		<!-- </form> -->
 		<span id="detailebutton"></span> <span id='plusorminus'> <input
-			type="number" id="qty" min="1" style="width: 100px;">
+			type="number" id="qty" min="1" style="width: 64px;">
 			<button type="button" id="addList">행추가</button>
 			<button type="button" id="deleteCheck">삭제</button>
 		</span>
 
 		<!-- <form id="saleInfodetaile"> -->
 
-		<div id="ListTable" style="width:1280px; background-color: #ECEBEA;">
+		<div id="ListTable" style="background-color: #ECEBEA;">
 			<table id="testTable"
 				summary="Code page support in different versions of MS Windows."
 				border="1">
@@ -245,8 +248,8 @@ function shipmentDetaile(){
 };
 
 function saleInsertInfo(){
-
        var obj = $("#saleInfo").serialize();
+
        $.ajax({
     	  url:'/erp/rest/Account/saleinsert',
     	  type:'post',
@@ -269,10 +272,12 @@ function saleInsertInfo(){
     	  },
     	  error:function(error){
     		  console.log(error);
-    		  alert("데이터 입력실패");
+    		  alert("빈공간을 채워주세요");
     	  }
 
        });
+
+
 
 };
 
@@ -298,7 +303,7 @@ $("#approval").click(function(){
 									}
 								},
 								error:function(error){
-									
+
 								}
 								});
 						}
@@ -460,7 +465,7 @@ s
                      }
 					});
 		});
-	 
+
 	function getList(code) {
 		$("#comInfo").attr("display", "none");
 		$("#plusorminus").attr("display", "none");

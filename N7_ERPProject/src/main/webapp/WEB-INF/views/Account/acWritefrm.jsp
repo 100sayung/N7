@@ -65,11 +65,6 @@ input {
 #su {
 	text-align: center;
 }
-
-*font{
-    font-family: initial;
-}
-
 </style>
 
 </head>
@@ -93,10 +88,10 @@ input {
 							<div>
 								<table>
 									<tr>
-										<th colspan="2" style="width:100px;">계정과목</th>
+										<th colspan="2">계정과목</th>
 										<th colspan="2"><input type="text" id="j_account"
 											name="j_account" class="txt" style="width: 400px;"></th>
-										<th colspan="2" style="width:100px;">문서번호</th>
+										<th colspan="2">문서번호</th>
 										<td colspan="2" style="width: 400px;">문서번호는 자동으로 입력됩니다.</td>
 
 									</tr>
