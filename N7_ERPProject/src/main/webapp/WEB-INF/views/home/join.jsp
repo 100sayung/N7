@@ -193,7 +193,7 @@ button {
                     <div class="input-group col-lg-12 mb-4">
                          <div class="input-group-prepend">
                             <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class='fas fa-pencil-alt' style="font-size:18px"></i>
+                                <i class='fas fa-pencil-alt' style="font-size:15px"></i>
                             </span>
                         </div>
                         <input id="name" style="width:200px;" type="text" name="m_name" placeholder="이름을 입력해주세요" class="form-control bg-white border-left-0 border-md" required>
