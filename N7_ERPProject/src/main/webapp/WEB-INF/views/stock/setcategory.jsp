@@ -9,6 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css">
 <style>
 #header {
 	width: 100%;
@@ -39,7 +40,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width:1150px;
+	width:500px;
 }
 
 ul {
@@ -81,7 +82,7 @@ font-weight: bolder;
 </head>
 <body>
 	<div id="description">
-	<div style="width:auto; background-color:#3D6B9B;  color:white; padding:1%;">분류코드 추가</div>
+	<div class="first_div_css">분류코드 추가</div>
 	<div style="background-color:#F8F7F7;">
 		<table style="border: 0px;">
 			<tr>
@@ -101,7 +102,7 @@ font-weight: bolder;
 		</table>
 </div>
 		<span id='msg'></span><br><br>
-		<div style="width:auto; background-color:#3D6B9B;  color:white; padding:1%;">분류코드 내역</div>
+		<div class="first_div_css" style="color:white;">분류코드 내역</div>
 		<div style="background-color:#F8F7F7;">
 		<input type="button"  id="modify" value="수정">
 		<table id="tb"></table>
