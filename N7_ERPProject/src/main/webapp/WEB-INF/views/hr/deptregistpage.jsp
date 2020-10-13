@@ -13,7 +13,6 @@
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -45,7 +44,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1150px;
+	width: 1000px;
     position: absolute;
     transform:translate(250px, 0);
 }

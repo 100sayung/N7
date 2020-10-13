@@ -9,7 +9,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -120,7 +119,7 @@ width: 300px;
 	</div>
 <center>
 	<div id="description">
-	<form id="form" action="/erp/stock/confirmbasicstock" method="post"> 
+	<form id="form" action="/erp/stock/confirmbasicstock" method="post">
 		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=550,height=600')" value="분류코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=565,height=600')" value="품목코드 추가" >
 		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=1550,height=400')" value="품목코드 검색" >
@@ -136,13 +135,15 @@ width: 300px;
 						<td>단가</td>
 						<td>총액</td>
 						<td>삭제</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td class="itemcode" id='itemcode'></td>
-						<td class='ie_qty'><input min="0" onkeyup="multiPrice(this)" onchange='multiPrice(this)' type='number' name='ie_qty' required="required"></td>
-						<td class="ie_unit"><input type="number" min="0" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
+						<td class='ie_qty'><input min="0" type='number' name='ie_qty' required="required"></td>
+						<td><input type="number" min="0" onkeyup="multiplePrice(this)" onchange='multiplePrice(this)' required="required"></td>
 						<td class='ie_price'><input min="0" type='number' name='ie_price' required="required"></td>
 						<td><input class='deleteBox' type="checkbox"></td>
+						<td class="ie_clcode"><input type="hidden" name="ie_clcode"></td>
 					</tr>
 				</table>
 				</div>
@@ -181,9 +182,9 @@ width: 300px;
 					window.open('/erp/Account/comPany', 'comlist',
 							'width=1350,height=500')
 				})
-		
-		
-		
+
+
+
 		function makeItSelect(data) {
 			var str = '<select  name = "ie_itcode"><option></option>';
 			for (var i = 0; i < data.length; i++) {
@@ -197,13 +198,7 @@ width: 300px;
 			var ie_price = id.value;
 			var ie_qty = $(id).parent().siblings('.ie_qty').children().val();
 			$(id).parent().siblings('.ie_price').children().val(Number(ie_price)*Number(ie_qty));
-			
-		}
-		function multiPrice(id) {
-			var ie_qty = id.value;
-			var ie_price = $(id).parent().siblings('.ie_unit ').children().val();
-			$(id).parent().siblings('.ie_price').children().val(Number(ie_price)*Number(ie_qty));
-			
+
 		}
 		$('#deleteBtn').click(function(){
 			console.log($('.deleteBox')[0].checked)
@@ -219,13 +214,13 @@ width: 300px;
 			$(id).parent().parent().remove();
 		}
 		function addRow(id) {
-			var str = '<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input onkeyup="multiPrice(this)" min="0" onchange="multiPrice(this)" type="number" name="ie_qty" required="required"></td>'
-				+'<td class="ie_unit"><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
+			var str = '<tr><td class="itemcode">'+itArr+'</td><td class="ie_qty"><input type="number" name="ie_qty" required="required"></td>'
+				+'<td><input type="number" onkeyup="multiplePrice(this)" min="0" onchange="multiplePrice(this)" required="required"></td>'
 				+'<td class="ie_price"><input type="number" min="0" name="ie_price" required="required"></td>'
-				+'<td><input class="deleteBox" type="checkbox"></td></tr>';
+				+'<td><input class="deleteBox" type="checkbox"></td><td class="ie_clcode"><input type="hidden" name="ie_clcode"></td></tr>';
 				$(id).siblings("table").append(str);
 		}
-		
+
 		function addClcode(){
 			for(var i = 0; i < $('.itemcode').length;i++){
 				if( $($('.itemcode')[i]).children("select").val()==''){
@@ -235,7 +230,7 @@ width: 300px;
 			}
 			document.getElementById("form").submit();
 		}
-		
+
 	</script>
 </body>
 </html>

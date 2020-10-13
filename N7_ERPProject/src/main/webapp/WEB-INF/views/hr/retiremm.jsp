@@ -8,7 +8,6 @@
 <title>사원 휴 -퇴직 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<link href="/erp/img/favicon.png" rel="icon" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
@@ -226,7 +225,7 @@ input,select{
 					}
 					str+="</table>";
 				}else if(data.length==0){
-					str+="<img src='https://postfiles.pstatic.net/MjAyMDEwMTJfMjkw/MDAxNjAyNDg1OTMzODY1.7I5zBpuZTfh2cjDATZnjMy7ChY48rrU-xZDZQWOI138g.TjoCiAFSee21PBIhZ8Hc9jb-9ee7GkqFMWirGsa_6S0g.GIF.tkdgus5512/fr.gif?type=w773'>";
+					str+="<img width='300px' height='200px' src='https://blogpfthumb-phinf.pstatic.net/MjAyMDEwMDhfMzAw/MDAxNjAyMTIyNTMxOTM1.cPqAMKgvroqiVofLJzASQOwt3BOrq1zpalCLu6vch0Ig.PdHZwEQaxFiD4lK9kgW7NoywjrEk9yuyLZWozxx7_xkg.GIF.tkdgus5512/no_article.gif?type=w161'>";
 				}
 				$("#container").html(str);
 			}, error : function(err){

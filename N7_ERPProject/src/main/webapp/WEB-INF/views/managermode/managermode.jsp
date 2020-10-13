@@ -84,7 +84,22 @@ float: right;
                     <li>
                         <a id="erpmanage"><i class="fa fa-edit "></i>부서관리</a>
                     </li>
-                    
+                    <li>
+                        <a href="#"><i class="fa fa-qrcode "></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i></a>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-edit "></i> </a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-table "></i></a>
+                    </li>
+                     <li>
+                        <a href="#"><i class="fa fa-edit "></i> </a>
+                    </li>
                     
                 </ul>
                             </div>

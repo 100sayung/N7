@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>매출/매입결제양식</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 html,body{
 text-align: center;
@@ -56,7 +55,7 @@ text-align: center;
    <div style="width: auto; background-color: white; padding: 1%;">
 <button type="button" id="approvalLine">결재라인 불러오기</button>
    </div>
-   <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">기안문 작성</div>
+   <div style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">기안문 작성</div>
    <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
    <form id="formdata">
          <table>
@@ -67,7 +66,7 @@ text-align: center;
             </tr>
             <tr>
                <th>제목</th>
-               <th><textarea rows="1" cols="190" name="rs_title" style="text-align:center;"></textarea></th>
+               <th><textarea rows="1" cols="190" name="rs_title"></textarea></th>
             </tr>
             <tr>
                <th>결재자</th>
@@ -100,7 +99,7 @@ text-align: center;
                               <th>담당자</th>
                               <th>부서명</th>
                               <th><input type="text" name="rs_dept" value="회계팀"></th>
-                              <th>사원코드</th>
+                              <th>성명</th>
                               <th><input type="text" name="rs_employee" value="${approval.s_employee}"></th>
                            </tr>
                            </c:forEach>
@@ -129,14 +128,12 @@ text-align: center;
          </table>
    </form>
       </div>
-   <button id="commit" type="button">결재상신</button>&nbsp;<button type="reset">취소</button>
+   <button id="commit" type="button">결제상신</button>&nbsp;<button type="reset">취소</button>
 </body>
 <script>
 
 
  $(document).ready(function(){
-	 
-	
 	$.ajax({
 		url:'/erp/rest/Account/getMyInfo',
 		type:'get',
@@ -177,7 +174,6 @@ $("#commit").click(function(){
 			console.log(error);
 		}
 	});
-	 
 });
 
 var saleList = ${sList2};

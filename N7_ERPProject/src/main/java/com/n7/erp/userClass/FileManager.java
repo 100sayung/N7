@@ -31,19 +31,23 @@ public class FileManager {
 
 //	@Autowired
 //	private IMemberDao mDao;
-	String fullPath = "/erp/";
+	// �뙆�씪 寃쎈줈(�떎�슫濡쒕뱶/�궘�젣�뿉�꽌 �궗�슜)
+	String fullPath = "D:/SpringWork/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/N7Project/";
 
 	public String fileUp(MultipartHttpServletRequest multi) {
 		System.out.println("fileUp");
+		// 1.�씠�겢由쎌뒪�쓽 臾쇰━�쟻 ���옣寃쎈줈 李얘린
 		String root = multi.getSession().getServletContext().getRealPath("/");
 		System.out.println("root=" + root);
 		String path = root + "upload/";
+		// 2.�뤃�뜑 �깮�꽦�쓣 瑗� �븷寃�...
 		System.out.println("(fileup)PATH : " + path);
 		File dir = new File(path);
-		if (!dir.isDirectory()) { 
-			dir.mkdir(); 
+		if (!dir.isDirectory()) { // upload�뤃�뜑 �뾾�떎硫�
+			dir.mkdir(); // upload�뤃�뜑 �깮�꽦
 		}
 
+		// 3.�뙆�씪�쓣 媛��졇�삤湲�-�뙆�씪�깭洹멸� �뿬�윭媛� �씪�븣 �씠由꾨뱾 諛섑솚
 //		  Iterator<String> files=multi.getFileNames(); //�뙆�씪�깭洹멸� 2媛쒖씠�긽�씪�븣
 //		  
 //		  Map<String,String> fMap=new HashMap<String, String>();

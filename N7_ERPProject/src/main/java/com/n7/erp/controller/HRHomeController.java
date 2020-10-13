@@ -59,7 +59,7 @@ public class HRHomeController {
 	}
 	@PostMapping(value="/hr/newhrcard/{id}")
 	public String registHRCard(HR_Card hrCard, @PathVariable("id") String id, HttpSession session) {
-		hm.registHRCard(hrCard, id, session.getAttribute("cCode").toString(),session);
+		hm.registHRCard(hrCard, id, session.getAttribute("cCode").toString());
 		return "redirect:/hr/hrModifyDetail?id="+id;
 	}
 
@@ -220,9 +220,8 @@ public class HRHomeController {
 		return mav;
 	}
 	@RequestMapping(value = "/hr/findcheckpayid", method = RequestMethod.POST)
-	public @ResponseBody String findcheckpayid(String checkpayid,HttpSession session) {
-		String cCode=session.getAttribute("cCode").toString();
-		String result=dm.findcheckpayid(checkpayid,cCode);
+	public @ResponseBody String findcheckpayid(String checkpayid) {
+		String result=dm.findcheckpayid(checkpayid);
 		return result;
 	}
 	@RequestMapping(value = "/hr/deptsearchposition", method = RequestMethod.GET)
@@ -239,7 +238,7 @@ public class HRHomeController {
 	}
 	@RequestMapping(value = "hr/approvalLine", method = RequestMethod.GET)
 	public ModelAndView approvalLine(HttpSession session) {
-		mav = hm.approvalLine(session);
+		mav = am.approvalLine(session);
 		return mav;
 	}
 

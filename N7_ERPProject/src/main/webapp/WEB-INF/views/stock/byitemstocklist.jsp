@@ -9,7 +9,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -203,10 +202,6 @@ height: 50px;
 			dataType:"json",
 			success:function(result){
 				console.log(result)
-				if(result==null){
-					$("#contain").html("거래 현황이 없습니다.");
-					return;
-				}
 				var str = '<div style="background-color:#F8F7F7;"><table><tr><td>품목코드</td><td>현재고</td></tr>';
 				str+='<tr><td>'+result.ie_itcode+'</td><td>'+result.ie_qty+'</td></tr></table></div>'
 				$('#contain').html(str)
