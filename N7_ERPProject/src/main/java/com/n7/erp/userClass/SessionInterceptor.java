@@ -14,8 +14,11 @@ public class SessionInterceptor extends HandlerInterceptorAdapter{
 		System.out.println("preHandler call");
 		if(request.getSession().getAttribute("id")==null) {
 			response.sendRedirect("./"); //home.jsp
+			return true;  //controller 진입가능
+		}else if(request.getSession().getAttribute("hrCode")==null) {
+			response.sendRedirect("/erp/hr/movehrcardpage"); //home.jsp
 		}
-		return true;  //controller 진입가능
+		return true;
 	}
 
 	@Override
