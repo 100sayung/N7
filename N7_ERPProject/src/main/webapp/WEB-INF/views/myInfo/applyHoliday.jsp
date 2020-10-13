@@ -43,7 +43,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1150px;
+	width: 800px;
    position: absolute;
    transform:translate(250px, 0);
 }
@@ -105,14 +105,14 @@ ul {
 	<div class="center">
 	<button id="approval" class="goodbtn" type="button">결재자등록</button>
 	<form action="/erp/hr/applyholiday" method="post" onsubmit="return checkHoliday();">
-	<table style='text-align: center;width: 900px;'>
-	<tr><td class='infomenu'>결재자</td><td style="border: 2px solid blue;font-size: 20px;"><div id='line'><input id="aprover" style="border: 0px;"></div></td></tr>
+	<table style='text-align: center;'>
+	<tr><td class='infomenu'>결재자</td><td><div id='line'></div></td></tr>
 	<tr class='infomenu'>
 		<td>문서제목</td><td>휴가종류</td>
 	</tr><tr>
-		<td><input type="text" name="hap_docuname" placeholder="문서 제목을 입력해주세요 글자제한 20자" required="required" style="width:450px;font-size: 20px;"></td>
+		<td><input type="text" name="hap_docuname" placeholder="문서 제목을 입력해주세요 글자제한 20자" required="required" style="width:300px;"></td>
 		<td>
-			<select style="width:450px;font-size: 20px;" name="hap_type" id="type">
+			<select style="width:200px;" name="hap_type" id="type">
 				<option value="year">연차</option>
 				<option value="period">생리</option>
 				<option value="pregnancy">임신/육아</option>
@@ -122,15 +122,15 @@ ul {
 	</tr><tr class='infomenu'>
 		<td>휴가시작일</td><td>휴가종료일</td>
 	</tr><tr>
-		<td><input type="date" name="hap_startday" required="required" id="start" style="width:450px;font-size: 20px;"></td>
-		<td><input type="date" name="hap_endday" required="required" onchange='checkDateValue(start, end);' id="end" style="width:450px;font-size: 20px;"></td>
+		<td><input type="date" name="hap_startday" required="required" id="start" style="width:300px;"></td>
+		<td><input type="date" name="hap_endday" required="required" onchange='checkDateValue(start, end);' id="end" style="width:300px;"></td>
 	</tr><tr>
 		<td colspan='2' class='infomenu'>사유</td>
 	</tr><tr>
-		<td colspan='2'><textarea rows="10" cols="10" name="hap_reason" style="width:910px; resize:none;"></textarea></td>
+		<td colspan='2'><textarea rows="10" cols="10" name="hap_reason" style="width:620px; heigth:1000px; resize:none;"></textarea></td>
 	</tr>
 	</table>
-		<input type="submit" class='infobtn' value="제출" style="margin-left: 450px;">
+	<input type="submit" class='infobtn' value="제출">
 	</form>
 	</div>
 </div>
@@ -216,11 +216,11 @@ ul {
 		if (data.tList1 != "") {
 		var str = "";
 			for ( var i in data.tList1) {
-		        str +="<input type='text' id='aprover' name='hap_toapprover' value='"+data.tList1[i].hc_hrcode+"' hidden='true'>";
+		        str +="<input type='text' name='hap_toapprover' value='"+data.tList1[i].hc_hrcode+"' hidden='true'>";
 				str +=data.tList1[i].hc_position+"/" + data.tList1[i].m_name;
 			}
 			console.log(str)
-			$("#line").html(str);
+			$("#line").append(str);
 		};
 	};
 	var holidaycnt = "";
@@ -250,10 +250,6 @@ ul {
 				alert("남은휴가보다 더 많은 일수를 신청하셨습니다.");
 				return false;
 			}
-		}
-		if($("#aprover").val()==""){
-			alert("결재자가 없습니다 결재자를 등록해주세요.");
-			return false;
 		}
 		return true;
 	}

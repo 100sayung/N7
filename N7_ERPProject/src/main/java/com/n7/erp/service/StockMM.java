@@ -123,8 +123,7 @@ public class StockMM {
 		String it_code = (formData.getFirst("it_ccode") == null) ? formData.getFirst("it_code")
 				: it_ccode + "-" + formData.getFirst("it_code");
 		it.setIt_code(it_code);
-		return it.setIt_pname(formData.getFirst("it_pname"))
-				.setIt_size(formData.getFirst("it_size"))
+		return it.setIt_pname(formData.getFirst("it_pname")).setIt_size(formData.getFirst("it_size"))
 				.setIt_unit(formData.getFirst("it_unit"));
 	}
 

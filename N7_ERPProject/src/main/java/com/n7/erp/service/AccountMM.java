@@ -723,6 +723,7 @@ public class AccountMM {
 //내가 올린 결재안 목록 페이징
 	public  Map<String, List<ApprovalDocu>> apupPaymentList(HttpSession session, PagingVO vo, int start, int end) {
 		Map<String, List<ApprovalDocu>> pMap = null;
+		ApprovalDocu al = new ApprovalDocu();
 		String hrCode = (String) session.getAttribute("hrCode");
 		String cCode = (String) session.getAttribute("cCode");
 		System.out.println("사원코드: " + hrCode);
@@ -732,7 +733,6 @@ public class AccountMM {
 		
 		if (pList != null) {
 			for (int i=0; i<pList.size();i++) {
-				ApprovalDocu al = new ApprovalDocu();
 				al.setAp_fromname(aDao.searchFromname(pList.get(i).getAp_fromapprover()));	//보낸사람
 				al.setAp_toname(aDao.searchToname(pList.get(i).getAp_toapprover()));		//받는사람
 				nList.add(al);
@@ -763,6 +763,7 @@ public class AccountMM {
 //내가 올린 결재완료 목록 페이징
 	public  Map<String, List<ApprovalDocu>> apupPaymentList3(HttpSession session, PagingVO vo, int start, int end) {
 		Map<String, List<ApprovalDocu>> pMap = null;
+		ApprovalDocu al = new ApprovalDocu();
 		String hrCode = (String) session.getAttribute("hrCode");
 		String cCode = (String) session.getAttribute("cCode");
 		System.out.println("사원코드: " + hrCode);
@@ -771,7 +772,6 @@ public class AccountMM {
 		List<ApprovalDocu> nList = new ArrayList<>();
 		
 		if (pList != null) {
-			ApprovalDocu al = new ApprovalDocu();
 			for (int i=0; i<pList.size();i++) {
 				al.setAp_fromname(aDao.searchFromname(pList.get(i).getAp_fromapprover()));	//보낸사람
 				al.setAp_toname(aDao.searchToname(pList.get(i).getAp_toapprover()));		//받는사람
@@ -802,6 +802,7 @@ public class AccountMM {
 //내가 올린 반려 목록 페이징
 	public  Map<String, List<ApprovalDocu>> apupPaymentList4(HttpSession session, PagingVO vo, int start, int end) {
 		Map<String, List<ApprovalDocu>> pMap = null;
+		ApprovalDocu al = new ApprovalDocu();
 		String hrCode = (String) session.getAttribute("hrCode");
 		String cCode = (String) session.getAttribute("cCode");
 		System.out.println("사원코드: " + hrCode);
@@ -810,7 +811,6 @@ public class AccountMM {
 		List<ApprovalDocu> nList = new ArrayList<>();
 		
 		if (pList != null) {
-			ApprovalDocu al = new ApprovalDocu();
 			for (int i=0; i<pList.size();i++) {
 				al.setAp_fromname(aDao.searchFromname(pList.get(i).getAp_fromapprover()));	//보낸사람
 				al.setAp_toname(aDao.searchToname(pList.get(i).getAp_toapprover()));		//받는사람

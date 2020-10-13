@@ -49,19 +49,28 @@ margin-left: 30px;
 </head>
 
 <body>
-	<div style="position: absolute;">
-	<div id="header" class="container" style="text-align: center; transform:translate(20%, 0);">
+
+	<div id="header" class="container" style="text-align: center; border:1px solid black;">
 		<div id="logo">
 			<h1>
 				<a href="/erp/" style="color: black;">N7 COMPANY</a>
 			</h1>
 		</div>
 	</div>
-
-	<div id="container" style="margin-left: 300px;">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="container">
 		<img src="http://www.probono.kr/template/BUILDER_core/resource/page_join_img.jpg"></img>
 	</div>
-	</div>
+
 	
 	
 </body>

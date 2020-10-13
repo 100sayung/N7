@@ -204,13 +204,8 @@ height: 50px;
 				for (var i = 0; i < result.length; i++) {
 					var to = result[i].ie_date;
 					str += '<tr><td>' + result[i].ie_itcode + '</td>';
-					if(result[i].ie_clcode !=undefined){
-						
 					str += '<td>' + result[i].ie_clcode + '</td>';
-					}else{
-						str += '<td></td>';
-					}
-					str += '<td>' + to.substring(0,10)+ '</td>';
+					str += '<td>' + to+"".substring(0,10)+ '</td>';
 					if (result[i].ie_status == 1) {
 						str += '<td>입고</td>'
 					} else if(result[i].ie_status==2){

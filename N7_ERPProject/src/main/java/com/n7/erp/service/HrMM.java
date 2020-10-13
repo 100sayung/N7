@@ -242,7 +242,7 @@ public class HrMM {
 		if (bDao.registHolidayApprovalDocu(docu)) {
 			hDao.registHoliday(apholi);
 		}
-		mav.setViewName("redirect:/myinfo/myholiday");
+		mav.setViewName("/myInfo/myHoliday");
 		return mav;
 	}
 

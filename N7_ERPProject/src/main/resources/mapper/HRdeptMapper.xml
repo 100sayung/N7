@@ -51,14 +51,13 @@
 		HP_TAX=#{HP_TAX},HP_INCEN=#{HP_INCEN},HP_INSURANCE=#{HP_INSURANCE},HP_REALMONEY=#{HP_REALMONEY}
 		WHERE HP_PAYDATE=#{HP_PAYDATE} AND HP_HRCODE=#{HC_HRCODE}
 	</update>
-	<select id="checkingidname" parameterType="HashMap" resultType="Viewpay">
+	<select id="checkingidname" parameterType="String" resultType="Viewpay">
 		SELECT HR_CD_D.HC_ID, HR_CD_D.HC_DEPT, HR_CD_D.HC_POSITION, HR_CD_D.HDP_PAY, HR_CD_D.HC_CCODE, 
 			   HR_CD_D.HC_HRCODE, HR_CD_D.HDP_AUTH, HR_CD_D.HDD_AMOUNT, HR_CD_D.M_NAME, HR_CD_D.HC_HOLYNUM 
 		FROM HR_CD_D INNER JOIN HR_CARD ON HR_CD_D.HC_ID = HR_CARD.HC_ID
 		WHERE 
-			   (HR_CD_D.HC_ID LIKE '%'||#{checkpayid}||'%' AND HR_CD_D.HC_CCODE=#{cCode} 
-			OR HR_CD_D.M_NAME LIKE '%'||#{checkpayid}||'%' AND HR_CD_D.HC_CCODE=#{cCode}
-			OR HR_CD_D.HC_ID LIKE '%'||#{checkpayid}||'%' AND HR_CD_D.M_NAME LIKE '%'||#{checkpayid}||'%' AND HR_CD_D.HC_CCODE=#{cCode})
+			(HR_CD_D.HC_ID LIKE '%'||#{checkpayid}||'%' OR HR_CD_D.M_NAME LIKE '%'||#{checkpayid}||'%' 
+			OR HR_CD_D.HC_ID LIKE '%'||#{checkpayid}||'%' AND HR_CD_D.M_NAME LIKE '%'||#{checkpayid}||'%')
 			AND HR_CARD.HC_WORK != '2'
 		ORDER BY HC_DEPT DESC
 	</select>

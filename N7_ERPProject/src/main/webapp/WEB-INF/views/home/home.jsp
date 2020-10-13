@@ -100,7 +100,7 @@ font-size: 30px;
       <div class="carousel-inner" role="listbox">
 
         <div class="item active">
-          <img src="img/mainerp5.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
+          <img src="img/mainerp5.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
           <!-- <div class="carousel-caption">
             <h2>기술</h2>
             <p>혁신적인 기술로 시장을 선도하는 기업</p>
@@ -108,26 +108,28 @@ font-size: 30px;
         </div>
 
         <div class="item">
-          <img src="img/mainerp6.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
+          <img src="img/mainerp1.png" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
           <!-- <div class="carousel-caption">
             <h2>가동성</h2>
             <p>ERP로 최고의 효율 창조하는 기업</p>
           </div> -->
         </div>
         <div class="item">
-          <img src="img/mainerp7.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
+          <img src="img/mainerp4.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
          <!--  <div class="carousel-caption">
             <h2>커뮤니티</h2>
             <p>항상 고객을 최우선으로 생각하는 기업</p>
           </div> -->
         </div>
         <div class="item">
-          <img src="img/mainerp8.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
+          <img src="img/mainerp2.jpg" alt="Chania" width="60%" height="50%" style="margin-left: 20%"></img>
           <!-- <div class="carousel-caption">
             <h2>플랫폼</h2>
             <p>개인기업부터 대기업까지 사용할 수있는 맞춤형 ERP </p>
           </div> -->
         </div>
+
+    
 
       </div>
 
