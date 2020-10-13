@@ -136,6 +136,7 @@ public class AccountionCotroller {
 
 	@PostMapping(value = "/Account/getshipment", produces = "application/json;charset=utf-8")
 	public Map<String, List<shipment>> getshipment(String num,HttpSession session) {
+		System.out.println(num);
 		Map<String, List<shipment>> aMap = am.getshipment(num,session);
 		return aMap;
 	}

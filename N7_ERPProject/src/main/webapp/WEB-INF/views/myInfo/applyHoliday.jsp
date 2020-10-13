@@ -106,7 +106,7 @@ ul {
 	<button id="approval" class="goodbtn" type="button">결재자등록</button>
 	<form action="/erp/hr/applyholiday" method="post" onsubmit="return checkHoliday();">
 	<table style='text-align: center;width: 900px;'>
-	<tr><td class='infomenu'>결재자</td><td style="border: 2px solid blue;font-size: 20px;"><div id='line'></div></td></tr>
+	<tr><td class='infomenu'>결재자</td><td style="border: 2px solid blue;font-size: 20px;"><div id='line'><input id="aprover" style="border: 0px;"></div></td></tr>
 	<tr class='infomenu'>
 		<td>문서제목</td><td>휴가종류</td>
 	</tr><tr>
@@ -216,11 +216,11 @@ ul {
 		if (data.tList1 != "") {
 		var str = "";
 			for ( var i in data.tList1) {
-		        str +="<input type='text' name='hap_toapprover' value='"+data.tList1[i].hc_hrcode+"' hidden='true'>";
+		        str +="<input type='text' id='aprover' name='hap_toapprover' value='"+data.tList1[i].hc_hrcode+"' hidden='true'>";
 				str +=data.tList1[i].hc_position+"/" + data.tList1[i].m_name;
 			}
 			console.log(str)
-			$("#line").append(str);
+			$("#line").html(str);
 		};
 	};
 	var holidaycnt = "";
@@ -250,6 +250,10 @@ ul {
 				alert("남은휴가보다 더 많은 일수를 신청하셨습니다.");
 				return false;
 			}
+		}
+		if($("#aprover").val()==""){
+			alert("결재자가 없습니다 결재자를 등록해주세요.");
+			return false;
 		}
 		return true;
 	}

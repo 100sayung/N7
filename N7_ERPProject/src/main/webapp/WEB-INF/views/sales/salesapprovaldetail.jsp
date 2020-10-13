@@ -62,7 +62,7 @@ table, tr, th, td {
    <form id="for">
      <br>
      <br>
-      <div style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">기안문 상세보기</div>
+      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">기안문 상세보기</div>
       <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
          <table>
             <tr>
@@ -72,9 +72,9 @@ table, tr, th, td {
             <tr>
                <th>결재자</th>
                <th id="line">
-                  <input type="hidden" value="${app.bs_apcode1}" name="code"> <!-- code -->
-                  <input type="hidden" value="${app.bs_apcode2}" name="code"> <!-- code -->
-                  <input type="hidden" value="${app.bs_apcode3}" name="code"> <!-- code -->
+                  <input type="hidden" value="${app.bs_apcode1}" name="code" > <!-- code -->
+                  <input type="hidden" value="${app.bs_apcode2}" name="code" > <!-- code -->
+                  <input type="hidden" value="${app.bs_apcode3}" name="code" > <!-- code -->
                </th>
 
             </tr>
@@ -177,10 +177,10 @@ table, tr, th, td {
 								console.log(data);
 								var str = "";
 								for ( var i in data.sList) {
-									str += "<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
+									str += "<input type='text' name='bs_apcode"+(Number(i)+Number(1))+"' value='"+data.sList[i].hc_hrcode+"' hidden='true' readonly>";
 									str += data.sList[i].hc_position
 											+ "/";
-									str += "<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+									str += "<input style='width:50px;' type='text' name='bs_approver"+(Number(i)+Number(1))+"' value='"+ data.sList[i].m_name+"' readonly>&nbsp;&nbsp;||&nbsp;&nbsp;";
 								}
 								console.log(str)
 								$("#line").append(str);
