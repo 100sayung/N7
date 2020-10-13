@@ -177,6 +177,7 @@ border: 1px solid ;
                     str+="<td><input class='num' type='text' readonly value='"+data.sList[i].bo_proquantity+"'></td>";
                     str+="<td><input class='num' type='text' readonly value='"+data.sList[i].bo_prosalesamount+"'></td>";
                     str+="<td><input class='num' type='text' readonly value='"+data.sList[i].bo_orderbudget+"'></td>";
+
                  }
                     $('#tBody').html(str);
               },
@@ -297,7 +298,17 @@ border: 1px solid ;
              }
        }); */
 
+ 		
+/*  		$(document).ready(function() {
+ 			var str = "       str         ";
+ 			str = str.trim();
 
+ 			String.prototype.trim = function(){
+ 				  return this.replace(/(^\s*)|(\s*$)/gi, "");
+ 				}
+ 		}); */
+
+ 			
 </script>
 </body>
 </html>

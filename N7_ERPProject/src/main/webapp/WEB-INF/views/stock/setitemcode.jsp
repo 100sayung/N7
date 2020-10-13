@@ -148,6 +148,7 @@ text-align: center;
 		itemCode('/erp/stock/itemcodeconfirm',data);
 		$('input[type="text"]').val("");
 		$('input[type="number"]').val("");
+		$('select').children()[0].selected = true;
 	});
 	
 	function  itemCode(url,data) {

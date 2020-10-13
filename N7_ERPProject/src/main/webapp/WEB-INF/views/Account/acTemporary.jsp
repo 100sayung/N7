@@ -170,7 +170,7 @@ text-align: center;
 							window.open(
 									'/erp/rest/Account/acRequest?j_docunum='
 											+ check, 'acRequest',
-									'width=1500, height=600');
+							 'width=1500, height=650');
 						});
 			});
 	

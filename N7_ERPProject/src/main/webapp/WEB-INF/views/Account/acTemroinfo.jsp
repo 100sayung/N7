@@ -178,7 +178,7 @@ table, tr, th, td {
 												str += "<input type='text' name='rs_apcode"+i+"' value='"+data.sList[i].hc_hrcode+"' hidden='true'>";
 												str += data.sList[i].hc_position
 														+ "/";
-												str += "<input style='width:50px;' type='text' name='rs_apname"+i+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+												str += "<input style='width:50px;' type='text' readonly name='rs_apname"+i+"' value='"+ data.sList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
 											}
 											console.log(str)
 											$("#line").html(str);
