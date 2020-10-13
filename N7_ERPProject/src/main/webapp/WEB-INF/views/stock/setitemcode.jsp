@@ -11,8 +11,6 @@
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="/erp/css/location.css" rel="stylesheet" type="text/css"
-	media="all" />
 	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
@@ -85,49 +83,44 @@ text-align: center;
 </style>
 </head>
 <body>
-	<div id="description" class="out">
-	<div class="first_div_css">
+	<div class="first_div_css" style="width:500px;">
 		<h1 class="deptregist_color_size" id="title">품목코드 추가</h1>
 	</div>
-	<div class="center">
-		<h3>품목번호 작성</h3>
+	<div id="description" align="center">
 		<form id="frm">
-		<table style="border: 0px;">
+		<table style="border: 1px; ">
+			<th colspan="4">품목번호작성</th>
 			<tr>
 				<td style="border: 0px;">분류명</td>
 				<td style="border: 0px;" id="getCategory"></td>
-			</tr>
-			<tr>
 				<td style="border: 0px;">품목코드</td>
 				<td style="border: 0px;"><input id="it_code" name="it_code" type="text"
 					maxlength="4" required="required"></td>
-			<tr>
+			</tr>
 			<tr>
 				<td style="border: 0px;">상품명</td>
 				<td style="border: 0px;"><input id="it_pname" name="it_pname" type="text"
 					required="required"></td>
-			<tr>
-			<tr>
 				<td style="border: 0px;">규격명</td>
 				<td style="border: 0px;"><input id="it_size" name="it_size" type="text"
 					required="required"></td>
-			<tr>
+			</tr>
 			<tr>
 				<td style="border: 0px;">단위</td>
 				<td style="border: 0px;"><input id="it_unit" name="it_unit" type="text"
 					maxlength="6" required="required"></td>
-			</tr>
-			<tr>
-				<td colspan="2" style="border: 0px;"><input type="button"
+				<td colspan="2" style="border: 0px;" align="right" style="padding-right:10%;"><input type="button"
 						id="btn" value="확정"></td> <!--itemcode cofirm btn #btn -->
 			</tr>
-		</table>
 		</form>
-		<span id='msg'></span><br><br>
-		<h3>품목코드 내역</h3>
+		<tr></tr><tr>
+		<span id='msg'></span>
+		<th colspan="4">품목코드 내역</th></tr>
+		<td></td><td></td><td></td><td align="right">
 		<input type="button" style="display:none" id="modify" value="수정"><!--itemcode modify btn #modify -->
+		</td>
+		</table>
 	<div id="smalldescription">
-	</div>
 	</div></div>
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
@@ -182,9 +175,9 @@ text-align: center;
 							+ result[i].it_code
 							+ '" readonly>'
 							+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
+							+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
 							+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 							+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
-							+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
 							+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
 							console.dir(frm);
 							frm.innerHTML = str
@@ -217,10 +210,10 @@ text-align: center;
 						+ result[i].it_code
 						+ '" readonly>'
 						+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
+						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/><br>'
 						+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 						+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
-						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
-						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
+						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/><br><hr size="5" width="100px;	">';
 						console.dir(frm);
 						frm.innerHTML = str
 						msg+=frm.outerHTML+'<br>';
