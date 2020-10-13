@@ -35,7 +35,8 @@ ${msg}
 		 <span style="padding-left: 5px"><a href="#"
          onclick="window.open('/erp/Account/comPany','comlist','width=1350,height=500')"><button>거래처등록</button></a></span>
          <span><a href=# onclick="window.open('/erp/stock/setcategory','PopupWin','width=550,height=600')"><button>분류코드 추가</button></a></span>
-         <span><a href=# onclick="window.open('/erp/stock/setitemcode','PopupWin','width=980,height=600')"><button>품목코드 추가</button></a></span>
+         <span><a href=# onclick="window.open('/erp/stock/setitemcode','PopupWin','width=565,height=600')"><button>품목코드 추가</button></a></span>
+              <span><a href="#" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=1550,height=600')"><button>품목코드 검색</button></a></span>
          <button type="button"id="stock">재고현황</button>
          <button type="button" id="Pinfo" style="padding-left: 5px;">구매조회</button>
          <button type="button" id="approval">결재요청</button>
