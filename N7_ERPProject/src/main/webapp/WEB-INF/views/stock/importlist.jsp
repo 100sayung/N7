@@ -47,40 +47,39 @@ float: left;
 ul {
 	list-style: none;
 }
-
 td, th, table {
-	border: 1px solid white;
+   border: 1px solid white;
 }
 
 td, th {
-	width: 200px;
-	height: 30px;
+   width: 200px;
+   height: 30px;
 }
 
 tr {
-	text-align: center;
+   text-align: center;
 }
 
 button {
-	width: 100px;
-	height: 30px;
-	background-color: #FFB2D9;
-	border: 0px;
-	border-radius: 8px;
-	font-weight: bolder;
-	font-size: 14px;
-	color: white;
+   width: 100px;
+   height: 30px;
+   background-color: #FFB2D9;
+   border: 0px;
+   border-radius: 8px;
+   font-weight: bolder;
+   font-size: 14px;
+   color: white;
 }
 
 span {
-	text-align: center;
-	color: red;
+   text-align: center;
+   color: red;
 }
 
 .span {
-	float: left;
-	width: 176px;
-	text-align: center;
+   float: left;
+   width: 176px;
+   text-align: center;
 }
 #description *{
 font-size: 20px;
@@ -92,7 +91,8 @@ font-weight: bolder;
 }
 body{
 position: relative;
-}
+} 
+
 </style>
 </head>
 <body>
@@ -115,17 +115,18 @@ position: relative;
 		</ul>
 	</div>
 	<div id='description'>
-	<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입/출고 내역</div>
-		입고 내역<input class='checkNum' type="radio" name='ie_status' value="1">출고
-		내역<input class="checkNum" type="radio" name="ie_status" value="2"><br>
-		시작일 : <input class='checkDate' id='date0' type="date" name='ie_date'><br>
-		종료일 : <input class='checkDate' id='date1' type="date" name='ie_date2'
-			readonly><br>
-		<br>
-		<center>
+	<div style="width:1150px; background-color:#3D6B9B; color:white; padding:1%; text-align: center;" >입/출고 내역</div>
+ 	<div style="text-align: center; margin-top: 20px;">
+		입고 내역<input class='checkNum' type="radio" name='ie_status' value="1">&emsp;
+		출고 내역<input class="checkNum" type="radio" name="ie_status" value="2"><br><br>
+		시작일 : <input class='checkDate' id='date0' type="date" name='ie_date' style="text-align: center;">&nbsp; ~ 
+		&nbsp;종료일 : <input class='checkDate' id='date1' type="date" name='ie_date2' readonly style="text-align: center;"><br>
+	</div> 
+		<center><br>
 			<div id="contain"></div>
 		</center>
 	</div>
+
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
