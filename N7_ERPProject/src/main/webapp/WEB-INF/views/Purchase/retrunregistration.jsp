@@ -52,18 +52,18 @@ height: 23px;
             <div>
            <table style="margin-left:188px; text-align: center;">
                      <tr>
-                       <td>반품번호&emsp;</td>
+                       <th>반품번호&emsp;</th>
                        <td><input type="text" name="r_documentcode" placeholder="자동생성" readonly>&emsp;</td>
-                       <td>입고번호&emsp;</td>
+                       <th>입고번호&emsp;</th>
                        <td id="ie"></td>
-                       <td>거래처&nbsp;</td>
+                       <th>거래처&nbsp;</th>
                        <td><input id="clcode" type="text" name="r_clcode">&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></td>
                       </tr>
                       
                       <tr>
-                       <td>담당자</td>
+                       <th>담당자</th>
                        <td><input type="text" name="r_writer" id="writer">&emsp;</td>                 
-                       <td>반품일</td>
+                       <th>반품일</th>
                        <td><input type="date" name="r_date" min="2000-01-01" max="2030-12-31" style="width: 159px;">&emsp;</td>
                      </tr>
                </table>
@@ -82,12 +82,12 @@ height: 23px;
                <thead valign="top">
                   <tr>
                      <th><input type="checkbox" id="allCheck"></th>
-                           <td>상품명</td>
-                           <td>상품코드</td>
-                           <td>수량</td>
-                           <td>단가(원)</td>
-                           <td>합계(원)</td>
-                           <td>적요</td>
+                           <th>상품명</th>
+                           <th>상품코드</th>
+                           <th>수량</th>
+                           <th>단가(원)</th>
+                           <th>합계(원)</th>
+                           <th>적요</th>
                   </tr>
                </thead>
                <tbody id="tbody">

@@ -11,11 +11,14 @@
 #center{
 text-align:center;
 }
+input{
+text-align: center;
+}
 </style>
 <body>
       <div id="center">
       <br>
-        <button type="button" id="businessitemfrm" onclick="window.open('/erp/sales/SalesResult','SalesResult','width=1200,height=1200')">영업 실적조회</button>${msg}
+        <button style="margin-right: 50px;" type="button" id="businessitemfrm" onclick="window.open('/erp/sales/SalesResult','SalesResult','width=1200,height=1200')">영업 실적조회</button>${msg}
         <br>
         <br>
         <div style="width:1150px; background-color:#3D6B9B;  color:white; padding:1%;">영업활동</div>
@@ -26,7 +29,7 @@ text-align:center;
           <button type="button" id="searchh" value="검색">검색</button>
         <form id="businessactivitiesinput">
         <div border="1" style="width:1175px; height:80px; padding-top:25px; background-color:#F8F7F7;">
-        <table style="margin-left:100px;">
+        <table style="margin-left:65px;">
          <thead>
             <tr>
                <th>영업코드</th>
@@ -34,26 +37,26 @@ text-align:center;
                <th>회사코드</th>
                <th><input type="text" name="ba_ccode" value="${cCode}" readonly></th>
                <th>거래처회사코드</th>
-               <th><input type="text" name="ba_clcode" id="clcode" readonly>&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button></th>
+               <th><input type="text" name="ba_clcode" id="clcode" readonly>&nbsp;&nbsp;<button type="button" onclick="window.open('/erp/home/comInfo','comInfo','width=550,height=700')">검색</button>&nbsp;&nbsp;</th>
                <th>사원코드</th>
                <th><input type="text" name="ba_hrcode" value="${hrCode}" readonly></th> <%-- value="${hrCode}" readonly --%>
             </tr>
             <tr>
                <th>사업단위</th>
-               <th><select name="ba_unit" style="width:150px;">
+               <th><select name="ba_unit" style="width:150px; height:23px;">
                    <option value="본사">본사</option>
                    <option value="지사">지사</option></select></th>
                <th>영업기간 시작</th>
                <th><input type="date" name="ba_startperiod" min="2000-01-01" max="2030-12-31" style="width:140px;"></th>
                <th>영업기간 끝</th>
-               <th><input type="date" name="ba_endperiod" min="2000-01-01" max="2030-12-31" style="width:140px;"></th>
+               <th><input type="date" name="ba_endperiod" min="2000-01-01" max="2030-12-31" style="width:140px; margin-right: 70px;"></th>
             </tr>
          </thead>
       </table>
       </div>
             <div style="background-color:#ECEBEA; width:1175px;">
-            <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
-              style="margin-left:140px;">
+           <table id="item" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="1"
+               style="width:100%">
                 <colgroup align="center">
                 </colgroup>
                 <colgroup align="left">
@@ -89,7 +92,7 @@ text-align:center;
         </form>
         <br>
             <!-- <button type="button" id="deleteCheck" value="삭제">삭제</button> -->
-            <button type="button" id="sub" value="저장">저장</button>
+            <div style="margin-right: 100px;"><button type="button" id="sub" value="저장">저장</button></div>
       </div>
      <br>
     <br>
@@ -162,12 +165,12 @@ text-align:center;
                 if(data.bList!=""){
                  for(var i in data.bList){
                   str+="<tr class='tr'><td><input type='radio' name='each_check' value="+data.bList[i].ba_ocode+"></td>";
-                str+="<td><input type='text' value="+data.bList[i].ba_date+"></td>";
-                str+="<td><input type='text' value="+data.bList[i].ba_content+"></td>";
-                str+="<td><input type='text' value="+data.bList[i].ba_estimatedsalesamount+"></td>";
-                str+="<td><input type='text' value="+data.bList[i].ba_actualsalesamount+"></td>";
-                str+="<td><input type='text' value="+data.bList[i].ba_enddate+"></td>";
-                str+="<td><input type='text' value="+data.bList[i].ba_memo+"></td>";
+                str+="<td><input type='text' value='"+data.bList[i].ba_date+"'></td>";
+                str+="<td><input type='text' value='"+data.bList[i].ba_content+"'></td>";
+                str+="<td><input type='text' value='"+data.bList[i].ba_estimatedsalesamount+"'></td>";
+                str+="<td><input type='text' value='"+data.bList[i].ba_actualsalesamount+"'></td>";
+                str+="<td><input type='text' value='"+data.bList[i].ba_enddate+"'></td>";
+                str+="<td><input type='text' value='"+data.bList[i].ba_memo+"'></td>";
                  }
                    $('#tBody').html(str);
                 }else{
@@ -196,13 +199,13 @@ text-align:center;
                    console.log(data);
                    var str="";
                    for(var i in data.sList){
-                       str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].ba_ocode+"></td>";
-                       str+="<td><input type='text' value="+data.sList[i].ba_date+"></td>";
-                       str+="<td><input type='text' value="+data.sList[i].ba_content+"></td>";
-                       str+="<td><input type='text' value="+data.sList[i].ba_estimatedsalesamount+"></td>";
-                       str+="<td><input type='text' value="+data.sList[i].ba_actualsalesamount+"></td>";
-                       str+="<td><input type='text' value="+data.sList[i].ba_enddate+"></td>";
-                       str+="<td><input type='text' value="+data.sList[i].ba_memo+"></td>";
+                       str+="<tr><td><input type='radio' name='each_check' value='"+data.sList[i].ba_ocode+"'></td>";
+                       str+="<td><input type='text' value='"+data.sList[i].ba_date+"'></td>";
+                       str+="<td><input type='text' value='"+data.sList[i].ba_content+"'></td>";
+                       str+="<td><input type='text' value='"+data.sList[i].ba_estimatedsalesamount+"'></td>";
+                       str+="<td><input type='text' value='"+data.sList[i].ba_actualsalesamount+"'></td>";
+                       str+="<td><input type='text' value='"+data.sList[i].ba_enddate+"'></td>";
+                       str+="<td><input type='text' value='"+data.sList[i].ba_memo+"'></td>";
 
                     }
                        $('#tBody').html(str);
