@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내가올린 매입결제상세정보</title>
+<link href="/erp/img/favicon.png" rel="icon" />
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">

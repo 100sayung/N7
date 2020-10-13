@@ -7,6 +7,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/erp/img/favicon.png" rel="icon" />
 <title></title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
@@ -18,8 +19,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-
-<link href="img/favicon.png" rel="icon" />
 <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
 <!-- 	crossorigin="anonymous" /> -->
 <link rel="stylesheet"

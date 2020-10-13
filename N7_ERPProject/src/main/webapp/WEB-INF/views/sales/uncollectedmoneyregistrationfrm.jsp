@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>미수금 등록 form</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 </head>
 <style>
 #center{

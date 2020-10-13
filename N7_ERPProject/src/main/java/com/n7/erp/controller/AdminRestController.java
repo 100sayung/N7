@@ -1,5 +1,6 @@
 package com.n7.erp.controller;
 
+import java.io.StringReader;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import com.n7.erp.bean.Member;
 import com.n7.erp.service.AdminMM;
 import com.n7.erp.service.MemberMM;
@@ -42,6 +44,9 @@ public class AdminRestController {
 
 	@PostMapping(value = "/admin/changegrade")
 	public String updateChangeGrade(String jsonStr) {
+		System.out.println(jsonStr);
+		jsonStr = jsonStr.replace("&quot;", "\"");
+		System.out.println(jsonStr);
 		List<Member> mlist = new Gson().fromJson(jsonStr, new TypeToken<List<Member>>() {
 		}.getType());
 		System.out.println(mlist);
@@ -52,7 +57,10 @@ public class AdminRestController {
 	@PostMapping(value = "/admin/forcewithdrawal")
 	public String forceWithDrawal(String jsonStr) { //
 		System.out.println(jsonStr);
-		List<String> slist = new Gson().fromJson(jsonStr, new TypeToken<List<String>>() {
+		jsonStr = jsonStr.replace("&quot;", "\"");
+		System.out.println(jsonStr);
+		Gson gson = new Gson();
+		List<String> slist = gson.fromJson(jsonStr, new TypeToken<List<String>>() {
 		}.getType());
 		System.out.println(slist);
 		mm.forceWithDrawal(slist);

@@ -134,7 +134,7 @@ public class MemberMM {
 
 	public ModelAndView moveMyInfo(HttpSession session) {
 		if (!hDao.haveHrCode(session.getAttribute("id").toString())) {
-			mav.addObject("msg", "�뜝�럩�꽑 �뜝�떥�궪�삕移닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕泥��뜝�룞�삕�뜝�뙇�눦�삕�뜝�룞�삕.");
+			mav.addObject("msg", "인사카드를 등록해주세요.");
 		}
 		mav.setViewName("myInfo/myInfo");
 		return mav;

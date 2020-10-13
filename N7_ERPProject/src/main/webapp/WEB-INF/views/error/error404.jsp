@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
-
+<link href="/erp/img/favicon.png" rel="icon" />
 <link href="/erp/css/location.css" rel="stylesheet" type="text/css"
 	media="all" />
 <script

@@ -8,6 +8,7 @@
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="resources/js/jquery.serializeObject.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 <style>body, td, th, select, textarea {
    /* font-family: Nanum Gothic, Gulim, Arial, ms sans serif; */

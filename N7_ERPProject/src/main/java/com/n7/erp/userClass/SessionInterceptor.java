@@ -14,8 +14,13 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("preHandler call");
 		if(request.getSession().getAttribute("id")==null) {
 			response.sendRedirect("./"); //home.jsp
-		}else if(request.getSession().getAttribute("hrCode")==null) {
-			response.sendRedirect("/erp/hr/movehrcardpage"); //home.jsp
+			if(request.getSession().getAttribute("cCode")!=null) {
+			if(!(request.getSession().getAttribute("cCode").toString().equals("ERP_N7_ADMIN"))){
+				if(request.getSession().getAttribute("hrCode")==null){
+					response.sendRedirect("/erp/hr/movehrcardpage"); //home.jsp
+				}
+			}
+		}
 		}
 		return true;  //controller 진입가능
 	}
@@ -27,5 +32,4 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("postHandle call");
 		super.postHandle(request, response, handler, modelAndView);
 	}
-
 }

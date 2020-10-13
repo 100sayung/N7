@@ -14,6 +14,7 @@
 <script type="text/javascript" src="/erp/js/addrlink.js"></script>
 <link rel="stylesheet" type="text/css" href="/erp/css/addrlink.css"></link>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="/erp/img/favicon.png" rel="icon" />
 <title>주소정보연계 | 도로명주소 안내시스템</title>
 <script language="javascript">
 	//특수문자, 특정문자열(sql예약어) 제거

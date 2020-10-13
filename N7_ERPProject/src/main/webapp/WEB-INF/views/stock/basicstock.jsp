@@ -42,7 +42,7 @@ a {
 #description {
 	float: left;
     height:100%;
-    width:80%;
+    width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -121,14 +121,9 @@ width: 300px;
 <center>
 	<div id="description">
 	<form id="form" action="/erp/stock/confirmbasicstock" method="post"> 
-		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
-<<<<<<< Updated upstream
-		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
-		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=400')" value="품목코드 검색" >
-=======
-		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=600,height=600')" value="품목코드 추가" >
-		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" >
->>>>>>> Stashed changes
+		<input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=550,height=600')" value="분류코드 추가" >
+		<input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=565,height=600')" value="품목코드 추가" >
+		<input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=1550,height=400')" value="품목코드 검색" >
 		<div id="contain">
 			<div class='div'>
 			  <div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">기초재고 등록</div>
