@@ -112,7 +112,9 @@ table, tr, th, td {
                            </tr>
                            <tbody id="tbody">
                            </tbody>
-
+                             <tr>
+                           <th>기타</th><td colspan="6"><input type="text" id="ect" value="${ad.rs_reason}"></td>
+                           </tr>
                         </table>
                      </div>
                   </div>

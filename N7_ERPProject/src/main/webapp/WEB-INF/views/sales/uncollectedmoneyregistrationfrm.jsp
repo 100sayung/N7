@@ -25,7 +25,7 @@ text-align: center;
         <br>
         <button type="button" id="uncollectedmoneyitemfrm" value="미수금품목 현황">미수금품목 현황</button>
         <button type="button" id="uncollectedsearch" value="미수금 조회하기">미수금 조회하기</button>
-        <button type="button" id="fullpaymentcheck" value="완납 처리하기">완납 처리하기</button>
+        <button type="button" id="fullpaymentcheck" onclick="fullpaymentcheck()" value="완납 처리하기">완납 처리하기</button>
         <button type="button" id="fullpaymentsearch" value="완납현황 조회하기">완납현황 조회하기</button>
         <br>
         <br>
@@ -193,7 +193,7 @@ text-align: center;
            console.log(data);
 
            for(var i in data.sList){//개별 미수금 등록한 거
-               str+="<tr><td><input type='radio' name='each_check' value='"+data.sList[i].bs_ccode+"'></td>";
+               str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_ccode+"></td>";
                str+="<td><input type='text' readonly value='"+data.sList[i].bs_date+"'></td>"; //내가 입력한 출하의뢰일
                str+="<td><input type='text' readonly value='"+data.sList[i].bs_proname+"'></td>";
                str+="<td><input type='text' readonly value='"+data.sList[i].bs_unit+"'></td>";
@@ -201,7 +201,7 @@ text-align: center;
                str+="<td><input type='text' readonly value='"+data.sList[i].bs_price+"'></td>";
            }
             for(var i in data.sList2){ //결재창에서 끌고 온거
-               str+="<tr><td><input type='radio' name='each_check' value='"+data.sList2[i].bs_docunum+"'></td>";
+               str+="<tr><td><input type='radio' name='each_check' value="+data.sList2[i].bs_docunum+"></td>";
                str+="<td><input type='text' readonly value='"+data.sList2[i].bs_basedate+"'></td>"; //예상 납기일
                str+="<td><input type='text' readonly value='"+data.sList2[i].bs_proname+"'></td>";
                str+="<td><input type='text' readonly value='"+data.sList2[i].bs_unit+"'></td>";
@@ -310,11 +310,12 @@ text-align: center;
 
 
     //완납 처리 버튼
-    $('#fullpaymentcheck').click(function(){
-
+    //$('#fullpaymentcheck').click(function(){
+  function fullpaymentcheck(){
      var check="";
            $("input[name=each_check]:checked").each(function(){
               check = $(this).attr("value");
+           });
               if(check==""){
                  alert("완납처리할 버튼을 체크해주세요");
               }else{
@@ -347,8 +348,9 @@ text-align: center;
          }
         });
       }
-   });
-   });
+   
+  };
+   //});
 
    //결재창에서 끌고 온 미수금 조회
    $('#uncollectedsearch').click(function(){
@@ -363,7 +365,7 @@ text-align: center;
            var str="";
 
            for(var i in data.sList){
-              str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"'></td>";
+              str+="<tr><td><input type='radio' name='each_check' value="+data.sList[i].bs_bonum+"></td>";
                str+="<td><input type='text'  readonly value='"+data.sList[i].bs_basedate+"'></td>";
                str+="<td><input type='text'  readonly value='"+data.sList[i].bs_proname+"'></td>";
                str+="<td><input type='text' readonly value='"+data.sList[i].bs_unit+"'></td>";

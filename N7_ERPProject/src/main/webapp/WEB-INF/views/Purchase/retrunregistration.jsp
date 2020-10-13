@@ -108,6 +108,7 @@ height: 23px;
             </table>
             </div>
          </div>
+         </div>
          <div style="padding-top: 10px">
             <button type="button" id="save">등록</button>
             <!-- <button type="button" id="rDelete">삭제</button> -->

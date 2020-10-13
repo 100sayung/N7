@@ -55,7 +55,7 @@ padding-left: 7%;
 		</div>
 		
 
-		<div id="ListTable" style="background-color: #ECEBEA;">
+		<div id="ListTable" style="background-color: #ECEBEA; overflow: auto;" >
 			<table id="testTable"
 				summary="Code page support in different versions of MS Windows."
 				border="1">

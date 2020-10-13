@@ -112,7 +112,9 @@ table, tr, th, td {
                            </tr>
                            <tbody id="tbody">
                            </tbody>
-
+                             <tr>
+                           <th>기타</th><td colspan="6"><input type="text" id="ect" value="${ad.rs_reason}"></td>
+                           </tr>
                         </table>
                      </div>
                   </div>
@@ -120,7 +122,7 @@ table, tr, th, td {
             </tr>
          </table>
       </div>
-       <button type="button" id="submit">결제하기</button>
+       <button type="button" id="submit">결재하기</button>
          <button type="button" id="arbitrarily">전결하기</button>
          <button type="button" id="turnback">반려하기</button>
    </form>

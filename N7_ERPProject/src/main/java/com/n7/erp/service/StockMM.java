@@ -123,8 +123,7 @@ public class StockMM {
 		String it_code = (formData.getFirst("it_ccode") == null) ? formData.getFirst("it_code")
 				: it_ccode + "-" + formData.getFirst("it_code");
 		it.setIt_code(it_code);
-		return it.setIt_pname(formData.getFirst("it_pname"))
-				.setIt_size(formData.getFirst("it_size"))
+		return it.setIt_pname(formData.getFirst("it_pname")).setIt_size(formData.getFirst("it_size"))
 				.setIt_unit(formData.getFirst("it_unit"));
 	}
 
@@ -154,8 +153,7 @@ public class StockMM {
 		for (int i = 0; i < ipList.size(); i++) {
 			if ((ipList.size() - 1) != i && i >= 1) {
 				if (!(ipList.get(i).getP_clcode().equals(ipList.get(i - 1).getP_clcode()))) {
-					sb.append("<form id = 'frm" + i
-							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+					sb.append("<form id = 'frm" + i + "'><div style='background-color:#F8F7F7;'><table><caption>"
 							+ ipList.get(i).getP_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
@@ -165,8 +163,8 @@ public class StockMM {
 						+ ipList.get(i).getP_clcode() + "'></td>");
 				sb.append("<td><input type='text' name='ie_itcode' value='" + ipList.get(i).getIt_code()
 						+ "' readonly></td>");
-				sb.append("<td><input type='text' value='" + ipList.get(i).getIt_size() + "' readonly></td>");
-				sb.append("<td><input type='text' value='" + ipList.get(i).getIt_unit() + "' readonly></td>");
+				sb.append("<td>" + ipList.get(i).getIt_size() + "</td>");
+				sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
 				sb.append("<td><input id='p_amount" + ipList.get(i).getP_documentcode() + "' onclick='modifySum(\""
 						+ ipList.get(i).getP_documentcode() + "\")' name='ie_qty' type='number' value='"
 						+ ipList.get(i).getP_amount() + "'>");
@@ -184,8 +182,7 @@ public class StockMM {
 					sb.append("</tr>");
 				}
 			} else if (i == 0) {
-				sb.append("<form id = 'frm" + i
-						+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+				sb.append("<form id = 'frm" + i + "'><div style='background-color:#F8F7F7;'><table><caption>"
 						+ ipList.get(i).getP_clcode() + "</caption>");
 				sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 				sb.append(
@@ -195,8 +192,8 @@ public class StockMM {
 							+ ipList.get(i).getP_clcode() + "'></td>");
 					sb.append("<td><input type='text' name='ie_itcode' value='" + ipList.get(i).getIt_code()
 							+ "' readonly></td>");
-					sb.append("<td><input type='text' value='" + ipList.get(i).getIt_size() + "' readonly></td>");
-					sb.append("<td><input type='text' value='" + ipList.get(i).getIt_unit() + "' readonly></td>");
+					sb.append("<td>" + ipList.get(i).getIt_size() + "</td>");
+					sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
 					sb.append("<td><input id='p_amount" + ipList.get(i).getP_documentcode() + "' onclick='modifySum(\""
 							+ ipList.get(i).getP_documentcode() + "\")' name='ie_qty' type='number' value='"
 							+ ipList.get(i).getP_amount() + "'>");
@@ -218,8 +215,8 @@ public class StockMM {
 							+ ipList.get(i).getP_clcode() + "'></td>");
 					sb.append("<td><input type='text' name='ie_itcode' value='" + ipList.get(i).getIt_code()
 							+ "' readonly></td>");
-					sb.append("<td><input type='text' value='" + ipList.get(i).getIt_size() + "' readonly></td>");
-					sb.append("<td><input type='text' value='" + ipList.get(i).getIt_unit() + "' readonly></td>");
+					sb.append("<td>" + ipList.get(i).getIt_size() + "</td>");
+					sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
 					sb.append("<td><input id='p_amount" + ipList.get(i).getP_documentcode() + "' onclick='modifySum(\""
 							+ ipList.get(i).getP_documentcode() + "\")' name='ie_qty' type='number' value='"
 							+ ipList.get(i).getP_amount() + "'>");
@@ -235,8 +232,7 @@ public class StockMM {
 				}
 			} else {
 				if (!(ipList.get(i).getP_clcode().equals(ipList.get(i - 1).getP_clcode()))) {
-					sb.append("<form id = 'frm" + i
-							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고</div><div style='background-color:#F8F7F7;'><table><caption>"
+					sb.append("<form id = 'frm" + i + "'><div style='background-color:#F8F7F7;'><table><caption>"
 							+ ipList.get(i).getP_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
@@ -246,8 +242,8 @@ public class StockMM {
 						+ ipList.get(i).getP_clcode() + "'></td>");
 				sb.append("<td><input type='text' name='ie_itcode' value='" + ipList.get(i).getIt_code()
 						+ "' readonly></td>");
-				sb.append("<td><input type='text' value='" + ipList.get(i).getIt_size() + "' readonly></td>");
-				sb.append("<td><input type='text' value='" + ipList.get(i).getIt_unit() + "' readonly></td>");
+				sb.append("<td>" + ipList.get(i).getIt_size() + "</td>");
+				sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
 				sb.append("<td><input id='p_amount" + ipList.get(i).getP_documentcode() + "' onclick='modifySum(\""
 						+ ipList.get(i).getP_documentcode() + "\")' name='ie_qty' type='number' value='"
 						+ ipList.get(i).getP_amount() + "'>");
@@ -288,7 +284,7 @@ public class StockMM {
 		}
 		if (a && b) {
 			List<Purchase> pList = ieDao.importCheckList(session.getAttribute("cCode").toString());
-			return ResponseEntity.ok(makeImportCheckHtml(pList));
+			return ResponseEntity.ok(new Gson().toJson(makeImportCheckHtml(pList)));
 		}
 		return ResponseEntity.ok(new Gson().toJson("입고 확정에 실패하였습니다."));
 	}
@@ -371,30 +367,27 @@ public class StockMM {
 					if (ieList.get(i).getIe_itcode().equals(ieList.get(i + 1).getIe_itcode())) {
 						if (ieList.get(i + 1).getIe_status().equals("2")) {
 							if (ieList.get(i + 1).getIe_itcode().equals(ieList.get(i + 2).getIe_itcode())) {
-								if (ieList.get(i + 2).getIe_status().equals("3")) {
-									sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");
-									if (ieList2.size() < a + 1 || ieList2.size() == 0) {
-										sb.append("<td>0</td>");
-									} else {
-										sb.append("<td>" + ieList2.get(a).getIe_qty() + "</td>");
+								sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");
+								if (ieList2.size() < a + 1 || ieList2.size() == 0) {
+									sb.append("<td>0</td>");
+								} else {
+									sb.append("<td>" + ieList2.get(a).getIe_qty() + "</td>");
 
-									}
-									sb.append("<td>" + ieList.get(i).getIe_qty() + "</td>");
-									sb.append("<td>" + Math.abs(ieList.get(i + 1).getIe_qty()) + "</td>");
-									sb.append("<td>" + Math.abs(ieList.get(i + 2).getIe_qty()) + "</td>");
-									if (ieList2.size() < a + 1 || ieList2.size() == 0) {
-										sb.append(
-												"<td>" + (0 + ieList.get(i).getIe_qty() + ieList.get(i + 1).getIe_qty()
-														+ ieList.get(i + 2).getIe_qty()) + "</td></tr>");
-									} else {
-										sb.append("<td>"
-												+ (ieList2.get(a).getIe_qty() + ieList.get(i).getIe_qty()
-														+ ieList.get(i + 1).getIe_qty() + ieList.get(i + 2).getIe_qty())
-												+ "</td></tr>");
-										a++;
-									}
-									i += 3;
 								}
+								sb.append("<td>" + ieList.get(i).getIe_qty() + "</td>");
+								sb.append("<td>" + Math.abs(ieList.get(i + 1).getIe_qty()) + "</td>");
+								sb.append("<td>" + Math.abs(ieList.get(i + 2).getIe_qty()) + "</td>");
+								if (ieList2.size() < a + 1 || ieList2.size() == 0) {
+									sb.append("<td>" + (0 + ieList.get(i).getIe_qty() + ieList.get(i + 1).getIe_qty()
+											+ ieList.get(i + 2).getIe_qty()) + "</td></tr>");
+								} else {
+									sb.append("<td>"
+											+ (ieList2.get(a).getIe_qty() + ieList.get(i).getIe_qty()
+													+ ieList.get(i + 1).getIe_qty() + ieList.get(i + 2).getIe_qty())
+											+ "</td></tr>");
+									a++;
+								}
+								i += 3;
 							} else {
 								sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");
 								if (ieList2.size() < a + 1 || ieList2.size() == 0) {
@@ -496,6 +489,23 @@ public class StockMM {
 							}
 							i += 2;
 						}
+					} else {
+						sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");
+						if (ieList2.size() < a + 1 || ieList2.size() == 0) {
+							sb.append("<td>0</td>");
+						} else {
+							sb.append("<td>" + ieList2.get(a).getIe_qty() + "</td>");
+						}
+						sb.append("<td>" + ieList.get(i).getIe_qty() + "</td>");
+						sb.append("<td>0</td>");
+						sb.append("<td>0</td>");
+						if (ieList2.size() < a + 1 || ieList2.size() == 0) {
+							sb.append("<td>" + ieList.get(i).getIe_qty() + "</td></tr>");
+						} else {
+							sb.append("<td>" + (ieList2.get(a).getIe_qty() + ieList.get(i).getIe_qty()) + "</td></tr>");
+							a++;
+						}
+						i++;
 					}
 				} else if (i == ieList.size() - 1) {
 					sb.append("<tr><td>" + ieList.get(i).getIe_itcode() + "</td>");
@@ -539,21 +549,23 @@ public class StockMM {
 
 	private String makeExportCheckHtml(List<B_shipment> ipList) {
 		StringBuilder sb = new StringBuilder();
+		if (ipList.size() == 0) {
+			sb.append("<div style='background-color:#F8F7F7;'>출하 내역이 없습니다.</div>");
+		}
 		for (int i = 0; i < ipList.size(); i++) {
 			if ((ipList.size() - 1) != i && i >= 1) {
 				if (!(ipList.get(i).getBs_clcode().equals(ipList.get(i - 1).getBs_clcode()))) {
-					sb.append("<form id = 'frm" + i
-							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고</div><div style='background-color:#F8F7F7;'><table><caption>"
+					sb.append("<form id = 'frm" + i + "'><div style='background-color:#F8F7F7;'><table><caption>"
 							+ ipList.get(i).getBs_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
-							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
+							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td></tr>");
 				}
 				sb.append("<tr><td>" + ipList.get(i).getIt_pname() + "<input type='hidden' name='ie_clcode' value='"
 						+ ipList.get(i).getBs_clcode() + "'></td>");
 				sb.append("<td><input type='text' name='ie_itcode' value='" + ipList.get(i).getIt_code()
 						+ "' readonly></td>");
-				sb.append("<td>ipList.get(i).getIt_size()</td>");
+				sb.append("<td>" + ipList.get(i).getIt_size() + "</td>");
 				sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
 				sb.append(
 						"<td><input name='ie_qty' type='number' value='" + ipList.get(i).getBs_quantity() + "'></td>");
@@ -567,12 +579,10 @@ public class StockMM {
 					sb.append("</tr>");
 				}
 			} else if (i == 0) {
-				sb.append("<form id = 'frm" + i
-						+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고</div><div style='background-color:#F8F7F7;'><table><caption>"
+				sb.append("<form id = 'frm" + i + "'><div style='background-color:#F8F7F7;'><table><caption>"
 						+ ipList.get(i).getBs_clcode() + "</caption>");
 				sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
-				sb.append(
-						"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
+				sb.append("<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td></tr>");
 				if (ipList.size() != 1) {
 					sb.append("<tr><td>" + ipList.get(i).getIt_pname() + "<input type='hidden' name='ie_clcode' value='"
 							+ ipList.get(i).getBs_clcode() + "'></td>");
@@ -582,10 +592,9 @@ public class StockMM {
 					sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
 					sb.append("<td><input type='number' name='ie_qty' value='" + ipList.get(i).getBs_quantity()
 							+ "'></td>");
-					sb.append("<td>" + ipList.get(i).getBs_unit() + "' readonly></td>");
-					sb.append("<td" + "'><input name='ie_price' type='number' value='"
-							+ (ipList.get(i).getBs_quantity() * ipList.get(i).getBs_unit()) + "' readonly></td>");
-					sb.append("<td><input type='text' name = 'ie_etc'>");
+					sb.append("<td><input type ='number' value='" + ipList.get(i).getBs_unit() + "' readonly></td>");
+					sb.append("<td><input name='ie_price' type='number' value='"
+							+ (ipList.get(i).getBs_quantity() * ipList.get(i).getBs_unit()) + "' readonly>");
 					sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getBs_docunum()
 							+ "'></td>");
 					if (!(ipList.get(i).getBs_clcode().equals(ipList.get(i + 1).getBs_clcode()))) {
@@ -598,36 +607,34 @@ public class StockMM {
 							+ ipList.get(i).getBs_clcode() + "'></td>");
 					sb.append("<td><input type='text' name='ie_itcode' value='" + ipList.get(i).getIt_code()
 							+ "' readonly></td>");
-					sb.append("<td><input type='text' value='" + ipList.get(i).getIt_size() + "' readonly></td>");
-					sb.append("<td><input type='text' value='" + ipList.get(i).getIt_unit() + "' readonly></td>");
+					sb.append("<td>" + ipList.get(i).getIt_size() + "</td>");
+					sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
 					sb.append("<td><input name='ie_qty' type='number' value='" + ipList.get(i).getBs_quantity()
 							+ "'></td>");
 					sb.append("<td><input type='number' value='" + ipList.get(i).getBs_unit() + "' readonly></td>");
 					sb.append("<td><input name='ie_price' type='number' value='"
-							+ (ipList.get(i).getBs_quantity() * ipList.get(i).getBs_unit()) + "' readonly></td>");
-					sb.append("<td><input type='text' name = 'ie_etc'>");
+							+ (ipList.get(i).getBs_quantity() * ipList.get(i).getBs_unit()) + "' readonly>");
 					sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getBs_docunum()
 							+ "'></td>");
 					sb.append("</tr></table></form>");
 				}
 			} else {
 				if (!(ipList.get(i).getBs_clcode().equals(ipList.get(i - 1).getBs_clcode()))) {
-					sb.append("<form id = 'frm" + i
-							+ "'><div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>출고</div><div style='background-color:#F8F7F7;'><table><caption>"
+					sb.append("<form id = 'frm" + i + "'><div style='background-color:#F8F7F7;'><table><caption>"
 							+ ipList.get(i).getBs_clcode() + "</caption>");
 					sb.append("<tr><td colspan='8'><input class='check' type='checkbox'></td></tr>");
 					sb.append(
-							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td><td>기타</td></tr>");
+							"<tr><td>품명</td><td>제품코드</td><td>규격</td><td>단위</td><td>수량</td><td>단가</td><td>금액</td></tr>");
 				}
 				sb.append("<tr><td>" + ipList.get(i).getIt_pname() + "<input type='hidden' name='ie_clcode' value='"
 						+ ipList.get(i).getBs_clcode() + "'></td>");
 				sb.append("<td><input type='text' name='ie_itcode' value='" + ipList.get(i).getIt_code()
 						+ "' readonly></td>");
-				sb.append("<td><input type='text' value='" + ipList.get(i).getIt_size() + "' readonly></td>");
-				sb.append("<td><input type='text' value='" + ipList.get(i).getIt_unit() + "' readonly></td>");
-				sb.append("<td><input type='number' value='" + ipList.get(i).getBs_quantity() + "'></td>");
-				sb.append("<td><input name='ie_qty' type='number' value='" + ipList.get(i).getBs_unit()
-						+ "' readonly></td>");
+				sb.append("<td>" + ipList.get(i).getIt_size() + "</td>");
+				sb.append("<td>" + ipList.get(i).getIt_unit() + "</td>");
+				sb.append(
+						"<td><input name='ie_qty' type='number' value='" + ipList.get(i).getBs_quantity() + "'></td>");
+				sb.append("<td><input  type='number' value='" + ipList.get(i).getBs_unit() + "' readonly></td>");
 				sb.append("<td><input name='ie_price' type='number' value='"
 						+ +(ipList.get(i).getBs_quantity() * ipList.get(i).getBs_unit()) + "' readonly>");
 				sb.append("<input type='hidden' name = 'ie_ocode' value='" + ipList.get(i).getBs_docunum() + "'></td>");
@@ -644,6 +651,7 @@ public class StockMM {
 		List<IePort> imList = new ArrayList<IePort>();
 		boolean a = false, b = false, c = false;
 		for (int i = 0; i < arr.length; i++) {
+			System.out.println(arr[i]);
 			imList.add(new Gson().fromJson(arr[i], IePort.class));
 		}
 		for (int i = 0; i < imList.size(); i++) {
@@ -717,11 +725,14 @@ public class StockMM {
 	public ResponseEntity<String> getStock(ItemCode it, HttpSession session) {
 		it.setIt_cpcode(session.getAttribute("cCode").toString());
 		int num = itDao.getStock(it);
-		System.out.println(num < it.getIt_stock());
-		if (num < it.getIt_stock()) {
-			return ResponseEntity.ok(new Gson().toJson(num));
+		if (it.getIt_stock() != null) {
+			if (num < it.getIt_stock()) {
+				return ResponseEntity.ok(new Gson().toJson(num));
+			} else {
+				return ResponseEntity.ok(new Gson().toJson(""));
+			}
 		} else {
-			return ResponseEntity.ok(new Gson().toJson(""));
+			return ResponseEntity.ok(new Gson().toJson(num));
 		}
 	}
 
@@ -729,8 +740,9 @@ public class StockMM {
 		if (it.getIt_code() == null) {
 			return ResponseEntity.ok(new Gson().toJson(itDao.getItemCode(session.getAttribute("cCode").toString())));
 		} else {
-			it.setIt_code("%"+it.getIt_code()+"%");
-			return ResponseEntity.ok(new Gson().toJson(itDao.getIfInfo(session.getAttribute("cCode").toString(), it.getIt_code())));
+			it.setIt_code("%" + it.getIt_code() + "%");
+			return ResponseEntity
+					.ok(new Gson().toJson(itDao.getIfInfo(session.getAttribute("cCode").toString(), it.getIt_code())));
 		}
 	}
 

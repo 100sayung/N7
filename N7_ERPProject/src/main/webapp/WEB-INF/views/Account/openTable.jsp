@@ -159,9 +159,9 @@ overflow: auto;
 						<td><input class="data" type="text" name="s_pkind" /></td>
 						<td><input class="data" type="text" name="s_cnt" /></td>
 						<td><input class="price" type="text" name="s_price" /></td>
-						<td><input class="data" type="text" name="s_price2" /></td>
-						<td><input class="data" type="text" name="s_tax" /></td>
-						<td><input class="data" type="text" name="s_total" /></td>
+						<td><input class="data" type="text" name="s_price2" readonly /></td>
+						<td><input class="data" type="text" name="s_tax" readonly/></td>
+						<td><input class="data" type="text" name="s_total" readonly/></td>
 						<td><input class="data" name="s_memo" /></td>
 					</tr>
 				</tbody>
