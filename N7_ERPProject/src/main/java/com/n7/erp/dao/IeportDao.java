@@ -47,7 +47,7 @@ public interface IeportDao {
 	@Select("SELECT IE_ITCODE, SUM(IE_QTY) IE_QTY FROM IE WHERE IE_DATE<TO_DATE(#{date1},'YYYY-MM-DD') AND IE_CPCODE = #{cCode} GROUP BY IE_ITCODE")
 	ArrayList<IePort> getByItemStockListAll(@Param("date1")String date1,@Param("cCode") String cCode);
 
-	@Select("SELECT * FROM B_SHIPMENT WHERE BS_CCODE = #{cCode} AND BS_STATUS = '3'")
+	@Select("SELECT * FROM B_SHIPMENT WHERE BS_CCODE = #{cCode} AND BS_STATUS = '3' order by bs_clcode")
 	List<B_shipment> exportCheckList(String cCode);
 
 	@Select("SELECT COUNT(IE_QTY) FROM S_IEPORT WHERE IE_CPCODE = #{cCode}")
