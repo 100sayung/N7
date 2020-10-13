@@ -187,7 +187,7 @@ td{
 			console.log(gradeArr);
 			
 			gradeArr = JSON.stringify(gradeArr);
-			
+			console.log(gradeArr);
 			$.ajax({
 				url:"/erp/rest/admin/changegrade",
 				data:{jsonStr : gradeArr},

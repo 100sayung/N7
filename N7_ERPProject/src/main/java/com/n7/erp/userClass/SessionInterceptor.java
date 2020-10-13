@@ -32,5 +32,4 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		System.out.println("postHandle call");
 		super.postHandle(request, response, handler, modelAndView);
 	}
-
 }

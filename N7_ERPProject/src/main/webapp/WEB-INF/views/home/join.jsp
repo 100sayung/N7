@@ -256,7 +256,7 @@ font-weight:bold;
                                 <i class='fas fa-address-card' style='font-size:15px'></i>
                             </span>
                         </div>
-                      <input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드가 없으신분은 N7을 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
+                      <input id="cCode" type="text" style="width:300px;" name="m_ccode" placeholder="회사코드를 입력해주세요" class="form-control bg-white border-md border-left-0 pl-3" required>
                       &nbsp;&nbsp;<button type="button" onclick="dupleCCode()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">코드확인</button>
                       <br><span id="dupleCCode"></span>
                     </div>
