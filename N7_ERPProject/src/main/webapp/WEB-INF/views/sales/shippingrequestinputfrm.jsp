@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>출하입력 form</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="/erp/img/favicon.png" rel="icon" />
 </head>
 <style>
 #center{
@@ -38,12 +39,9 @@ border: 1px solid;
     <div id="center">
         <br>
         <button type="button" id="shippingitemfrm">출하등록 현황</button>
-<!--    <input type="button" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')" value="분류코드 추가" >
-        <input type="button" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')" value="품목코드 추가" >
-        <input type="button" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')" value="품목코드 검색" > -->
-        <span><a href="#" onclick="window.open('/erp/stock/setcategory','PopupWin','width=500,height=600')"><button>분류코드 추가</button></a></span>
-        <span><a href="#" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=500,height=600')"><button>품목코드 추가</button></a></span>
-        <span><a href="#" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=500,height=600')"><button>품목코드 검색</button></a></span>
+        <span><a href="#" onclick="window.open('/erp/stock/setcategory','PopupWin','width=550,height=600')"><button>분류코드 추가</button></a></span>
+        <span><a href="#" onclick="window.open('/erp/stock/setitemcode','PopupWin','width=565,height=600')"><button>품목코드 추가</button></a></span>
+        <span><a href="#" onclick="window.open('/erp/stock/searchitemcode','PopupWin','width=1550,height=600')"><button>품목코드 검색</button></a></span>
         <button type="button" id="approvalplan">결재 요청하기</button>
         <br>
         <br>

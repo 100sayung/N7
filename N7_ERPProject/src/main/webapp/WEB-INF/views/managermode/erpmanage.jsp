@@ -9,6 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <!-- BOOTSTRAP STYLES-->
 <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
+<link href="/erp/img/favicon.png" rel="icon" />
 <meta charset="UTF-8">
 <title>부서관리</title>
 <style>

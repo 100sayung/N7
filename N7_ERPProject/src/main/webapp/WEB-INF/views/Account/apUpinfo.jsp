@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>apUpinfo - 내가 올린 결재안 상세보기</title>
+<link href="/erp/img/favicon.png" rel="icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style type="text/css">

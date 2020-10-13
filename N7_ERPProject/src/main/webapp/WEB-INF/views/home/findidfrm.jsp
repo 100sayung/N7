@@ -9,6 +9,7 @@
 <title></title>
 <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <link href="/erp/img/favicon.png" rel="icon" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css" media="all" />
