@@ -3,11 +3,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -16,7 +15,6 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css"></link>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -236,18 +234,6 @@ button {
                         &nbsp;&nbsp;<button type="button" onclick="goPopup()" style="width: 100px; height: 40px; background-color:#3D6B9B; ">주소검색</button>
                    </div>
                     
-                     <div class="input-group col-lg-12 mb-4">
-                        <div class="input-group-prepend">
-                            <p class="input-group-text bg-white px-4 border-md border-right-0">
-                                <i class=''></i>
-                            </p>
-                        </div> 
-
-					    <input type="text" name="addrDetail" id="addrDetail" class="form-control postcodify_extra_info bg-white border-md border-left-0 pl-3" value="" / required>
-					    <input id="roadAddrPart2" type="text" name="roadAddrPart2" class="form-control postcodify_details bg-white border-md border-left-0 pl-3" value="" /><br>
-                    </div>
-
-
                     <!-- 주민번호 -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
@@ -353,9 +339,6 @@ button {
 	});
 	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 		document.form.roadAddrPart1.value = roadAddrPart1;
-		document.form.roadAddrPart2.value = roadAddrPart2;
-		document.form.addrDetail.value = addrDetail;
-		
 }
 	function goPopup(){
 		// IE에서 opener관련 오류가 발생하는 경우, window에 이름을 명시해줍니다.
@@ -388,13 +371,9 @@ button {
 					"width=570,height=420, scrollbars=yes, resizable=yes");
 		})
 
-		function jusoCallBack(roadAddrPart1, addrDetail,
-				roadAddrPart2) {
+		function jusoCallBack(roadAddrPart1) {
 			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 			document.form.roadAddrPart1.value = roadAddrPart1;
-			document.form.roadAddrPart2.value = roadAddrPart2;
-			document.form.addrDetail.value = addrDetail;
-
 		}
 	function dupleID() { 
 		var $id = $("#id").val() 
