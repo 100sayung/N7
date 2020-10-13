@@ -286,8 +286,12 @@ public class MemberMM {
 		boolean result2 = false;
 		if (status.equals("1")) {
 			result = mDao.approvalagree(num, apcode, cCode);
-		} else {
+		} else if(status.equals("2")&&num.contains("G")){
+			mDao.salesupdate(num, cCode);
 			result2 = mDao.approvalagree2(num, cCode);
+		}else if(status.equals("2")){
+			result2 = mDao.approvalagree2(num, cCode);
+			
 		}
 		if (result || result2) {
 			value = "1";
@@ -300,6 +304,10 @@ public class MemberMM {
 	public String arbitrarily(String num, HttpSession session) {
 		String value = "";
 		String cCode = session.getAttribute("cCode").toString();
+		if(num.contains("G")){
+			System.out.println("들어오냐");
+			mDao.salesupdate(num, cCode);
+		}
 		boolean result = mDao.arbitrarily(num, cCode);
 		if (result) {
 			value = "1";

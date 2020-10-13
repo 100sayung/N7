@@ -61,4 +61,8 @@
 	<select id="getAGcode" parameterType="string" resultType="appdetail">
 	SELECT * FROM B_SHIPMENT WHERE BS_DOCUNUM = #{num} AND BS_CCODE =#{cCode}
 	</select>
+	
+	<update id="salesupdate" parameterType="string">
+	  UPDATE B_SHIPMENT SET BS_STATUS = '3' WHERE BS_DOCUNUM = #{num} AND BS_CCODE =#{cCode}
+	</update>
 </mapper>

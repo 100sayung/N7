@@ -108,7 +108,7 @@
    <update id="fullpaymentprocess" parameterType="appdetail">
       UPDATE B_SHIPMENT SET BS_CREDIT = '완납' WHERE BS_BONUM = #{check} AND BS_CCODE=#{cCode}
    </update>
-
+   
    <insert id="uncollectedmoneyinput" parameterType="appdetail">
       INSERT INTO B_UNCOLLECTEDMONEY VALUES(#{bs_ccode},#{bs_clcode},#{bs_itcode},#{bu_person},DEFAULT,#{bs_proname},#{bs_unit},#{bs_quantity},#{bs_price})
    </insert>
@@ -170,6 +170,9 @@
    <insert id="approvaldetailinput" parameterType="appdetail">
       INSERT INTO B_SHIPMENT VALUES(#{bs_docunum},#{bs_ccode},#{bs_bonum},#{bs_itcode},#{bs_clcode},#{bs_docuname},#{bs_approver1},#{bs_approver2},#{bs_approver3},#{bs_basedate},#{bs_unit},#{bs_quantity},#{bs_price},DEFAULT,#{bs_proname},#{bs_credit},#{bs_apcode1},#{bs_apcode2},#{bs_apcode3})<!--#{full_payment} -->
    </insert>
+   
+   
+   
 
    <!-- 내가 올린 결재 상세 -->
    	<select id="sRequest" resultType="appdetail">
