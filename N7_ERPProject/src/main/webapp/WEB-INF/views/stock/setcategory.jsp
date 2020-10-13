@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>N7 ERP - 분류명 등록</title>
+<link href="/erp/img/favicon.png" rel="icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css">
 <style>
 #header {
 	width: 100%;
@@ -39,7 +41,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width:500px;
 }
 
 ul {
@@ -73,11 +75,16 @@ span{
 text-align: center;
 color: red;
 }
+body{
+font-size: 20px;
+font-weight: bolder;
+}
 </style>
 </head>
 <body>
 	<div id="description">
-		<h3>분류명 작성</h3>
+	<div class="first_div_css" style="color:white;">분류코드 추가</div>
+	<div style="background-color:#F8F7F7;">
 		<table style="border: 0px;">
 			<tr>
 				<td style="border: 0px;">분류명</td>
@@ -94,12 +101,13 @@ color: red;
 						id="btn" value="확정"></td>
 			</tr>
 		</table>
-
+</div>
 		<span id='msg'></span><br><br>
-		<h3>분류명 내역</h3>
+		<div class="first_div_css" style="color:white;">분류코드 내역</div>
+		<div style="background-color:#F8F7F7;">
 		<input type="button"  id="modify" value="수정">
 		<table id="tb"></table>
-
+</div>
 	</div>
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
@@ -137,7 +145,7 @@ color: red;
 						type : 'post',
 						success : function(result) {
 							console.log(result);
-							var str = '<tr><td>분류명</td><td>품목 번호</td><td></td><td></td></tr>';
+							var str = '<tr><td>분류명</td><td>품목 번호</td></tr>';
 							for (var i = 0; i < result.length; i++) {
 								str += '<tr><td class="ct_name"><input type="text" value="'
 										+ result[i].ct_name

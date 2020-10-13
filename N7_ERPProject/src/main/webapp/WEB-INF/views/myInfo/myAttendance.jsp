@@ -10,6 +10,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 table
 {
@@ -52,6 +53,8 @@ a {
 	float: left;
 	height: 100%;
 	width: 800px;
+	 position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -67,6 +70,9 @@ table{
 }
 td{
 	width:200px;
+}
+#calendar{
+	
 }
 </style>
 </head>
@@ -86,10 +92,10 @@ td{
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
 			<div id="myInfoMenu">
 			</div>
-			<li id="showMenu1">나의 결재함</a></li>
+			<li id="showMenu1">나의 결재함</li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>
 				<ul id="smenu3" style="display: none;">

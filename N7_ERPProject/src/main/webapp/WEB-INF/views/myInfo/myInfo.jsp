@@ -12,7 +12,7 @@
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
-
+<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -555,7 +555,7 @@ table,tr,td {
 										+ (i * 2)
 										+ "'class='detailInfo checkDate' value='"
 										+ data[i].hcr_startperiod
-										+ "' readonly  style='width:147px;'>";
+										+ "' readonly  style='width:135px;'>";
 								str += "<input type='date' name='hcr_endperiod' id='chk"
 										+ ((i * 2) + 1)
 										+ "' class='detailInfo checkDate' value='"
@@ -564,11 +564,17 @@ table,tr,td {
 										+ (i * 2)
 										+ ", chk"
 										+ ((i * 2) + 1)	
-										+ ")' style='width:147px;'></td>"
+										+ ")' style='width:135px;'></td>"
 								str += "<td><input type='text' name='hcr_position' class='detailInfo' value='"+data[i].hcr_position+"' readonly style='width:147px;'></td>";
-								str += "<td><textarea rows='3' cols='20' name='hcr_content' class='detailInfo' value='"+data[i].hcr_content+"' style='height:18px; width:247px; padding-top:2px;'></textarea>";
+								if(data[i].hcr_content!=null){
+									str += "<td><input name='hcr_content' class='detailInfo' value='"+data[i].hcr_content+"' style='height:18px; width:247px; padding-top:2px;'>";
+								}else{
+									str += "<td><input name='hcr_content' class='detailInfo' value='' style='height:18px; width:247px; padding-top:2px;'>";
+								}
 								str += "<input type='hidden' name='hcr_num' value='"+data[i].hcr_num+"'></td></tr>'";
+								console.log(data[i].hcr_content);
 							}
+							console.log(data);
 							str += "</table>";
 							$("#hrDetailInfo").html(str);
 							cnt = data.length;

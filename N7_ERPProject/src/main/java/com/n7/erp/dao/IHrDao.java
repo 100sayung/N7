@@ -109,6 +109,10 @@ public interface IHrDao {
 
 	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID=#{m_id} AND HC_WORK != '2'")
 	boolean haveHrCode(String m_id);
+	
+
+	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID=#{m_id}")
+	boolean haveHrCode2(String m_id);
 
 	@Select("SELECT * FROM HR_ATTENDANCE WHERE HA_HRCODE = #{hrCode} AND HA_CCODE = #{cCode} AND HA_TIME LIKE #{date} ORDER BY HA_TIME")
 	ArrayList<Attendance> getAllMyAttendance(HashMap<String, String> hMap);
@@ -196,4 +200,8 @@ public interface IHrDao {
 
 	@Select("SELECT AU_AUTHORITY FROM AUTHORITY WHERE AU_COMNAME = #{cCode} AND AU_NAME = #{dept}")
 	String getAuthority(@Param("dept")String dept, @Param("cCode")String cCode);
+
+	@Select("SELECT * FROM HR_CARD WHERE HC_ID = #{hc_id} AND HC_WORK != '2'")
+	HR_Card selectHrCode(String id);
+
 }

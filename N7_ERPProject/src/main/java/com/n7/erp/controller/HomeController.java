@@ -27,6 +27,7 @@ import com.n7.erp.service.CompanyMM;
 import com.n7.erp.service.ConsultingBoardMM;
 import com.n7.erp.service.MemberMM;
 import com.n7.erp.userClass.PagingVO;
+import com.nhncorp.lucy.security.xss.XssFilter;
 
 @Controller
 public class HomeController {

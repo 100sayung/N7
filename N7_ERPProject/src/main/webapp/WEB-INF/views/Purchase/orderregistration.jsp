@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>발주 관리</title>
+<title>Purchase Details</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 #center{
 text-align: center;

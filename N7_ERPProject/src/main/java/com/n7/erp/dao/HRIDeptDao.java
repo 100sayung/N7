@@ -95,7 +95,7 @@ public interface HRIDeptDao {
 	@Select("SELECT * FROM HR_CDD_PAY WHERE HP_PAYDATE=#{month} AND HC_HRCODE=#{hrcode}")
 	Payroll findmonth(HashMap<String, String> hMap);
 
-	ArrayList<ViewPay> checkingidname(String checkpayid);
+	ArrayList<ViewPay> checkingidname(HashMap<String, String> hMap);
 
 	//09-25 append
 	@Select("SELECT HDP_POSITION FROM HR_DEPT WHERE HDP_DEPT=#{dept} AND HDP_CCODE=#{cCode}")

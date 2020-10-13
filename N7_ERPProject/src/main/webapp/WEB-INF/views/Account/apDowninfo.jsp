@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 html, body {
 	text-align: center;
@@ -175,7 +176,7 @@ $(document).ready(
 								str += "<input type='text' name='rs_apcode"+i+"' value='"+data.aList[i].hc_hrcode+"' hidden='true'>";
 								str += data.aList[i].hc_position
 										+ "/";
-								str += "<input style='width:50px;' type='text' name='rs_apname"+i+"' value='"+ data.aList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+								str += "<input style='width:50px;' type='text' readonly name='rs_apname"+i+"' value='"+ data.aList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
 							}
 							console.log(str)
 							$("#line").html(str);
