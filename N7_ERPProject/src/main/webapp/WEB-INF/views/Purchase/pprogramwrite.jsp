@@ -80,7 +80,7 @@ text-align: center;
                         <table>
                            <tr>
                               <th colspan="9">구매 계획서</th>
-                              <th><input type="text" name="p_documentcode" class="txt" value="${ps.p_documentcode}" readonly></th>
+                              <td><input type="text" name="p_documentcode" class="txt" value="${ps.p_documentcode}" readonly></td>
                            </tr>
                            <tr>
                               <th colspan="5">거래처</th>
