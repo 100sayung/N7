@@ -141,9 +141,9 @@ for(var i in data){
 	str+="<td>"+data[i].s_memo+"</td></tr>";
 	
  allprice+=Number(data[i].s_total);
-compareprice=Number(data[i].s_price);
 }
 console.log(allprice);
+compareprice=data[i].s_price;
  $("#allprice").html(allprice+"(원)");
  $("#detaile").html(str);
  
@@ -270,7 +270,7 @@ $.ajax({
 			$("#yearprice").html(0+"(원)");
 			$("#yearp").html(0+"(원)");
 		}else{
-			console.log(compareprice);
+			
 		$("#yearprice").html(ever2+"(원)");
 		$("#yearp").html(compareprice-ever2+"(원)");
 		}
@@ -377,19 +377,15 @@ $.ajax({
 		        },
 		        vAxis: {
 		          format: 'decimal',
-		        },
-		        animation: {
-		            duration: 1000,
-		            easing: 'out',
-		            startup: true
-		          }
+		        
+		        }
 		      };
 
 		      var chart = new google.visualization.ColumnChart(
 		        document.getElementById('chart_div'));
-		      
-		      
+
 		      chart.draw(data, options);
+		    
 		}
 		
 	},

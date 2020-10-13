@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>N7 ERP - 품목코드 등록</title>
+<title>Document</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -86,8 +86,14 @@ text-align: center;
 		<table style="border: 0px;">
 			<tr>
 				<td style="border: 0px;">분류명</td>
-				<td style="border: 0px;" id="getCategory"></td>
+				<td style="border: 0px;"><input name="ct_name" id="ct_name" type="text"
+					maxlength="50" required="required"></td>
 			</tr>
+			<tr>
+				<td style="border: 0px;">품목번호</td>
+				<td style="border: 0px;"><input name="it_ccode" id="it_ccode" type="text"
+					maxlength="1" required="required"></td>
+			<tr>
 			<tr>
 				<td style="border: 0px;">품목코드</td>
 				<td style="border: 0px;"><input id="it_code" name="it_code" type="text"
@@ -107,7 +113,10 @@ text-align: center;
 				<td style="border: 0px;">단위</td>
 				<td style="border: 0px;"><input id="it_unit" name="it_unit" type="text"
 					maxlength="6" required="required"></td>
-			</tr>
+			<tr><tr>
+				<td style="border: 0px;">적정재고량</td>
+				<td style="border: 0px;"><input id="it_pstock" name="it_pstock" type="number" value="0"></td>
+			<tr>
 			<tr>
 				<td colspan="2" style="border: 0px;"><input type="button"
 						id="btn" value="확정"></td> <!--itemcode cofirm btn #btn -->
@@ -115,7 +124,7 @@ text-align: center;
 		</table>
 		</form>
 		<span id='msg'></span><br><br>
-		<h3>품목코드 내역</h3>
+		<h3>분류명 내역</h3>
 		<input type="button" style="display:none" id="modify" value="수정"><!--itemcode modify btn #modify -->
 	<div id="smalldescription">
 	</div>
@@ -125,7 +134,6 @@ text-align: center;
 	<script>
 	//품목분류 출력
 	itemCode('/erp/stock/getitemcode');
-	getCategory();
 	$('#btn').click(function(){
 		var str = " ";
 		var flag = true;
@@ -225,21 +233,35 @@ text-align: center;
 		
 	}
 	//분류명, 품목번호 출력
-	function getCategory(){
+	$('#it_ccode').keyup(function() {
+		var data = {ct_code:$('#it_ccode').val()}
+		category(data,'ct_code');
+	});
+	$('#ct_name').keyup(function(){
+		var data = {ct_name:$('#ct_name').val()}
+		category(data,'ct_name');
+	})
+	function category(data,data_id){
 		$.ajax({
-			url:'/erp/stock/getcategory',
+			url:'/erp/stock/getct',
+			data:data,
 			type:"POST",
 			dataType:"json",
 			success:function(result){
-				var str = '<select name="it_ccode" id="it_ccode"><option></option>'
-				for(var i = 0;i<result.length;i++){
-					str+="<option value='"+result[i].ct_code+"'>"+result[i].ct_name+"</option>";
+				console.log('suc',data_id)
+				if(data_id=='ct_code'){
+					$('#ct_name').val(result);
+				}else{
+					$('#it_ccode').val(result);
 				}
-				str+="</select>";
-				$('#getCategory').html(str);
 			},
 			error:function(err){
-				
+				console.log('err',data_id)
+				if(data_id=='ct_code'){
+					$('#ct_name').val(err.responseText);
+				}else{
+					$('#it_ccode').val(err.responseText);
+				}
 			}
 		});
 	}

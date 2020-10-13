@@ -76,12 +76,4 @@ public class StockController {
 	public String searchItemCode() {
 		return "stock/searchitemcode";
 	}
-	@RequestMapping(value = "/basicstock", method = RequestMethod.GET)
-	public String basicStock() {
-		return "stock/basicstock";
-	}
-	@RequestMapping(value = "/confirmbasicstock", method = RequestMethod.POST)
-	public ModelAndView confirmBasicStock(HttpServletRequest request) {
-		return stmm.confirmBasicStock(request);
-	}
 }

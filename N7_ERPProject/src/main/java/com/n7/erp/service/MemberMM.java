@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
@@ -40,7 +39,7 @@ public class MemberMM {
 	@Autowired
 	JavaMailSender mailSender;
 
-	public ModelAndView access(Member mb, HttpSession session, RedirectAttributes rttr) {
+	public ModelAndView access(Member mb, HttpSession session) {
 		System.out.println(mb.getM_id());
 		if (mDao.access(mb)) {
 			view = "redirect:/";
@@ -48,12 +47,6 @@ public class MemberMM {
 			session.setAttribute("cCode", mDao.bringCCode(mb));
 			if (hDao.haveHrCode(mb.getM_id())) {
 				HR_Card hrCard = hDao.getHrCardDetail(mb.getM_id());
-				if(hrCard.getHc_work().equals("2")) {
-					session.invalidate();
-					rttr.addFlashAttribute("msg", "2");
-					mav.setViewName("redirect:/");
-					return mav;
-				}
 				session.setAttribute("hrCode", hrCard.getHc_hrcode());
 				String Auth = hDao.getAuthority(hrCard.getHc_dept(), hrCard.getHc_ccode());
 				session.setAttribute("auth", Auth);
@@ -226,6 +219,7 @@ public class MemberMM {
 		mDao.deleteERPFunction(cCode);
 		mDao.deleteMember(cCode);
 		mDao.deleteCompany(cCode);
+		mDao.deleteAuthority(cCode);
 
 		return new Gson().toJson("�꽦怨�");
 	}
@@ -315,27 +309,38 @@ public class MemberMM {
 
 	private String makeFunction(List<String> fList) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<li><a href='/erp/stock/basicstock'>기초재고 등록</a></li>");
-		sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
-		sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
-		sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
-		sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 		if (fList.size() == 3) {
-			sb.append("<li><a href='/erp/stock/exportstockcheck'>출고 확정</a></li>");
+			sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
 			sb.append("<li><a href='/erp/stock/importcheck'>입고 수정 및 확정</a></li>");
+			sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
+			sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
+			sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
+			sb.append("<li><a href='/erp/stock/exportstockcheck'>출고 확정</a></li>");
 		} else if (fList.size() == 2) {
 			if (fList.get(0).equals("구매관리")) {
+				sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
 				sb.append("<li><a href='/erp/stock/importcheck'>입고 수정 및 확정</a></li>");
+				sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
+				sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
+				sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 				sb.append("<li><a href='/erp/stock/addexportlist'>출고 확정</a></li>");
 			} else if (fList.get(fList.size() - 1).equals("영업관리")) {
+				sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
 				sb.append("<li><a href='/erp/stock/addimportlist'>입고 확정</a></li>");
+				sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
+				sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
+				sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 				sb.append("<li><a href='/erp/stock/exportstocklist'>출고 확정</a></li>");
 			}
 		}else if(fList.size()==1){
+			sb.append("<li><a href='/erp/stock/importchecklist'>입/출고 내역</a></li>");
 			sb.append("<li><a href='/erp/stock/addimportlist'>입고 확정</a></li>");
+			sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
+			sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
+			sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 			sb.append("<li><a href='/erp/stock/addexportlist'>출고 확정</a></li>");
 		}
-
+		
 		return sb.toString();
 	}
 
