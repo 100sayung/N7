@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>재고상세정보</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link href="/erp/img/favicon.png" rel="icon" />
 </head>
 <style>
 #comInfo {

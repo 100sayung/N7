@@ -9,7 +9,6 @@
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
-	<link href="/erp/img/favicon.png" rel="icon" />
 <title>사원 인사 카드 수정 및 입력</title>
 <style>
 .modifyMode{
