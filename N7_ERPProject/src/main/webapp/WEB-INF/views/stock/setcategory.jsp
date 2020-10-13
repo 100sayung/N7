@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>N7 ERP - 분류명 등록</title>
+<link href="/erp/img/favicon.png" rel="icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
@@ -82,7 +83,7 @@ font-weight: bolder;
 </head>
 <body>
 	<div id="description">
-	<div class="first_div_css">분류코드 추가</div>
+	<div class="first_div_css" style="color:white;">분류코드 추가</div>
 	<div style="background-color:#F8F7F7;">
 		<table style="border: 0px;">
 			<tr>
