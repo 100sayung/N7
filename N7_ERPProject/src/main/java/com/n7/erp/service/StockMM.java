@@ -345,7 +345,6 @@ public class StockMM {
 		hMap.put("cCode", session.getAttribute("cCode").toString());
 		List<IePort> ieList = ieDao.getMonthPayment(hMap);
 		List<IePort> ieList2 = ieDao.getByItemStockListAll(date1, session.getAttribute("cCode").toString());
-		System.out.println(new Gson().toJson(makeHtml(ieList, ieList2)));
 		return ResponseEntity.ok(makeHtml(ieList, ieList2));
 	}
 
