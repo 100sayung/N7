@@ -162,7 +162,7 @@ td{
 	<script>
 		function deleteCompany(cCode){
 			console.log(cCode);
-			alert("전부삭제 해야함");
+			alert("회사의 모든 정보가 삭제되었습니다.");
 			$.ajax({
 				url:"/erp/rest/home/deletecompany",
 				data:{cCode:cCode},

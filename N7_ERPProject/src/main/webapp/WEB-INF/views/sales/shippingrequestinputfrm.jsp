@@ -382,8 +382,10 @@ border: 1px solid;
               dataType : "json",
               type : "get",
               success : function(result){
+            	  if(result!=''){
                  alert("재고가 부족합니다.");
                  id.value = result;
+            	  }
 
               },error: function(err){
                  console.log(err)

@@ -169,7 +169,7 @@
 	
 	<!-- 발주 -->
 	<insert id="orderInsert">
-		INSERT INTO O_ORDER VALUES(O_ORDER_SEQ.NEXTVAL, #{o_ccode}, 1, #{o_pdocucode})
+		INSERT INTO O_ORDER VALUES(O_ORDER_SEQ.NEXTVAL, #{o_ccode}, 0, #{o_pdocucode})
 	</insert>
 	
 	<select id="orderInfo" resultType="order">
