@@ -53,7 +53,7 @@ public interface IHrDao {
 	@Select("SELECT COUNT(*) FROM HR_ACADEMIC WHERE Hac_HRCODE = #{hrcode} AND HAC_CCODE = #{cCode}")
 	Integer selectAcademic(HashMap<String, String> acMap);
 
-	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID = #{hc_id}")
+	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID = #{hc_id} AND HC_WORK != '2'")
 	boolean selectHRCard(String hc_id);
 
 	@Select("SELECT COUNT(*) FROM HR_CAREER WHERE Hcr_HRCODE = #{hrcode} AND HCR_CCODE = #{cCode}")
@@ -79,7 +79,7 @@ public interface IHrDao {
 
 	void updateHRCard(HR_Card hrCard);
 
-	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID = #{m_id}")
+	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID = #{m_id} AND HC_WORK != '2'")
 	boolean haveHRCodeFromId(String m_id);
 
 	@Select("SELECT * FROM MEMBER WHERE M_ID = #{m_id}")
@@ -107,8 +107,12 @@ public interface IHrDao {
 			+ "FROM HR_CARD INNER JOIN MEMBER ON HR_CARD.HC_ID = MEMBER.M_ID WHERE HC_CCODE = #{cCode} AND HC_WORK = #{status}")
 	ArrayList<HR_Card> getCheckRetired(HashMap<String, String> hMap);
 
-	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID=#{m_id}")
+	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID=#{m_id} AND HC_WORK != '2'")
 	boolean haveHrCode(String m_id);
+	
+
+	@Select("SELECT COUNT(*) FROM HR_CARD WHERE HC_ID=#{m_id}")
+	boolean haveHrCode2(String m_id);
 
 	@Select("SELECT * FROM HR_ATTENDANCE WHERE HA_HRCODE = #{hrCode} AND HA_CCODE = #{cCode} AND HA_TIME LIKE #{date} ORDER BY HA_TIME")
 	ArrayList<Attendance> getAllMyAttendance(HashMap<String, String> hMap);
@@ -117,7 +121,7 @@ public interface IHrDao {
 	void updateRetired(HR_Card hrCard);
 
 	@Select("SELECT HR_CARD.HC_DEPT, HR_CARD.HC_POSITION, HR_CARD.HC_STATUS, MEMBER.M_NAME "
-			+ "FROM HR_CARD INNER JOIN MEMBER ON HR_CARD.HC_ID = MEMBER.M_ID WHERE HC_CCODE = #{cCode} ORDER BY HC_WORK")
+			+ "FROM HR_CARD INNER JOIN MEMBER ON HR_CARD.HC_ID = MEMBER.M_ID WHERE HC_CCODE = #{cCode} AND HC_WORK != '2' ORDER BY HC_WORK")
 	ArrayList<HR_Card> getEmployeeStatus(String cCode);
 
 	ArrayList<NameHoliday> getEmployeeHoliday(HashMap<String, String> hMap);
@@ -127,7 +131,7 @@ public interface IHrDao {
 	boolean checkMemberHrCardCnt(String cCode);
 
 
-	@Select("SELECT * FROM MEMBER WHERE M_CCODE = #{cCode} AND M_NAME LIKE '%'||#{name}||'%'")
+	@Select("SELECT * FROM MEMBER LEFT OUTER JOIN HR_CARD ON M_ID = HC_ID WHERE M_CCODE = #{cCode} AND M_NAME LIKE '%'||#{name}||'%' AND HC_WORK != '2'")
 	ArrayList<Member> getSearchFromName(HashMap<String, String> hMap);
 
 	ArrayList<HR_Card> getHrCodeFromStatus(HashMap<String, String> hMap);
@@ -193,4 +197,11 @@ public interface IHrDao {
 			+"ORDER BY MEMBER.M_NAME ASC")
 	ArrayList<HR_Card> SearchingRetireName(HashMap<String, String> hMap);
 	void updateLeftHoliday(HashMap<String, String> hMap);
+
+	@Select("SELECT AU_AUTHORITY FROM AUTHORITY WHERE AU_COMNAME = #{cCode} AND AU_NAME = #{dept}")
+	String getAuthority(@Param("dept")String dept, @Param("cCode")String cCode);
+
+	@Select("SELECT * FROM HR_CARD WHERE HC_ID = #{hc_id} AND HC_WORK != '2'")
+	HR_Card selectHrCode(String id);
+
 }

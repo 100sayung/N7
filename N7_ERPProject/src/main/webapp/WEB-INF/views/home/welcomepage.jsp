@@ -14,6 +14,7 @@
 <link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css">
@@ -49,21 +50,19 @@ margin-left: 30px;
 </head>
 
 <body>
-
-	<div id="header" class="container" style="text-align: center;">
+	<div style="position: absolute;">
+	<div id="header" class="container" style="text-align: center; transform:translate(20%, 0);">
 		<div id="logo">
 			<h1>
 				<a href="/erp/" style="color: black;">N7 COMPANY</a>
 			</h1>
 		</div>
 	</div>
-	<br>
-	<div id="container">
-		<img src="http://www.probono.kr/template/BUILDER_core/resource/page_join_img.jpg"></img>
-		<br>
-		<a href="/erp/">홈으로 돌아가기</a>
-	</div>
 
+	<div id="container" style="margin-left: 300px;">
+		<img src="http://www.probono.kr/template/BUILDER_core/resource/page_join_img.jpg"></img>
+	</div>
+	</div>
 	
 	
 </body>

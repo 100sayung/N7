@@ -4,11 +4,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>N7 ERP - 품목코드 등록</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+<link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
+	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -38,8 +41,8 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 1500px;
+	height: 600px;
+	width: 500px;
 }
 
 ul {
@@ -80,60 +83,49 @@ text-align: center;
 </style>
 </head>
 <body>
-	<div id="description">
-		<h3>품목번호 작성</h3>
+	<div class="first_div_css" style="width:500px;">
+		<h1 class="deptregist_color_size" id="title">품목코드 추가</h1>
+	</div>
+	<div id="description" align="center">
+		<div style="background-color:#F8F7F7;">
 		<form id="frm">
-		<table style="border: 0px;">
+		<table style="border: 1px; ">
 			<tr>
 				<td style="border: 0px;">분류명</td>
-				<td style="border: 0px;"><input name="ct_name" id="ct_name" type="text"
-					maxlength="50" required="required"></td>
-			</tr>
-			<tr>
-				<td style="border: 0px;">품목번호</td>
-				<td style="border: 0px;"><input name="it_ccode" id="it_ccode" type="text"
-					maxlength="1" required="required"></td>
-			<tr>
-			<tr>
+				<td style="border: 0px;" id="getCategory"></td>
 				<td style="border: 0px;">품목코드</td>
 				<td style="border: 0px;"><input id="it_code" name="it_code" type="text"
 					maxlength="4" required="required"></td>
-			<tr>
+			</tr>
 			<tr>
 				<td style="border: 0px;">상품명</td>
 				<td style="border: 0px;"><input id="it_pname" name="it_pname" type="text"
 					required="required"></td>
-			<tr>
-			<tr>
 				<td style="border: 0px;">규격명</td>
 				<td style="border: 0px;"><input id="it_size" name="it_size" type="text"
 					required="required"></td>
-			<tr>
+			</tr>
 			<tr>
 				<td style="border: 0px;">단위</td>
 				<td style="border: 0px;"><input id="it_unit" name="it_unit" type="text"
 					maxlength="6" required="required"></td>
-			<tr><tr>
-				<td style="border: 0px;">적정재고량</td>
-				<td style="border: 0px;"><input id="it_pstock" name="it_pstock" type="number" value="0"></td>
-			<tr>
-			<tr>
-				<td colspan="2" style="border: 0px;"><input type="button"
+				<td colspan="2" style="border: 0px;" align="right" style="padding-right:10%;"><input type="button"
 						id="btn" value="확정"></td> <!--itemcode cofirm btn #btn -->
 			</tr>
-		</table>
+			</table>
 		</form>
-		<span id='msg'></span><br><br>
-		<h3>분류명 내역</h3>
+		<span id='msg'></span>
+		<div class="first_div_css" style="width:500px;"><h3 class="deptregist_color_size" id="title">품목코드 내역</h3></div>
 		<input type="button" style="display:none" id="modify" value="수정"><!--itemcode modify btn #modify -->
 	<div id="smalldescription">
-	</div>
-	</div>
+	</div></div>
+			</div>
 
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
 	//품목분류 출력
 	itemCode('/erp/stock/getitemcode');
+	getCategory();
 	$('#btn').click(function(){
 		var str = " ";
 		var flag = true;
@@ -154,15 +146,52 @@ text-align: center;
 		var data = $('#frm').serialize();
 		console.log(data);
 		itemCode('/erp/stock/itemcodeconfirm',data);
-		$('input[id]').val("");
-		$('#it_pstock').val(0);
+		$('input[type="text"]').val("");
+		$('input[type="number"]').val("");
+		$('select').children()[0].selected = true;
 	});
-	
+
 	function  itemCode(url,data) {
+		if(url=="/erp/stock/getitemcode"){
+			$.ajax({
+				url:url,
+				data:data,
+				type:"get",
+				contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+				dataType:"json",
+				success:function(result){
+					if(result.length!=0){
+						$("#modify").attr("style","display:inline-block")
+					}
+					var msg = '';
+					msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><br>';
+					for(var i = 0 ; i < result.length;i++){
+						var frm = document.createElement("form");
+						frm.id = 'frm'+(i+1);
+						var str = '';
+						str += '<input class="it_code"  name="it_code" type="text" value="'
+							+ result[i].it_code
+							+ '" readonly>'
+							+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
+							+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
+							+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
+							+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
+							+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
+							console.dir(frm);
+							frm.innerHTML = str
+							msg+=frm.outerHTML+'<br>';
+					}
+					$('#smalldescription').html(msg);
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		}else{
 		$.ajax({
 			url:url,
 			data:data,
-			type:"get",
+			type:"post",
 			contentType: "application/x-www-form-urlencoded;charset=UTF-8",
 			dataType:"json",
 			success:function(result){
@@ -170,20 +199,19 @@ text-align: center;
 					$("#modify").attr("style","display:inline-block")
 				}
 				var msg = '';
-				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><div class = "span">적정재고량</div><br>';
+				msg+='<div class = "span">품목코드</div><div class = "span">상품명</div><div class = "span">규격명</div><div class = "span">단위</div><br>';
 				for(var i = 0 ; i < result.length;i++){
-					var frm = document.createElement("form"); 
+					var frm = document.createElement("form");
 					frm.id = 'frm'+(i+1);
 					var str = '';
 					str += '<input class="it_code"  name="it_code" type="text" value="'
 						+ result[i].it_code
 						+ '" readonly>'
 						+'<input class="it_pname"   name="it_pname" type="text" value="'+result[i].it_pname+'" readonly>'
+						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/><br>'
 						+'<input class="it_size"  name="it_size" type="text" value="'+result[i].it_size+'" readonly>'
 						+'<input class="it_unit" name="it_unit" type="text" value="'+result[i].it_unit+'" readonly>'
-						+'<input class="it_pstock" name="it_pstock" type="number" value="'+result[i].it_pstock+'" readonly>'
-						+'<input type="button" id="btn'+i+'" onclick="modifyItemCode(\''+(i+1)+'\')" value="확정"/>'
-						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/>';
+						+'<input type="button" id="del'+i+'"onclick="deleteItemCode(\''+(i+1)+'\')" value="삭제"/><br><hr size="5" width="100px;	">';
 						console.dir(frm);
 						frm.innerHTML = str
 						msg+=frm.outerHTML+'<br>';
@@ -194,38 +222,25 @@ text-align: center;
 				console.log(err);
 			}
 		});
-		
+		}
+
 	}
 	//분류명, 품목번호 출력
-	$('#it_ccode').keyup(function() {
-		var data = {ct_code:$('#it_ccode').val()}
-		category(data,'ct_code');
-	});
-	$('#ct_name').keyup(function(){
-		var data = {ct_name:$('#ct_name').val()}
-		category(data,'ct_name');
-	})
-	function category(data,data_id){
+	function getCategory(){
 		$.ajax({
-			url:'/erp/stock/getct',
-			data:data,
+			url:'/erp/stock/getcategory',
 			type:"POST",
 			dataType:"json",
 			success:function(result){
-				console.log('suc',data_id)
-				if(data_id=='ct_code'){
-					$('#ct_name').val(result);
-				}else{
-					$('#it_ccode').val(result);
+				var str = '<select name="it_ccode" id="it_ccode"><option></option>'
+				for(var i = 0;i<result.length;i++){
+					str+="<option value='"+result[i].ct_code+"'>"+result[i].ct_name+"</option>";
 				}
+				str+="</select>";
+				$('#getCategory').html(str);
 			},
 			error:function(err){
-				console.log('err',data_id)
-				if(data_id=='ct_code'){
-					$('#ct_name').val(err.responseText);
-				}else{
-					$('#it_ccode').val(err.responseText);
-				}
+
 			}
 		});
 	}
@@ -246,7 +261,7 @@ text-align: center;
 		$('input[class]').attr("readonly",false);
 		$('input[class="it_code"]').attr("readonly",true);
 	});
-	
+
 	</script>
 </body>
 </html>

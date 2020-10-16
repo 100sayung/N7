@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>회사정보</title>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 .company-div{
 border: 3px double #e1e1e1;

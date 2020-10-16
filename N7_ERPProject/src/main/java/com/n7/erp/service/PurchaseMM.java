@@ -6,23 +6,25 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
+import com.n7.erp.bean.ps.Order;
 import com.n7.erp.bean.ps.Purchase;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.ps.approvalLine;
 import com.n7.erp.bean.ps.Return;
 import com.n7.erp.dao.PurchaseDao;
 
+@Transactional
 @Component
 public class PurchaseMM {
 
@@ -35,6 +37,9 @@ public class PurchaseMM {
 		boolean a = false;
 		boolean b = false;
 		String view = null;
+		
+		ps.setP_documentcode("P");
+		
 		if(ps.getP_ccode()!="") {
 			a= pDao.pcommom(ps);
 			String [] p_name = request.getParameterValues("p_name");
@@ -51,11 +56,11 @@ public class PurchaseMM {
 				b= pDao.pregistration(ps);
 			}
 			if(a&&b) {
+				mav.addObject("msg", "데이터 입력이 완료되었습니다.");
 				view = "/Purchase/pregistration";
-				mav.addObject("msg", "데이터입력완료");
 			} else {
+				mav.addObject("msg", "데이터 입력이 실패하였습니다.");
 				view = "/Purhcase/pregistration";
-				mav.addObject("msg", "데이터입력 실패");
 			}
 		}
 		mav.setViewName(view);
@@ -81,7 +86,7 @@ public class PurchaseMM {
 
 	public Map<String, List<Purchase>> pfsearch(String search, String choice, HttpSession session) {
 		Map<String, List<Purchase>> pMap = null;
-		String cCode= (String)session.getAttribute("cCode");
+		String cCode=session.getAttribute("cCode").toString();
 		List<Purchase> pList = pDao.pfSearch(search, choice, cCode);
 		if (pList != null) {
 			pMap = new HashMap<>();
@@ -93,27 +98,37 @@ public class PurchaseMM {
 		return pMap;
 	}
 
-	public Map<String, List<Purchase>> pfdelete(String check_list, HttpSession session) {
+	public Map<String, List<Purchase>> pfdelete(String check, HttpSession session) {
+		String cCode=session.getAttribute("cCode").toString();
 		Map<String, List<Purchase>> pMap = null;
-		String cCode= (String)session.getAttribute("cCode");
-		System.out.println(check_list);
-
-		if(pDao.pcDelete(check_list, cCode) && pDao.pfDelete(check_list, cCode)) {
-			List<Purchase>pList= pDao.pFrerence(cCode);
-			pMap = new HashMap<>();
-			pMap.put("pList", pList);
-			System.out.println("지워짐");
+		List<Purchase>pList= null;
+		System.out.println(check);
+		int cnt=0;
+		cnt= pDao.compareCode(check, cCode);
+		
+		if(cnt==0) {
+			if(pDao.pcDelete(check, cCode) && pDao.pfDelete(check, cCode)) {
+				pList= pDao.pFrerence(cCode);
+				pMap = new HashMap<>();
+				pMap.put("pList", pList);
+				System.out.println("지워졌다");
+			}else {
+				System.out.println("지워짐?");
+				pMap= null;
+			}
 		}else {
-			System.out.println("안지워짐");
-			pMap = null;
+			System.out.println("들어오냐?");
+			pMap= new HashMap<>();
+			pMap.put("pList", pList);
 		}
 		return pMap;
 	}
+	
 
 	public ModelAndView pDetail(String check, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
-		String cCode= (String)session.getAttribute("cCode");
+		String cCode=session.getAttribute("cCode").toString();
 		List<Purchase> pList= null;
 		Purchase ps= new Purchase();
 
@@ -137,7 +152,7 @@ public class PurchaseMM {
 	public ModelAndView pProgram(String check, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
-		String cCode= (String)session.getAttribute("cCode");
+		String cCode=session.getAttribute("cCode").toString();
 		List<Purchase> pList= null;
 
 		if(check!=null) {
@@ -156,8 +171,8 @@ public class PurchaseMM {
 		return mav;
 	}
 
-    //결재라인
-   public Map<String, List<com.n7.erp.bean.ps.approvalLine>> searchName(String name) {
+	//결재라인
+	public Map<String, List<com.n7.erp.bean.ps.approvalLine>> searchName(String name) {
          Map<String, List<approvalLine>> sMap= null;
          List<approvalLine> aList=null;
          if(name!=null) {
@@ -272,6 +287,28 @@ public class PurchaseMM {
 		mav.setViewName(view);
 		return mav;
 	}
+	
+	public Map<String, List<Purchase>> approvalcheck(String check, HttpSession session) {
+		String cCode = session.getAttribute("cCode").toString();
+		Map<String, List<Purchase>>pMap= null;
+		int cnt=0;
+		cnt= pDao.compareCode(check, cCode);
+		
+		if(cnt==1) {
+			List<Purchase> pList= null;
+			pMap= new HashMap<>();
+			pMap.put("pList",pList);
+		}else {
+			List<Purchase> pList= new ArrayList<>();
+			Purchase ps= new Purchase();
+			ps.setP_status("0");
+			pList.add(ps);
+			pMap= new HashMap<>();
+			pMap.put("pList", pList);
+		}
+		
+		return pMap;
+	}
 
 	public Map<String, List<approvalLine>> getMyInfo(HttpSession session) {
         Map<String, List<approvalLine>> sMap=null;
@@ -298,6 +335,7 @@ public class PurchaseMM {
 		rt.setR_ccode(session.getAttribute("cCode").toString());
 		String hr_code= session.getAttribute("hrCode").toString();
 		rt.setR_hrcode(hr_code);
+		rt.setR_documentcode("R");
 
 		int cnt= 0;
 		int cnt2=0;
@@ -326,7 +364,7 @@ public class PurchaseMM {
 
 	public Map<String, List<Return>> rInfo(HttpSession session) {
 		Map<String, List<Return>> rMap = null;
-		String cCode= (String)session.getAttribute("cCode");
+		String cCode=session.getAttribute("cCode").toString();
 		List<Return> rList = pDao.rInfo(cCode);
 		if (rList != null) {
 			rMap = new HashMap<>();
@@ -338,26 +376,26 @@ public class PurchaseMM {
 		return rMap;
 	}
 
-	public Map<String, List<Return>> rDelete(String check_list, HttpSession session) {
-		Map<String, List<Return>> rMap=null;
-		System.out.println(check_list);
-		String cCode= (String)session.getAttribute("cCode");
-
-		if(pDao.rDelete(check_list,cCode)) {
-			List<Return>rList=pDao.rInfo(cCode);
-			rMap= new HashMap<>();
-			rMap.put("rList", rList);
-			System.out.println("지워짐");
-		}else {
-			System.out.println("안지워짐");
-			rMap=null;
-		}
-		return rMap;
-	}
+//	public Map<String, List<Return>> rDelete(String check_list, HttpSession session) {
+//		Map<String, List<Return>> rMap=null;
+//		System.out.println(check_list);
+//		String cCode=session.getAttribute("cCode").toString();
+//
+//		if(pDao.rDelete(check_list,cCode)) {
+//			List<Return>rList=pDao.rInfo(cCode);
+//			rMap= new HashMap<>();
+//			rMap.put("rList", rList);
+//			System.out.println("지워짐");
+//		}else {
+//			System.out.println("안지워짐");
+//			rMap=null;
+//		}
+//		return rMap;
+//	}
 
 	public Map<String, List<Return>> rSearch(String search, String choice, HttpSession session) {
 		Map<String, List<Return>> rMap= null;
-		String cCode= (String)session.getAttribute("cCode");
+		String cCode=session.getAttribute("cCode").toString();
 		List<Return> rList= pDao.rSearch(search, choice, cCode);
 		if(rList!=null) {
 			rMap= new HashMap<>();
@@ -372,7 +410,7 @@ public class PurchaseMM {
 	public ModelAndView pRequest(String p_documentcode, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
-		String cCode= (String)session.getAttribute("cCode");
+		String cCode=session.getAttribute("cCode").toString();
 
 		PurchaseApproval pa= pDao.pRequest(p_documentcode, cCode);
 
@@ -422,7 +460,7 @@ public class PurchaseMM {
 	public ModelAndView pRequest2(String p_documentcode, HttpSession session) {
 		ModelAndView mav= new ModelAndView();
 		String view= null;
-		String cCode= (String)session.getAttribute("cCode");
+		String cCode=session.getAttribute("cCode").toString();
 
 		PurchaseApproval pa= pDao.pRequest2(p_documentcode, cCode);
 
@@ -470,5 +508,66 @@ public class PurchaseMM {
 		}
 		return sMap;
 	}
+
+	public ModelAndView orderinsert(Order od, HttpSession session) {
+		ModelAndView mav= new ModelAndView();
+		String view= null;
+		od.setO_ccode(session.getAttribute("cCode").toString());
+		
+		if(od.getO_ccode()!="") {
+			if(pDao.orderInsert(od)) {
+				view="Purchase/orderregistration";
+			}else {
+				view="Purchase/orderregistration";
+			}
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public Map<String, List<Order>> orderInfo(HttpSession session) {
+		Map<String, List<Order>> pMap = null;
+		String cCode = session.getAttribute("cCode").toString();
+
+		List<Order> pList = pDao.orderInfo(cCode);
+		System.out.println("제발...");
+			if (pList != null) {
+					pMap = new HashMap<>();
+					pMap.put("pList", pList);
+					System.out.println("pList=" + pList);
+			}else {
+				pMap= null;
+			}
+		return pMap;
+	}
+
+	public Map<String, List<Order>> orderSearch(String search, String choice, HttpSession session) {
+		Map<String, List<Order>> pMap = null;
+		String cCode= (String)session.getAttribute("cCode");
+		List<Order> pList = pDao.orderSearch(search, choice, cCode);
+		if (pList != null) {
+			pMap = new HashMap<>();
+			pMap.put("pList", pList);
+			System.out.println("pList=" + pList);
+		} else {
+			pMap = null;
+		}
+		return pMap;
+	}
+
+	public Map<String, List<ApprovalDocu>> orderpinfo(HttpSession session) {
+		Map<String, List<ApprovalDocu>> pMap=null;
+		String cCode=(String)session.getAttribute("cCode");
+		List<ApprovalDocu>pList=pDao.orderPinfo(cCode);
+		if(pList!=null) {
+			pMap= new HashMap<>();
+			pMap.put("pList", pList);
+			System.out.println("pList:"+pList);
+		}else {
+			pMap=null;
+		}
+		return pMap;
+	}
+
 
 }

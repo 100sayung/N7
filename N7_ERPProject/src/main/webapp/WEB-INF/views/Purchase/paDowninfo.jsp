@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>보낸 결재 상세보기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 html, body {
    text-align: center;
@@ -18,6 +19,7 @@ html, body {
    margin-right: auto;
    width: auto;
    height: auto;
+   border-collapse: collapse;
 }
 
 .txt {
@@ -59,7 +61,7 @@ html, body {
 </head>
 <body>
 <form id="fo">
-      <div style="width: auto; background-color: #FFB2D9; color: white; padding: 1%;">기안문  상세보기</div>
+      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">기안문  상세보기</div>
       <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
          <table id="table">
             <tr>
@@ -71,9 +73,9 @@ html, body {
             <tr>
                <th>결재자</th>
                <th id="line">
-               <input type="hidden" value="${pa.p_apcode1}" name="code">
-                  <input type="hidden" value="${pa.p_apcode2}" name="code">
-                  <input type="hidden" value="${pa.p_apcode3}" name="code">
+               <input type="hidden" value="${pa.p_apcode1}" name="code" readonly>
+                  <input type="hidden" value="${pa.p_apcode2}" name="code" readonly>
+                  <input type="hidden" value="${pa.p_apcode3}" name="code" readonly>
                </th>
 
             </tr>
@@ -86,7 +88,7 @@ html, body {
                            <tr>
                               <th colspan="2">문서번호</th>
                               <th colspan="6"><input id="num" type="text" name="p_documentcode"
-                                 class="txt" value="${pa.p_documentcode}" readonly>
+                                 class="txt" value="${pa.p_documentcode}" readonly></th>
 
                            </tr>
                            <tr>
@@ -98,14 +100,14 @@ html, body {
                            	  <th colspan="2">상품명</th>
 							  <th >품목코드</th>
 							  <th>수량</th>
-							  <th>단가</th>
-							  <th colspan="2">합계</th>
+							  <th>단가(원)</th>
+							  <th colspan="2">합계(원)</th>
                            </tr>
                            <tbody id="list"></tbody>
 							<tr>
 								<th>반려사유</th>
-								<th colspan="8"><input type="text" name="p_etc"
-									value="${pa.p_etc}" id="ect"></th>
+								<td colspan="8"><input type="text" name="p_etc"
+									value="${pa.p_etc}" id="ect"></td>
 							</tr>
                         </table>
                      </div>
@@ -115,7 +117,7 @@ html, body {
          </table>
        </div>
      </form>
-         <button type="button" id="submit">제출하기</button>
+         <button type="button" id="submit">결재하기</button>
          <button type="button" id="arbitrarily">전결하기</button>
          <button type="button" id="turnback">반려하기</button>
 		</div>
@@ -150,9 +152,9 @@ html, body {
 				console.log(data);
 				 var str = "";
 		            for ( var i in data.pList) {
-		               str +="<input type='text' name='p_apcode"+(Number(i)+Number(1))+"' value='"+data.pList[i].hc_hrcode+"' hidden='true'>";
+		               str +="<input type='text' name='p_apcode"+(Number(i)+Number(1))+"' value='"+data.pList[i].hc_hrcode+"' hidden='true' readonly>";
 		               str +=data.pList[i].hc_position+"/";
-		               str +="<input style='width:50px;' type='text' name='p_approver"+(Number(i)+Number(1))+"' value='"+ data.pList[i].m_name+"'>&nbsp;&nbsp;||&nbsp;&nbsp;";
+		               str +="<input style='width:50px;' type='text' name='p_approver"+(Number(i)+Number(1))+"' value='"+ data.pList[i].m_name+"' readonly>&nbsp;&nbsp;||&nbsp;&nbsp;";
 		            }
 		            console.log(str)
 		            $("#line").html(str);

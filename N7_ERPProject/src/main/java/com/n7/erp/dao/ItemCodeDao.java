@@ -14,10 +14,10 @@ public interface ItemCodeDao {
 	@Select("SELECT * FROM IT WHERE IT_CPCODE = #{cCode}")
 	public List<ItemCode> getItemCode(String cCode);
 
-	@Insert("INSERT INTO IT VALUES(#{it_code},#{it_cpcode},#{it_ccode},#{it_pname},#{it_size},#{it_unit},#{it_pstock},0)")
+	@Insert("INSERT INTO IT VALUES(#{it_code},#{it_cpcode},#{it_ccode},#{it_pname},#{it_size},#{it_unit},0)")
 	public boolean itemCodeCofirm(ItemCode it);
 
-	@Update("UPDATE IT SET IT_PNAME=#{it_pname},IT_SIZE=#{it_size},IT_UNIT=#{it_unit},IT_PSTOCK=#{it_pstock} WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{it_cpcode}")
+	@Update("UPDATE IT SET IT_PNAME=#{it_pname},IT_SIZE=#{it_size},IT_UNIT=#{it_unit} WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{it_cpcode}")
 	public boolean modifyItemCode(ItemCode it);
 
 	@Delete("DELETE FROM IT WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{it_cpcode}")

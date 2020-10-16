@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>거래처등록</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <!-- <script src="js/jquery.serializeObject.js"></script> -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- BOOTSTRAP STYLES-->
@@ -90,36 +91,36 @@ font-size: 20px;
 			<table>
 				<tbody>
 				<tr><th><div class='input-group'><span class='input-group-addon'>거래처코드</span>
-                <input type='text' name='cl_code' class='form-control'></div></th>
+                <input type='text' name='cl_code' class='form-control' style="width:215px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>거래처명</span>
                 <input type='text' name='cl_name' class='form-control'></div></th>
 					
 					</tr>
 					<tr>
 				<th><div class='input-group'><span class='input-group-addon'>사업자번호</span>
-                <input type='text' name='cl_comnum' class='form-control'></div></th>
+                <input type='text' name='cl_comnum' class='form-control' style="width:215px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>대표자명</span>
                 <input type='text' name='cl_ceo' class='form-control'></div></th>
 
 					</tr>
 					<tr>
-				<th><div class='input-group'><span class='input-group-addon'>&nbsp;담당자명&nbsp;</span>
-                <input type='text' name='cl_employee' class='form-control'></div></th>
+				<th><div class='input-group'><span class='input-group-addon' style="width:94px;">담당자명</span>
+                <input type='text' name='cl_employee' class='form-control' style="width:215px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>전화번호</span>
                 <input type='text' name='cl_phone' class='form-control'></div></th>
 		
 					</tr>
 					<tr>
 				<th><div class='input-group'><span class='input-group-addon'>핸드폰번호</span>
-                <input type='text' name='cl_phone2' class='form-control'></div></th>
+                <input type='text' name='cl_phone2' class='form-control' style="width:215px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>팩스번호</span>
                 <input type='text' name='cl_fax' class='form-control'></div></th>
 			
 					</tr>
 					<tr>
-				<th><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;이메일&nbsp;&nbsp;</span>
-                <input type='text' name='cl_email' class='form-control'></div></th>
-                <th><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;유형&nbsp;&nbsp;</span>
+				<th><div class='input-group'><span class='input-group-addon' style="width:94px;">이메일</span>
+                <input type='text' name='cl_email' class='form-control' style="width:215px;"></div></th>
+                <th><div class='input-group'><span class='input-group-addon' style="width:80px;">유형</span>
                 <select name='cl_kind3' class='form-control'>
                 <option value="">--</option>
 				<option value="매출">매출</option>
@@ -129,42 +130,42 @@ font-size: 20px;
 		
 					</tr>
 					<tr>
-				<th><div class='input-group'><span class='input-group-addon'>&nbsp;우편번호&nbsp;</span>
-                <input type='text' name='cl_addrnum' class='form-control'></div></th>
+				<th><div class='input-group'><span class='input-group-addon' style="width:94px;">우편번호</span>
+                <input type='text' name='cl_addrnum' class='form-control' style="width:215px;"></div></th>
 				
 
 					</tr>
 
 
 					<tr>
-				<th colspan="2"><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;&nbsp;주소&nbsp;&nbsp;&nbsp;</span>
-                <input type='text' name='cl_addr' class='form-control' style="width:540px;"></div></th>
+				<th colspan="2"><div class='input-group'><span class='input-group-addon' style="width:94px;">주소</span>
+                <input type='text' name='cl_addr' class='form-control' style="width:507px;"></div></th>
 						
 					</tr>
 					<tr>
-				<th><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;&nbsp;업태&nbsp;&nbsp;&nbsp;</span>
-                <input type='text' name='cl_kind' class='form-control' style="width:230px;"></div></th>
+				<th><div class='input-group'><span class='input-group-addon' style="width:94px;">업태</span>
+                <input type='text' name='cl_kind' class='form-control' style="width:215px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;종목&nbsp;&nbsp;</span>
                 <input type='text' name='cl_kind2' class='form-control'></div></th>
 					
 					</tr>
 					<tr>
-				<th><div class='input-group'><span class='input-group-addon'>&nbsp;거래은행&nbsp;</span>
-                <input type='text' name='cl_bank' class='form-control'></div></th>
+				<th><div class='input-group'><span class='input-group-addon' style="width:94px;">거래은행</span>
+                <input type='text' name='cl_bank' class='form-control' style="width:215px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>&nbsp;예금주&nbsp;</span>
                 <input type='text' name='cl_bankholder' class='form-control'></div></th>
 						
 					</tr>
 					<tr>
-				<th><div class='input-group'><span class='input-group-addon'>&nbsp;계좌번호&nbsp;</span>
-                <input type='text' name='cl_banknum' class='form-control'></div></th>
+				<th><div class='input-group'><span class='input-group-addon' style="width:94px;">계좌번호</span>
+                <input type='text' name='cl_banknum' class='form-control' style="width:215px;"></div></th>
 				<th><div class='input-group'><span class='input-group-addon'>종사업장번호</span>
-                <input type='text' name='cl_comnum2' class='form-control' style="width:200px;"></div></th>
+                <input type='text' name='cl_comnum2' class='form-control' style="width:185px;"></div></th>
 					</tr>
 
 					<tr>
-				<th colspan="2"><div class='input-group'><span class='input-group-addon'>&nbsp;&nbsp;&nbsp;메모&nbsp;&nbsp;&nbsp;</span>
-                <textarea name='cl_memo' rows="3" cols="" class='form-control' style="width:539px;"></textarea></div></th>
+				<th colspan="2"><div class='input-group'><span class='input-group-addon' style="width:94px;">메모</span>
+                <textarea name='cl_memo' rows="3" cols="" class='form-control' style="width:509px;"></textarea></div></th>
                 
 						<!-- <th class="th1">메모</th>
 						<td><textarea name="cl_memo"

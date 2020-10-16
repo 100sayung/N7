@@ -12,6 +12,7 @@
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -42,10 +43,10 @@ a {
 
 #description {
 	float: left;
-	height: 100%;
-	width: 800px;
+	width: 1150px;
 	position: absolute;
 	transform:translate(250px, 0);
+	border-bottom: 1px solid black;
 }
 
 ul {
@@ -70,19 +71,16 @@ ul {
 }
 
 #check{
-	width:800px;
+	width:700px;
 	height:100px;
 	text-align: center;
 	align-content: center;
-	border-bottom: 1px solid black;
 }
 #calendar{
 	border:1px solid black;
 	text-align:center;
 	width: 450px;
 	height: 350px;
-	position: absolute;
-	transform:translate(1050px, 0);
 }
 
 #menu2 {
@@ -106,10 +104,10 @@ ul {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
 			<div id="myInfoMenu">
 			</div>
-			<li id="showMenu1">나의 결재함</a></li>
+			<li id="showMenu1">나의 결재함</li>
 			<ul id="menu2" style="display: none;">
 				<li>내가 올린 결재함</li>
 				<ul id="smenu3" style="display: none;">
@@ -126,18 +124,18 @@ ul {
 	<div class="first_div_css">
 		<h1 class="deptregist_color_size">출 / 퇴근 등록</h1>
 	</div>
-	<h1 align="center">(☞ﾟヮﾟ)☞현재시각☜(ﾟヮﾟ☜)</h1>
+	<div style="float:left; width:690px;">
+	<h1 align="center">현재시각</h1>
 	<h1 align="center" id="clock" style="margin-bottom: 30px;"></h1>
 
 	<div style="align:center;" id="currentStatus"></div>
-	<br>
 	<div id='check'>
 	<span id="in" class="attendance">출근 등록</span>
 	<span id="out" class="attendance">퇴근 등록</span>
 	</div>
 	</div>
 
-
+	<div style="float:left;">
     <table align="center" id="calendar">
         <tr>
             <td><font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before" ></label></font></td>
@@ -154,6 +152,9 @@ ul {
             <td><font color=#7ED5E4>토</font></td>
         </tr>
     </table>
+	</div>
+	
+	</div>
 
 
 

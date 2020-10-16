@@ -13,6 +13,7 @@
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -44,7 +45,7 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
     position: absolute;
     transform:translate(250px, 0);
 }
@@ -104,9 +105,11 @@ ul {
 				<td><span id="positionS"></span></td>
 				<td>직책 </td>
 				<td><input type="text" name="HDP_position" id="position"></td>
-				<td><button class="infobtn">등록</button></td>
 			</tr>
-		</table>
+		</table><br>
+		<div align="right" style="width: 100%; padding-right:5%;">
+		<button class="infobtn">등록</button>
+		</div>
 	</form>
 <!-- 	<button type="button" id="deptbutton">+부서등록추가</button> -->
 	</div>

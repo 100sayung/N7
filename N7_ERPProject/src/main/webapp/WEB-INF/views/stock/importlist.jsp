@@ -4,11 +4,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>N7 ERP - 입/출고 현항</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -37,9 +38,9 @@ a {
 }
 
 #description {
-float: left;
+	float: left;
     height:100%;
-    width:80%;
+    width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -104,7 +105,7 @@ position: relative;
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo"
+				<li><a href="/erp/myInfo/myInfo"
 					accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
@@ -114,8 +115,10 @@ position: relative;
 		<ul id="menuList">
 		</ul>
 	</div>
+	<center>
 	<div id='description'>
 	<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입/출고 내역</div>
+		<div style="background-color:#F8F7F7;">
 		입고 내역<input class='checkNum' type="radio" name='ie_status' value="1">출고
 		내역<input class="checkNum" type="radio" name="ie_status" value="2"><br>
 		시작일 : <input class='checkDate' id='date0' type="date" name='ie_date'><br>
@@ -125,7 +128,9 @@ position: relative;
 		<center>
 			<div id="contain"></div>
 		</center>
+			</div>
 	</div>
+	</center>
 	<script src=/erp/js/menu.js></script>
 	<!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -152,11 +157,15 @@ position: relative;
 								$('#contain').html('입/출고 내역이 없습니다.')
 								return;
 							}
-							var str = '  <div style="background-color:#F8F7F7;"><table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
+							var str = '  <table><tr><td>제품 코드</td><td>거래처</td><td>거래 일시</td><td>거래 분류</td><td>단가</td><td>수량</td><td>거래 사원</td><td>총액</td></tr>';
 							for (var i = 0; i < result.length; i++) {
 								str += '<tr><td>' + result[i].ie_itcode
 										+ '</td>';
+										if(result[i].ie_clcode!=undefined){
 								str += '<td>' + result[i].ie_clcode + '</td>';
+										}else{
+											str += '<td></td>';
+										}
 								str += '<td>' + result[i].ie_date.substr(0, 10)
 										+ '</td>';
 								if (result[i].ie_status == 1) {
@@ -167,15 +176,14 @@ position: relative;
 									str += '<td>반품</td>'
 								}
 								str += '<td>'
-										+ Math.abs(result[i].ie_price
-												/ result[i].ie_qty) + '</td>'
+										+ Math.floor(Math.abs(result[i].ie_price/result[i].ie_qty)) + '</td>'
 								str += '<td>' + Math.abs(result[i].ie_qty)
 										+ '</td>'
 								str += '<td>' + result[i].ie_hrcode + '</td>'
 								str += '<td>' + Math.abs(result[i].ie_price)
 										+ '</td></tr>'
 							}
-							str += '</table></div>';
+							str += '</table>';
 							$('#contain').html(str);
 						},
 						error : function(err) {

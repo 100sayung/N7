@@ -11,6 +11,7 @@
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -42,7 +43,9 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -51,7 +54,7 @@ ul {
 
 .menu{
 	font-size:medium;
-	width:250px;
+	width:287.5px;
 }
 
 table,td{
@@ -146,7 +149,7 @@ table,td{
 				let str = "<table>";
 				str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td class='menu'>상태</td></tr>";
 				for(let i = 0 ; i<data.length ; i++){
-					str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
+					str += "<tr style='height:30px;text-align:medium'><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
 					if(data[i].hc_status == 1){
 						str += "<font style='color:blue;'>출근</font>";
 					}else{
@@ -233,7 +236,7 @@ table,td{
 		let str = "<table>";
 		str += "<tr class='infomenu'><td class='menu'>부서</td><td class='menu'>직책</td><td class='menu'>이름</td><td class='menu'>상태</td></tr>";
 		for(let i = 0 ; i<data.length ; i++){
-			str += "<tr><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
+			str += "<tr style='height:30px;text-align:medium'><td>" + data[i].hc_dept + "</td><td>" + data[i].hc_position + "</td><td>" +data[i].m_name + "</td><td>";
 			if(data[i].hc_status == 1){
 				str += "<font style='color:blue;'>출근</font>";
 			}else{

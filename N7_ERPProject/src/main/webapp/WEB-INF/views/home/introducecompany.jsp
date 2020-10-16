@@ -5,12 +5,13 @@
 <html>
 
 <head>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=jkkt1f4zon&callback=initMap"></script>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
  <meta content="" name="descriptison">
   <meta content="" name="keywords">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-<link href="/erp/assets2/img/favicon.png" rel="icon">
+<link href="/erp/img/favicon.png" rel="icon" />
   <link href="/erp/assets2/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -24,7 +25,7 @@
   <link href="/erp/assets2/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="/erp/assets2/vendor/aos/aos.css" rel="stylesheet">
   <link href="/erp/assets2/css/style.css" rel="stylesheet">
-  
+    
  
 
 <title>회사소개</title>
@@ -32,7 +33,7 @@
 <style>
 #table,td{
 border: 3px double #e1e1e1;
-margin-left: 30%;
+margin-left: 35%;
 }
 #map{
 border: 3px double #e1e1e1;
@@ -158,7 +159,7 @@ border-radius: 8px;
 
       </div>
     </section>
-  <section id="map" class="facts">
+  <section id="map1" class="facts">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -213,7 +214,7 @@ border-radius: 8px;
 			mapTypeControl : true,
 			zoomControl : true,
 			zoomControlOptions : {
-				position : naver.maps.Position.TOP_RIGHT
+				position : naver.maps.Position.RIGHT_CENTER
 			}
 		});
 		var marker = new naver.maps.Marker({

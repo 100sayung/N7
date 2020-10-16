@@ -14,6 +14,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <!-- <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
@@ -79,7 +80,7 @@ font-size: 30px;
 				</c:when>
 				<c:when test="${id!=null and id ne 'manager'}">
 				<li class="current_page_item"><a href="#" onClick='window.open("/erp/main", "ERP START", "width=1700, height=955, status=no, toolbar=no, menubar=no, scrollbar = no, resizable=no"); return false;'>ERP시작</a></li>
-				<li><form action="logout" method="post"><button>LOGOUT</button></form></li>
+				<li><a href="/erp/logout">LOGOUT</a></li>
 				</c:when>
 				</c:choose> 
          </ul>
@@ -100,7 +101,7 @@ font-size: 30px;
       <div class="carousel-inner" role="listbox">
 
         <div class="item active">
-          <img src="img/mainerp3.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
+          <img src="img/mainerp5.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
           <!-- <div class="carousel-caption">
             <h2>기술</h2>
             <p>혁신적인 기술로 시장을 선도하는 기업</p>
@@ -108,28 +109,26 @@ font-size: 30px;
         </div>
 
         <div class="item">
-          <img src="img/mainerp1.png" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
+          <img src="img/mainerp6.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
           <!-- <div class="carousel-caption">
             <h2>가동성</h2>
             <p>ERP로 최고의 효율 창조하는 기업</p>
           </div> -->
         </div>
         <div class="item">
-          <img src="img/mainerp4.jpg" alt="Chania" width="70%" height="50%" style="margin-left: 15%"></img>
+          <img src="img/mainerp7.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
          <!--  <div class="carousel-caption">
             <h2>커뮤니티</h2>
             <p>항상 고객을 최우선으로 생각하는 기업</p>
           </div> -->
         </div>
         <div class="item">
-          <img src="img/mainerp2.jpg" alt="Chania" width="60%" height="50%" style="margin-left: 20%"></img>
+          <img src="img/mainerp8.jpg" alt="Chania" width="100%" height="50%" style="margin-left: 0%"></img>
           <!-- <div class="carousel-caption">
             <h2>플랫폼</h2>
             <p>개인기업부터 대기업까지 사용할 수있는 맞춤형 ERP </p>
           </div> -->
         </div>
-
-    
 
       </div>
 
@@ -197,6 +196,14 @@ font-size: 30px;
 	<div id="desc"></div> --%>
 	<script>
 
+	  $(function(){
+		  console.log("${msg}");
+	      var responseMessage = "<c:out value="${msg}" />";
+	      if (responseMessage != ""){
+         	 alert("퇴사 상태의 계정은 이용하실 수 없습니다.");
+ 	     }
+	  });
+	  
 	$(document).ready(function(){
 		if('${id}'!=""){
 			$.ajax({

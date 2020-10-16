@@ -12,24 +12,24 @@
 <meta name="description" content="" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/erp/css/location.css" rel="stylesheet" type="text/css" media="all" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
-		<link href="img/favicon.png" rel="icon" />
+		<link href="/erp/img/favicon.png" rel="icon" />
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
-
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 .List {
 border-collapse: collapse;
 border-top: 3px solid #168;
 }
 .List th {
-color: #168;
+color: #168; 
+font-size: 15px;
 background: #f0f6f9;
 text-align: center;
-}
+} 
 .List th, .List td {
 padding: 10px;
 border: 1px solid #ddd;
@@ -48,10 +48,10 @@ text-align: center;
 display: block;
 text-align: center;
 margin-top: 15px;
-margin-left: 10px;
+margin-left: 5px;
 padding-bottom: 12px;
 }
- #bbb{
+#bbb{
 float: right;
 margin-top: 10px;
 }
@@ -61,22 +61,24 @@ float: right;
 margin-top: 10px;
 padding-bottom: 20px;
 }
+
+
 </style>
 </head>
 <body>
 	<div id="header" class="container" style="text-align: center;">
 		<div id="logo">
 			<h1>
-				<a href="/erp/" style="color: black;">N7 COMPANY</a>
+				<a href="/erp/" style="color: black; font-weight: 500; font-size: 46px; margin-left: 30px;">N7 COMPANY</a>
 			</h1>
 		</div>
-		<div id="menu">
-		</div>
+		<div id="menu"></div>
 	</div>
 	<div id="description" class="out" style="height: 700px;">
-	<div style='width:100%; height:50px; text-align:center; background-color: #3D6B9B;'><h1><a href="/erp/erpboard" style='color:white; text-decoration: none;'>ERP상담게시판</a></h1></div>
+	<div style='width: 100%; height: 60px; text-align:center; background-color: #3D6B9B;'>
+		<a href="/erp/home/erpboard" style='color: white; line-height: 2.0; margin-right:25px; text-decoration: none; font-weight: 200; font-size: 30px;'>ERP상담게시판</a>
+	</div>
 	<div class="center">
-        <div id="container">
 	<form action="erpboard">
 	<div id="a">
 <!-- 		<h2>상담 게시판</h2> -->
@@ -88,17 +90,18 @@ padding-bottom: 20px;
 			</tr>
 		</table>
 	</div>
-   <div id="bbb"><a href="/erp/home/writeFrm" style="text-decoration: none;"><button type="button">글쓰기</button></a></div>
+   <div id="bbb"><a href="/erp/home/writeFrm" style="text-decoration: none;"><button type="button" id="writebtn">글쓰기</button></a></div>
 	</form>
 	<div align="cneter" id="paging">${paging}</div>
-
  	<div id="ccc">
-		<select id="choice" style="height: 24px;">
+		<select id="choice" style="height: 25px;">
 			<option value="CB_TITLE">제목</option>
 			<option value="CB_WRITER">작성자</option>
 		</select>
-		<input type="text" id="keyword" name="search" style="height:18px;" />
+		<input type="text" id="keyword" name="search" style="height:20px;" />
 		<button type="button" id="searchbtn">검색</button>
+	</div>
+	</div>
 	</div>
 </body>
 <script>
@@ -151,19 +154,19 @@ padding-bottom: 20px;
 			url: "/erp/rest/home/boardSearch",
 			type: "post",
 			data: "choice="+choice+"&keyword="+keyword,
-			dataType: "json",
+			dataType: 'json',
 			success: function(data){
 				$(".List").html("");
 				console.log(data);
 				 var str="";
 				 str+="<tr style='background-color: #3D6B9B; width: 350px; color:white;'><th scope='row'style='width: 100px;'>번호</th><th scope='row' style='width: 800px;'>제목</th><th scope='row' style='width: 200px;'>작성자</th></tr>";
 				 if(data.bList!=""){
-					 for(var i=0; i<data.bList.length-1; i++){
+					 for(var i=0; i<data.bList.length; i++){
 						 str+="<tr><td>"+data.bList[i].cb_num+"</td>";
 						 str+="<td><a style='text-decoration: none;' href='/erp/home/boardContents?CB_NUM="+data.bList[i].cb_num+"'>"+data.bList[i].cb_title+"</a></td>";
 						 str+="<td>"+data.bList[i].cb_writer+"</td></tr>";
 						}
-					 pageNum+=data.bList[data.bList.length-1].cb_count;
+					 pageNum=data.bList.length;
 					 console.log(pageNum);
 
 						$(".List").html(str);
@@ -208,10 +211,10 @@ padding-bottom: 20px;
 					        var html = "";
 
 					        if(prev > 0)
-					            html += "<a href=# id='prev'><</a> ";
+					            html += "<a style='text-decoration: none;' href=# id='prev'><</a> ";
 
 					        for(var i=first; i <= last; i++){
-					            html += "<a href='#' id=" + i + ">[" + i + "]</a> ";
+					            html += "<a style='text-decoration: none;' href='#' id=" + i + ">[ " + i + " ]</a> ";
 					        }
 
 					        if(last < totalPage)
@@ -221,7 +224,7 @@ padding-bottom: 20px;
 					        $("#paging a").css("color", "black");
 					        $("#paging a#" + currentPage).css({"text-decoration":"none",
 					                                           "color":"red",
-					                                           "font-weight":"bold"});
+					                                           "font-weight":"500"});
 
 					        $("#paging a").click(function(){
 
@@ -237,7 +240,13 @@ padding-bottom: 20px;
 
 					    }
 				 }else{
+
 					alert("데이터가 없습니다.");
+					console.log(data);
+					 var str="";
+					 str+="<tr style='background-color: #3D6B9B; width: 350px; color:white;'><th scope='row'style='width: 100px;'>번호</th><th scope='row' style='width: 800px;'>제목</th><th scope='row' style='width: 200px;'>작성자</th></tr>";
+					 $(".List").html(str);
+					 $("#paging").html("");
 				 }
 			 },
 			error: function(err){

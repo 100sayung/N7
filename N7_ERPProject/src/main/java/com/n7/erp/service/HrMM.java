@@ -79,6 +79,7 @@ public class HrMM {
 		hMap.put("cCode", cCode);
 		hMap.put("column", "hcr");
 		List<Career> crList = hDao.getCareerInfo(hMap);
+		System.out.println("???="+crList);
 		return crList;
 	}
 
@@ -171,7 +172,7 @@ public class HrMM {
 		}
 	}
 
-	public void registHRCard(HR_Card hrCard, String id, String cCode) {
+	public void registHRCard(HR_Card hrCard, String id, String cCode, HttpSession session) {
 		System.out.println(id);
 		hrCard.setHc_id(id);
 		hrCard.setHc_ccode(cCode);
@@ -181,6 +182,8 @@ public class HrMM {
 			hDao.updateHRCard(hrCard);
 		} else {
 			hDao.registHRCard(hrCard);
+			hrCard = hDao.selectHrCode(id);
+			session.setAttribute("hrCode", hrCard.getHc_hrcode());
 		}
 	}
 
@@ -242,7 +245,7 @@ public class HrMM {
 		if (bDao.registHolidayApprovalDocu(docu)) {
 			hDao.registHoliday(apholi);
 		}
-		mav.setViewName("/myInfo/myHoliday");
+		mav.setViewName("redirect:/myinfo/myholiday");
 		return mav;
 	}
 
@@ -503,23 +506,34 @@ public class HrMM {
 //	}
 
 	public ModelAndView checkMyHrCard(HttpSession session, String address) {
-		if (hDao.haveHrCode(session.getAttribute("id").toString())) {
-			mav.setViewName(address);
-		} else {
-			System.out.println("占쎄땀占쎌젟癰귣�以� 癰귣�沅→묾占�");
+		if(session.getAttribute("hrCode")!=null) {
+			if (hDao.haveHrCode(session.getAttribute("id").toString())) {
+				mav.setViewName(address);
+			} else {
+				mav.setViewName("redirect:/myInfo/myInfo");
+			}
+		}else {
 			mav.setViewName("redirect:/myInfo/myInfo");
 		}
 		return mav;
 	}
 
 	public ModelAndView moveMyPayCheck(HttpSession session) {
-		String hrCode = session.getAttribute("hrCode").toString();
-		HR_Card check = hDao.selectcheckpay(hrCode);
-		if (check != null) {
-			mav.addObject("paycheck", check);
-			view = "/myInfo/myPaycheck";
-		} else {
-			view = "/myInfo/myInfo";
+		if(session.getAttribute("hrCode")!=null) {
+			if(hDao.haveHrCode(session.getAttribute("id").toString())) {
+				String hrCode = session.getAttribute("hrCode").toString();
+				HR_Card check = hDao.selectcheckpay(hrCode);
+				if (check != null) {
+					mav.addObject("paycheck", check);
+					view = "/myInfo/myPaycheck";
+				} else {
+					view = "/myInfo/myInfo";
+				}
+			}else {
+				view = "/myInfo/myInfo";
+			}
+		}else {
+			view="/myInfo/myInfo";
 		}
 		mav.setViewName(view);
 		return mav;
@@ -763,6 +777,14 @@ public class HrMM {
 
 		mav.setViewName(view);
 		return mav;
+	}
+
+	public boolean checkAuth(String auth) {
+		if(auth.equals("1")) {
+			return false;
+		}else {
+			return true;			
+		}
 	}
 
 

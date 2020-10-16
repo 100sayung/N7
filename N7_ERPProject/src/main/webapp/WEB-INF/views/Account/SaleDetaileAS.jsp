@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/erp/img/favicon.png" rel="icon" />
 <!-- BOOTSTRAP STYLES-->
     <link href="/erp/assets/css/bootstrap.css" rel="stylesheet">
      <!-- FONTAWESOME STYLES-->

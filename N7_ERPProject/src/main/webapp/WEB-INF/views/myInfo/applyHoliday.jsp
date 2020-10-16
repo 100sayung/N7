@@ -12,6 +12,7 @@
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
 <style>
 #header {
 	width: 100%;
@@ -43,7 +44,9 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 800px;
+	width: 1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -55,6 +58,11 @@ ul {
 #menu2 {
 	font-size: medium;
 	}
+	
+	
+.center{
+	margin-left: 10%;
+}
 </style>
 </head>
 <body>
@@ -73,7 +81,7 @@ ul {
 	</div>
 	<div id="side_menu">
 		<ul id="menuList">
-			<li><a href="/erp/myInfo/myInfo">내 정보 보기</li>
+			<li><a href="/erp/myInfo/myInfo">내 정보 보기</a></li>
 			<div id="myInfoMenu">
 			</div>
 			<li id="showMenu1">나의 결재함</li>
@@ -89,17 +97,23 @@ ul {
 			</ul>
 		</ul>
 	</div>
-	<div id="description">
-	<button id="approval" class="goodbtn">결재자등록</button>
+	<div id="description" class="out">
+	
+		<div class="first_div_css">
+			<h1 class="deptregist_color_size">휴가 신청</h1>
+		</div>
+		
+	<div class="center">
+	<button id="approval" class="goodbtn" type="button">결재자등록</button>
 	<form action="/erp/hr/applyholiday" method="post" onsubmit="return checkHoliday();">
-	<table style='text-align: center;'>
-	<tr><td class='infomenu'>결재자</td><td><div id='line'></div></td></tr>
+	<table style='text-align: center;width: 900px;'>
+	<tr><td class='infomenu'>결재자</td><td style="border: 2px solid blue;font-size: 20px;"><div id='line'><input id="aprover" style="border: 0px;"></div></td></tr>
 	<tr class='infomenu'>
 		<td>문서제목</td><td>휴가종류</td>
 	</tr><tr>
-		<td><input type="text" name="hap_docuname" placeholder="문서 제목을 입력해주세요 글자제한 20자" required="required" style="width:300px;"></td>
+		<td><input type="text" name="hap_docuname" placeholder="문서 제목을 입력해주세요 글자제한 20자" required="required" style="width:450px;font-size: 20px;"></td>
 		<td>
-			<select style="width:200px;" name="hap_type" id="type">
+			<select style="width:450px;font-size: 20px;" name="hap_type" id="type">
 				<option value="year">연차</option>
 				<option value="period">생리</option>
 				<option value="pregnancy">임신/육아</option>
@@ -109,18 +123,18 @@ ul {
 	</tr><tr class='infomenu'>
 		<td>휴가시작일</td><td>휴가종료일</td>
 	</tr><tr>
-		<td><input type="date" name="hap_startday" required="required" id="start" style="width:300px;"></td>
-		<td><input type="date" name="hap_endday" required="required" onchange='checkDateValue(start, end);' id="end" style="width:300px;"></td>
+		<td><input type="date" name="hap_startday" required="required" id="start" style="width:450px;font-size: 20px;"></td>
+		<td><input type="date" name="hap_endday" required="required" onchange='checkDateValue(start, end);' id="end" style="width:450px;font-size: 20px;"></td>
 	</tr><tr>
 		<td colspan='2' class='infomenu'>사유</td>
 	</tr><tr>
-		<td colspan='2'><textarea rows="10" cols="10" name="hap_reason" style="width:620px; heigth:1000px; resize:none;"></textarea></td>
+		<td colspan='2'><textarea rows="10" cols="10" name="hap_reason" style="width:910px; resize:none;"></textarea></td>
 	</tr>
 	</table>
-	<input type="submit" class='infobtn' value="제출">
+		<input type="submit" class='infobtn' value="제출" style="margin-left: 450px;">
 	</form>
 	</div>
-
+</div>
 
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 	<script>
@@ -203,11 +217,11 @@ ul {
 		if (data.tList1 != "") {
 		var str = "";
 			for ( var i in data.tList1) {
-		        str +="<input type='text' name='hap_toapprover' value='"+data.tList1[i].hc_hrcode+"' hidden='true'>";
+		        str +="<input type='text' id='aprover' name='hap_toapprover' value='"+data.tList1[i].hc_hrcode+"' hidden='true'>";
 				str +=data.tList1[i].hc_position+"/" + data.tList1[i].m_name;
 			}
 			console.log(str)
-			$("#line").append(str);
+			$("#line").html(str);
 		};
 	};
 	var holidaycnt = "";
@@ -231,12 +245,16 @@ ul {
 		var term = endDay - startDay;
 		term = (term/86400000)+1;
 		if($("#type").val()=="year"){
-			if(holidaycnt>=term){
+			if(holidaycnt.hc_holynum>=term){
 				return true;
 			}else{
 				alert("남은휴가보다 더 많은 일수를 신청하셨습니다.");
 				return false;
 			}
+		}
+		if($("#aprover").val()==""){
+			alert("결재자가 없습니다 결재자를 등록해주세요.");
+			return false;
 		}
 		return true;
 	}

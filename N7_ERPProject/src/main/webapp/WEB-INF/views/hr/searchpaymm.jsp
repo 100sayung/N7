@@ -8,7 +8,7 @@
 <title>사원 급여 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<link href="/erp/img/favicon.png" rel="icon" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
@@ -44,7 +44,9 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -72,11 +74,7 @@ span {
 	border-collapse: collapse;
 	border:1px solid #D9EDF7;
 }
-#id_back{
-	font-weight:bold;
-	font-size:medium;
-	background-color: lightgray;
-}
+
 </style>
 </head>
 <body onload="build();">
@@ -184,6 +182,22 @@ span {
 		});
 	}
 
+	var moneyCheck = function(money){
+		var length = money.length; //7
+		var div = Math.floor(length/3); //2 
+		var mod = length%3; //1
+		var num = "";
+		num += money.substr(0, mod) + "";
+		for(let i = 0 ; i < div ; i++){
+			if(mod==0&&i==0){
+				num += money.substr((mod+(i*3)), 3);
+			}else{
+				num += "," + money.substr((mod+(i*3)), 3);
+			}
+		}
+		return num;
+	}
+	
 	function wagesList(nowPage){
 		$.ajax({
 			url:"/erp/rest/hr/wageslist",
@@ -197,17 +211,17 @@ span {
 				var str='';
 				var da=data.toString();
 				str +='<table id="wages" style="text-align: center; width: 100%;">';
-				str += '<tr id="id_back">';
+				str += '<tr class="infomenu">';
 				str += '<td>아이디</td><td>이름</td><td>부서</td><td>직급</td><td>급여</td><td>기본공제액</td><td>기본수령액</td><td colspan="2"></td></tr>';
 				for(var i=0;i<data.length;i++){
 					var result=data[i].HDP_PAY-data[i].HDD_AMOUNT;
 					str+="<tr id='\""+data[i].HC_ID+"\"'><td>"+data[i].HC_ID+"</td>"
 						+"<td>"+data[i].M_NAME+"</td>"
 						+"<td>"+data[i].HC_DEPT+"</td>"
-						+"<td>"+data[i].HC_POSITION+"</td>"
-						+"<td>"+data[i].HDP_PAY+"</td>"
-						+"<td>"+data[i].HDD_AMOUNT+"</td>"
-						+"<td>"+result+"</td>"
+						+"<td>"+moneyCheck(data[i].HC_POSITION.toString())+"</td>"
+						+"<td>"+moneyCheck(data[i].HDP_PAY.toString())+"</td>"
+						+"<td>"+moneyCheck(data[i].HDD_AMOUNT.toString())+"</td>"
+						+"<td>"+moneyCheck(result.toString())+"</td>"
 						+"<td><button type='button' class='infobtn' onclick='clickwages(\""+data[i].HC_ID+"\")'>입력수정</button></td>"
 						+"<td><button type='button' class='infobtn' onclick='wages(\""+data[i].HC_ID+"\")'>상세보기</button></tr>";
 				}

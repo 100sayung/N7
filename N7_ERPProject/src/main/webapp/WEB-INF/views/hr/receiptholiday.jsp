@@ -11,6 +11,7 @@
 	<script src=/erp/js/menu.js></script> <!-- 메뉴Ajax로 출력 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="/erp/img/favicon.png" rel="icon" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css"
@@ -45,8 +46,10 @@ a {
 
 #description {
 	float: left;
-	width:1000px;
+	width:1150px;
 	height: 100%;
+ position: absolute;
+   transform:translate(250px, 0);
 }
 
 table {
@@ -113,13 +116,13 @@ body{
 	</div>
 	<div style="float: right; ">
 		<table style="border: 1px solid black; width: 100px;">
-   			<tr style="background-color: #B2BEB5;color:black;">
+   			<tr style="background-color: #FFFFFF;color:black;">
    				<td>대기중</td>
-   				<td>회색</td>
+   				<td>흰색</td>
    			</tr>
-   			<tr style="background-color: #39FF14;color:black;">
+   			<tr style="background-color: #D2E9FF;color:black;">
    				<td>승인</td>
-   				<td>초록색</td>
+   				<td>하늘색</td>
    			</tr>
 		</table>
    </div>
@@ -279,14 +282,14 @@ body{
 		                     }
 		                     //09-24 change
 		                     if(data[k].hap_status=="3"){
-		                    	 cell.style.backgroundColor="#39FF14";
+		                    	 cell.style.backgroundColor="#D2E9FF";
 		                    	 cell.style.color="black";
 		                    	 cell.style.fontWeight="bolder";
 		                    	 cell.style.textShadow="black 0px 1px";
 		                     }
 		                     if(data[k].hap_status=="1"){
 		                    	 cell.style.color="black";
-		                    	 cell.style.backgroundColor="#B2BEB5";
+		                    	 cell.style.backgroundColor="#FFFFFF";
 		                     }
 		                     if(data[k].hap_status=="4"){
 		                    	 cell.innerHTML = row.remove();
@@ -332,8 +335,7 @@ body{
 		}
 	      function showDetail(docunum){
 	          console.log(docunum);
-	          window.open('/erp/hr/receipholidaydetail?docunum=' + docunum, '휴가상세정보', 'width=1400, heigth=700');
-
+	          window.open('/erp/hr/receipholidaydetail?docunum=' + docunum, '휴가상세정보', 'width=750, height=600');
 	       }
 
 

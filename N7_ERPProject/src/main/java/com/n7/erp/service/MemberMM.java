@@ -14,11 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.Member;
 import com.n7.erp.bean.ac.ApprovalDocument;
+import com.n7.erp.bean.hr.HR_Card;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.sales.approvaldetail;
 import com.n7.erp.dao.IHrDao;
@@ -38,14 +40,24 @@ public class MemberMM {
 	@Autowired
 	JavaMailSender mailSender;
 
-	public ModelAndView access(Member mb, HttpSession session) {
+	public ModelAndView access(Member mb, HttpSession session, RedirectAttributes rttr) {
 		System.out.println(mb.getM_id());
 		if (mDao.access(mb)) {
 			view = "redirect:/";
 			session.setAttribute("id", mb.getM_id());
 			session.setAttribute("cCode", mDao.bringCCode(mb));
-			if (hDao.haveHrCode(mb.getM_id())) {
-				session.setAttribute("hrCode", hDao.getHrCodeFromID(mb.getM_id()));
+			if (hDao.haveHrCode2(mb.getM_id())) {
+				HR_Card hrCard = hDao.getHrCardDetail(mb.getM_id());
+				System.out.println(hrCard.getHc_work());
+				if(hrCard.getHc_work().equals("2")) {
+					session.invalidate();
+					rttr.addFlashAttribute("msg", "2");
+					mav.setViewName("redirect:/");
+					return mav;
+				}
+				session.setAttribute("hrCode", hrCard.getHc_hrcode());
+				String Auth = hDao.getAuthority(hrCard.getHc_dept(), hrCard.getHc_ccode());
+				session.setAttribute("auth", Auth);
 				System.out.println(hDao.getHrCodeFromID(mb.getM_id()));
 			}
 		} else {
@@ -122,7 +134,7 @@ public class MemberMM {
 
 	public ModelAndView moveMyInfo(HttpSession session) {
 		if (!hDao.haveHrCode(session.getAttribute("id").toString())) {
-			mav.addObject("msg", "�뜝�럩�꽑 �뜝�떥�궪�삕移닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝占� �뜝�룞�삕泥��뜝�룞�삕�뜝�뙇�눦�삕�뜝�룞�삕.");
+			mav.addObject("msg", "인사카드를 등록해주세요.");
 		}
 		mav.setViewName("myInfo/myInfo");
 		return mav;
@@ -133,19 +145,24 @@ public class MemberMM {
 		return ResponseEntity.ok(new Gson().toJson(mb));
 	}
 
-	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authentictionNum) {
+	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authentictionNum, String type) {
 		try {
+			if(type!=null){
+				if(mDao.findId(userEmail)!=null){
+					return ResponseEntity.ok(new Gson().toJson("이메일이 중복되었습니다."));
+				}
+			}
 			MimeMessage mimeMessage = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 			messageHelper.setFrom("mykyj2000@gmail.com");
 			messageHelper.setTo(userEmail);
-			messageHelper.setSubject("N7 ERP �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�뙃�땲�뙋�삕.");
-			messageHelper.setText("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕 " + authentictionNum + " �뜝�뙃�땲�뙋�삕");
+			messageHelper.setSubject("N7 ERP 인증번호입니다.");
+			messageHelper.setText("인증번호는 " + authentictionNum + " 입니다.");
 			mailSender.send(mimeMessage);
-			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
+			return ResponseEntity.ok(new Gson().toJson("인증번호 전송에 성공하였습니다. "));
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			return ResponseEntity.ok(new Gson().toJson("�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�샇�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕"));
+			return ResponseEntity.ok(new Gson().toJson("인증번호 전송에 실패하였습니다. 다시 시도 해주세요!"));
 		}
 	}
 
@@ -211,7 +228,7 @@ public class MemberMM {
 		mDao.deleteMember(cCode);
 		mDao.deleteCompany(cCode);
 
-		return new Gson().toJson("�꽦怨�");
+		return new Gson().toJson("성공");
 	}
 
 	public String checkGrade(HttpSession session) {
@@ -269,69 +286,64 @@ public class MemberMM {
 		boolean result2 = false;
 		if (status.equals("1")) {
 			result = mDao.approvalagree(num, apcode, cCode);
-		} else {
-			result2 = mDao.approvalagree2(num, cCode);
-		}
-		if (result || result2) {
-			value = "1";
-		} else {
-			value = "2";
-		}
-		return value;
-	}
+	      } else if(status.equals("2")&&num.contains("G")){
+	          mDao.salesupdate(num, cCode);
+	          result2 = mDao.approvalagree2(num, cCode);
+	       }else if(status.equals("2")){
+	          result2 = mDao.approvalagree2(num, cCode);
+	          
+	       }
+	       if (result || result2) {
+	          value = "1";
+	       } else {
+	          value = "2";
+	       }
+	       return value;
+	    }
 
 	public String arbitrarily(String num, HttpSession session) {
 		String value = "";
 		String cCode = session.getAttribute("cCode").toString();
-		boolean result = mDao.arbitrarily(num, cCode);
-		if (result) {
-			value = "1";
-		} else {
-			value = "2";
-		}
-		return value;
-	}
+	      if(num.contains("G")){
+	          mDao.salesupdate(num, cCode);
+	       }
+	       boolean result = mDao.arbitrarily(num, cCode);
+	       if (result) {
+	          value = "1";
+	       } else {
+	          value = "2";
+	       }
+	       return value;
+	    }
 
 	public ResponseEntity<String> getFunction(String cCode) {
 		List<String> fList = mDao.getFunction(cCode);
-		System.out.println(cCode);
 		return ResponseEntity.ok(new Gson().toJson(makeFunction(fList)));
 	}
 
 	private String makeFunction(List<String> fList) {
 		StringBuilder sb = new StringBuilder();
+		sb.append("<li><a href='/erp/stock/basicstock'>기초재고 등록</a></li>");
+		sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
+		sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
+		sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
+		sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 		if (fList.size() == 3) {
-			sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
-			sb.append("<li><a href='/erp/stock/importcheck'>입고 수정 및 확정</a></li>");
-			sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
-			sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
-			sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 			sb.append("<li><a href='/erp/stock/exportstockcheck'>출고 확정</a></li>");
+			sb.append("<li><a href='/erp/stock/importcheck'>입고 수정 및 확정</a></li>");
 		} else if (fList.size() == 2) {
 			if (fList.get(0).equals("구매관리")) {
-				sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
 				sb.append("<li><a href='/erp/stock/importcheck'>입고 수정 및 확정</a></li>");
-				sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
-				sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
-				sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 				sb.append("<li><a href='/erp/stock/addexportlist'>출고 확정</a></li>");
 			} else if (fList.get(fList.size() - 1).equals("영업관리")) {
-				sb.append("<li><a href='/erp/stock/importlist'>입/출고 내역</a></li>");
 				sb.append("<li><a href='/erp/stock/addimportlist'>입고 확정</a></li>");
-				sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
-				sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
-				sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 				sb.append("<li><a href='/erp/stock/exportstocklist'>출고 확정</a></li>");
 			}
 		}else if(fList.size()==1){
-			sb.append("<li><a href='/erp/stock/importchecklist'>입/출고 내역</a></li>");
 			sb.append("<li><a href='/erp/stock/addimportlist'>입고 확정</a></li>");
-			sb.append("<li><a href='/erp/stock/byitemdeallist'>품목별 거래 현황</a></li>");
-			sb.append("<li><a href='/erp/stock/byitemstocklist'>품목별 자재 현황</a></li>");
-			sb.append("<li><a href='/erp/stock/monthpayment'>월수불실적</a></li>");
 			sb.append("<li><a href='/erp/stock/addexportlist'>출고 확정</a></li>");
 		}
-		
+
 		return sb.toString();
 	}
 

@@ -5,11 +5,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>N7 ERP - 입고 수정 및 확정</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
+	<link href="/erp/img/favicon.png" rel="icon" />
+	
 <style>
 #header {
 	width: 100%;
@@ -40,7 +42,7 @@ a {
 #description {
 	float: left;
     height:100%;
-    width:80%;
+    width:1150px;
     position: absolute;
     transform:translate(300px, 0);
 }
@@ -107,7 +109,7 @@ width: 300px;
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
+				<li><a href="/erp/myInfo/myInfo" accesskey="4" title="">내 정보</a></li>
 				<ul id="mainmenu"></ul>
 				<li><a href="/erp/hr/movehrcardpage">사내정보</a></li>
 		</div>
@@ -120,11 +122,15 @@ width: 300px;
 	<div id="description">
 		<div style="width:auto; background-color:#3D6B9B; color:white; padding:1%;">입고 수정 및 확정</div>
 		<div id="contain">
-		<c:if test="${importCheckList eq null} ">
-		<h2>입/출고 내역이 없습니다.</h2>
+		<c:if test="${importCheckList==null}">
+		<div style="background-color:#F8F7F7;">
+		<h2>발주 내역이 없습니다.</h2>
+		</div>
 		</c:if>
-		<c:if test="${importCheckList ne ''} ">
+		<c:if test="${importCheckList!=null}">
+		<div style="background-color:#F8F7F7;">
 		${importCheckList}
+		</div>
 		<input type="button" id="btn" value="입고 확정">
 		</c:if>
 		</div>
@@ -132,7 +138,6 @@ width: 300px;
 	</center>
 <script src=/erp/js/menu.js></script><!-- 메뉴Ajax로 출력 -->
 	<script>
-	console.log("${importCheckList}")
 	stockSideMenu();
 		$('#btn')
 				.click(
@@ -194,15 +199,15 @@ width: 300px;
 										dataType : "json",
 										success : function(result) {
 											if(result.length==0){
-												$("#description").html("<h3>입고 수정 및 확정</h3>입고 내역이 없습니다.");
+												$("#description").html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고 수정 및 확정</div><div style='background-color:#F8F7F7;'>발주 내역이 없습니다.</div>");
 												return;
 											}
 											console.log(result)
-											$('#description').html("<h3>입고 수정 및 확정</h3>"+result.responseText+"<button type='button' id='btn'>입고 확정</button>")
+											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고 수정 및 확정</div><div style='background-color:#F8F7F7;'>"+result.responseText+"<button type='button' id='btn'>입고 확정</button></div>")
 										},
 										error : function(err) {
 											console.log(err)
-											$('#description').html("<h3>입고 수정 및 확정</h3>"+err.responseText+"<input type='button' id='btn' value='입고 확정'>")
+											$('#description').html("<div style='width:auto; background-color:#3D6B9B; color:white; padding:1%;'>입고 수정 및 확정</div><div style='background-color:#F8F7F7;'>"+err.responseText+"<input type='button' id='btn' value='입고 확정'></div>")
 										}
 									})
 

@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>신청 휴가 여부 확인</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link href="/erp/img/favicon.png" rel="icon" />
 <style type="text/css">
 html, body {
    text-align: center;
@@ -59,7 +60,7 @@ html, body {
 </style>
 </head>
 <body>
-      <div style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">휴가신청안</div>
+      <h1 style="width: auto; background-color: #3D6B9B; color: white; padding: 1%;">휴가신청안</h1>
       <div style="height: auto; padding-top: 5px; background-color: #F8F7F7;">
          <table id="table">
             <tr>

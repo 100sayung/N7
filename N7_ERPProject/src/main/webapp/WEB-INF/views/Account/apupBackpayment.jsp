@@ -127,8 +127,7 @@ td {
 	}
 
 	function apupPaymentList(nowPage) {
-		$
-				.ajax({
+		$.ajax({
 					url : "/erp/rest/Account/apupPaymentList4",
 					dataType : "json",
 					data : {
@@ -176,35 +175,35 @@ td {
 										window.open(
 												'/erp/rest/Account/apRequest?j_docunum='
 														+ check, 'apRequest',
-												'width=1500, height=600');
+										  'width=1500, height=650');
+									} else if (check.indexOf("AP") != -1) { //영민
+										console.log(check);
+										window.open(
+												'/erp/rest/Account/apUpSalesnum?s_num='
+														+ check, 'apUpSalesinfo',
+										'width=1400, height=400');
+									} else if (check.indexOf("AS") != -1) { //영민
+										console.log(check);
+										window.open(
+												'/erp/rest/Account/asUpSalesnum?s_num='
+														+ check, 'asUpSalesinfo',
+										'width=1400, height=400');
 									} else if (check.indexOf("P") != -1) { //예은
 										window.open(
 												'/erp/rest/Purchase/pRequest?p_documentcode='
 														+ check, 'pRequest',
-												'width=1500, height=600');
+												'width=1400, height=600');
 									} else if (check.indexOf("G") != -1) { //수진
 										window.open(
 												'/erp/rest/sales/sRequest?bs_docunum='
 														+ check, 'sRequest',
-												'width=1500, height=600');
+												'width=1400, height=600');
 									} else if (check.indexOf("H") != -1) { //인사
 										console.log(check);
 										window.open(
 												'/erp/hr/holidaydetail?docunum='
 														+ check, '휴가상세정보',
-												'width=1400, heigth=700');
-									} else if (check.indexOf("AP") != -1) { //영민
-										console.log(check);
-										window.open(
-												'/erp/Account/apSalesnum?s_num='
-														+ check, 'apSalesinfo',
-												'width=1400, heigth=700');
-									} else if (check.indexOf("AS") != -1) { //영민
-										console.log(check);
-										window.open(
-												'/erp/Account/apSalesnum?s_num='
-														+ check, 'asSalesinfo',
-												'width=1400, heigth=700');
+												'width=750, height=600');
 									} else {
 										window.open(
 												'/erp/rest/myinfo/mydocument',

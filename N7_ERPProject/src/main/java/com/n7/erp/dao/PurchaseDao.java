@@ -13,6 +13,7 @@ import com.n7.erp.bean.ApprovalDocu;
 import com.n7.erp.bean.IePort;
 import com.n7.erp.bean.ItemCode;
 import com.n7.erp.bean.ps.approvalLine;
+import com.n7.erp.bean.ps.Order;
 import com.n7.erp.bean.ps.Purchase;
 import com.n7.erp.bean.ps.PurchaseApproval;
 import com.n7.erp.bean.ps.Return;
@@ -32,9 +33,9 @@ public interface PurchaseDao {
 
 	List<Purchase> pfSearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode);
 
-	boolean pfDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
+	boolean pfDelete(@Param("check") String check, @Param("cCode") String cCode);
 
-	boolean pcDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
+	boolean pcDelete(@Param("check") String check, @Param("cCode") String cCode);
 
 	List<Purchase> pDetail(@Param("check") String check, @Param("cCode") String cCode);
 
@@ -74,7 +75,7 @@ public interface PurchaseDao {
 
 	List<Return> rInfo(String cCode);
 
-	boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
+	//boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
 
 	List<Return> rSearch(@Param("search") String search, @Param("choice") String choice, @Param("cCode") String cCode);
 
@@ -84,9 +85,20 @@ public interface PurchaseDao {
 
 	boolean insertIeport(Return rt);
 
-	boolean updateitcode(int tot2, @Param("it_code") String itcode, @Param("cCode") String cCode);
+	boolean updateitcode(@Param("tot2") int tot2, @Param("it_code") String itcode, @Param("cCode") String cCode);
 
 	ItemCode getitcode(@Param("it_code") String itcode, @Param("cCode") String cCode);
+
+	boolean orderInsert(Order od);
+
+	List<Order> orderInfo(String cCode);
+
+	List<Order> orderSearch(@Param("search") String search,@Param("choice") String choice,@Param("cCode") String cCode);
+
+	List<ApprovalDocu> orderPinfo(String cCode);
+
+	int compareCode(@Param("check") String check,@Param("cCode") String cCode);
+
 
 
 

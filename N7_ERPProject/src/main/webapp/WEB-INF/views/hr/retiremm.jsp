@@ -8,6 +8,7 @@
 <title>사원 휴 -퇴직 관리</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="/erp/img/favicon.png" rel="icon" />
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
@@ -42,7 +43,9 @@ a {
 #description {
 	float: left;
 	height: 100%;
-	width: 1000px;
+	width: 1150px;
+   position: absolute;
+   transform:translate(250px, 0);
 }
 
 ul {
@@ -96,7 +99,7 @@ input,select{
 		<a href="javascript:CheckRetired(2)"><button class='infobtn'>퇴사</button></a> <br>
 		<div>
 			<table style="width: 100%;border-collapse: collapse;text-align: center;border: #D9EDF7"border="1">
-				<tr style="background-color: #B2BEB5">
+				<tr class="infomenu">
 					<td width="150px">이름</td>
 					<td width="300px">부서</td>
 					<td width="300px">직책</td>
@@ -104,7 +107,7 @@ input,select{
 				</tr>
 			</table>
 		</div>
-		<div id="container" style="overflow:auto; width:1000px; height:600px;">
+		<div id="container" style="overflow:auto; width:1150px; height:600px;" align="center">
 			<input type="hidden" value="" id="status">
 		</div>
 	</div>
@@ -127,7 +130,7 @@ input,select{
 			data : {status : status},
 			success : function(data){
 				let str = "";
-				str += "<table style='border:1px solid #D9EDF7; width:1000px;text-align:center;'>";
+				str += "<table style='border:1px solid #D9EDF7; width:1150px;text-align:center;'>";
 				console.log(data);
 				for(let i = 0 ; i<data.length ; i++){
 					str += "<tr>"
@@ -197,30 +200,34 @@ input,select{
 			method:"post",
 			success : function(data){
 				let str = "";
-				str += "<table style='border:1px solid #D9EDF7; width:1000px;text-align:center;'>";
-				console.log(data);
-				for(let i = 0 ; i<data.length ; i++){
-					str += "<tr>"
-					str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
-					str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
-					str += "<td width='300px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
-					str+="<td><select name='hc_work'>";
-					if(data[i].hc_work == 1){
-						str+="<option value = '1' selected = 'selected'> 휴직 </option>";
-						str+="<option value = '2'> 퇴사 </option>";
-						str+="<option value = '0'> 재직 </option>";
-					}else if(data[i].hc_work == 2){
-						str+="<option value = '1'> 휴직 </option>";
-						str+="<option value = '2' selected = 'selected'> 퇴사 </option>";
-						str+="<option value = '0'> 재직 </option>";
-					}else if(data[i].hc_work == 0){
-						str+="<option value = '1'> 휴직 </option>";
-						str+="<option value = '2'> 퇴사 </option>";
-						str+="<option value = '0' selected = 'selected'> 재직 </option>";
+				if(data.length!=0){
+					str += "<table style='border:1px solid #D9EDF7; width:1150px;text-align:center;'>";
+					console.log(data);
+					for(let i = 0 ; i<data.length ; i++){
+						str += "<tr>"
+						str += "<td width='150px'><input type='hidden' name='hc_hrcode' value= '"+data[i].hc_hrcode+"'>"+data[i].m_name +"</td>";
+						str += "<td width='300px'><input type='text' class='border_delete_btn' name ='hc_dept' value = '" + data[i].hc_dept + "' readonly></td>";
+						str += "<td width='400px'><input type='text' class='border_delete_btn' name='hc_position' value = '" + data[i].hc_position + "' readonly></td>";
+						str+="<td><select name='hc_work'>";
+						if(data[i].hc_work == 1){
+							str+="<option value = '1' selected = 'selected'> 휴직 </option>";
+							str+="<option value = '2'> 퇴사 </option>";
+							str+="<option value = '0'> 재직 </option>";
+						}else if(data[i].hc_work == 2){
+							str+="<option value = '1'> 휴직 </option>";
+							str+="<option value = '2' selected = 'selected'> 퇴사 </option>";
+							str+="<option value = '0'> 재직 </option>";
+						}else if(data[i].hc_work == 0){
+							str+="<option value = '1'> 휴직 </option>";
+							str+="<option value = '2'> 퇴사 </option>";
+							str+="<option value = '0' selected = 'selected'> 재직 </option>";
+						}
+						str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
 					}
-					str += "</select></td><td><input type='button' class='infobtn' value='등록' onclick='javascript:thisRowDel(this);'></td></tr>";
+					str+="</table>";
+				}else if(data.length==0){
+					str+="<img src='https://postfiles.pstatic.net/MjAyMDEwMTJfMjkw/MDAxNjAyNDg1OTMzODY1.7I5zBpuZTfh2cjDATZnjMy7ChY48rrU-xZDZQWOI138g.TjoCiAFSee21PBIhZ8Hc9jb-9ee7GkqFMWirGsa_6S0g.GIF.tkdgus5512/fr.gif?type=w773'>";
 				}
-				str+="</table>"
 				$("#container").html(str);
 			}, error : function(err){
 				console.log(err);

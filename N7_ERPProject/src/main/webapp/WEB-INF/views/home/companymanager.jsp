@@ -18,6 +18,7 @@ Released   : 20130526
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
+<link href="/erp/img/favicon.png" rel="icon" />
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="/erp/css/hrCss.css" rel="stylesheet" type="text/css" media="all" />
@@ -27,7 +28,6 @@ Released   : 20130526
 <link href="/erp/css/default.css" rel="stylesheet" type="text/css"
 	media="all" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
-		<link href="img/favicon.png" rel="icon" />
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="lib/icomoon/icomoon.css" rel="stylesheet" />
@@ -162,7 +162,7 @@ td{
 	<script>
 		function deleteCompany(cCode){
 			console.log(cCode);
-			alert("전부삭제 해야함");
+			alert("회사의 모든 정보가 삭제되었습니다.");
 			$.ajax({
 				url:"/erp/rest/home/deletecompany",
 				data:{cCode:cCode},
