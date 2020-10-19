@@ -29,8 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FileManager {
 
-//	@Autowired
-//	private IMemberDao mDao;
 	String fullPath = "/erp/";
 
 	public String fileUp(MultipartHttpServletRequest multi) {
@@ -43,83 +41,41 @@ public class FileManager {
 		if (!dir.isDirectory()) { 
 			dir.mkdir(); 
 		}
-
-//		  Iterator<String> files=multi.getFileNames(); //�뙆�씪�깭洹멸� 2媛쒖씠�긽�씪�븣
-//		  
-//		  Map<String,String> fMap=new HashMap<String, String>();
-//		  fMap.put("bnum", String.valueOf(bnum));
-//		  boolean f=false;
-//		  while(files.hasNext()){
-//			  String fileTagName=files.next();
-//			  System.out.println("fileTag="+fileTagName); //�뙆�씪  硫붾え由ъ뿉 ���옣 
-//			  MultipartFile mf=multi.getFile(fileTagName); //�떎�젣�뙆�씪 
-//			  String oriFileName=mf.getOriginalFilename(); //a.txt 
-//			  fMap.put("oriFileName", oriFileName); //4.�떆�뒪�뀥�뙆�씪�씠由� �깮�꽦 a.txt ==>112323242424.txt
-//			  String sysFileName=System.currentTimeMillis()+"."
-//			            +oriFileName.substring(oriFileName.lastIndexOf(".")+1);
-//			  fMap.put("sysFileName", sysFileName);
-//			  
-//		  }
-
-		// 3.�뙆�씪�쓣 媛��졇�삤湲�-�뙆�씪�깭洹멸� 1媛� �씪�븣
 		List<MultipartFile> fList = multi.getFiles("m_photo");
 		boolean f = false;
 		for (int i = 0; i < fList.size(); i++) {
-			// �뙆�씪 硫붾え由ъ뿉 ���옣
-			MultipartFile mf = fList.get(i); // �떎�젣�뙆�씪
-			String oriFileName = mf.getOriginalFilename(); // a.txt
-			// 4.�떆�뒪�뀥�뙆�씪�씠由� �깮�꽦 a.txt ==>112323242424.txt
+			MultipartFile mf = fList.get(i); 
+			String oriFileName = mf.getOriginalFilename(); 
 			String sysFileName = System.currentTimeMillis() + "."
 					+ oriFileName.substring(oriFileName.lastIndexOf(".") + 1);
-			// 5.硫붾え由�->�떎�젣 �뙆�씪 �뾽濡쒕뱶
 			System.out.println("(fileup)SYSFILENAME : " + sysFileName);
 
 			try {
-				mf.transferTo(new File(path + sysFileName)); // �꽌踰꼞pload�뿉 �뙆�씪 ���옣
+				mf.transferTo(new File(path + sysFileName));
 				return sysFileName;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} // while or For end
+		} 
 		return null;
 	}
-
-	// �뙆�씪 �떎�슫濡쒕뱶
 	public void download(String fullPath, String oriFileName, HttpServletResponse resp) throws Exception {
-
-		// �븳湲��뙆�씪 源⑥쭚 諛⑹�
 		String downFile = URLEncoder.encode(oriFileName, "UTF-8");
-		/* �뙆�씪紐� �뮘�뿉 �씠�긽�븳 臾몄옄媛� 遺숇뒗 寃쎌슦 �븘�옒肄붾뱶瑜� �빐寃� */
-		// downFile = downFile.replaceAll("\\+", "");
-		// �뙆�씪 媛앹껜 �깮�꽦
 		File file = new File(fullPath);
-
-		// �떎�슫濡쒕뱶 寃쎈줈 �뙆�씪�쓣 �씫�뼱 �뱾�엫
 		InputStream is = new FileInputStream(file);
-		// 諛섑솚媛앹껜�꽕�젙
-		//�떎�슫濡쒕뱶
 		resp.setContentType("application/octet-stream");
 		resp.setHeader("content-Disposition", "attachment; filename=\"" + downFile + "\"");
-		//�씠誘몄� 蹂댁뿬二쇨린
-		//resp.setContentType("image/jpeg");
-		// 諛섑솚媛앹껜�뿉 �뒪�듃由� �뿰寃�
 		OutputStream os = resp.getOutputStream();
-
-		// �뙆�씪�벐湲�
 		byte[] buffer = new byte[1024];
 		int length;
 		while ((length = is.read(buffer)) != -1) {
 			os.write(buffer, 0, length);
 		}
-		os.flush();  //異쒕젰踰꾪띁 �궘�젣
+		os.flush(); 
 		os.close();
 		is.close();
 	}
-
-	// �뙆�씪 �궘�젣
 	public void delete(String[] bfList) {
-
 		for (String bf : bfList) {
 			File file = new File(fullPath + "upload/" + bf);
 			if (file.exists()) {
@@ -127,8 +83,6 @@ public class FileManager {
 				System.out.println("�뙆�씪 �궘�젣");
 			} else {
 			}
-
 		}
-
 	}
 }

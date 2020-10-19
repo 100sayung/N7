@@ -26,56 +26,59 @@ public class StockRestController {
 	StockMM stmm;
 
 	@RequestMapping(value = "/categoryconfirm", method = RequestMethod.POST)
-	public ResponseEntity<String> categoryCofirm(Category ct,HttpSession session) {
-		return stmm.categoryCofirm(ct,session);
+	public ResponseEntity<String> categoryCofirm(Category ct, HttpSession session) {
+		return stmm.categoryCofirm(ct, session);
 	}
 
 	@RequestMapping(value = "/getcategory", method = RequestMethod.POST)
-	public ResponseEntity<List<Category>> getCategory(Category ct,HttpSession session) {
+	public ResponseEntity<List<Category>> getCategory(Category ct, HttpSession session) {
 		return stmm.getCategory(ct, session);
 	}
 
 	@RequestMapping(value = "/modifycategory", method = RequestMethod.POST)
-	public ResponseEntity<String> modifycategory(Category ct,HttpSession session) {
-		return stmm.modifyCategory(ct,session);
+	public ResponseEntity<String> modifycategory(Category ct, HttpSession session) {
+		return stmm.modifyCategory(ct, session);
 	}
 
 	@RequestMapping(value = "/deletecategory", method = RequestMethod.POST)
-	public ResponseEntity<String> deleteCategory(Category ct,HttpSession session) {
-		return stmm.deleteCategory(ct,session);
+	public ResponseEntity<String> deleteCategory(Category ct, HttpSession session) {
+		return stmm.deleteCategory(ct, session);
 	}
 
 	@RequestMapping(value = "/getitemcode", method = RequestMethod.GET)
-	public ResponseEntity<List<ItemCode>> getItemCode(ItemCode it,HttpSession session) {
-		return stmm.getItemCode(it,session);
+	public ResponseEntity<List<ItemCode>> getItemCode(ItemCode it, HttpSession session) {
+		return stmm.getItemCode(it, session);
 	}
 
 	@RequestMapping(value = "/getct", method = RequestMethod.POST)
-	public ResponseEntity<String> getCt(Category ct,HttpSession session) {
-		return stmm.getCt(ct,session);
+	public ResponseEntity<String> getCt(Category ct, HttpSession session) {
+		return stmm.getCt(ct, session);
 	}
 
 	@RequestMapping(value = "/itemcodeconfirm", method = RequestMethod.POST)
-	public ResponseEntity<String> itemCodeConfirm(@RequestBody MultiValueMap<String, String> formData, ItemCode it,HttpSession session) {
+	public ResponseEntity<String> itemCodeConfirm(@RequestBody MultiValueMap<String, String> formData, ItemCode it,
+			HttpSession session) {
 		it = stmm.setItemCode(formData, it);
-		return stmm.itemCodeConfirm(it,session);
+		return stmm.itemCodeConfirm(it, session);
 	}
 
 	@RequestMapping(value = "/modifyitemcode", method = RequestMethod.POST)
-	public ResponseEntity<String> modifyItemCode(@RequestBody MultiValueMap<String, String> formData, ItemCode it,HttpSession session) {
+	public ResponseEntity<String> modifyItemCode(@RequestBody MultiValueMap<String, String> formData, ItemCode it,
+			HttpSession session) {
 		it = stmm.setItemCode(formData, it);
-		return stmm.modifyItemCode(it,session);
+		return stmm.modifyItemCode(it, session);
 	}
 
 	@RequestMapping(value = "/deleteitemcode", method = RequestMethod.POST)
-	public ResponseEntity<String> deleteItemCode(@RequestBody MultiValueMap<String, String> formData, ItemCode it,HttpSession session) {
+	public ResponseEntity<String> deleteItemCode(@RequestBody MultiValueMap<String, String> formData, ItemCode it,
+			HttpSession session) {
 		it = stmm.setItemCode(formData, it);
-		return stmm.deleteItemCode(it,session);
+		return stmm.deleteItemCode(it, session);
 	}
 
 	@RequestMapping(value = "/getimportlist", method = RequestMethod.POST)
-	public ResponseEntity<String> getImportList(String ie_status, String date1, String date2,HttpSession session) {
-		return stmm.getImportList(ie_status, date1, date2,session);
+	public ResponseEntity<String> getImportList(String ie_status, String date1, String date2, HttpSession session) {
+		return stmm.getImportList(ie_status, date1, date2, session);
 	}
 
 	@RequestMapping(value = "/confirmimportcheck", method = RequestMethod.POST)
@@ -93,19 +96,20 @@ public class StockRestController {
 	}
 
 	@RequestMapping(value = "/getbyitemdeallist", method = RequestMethod.POST)
-	public ResponseEntity<String> getByItemDealListFromItCcode(ItemCode it,HttpSession session) {
-		return stmm.getByItemDealList(it,session);
+	public ResponseEntity<String> getByItemDealListFromItCcode(ItemCode it, HttpSession session) {
+		return stmm.getByItemDealList(it, session);
 	}
 
 	@RequestMapping(value = "/getbyitemstocklist", method = RequestMethod.POST)
-	public ResponseEntity<String> getByItemStockList(ItemCode it,HttpSession session) {
-		return stmm.getByItemStockList(it,session);
+	public ResponseEntity<String> getByItemStockList(ItemCode it, HttpSession session) {
+		return stmm.getByItemStockList(it, session);
 	}
 
 	@RequestMapping(value = "/getmonthpayment", method = RequestMethod.POST)
-	public ResponseEntity<String> getMonthPayment(String date1, String date2,HttpSession session) {
-		return stmm.getMonthPayment(date1,date2,session);
+	public ResponseEntity<String> getMonthPayment(String date1, String date2, HttpSession session) {
+		return stmm.getMonthPayment(date1, date2, session);
 	}
+
 	@RequestMapping(value = "/confirmexportcheck", method = RequestMethod.POST)
 	public ResponseEntity<String> confirmExportCheck(@RequestBody String ipList, HttpSession session) {
 		try {
@@ -119,17 +123,19 @@ public class StockRestController {
 
 		return stmm.cofirmExportCheck(ipList, session);
 	}
+
 	@RequestMapping(value = "/getclcode", method = RequestMethod.GET)
 	public ResponseEntity<String> getClcode(HttpSession session) {
 		return stmm.getClcode(session);
 	}
-	
+
 	@RequestMapping(value = "/getstock", method = RequestMethod.GET)
-	public ResponseEntity<String> getstock(ItemCode it,HttpSession session) {
-		return stmm.getStock(it,session);
+	public ResponseEntity<String> getstock(ItemCode it, HttpSession session) {
+		return stmm.getStock(it, session);
 	}
+
 	@RequestMapping(value = "/searchitcode", method = RequestMethod.GET)
-	public ResponseEntity<String> searchItCode(ItemCode it,HttpSession session) {
-		return stmm.searchItCode(it,session);
+	public ResponseEntity<String> searchItCode(ItemCode it, HttpSession session) {
+		return stmm.searchItCode(it, session);
 	}
 }
