@@ -14,72 +14,87 @@ import com.n7.erp.service.StockMM;
 @Controller
 @RequestMapping("/stock")
 public class StockController {
-	
+
 	ModelAndView mav;
 	@Autowired
 	StockMM stmm;
-	
+
 	@RequestMapping(value = "/setitemcode", method = RequestMethod.GET)
 	public String setItemCode() {
 		return "stock/setitemcode";
 	}
+
 	@RequestMapping(value = "/setcategory", method = RequestMethod.GET)
 	public String setCategory() {
 		return "stock/setcategory";
 	}
+
 	@RequestMapping(value = "/importlist", method = RequestMethod.GET)
 	public String importList() {
 		return "stock/importlist";
 	}
+
 	@RequestMapping(value = "/importcheck", method = RequestMethod.GET)
 	public ModelAndView impportCheck(HttpSession session) {
 		mav = stmm.importCheck(session);
 		return mav;
 	}
+
 	@RequestMapping(value = "/byitemdeallist", method = RequestMethod.GET)
 	public String byItemDealList() {
 		return "stock/byitemdeallist";
 	}
+
 	@RequestMapping(value = "/byitemstocklist", method = RequestMethod.GET)
 	public String byItemStockList() {
 		return "stock/byitemstocklist";
 	}
+
 	@RequestMapping(value = "/monthpayment", method = RequestMethod.GET)
 	public String monthPayment() {
 		return "stock/monthpayment";
 	}
+
 	@RequestMapping(value = "/accountconfirm", method = RequestMethod.GET)
 	public String accountConfirm() {
 		return "stock/accountconfirm";
 	}
+
 	@RequestMapping(value = "/addimportlist", method = RequestMethod.GET)
-	public String addImportList() {
+	public String addImportList() { 
 		return "stock/addimportlist";
 	}
+
 	@RequestMapping(value = "/addexportlist", method = RequestMethod.GET)
 	public String addExportList() {
 		return "stock/addexportlist";
 	}
+
 	@RequestMapping(value = "/exportstockcheck", method = RequestMethod.GET)
 	public ModelAndView exportStockCheck(HttpSession session) {
 		return stmm.exportStockCheck(session);
 	}
+
 	@RequestMapping(value = "/confirmimport", method = RequestMethod.POST)
 	public ModelAndView confirmImport(HttpServletRequest request) {
 		return stmm.cofirmImport(request);
 	}
+
 	@RequestMapping(value = "/confirmexport", method = RequestMethod.POST)
 	public ModelAndView confirmExport(HttpServletRequest request) {
 		return stmm.cofirmExport(request);
 	}
+
 	@RequestMapping(value = "/searchitemcode", method = RequestMethod.GET)
 	public String searchItemCode() {
 		return "stock/searchitemcode";
 	}
+
 	@RequestMapping(value = "/basicstock", method = RequestMethod.GET)
 	public String basicStock() {
 		return "stock/basicstock";
 	}
+
 	@RequestMapping(value = "/confirmbasicstock", method = RequestMethod.POST)
 	public ModelAndView confirmBasicStock(HttpServletRequest request) {
 		return stmm.confirmBasicStock(request);

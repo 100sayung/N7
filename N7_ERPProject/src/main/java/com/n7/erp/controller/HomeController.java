@@ -211,8 +211,9 @@ public class HomeController {
 		return mm.findId(userEmail);
 	}
 
-	@RequestMapping(value = "/home/sendauthenticationnum", method = RequestMethod.POST)
-	public ResponseEntity<String> sendAuthenticationNum(String userEmail, int authenticationNum,String type) {
+	@PostMapping(value = "/home/sendauthenticationnum")
+	public ResponseEntity<String> sendAuthenticationNum(
+			String userEmail, int authenticationNum,String type) {
 		return mm.sendAuthenticationNum(userEmail, authenticationNum,type);
 	}
 
