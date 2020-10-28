@@ -71,8 +71,6 @@ public interface PurchaseDao {
 
 	List<PurchaseApproval> pListRequest2(@Param("p_documentcode") String p_documentcode, @Param("cCode") String cCode);
 
-	boolean rRegistration(Return rt);
-
 	List<Return> rInfo(String cCode);
 
 	//boolean rDelete(@Param("check_list") String check_list, @Param("cCode") String cCode);
@@ -82,6 +80,8 @@ public interface PurchaseDao {
 	List<IePort> stocklist(String cCode);
 
 	List<ItemCode> getstocklist(String cCode);
+	
+	boolean rRegistration(Return rt);
 
 	boolean insertIeport(Return rt);
 

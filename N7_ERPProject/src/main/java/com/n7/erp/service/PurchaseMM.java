@@ -337,13 +337,11 @@ public class PurchaseMM {
 		rt.setR_hrcode(hr_code);
 		rt.setR_documentcode("R");
 
-		Integer cnt= 0;
+		int cnt= 0;
 		int cnt2=0;
 		int tot=0;
 		int tot2=0;
-		System.out.println("pdao="+pDao); 
 		it=pDao.getitcode(rt.getR_itcode(), rt.getR_ccode());
-		System.out.println("it="+it);
 		cnt=it.getIt_stock();
 		cnt2= rt.getR_amount();
 		tot=cnt-cnt2;

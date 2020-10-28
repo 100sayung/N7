@@ -4,12 +4,15 @@
 
 <mapper namespace="com.n7.erp.dao.PurchaseDao">
 	<!-- 구매 -->
+	
 	<insert id="pcommom" parameterType="Purchase">
-		INSERT INTO O_PURCHASECOMMOM VALUES(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.NEXTVAL,9,0), #{p_ccode}, #{p_productnum}, #{p_day}, #{p_clcode}, #{p_writer})
+		INSERT INTO O_PURCHASECOMMOM VALUES
+		(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.NEXTVAL,9,0), #{p_ccode}, #{p_productnum}, #{p_day}, #{p_clcode}, #{p_writer})
 	</insert>
 
 	<insert id="pregistration" parameterType="Purchase">
-		INSERT INTO O_PURCHASELIST VALUES(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.CURRVAL,9,0), #{p_ccode}, #{p_itcode}, #{p_name}, #{p_unlit}, #{p_amount}, #{p_budget})
+		INSERT INTO O_PURCHASELIST VALUES
+		(#{p_documentcode}||LPAD(O_PURCHASEPROGRAM_SEQ.CURRVAL,9,0), #{p_ccode}, #{p_itcode}, #{p_name}, #{p_unlit}, #{p_amount}, #{p_budget})
 	</insert>
 
 	<select id="pFrerence" resultType="Purchase">
@@ -20,7 +23,7 @@
 		SELECT * FROM O_PURCHASECOMMOM
 		<where>
 			<if test="choice.equals('p_documentcode')">
-				P_DOCUMENTCODE LIKE '%' || #{search} || '%' AND P_CCODE=#{cCode}
+				P_DOCUMENTCODE = #{search} || '%' AND P_CCODE=#{cCode}
 			</if>
 			<if test="choice.equals('p_writer')">
 				P_WRITER LKIE '%' || #{search} || '%' AND P_CCODE=#{cCode}
@@ -114,17 +117,21 @@
 	</select>
 	
 	<!-- 반품 -->
-	<insert id="rRegistration" parameterType="Return">
-		INSERT INTO O_RETURN VALUES(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,9,0), #{r_ccode}, #{r_ieseqnum}, #{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
-	</insert>
-
-   <insert id="insertIeport">
-      INSERT INTO S_IEPORT VALUES(S_IEPORT_SEQ.NEXTVAL, #{r_ccode}, DEFAULT, #{r_hrcode}, '' ,'3', #{r_clcode}, #{r_documentcode} ,#{r_itcode}, -#{r_amount}, #{r_unlit}, 0)
-   </insert>
-
+	
    <select id="getitcode" resultType="itemcode" parameterType="String">
    	  SELECT * FROM S_ITEMCODE WHERE IT_CODE=#{it_code} AND IT_CPCODE = #{cCode}
    </select>
+	
+	<insert id="rRegistration" parameterType="Return">
+		INSERT INTO O_RETURN VALUES
+		(#{r_documentcode}||LPAD(O_RETURNPROGRAM_SEQ.NEXTVAL,9,0), #{r_ccode}, #{r_ieseqnum}, 
+		#{r_itcode}, #{r_clcode}, #{r_amount}, #{r_unlit}, #{r_budget}, #{r_name}, #{r_reason}, 3, DEFAULT, #{r_writer})
+	</insert>
+   
+   <insert id="insertIeport">
+      INSERT INTO S_IEPORT VALUES(S_IEPORT_SEQ.NEXTVAL, #{
+      r_ccode}, DEFAULT, #{r_hrcode}, '' ,'3', #{r_clcode}, #{r_documentcode} ,#{r_itcode}, -#{r_amount}, #{r_unlit}, 0)
+   </insert>
 
    <update id="updateitcode">
        UPDATE S_ITEMCODE SET IT_STOCK = #{tot2}

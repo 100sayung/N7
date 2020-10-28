@@ -27,6 +27,7 @@ public class ConsultingBoardMM {
 	ModelAndView mav = new ModelAndView();
 
 	//게시판 이동시 목록 출력
+	
 	public ModelAndView moveBoardList(Integer pageNum) {
 		System.out.println("pageNum="+pageNum);
 		mav=new ModelAndView();
