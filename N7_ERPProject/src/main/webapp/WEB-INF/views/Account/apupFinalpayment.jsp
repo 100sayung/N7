@@ -168,9 +168,7 @@ $("#approval").click(
 
 		                  if(check.indexOf("AC") != -1){
 		                     window.open(
-		                        '/erp/rest/Account/apRequest?j_docunum='
-		                              + check, 'apRequest',
-		                        'width=1500, height=650');
+		                        '/erp/rest/Account/apRequest?j_docunum='+ check, 'apRequest', 'width=1500, height=650');
 		                  }else if(check.indexOf("AP") != -1){ //영민
 		                	  console.log(check);
 		                      window.open('/erp/rest/Account/apUpSalesnum?s_num=' + check, 'apUpSalesinfo', 'width=1400, height=400');

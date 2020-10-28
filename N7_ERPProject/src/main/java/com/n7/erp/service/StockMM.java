@@ -47,7 +47,7 @@ public class StockMM {
 		if (ctDao.categoryCofirm(ct)) {
 			return ResponseEntity.ok(new Gson().toJson(ctDao.getCategory(session.getAttribute("cCode").toString())));
 		} else {
-			return ResponseEntity.status(304).body("분류명 추가에 실패하였습니다. 다시 시도해주세요!");
+			return ResponseEntity.status(304).body("분류코드 추가에 실패하였습니다. 다시 시도해주세요!");
 		}
 	}
 
@@ -62,7 +62,7 @@ public class StockMM {
 		if (ctDao.modifyCategory(ct)) {
 			return ResponseEntity.ok(new Gson().toJson(ctDao.getCategory(session.getAttribute("cCode").toString())));
 		} else {
-			return ResponseEntity.status(304).body("분류명 수정에 실패하였습니다. 다시 시도해주세요!");
+			return ResponseEntity.status(304).body("분류코드 수정에 실패하였습니다. 다시 시도해주세요!");
 		}
 	}
 
