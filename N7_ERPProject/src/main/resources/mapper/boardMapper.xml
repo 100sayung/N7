@@ -18,7 +18,7 @@
    </insert>
 
    <select id="getContents" parameterType="int" resultType="board">
-        SELECT * FROM CONSULTING_BOARD WHERE CB_NUM = #{cb_num}
+            SELECT * FROM CONSULTING_BOARD WHERE CB_NUM = #{cb_num}
    </select>
 
    <select id="boardSearch" resultType="board">
@@ -34,13 +34,12 @@
    </select>
 
    <update id="insertReply" parameterType="string">
- 	  UPDATE CONSULTING_BOARD SET CB_REPLY = #{reply} WHERE CB_NUM=#{num}
+   UPDATE CONSULTING_BOARD SET CB_REPLY = #{reply} WHERE CB_NUM=#{num}
    </update>
 
    <delete id="delectBoard" parameterType="string">
-   		DELETE FROM CONSULTING_BOARD WHERE CB_NUM = #{num} AND CB_PASSWORD=#{password}
+   DELETE FROM CONSULTING_BOARD WHERE CB_NUM = #{num} AND CB_PASSWORD=#{password}
    </delete>
-   
 <!--    <insert id="writeBoard" parameterType="board">
       INSERT INTO CONSULTING_BOARD
       VALUES(BR_NUM_SEQ.NEXTVAL,#{CB_TYPE},#{CB_WRITER},#{CB_PASSWORD},#{CB_TITLE},#{CB_CONTENTS})

@@ -77,13 +77,11 @@ public class HomeRestController {
 		String value= mm.arbitrarily(num,session);
 		return value;
 	}
-	
 	@PostMapping(value = "/home/boardSearch")
 	   public Map<String, List<ConsultingBoard>> boardSearch(String choice, String keyword) {
 	      Map<String, List<ConsultingBoard>>bMap=cbm.boardSearch(choice, keyword);
 	      return bMap;
-	}
-	
+	   }
 	@GetMapping(value = "/home/getfunction")
 	public ResponseEntity<String> getFunction(HttpSession session) {
 		return mm.getFunction(session.getAttribute("cCode").toString());

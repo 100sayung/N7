@@ -128,8 +128,6 @@ public class PurchaseRestController {
 	}
 
 	//반품
-	 
-	 
 	@PostMapping(value = "/Purchase/rRegistration", produces= "application/json;charest=utf-8" )
 	public ModelAndView rRegistration(Return rt, HttpSession session) {
 		mav= pm.rRegistration(rt, session);
